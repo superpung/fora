@@ -1,0 +1,137 @@
+[
+ {
+  "ID": "4624ff916f86413f82283eff2b9373c2",
+  "ORDERS": 1,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-05-18 10:26:23.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cd4f540ab5",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "田静",
+  "FILE_": [
+   {
+    "ID": "3A0F690458026313E62C9858F8A95751",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cd4f540ab5",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/3A0F690458026313E62C9858F8A95751.jpg",
+    "AUTO_TABLE_ID": "4624ff916f86413f82283eff2b9373c2",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "田静.jpg",
+    "FILE_SIZE": "6420.7"
+   }
+  ],
+  "MAIN_INFO": "南京大学"
+ },
+ {
+  "ID": "1130261e81ec4e7f97f98ec6d8f85870",
+  "ORDERS": 2,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-04 17:46:18.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cd4f540ab5",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "闫爱斌",
+  "FILE_": [
+   {
+    "ID": "BE58891C762FE88948657D91FC8F0B23",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cd4f540ab5",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/BE58891C762FE88948657D91FC8F0B23.png",
+    "AUTO_TABLE_ID": "1130261e81ec4e7f97f98ec6d8f85870",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "mab.png",
+    "FILE_SIZE": null
+   }
+  ],
+  "MAIN_INFO": "合肥工业大学"
+ },
+ {
+  "ID": "70bff0a567ac4473b93f365115b05d27",
+  "ORDERS": 3,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-13 12:30:48.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cd4f540ab5",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "贾弘洋",
+  "FILE_": [
+   {
+    "ID": "E4B3E0D19EA66B847C2D6F32BB9DC025",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cd4f540ab5",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/E4B3E0D19EA66B847C2D6F32BB9DC025.png",
+    "AUTO_TABLE_ID": "70bff0a567ac4473b93f365115b05d27",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "jhy.png",
+    "FILE_SIZE": "103.9"
+   }
+  ],
+  "MAIN_INFO": "清华大学"
+ },
+ {
+  "ID": "a63e9500da3c4f1582ebacb470c24ffc",
+  "ORDERS": 4,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-12 16:56:14.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cd4f540ab5",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "吴晨涛",
+  "FILE_": [
+   {
+    "ID": "7AC4B03CFA66D701E692B6F2FD968C54",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cd4f540ab5",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/7AC4B03CFA66D701E692B6F2FD968C54.png",
+    "AUTO_TABLE_ID": "a63e9500da3c4f1582ebacb470c24ffc",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "wct.png",
+    "FILE_SIZE": "85.7"
+   }
+  ],
+  "MAIN_INFO": "上海交通大学"
+ },
+ {
+  "ID": "062b176c654345f2a8fcebf515707af8",
+  "ORDERS": 5,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-12 16:57:31.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cd4f540ab5",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "王郁杰",
+  "FILE_": [
+   {
+    "ID": "26CFF816CCC998FCE73F5939095F1AF4",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cd4f540ab5",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/26CFF816CCC998FCE73F5939095F1AF4.png",
+    "AUTO_TABLE_ID": "062b176c654345f2a8fcebf515707af8",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "wyj.png",
+    "FILE_SIZE": "60.7"
+   }
+  ],
+  "MAIN_INFO": "中国科学院计算技术研究所"
+ }
+]

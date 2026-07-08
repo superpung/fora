@@ -1,0 +1,83 @@
+[
+ {
+  "ID": "1445d75d79d1475ba883cceb782bdd22",
+  "ORDERS": 1,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-04 17:02:13.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "96b571eef93944038262f9e41b9a6047",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "孙凝晖",
+  "FILE_": [
+   {
+    "ID": "80A07BFC5123F89C8434ABDC7BD0DBF5",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "96b571eef93944038262f9e41b9a6047",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/80A07BFC5123F89C8434ABDC7BD0DBF5.png",
+    "AUTO_TABLE_ID": "1445d75d79d1475ba883cceb782bdd22",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "snh.png",
+    "FILE_SIZE": null
+   }
+  ],
+  "MAIN_INFO": "中国科学院计算技术研究所研究员 中国工程院院士"
+ },
+ {
+  "ID": "937585d310f34738a2d9345e0421488b",
+  "ORDERS": 2,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-04 17:04:46.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "96b571eef93944038262f9e41b9a6047",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "刘明",
+  "FILE_": [
+   {
+    "ID": "173912BC3131091CC632C26F950DB1ED",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "96b571eef93944038262f9e41b9a6047",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/173912BC3131091CC632C26F950DB1ED.png",
+    "AUTO_TABLE_ID": "937585d310f34738a2d9345e0421488b",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "lm.png",
+    "FILE_SIZE": null
+   }
+  ],
+  "MAIN_INFO": "复旦大学教授 中国科学院院士"
+ },
+ {
+  "ID": "0ac0df9a9f354b0e9705772180cc77f7",
+  "ORDERS": 3,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-04 17:06:06.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "96b571eef93944038262f9e41b9a6047",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "施毅",
+  "FILE_": [
+   {
+    "ID": "13155A21F9B72BC0D777592E821C1E91",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "96b571eef93944038262f9e41b9a6047",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/13155A21F9B72BC0D777592E821C1E91.png",
+    "AUTO_TABLE_ID": "0ac0df9a9f354b0e9705772180cc77f7",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "sy.png",
+    "FILE_SIZE": null
+   }
+  ],
+  "MAIN_INFO": "南京大学教授 中国科学院院士"
+ }
+]

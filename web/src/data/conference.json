@@ -1,0 +1,2402 @@
+{
+  "id": "ccfchip2026",
+  "source_url": "https://ccf.org.cn/ccfchip2026",
+  "name": {
+    "zh": "第三届CCF芯片大会",
+    "en": "CCF Chip 2026"
+  },
+  "edition": "第三届",
+  "start_date": "2026-07-17",
+  "end_date": "2026-07-20",
+  "timezone": "Asia/Shanghai",
+  "contact": {
+    "email": "ccfchip2026@castest.com.cn"
+  },
+  "links": {},
+  "venues": [
+    {
+      "id": "wxicc",
+      "name": {
+        "zh": "无锡国际会议中心",
+        "en": null
+      },
+      "type": "main",
+      "city": "无锡"
+    },
+    {
+      "id": "hotel",
+      "name": {
+        "zh": "大会推荐酒店",
+        "en": null
+      },
+      "type": "hotel",
+      "city": "无锡"
+    }
+  ],
+  "organizations": [
+    {
+      "name": {
+        "zh": "中国计算机学会",
+        "en": null
+      },
+      "role": "host",
+      "sponsor_tier": null
+    },
+    {
+      "name": {
+        "zh": "CCF容错计算专委",
+        "en": null
+      },
+      "role": "co_host",
+      "sponsor_tier": null
+    },
+    {
+      "name": {
+        "zh": "CCF计算机工程与工艺专委",
+        "en": null
+      },
+      "role": "co_host",
+      "sponsor_tier": null
+    },
+    {
+      "name": {
+        "zh": "CCF体系结构专委",
+        "en": null
+      },
+      "role": "co_host",
+      "sponsor_tier": null
+    },
+    {
+      "name": {
+        "zh": "CCF集成电路设计专委",
+        "en": null
+      },
+      "role": "co_host",
+      "sponsor_tier": null
+    },
+    {
+      "name": {
+        "zh": "南京大学",
+        "en": null
+      },
+      "role": "co_host",
+      "sponsor_tier": null
+    },
+    {
+      "name": {
+        "zh": "南京邮电大学",
+        "en": null
+      },
+      "role": "co_host",
+      "sponsor_tier": null
+    },
+    {
+      "name": {
+        "zh": "东南大学",
+        "en": null
+      },
+      "role": "support",
+      "sponsor_tier": null
+    },
+    {
+      "name": {
+        "zh": "江南大学",
+        "en": null
+      },
+      "role": "support",
+      "sponsor_tier": null
+    }
+  ],
+  "committees": [
+    {
+      "role": {
+        "zh": "大会指导委员会",
+        "en": null
+      },
+      "ordering_note": "按拼音排序",
+      "members": [
+        {
+          "name": "陈国良",
+          "affiliation_raw": "中国科学技术大学、深圳大学教授 中国科学院院士",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "崔铁军",
+          "affiliation_raw": "东南大学教授 中国科学院院士",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "顾敏",
+          "affiliation_raw": "上海理工大学教授 中国工程院外籍院士",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "洪伟",
+          "affiliation_raw": "东南大学教授 中国科学院院士",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "蒋昌俊",
+          "affiliation_raw": "同济大学教授 中国工程院院士",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "刘明",
+          "affiliation_raw": "复旦大学教授 中国科学院院士",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "毛军发",
+          "affiliation_raw": "深圳大学讲席教授 中国科学院院士",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "钱德沛",
+          "affiliation_raw": "北京航空航天大学教授 中国科学院院士",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "施毅",
+          "affiliation_raw": "南京大学教授 中国科学院院士",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "孙凝晖",
+          "affiliation_raw": "中国科学院计算技术研究所研究员 中国工程院院士",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "王耀南",
+          "affiliation_raw": "湖南大学教授 中国工程院院士",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "吴汉明",
+          "affiliation_raw": "浙江大学教授 中国工程院院士",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "薛其坤",
+          "affiliation_raw": "清华大学教授 中国科学院院士",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "张荣",
+          "affiliation_raw": "厦门大学教授 中国科学院院士",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "庄松林",
+          "affiliation_raw": "上海理工大学教授 中国工程院院士",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "大会主席",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "孙凝晖",
+          "affiliation_raw": "中国科学院计算技术研究所研究员 中国工程院院士",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "刘明",
+          "affiliation_raw": "复旦大学教授 中国科学院院士",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "施毅",
+          "affiliation_raw": "南京大学教授 中国科学院院士",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "大会共同主席",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "郭宇锋",
+          "affiliation_raw": "南京邮电大学党委书记、教授",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "大会执行主席",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "张吉良 ",
+          "affiliation_raw": "南京邮电大学",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "肖立权",
+          "affiliation_raw": "国防科技大学",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "陈云霁",
+          "affiliation_raw": "中国科学院计算技术研究所",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "李华伟",
+          "affiliation_raw": "中国科学院计算技术研究所",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "组委会主席",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "叶靖",
+          "affiliation_raw": "中科鉴芯（北京）科技有限责任公司、中国科学院计算技术研究所",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "邱浩",
+          "affiliation_raw": "南京大学",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "王蕾",
+          "affiliation_raw": "军事科学院",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "王毅",
+          "affiliation_raw": "深圳大学",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "王颖",
+          "affiliation_raw": "中国科学院计算技术研究所",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "组委会副主席",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "刘垚圻",
+          "affiliation_raw": "中国科学院计算技术研究所",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "蔡浩",
+          "affiliation_raw": "东南大学",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "程序委员会主席",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "屈钢",
+          "affiliation_raw": "马里兰大学（美国）",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "吴艳霞",
+          "affiliation_raw": "哈尔滨工程大学",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "李东升",
+          "affiliation_raw": "国防科技大学",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "哈亚军",
+          "affiliation_raw": "上海科技大学",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "论坛组织主席",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "田静",
+          "affiliation_raw": "南京大学",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "闫爱斌",
+          "affiliation_raw": "合肥工业大学",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "贾弘洋",
+          "affiliation_raw": "清华大学",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "吴晨涛",
+          "affiliation_raw": "上海交通大学",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "王郁杰",
+          "affiliation_raw": "中国科学院计算技术研究所",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "赞助主席",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "郝沁汾",
+          "affiliation_raw": "中国科学院计算技术研究所",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "王达",
+          "affiliation_raw": "中国科学院计算技术研究所",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "黄宇",
+          "affiliation_raw": "华为海思半导体有限公司",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "宣传主席",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "王小航",
+          "affiliation_raw": "浙江大学",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "李思照",
+          "affiliation_raw": "哈尔滨工程大学",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "黄克成",
+          "affiliation_raw": "北京理工大学",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "李雯",
+          "affiliation_raw": "山西大学",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "顾晓峰",
+          "affiliation_raw": "江南大学",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "网站主席",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "刘自臻",
+          "affiliation_raw": "中国科学院计算技术研究所",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "出版主席",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "李渝",
+          "affiliation_raw": "浙江大学",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        },
+        {
+          "name": "穆嘉楠",
+          "affiliation_raw": "中国科学院计算技术研究所",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "注册主席",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "汪学沛",
+          "affiliation_raw": "南京邮电大学",
+          "organization": null,
+          "title": null,
+          "honorifics": [],
+          "bio": null
+        }
+      ]
+    }
+  ],
+  "forums": [
+    {
+      "code": "CF37",
+      "title": {
+        "zh": "从Copilot到AI原生系统-迈向Agentic EDA的未来",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-18",
+      "session_period": "afternoon",
+      "room": "105A",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/5cd7e54b014b4ddaa68b0e3429e71e1f.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF17",
+      "title": {
+        "zh": "具身智能专用芯片论坛",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-18",
+      "session_period": "afternoon",
+      "room": "102A",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/6aab8c121a3042b882395e13191bad39.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF34",
+      "title": {
+        "zh": "AI/LLM赋能的EDA仿真技术",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-18",
+      "session_period": "afternoon",
+      "room": "102B",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/eb68e3760b7c4070addec0f4d43c97b0.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF04",
+      "title": {
+        "zh": "第五届学术新星论坛",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-18",
+      "session_period": "afternoon",
+      "room": "102C",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/e8fac86a1c274a6bb14dd486611fec03.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF20",
+      "title": {
+        "zh": "神经形态计算与存算一体芯片论坛",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-18",
+      "session_period": "afternoon",
+      "room": "103",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/8a281b1c42b541aa87e002fd4761b68f.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF03",
+      "title": {
+        "zh": "智能体软硬协同论坛",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-18",
+      "session_period": "afternoon",
+      "room": "107A",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/3415e78f179e485e90e90a67b83d29af.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF43",
+      "title": {
+        "zh": "多模态大模型的存算一体加速",
+        "en": null
+      },
+      "sponsor": "知存科技",
+      "series_part": null,
+      "day_date": "2026-07-18",
+      "session_period": "afternoon",
+      "room": "107B",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/7a0bbdc2e2aa41ac91c0311e398925aa.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF28",
+      "title": {
+        "zh": "第三届智能计算系统前沿论坛",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-18",
+      "session_period": "afternoon",
+      "room": "101A",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/b0b43f5a839f47258bc2c3f602830256.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF40",
+      "title": {
+        "zh": "赋能智算系统的光电互连论坛",
+        "en": null
+      },
+      "sponsor": "中星联华",
+      "series_part": null,
+      "day_date": "2026-07-18",
+      "session_period": "afternoon",
+      "room": "104",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/10b6e71cb0f44b6cbe9133541d77ac77.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF25",
+      "title": {
+        "zh": "从器件到系统：先进芯片设计与制造协同创新论坛",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-18",
+      "session_period": "afternoon",
+      "room": "206AB",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/804a4fbdb070497ab6a0dfbfd4aed862.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF47",
+      "title": {
+        "zh": "星火相传·智算燎原:玄铁RISC-V产学研协同创新论坛",
+        "en": null
+      },
+      "sponsor": "阿里巴巴达摩院",
+      "series_part": null,
+      "day_date": "2026-07-18",
+      "session_period": "afternoon",
+      "room": "209",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/82822dc7fd63464d9cd95f20eefc0f07.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF01",
+      "title": {
+        "zh": "第十一届全国硬件安全论坛（一）",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": "（一）",
+      "day_date": "2026-07-18",
+      "session_period": "afternoon",
+      "room": "203B",
+      "description": "硬件安全是保障国家信息安全和数字经济发展的重要基础，是构建自主可控信息技术体系的关键支撑。随着人工智能、物联网、云计算、边缘智能等新兴技术的快速发展，以及先进工艺、先进封装和异构集成技术的广泛应用，芯片设计、制造、测试、部署及应用全生命周期面临着日益复杂的安全挑战。硬件木马、侧信道攻击、供应链安全、芯片可信验证、后量子密码硬件实现以及新型器件安全应用等问题，已成为学术界和产业界共同关注的研究热点。全国硬件安全论坛自创办以来，始终聚焦硬件安全领域前沿技术与关键挑战，致力于搭建国内高水平学术交流与产学研合作平台。本论坛将围绕硬件安全基础理论、芯片安全设计与验证、安全EDA、密码芯片与安全处理器、物理不可克隆函数（PUF）、真随机数发生器（TRNG）、人工智能安全、先进存储与新型器件安全应用、集成电路供应链安全等热点方向，邀请国内硬件安全领域知名专家学者作专题报告，分享最新研究成果与技术进展。论坛旨在汇聚学术界与产业界优势力量，促进硬件安全领域的思想碰撞与学术交流，推动硬件安全关键技术创新与交叉融合发展，共同探索智能时代可信硬件与安全计算的发展方向，为我国集成电路与信息安全产业高质量发展提供有力支撑。",
+      "chairs": [
+        {
+          "name": "张吉良",
+          "affiliation_raw": "南京邮电大学 教授",
+          "organization": "南京邮电大学",
+          "title": "教授",
+          "chair_role": "论坛主席",
+          "bio": "南京邮电大学集成电路学院院长，CCF容错计算专业委员会主任，CCF理事。国家优青、国家网信创新人才、省领军人才、省杰青。主持NSFC重点支持项目、173基础重点项目等。主要从事集成电路硬件安全等方向研究，发表芯片设计自动化顶级会议DAC和IEEE/ACM会刊60余篇。担任IEEE TCASI、IEEE TCASII、电子与信息学报等国内外重要期刊编委，EDA领域顶级会议DAC TPC，IEEE ATS2027、ITC-Asia2026、CCF CFTC2025等大会主席，CCF芯片大会2026/2024执行主席，IEEE ITC-Asia2024等会议程序委员会主席，获CCF集成电路Early Career Award（全国每年1人）、湖南省自然科学奖二等奖（排名第一）、中国发明创业奖（2024）、中国产学研合作创新奖（2025）、CCF容错40周年杰出成果（2025）。"
+        },
+        {
+          "name": "高迎雪",
+          "affiliation_raw": "南京邮电大学 副教授",
+          "organization": "南京邮电大学",
+          "title": "副教授",
+          "chair_role": "论坛主席",
+          "bio": "南京邮电大学副教授。以第一作者身份在IEEE TC、TCAD、DAC、DATE等领域顶级期刊和会议发表（含录用）论文8篇，其中CCF-A类论文5篇、CCF-B类论文2篇。入选CCF集成电路设计专委会优博计划和《电子与信息学报》首届“星航计划”优秀青年学者。担任DAC程序委员会（TPC）委员、CCF Chip 2026大会TPC委员、《电子信息学报》“先进集成电路技术”专刊编委、ITC-Asia 2026会议Tutorial Chair、CCF容错计算专业委员会执行委员。长期担任IEEE TCASI、TVLSI、TCBB、FITEE、《电子与信息学报》等期刊审稿人，受邀在CCF DAC会议、CCF走进高校以及RISTA前沿大讲堂等做学术报告。"
+        }
+      ],
+      "talks": [
+        {
+          "order": 1,
+          "title": {
+            "zh": "（待确认）",
+            "en": null
+          },
+          "title_status": "tbd",
+          "speakers": [
+            {
+              "name": "屈钢",
+              "affiliation_raw": "马里兰大学 教授",
+              "organization": "马里兰大学",
+              "title": "教授",
+              "honorifics": [
+                "IEEE Fellow"
+              ],
+              "bio": "IEEE Fellow，中国科学技术大学数学系本科，UCLA计算机系博士，马里兰大学电气和计算机工程系终身教授，马里兰嵌入式系统与硬件安全实验室(MeshSec)、无线传感器实验室主任。主要研究方向包括硬件安全和可信、人工智能以及车联网和物联网安全，大规模集成电路、无线传感器网络和嵌入式系统的低功耗设计。发表论文近400篇，多次获得最佳论文奖和提名，曾担任18个国际会议的大会主席和程序委员会主席，担任IEEE TCAD, IEEE TCASII, IEEE TETC, ACM TODAES, Integration the VLSI Journal, JCST和国家基金委主办的Fundamental Research等刊物的编委。联合创办了IEEE硬件安全和可信技术委员会、亚洲硬件安全和可信大会、全国容错计算学术会议硬件安全论坛等一系列学术组织和会议。"
+            }
+          ],
+          "abstract": null,
+          "abstract_status": "tbd"
+        },
+        {
+          "order": 2,
+          "title": {
+            "zh": "新型存储芯片硬件安全",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "speakers": [
+            {
+              "name": "张吉良",
+              "affiliation_raw": "南京邮电大学 教授",
+              "organization": "南京邮电大学",
+              "title": "教授",
+              "bio": "南京邮电大学集成电路学院院长，CCF容错计算专业委员会主任、CCF理事，国家优青、国家WX创新人才、湖南省杰青、湖南省科技领军人才。长期从事集成电路硬件安全方向研究，以第一/通讯作者在ISCA、DAC顶会和ACM/IEEE会刊发表论文60余篇，其中DAC 12篇、ESI热点论文和高被引论文7篇。主持国家自然科学基金重点支持项目（2项）、国防173基金重点项目、华为委托横向等项目20余项。担任IEEE TCASI、IEEE TCASII、电子与信息学报、Fundamental Research国内外重要期刊编委。获得CCF集成电路Early Career Award（全国每年1人）、湖南省自然科学奖二等奖（排名第一）、中国发明创业奖、中国产学研合作创新奖、CCF容错40周年杰出成果，连续6年（2020-2025）入选斯坦福大学发布的“全球前2%顶尖科学家”榜单，并入选终生影响力榜单，计算机硬件与体系结构学科排名居中国大陆学者前三。"
+            }
+          ],
+          "abstract": "存储芯片销售额预计在2026年高达6000亿美元，远超处理器芯片市场份额。存储作为数据的载体，直接决定了数据的安全性。本报告主要介绍团队在新型存储芯片硬件安全最新的研究成果，包括国内首款40nm工艺流片的MRAM PUF芯片、MRAM TRNG芯片和MRAM硬件木马等。",
+          "abstract_status": "confirmed"
+        },
+        {
+          "order": 3,
+          "title": {
+            "zh": "毫米级智能医疗机器人芯片与系统设计",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "speakers": [
+            {
+              "name": "韩军",
+              "affiliation_raw": "复旦大学 教授",
+              "organization": "复旦大学",
+              "title": "教授",
+              "bio": "复旦大学教授，博士生导师，集成芯片与系统全国重点实验室IP与芯片架构创新中心主任，国家高层次人才。长期从事RISC-V处理器架构与智能、安全芯片领域的前沿技术研究。作为首席科学家和负责人主持承担了国家重点研发计划项目和国家自然科学基金重点项目等一批国家级和省部级科研攻关项目，并在多家领军企业实现了成果转化应用，获华为珠峰会战火花奖、深圳市科技进步奖二等奖。致力于产教融合人才培养，获上海市优秀教学成果奖一等奖、国家级教学成果奖二等奖。"
+            }
+          ],
+          "abstract": "云端低时延隐私增强计算，对商用服务器芯片的性能、功耗与成本提出严苛要求。本报告介绍国际首款硅验证环面全同态加密处理器芯片：通过可编程自举流水线与atomic swizzling内存架构解决密文膨胀、访存冲突问题；构建具备安全等级保障的环面代数系统量化方案与密钥提示生成器，压缩密钥体积、降低计算时延；采用分治式乘法引擎攻克多项式乘法瓶颈、削减运算能耗。未来该芯片可作为核心IP芯粒融入Chiplets异构算力芯片，全面支撑AI云端安全及LLM as a Service等高性能加密计算应用。",
+          "abstract_status": "confirmed",
+          "flags": [
+            "title_abstract_mismatch: 海报中报告题目横幅为“毫米级智能医疗机器人芯片与系统设计”，但演讲摘要为全同态加密处理器芯片内容，二者疑似不一致（源海报可能存在粘贴错误），此处如实保留原文"
+          ]
+        },
+        {
+          "order": 4,
+          "title": {
+            "zh": "面向硬件加速的全同态密码算法优化技术",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "speakers": [
+            {
+              "name": "汤殿华",
+              "affiliation_raw": "中国电子科技集团公司第三十研究所 正高级工程师",
+              "organization": "中国电子科技集团公司第三十研究所",
+              "title": "正高级工程师",
+              "bio": "正高级工程师，任中国电子科技集团公司第三十研究所技术专家，保密通信全国重点实验室技术总师，主要从事密态计算、智能安全、密码协议等研究，主持国防装备预研、基础加强计划、应用推进、智能专项课题、国家自然科学基金重点项目课题等国家级省部级项目14项。研究成果获省部级二等奖1项、三等奖4项。发表学术论文50余篇，获授权专利24项，出版著作2部。"
+            }
+          ],
+          "abstract": "介绍全同态密码算法的发展历程、硬件加速的技术现状，系统梳理BFV、CKKS、TFHE等全同态密码算法方案，详细介绍同态密文计算的数学原理以及硬件加速的难点，讲解模运算、NTT、RNS等优化技术以及核心算子加速技术，分析数据搬运的性能瓶颈缓解方法。最后给出全同态密码算法优化与硬件加速的一些展望。",
+          "abstract_status": "confirmed"
+        },
+        {
+          "order": 5,
+          "title": {
+            "zh": "无结构格硬件加速及在TLS/IPSec的应用研究",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "speakers": [
+            {
+              "name": "姚富",
+              "affiliation_raw": "华为谢尔德实验室 博士",
+              "organization": "华为谢尔德实验室",
+              "title": "博士",
+              "bio": "中科院软件所博士，现在华为谢尔德实验室工作，主要从事密码算法的硬件实现研究，研究方向包括密码算法的快速实现与安全实现等。"
+            }
+          ],
+          "abstract": "随着量子计算机的快速发展，传统公钥密码算法向后量子密码算法的迁移已成为必然趋势。基于无结构格的后量子密码算法以其极小的代数结构和保守的安全性保证著称，为长期安全性提供了强有力的信心。然而，该类算法的核心矩阵乘法缺乏高效的快速计算方法，导致全硬件加速研究一直较为有限，这阻碍了其广泛应用。为克服这一挑战，本次报告首先介绍我们提出的全硬件优化架构，用于加速无结构密码算法。该架构采用新型分块矩阵乘法算法，将数据级并行度提升至28倍；设计时分复用三BRAM架构，通过相内和相间共享机制最小化存储开销；引入基于指令的有限状态机，灵活控制非规则内存访问；并构建统一可重构数据通路，在单一硬件实现下支持所有参数集。其次，报告将分析该无结构格硬件加速架构在TLS/IPSec场景下的应用效果与性能表现。",
+          "abstract_status": "confirmed"
+        }
+      ],
+      "poster": {
+        "local_path": "source/raw/images/195d1eba5dc947a3b8acd538e03f16c8.jpg",
+        "source_url": "/cmsFileManager/UeditorImg/195d1eba5dc947a3b8acd538e03f16c8.jpg"
+      },
+      "detail_extracted": true
+    },
+    {
+      "code": "CF07",
+      "title": {
+        "zh": "天基计算与智能应用论坛",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-18",
+      "session_period": "afternoon",
+      "room": "101B",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/1996689bccee431e89ae2d465bdfdbfb.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF46",
+      "title": {
+        "zh": "先进计算论坛",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-18",
+      "session_period": "afternoon",
+      "room": "207AB",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/27f16b2403f14bf6902dde08e3d1e49a.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF13",
+      "title": {
+        "zh": "集成电路测试高峰论坛——chiplet芯片测试论坛",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-18",
+      "session_period": "afternoon",
+      "room": "208AB",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/7ed7322b193b476f94ee79b6c8268634.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF23",
+      "title": {
+        "zh": "芯片安全架构工程实现与应用论坛",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-18",
+      "session_period": "afternoon",
+      "room": "203C",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/d4d5885da7104007a9c3c86a77bb9764.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF10",
+      "title": {
+        "zh": "后量子密码应用论坛",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-18",
+      "session_period": "afternoon",
+      "room": "205A",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/387236e1770145e895d80c35a04c7698.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF44",
+      "title": {
+        "zh": "无线短距芯片论坛",
+        "en": null
+      },
+      "sponsor": "是德科技",
+      "series_part": null,
+      "day_date": "2026-07-18",
+      "session_period": "afternoon",
+      "room": "205B",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/cca17dd08159465bb24ed9fefac9bf4c.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF26",
+      "title": {
+        "zh": "数据流计算：后GPU时代的智能计算新范式?",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-19",
+      "session_period": "afternoon",
+      "room": "102B",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/2baa8cc14ad04b07b6e9c0f1cc82c2b6.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF14",
+      "title": {
+        "zh": "中国密态计算论坛",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-19",
+      "session_period": "afternoon",
+      "room": "102C",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/0c30b5c1f1bb4d5d9c6bfb0482c1c63e.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF38",
+      "title": {
+        "zh": "AI辅助的综合、物理设计和验证（一）",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": "（一）",
+      "day_date": "2026-07-19",
+      "session_period": "afternoon",
+      "room": "103",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/ef7e8232f86e4a4080655d43c1ee1a8f.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF31",
+      "title": {
+        "zh": "智能体时代通用处理器设计技术论坛",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-19",
+      "session_period": "afternoon",
+      "room": "107A",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/1258f39cfda948658ed941186230d956.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF16",
+      "title": {
+        "zh": "集成电路学院院长论坛",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-19",
+      "session_period": "afternoon",
+      "room": "107B",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/1c225a1911104570972cd30a352d8455.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF48",
+      "title": {
+        "zh": "AI时代下2.5D/3D先进封装协同创新与生态发展论坛",
+        "en": null
+      },
+      "sponsor": "硅芯科技",
+      "series_part": null,
+      "day_date": "2026-07-19",
+      "session_period": "afternoon",
+      "room": "101A",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/e9403a85844d4f26a7b8dde974839bf9.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF21",
+      "title": {
+        "zh": "跨尺度先进互连智能算力芯片与系统关键技术论坛",
+        "en": null
+      },
+      "sponsor": "江城实验室",
+      "series_part": null,
+      "day_date": "2026-07-19",
+      "session_period": "afternoon",
+      "room": "104",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/49e36d6b962740298e59d8dd104b7c2b.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF35",
+      "title": {
+        "zh": "智能传感-存储-计算一体化进展和挑战",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-19",
+      "session_period": "afternoon",
+      "room": "206AB",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/e6652e206215477ea0392b9a5396646b.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF33",
+      "title": {
+        "zh": "第四届基于新型高速互连的内存池化技术论坛",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-19",
+      "session_period": "afternoon",
+      "room": "209",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/60388ddb746a4126a51eb000b814a8a0.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF02",
+      "title": {
+        "zh": "第十一届全国硬件安全论坛（二）",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": "（二）",
+      "day_date": "2026-07-19",
+      "session_period": "afternoon",
+      "room": "203B",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/6f0f01dfed944d0d9accc016c4006e1d.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF18",
+      "title": {
+        "zh": "天基计算应用论坛",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-19",
+      "session_period": "afternoon",
+      "room": "101B",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/bce5e8567d744ca5999921a47a143d31.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF45",
+      "title": {
+        "zh": "二维半导体集成芯片论坛",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-19",
+      "session_period": "afternoon",
+      "room": "207AB",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/1bece842bdd8479faa5367299ba3bd35.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF29",
+      "title": {
+        "zh": "第二届体系结构优博论坛",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-19",
+      "session_period": "afternoon",
+      "room": "208AB",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/06898abe2b374d0f917deb315a916795.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF24",
+      "title": {
+        "zh": "量子计算芯片技术论坛",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-19",
+      "session_period": "afternoon",
+      "room": "203C",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/06ff6a05e00f4267ad9b7cdfa505c4c4.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF11",
+      "title": {
+        "zh": "大模型下半场：面向高效推理的软硬件协同优化",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-19",
+      "session_period": "afternoon",
+      "room": "205A",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/e1d3dbc96532470fabca7927ca3176bf.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF41",
+      "title": {
+        "zh": "openDACS V5.0 开源EDA版本发布论坛",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-19",
+      "session_period": "afternoon",
+      "room": "205B",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/8306bad2318e458699610c7ecbe8ec17.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF39",
+      "title": {
+        "zh": "AI辅助的综合、物理设计和验证（二）",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": "（二）",
+      "day_date": "2026-07-20",
+      "session_period": "morning",
+      "room": "103",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/eb869d82458c469fb80fdfec0340a810.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF05",
+      "title": {
+        "zh": "人工智能赋能芯片设计新范式",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-20",
+      "session_period": "morning",
+      "room": "107A",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/d95d7beaf5f244608923b4fba2057706.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF09",
+      "title": {
+        "zh": "智算芯片与系统建模与优化",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-20",
+      "session_period": "morning",
+      "room": "107B",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/7331f522782a4997aa2544571f25cbd4.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF08",
+      "title": {
+        "zh": "从芯片到系统：AI系统可靠性与容错技术",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-20",
+      "session_period": "morning",
+      "room": "101A",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/5171a9c330a74cbeb252b8c51fa44bd7.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF32",
+      "title": {
+        "zh": "智能技术驱动的自动处理器及系统设计",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-20",
+      "session_period": "morning",
+      "room": "104",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/281cc62945ff4158afa7eca158e9629d.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF22",
+      "title": {
+        "zh": "光电融合互联芯片技术论坛",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-20",
+      "session_period": "morning",
+      "room": "206AB",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/847cf8882bb5462bb4c60ed1eaad11c2.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF30",
+      "title": {
+        "zh": "同态加密软硬协同加速技术",
+        "en": null
+      },
+      "sponsor": "蚂蚁",
+      "series_part": null,
+      "day_date": "2026-07-20",
+      "session_period": "morning",
+      "room": "209",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/061c5305abd8426799b89af25bfdc77f.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF27",
+      "title": {
+        "zh": "智能存储系统可靠性技术论坛",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-20",
+      "session_period": "morning",
+      "room": "203B",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/711426801263407a9009a6de3394bdd7.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF19",
+      "title": {
+        "zh": "生物医疗芯片与系统论坛",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-20",
+      "session_period": "morning",
+      "room": "101B",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/7d2277b860e94c24816825b5310e9cc3.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF42",
+      "title": {
+        "zh": "从约束求解到EDA形式化方法",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-20",
+      "session_period": "morning",
+      "room": "207AB",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/e2d049e8b0834e0cb3a1df224be9e379.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF12",
+      "title": {
+        "zh": "超导前沿技术论坛：器件、电路与系统",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-20",
+      "session_period": "morning",
+      "room": "208AB",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/eacb70b457ba45ff83f22076ee76304d.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF36",
+      "title": {
+        "zh": "量子计算与EDA",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-20",
+      "session_period": "morning",
+      "room": "203C",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/7f90cd647c2f43a9ac27f4308bab0b75.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF06",
+      "title": {
+        "zh": "近似计算芯片设计与应用",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-20",
+      "session_period": "morning",
+      "room": "205A",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/a59358b1286c4848ab5c79a578829fba.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    },
+    {
+      "code": "CF15",
+      "title": {
+        "zh": "高可靠芯片试验分析与防护",
+        "en": null
+      },
+      "sponsor": null,
+      "series_part": null,
+      "day_date": "2026-07-20",
+      "session_period": "morning",
+      "room": "205B",
+      "description": null,
+      "chairs": [],
+      "talks": [],
+      "poster": {
+        "local_path": "raw/images/9f640fe5d3a546469c4f667def6f4421.jpg",
+        "source_url": null
+      },
+      "detail_extracted": false
+    }
+  ],
+  "days": [
+    {
+      "date": "2026-07-17",
+      "venue_id": "hotel",
+      "overview": {
+        "morning": [],
+        "afternoon": [
+          "签到"
+        ],
+        "evening": []
+      },
+      "blocks": [
+        {
+          "kind": "registration",
+          "title": {
+            "zh": "签到",
+            "en": null
+          },
+          "start": "14:00",
+          "end": "21:00",
+          "location": "大会推荐酒店"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-18",
+      "venue_id": "wxicc",
+      "overview": {
+        "morning": [
+          "签到",
+          "开幕式",
+          "大会主旨报告"
+        ],
+        "afternoon": [
+          "技术论坛"
+        ],
+        "evening": [
+          "“知存之夜”晚宴"
+        ]
+      },
+      "blocks": [
+        {
+          "kind": "registration",
+          "title": {
+            "zh": "签到",
+            "en": null
+          },
+          "start": "07:00",
+          "end": "18:00",
+          "location": "无锡国际会议中心"
+        },
+        {
+          "kind": "keynotes",
+          "title": {
+            "zh": "大会主旨报告",
+            "en": null
+          },
+          "start": "08:30",
+          "end": "12:00",
+          "location": "太湖厅AB",
+          "breaks": [
+            {
+              "name": "茶歇",
+              "start": "10:15",
+              "end": "10:35"
+            }
+          ],
+          "talks": [
+            {
+              "start": "08:30",
+              "end": "09:00",
+              "type": "opening",
+              "title": {
+                "zh": "开幕式",
+                "en": null
+              },
+              "title_status": "confirmed",
+              "speakers": [],
+              "abstract": null,
+              "abstract_status": "unknown"
+            },
+            {
+              "start": "09:00",
+              "end": "09:40",
+              "type": "keynote",
+              "title": {
+                "zh": "射频异质异构集成技术",
+                "en": null
+              },
+              "title_status": "confirmed",
+              "speakers": [
+                {
+                  "name": "毛军发",
+                  "affiliation_raw": "深圳大学讲席教授",
+                  "honorifics": [
+                    "中国科学院院士"
+                  ]
+                }
+              ],
+              "abstract": null,
+              "abstract_status": "unknown"
+            },
+            {
+              "start": "09:40",
+              "end": "10:15",
+              "type": "keynote",
+              "title": {
+                "zh": "感算一体智能感知芯片与应用",
+                "en": null
+              },
+              "title_status": "confirmed",
+              "speakers": [
+                {
+                  "name": "曾晓洋",
+                  "affiliation_raw": "复旦大学教授",
+                  "honorifics": []
+                }
+              ],
+              "abstract": null,
+              "abstract_status": "unknown"
+            },
+            {
+              "start": "10:35",
+              "end": "11:10",
+              "type": "keynote",
+              "title": {
+                "zh": "反直觉的太空超算和大算力太空芯片设计",
+                "en": null
+              },
+              "title_status": "confirmed",
+              "speakers": [
+                {
+                  "name": "韩银和",
+                  "affiliation_raw": "中国科学院计算技术研究所研究员",
+                  "honorifics": []
+                }
+              ],
+              "abstract": null,
+              "abstract_status": "unknown"
+            },
+            {
+              "start": "11:10",
+              "end": "11:30",
+              "type": "keynote",
+              "title": {
+                "zh": "面向大语言模型的存内计算",
+                "en": null
+              },
+              "title_status": "confirmed",
+              "speakers": [
+                {
+                  "name": "王绍迪",
+                  "affiliation_raw": "知存科技创始人兼CEO",
+                  "honorifics": []
+                }
+              ],
+              "abstract": null,
+              "abstract_status": "unknown"
+            },
+            {
+              "start": "11:30",
+              "end": "11:45",
+              "type": "keynote",
+              "title": {
+                "zh": "全同态密算芯片：万倍加速突破同态落地鸿沟，可证安全护航数据价值流通",
+                "en": null
+              },
+              "title_status": "confirmed",
+              "speakers": [
+                {
+                  "name": "闫守孟",
+                  "affiliation_raw": "蚂蚁集团蚂蚁密算CTO",
+                  "honorifics": []
+                }
+              ],
+              "abstract": null,
+              "abstract_status": "unknown"
+            },
+            {
+              "start": "11:45",
+              "end": "12:00",
+              "type": "keynote",
+              "title": {
+                "zh": "智算时代AI芯片发展及先进封装技术演进",
+                "en": null
+              },
+              "title_status": "confirmed",
+              "speakers": [
+                {
+                  "name": "杨道虹",
+                  "affiliation_raw": "江城实验室主任 湖北大学集成电路学院院长",
+                  "honorifics": []
+                }
+              ],
+              "abstract": null,
+              "abstract_status": "unknown"
+            }
+          ]
+        },
+        {
+          "kind": "forums",
+          "title": {
+            "zh": "技术论坛",
+            "en": null
+          },
+          "start": "13:30",
+          "end": "17:00",
+          "location": null,
+          "breaks": [
+            {
+              "name": "茶歇",
+              "start": "15:00",
+              "end": "15:20"
+            }
+          ],
+          "forum_entries": [
+            {
+              "forum_code": "CF37",
+              "room": "105A"
+            },
+            {
+              "forum_code": "CF17",
+              "room": "102A"
+            },
+            {
+              "forum_code": "CF34",
+              "room": "102B"
+            },
+            {
+              "forum_code": "CF04",
+              "room": "102C"
+            },
+            {
+              "forum_code": "CF20",
+              "room": "103"
+            },
+            {
+              "forum_code": "CF03",
+              "room": "107A"
+            },
+            {
+              "forum_code": "CF43",
+              "room": "107B"
+            },
+            {
+              "forum_code": "CF28",
+              "room": "101A"
+            },
+            {
+              "forum_code": "CF40",
+              "room": "104"
+            },
+            {
+              "forum_code": "CF25",
+              "room": "206AB"
+            },
+            {
+              "forum_code": "CF47",
+              "room": "209"
+            },
+            {
+              "forum_code": "CF01",
+              "room": "203B"
+            },
+            {
+              "forum_code": "CF07",
+              "room": "101B"
+            },
+            {
+              "forum_code": "CF46",
+              "room": "207AB"
+            },
+            {
+              "forum_code": "CF13",
+              "room": "208AB"
+            },
+            {
+              "forum_code": "CF23",
+              "room": "203C"
+            },
+            {
+              "forum_code": "CF10",
+              "room": "205A"
+            },
+            {
+              "forum_code": "CF44",
+              "room": "205B"
+            }
+          ]
+        },
+        {
+          "kind": "banquet",
+          "title": {
+            "zh": "“知存之夜”晚宴",
+            "en": null
+          },
+          "start": "18:30",
+          "end": "20:30",
+          "location": "太湖厅AB"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-19",
+      "venue_id": "wxicc",
+      "overview": {
+        "morning": [
+          "签到",
+          "大会主旨报告"
+        ],
+        "afternoon": [
+          "技术论坛"
+        ],
+        "evening": [
+          "CCF专委工作会议"
+        ]
+      },
+      "blocks": [
+        {
+          "kind": "registration",
+          "title": {
+            "zh": "签到",
+            "en": null
+          },
+          "start": "07:00",
+          "end": "18:00",
+          "location": "无锡国际会议中心"
+        },
+        {
+          "kind": "keynotes",
+          "title": {
+            "zh": "大会主旨报告",
+            "en": null
+          },
+          "start": "08:30",
+          "end": "12:10",
+          "location": "太湖厅AB",
+          "breaks": [
+            {
+              "name": "茶歇",
+              "start": "10:25",
+              "end": "10:45"
+            }
+          ],
+          "talks": [
+            {
+              "start": "08:30",
+              "end": "09:10",
+              "type": "keynote",
+              "title": {
+                "zh": "毫米波与太赫兹芯片研究进展",
+                "en": null
+              },
+              "title_status": "confirmed",
+              "speakers": [
+                {
+                  "name": "洪伟",
+                  "affiliation_raw": "东南大学首席教授",
+                  "honorifics": [
+                    "中国科学院院士"
+                  ]
+                }
+              ],
+              "abstract": null,
+              "abstract_status": "unknown"
+            },
+            {
+              "start": "09:10",
+              "end": "09:50",
+              "type": "keynote",
+              "title": {
+                "zh": "报告题目待定",
+                "en": null
+              },
+              "title_status": "tbd",
+              "speakers": [
+                {
+                  "name": "张荣",
+                  "affiliation_raw": "厦门大学教授",
+                  "honorifics": [
+                    "中国科学院院士"
+                  ]
+                }
+              ],
+              "abstract": null,
+              "abstract_status": "unknown"
+            },
+            {
+              "start": "09:50",
+              "end": "10:25",
+              "type": "keynote",
+              "title": {
+                "zh": "太空算力驱动下集成电路需求与发展",
+                "en": null
+              },
+              "title_status": "confirmed",
+              "speakers": [
+                {
+                  "name": "赵元富",
+                  "affiliation_raw": "航天科技九院技术首席",
+                  "honorifics": []
+                }
+              ],
+              "abstract": null,
+              "abstract_status": "unknown"
+            },
+            {
+              "start": "10:45",
+              "end": "11:20",
+              "type": "keynote",
+              "title": {
+                "zh": "从人工智能到处理器芯片",
+                "en": null
+              },
+              "title_status": "confirmed",
+              "speakers": [
+                {
+                  "name": "陈云霁",
+                  "affiliation_raw": "中国科学院计算技术研究所研究员",
+                  "honorifics": []
+                }
+              ],
+              "abstract": null,
+              "abstract_status": "unknown"
+            },
+            {
+              "start": "11:20",
+              "end": "11:55",
+              "type": "keynote",
+              "title": {
+                "zh": "二维半导体异构集成芯片",
+                "en": null
+              },
+              "title_status": "confirmed",
+              "speakers": [
+                {
+                  "name": "王欣然",
+                  "affiliation_raw": "南京大学教授",
+                  "honorifics": []
+                }
+              ],
+              "abstract": null,
+              "abstract_status": "unknown"
+            },
+            {
+              "start": "11:55",
+              "end": "12:10",
+              "type": "keynote",
+              "title": {
+                "zh": "Chips Z：2.5D/3D AI EDA+ 开启先进封装STCO系统协同新时代",
+                "en": null
+              },
+              "title_status": "confirmed",
+              "speakers": [
+                {
+                  "name": "赵毅",
+                  "affiliation_raw": "硅芯科技创始人兼CEO",
+                  "honorifics": []
+                }
+              ],
+              "abstract": null,
+              "abstract_status": "unknown"
+            }
+          ]
+        },
+        {
+          "kind": "forums",
+          "title": {
+            "zh": "技术论坛",
+            "en": null
+          },
+          "start": "13:30",
+          "end": "17:00",
+          "location": null,
+          "breaks": [
+            {
+              "name": "茶歇",
+              "start": "15:00",
+              "end": "15:20"
+            }
+          ],
+          "forum_entries": [
+            {
+              "forum_code": "CF26",
+              "room": "102B"
+            },
+            {
+              "forum_code": "CF14",
+              "room": "102C"
+            },
+            {
+              "forum_code": "CF38",
+              "room": "103"
+            },
+            {
+              "forum_code": "CF31",
+              "room": "107A"
+            },
+            {
+              "forum_code": "CF16",
+              "room": "107B"
+            },
+            {
+              "forum_code": "CF48",
+              "room": "101A"
+            },
+            {
+              "forum_code": "CF21",
+              "room": "104"
+            },
+            {
+              "forum_code": "CF35",
+              "room": "206AB"
+            },
+            {
+              "forum_code": "CF33",
+              "room": "209"
+            },
+            {
+              "forum_code": "CF02",
+              "room": "203B"
+            },
+            {
+              "forum_code": "CF18",
+              "room": "101B"
+            },
+            {
+              "forum_code": "CF45",
+              "room": "207AB"
+            },
+            {
+              "forum_code": "CF29",
+              "room": "208AB"
+            },
+            {
+              "forum_code": "CF24",
+              "room": "203C"
+            },
+            {
+              "forum_code": "CF11",
+              "room": "205A"
+            },
+            {
+              "forum_code": "CF41",
+              "room": "205B"
+            }
+          ]
+        },
+        {
+          "kind": "committee_meetings",
+          "title": {
+            "zh": "CCF专委工作会议",
+            "en": null
+          },
+          "start": null,
+          "end": null,
+          "meetings": [
+            {
+              "name": {
+                "zh": "CCF容错计算专委工作会议",
+                "en": null
+              },
+              "room": "102A",
+              "start": "18:00",
+              "end": "20:00"
+            },
+            {
+              "name": {
+                "zh": "CCF体系结构专委工作会议",
+                "en": null
+              },
+              "room": "102B",
+              "start": "18:30",
+              "end": "20:30"
+            },
+            {
+              "name": {
+                "zh": "CCF集成电路设计专委工作会议",
+                "en": null
+              },
+              "room": "102C",
+              "start": "19:00",
+              "end": "21:00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-07-20",
+      "venue_id": "wxicc",
+      "overview": {
+        "morning": [
+          "技术论坛"
+        ],
+        "afternoon": [],
+        "evening": []
+      },
+      "blocks": [
+        {
+          "kind": "forums",
+          "title": {
+            "zh": "技术论坛",
+            "en": null
+          },
+          "start": "08:30",
+          "end": "12:00",
+          "location": null,
+          "breaks": [
+            {
+              "name": "茶歇",
+              "start": "10:00",
+              "end": "10:20"
+            }
+          ],
+          "forum_entries": [
+            {
+              "forum_code": "CF39",
+              "room": "103"
+            },
+            {
+              "forum_code": "CF05",
+              "room": "107A"
+            },
+            {
+              "forum_code": "CF09",
+              "room": "107B"
+            },
+            {
+              "forum_code": "CF08",
+              "room": "101A"
+            },
+            {
+              "forum_code": "CF32",
+              "room": "104"
+            },
+            {
+              "forum_code": "CF22",
+              "room": "206AB"
+            },
+            {
+              "forum_code": "CF30",
+              "room": "209"
+            },
+            {
+              "forum_code": "CF27",
+              "room": "203B"
+            },
+            {
+              "forum_code": "CF19",
+              "room": "101B"
+            },
+            {
+              "forum_code": "CF42",
+              "room": "207AB"
+            },
+            {
+              "forum_code": "CF12",
+              "room": "208AB"
+            },
+            {
+              "forum_code": "CF36",
+              "room": "203C"
+            },
+            {
+              "forum_code": "CF06",
+              "room": "205A"
+            },
+            {
+              "forum_code": "CF15",
+              "room": "205B"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "extraction": {
+    "generated_at": "2026-07-08T19:53:08",
+    "source": "ccf.org.cn/ccfchip2026",
+    "forums_total": 48,
+    "forums_detail_extracted": 1,
+    "notes": "总览级信息+结构化内容完整；论坛内部报告仅 CF01 已视觉解析，CF02-CF48 待续。"
+  }
+}

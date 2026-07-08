@@ -1,0 +1,56 @@
+[
+ {
+  "ID": "d4a1b210891043fb9e50c8c6a8f3ebf2",
+  "ORDERS": 1,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-08 10:56:28.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "8a9e3a9d9b062e32019ccb5af6b90b40",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "刘垚圻",
+  "FILE_": [
+   {
+    "ID": "096A64EE9EC648CD9F73A58AED61DD0C",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "8a9e3a9d9b062e32019ccb5af6b90b40",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/096A64EE9EC648CD9F73A58AED61DD0C.png",
+    "AUTO_TABLE_ID": "d4a1b210891043fb9e50c8c6a8f3ebf2",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "lyq.png",
+    "FILE_SIZE": "65.9"
+   }
+  ],
+  "MAIN_INFO": "中国科学院计算技术研究所"
+ },
+ {
+  "ID": "cb3cb984fedb4b0c90c20f5165d7322c",
+  "ORDERS": 2,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-17 17:33:56.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "8a9e3a9d9b062e32019ccb5af6b90b40",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "蔡浩",
+  "FILE_": [
+   {
+    "ID": "3BB60DCA60EF6F0DFD75A8016A37239E",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "8a9e3a9d9b062e32019ccb5af6b90b40",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/3BB60DCA60EF6F0DFD75A8016A37239E.png",
+    "AUTO_TABLE_ID": "cb3cb984fedb4b0c90c20f5165d7322c",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "ch.png",
+    "FILE_SIZE": "40.3"
+   }
+  ],
+  "MAIN_INFO": "东南大学"
+ }
+]

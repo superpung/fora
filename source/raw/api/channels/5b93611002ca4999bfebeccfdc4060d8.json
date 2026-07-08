@@ -1,0 +1,25 @@
+[
+ {
+  "ID": "ae79203b4c49417fb8fb5eb60358a087",
+  "ORDERS": 1,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-07-02 00:32:50.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "5b93611002ca4999bfebeccfdc4060d8",
+  "TITLE": "CCF容错计算专委执行委员申请表",
+  "FILE_ASDSA": [
+   {
+    "ID": "ad421fd22ef14facaca8e238a7253976",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "5b93611002ca4999bfebeccfdc4060d8",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/ad421fd22ef14facaca8e238a7253976.docx",
+    "AUTO_TABLE_ID": "ae79203b4c49417fb8fb5eb60358a087",
+    "LABEL_ID": "fileid_FILE_ASDSA",
+    "FILE_NAME": "CCF容错计算专委执行委员申请表.docx",
+    "FILE_SIZE": "17.7"
+   }
+  ]
+ }
+]

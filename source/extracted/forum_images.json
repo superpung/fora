@@ -1,0 +1,386 @@
+[
+  {
+    "code": "CF01",
+    "channel_id": "8a9e3a9d9e38a74b019eee12fe2a08fc",
+    "poster_images": [
+      "raw/images/195d1eba5dc947a3b8acd538e03f16c8.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF02",
+    "channel_id": "8a9e3a9d9e38a74b019f408958dd0fe1",
+    "poster_images": [
+      "raw/images/6f0f01dfed944d0d9accc016c4006e1d.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF03",
+    "channel_id": "8a9e3a9d9e38a74b019f40898c870fe5",
+    "poster_images": [
+      "raw/images/3415e78f179e485e90e90a67b83d29af.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF04",
+    "channel_id": "8a9e3a9d9e38a74b019eee08715808ec",
+    "poster_images": [
+      "raw/images/e8fac86a1c274a6bb14dd486611fec03.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF05",
+    "channel_id": "8a9e3a9d9e38a74b019ece40be3c0872",
+    "poster_images": [
+      "raw/images/d95d7beaf5f244608923b4fba2057706.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF06",
+    "channel_id": "8a9e3a9d9e38a74b019ef32ff98f09d0",
+    "poster_images": [
+      "raw/images/a59358b1286c4848ab5c79a578829fba.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF07",
+    "channel_id": "8a9e3a9d9e38a74b019f3627e8b10fa6",
+    "poster_images": [
+      "raw/images/1996689bccee431e89ae2d465bdfdbfb.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF08",
+    "channel_id": "8a9e3a9d9e38a74b019f11517f840d19",
+    "poster_images": [
+      "raw/images/5171a9c330a74cbeb252b8c51fa44bd7.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF09",
+    "channel_id": "8a9e3a9d9e38a74b019ef330397309d2",
+    "poster_images": [
+      "raw/images/7331f522782a4997aa2544571f25cbd4.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF10",
+    "channel_id": "8a9e3a9d9e38a74b019f1d90a5fb0ee1",
+    "poster_images": [
+      "raw/images/387236e1770145e895d80c35a04c7698.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF11",
+    "channel_id": "8a9e3a9d9e38a74b019ef33064a109d4",
+    "poster_images": [
+      "raw/images/e1d3dbc96532470fabca7927ca3176bf.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF12",
+    "channel_id": "8a9e3a9d9e38a74b019eee08c4d108ee",
+    "poster_images": [
+      "raw/images/eacb70b457ba45ff83f22076ee76304d.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF13",
+    "channel_id": "8a9e3a9d9e38a74b019ece410eb20874",
+    "poster_images": [
+      "raw/images/7ed7322b193b476f94ee79b6c8268634.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF14",
+    "channel_id": "8a9e3a9d9e38a74b019ece4147410876",
+    "poster_images": [
+      "raw/images/0c30b5c1f1bb4d5d9c6bfb0482c1c63e.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF15",
+    "channel_id": "8a9e3a9d9e38a74b019f1151a8ed0d1b",
+    "poster_images": [
+      "raw/images/9f640fe5d3a546469c4f667def6f4421.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF16",
+    "channel_id": "8a9e3a9d9e38a74b019f362853720fa8",
+    "poster_images": [
+      "raw/images/1c225a1911104570972cd30a352d8455.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF17",
+    "channel_id": "8a9e3a9d9e38a74b019eee09383408f0",
+    "poster_images": [
+      "raw/images/6aab8c121a3042b882395e13191bad39.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF18",
+    "channel_id": "8a9e3a9d9e38a74b019f362874570faa",
+    "poster_images": [
+      "raw/images/bce5e8567d744ca5999921a47a143d31.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF19",
+    "channel_id": "8a9e3a9d9e38a74b019eee09722a08f2",
+    "poster_images": [
+      "raw/images/7d2277b860e94c24816825b5310e9cc3.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF20",
+    "channel_id": "8a9e3a9d9e38a74b019f1151d4890d1d",
+    "poster_images": [
+      "raw/images/8a281b1c42b541aa87e002fd4761b68f.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF21",
+    "channel_id": "8a9e3a9d9e38a74b019f3628a75d0fac",
+    "poster_images": [
+      "raw/images/49e36d6b962740298e59d8dd104b7c2b.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF22",
+    "channel_id": "8a9e3a9d9e38a74b019f4089c9290fe7",
+    "poster_images": [
+      "raw/images/847cf8882bb5462bb4c60ed1eaad11c2.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF23",
+    "channel_id": "8a9e3a9d9e38a74b019f408a934d0fe9",
+    "poster_images": [
+      "raw/images/d4d5885da7104007a9c3c86a77bb9764.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF24",
+    "channel_id": "8a9e3a9d9e38a74b019eee099ecc08f4",
+    "poster_images": [
+      "raw/images/06ff6a05e00f4267ad9b7cdfa505c4c4.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF25",
+    "channel_id": "8a9e3a9d9e38a74b019f408abd7e0feb",
+    "poster_images": [
+      "raw/images/804a4fbdb070497ab6a0dfbfd4aed862.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF26",
+    "channel_id": "8a9e3a9d9e38a74b019f3628ca8f0fae",
+    "poster_images": [
+      "raw/images/2baa8cc14ad04b07b6e9c0f1cc82c2b6.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF27",
+    "channel_id": "8a9e3a9d9e38a74b019f362ae1e60fb0",
+    "poster_images": [
+      "raw/images/711426801263407a9009a6de3394bdd7.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF28",
+    "channel_id": "8a9e3a9d9e38a74b019f362b103a0fb2",
+    "poster_images": [
+      "raw/images/b0b43f5a839f47258bc2c3f602830256.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF29",
+    "channel_id": "8a9e3a9d9e38a74b019f1d90d27a0ee3",
+    "poster_images": [
+      "raw/images/06898abe2b374d0f917deb315a916795.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF30",
+    "channel_id": "8a9e3a9d9e38a74b019f115203fe0d21",
+    "poster_images": [
+      "raw/images/061c5305abd8426799b89af25bfdc77f.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF31",
+    "channel_id": "8a9e3a9d9e38a74b019f1d9100ac0ee5",
+    "poster_images": [
+      "raw/images/1258f39cfda948658ed941186230d956.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF32",
+    "channel_id": "8a9e3a9d9e38a74b019f408ae4460fed",
+    "poster_images": [
+      "raw/images/281cc62945ff4158afa7eca158e9629d.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF33",
+    "channel_id": "8a9e3a9d9e38a74b019f1d9131770eed",
+    "poster_images": [
+      "raw/images/60388ddb746a4126a51eb000b814a8a0.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF34",
+    "channel_id": "8a9e3a9d9e38a74b019ece4176e50878",
+    "poster_images": [
+      "raw/images/eb68e3760b7c4070addec0f4d43c97b0.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF35",
+    "channel_id": "8a9e3a9d9e38a74b019ece4199a0087a",
+    "poster_images": [
+      "raw/images/e6652e206215477ea0392b9a5396646b.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF36",
+    "channel_id": "8a9e3a9d9e38a74b019ece42980f087c",
+    "poster_images": [
+      "raw/images/7f90cd647c2f43a9ac27f4308bab0b75.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF37",
+    "channel_id": "8a9e3a9d9e38a74b019f362b2ee70fb4",
+    "poster_images": [
+      "raw/images/5cd7e54b014b4ddaa68b0e3429e71e1f.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF38",
+    "channel_id": "8a9e3a9d9e38a74b019eee09f1f808f6",
+    "poster_images": [
+      "raw/images/ef7e8232f86e4a4080655d43c1ee1a8f.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF39",
+    "channel_id": "8a9e3a9d9e38a74b019eee0a13b808f8",
+    "poster_images": [
+      "raw/images/eb869d82458c469fb80fdfec0340a810.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF40",
+    "channel_id": "8a9e3a9d9e38a74b019ece42df1c087e",
+    "poster_images": [
+      "raw/images/10b6e71cb0f44b6cbe9133541d77ac77.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF41",
+    "channel_id": "8a9e3a9d9e38a74b019ece431b350880",
+    "poster_images": [
+      "raw/images/8306bad2318e458699610c7ecbe8ec17.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF42",
+    "channel_id": "8a9e3a9d9e38a74b019eee0a6f0f08fa",
+    "poster_images": [
+      "raw/images/e2d049e8b0834e0cb3a1df224be9e379.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF43",
+    "channel_id": "8a9e3a9d9e38a74b019f362b56060fb6",
+    "poster_images": [
+      "raw/images/7a0bbdc2e2aa41ac91c0311e398925aa.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF44",
+    "channel_id": "8a9e3a9d9e38a74b019eca40b90a082b",
+    "poster_images": [
+      "raw/images/cca17dd08159465bb24ed9fefac9bf4c.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF45",
+    "channel_id": "8a9e3a9d9e38a74b019f115242e20d23",
+    "poster_images": [
+      "raw/images/1bece842bdd8479faa5367299ba3bd35.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF46",
+    "channel_id": "8a9e3a9d9e38a74b019f11526b710d25",
+    "poster_images": [
+      "raw/images/27f16b2403f14bf6902dde08e3d1e49a.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF47",
+    "channel_id": "8a9e3a9d9e38a74b019f408b05da0fef",
+    "poster_images": [
+      "raw/images/82822dc7fd63464d9cd95f20eefc0f07.jpg"
+    ],
+    "body_text": ""
+  },
+  {
+    "code": "CF48",
+    "channel_id": "8a9e3a9d9e38a74b019f362b77da0fb8",
+    "poster_images": [
+      "raw/images/e9403a85844d4f26a7b8dde974839bf9.jpg"
+    ],
+    "body_text": ""
+  }
+]

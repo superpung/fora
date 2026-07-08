@@ -1,0 +1,56 @@
+[
+ {
+  "ID": "b03c78678a09465c8d9b84aa6d1190aa",
+  "ORDERS": 1,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-25 14:15:32.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "8a9e3a9d9b062e32019ce146b2470c15",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "李渝",
+  "FILE_": [
+   {
+    "ID": "A5BA59D36E3E1E501033A5FE8DF63EFA",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "8a9e3a9d9b062e32019ce146b2470c15",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/A5BA59D36E3E1E501033A5FE8DF63EFA.png",
+    "AUTO_TABLE_ID": "b03c78678a09465c8d9b84aa6d1190aa",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "李渝.png",
+    "FILE_SIZE": "34.2"
+   }
+  ],
+  "MAIN_INFO": "浙江大学"
+ },
+ {
+  "ID": "018bd75621d349839415f0cb4e23c0c5",
+  "ORDERS": 2,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-12 17:14:56.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "8a9e3a9d9b062e32019ce146b2470c15",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "穆嘉楠",
+  "FILE_": [
+   {
+    "ID": "37A7908F736408650A5C97AB1A7CED00",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "8a9e3a9d9b062e32019ce146b2470c15",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/37A7908F736408650A5C97AB1A7CED00.jpg",
+    "AUTO_TABLE_ID": "018bd75621d349839415f0cb4e23c0c5",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "mjn.jpg",
+    "FILE_SIZE": "111.0"
+   }
+  ],
+  "MAIN_INFO": "中国科学院计算技术研究所"
+ }
+]

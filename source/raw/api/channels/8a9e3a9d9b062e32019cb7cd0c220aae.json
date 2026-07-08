@@ -1,0 +1,110 @@
+[
+ {
+  "ID": "7ebac0c8565b473caab78ea703b49857",
+  "ORDERS": 1,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-04 17:44:46.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cd0c220aae",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "屈钢",
+  "FILE_": [
+   {
+    "ID": "1DB6D11AB0AB1BF4A5A13F98BDFE0E07",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cd0c220aae",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/1DB6D11AB0AB1BF4A5A13F98BDFE0E07.png",
+    "AUTO_TABLE_ID": "7ebac0c8565b473caab78ea703b49857",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "qg.png",
+    "FILE_SIZE": null
+   }
+  ],
+  "MAIN_INFO": "马里兰大学（美国）"
+ },
+ {
+  "ID": "055bcc196b69416b90f495afbe78ffe4",
+  "ORDERS": 2,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-13 12:29:15.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cd0c220aae",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "吴艳霞",
+  "FILE_": [
+   {
+    "ID": "79442B5A1057A6AEBD56272F9AFF635C",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cd0c220aae",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/79442B5A1057A6AEBD56272F9AFF635C.jpg",
+    "AUTO_TABLE_ID": "055bcc196b69416b90f495afbe78ffe4",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "wyx.jpg",
+    "FILE_SIZE": "110.3"
+   }
+  ],
+  "MAIN_INFO": "哈尔滨工程大学"
+ },
+ {
+  "ID": "d026b64c72184f728d161dd39e6f1818",
+  "ORDERS": 3,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-12 16:51:57.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cd0c220aae",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "李东升",
+  "FILE_": [
+   {
+    "ID": "8A444DBBA5A8DD9E3322C5E3B8F4AADE",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cd0c220aae",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/8A444DBBA5A8DD9E3322C5E3B8F4AADE.jpg",
+    "AUTO_TABLE_ID": "d026b64c72184f728d161dd39e6f1818",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "lds.jpg",
+    "FILE_SIZE": null
+   }
+  ],
+  "MAIN_INFO": "国防科技大学"
+ },
+ {
+  "ID": "cc4e5d64bae5474f94988a21ca6f4855",
+  "ORDERS": 4,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-12 16:54:35.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cd0c220aae",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "哈亚军",
+  "FILE_": [
+   {
+    "ID": "5CF4218C5EAC1A34B4918C64FB1F15FE",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cd0c220aae",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/5CF4218C5EAC1A34B4918C64FB1F15FE.png",
+    "AUTO_TABLE_ID": "cc4e5d64bae5474f94988a21ca6f4855",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "hyj.png",
+    "FILE_SIZE": "56.7"
+   }
+  ],
+  "MAIN_INFO": "上海科技大学"
+ }
+]

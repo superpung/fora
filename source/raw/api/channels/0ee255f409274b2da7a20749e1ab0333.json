@@ -1,0 +1,26 @@
+[
+ {
+  "ID": "250fac4788d14c8da24062aad3f4a304",
+  "ORDERS": 1,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-04 15:52:07.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "0ee255f409274b2da7a20749e1ab0333",
+  "TITLE": "知存科技",
+  "TO_HREF": "https://witintech.com/",
+  "FILE_": [
+   {
+    "ID": "6060E0EE3C98F6CF540D71FB39382EB9",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "0ee255f409274b2da7a20749e1ab0333",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/6060E0EE3C98F6CF540D71FB39382EB9.png",
+    "AUTO_TABLE_ID": "250fac4788d14c8da24062aad3f4a304",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "知存科技logo_透明底.png",
+    "FILE_SIZE": "14.5"
+   }
+  ]
+ }
+]

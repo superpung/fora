@@ -1,0 +1,137 @@
+[
+ {
+  "ID": "f83208545ef44cbdb120e28b9a270cdb",
+  "ORDERS": 1,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-08 10:58:25.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "8a9e3a9d9b062e32019ccb5c332e0b47",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "王小航",
+  "FILE_": [
+   {
+    "ID": "2599300CFC56E452AB90BB2F4893BD1B",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "8a9e3a9d9b062e32019ccb5c332e0b47",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/2599300CFC56E452AB90BB2F4893BD1B.jpg",
+    "AUTO_TABLE_ID": "f83208545ef44cbdb120e28b9a270cdb",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "wxh.jpg",
+    "FILE_SIZE": "6.7"
+   }
+  ],
+  "MAIN_INFO": "浙江大学"
+ },
+ {
+  "ID": "9a7a2bb3d37447c9bd278ca5a63000fc",
+  "ORDERS": 2,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-13 12:34:41.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "8a9e3a9d9b062e32019ccb5c332e0b47",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "李思照",
+  "FILE_": [
+   {
+    "ID": "B7690D40B0B0289CBB63830E8AB34E6D",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "8a9e3a9d9b062e32019ccb5c332e0b47",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/B7690D40B0B0289CBB63830E8AB34E6D.png",
+    "AUTO_TABLE_ID": "9a7a2bb3d37447c9bd278ca5a63000fc",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "lsz.png",
+    "FILE_SIZE": "106.0"
+   }
+  ],
+  "MAIN_INFO": "哈尔滨工程大学"
+ },
+ {
+  "ID": "10fd13a37fe44b4e997116ebccb24614",
+  "ORDERS": 3,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-12 17:27:17.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "8a9e3a9d9b062e32019ccb5c332e0b47",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "黄克成",
+  "FILE_": [
+   {
+    "ID": "D79A270C39AFC2279342CE87F5310233",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "8a9e3a9d9b062e32019ccb5c332e0b47",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/D79A270C39AFC2279342CE87F5310233.jpg",
+    "AUTO_TABLE_ID": "10fd13a37fe44b4e997116ebccb24614",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "hkc.jpg",
+    "FILE_SIZE": "125.3"
+   }
+  ],
+  "MAIN_INFO": "北京理工大学"
+ },
+ {
+  "ID": "5f399f5e8551463183ccfd82753ec0f3",
+  "ORDERS": 4,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-12 17:10:56.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "8a9e3a9d9b062e32019ccb5c332e0b47",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "李雯",
+  "FILE_": [
+   {
+    "ID": "99A90F19509CE54CE7DF8F9A25673961",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "8a9e3a9d9b062e32019ccb5c332e0b47",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/99A90F19509CE54CE7DF8F9A25673961.png",
+    "AUTO_TABLE_ID": "5f399f5e8551463183ccfd82753ec0f3",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "lw.png",
+    "FILE_SIZE": "30.3"
+   }
+  ],
+  "MAIN_INFO": "山西大学"
+ },
+ {
+  "ID": "d01c7a24c8824f8a961c2231ba748491",
+  "ORDERS": 5,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-17 17:35:19.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "8a9e3a9d9b062e32019ccb5c332e0b47",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "顾晓峰",
+  "FILE_": [
+   {
+    "ID": "BB95F1095B294F388916297928A3A929",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "8a9e3a9d9b062e32019ccb5c332e0b47",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/BB95F1095B294F388916297928A3A929.png",
+    "AUTO_TABLE_ID": "d01c7a24c8824f8a961c2231ba748491",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "gxf.png",
+    "FILE_SIZE": "52.6"
+   }
+  ],
+  "MAIN_INFO": "江南大学"
+ }
+]
