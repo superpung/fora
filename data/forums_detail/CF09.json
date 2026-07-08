@@ -1,0 +1,131 @@
+{
+  "code": "CF09",
+  "title": { "zh": "智算芯片与系统建模与优化", "en": null },
+  "sponsor": null,
+  "series_part": null,
+  "day_date": "2026-07-20",
+  "session_period": "morning",
+  "room": "107B",
+  "description": "本论坛面向AI大模型与智能计算系统发展需求，聚焦新型芯片架构、后摩尔器件、互连系统和仿真工具链等关键方向。论坛将围绕生成式模型专用加速器、三维存算一体架构、二维半导体与新型存储器件、光电融合互连、大规模网络系统仿真、DRAM近存计算与下一代智算系统展开交流。具体包括：面向Stable Diffusion和Diffusion Transformer的算法—硬件协同优化与专用加速器设计；面向AI手机、AI PC、机器人和云端智算中心的3D-CIM存算一体新架构；后摩尔时代二维半导体逻辑、RISC-V集成与皮秒级非易失存储；利用光电融合缓解AI系统互连墙；面向AI训推系统和超节点设计的高性能网络仿真技术；以及从DRAM存算一体工具链出发，探索计算、存储、互连和系统软件的跨层协同优化。论坛旨在从器件、架构、互连、仿真到系统工具链多个层次讨论AI芯片与智算基础设施的关键技术路径。",
+  "chairs": [
+    {
+      "name": "王小航",
+      "affiliation_raw": "浙江大学 教授",
+      "organization": "浙江大学",
+      "title": "教授",
+      "chair_role": "论坛主席",
+      "bio": "王小航，博士，浙江大学计算机科学与技术学院教授，博士生导师，国家级青年人才计划入选者。主要研究方向包括性能建模与仿真、计算机体系结构、LLM系统架构优化、多芯粒高密度集成计算系统结构设计与优化。主持科技项目30余项，其中国家级项目7项，包括国家自然科学基金重点项目、面上项目、青年基金、国际合作项目、NSFC-广东联合基金超级计算科学应用研究专项和科技部重点研发课题，并承担浙江省尖兵项目、江苏省揭榜挂帅项目课题及多项华为委托项目。近五年发表论文80余篇，其中包括MICRO、DAC、HPCA、IEEE TC、IEEE TCAD、IEEE TPDS等CCF A类论文25篇，一作/通讯作者论文15篇；2篇论文获得芯片设计领域知名会议Best Paper奖励，1篇论文被IEEE Transactions on Computers评为Featured Paper。长期从事AI Infra性能建模与体系结构优化研究，围绕LLM芯片与系统、多芯粒系统仿真、异构芯粒模块化组合优化、复杂应用映射与数据分配、通信性能与热管理协同优化等方向开展研究，相关成果已应用于重点型号芯片、自研芯片和FPGA加速卡性能优化。担任CCF DAC组织委员会副主席、CCF芯片大会论坛主席，Mathematics、Computers and Electrical Engineering、Integration, the VLSI Journal等期刊客座主编，并担任CCF容错计算、集成电路专委常委。"
+    },
+    {
+      "name": "王良",
+      "affiliation_raw": "北京航空航天大学 副教授",
+      "organization": "北京航空航天大学",
+      "title": "副教授",
+      "chair_role": "论坛主席",
+      "bio": "王良，博士，北京航空航天大学长聘副教授，博士生导师。2017年博士毕业于香港中文大学，随后于清华大学从事博士后研究，2020年加入北京航空航天大学计算机学院。主持国家自然科学基金、国家重点研发计划子课题、北京市科技计划等国家及省部级项目10余项。在ISCA、MICRO、HPCA、DAC及IEEE TC、TCAD、TPDS等国际顶级会议与期刊发表高水平论文40余篇，并以第一作者荣获国际主流会议VLSI-SoC最佳论文奖。创新成果得到多位IEEE Fellow的高度评价。长期深耕计算机体系结构与智算芯片领域，研发了多芯粒GPGPU架构建模工具、大模型量化与硬件加速架构、点云软硬协同智算芯片架构、面向自主可控区块链体系的专用处理器等，成果应用于国产智算芯片公司、北京市区块链高精尖中心等。现任CCF计算机体系结构、集成电路设计及容错计算专委执行委员，并担任多个国际学术顶会与期刊的程序委员会委员及审稿人。"
+    }
+  ],
+  "talks": [
+    {
+      "order": 1,
+      "title": { "zh": "用光电融合打破AI互连墙", "en": null },
+      "title_status": "confirmed",
+      "speakers": [
+        {
+          "name": "须江",
+          "affiliation_raw": "香港科技大学 教授",
+          "organization": "香港科技大学",
+          "title": "教授",
+          "bio": "香港科技大学（广州）微电子学域主任、广东省集成电路产教融合协同创新平台负责人、广州市EDA重点实验室主任。他是国家高层次人才、广东省珠江杰出人才、广东省劳动模范、广东省五一劳动奖章获得者、IEEE计算机协会杰出贡献奖的奠基获奖者、IEEE计算机协会杰出访问学者、ACM杰出报告学者。他是美国普林斯顿大学博士，曾在美国贝尔实验室和日本电器的美国实验室任职。他在美国初创公司沙桥科技（已被美国高通公司收购）研制成功了两代智能手机核心芯片。他培养的博士和博士后在中、美、法、加拿大和新加坡的大学任教授，或在华为、英特尔、高通、苹果等公司的芯片团队任职。他开发了8个EDA工具，获得了13个中美专利，发表了180余篇学术论文，并多次获奖。他组织了四十多个国际会议，受邀在国际学术会议上做了十多次大会报告、特邀报告和专题讲座，受邀在企业和研究机构做过一百多场专题讲座。他现为IEEE TCAD的副编辑。他的研究方向包括人工智能芯片与系统、光电融合芯片与系统、EDA、多处理器片上系统MPSoC。"
+        }
+      ],
+      "abstract": "In the last 15 years, AI applications have required 4.3X more computation capacity every year, while Moore's Law can only offer 1.7X per year. AI systems are relying on not only advanced integration but also aggregation of growing numbers of GPU, CPU, accelerators and memories to meet the burgeoning performance requirements of AI applications under tight cost, energy, thermal, space, and weight constraints. However, interconnect technology develops slower than GPU, CPU and accelerators, and the gap is widening at 1.47X per year. This interconnect wall has become the major bottleneck of AI systems. Electronic-photonic integration piggybacks onto matured fabrication technologies to provide viable solutions to break the interconnect wall. Based on our decade-long quest to transform existing electronic computing systems with photonics, this talk will highlight our recent progress on electronic-photonic integration for aggregated systems.",
+      "abstract_status": "confirmed"
+    },
+    {
+      "order": 2,
+      "title": { "zh": "后摩尔时代电子器件与集成", "en": null },
+      "title_status": "confirmed",
+      "speakers": [
+        {
+          "name": "周鹏",
+          "affiliation_raw": "复旦大学 教授",
+          "organization": "复旦大学",
+          "title": "教授",
+          "bio": "复旦大学集成电路与微纳电子创新学院副院长。致力于先进电子器件研究，实现了高面积效率单晶体管逻辑，并首次实现二维半导体RISC-V架构处理器“无极（WUJI）”，发明了硅基二维异质集成CFET技术；提出的浮栅存储器“破晓（PoX）”具有400皮秒超快写入速度，利用正负光电导的存储研发了感存算“全在一”功能器件实现了运动图像检测，提出了利用低维电子学感知恢复增强人类视力的途径。获得了国家自然基金委杰出青年资助，入选万人计划领军人才。获科学探索奖、上海市青年科技杰出贡献奖、国家级教学成果二等奖、上海市自然科学一等奖、NR45青年科学家奖等。主持科技部重点研发计划、基金委重大、重点项目、国家重大专项等项目20余项。近五年在Nature、Science、Nature Nanotechnology、Nature Electronics、Nature Materials等发表论文200余篇，被引19000余次，其中高被引21篇。任InfoMat等期刊副主编。"
+        }
+      ],
+      "abstract": "基于新材料、新器件与Beyond CMOS新架构是后摩尔时代集成电路最具可能的发展路径。以MoS2、WSe2等为代表的二维半导体材料具有原子单层稳定结构，极限下高迁移率，更高集成度、低功耗等特性，是潜在颠覆性材料，并自2017年进入了国际器件与系统路线图（IRDS）。复旦大学团队围绕其晶体管结构设计、源漏接触优化、介质工程改进等方向展开了深入研究。开发的完整二维集成工艺中2/3可以与硅基兼容。目前已经形成了具有自主知识产权的创新工艺，实现了世界最大规模二维半导体逻辑功能验证，命名为“无极（WUJI）”的RISC V芯片集成了5900个晶体管。在现有的国产半导体工艺设备基础上，实现与硅基产业链和CMOS工艺的深度整合，加速二维半导体的工程化发展。同时基于器件物理机制的创新，持续推动高速非易失性闪存技术的发展。通过结合二维狄拉克能带结构与弹道输运特性，可调制二维沟道的高斯长度，从而实现沟道电荷向存储层的超注入。超注入与现有闪存电场辅助注入规律截然不同：传统注入规律存在注入极值点，而超注入则表现为无限注入。构建了准二维泊松模型，从理论上预测了超注入现象，研制的“破晓（PoX）”皮秒闪存器件擦写速度达到了亚1纳秒（400皮秒），是人类目前能够掌握的最快的半导体电荷存储器件，其性能超越同技术节点下世界最快的易失性存储SRAM技术。二维超注入机制将非易失存储速度提升至~1T理论极限，这意味着现有存储技术边界将被重新定义。",
+      "abstract_status": "confirmed"
+    },
+    {
+      "order": 3,
+      "title": { "zh": "首创三维存算一体3D-CIM™新架构，开启大模型推理万亿新赛道！", "en": null },
+      "title_status": "confirmed",
+      "speakers": [
+        {
+          "name": "叶乐",
+          "affiliation_raw": "北京大学 博雅特聘教授",
+          "organization": "北京大学",
+          "title": "博雅特聘教授",
+          "bio": "北京大学集成电路学院博导、国家杰青，浙江省北大信息技术高等研究院副院长，微纳核芯首席科学家。主要从事存算一体AI芯片设计等领域的研究，成功研制多颗突破当时世界纪录的芯片成果：能效和算力密度综合指标最高的SRAM存算一体原型芯片、突破美1017算力密度禁运红线的SRAM存算一体原型芯片等科研成果。在“芯片设计奥林匹克”ISSCC上发表16篇论文；荣获ISSCC 2023最佳技术论文奖（国内首次）、ISSCC 2021最佳芯片展示奖（国内首次）、2021中国半导体十大研究进展等奖项。主持十三五和十四五国家重点研发计划项目、国家自然基金委“后摩尔重大研究计划”集成（重大）项目等。孵化存算一体芯片企业微纳核芯，首创三维存算一体3D-CIM™和RV-CIM™创新技术，显著提升算力密度、能效和带宽，缓解美西方对我先进工艺禁运问题。"
+        }
+      ],
+      "abstract": "随着大模型等人工智能应用的迅猛发展，AI手机、AI PC、AI机器人以及云端智算中心等对算力芯片的算力、运力、存力都提出了迫切需求，远超摩尔定律时代每18个月翻一番的速率。然而，主要依赖于尺寸微缩和冯诺依曼架构的传统技术路线逐渐逼近物理极限，迫切需要我们寻找后摩尔时代新的Scaling-Law技术路线。报告将首先阐述算力芯片未来的需求发展趋势，以及面临的严峻挑战，进而阐述业内率先提出的三维存算一体3D-CIM™创新技术路线，从而有望探索出一条后摩尔时代算力芯片的Scaling Law方案，支撑AI手机、AI PC、IoT、具身智能、云端智算中心等大模型应用的发展。",
+      "abstract_status": "confirmed"
+    },
+    {
+      "order": 4,
+      "title": { "zh": "面向图像生成的专用硬件加速器设计", "en": null },
+      "title_status": "confirmed",
+      "speakers": [
+        {
+          "name": "林军",
+          "affiliation_raw": "南京大学 教授",
+          "organization": "南京大学",
+          "title": "教授",
+          "bio": "南京大学电子科学与工程学院教授、博导，入选国家级青年人才计划，主要研究方向：智能算法设计与部署、智能芯片设计，发表IEEE TCAS-I、TCAS-II和TVLSI等集成电路设计领域的国际权威期刊论文50余篇，领域旗舰会议70余篇。谷歌学术显示论文总引用次数为3700余次，曾获华为技术成果转化奖，IEEE ISVLSI 2019、IEEE SiPS 2019、IEEE SOCC 2020和IEEE APCCAS 2020最佳论文奖，中国电子科技集团科学技术奖，吴文俊人工智能科技进步奖三等奖，曾任2022~2023年IEEE TCAS-II编委、IEEE信号处理系统实现委员会委员、IEEE TCAS-II客座编委，主持及参与项目包括国自然青年与面上、装备预研、江苏省重点研发计划（重点项目）、重点国防科研单位产业项目等。"
+        }
+      ],
+      "abstract": "本报告面向基于扩散模型的图像生成算法在芯片平台上的高效率实习，围绕算法优化与硬件架构协同设计展开。针对Stable Diffusion中U-Net迭代去噪计算量大、层间计算和访存需求差异显著的问题，报告将介绍选择性特征增强与自适应特征缓存方法，在保持生成质量的同时降低冗余计算，并将计算量由105 TFLOPs降至69 TFLOPs，实现2.93×加速。在硬件层面，报告将重点分析可重构计算阵列、数据量感知存储管理以及细粒度流水融合如何适配U-Net多尺度结构，实现更高吞吐率和更优片上资源利用。进一步，报告还将结合大规模Diffusion Transformer的LUT化推理算法，介绍激活平滑、低秩异常值吸收、PQ码本生成和分块混合精度分配等方法，将预计算从完整权重域转移到紧凑码本域，为未来生成式模型专用加速芯片提供可扩展、低存储、高能效的计算范式。",
+      "abstract_status": "confirmed"
+    },
+    {
+      "order": 5,
+      "title": { "zh": "大规模网络系统高性能仿真", "en": null },
+      "title_status": "confirmed",
+      "speakers": [
+        {
+          "name": "高凯辉",
+          "affiliation_raw": "中关村实验室 副研究员",
+          "organization": "中关村实验室",
+          "title": "副研究员",
+          "bio": "中关村实验室副研究员，清华大学博士。主要研究方向为智算网络、网络系统仿真等。在SIGCOMM、NSDI和ToN等网络顶级会议和期刊上发表十余篇论文，并担任NSDI25&27、EuroSys26、APNet25程序委员会委员。曾获得通信学会科技奖二等奖、海英人才、CCF优博（提名）、世界互联网大会领先科技奖等荣誉。"
+        }
+      ],
+      "abstract": "网络系统仿真是验证网络规划、变更、创新的关键技术，离散事件仿真（DES）是网络仿真的主要范式。然而，现代网络规模的增长使得已有DES引擎的性能问题愈发严重，其底层的面向对象设计架构对cache机制和并行计算不友好。我们首次使用面向数据设计的思想来重构网络仿真引擎，并提出了批量仿真、GPU加速仿真、仿真跃迁等技术，极大地提升了网络仿真的速度和可扩展性。我们将仿真技术应用于网络数据面与控制面、AI训推系统、超节点设计等领域，多篇论文发表于网络顶会SIGCOMM和NSDI。",
+      "abstract_status": "confirmed"
+    },
+    {
+      "order": 6,
+      "title": { "zh": "从DRAM存算一体到下一代智算系统：工具链视角的探索与思考", "en": null },
+      "title_status": "confirmed",
+      "speakers": [
+        {
+          "name": "朱振华",
+          "affiliation_raw": "清华大学深圳国际研究生院 助理教授",
+          "organization": "清华大学深圳国际研究生院",
+          "title": "助理教授",
+          "bio": "朱振华，清华大学深圳国际研究生院助理教授。朱振华分别在2024年及2018年于清华大学电子工程系获博士学位及学士学位，师从汪玉教授。朱振华主要从事高能效AI芯片架构设计研究，围绕存算一体、领域定制集成电路、软硬件协同优化等方面，发表国内外重要期刊会议文章60余篇，谷歌学术引用2100余次，相关研究推动AI系统计算能效提升1-2个数量级。曾获中国计算机学会容错专委40周年优秀成果奖、《电子与信息学报》2025年度“优秀论文奖”及“最具传播影响力论文奖”、计算机体系结构顶会HPCA 2025最佳论文荣誉提名奖等荣誉。"
+        }
+      ],
+      "abstract": "随着大模型推理与智能体规模持续扩大，计算系统从单芯片算力指标优化转向面向数据搬运、系统利用率和单位Token成本的全栈优化。本报告将立足于大模型计算的核心“存储墙”瓶颈，重点介绍面向通用DRAM近存计算架构的性能仿真与部署优化工具，实现大模型在近存架构上的高效部署与性能优化。此外，本报告将从单一近存架构优化延伸至下一代智算系统的设计方法，探讨如何在计算、存储、互连和系统软件之间建立跨层协同优化机制，以提升Tokens/$，支撑大模型计算系统的可持续演进。",
+      "abstract_status": "confirmed"
+    }
+  ],
+  "poster": {
+    "local_path": "source/raw/images/7331f522782a4997aa2544571f25cbd4.jpg",
+    "source_url": "/cmsFileManager/UeditorImg/7331f522782a4997aa2544571f25cbd4.jpg"
+  },
+  "detail_extracted": true
+}

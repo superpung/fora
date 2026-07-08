@@ -224,7 +224,7 @@
           "items": { "$ref": "#/$defs/person" }
         },
         "talks": { "type": "array", "items": { "$ref": "#/$defs/talk" } },
-        "poster": { "$ref": "#/$defs/asset" },
+        "poster": { "anyOf": [{ "$ref": "#/$defs/asset" }, { "type": "null" }] },
         "detail_extracted": { "type": "boolean", "description": "海报是否已完成视觉解析" }
       },
       "additionalProperties": false
