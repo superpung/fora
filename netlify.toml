@@ -1,0 +1,21 @@
+# Netlify 部署配置。前端位于 web/ 子目录。
+[build]
+  base = "web"
+  command = "pnpm build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+  # 使用 pnpm（Netlify 依据 web/pnpm-lock.yaml 自动启用 corepack pnpm）
+
+# SPA 路由：所有路径回退到 index.html（react-router 客户端路由）
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# 基础安全/缓存头
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
