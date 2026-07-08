@@ -1,0 +1,29 @@
+[
+ {
+  "ID": "f5fd3eb6e30341d0827d521410f0c575",
+  "ORDERS": 1,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-27 09:01:15.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "8a9e3a9d9b062e32019d2ccd7ae210d7",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "郭宇锋",
+  "FILE_": [
+   {
+    "ID": "5340DB2A0FC3C0BF3D6896F99591B259",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "8a9e3a9d9b062e32019d2ccd7ae210d7",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/5340DB2A0FC3C0BF3D6896F99591B259.png",
+    "AUTO_TABLE_ID": "f5fd3eb6e30341d0827d521410f0c575",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "郭宇峰.png",
+    "FILE_SIZE": null
+   }
+  ],
+  "MAIN_INFO": "南京邮电大学党委书记、教授"
+ }
+]

@@ -1,0 +1,24 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Node / frontend
+node_modules/
+web/dist/
+web/.vite/
+*.local
+
+# 抓取产物：大体积二进制不入库（可由 source/fetch_all.py 确定性重拉）
+source/raw/images/
+source/raw/files/
+source/tiles/
+
+# OS
+.DS_Store
+Thumbs.db

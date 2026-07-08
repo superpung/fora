@@ -1,0 +1,29 @@
+[
+ {
+  "ID": "268923e01cf045dbb3ed0731fd056319",
+  "ORDERS": 1,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-05 10:30:32.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cdb74b0ac3",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "刘自臻",
+  "FILE_": [
+   {
+    "ID": "BD96062C41E426DEA2E28BD239DCA278",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cdb74b0ac3",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/BD96062C41E426DEA2E28BD239DCA278.jpg",
+    "AUTO_TABLE_ID": "268923e01cf045dbb3ed0731fd056319",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "bio-liuzizhen.jpg",
+    "FILE_SIZE": "677.0"
+   }
+  ],
+  "MAIN_INFO": "中国科学院计算技术研究所"
+ }
+]

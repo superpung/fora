@@ -1,0 +1,26 @@
+[
+ {
+  "ID": "73c4245b75254d7caa1bdf5c051f90e6",
+  "ORDERS": 1,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-06-14 14:47:02.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "40bf56bd0d4c4230b279e992a21e451f",
+  "TITLE": "达摩院",
+  "TO_HREF": "",
+  "FILE_": [
+   {
+    "ID": "26E8CC28368BBC7A53095F296B563B64",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "40bf56bd0d4c4230b279e992a21e451f",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/26E8CC28368BBC7A53095F296B563B64.jpg",
+    "AUTO_TABLE_ID": "73c4245b75254d7caa1bdf5c051f90e6",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "达摩院.jpg",
+    "FILE_SIZE": "1063.4"
+   }
+  ]
+ }
+]

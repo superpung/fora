@@ -1,0 +1,74 @@
+[
+ {
+  "ID": "507a79a23eeb4c56ae1202b2f586f294",
+  "ORDERS": 1,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-05-11 22:48:50.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "275edaaae6b340cb86aa98745c5c52d0",
+  "TITLE": "蚂蚁技术研究院",
+  "TO_HREF": "",
+  "FILE_": [
+   {
+    "ID": "47C2E244F9BE53D88FB897B9E256CB5D",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "275edaaae6b340cb86aa98745c5c52d0",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/47C2E244F9BE53D88FB897B9E256CB5D.png",
+    "AUTO_TABLE_ID": "507a79a23eeb4c56ae1202b2f586f294",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "B1-蚂蚁研究院.png",
+    "FILE_SIZE": "1631.9"
+   }
+  ]
+ },
+ {
+  "ID": "cc1e7792fd6d465ab08b400a9bb2c72a",
+  "ORDERS": 2,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-05-20 15:15:47.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "275edaaae6b340cb86aa98745c5c52d0",
+  "TITLE": "江城实验室",
+  "TO_HREF": "",
+  "FILE_": [
+   {
+    "ID": "A5914F2C84AD9FBD44715C8F29ACD35B",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "275edaaae6b340cb86aa98745c5c52d0",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/A5914F2C84AD9FBD44715C8F29ACD35B.png",
+    "AUTO_TABLE_ID": "cc1e7792fd6d465ab08b400a9bb2c72a",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "江城实验室.png",
+    "FILE_SIZE": "58.8"
+   }
+  ]
+ },
+ {
+  "ID": "f5527e7c539240b2a35460dbb29b05ef",
+  "ORDERS": 3,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-06-09 13:12:03.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "275edaaae6b340cb86aa98745c5c52d0",
+  "TITLE": "硅芯科技",
+  "TO_HREF": "",
+  "FILE_": [
+   {
+    "ID": "BCCE587EB969D6DBB9AE4EB9DC34B20F",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "275edaaae6b340cb86aa98745c5c52d0",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/BCCE587EB969D6DBB9AE4EB9DC34B20F.png",
+    "AUTO_TABLE_ID": "f5527e7c539240b2a35460dbb29b05ef",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "归心_白底黑字.png",
+    "FILE_SIZE": "109.9"
+   }
+  ]
+ }
+]

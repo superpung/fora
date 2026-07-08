@@ -1,0 +1,407 @@
+[
+ {
+  "ID": "21179e87980d4eebb11a49f82250ee5e",
+  "ORDERS": 1,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-24 15:04:04.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "陈国良",
+  "FILE_": [
+   {
+    "ID": "EFECF610FA4252816E352B7A13ECE88F",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/EFECF610FA4252816E352B7A13ECE88F.jpg",
+    "AUTO_TABLE_ID": "21179e87980d4eebb11a49f82250ee5e",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "陈国良.jpg",
+    "FILE_SIZE": null
+   }
+  ],
+  "MAIN_INFO": "中国科学技术大学、深圳大学教授 中国科学院院士"
+ },
+ {
+  "ID": "33460e28d0ca40e5929c5c9d7e7aa684",
+  "ORDERS": 3,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-18 14:39:13.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "崔铁军",
+  "FILE_": [
+   {
+    "ID": "87C1A202FCBE4A5C29E593801AB22673",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/87C1A202FCBE4A5C29E593801AB22673.jpg",
+    "AUTO_TABLE_ID": "33460e28d0ca40e5929c5c9d7e7aa684",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "ctj.jpg",
+    "FILE_SIZE": null
+   }
+  ],
+  "MAIN_INFO": "东南大学教授 中国科学院院士"
+ },
+ {
+  "ID": "3959fad4db064f5e8f8f2042bb4329af",
+  "ORDERS": 4,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-18 14:36:29.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "顾敏",
+  "FILE_": [
+   {
+    "ID": "C845F6D1056B587C812E312AB84F2AED",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/C845F6D1056B587C812E312AB84F2AED.jpg",
+    "AUTO_TABLE_ID": "3959fad4db064f5e8f8f2042bb4329af",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "gm.jpg",
+    "FILE_SIZE": null
+   }
+  ],
+  "MAIN_INFO": "上海理工大学教授 中国工程院外籍院士"
+ },
+ {
+  "ID": "a845507c95b742cf8bf94da9317954c8",
+  "ORDERS": 5,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-18 14:42:28.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "洪伟",
+  "FILE_": [
+   {
+    "ID": "4A653600161DD1B8D623710C9132D5B5",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/4A653600161DD1B8D623710C9132D5B5.png",
+    "AUTO_TABLE_ID": "a845507c95b742cf8bf94da9317954c8",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "hw.png",
+    "FILE_SIZE": null
+   }
+  ],
+  "MAIN_INFO": "东南大学教授 中国科学院院士"
+ },
+ {
+  "ID": "e7759326dbe54d8dab947c1874fc0c8b",
+  "ORDERS": 6,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-18 14:40:18.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "蒋昌俊",
+  "FILE_": [
+   {
+    "ID": "DA0F9794D21F5F9FAD2379FB5877418D",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/DA0F9794D21F5F9FAD2379FB5877418D.jpg",
+    "AUTO_TABLE_ID": "e7759326dbe54d8dab947c1874fc0c8b",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "jcj.jpg",
+    "FILE_SIZE": null
+   }
+  ],
+  "MAIN_INFO": "同济大学教授 中国工程院院士"
+ },
+ {
+  "ID": "81edd42917424ee1a39a962d959a2260",
+  "ORDERS": 7,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-18 14:30:02.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "刘明",
+  "FILE_": [
+   {
+    "ID": "472B3770F1162FA63827BDD8BFE49070",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/472B3770F1162FA63827BDD8BFE49070.png",
+    "AUTO_TABLE_ID": "81edd42917424ee1a39a962d959a2260",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "lm.png",
+    "FILE_SIZE": null
+   }
+  ],
+  "MAIN_INFO": "复旦大学教授 中国科学院院士"
+ },
+ {
+  "ID": "c6debda49c8a444790f85e4ec2a20fb4",
+  "ORDERS": 8,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-05-04 02:52:24.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "毛军发",
+  "FILE_": [
+   {
+    "ID": "F94D26C9001A07E1ABC3782937A1A6CF",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/F94D26C9001A07E1ABC3782937A1A6CF.png",
+    "AUTO_TABLE_ID": "c6debda49c8a444790f85e4ec2a20fb4",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "MJF.png",
+    "FILE_SIZE": null
+   }
+  ],
+  "MAIN_INFO": "深圳大学讲席教授 中国科学院院士"
+ },
+ {
+  "ID": "5d83c34749a8448a83ffd96207ea20b5",
+  "ORDERS": 9,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-18 15:53:01.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "钱德沛",
+  "FILE_": [
+   {
+    "ID": "4972A34D84C5C243E6D3000392DCF919",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/4972A34D84C5C243E6D3000392DCF919.jpeg",
+    "AUTO_TABLE_ID": "5d83c34749a8448a83ffd96207ea20b5",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "钱德沛.jpeg",
+    "FILE_SIZE": null
+   }
+  ],
+  "MAIN_INFO": "北京航空航天大学教授 中国科学院院士"
+ },
+ {
+  "ID": "835f810ec75e462aa832ff5d767a4984",
+  "ORDERS": 10,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-18 14:41:44.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "施毅",
+  "FILE_": [
+   {
+    "ID": "412DF9C98DDA4425758A2409DF1A1D85",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/412DF9C98DDA4425758A2409DF1A1D85.png",
+    "AUTO_TABLE_ID": "835f810ec75e462aa832ff5d767a4984",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "sy.png",
+    "FILE_SIZE": null
+   }
+  ],
+  "MAIN_INFO": "南京大学教授 中国科学院院士"
+ },
+ {
+  "ID": "7402ae8e5ffe4fd0aaacb481ff9da251",
+  "ORDERS": 11,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-18 14:29:02.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "孙凝晖",
+  "FILE_": [
+   {
+    "ID": "7D57E937FAF23C7487B8EC9F18987803",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/7D57E937FAF23C7487B8EC9F18987803.jpg",
+    "AUTO_TABLE_ID": "7402ae8e5ffe4fd0aaacb481ff9da251",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "snh.jpg",
+    "FILE_SIZE": null
+   }
+  ],
+  "MAIN_INFO": "中国科学院计算技术研究所研究员 中国工程院院士"
+ },
+ {
+  "ID": "481d1ad62cb74227908cf8c255089c46",
+  "ORDERS": 13,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-24 14:52:21.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "王耀南",
+  "FILE_": [
+   {
+    "ID": "DA247775A24B55A6BA4005DEB49C068E",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/DA247775A24B55A6BA4005DEB49C068E.jpg",
+    "AUTO_TABLE_ID": "481d1ad62cb74227908cf8c255089c46",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "王耀南.jpg",
+    "FILE_SIZE": "74.4"
+   }
+  ],
+  "MAIN_INFO": "湖南大学教授 中国工程院院士"
+ },
+ {
+  "ID": "5be33ae2f86f42b0be1c677c03d0e957",
+  "ORDERS": 14,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-26 09:58:52.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "吴汉明",
+  "FILE_": [
+   {
+    "ID": "24DED183552D9C1B18807BA4AB12A539",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/24DED183552D9C1B18807BA4AB12A539.jpg",
+    "AUTO_TABLE_ID": "5be33ae2f86f42b0be1c677c03d0e957",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "吴汉明.jpg",
+    "FILE_SIZE": "9.4"
+   }
+  ],
+  "MAIN_INFO": "浙江大学教授 中国工程院院士"
+ },
+ {
+  "ID": "d74965650bed43d881a90b46291d173f",
+  "ORDERS": 15,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-18 14:37:53.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "薛其坤",
+  "FILE_": [
+   {
+    "ID": "7875F1EB7BDB72D6598D46F536335B75",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/7875F1EB7BDB72D6598D46F536335B75.jpg",
+    "AUTO_TABLE_ID": "d74965650bed43d881a90b46291d173f",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "xqk.jpg",
+    "FILE_SIZE": null
+   }
+  ],
+  "MAIN_INFO": "清华大学教授 中国科学院院士"
+ },
+ {
+  "ID": "944dadad96ea4fdd829d552ba13329ec",
+  "ORDERS": 19,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-05-28 09:58:28.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "张荣",
+  "FILE_": [
+   {
+    "ID": "6200953CC4979A07A8D6655B92C17607",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/6200953CC4979A07A8D6655B92C17607.jpg",
+    "AUTO_TABLE_ID": "944dadad96ea4fdd829d552ba13329ec",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "张荣.jpg",
+    "FILE_SIZE": "7.5"
+   }
+  ],
+  "MAIN_INFO": "厦门大学教授 中国科学院院士"
+ },
+ {
+  "ID": "e9079cd054d0426695c4cda7d18602f9",
+  "ORDERS": 20,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-18 14:32:08.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "庄松林",
+  "FILE_": [
+   {
+    "ID": "2A85A4D7B49787723B3184BCB74B11D6",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "0ccb1f7b688a49ddbbf30e55149d2632",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/2A85A4D7B49787723B3184BCB74B11D6.jpg",
+    "AUTO_TABLE_ID": "e9079cd054d0426695c4cda7d18602f9",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "zsl.jpg",
+    "FILE_SIZE": null
+   }
+  ],
+  "MAIN_INFO": "上海理工大学教授 中国工程院院士"
+ }
+]

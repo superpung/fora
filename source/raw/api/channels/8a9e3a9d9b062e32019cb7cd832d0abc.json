@@ -1,0 +1,83 @@
+[
+ {
+  "ID": "222f05cc5baf42a9bee49d3b97d3514f",
+  "ORDERS": 2,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-12 17:02:37.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cd832d0abc",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "郝沁汾",
+  "FILE_": [
+   {
+    "ID": "12AC7D49EE85D444FD2CAB37892E7D7E",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cd832d0abc",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/12AC7D49EE85D444FD2CAB37892E7D7E.png",
+    "AUTO_TABLE_ID": "222f05cc5baf42a9bee49d3b97d3514f",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "zqf.png",
+    "FILE_SIZE": "88.7"
+   }
+  ],
+  "MAIN_INFO": "中国科学院计算技术研究所"
+ },
+ {
+  "ID": "ea1fa713a39d4706a76acf96788e5a2e",
+  "ORDERS": 3,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-13 12:32:44.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cd832d0abc",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "王达",
+  "FILE_": [
+   {
+    "ID": "DF3D8DE1F7F25F032CE42FA09696AEA2",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cd832d0abc",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/DF3D8DE1F7F25F032CE42FA09696AEA2.png",
+    "AUTO_TABLE_ID": "ea1fa713a39d4706a76acf96788e5a2e",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "wd.png",
+    "FILE_SIZE": "108.0"
+   }
+  ],
+  "MAIN_INFO": "中国科学院计算技术研究所"
+ },
+ {
+  "ID": "6adfac1bb7074545a4ab8ec14a35fa94",
+  "ORDERS": 4,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-03-12 17:05:55.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cd832d0abc",
+  "GROUP_INFO": "",
+  "GROUP_INFO_ORDER": "",
+  "WORK_INFO": "",
+  "NAME_INFO": "黄宇",
+  "FILE_": [
+   {
+    "ID": "0FFE545A1C3FE9DEA65EFD511208978D",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "8a9e3a9d9b062e32019cb7cd832d0abc",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/0FFE545A1C3FE9DEA65EFD511208978D.png",
+    "AUTO_TABLE_ID": "6adfac1bb7074545a4ab8ec14a35fa94",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "hy.png",
+    "FILE_SIZE": "53.3"
+   }
+  ],
+  "MAIN_INFO": "华为海思半导体有限公司"
+ }
+]

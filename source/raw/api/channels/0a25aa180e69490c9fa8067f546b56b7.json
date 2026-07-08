@@ -1,0 +1,98 @@
+[
+ {
+  "ID": "e24dbda2890e425e9caff7caf4a5e477",
+  "ORDERS": 1,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-05-18 10:30:12.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "0a25aa180e69490c9fa8067f546b56b7",
+  "TITLE": "百度智能云",
+  "TO_HREF": "",
+  "FILE_": [
+   {
+    "ID": "FB6B753A95D4BA9C0D4B555974D28448",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "0a25aa180e69490c9fa8067f546b56b7",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/FB6B753A95D4BA9C0D4B555974D28448.png",
+    "AUTO_TABLE_ID": "e24dbda2890e425e9caff7caf4a5e477",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "百度云.png",
+    "FILE_SIZE": "60.2"
+   }
+  ]
+ },
+ {
+  "ID": "f778b979faf5447189fa10dba74559b2",
+  "ORDERS": 2,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-05-09 12:09:17.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "0a25aa180e69490c9fa8067f546b56b7",
+  "TITLE": "中科天算",
+  "TO_HREF": "https://www.comospace.com/",
+  "FILE_": [
+   {
+    "ID": "63EB9B42884B2BFC78C82ACED98E757A",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "0a25aa180e69490c9fa8067f546b56b7",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/63EB9B42884B2BFC78C82ACED98E757A.png",
+    "AUTO_TABLE_ID": "f778b979faf5447189fa10dba74559b2",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "AC2F3EC591B82582E94170E01495D4FB.png",
+    "FILE_SIZE": null
+   }
+  ]
+ },
+ {
+  "ID": "368b6acf3f5b40b69a917aff30179a10",
+  "ORDERS": 5,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-05-27 17:21:19.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "0a25aa180e69490c9fa8067f546b56b7",
+  "TITLE": "华大九天",
+  "TO_HREF": "",
+  "FILE_": [
+   {
+    "ID": "AB61D7504F5E29EB60EB0A613C7382B6",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "0a25aa180e69490c9fa8067f546b56b7",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/AB61D7504F5E29EB60EB0A613C7382B6.png",
+    "AUTO_TABLE_ID": "368b6acf3f5b40b69a917aff30179a10",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "华大.png",
+    "FILE_SIZE": "72.2"
+   }
+  ]
+ },
+ {
+  "ID": "abbcc3efc6614f3482de6802e47f29d1",
+  "ORDERS": 6,
+  "TOP_SITE": "2",
+  "CREATE_TIME": "2026-05-27 17:22:59.0",
+  "IF_ISSUED": "1",
+  "IF_DEL": "2",
+  "CHANNEL_ID": "0a25aa180e69490c9fa8067f546b56b7",
+  "TITLE": "无问芯穹",
+  "TO_HREF": "",
+  "FILE_": [
+   {
+    "ID": "CD26DDA970789695493CA7F1B0603E89",
+    "ATTACH_ID": null,
+    "CHANNEL_ID": "0a25aa180e69490c9fa8067f546b56b7",
+    "MEETING_ID": "m1478733396288081920177259911521",
+    "PATH": "/column/CD26DDA970789695493CA7F1B0603E89.png",
+    "AUTO_TABLE_ID": "abbcc3efc6614f3482de6802e47f29d1",
+    "LABEL_ID": "fileid_FILE_",
+    "FILE_NAME": "无闻.png",
+    "FILE_SIZE": "68.2"
+   }
+  ]
+ }
+]
