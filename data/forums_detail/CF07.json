@@ -1,0 +1,198 @@
+{
+  "code": "CF07",
+  "title": { "zh": "天基计算与智能应用论坛", "en": null },
+  "sponsor": null,
+  "series_part": "第三届",
+  "day_date": "2026-07-18",
+  "session_period": "afternoon",
+  "room": "101B",
+  "description": "第三届天基计算与智能应用论坛是CCF芯片大会的特色分论坛，将于2026年7月18日在无锡国际会议中心举办。论坛聚焦在轨智能计算与高可靠计算关键技术，深入探讨技术成果在航天重大任务中的落地应用与现实挑战，围绕空天计算体系、宇航器件、星上智能等核心方向展开研讨，助力空天领域智能化升级，构建高效可靠的空天信息处理体系，为星地协同与智能星座建设提供技术支撑。本次论坛由航天科技集团502所华更新研究员、中科院计算所刘垚圻副研究员共同担任主席，邀请9位来自科研院所、高校及产业界的资深专家带来主题报告。报告覆盖芯片技术、系统架构、产业生态等多个维度，兼具技术深度与工程实践价值，为空天计算领域产学研深度融合搭建高水平交流平台。",
+  "chairs": [
+    {
+      "name": "华更新",
+      "affiliation_raw": "航天502所 研究员",
+      "organization": "航天502所",
+      "title": "研究员",
+      "chair_role": "论坛主席",
+      "bio": "华更新是我国空间计算机产品首席专家、学术及团队带头人，博士生导师。长期奋战在航天重大工程一线，在高可信星载容错控制计算机、抗辐射核心芯片及操作系统、星载综合电子信息系统等卡脖子“关键技术”方面取得了系统性、创造性成果。为解决载人、深空、北斗、高分等重大工程及装备难题，负责研制了我国第一个32位星载容错控制计算机及实时多任务操作系统SpaceOS、第一个抗辐射微系统处理芯片SoC2008、第一个全国产化星载综合电子系统，为我国航天计算机及电子信息系统的跨越式发展作出了重大贡献。获得过国家科技进步二等奖、国家技术发明二等奖、国防创新团队奖、2025在京央企杰出工程师等奖励。"
+    },
+    {
+      "name": "刘垚圻",
+      "affiliation_raw": "中国科学院计算技术研究所 副研究员",
+      "organization": "中国科学院计算技术研究所",
+      "title": "副研究员",
+      "chair_role": "论坛主席",
+      "bio": "博士，中国科学院计算技术研究所副研究员，中科天算董事长兼CEO，CCF容错计算专委副秘书长，2026CCF Chip大会组委会副主席。研究方向为天基计算体系结构、大模型与智能体，“天算计划”负责人，发表论文/专利百余篇，荣获“6G星辰·青年科学家”、入选计算所“新百星”计划等。"
+    }
+  ],
+  "talks": [
+    {
+      "order": 1,
+      "title": { "zh": "Unlocking the Potential of AI-RAN: A Pathway towards Future Network Intelligence", "en": "Unlocking the Potential of AI-RAN: A Pathway towards Future Network Intelligence" },
+      "title_status": "confirmed",
+      "speakers": [
+        {
+          "name": "苏金树",
+          "affiliation_raw": "Singapore University of Technology and Design; Fellow of Academy of Engineering Singapore",
+          "organization": "Singapore University of Technology and Design",
+          "title": "Cheng Tsang Man Chair Professor / Associate Provost (AI & Digital Innovation)",
+          "honorifics": ["Fellow of Academy of Engineering Singapore"],
+          "bio": "Tony Q.S. Quek received the B.E. and M.E. degrees in Electrical and Electronics Engineering from Tokyo Institute of Technology, respectively. At Massachusetts Institute of Technology, he earned the Ph.D. in Electrical Engineering and Computer Science. Currently, he is the Associate Provost (AI & Digital Innovation) and Cheng Tsang Man Chair Professor with Singapore University of Technology and Design (SUTD). He also serves as the Director of the Future Communications R&D Programme, and the ST Engineering Distinguished Professor. His current research topics include wireless communications and networking, network intelligence, non-terrestrial networks, open radio access network, and 6G. His current research topics include wireless communications and networking, AI-RAN, non-terrestrial networks, open radio access network, and 6G. Dr. Quek received the 2008 Philip Yeo Prize for Outstanding Achievement in Research, the 2012 IEEE William R. Bennett Prize, the 2016 IEEE Signal Processing Society Young Author Best Paper Award, the 2017 CTTC Early Achievement Award, the 2017 IEEE ComSoc AP Outstanding Paper Award, the 2020 IEEE Communications Society Young Author Best Paper Award, the 2020 IEEE Stephen O. Rice Prize, the 2020 Nokia Visiting Professorship, the 2022 IEEE Signal Processing Society Best Paper Award, the 2024 IIT Bombay International Award For Excellence in Research in Engineering and Technology, and the IEEE Communications Society WTC Recognition Award 2024. He is an IEEE Fellow, a WWRF Fellow, and a Fellow of the Academy of Engineering Singapore."
+        }
+      ],
+      "abstract": "The RAN intelligent controller (RIC) is cloud native and a central component of a virtualized RAN network. The RIC enables to deployment of machine learning and AI techniques to optimize resources and services in the RAN. Thus, it is an important component that brings intelligence, agility, and programmability to the radio access network. On the other hand, there is a future trend to explore the concurrent use of converged computer-and-communications infrastructure to run RAN and AI and Generative AI workloads, enhancing platform utilization and creating new monetization opportunities. Lastly, it is crucial to understand the radio interface requirements for running AI and Generative AI applications across consumer, enterprise, and government sectors. In this talk, we will share about AI-RAN Alliance and how it plans to transform future networks with AI. Furthermore, we will also share some of our work in AI-RAN through Singapore's Future Communications Research and Development Programme (FCP).",
+      "abstract_status": "confirmed"
+    },
+    {
+      "order": 2,
+      "title": { "zh": "芯片·平台·生态——百度智能云赋能天基算力与芯片产业", "en": null },
+      "title_status": "confirmed",
+      "speakers": [
+        {
+          "name": "袁佛玉",
+          "affiliation_raw": "百度集团副总裁",
+          "organization": "百度",
+          "title": "集团副总裁",
+          "bio": "佛玉，毕业于清华大学电气工程和自动化专业。曾先后就职于宝洁、东风标致、网易公司，负责市场营销、战略研究、公众沟通、商务合作、用户增长等方面工作。2018年7月，袁佛玉作为集团副总裁加盟百度，负责集团公司和各事业部的市场营销工作；2023年4月起先后负责百度智能云生态和渠道建设、业务运营、战略、销售及产品管理等方面工作；现负责百度智能云泛科技、金融、能源、制造等行业商业化工作。Ms. Yuan joined Baidu in 2018 as Corporate Vice President, and oversaw the company's branding, marketing, and public communications, university partnership, and CSR. Since April 2023, Ms.Yuan has taken on responsibilities for business operations, strategy, sales and product management for Baidu AI Cloud Group. Now, Ms. Yuan oversees the commercialization efforts of Baidu AI Cloud Group across the technology, finance, energy, and manufacturing industries. Before joining Baidu, Ms. Yuan worked for Procter & Gamble, Dongfeng Motors and NetEase.com. with years of experience leading marketing, branding, public communications, and business cooperation. Ms. Yuan is a graduate of Tsinghua University, where she received her degree in Electrical Engineering and Automation."
+        }
+      ],
+      "abstract": "近五年全球在轨卫星数量增长数倍，海量遥感数据的在轨解译，与航天器气动、热控的仿真迭代，使商业航天面临数据处理与研发设计的双重算力压力；而其对自主可控、弹性高效、开放协同的诉求，与芯片设计、EDA工具、晶圆制造等环节高度共通。本报告将围绕这一共性命题，介绍百度智能云\"芯云模体\"全栈AI能力在天基计算与芯片产业中的实践：以昆仑芯为自主可控的算力底座，并探讨其向星载搭载与抗辐照加固方向的延伸；以千帆大模型平台支撑遥感智能解译、航天领域大模型与星载智能体编排；并结合伐谋决策智能体、Comate编码助手与本地计算集群，讨论AI工具链在设计优化、编码提效与算力保障等研发环节的应用。报告还将结合具体场景，探讨天基计算与芯片产业在智能化升级中的共性挑战与协同路径。",
+      "abstract_status": "confirmed"
+    },
+    {
+      "order": 3,
+      "title": { "zh": "太空计算与算力芯片", "en": null },
+      "title_status": "confirmed",
+      "speakers": [
+        {
+          "name": "华更新",
+          "affiliation_raw": "航天502所 研究员",
+          "organization": "航天502所",
+          "title": "研究员",
+          "bio": "华更新是我国空间计算机产品首席专家、学术及团队带头人，博士生导师。长期奋战在航天重大工程一线，在高可信星载容错控制计算机、抗辐射核心芯片及操作系统、星载综合电子信息系统等卡脖子“关键技术”方面取得了系统性、创造性成果。为解决载人、深空、北斗、高分等重大工程及装备难题，负责研制了我国第一个32位星载容错控制计算机及实时多任务操作系统SpaceOS、第一个抗辐射微系统处理芯片SoC2008、第一个全国产化星载综合电子系统，为我国航天计算机及电子信息系统的跨越式发展作出了重大贡献。获得过国家科技进步二等奖、国家技术发明二等奖、国防创新团队奖、2025在京央企杰出工程师等奖励。"
+        }
+      ],
+      "abstract": "从空间太阳能电站到天空计算中心，人类经历了从和平利用太阳能，到天数天算、地数天算的过程，算力芯片成为太空计算的关键。报告从传统冯诺伊曼体系，到近存计算、存内处理、存内计算的实现过程，比较了GPGPA(通用图形处理器)、DSA(领域专用架构)、忆阻器（存算一体）和类脑芯片的实现方式，可以为算力芯片设计和选用提供参考。",
+      "abstract_status": "confirmed"
+    },
+    {
+      "order": 4,
+      "title": { "zh": "面向太空算力星座的光互连与光计算", "en": null },
+      "title_status": "confirmed",
+      "speakers": [
+        {
+          "name": "迟楠",
+          "affiliation_raw": "复旦大学 教授",
+          "organization": "复旦大学",
+          "title": "教授",
+          "bio": "迟楠，复旦大学未来信息创新学院教授，博士生导师。获得国家杰出青年科学基金及杰青延续资助，美国光学学会会士。长期从事高速光通信和高速可见光通信方面的研究。发表论文400余篇，Google引用18000余次，出版专著10部。获中国通信学会自然科学一等奖、教育部自然科学二等奖、中国产学研合作创新一等奖等各1项。"
+        }
+      ],
+      "abstract": "面向6G空天地一体化网络与天基智算需求，本报告聚焦于新频谱高速光互连、光交换和光计算的最新进展。重点内容包括新频谱可见光光子芯片、高密度光互连架构、光计算机制，并探讨了在天基网络、海洋网络和数据中心光互连中的系统级应用。最后，对未来发展前景和关键挑战进行了展望。",
+      "abstract_status": "confirmed"
+    },
+    {
+      "order": 5,
+      "title": { "zh": "关于低成本航天元器件的思考", "en": null },
+      "title_status": "confirmed",
+      "speakers": [
+        {
+          "name": "梁斌",
+          "affiliation_raw": "中国人民解放军国防科技大学 研究员",
+          "organization": "中国人民解放军国防科技大学",
+          "title": "研究员",
+          "bio": "主要从事宇航用集成电路设计和国产IP核研制。作为负责人主持重大专项等项目10余项，作为副总设计师、主任设计师参与重大专项等项目10余项。获国家科技进步二等奖1项（排名2）、JD科技进步一等奖2项（排名3、5）、湖南省技术发明一等奖1项（排名2）、2024年度国防科技大学重大科技进展（排名1）、2024年度国防科技大学奋进一流突出贡献个人，发表SCI论文60余篇，获授权专利50余项，培养研究生20余名。"
+        }
+      ],
+      "abstract": "面对全球商业航天对高性价比系统与高效迭代的迫切需求，本报告融合低成本元器件与IP处理器件应用，提出从设计源头到考核模式全流程降本的工程思路。在设计与应用层面，推行宇航、军工与车规一体化，通过晶圆级车规工艺控制与成熟IP核复用分摊研发成本并降低初期流片风险，同时基于标准化接口实现模块化“即插即用”，并创新性在芯片内部集成P-Sensor与T-Sensor以建立工艺角偏离与结温实时监测体系，实现硬件状态的透明化。在考核与体系层面，依托上述主动设计的“内生数据”构建可信IP库，将可靠性验证重心前移至晶圆制造阶段，利用代工厂过程监控数据与工艺波动模型，简化传统破坏性筛选与冗长的辐照测试流程，大幅压缩研制周期。在实际应用层面，采取关键链路物理抗辐射与非关键链路系统级加固的差异化策略，配合统一的航天标准接口与动态评估的供应商体系，整体形成“主动设计、片上感知、前移考核、分级加固”的商业航天电子系统降本新范式，最终在确保极端环境下系统安全的前提下，实现商业航天效费比与快速迭代能力的提升。",
+      "abstract_status": "confirmed"
+    },
+    {
+      "order": 6,
+      "title": { "zh": "商业卫星与宇航芯片双向协同发展", "en": null },
+      "title_status": "confirmed",
+      "speakers": [
+        {
+          "name": "李峰辉",
+          "affiliation_raw": "天津云遥宇航科技有限公司 董事长兼总经理",
+          "organization": "天津云遥宇航科技有限公司",
+          "title": "董事长兼总经理",
+          "bio": "李峰辉，男，天津大学博士，清华大学博士后，国家级科技领军人才，正高级工程师。天津云遥宇航科技有限公司创始人。天津大学兼职教授、宣怀学院院董，武汉大学产业兼职教授。2025年度新时代青年先锋奖获得者；中华全国青年联合会第十四届委员会委员；第六届全国非公有制经济人士优秀中国特色社会主义事业建设者；中国人民政治协商会议天津市第十五届委员会委员；天津市科学技术协会第十届委员会委员。曾就职于中国空间技术研究院，为国家重点“张衡一号电磁检测试验卫星GNSS掩星系统”项目负责人，参与过40+卫星的研制工作，带领团队获得“全国工人先锋号”荣誉，研制并成功发射47颗气象小卫星，为目前国内最大的掩星探测星座。其中“云遥一号”系列小卫星已进入中国气象局综合气象观测系统并实现业务运行，掩星数据质量达到国际先进水平。同时公司提供气象应用的一体化解决方案，并广泛应用于行业气象预报、远洋航行、新能源功率预测、电力交易决策辅助平台等领域，加速打造从卫星研制、数据处理到行业应用的全链条商业航天生态。"
+        }
+      ],
+      "abstract": "商业气象卫星是提升空间气象观测精度、强化极端天气预警能力、推进气象服务产业化的核心空间基础设施，宇航芯片的性能、可靠性与成本水平，直接决定气象卫星的观测效能与规模化应用能力。当前商业气象星座批量化组网、全天时高精度观测、在轨智能处理的发展趋势，对国产宇航芯片的抗辐照性能、宽温域稳定性、低成本量产与场景专用算力提出了严苛挑战。商业航天与宇航芯片产业互为支撑、双向赋能：芯片技术进步支撑气象卫星观测能力持续升级，而真实太空在轨场景又是芯片技术打磨、可靠性验证的最优试验平台。云遥宇航依托双气象星座规模化在轨资源，可全方位开放太空搭载场景，为国产宇航芯片提供在轨测试、场景适配、长期可靠性考核与工程迭代支撑，助力国产芯片快速完成空间验证与产业化定型，实现商业气象卫星应用与国产宇航芯片产业的协同高质量发展。",
+      "abstract_status": "confirmed"
+    },
+    {
+      "order": 7,
+      "title": { "zh": "太空计算场景下卫星电源系统需求与技术进展", "en": null },
+      "title_status": "confirmed",
+      "speakers": [
+        {
+          "name": "黄三玻",
+          "affiliation_raw": "苏州馥昶空间技术有限公司",
+          "organization": "苏州馥昶空间技术有限公司",
+          "title": "联合创始人、研发总监",
+          "bio": "苏州馥昶空间技术有限公司联合创始人、研发总监，毕业于南京航空航天大学，曾任职于上海航天技术研究院第811所，深耕航天电源领域多年，先后参与高压柔性太阳电池阵、火星车太阳电池阵等国家重大航天工程关键技术攻关，拥有深厚的技术积累与工程实践经验。自2016年专注商业航天项目以来，作为核心技术负责人，先后主持研制超过150型商业卫星电源产品。"
+        }
+      ],
+      "abstract": "星上AI计算带来卫星功耗大幅上涨，对卫星电源系统提出大功率、动态负载、轻量化、高可靠储能等新要求。针对太空计算在轨工作场景，总结算力业务下电源系统核心使用需求，分别介绍发电、储能、配电、能源管理模块现状，指出当前适配高算力卫星的电源技术瓶颈，并对下一代适配太空计算的电源技术发展趋势进行简要梳理。",
+      "abstract_status": "confirmed"
+    },
+    {
+      "order": 8,
+      "title": { "zh": "算启苍穹·智链星河：天基计算时代下的商业航天供应链新生态与元器件保障体系研究", "en": null },
+      "title_status": "confirmed",
+      "speakers": [
+        {
+          "name": "梅博",
+          "affiliation_raw": "中国空间技术研究院供应链中心 研究员",
+          "organization": "中国空间技术研究院供应链中心",
+          "title": "研究员",
+          "bio": "现任航天五院供应链中心商业航天中心主任，国防科技工业抗辐照应用技术创新中心副主任，国家“万人计划”青年拔尖人才，航天科技集团公司青年拔尖人才，航天五院科技委航天器环境工程专业组成员。2009年本科毕业于华南理工大学，2014年博士毕业于中国科学院大学。长期从事集成电路抗辐射技术研究，牵头完成我国宇航元器件抗辐射评估技术体系和标准流程的制定，提出并构建了基于型号任务剖面的元器件抗辐射保证技术体系，突破了集成电路辐射效应在轨预与故障诊断等关键技术。成果已应用于空间站、导航卫星、月球探测、火星探测等国家重大工程项目中，保障了我国300余颗卫星安全在轨工作。作为负责人承担国家级课题20余项，编写国标5份，行业级标准8份，出版学术专著2部、发表论文100余篇，授权专利30余项，获得省部级一等奖2项，二等奖1项，国防创新团队奖2项。"
+        }
+      ],
+      "abstract": "在全球商业航天“低成本、规模化、快响应”趋势的发展现状与挑战下，本报告结合天基计算与智能应用对高性能、高算力元器件的迫切需求，构建了一套适应新时代特征的供应链新生态与元器件质量保证体系。报告首先分析了国内外商业航天的市场规模与竞争格局，指出行业正从传统的“单星高可靠”向“星座系统级冗余”转变，且供应链呈现高度定制化、管理复杂化的特点。针对这一趋势，报告提出了“技术+管理+组织”的三维创新策略：在技术层面，推行从元器件级保证向系统级保证转变，通过抗辐射加固设计（RHA）、脉冲激光快速评估等手段，解决低等级器件（如车规、塑封）在天基计算平台上的应用瓶颈；在管理层面，构建了“低成本、精益可靠性”的质量保证标准体系（如CAST H/N等级），通过过程数据采信和差异化筛选大幅降低质保成本；在组织层面，倡导建立第三方供应链专业机构，通过集约化采购（VMI）、优选目录建设及数据大平台共享，打通产业链上下游孤岛。本研究旨在为天基计算与智能应用提供坚实、高效、经济的硬件基础与供应链支撑，推动我国商业航天产业从“制造”向“智造”的转型升级。",
+      "abstract_status": "confirmed"
+    },
+    {
+      "order": 9,
+      "title": { "zh": "新型存储器研究进展", "en": null },
+      "title_status": "confirmed",
+      "speakers": [
+        {
+          "name": "王超",
+          "affiliation_raw": "中国电科58所 高级工程师",
+          "organization": "中国电子科技集团公司第五十八研究所",
+          "title": "高级工程师",
+          "bio": "担任XXX、XP等多项国家级重大工程项目负责人，主持研发并成功量产国内首款J用高可靠STT-MRAM存储器系列产品，成果已应用于航天重点工程。电科集团“杰出青年”，江苏省“双创人才”，无锡市“太湖人才团队”带头人。发表论文及专利10余篇。"
+        }
+      ],
+      "abstract": "本报告从新型存储器国内外研究进展和国产MRAM产品的可靠性研究两方面阐述。1.新型存储器新型非易失性存储器（MRAM、ReRAM、PCM、FeRAM等）是后摩尔时代突破存储墙瓶颈的关键技术，当前全球研究聚焦于速度、可靠性、集成密度及新型计算架构的协同优化。国际上，MRAM实现规模化量产，部分厂家已推出Gb级产品，ReRAM在三维异质集成和存内计算方向进展显著，PCM在神经形态计算领域持续突破，FeRAM则探索高密度3D堆叠工艺。2.开展国产MRAM产品的可靠性技术研究，包括数据保持、写耐久、抗磁场干扰、总剂量辐照、单粒子效应等试验，验证其恶劣环境下的适应性，在高可靠领域MRAM具有突出的技术优势和发展前景。",
+      "abstract_status": "confirmed"
+    },
+    {
+      "order": 10,
+      "title": { "zh": "Panel特邀嘉宾", "en": null },
+      "title_status": "unknown",
+      "type": "invited",
+      "speakers": [
+        {
+          "name": "倪家伟",
+          "affiliation_raw": "苏州馥昶空间技术有限公司",
+          "organization": "苏州馥昶空间技术有限公司",
+          "title": "创始人、董事长",
+          "bio": "苏州馥昶空间技术有限公司创始人、董事长，毕业于南京理工大学，曾任职于上海航天技术研究院第811所，担任物理电源副主任研发师，深耕航天电源领域多年。2020年获批高新区科技创新创业领军人才，2021年获批姑苏创新创业领军人才，国家WR。2018年创办苏州馥昶空间技术有限公司，致力于商业航天卫星电源系统的研发，秉持自主研制的高可靠、低成本卫星电源系统技术理念，研发投入占比连续多年超19%，并掌握6项自主研发核心技术，公司团队已获授权及正在申请的国内外专利共101项。产品销售覆盖15个以上国家和地区，累计为超过60家用户提供产品与服务。公司为国家级重点“小巨人”企业、国家级专精特新“小巨人”企业、江苏省级专精特新中小企业及国家级高新技术企业。"
+        }
+      ],
+      "abstract": null,
+      "abstract_status": "unknown",
+      "flags": ["海报中列为“Panel特邀嘉宾”，仅给出个人简介，无独立报告题目与摘要"]
+    }
+  ],
+  "poster": {
+    "local_path": "source/raw/images/1996689bccee431e89ae2d465bdfdbfb.jpg",
+    "source_url": "/cmsFileManager/UeditorImg/1996689bccee431e89ae2d465bdfdbfb.jpg"
+  },
+  "detail_extracted": true
+}
