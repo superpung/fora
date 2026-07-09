@@ -4,13 +4,16 @@ import { BrowserRouter } from "react-router-dom";
 import "./styles/global.css";
 import "./styles/app.css";
 import { ThemeProvider } from "./lib/theme";
+import { FollowProvider } from "./lib/follow";
 import App from "./App";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <ThemeProvider>
-        <App />
+        <FollowProvider>
+          <App />
+        </FollowProvider>
       </ThemeProvider>
     </BrowserRouter>
   </StrictMode>,
