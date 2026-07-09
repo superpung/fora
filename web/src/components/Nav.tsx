@@ -5,8 +5,8 @@ import ThemeToggle from "./ThemeToggle";
 import { conference } from "../lib/data";
 
 const LINKS = [
-  { to: "/", label: "概览", end: true },
-  { to: "/schedule", label: "日程" },
+  { to: "/", label: "日程面板", end: true },
+  { to: "/schedule", label: "时间线" },
   { to: "/committee", label: "委员会" },
   { to: "/organizations", label: "组织与赞助" },
 ];

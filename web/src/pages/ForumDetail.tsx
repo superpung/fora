@@ -1,13 +1,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useParams, Link } from "react-router-dom";
-import { getForum, formatDate } from "../lib/data";
+import { getForum, formatDate, periodLabel } from "../lib/data";
+import { useFollow } from "../lib/follow";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import type { Person } from "../types";
-
-const periodLabel: Record<string, string> = {
-  morning: "上午", afternoon: "下午", evening: "晚上",
-};
 
 function Avatar({ name }: { name?: string }) {
   return <span className="avatar" aria-hidden>{name?.[0] ?? "·"}</span>;
@@ -15,12 +12,24 @@ function Avatar({ name }: { name?: string }) {
 
 function PersonLine({ p, role }: { p: Person; role?: string }) {
   const [open, setOpen] = useState(false);
+  const { isSpeaker, toggleSpeaker } = useFollow();
+  const followed = p.name ? isSpeaker(p.name) : false;
   return (
     <div className="person">
       <Avatar name={p.name} />
       <div className="person__body">
         <div className="person__head">
           <span className="person__name">{p.name}</span>
+          {p.name && (
+            <button
+              className={`star star--sm ${followed ? "is-on" : ""}`}
+              aria-pressed={followed}
+              title={followed ? `取消关注 ${p.name}` : `关注 ${p.name}`}
+              onClick={() => toggleSpeaker(p.name)}
+            >
+              {followed ? "★" : "☆"}
+            </button>
+          )}
           {role && <span className="tag tag--code">{role}</span>}
           {p.honorifics?.map((h) => (
             <span key={h} className="tag">{h}</span>
@@ -56,6 +65,8 @@ function PersonLine({ p, role }: { p: Person; role?: string }) {
 export default function ForumDetail() {
   const { code } = useParams();
   const forum = code ? getForum(code) : undefined;
+  const { isForum, toggleForum } = useFollow();
+  const forumFollowed = code ? isForum(code) : false;
 
   if (!forum) {
     return (
@@ -84,7 +95,15 @@ export default function ForumDetail() {
           {forum.room && <span className="tag tag--room">{forum.room}</span>}
           {forum.sponsor && <span className="tag tag--sponsor">{forum.sponsor}专场</span>}
         </div>
-        <h1 className="fd__title">{forum.title.zh}</h1>
+        <div className="fd__titlerow">
+          <h1 className="fd__title">{forum.title.zh}</h1>
+          <button
+            className={`followbtn ${forumFollowed ? "is-on" : ""}`}
+            onClick={() => code && toggleForum(code)}
+          >
+            {forumFollowed ? "★ 已收藏" : "☆ 收藏论坛"}
+          </button>
+        </div>
         {dateInfo && (
           <div className="fd__when">
             {dateInfo.md} {dateInfo.weekday}
