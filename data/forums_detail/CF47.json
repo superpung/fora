@@ -1,0 +1,182 @@
+{
+  "code": "CF47",
+  "title": { "zh": "星火相传·智算燎原：玄铁RISC-V产学研协同创新论坛", "en": null },
+  "sponsor": "阿里巴巴达摩院",
+  "series_part": null,
+  "day_date": "2026-07-18",
+  "session_period": "afternoon",
+  "room": "209",
+  "description": "本次玄铁分论坛将聚焦RISC-V生态在学术界与产业界的深度协同。我们将全景呈现RISC-V架构的最新技术跃迁，探讨面向新应用的体系结构支撑、芯片敏捷开发以及高性能处理器设计等前沿方向。论坛旨在为高校学者、科研团队及芯片产业专家搭建一个开放的交流平台，共同探索RISC-V在算力重构背景下的创新路径，推动基础研究与产业应用的无缝对接。",
+  "chairs": [
+    {
+      "name": "苏中",
+      "affiliation_raw": "阿里巴巴达摩院 资深技术专家",
+      "organization": "阿里巴巴达摩院",
+      "title": "资深技术专家",
+      "chair_role": "论坛主席",
+      "bio": "苏中在人工智能领域深耕二十余年，现任阿里巴巴达摩院资深技术专家，同时担任RISC-V国际基金会技术委员会委员、AME矩阵扩展指令工作组主席。此前曾任知合计算AI首席科学家、阿里研究院未来技术中心负责人，IBM中国研究院大数据及人工智能研究方向负责人。在IBM任职期间，当选IBM全球技术委员会委员、大中华区技术专家委员会主席。曾经兼任南开大学兼职教授与上海交通大学计算机系客座教授。拥有发明专利100余项，在国际顶级会议及期刊发表学术论文百余篇，谷歌学术引用超过10,000次，荣获2020年ACM SIGKDD时间检验奖（Test of Time Award）、多次IBM全球技术成就奖，并两次获得IBM全球杰出技术成就奖。现担任中国计算机学会人工智能专委会常务委员、中国中文信息学会理事。苏中毕业于清华大学计算机系，获工学博士学位。"
+    },
+    {
+      "name": "徐炜鸿",
+      "affiliation_raw": "浙江大学 集成电路学院研究员",
+      "organization": "浙江大学",
+      "title": "集成电路学院研究员",
+      "chair_role": "论坛主席",
+      "bio": "徐炜鸿，浙江大学“百人计划”研究员、博士生导师，国家高层次青年人才计划入选者。近五年在计算机体系结构（ISCA/MICRO/HPCA）、芯片电路设计（VLSI/HotChips）及设计自动化（DAC/ICCAD/TCAD）顶会顶刊发表论文30余篇，拥有丰富的产业界合作经验，曾与台积电（TSMC）深度合作完成多款边缘AI芯片的设计与流片验证。"
+    }
+  ],
+  "talks": [
+    {
+      "order": 1,
+      "title": { "zh": "特邀致辞", "en": null },
+      "title_status": "confirmed",
+      "type": "opening",
+      "speakers": [
+        {
+          "name": "严晓浪",
+          "affiliation_raw": "浙江大学 教授，博士生导师",
+          "organization": "浙江大学",
+          "title": "教授，博士生导师",
+          "bio": "1989-1993任北京集成电路设计中心常务副主任兼总工程师；1993-1998任杭州电子工业学院院长；1998-2000任浙江省科委主任；2000以来，曾任浙江大学电气工程学院院长，超大规模集成电路设计研究所所长，集成电路与基础软件研究院院长等职。2000-2005任国家十五863集成电路设计重大专项专家组组长，期间主持建设7个城市的国家集成电路设计产业化基地和9所高校的国家集成电路人才培养基地。现任国家集成电路产业发展咨询委员会委员，国家示范性微电子学院建设专家组组长，国家芯火平台建设专家组组长。曾多次获得国家级奖励。"
+        }
+      ],
+      "abstract": null,
+      "abstract_status": "unknown"
+    },
+    {
+      "order": 2,
+      "title": { "zh": "特邀致辞", "en": null },
+      "title_status": "confirmed",
+      "type": "opening",
+      "speakers": [
+        {
+          "name": "时龙兴",
+          "affiliation_raw": "东南大学 首席教授",
+          "organization": "东南大学",
+          "title": "首席教授",
+          "bio": "东南大学首席教授，国务院学位委员会集成电路科学与工程一级学科评议组成员，中国电子学会电子设计自动化专家委员会副主任委员，“核高基”科技重大专项总体专家组专家，中国集成电路设计创新联盟专家组组长，国家集成电路设计自动化技术创新中心主任，江苏省集成电路学会理事长，江苏省半导体行业协会专家委员会主任委员，南京市集成电路行业协会理事长，南京集成电路产业服务中心主任。主要研究方向为面向低功耗计算与处理、低损耗转换与驱动的芯片设计技术研究，以及面向先进制程和低电压下的统计静态时序分析、良率分析等设计方法与EDA工具研发。先后完成国家科技重大专项、国家“863”计划、国家自然科学基金等项目。研究成果获得美国专利30件，中国授权发明专利394件。荣获国家技术发明二等奖2项，国家科技进步二等奖1项，国家科技进步三等奖1项，教育部技术发明一等奖2项，江苏省科技进步一等奖6项。教学成果获国家级教学成果二等奖2项，江苏省教学成果特等奖1项等。"
+        }
+      ],
+      "abstract": null,
+      "abstract_status": "unknown"
+    },
+    {
+      "order": 3,
+      "title": { "zh": "重剑无锋，大巧不工——持续突破创新的玄铁系列处理器", "en": null },
+      "title_status": "confirmed",
+      "speakers": [
+        {
+          "name": "陈晨",
+          "affiliation_raw": "阿里巴巴达摩院 资深科学家，玄铁处理器研发负责人",
+          "organization": "阿里巴巴达摩院",
+          "title": "资深科学家，玄铁处理器研发负责人",
+          "bio": "陈晨，浙江大学本科、博士，曾任教于复旦大学微电子学院。长期从事处理器架构设计与验证，全程深度参与多款商用CPU产品的开发，产品覆盖高中低端各个应用领域。作为骨干参与国家“核高基”重大专项、国家863计划项目。于2021年获得者浙江省技术发明一等奖。作为核心设计人员或项目负责人参与C910、C930、C950等多款高性能处理器的研发工作，其中C950处理器SPECINT2006超过22分/GHz，是业界最高性能RISC-V处理器。"
+        }
+      ],
+      "abstract": null,
+      "abstract_status": "unknown"
+    },
+    {
+      "order": 4,
+      "title": { "zh": "乘影开源GPGPU软硬件设计", "en": null },
+      "title_status": "confirmed",
+      "speakers": [
+        {
+          "name": "何虎",
+          "affiliation_raw": "清华大学 集成电路学院副教授",
+          "organization": "清华大学",
+          "title": "集成电路学院副教授",
+          "bio": "何虎，清华大学集成电路学院副教授、博士生导师，上海清华国际创新中心副主任，主要研究方向为高性能处理器（如DSP、CPU、GPGPU），主导开源GPGPU项目“乘影”（Ventus）。"
+        }
+      ],
+      "abstract": null,
+      "abstract_status": "unknown"
+    },
+    {
+      "order": 5,
+      "title": { "zh": "面向高性能大模型推理的异构存算技术展望", "en": null },
+      "title_status": "confirmed",
+      "speakers": [
+        {
+          "name": "蔡一茂",
+          "affiliation_raw": "北京大学 集成电路学院院长",
+          "organization": "北京大学",
+          "title": "集成电路学院院长",
+          "bio": "蔡一茂，现任北京大学集成电路学院院长，同时担任集成电路高精尖创新中心执行主任。拥有北京大学微电子学与固体电子学博士学位，曾于韩国三星电子存储器研发中心担任高级研究员。兼任中国存储器产业联盟副理事长、北京半导体行业协会常务理事等社会职务。"
+        }
+      ],
+      "abstract": null,
+      "abstract_status": "unknown"
+    },
+    {
+      "order": 6,
+      "title": { "zh": "面向智算应用的先进互连制造与系统集成", "en": null },
+      "title_status": "confirmed",
+      "speakers": [
+        {
+          "name": "徐炜鸿",
+          "affiliation_raw": "浙江大学 集成电路学院研究员",
+          "organization": "浙江大学",
+          "title": "集成电路学院研究员",
+          "bio": "徐炜鸿，浙江大学“百人计划”研究员、博士生导师，国家高层次青年人才计划入选者。近五年在计算机体系结构（ISCA/MICRO/HPCA）、芯片电路设计（VLSI/HotChips）及设计自动化（DAC/ICCAD/TCAD）顶会顶刊发表论文30余篇，拥有丰富的产业界合作经验，曾与台积电（TSMC）深度合作完成多款边缘AI芯片的设计与流片验证。"
+        }
+      ],
+      "abstract": null,
+      "abstract_status": "unknown"
+    },
+    {
+      "order": 7,
+      "title": { "zh": "RISC-V Accelerating the future of intelligent computing", "en": "RISC-V Accelerating the future of intelligent computing" },
+      "title_status": "confirmed",
+      "speakers": [
+        {
+          "name": "Nick Brown",
+          "affiliation_raw": "EPCC Senior Research Fellow",
+          "organization": "EPCC",
+          "title": "Senior Research Fellow",
+          "bio": "Nick Brown博士，英国爱丁堡大学EPCC高级研究员，现持有苏格兰皇家学会（RSE）个人研究基金，聚焦\"新型硬件如何支撑未来可持续超算\"，研究横跨FPGA、AI Engine、RISC-V、CGRA等前沿架构，涵盖算法重构、DSL编程模型与编译器自动优化三条主线，已发表80余篇同行评审论文。在RISC-V社区，他担任RISC-V International HPC特别兴趣组主席、RISC-V Ambassador，并牵头组织ISC与SC上的RISC-V for HPC Workshop系列，2025年先后在北美与欧洲RISC-V Summit发表HPC主题keynote。他同时是EPSRC ExCALIBUR RISC-V项目PI、£2M CAKE项目PI，主导£45M ExCALIBUR百亿亿次计划的知识交流工作，并任IEEE Cluster 2025本地主席。"
+        }
+      ],
+      "abstract": "本演讲将从RVA23 profile与模块化扩展谈起，回顾HPC SIG去年发布的生态gap分析路线图，并首次披露多组一手实测数据：从玄铁C920与Marvell ThunderX2、AMD Zen 2、Intel Xeon的核对核比拼，到C950早期版本在NASA benchmark上与AMD Milan、ARM Neoverse的同量级对决——RISC-V首次真正\"holding its own\"。结合玄铁牵头推动的AME即将标准化，Nick给出判断：2026有望成为RISC-V在HPC落地的元年。",
+      "abstract_status": "confirmed"
+    },
+    {
+      "order": 8,
+      "title": { "zh": "玄铁高性能矢量扩展", "en": null },
+      "title_status": "confirmed",
+      "speakers": [
+        {
+          "name": "仇径",
+          "affiliation_raw": "阿里巴巴达摩院 RISC-V技术专家",
+          "organization": "阿里巴巴达摩院",
+          "title": "RISC-V技术专家",
+          "bio": "仇径，浙江大学电路与系统专业博士，现任职于阿里巴巴达摩院，主要从事RISC-V高性能处理器微架构设计与实现工作。目前参与RISC-V国际基金会矩阵扩展、向量扩展及DSP扩展相关任务组的工作，在向量与矩阵指令集架构的标准化及硬件实现方面有持续投入。"
+        }
+      ],
+      "abstract": null,
+      "abstract_status": "unknown"
+    },
+    {
+      "order": 9,
+      "title": { "zh": "上海创芯学院-打造中国集成电路设计人才的“黄埔军校”", "en": null },
+      "title_status": "confirmed",
+      "speakers": [
+        {
+          "name": "周平强",
+          "affiliation_raw": "上海创芯学院 副院长",
+          "organization": "上海创芯学院",
+          "title": "副院长",
+          "bio": "周平强，上海科技大学信息学院教授、副院长、博士生导师 [2-3] [5] [7]。2007年获清华大学计算机科学与技术硕士学位，2012年获美国明尼苏达大学电气工程博士学位，后留校从事博士后研究至2013年6月。2013年7月加入上海科技大学信息学院任助理教授 [1-3]，2015年赴加州大学伯克利分校任访问学者 [2-3] [7]。历任助理教授期间参与信息学院初创期建设，包括首批研究生招生、课程体系搭建 [4] [6]。长期研究方向涵盖集成电路设计自动化（EDA）、人工智能芯片、计算机系统架构 [2-3] [5] [7]。在TCAD、TVLSI等国际期刊会议发表论文80余篇，获清华大学优秀硕士论文奖、明尼苏达大学博士论文奖学金及1次最佳海报奖、6次最佳论文提名等学术荣誉。"
+        }
+      ],
+      "abstract": null,
+      "abstract_status": "unknown",
+      "flags": ["speaker_affiliation_mismatch: caption 上海创芯学院副院长 vs bio 上海科技大学信息学院教授、副院长", "bio_contains_citation_markers: [n] markers present in source poster verbatim"]
+    }
+  ],
+  "poster": {
+    "local_path": "source/raw/images/82822dc7fd63464d9cd95f20eefc0f07.jpg",
+    "source_url": "/cmsFileManager/UeditorImg/82822dc7fd63464d9cd95f20eefc0f07.jpg"
+  },
+  "detail_extracted": true
+}
