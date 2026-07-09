@@ -1,187 +1,344 @@
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { conference, days, stats, formatDate, venueName } from "../lib/data";
-import { pageVariants, stagger, riseItem, scaleItem } from "../lib/motion";
-import Reveal from "../components/Reveal";
-import CountUp from "../components/CountUp";
+import {
+  conference,
+  scheduleDays,
+  stats,
+  uniqueSpeakerCount,
+  periodLabel,
+  formatDate,
+  type ScheduleDay,
+  type ForumSlot,
+} from "../lib/data";
+import { useFollow } from "../lib/follow";
+import { pageVariants } from "../lib/motion";
 import type { Talk } from "../types";
 
-const periodLabel: Record<string, string> = {
-  morning: "上午",
-  afternoon: "下午",
-  evening: "晚上",
-};
+/* ---------------- small pieces ---------------- */
+
+function StarButton({
+  active,
+  onClick,
+  label,
+}: {
+  active: boolean;
+  onClick: () => void;
+  label: string;
+}) {
+  return (
+    <button
+      className={`star ${active ? "is-on" : ""}`}
+      aria-pressed={active}
+      aria-label={label}
+      title={label}
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        onClick();
+      }}
+    >
+      {active ? "★" : "☆"}
+    </button>
+  );
+}
+
+function timeRange(b?: { start?: string | null; end?: string | null }) {
+  if (!b?.start) return "";
+  return b.end ? `${b.start}–${b.end}` : b.start;
+}
+
+function KeynoteChip({ t }: { t: Talk }) {
+  const { isSpeaker, toggleSpeaker } = useFollow();
+  const sp = t.speakers?.[0];
+  const isOpening = t.type === "opening" || !sp;
+  return (
+    <div className={`kchip ${isOpening ? "kchip--opening" : ""}`}>
+      <div className="kchip__time">
+        {t.start}
+        {t.end ? `–${t.end}` : ""}
+      </div>
+      <div className="kchip__title">
+        {t.title_status === "tbd" ? (
+          <span className="tag tag--tbd">题目待定</span>
+        ) : (
+          t.title?.zh
+        )}
+      </div>
+      {sp && (
+        <div className="kchip__speaker">
+          <StarButton
+            active={isSpeaker(sp.name)}
+            onClick={() => toggleSpeaker(sp.name)}
+            label={`关注 ${sp.name}`}
+          />
+          <strong>{sp.name}</strong>
+          <span className="kchip__aff">{sp.affiliation_raw}</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ForumCard({ slot }: { slot: ForumSlot }) {
+  const { isForum, toggleForum, isSpeaker } = useFollow();
+  const f = slot.forum;
+  const talks = f?.talks ?? [];
+  const followedHere = slot.people.filter((n) => isSpeaker(n));
+  const previewNames = slot.people.slice(0, 3);
+  const extra = slot.people.length - previewNames.length;
+
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.28 }}
+      className={`fcard ${followedHere.length ? "fcard--tracked" : ""}`}
+    >
+      <StarButton
+        active={isForum(slot.code)}
+        onClick={() => toggleForum(slot.code)}
+        label={`收藏论坛 ${slot.code}`}
+      />
+      <Link to={`/forum/${slot.code}`} className="fcard__link">
+        <div className="fcard__head">
+          <span className="tag tag--code">{slot.code}</span>
+          <span className="tag tag--room">{slot.room}</span>
+        </div>
+        <h3 className="fcard__title">{f?.title.zh ?? slot.code}</h3>
+
+        {previewNames.length > 0 && (
+          <div className="fcard__people">
+            {previewNames.map((n) => (
+              <span
+                key={n}
+                className={`fcard__person ${isSpeaker(n) ? "is-followed" : ""}`}
+              >
+                {n}
+              </span>
+            ))}
+            {extra > 0 && <span className="fcard__more">+{extra}</span>}
+          </div>
+        )}
+
+        <div className="fcard__foot">
+          {f?.sponsor && <span className="tag tag--sponsor">{f.sponsor}</span>}
+          {f?.detail_extracted ? (
+            <span className="fcard__count">{talks.length} 报告</span>
+          ) : (
+            <span className="fcard__pending">详情待补</span>
+          )}
+          {followedHere.length > 0 && (
+            <span className="fcard__track" title={followedHere.join("、")}>
+              ★ 关注讲者
+            </span>
+          )}
+        </div>
+      </Link>
+    </motion.div>
+  );
+}
+
+function DaySection({
+  day,
+  slots,
+}: {
+  day: ScheduleDay;
+  slots: ForumSlot[];
+}) {
+  if (slots.length === 0) return null;
+  return (
+    <section className="dashday">
+      <div className="dashday__head">
+        <div className="dashday__date">
+          <span className="dashday__md">{day.md}</span>
+          <span className="dashday__wd">{day.weekday}</span>
+        </div>
+        <div className="dashday__meta">
+          <span>{day.venue}</span>
+          {day.forumBlock && (
+            <span className="dashday__time">{timeRange(day.forumBlock)}</span>
+          )}
+          <span className="dashday__n">{slots.length} 场并行论坛</span>
+        </div>
+      </div>
+
+      {day.keynotes.length > 0 && (
+        <div className="krail">
+          <div className="krail__label">主旨报告 · 上午</div>
+          <div className="krail__track">
+            {day.keynotes.map((t, i) => (
+              <KeynoteChip key={i} t={t} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      <motion.div layout className="fgrid">
+        {slots.map((s) => (
+          <ForumCard key={s.code} slot={s} />
+        ))}
+      </motion.div>
+    </section>
+  );
+}
+
+/* ---------------- dashboard ---------------- */
 
 export default function Home() {
-  const keynotes: Talk[] = days
-    .flatMap((d) => d.blocks)
-    .filter((b) => b.kind === "keynotes")
-    .flatMap((b) => b.talks ?? [])
-    .filter((t) => t.type === "keynote");
+  const { forums: followedForums, speakers: followedSpeakers, isSpeaker, clearAll } =
+    useFollow();
+  const [dayFilter, setDayFilter] = useState<string>("all");
+  const [query, setQuery] = useState("");
+  const [onlyFollowed, setOnlyFollowed] = useState(false);
+  const [onlySponsored, setOnlySponsored] = useState(false);
 
-  const forums = conference.forums ?? [];
-  const sponsoredForums = forums.filter((f) => f.sponsor);
+  const followedCount = followedForums.size + followedSpeakers.size;
+  const q = query.trim().toLowerCase();
+
+  const visibleDays = useMemo(() => {
+    return scheduleDays
+      .filter((d) => dayFilter === "all" || d.date === dayFilter)
+      .map((d) => {
+        const slots = d.slots.filter((s) => {
+          if (q && !s.search.includes(q)) return false;
+          if (onlySponsored && !s.forum?.sponsor) return false;
+          if (onlyFollowed) {
+            const tracked =
+              followedForums.has(s.code) || s.people.some((n) => isSpeaker(n));
+            if (!tracked) return false;
+          }
+          return true;
+        });
+        return { day: d, slots };
+      })
+      .filter((x) => x.slots.length > 0);
+  }, [dayFilter, q, onlyFollowed, onlySponsored, followedForums, followedSpeakers, isSpeaker]);
+
+  const totalShown = visibleDays.reduce((n, x) => n + x.slots.length, 0);
+  const { md: startMd } = formatDate(conference.start_date);
+  const { md: endMd } = formatDate(conference.end_date);
 
   return (
     <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
-      {/* ---------- HERO ---------- */}
-      <section className="hero">
-        <div className="hero__glow" aria-hidden />
-        <div className="container hero__inner">
-          <motion.div variants={stagger(0.1, 0.09)} initial="initial" animate="animate">
-            <motion.div variants={riseItem} className="eyebrow hero__eyebrow">
-              {conference.edition} · {formatDate(conference.start_date).md}–
-              {formatDate(conference.end_date).md}
-            </motion.div>
-            <motion.h1 variants={riseItem} className="hero__title">
-              {conference.name.zh}
-            </motion.h1>
-            <motion.div variants={riseItem} className="hero__subtitle">
-              {conference.name.en}
-            </motion.div>
-            <motion.p variants={riseItem} className="hero__meta">
+      {/* compact masthead — not a hero */}
+      <div className="dashhead">
+        <div className="container dashhead__inner">
+          <div className="dashhead__id">
+            <div className="eyebrow">
+              {conference.edition} · {startMd}–{endMd}
+            </div>
+            <h1 className="dashhead__title">{conference.name.zh}</h1>
+            <div className="dashhead__venue">
               {conference.venues?.map((v) => v.name.zh).join(" · ")}
-            </motion.p>
-            <motion.div variants={riseItem} className="hero__cta">
-              <Link to="/schedule" className="btn btn--primary">
-                查看完整日程
-              </Link>
-              <Link to="/committee" className="btn btn--ghost">
-                大会委员会
-              </Link>
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            className="hero__stats"
-            variants={stagger(0.35, 0.1)}
-            initial="initial"
-            animate="animate"
-          >
+            </div>
+          </div>
+          <div className="dashhead__stats">
             {[
-              { n: stats.days, label: "会期天数" },
               { n: stats.forums, label: "技术论坛" },
               { n: stats.keynotes, label: "主旨报告" },
-              { n: stats.committeeMembers, label: "委员会成员" },
+              { n: uniqueSpeakerCount, label: "讲者" },
+              { n: stats.days, label: "会期" },
             ].map((s) => (
-              <motion.div key={s.label} variants={scaleItem} className="stat">
-                <div className="stat__num">
-                  <CountUp to={s.n} />
-                </div>
-                <div className="stat__label">{s.label}</div>
-              </motion.div>
+              <div key={s.label} className="dstat">
+                <div className="dstat__n">{s.n}</div>
+                <div className="dstat__l">{s.label}</div>
+              </div>
             ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ---------- 四天概览 ---------- */}
-      <section className="container section">
-        <Reveal>
-          <div className="section__head">
-            <div className="eyebrow">日程概览</div>
-            <h2 className="section__title">四天，一览全局</h2>
           </div>
-        </Reveal>
-        <div className="daygrid">
-          {days.map((d, i) => {
-            const { md, weekday } = formatDate(d.date);
-            const ov = d.overview ?? {};
-            return (
-              <Reveal key={d.date} delay={i * 0.06}>
-                <Link to={`/schedule#${d.date}`} className="daycard">
-                  <div className="daycard__top">
-                    <span className="daycard__date">{md}</span>
-                    <span className="daycard__wd">{weekday}</span>
-                  </div>
-                  <div className="daycard__venue">{venueName(d.venue_id)}</div>
-                  <div className="daycard__periods">
-                    {(["morning", "afternoon", "evening"] as const).map((p) =>
-                      (ov[p] ?? []).length ? (
-                        <div key={p} className="daycard__period">
-                          <span className="daycard__plabel">{periodLabel[p]}</span>
-                          <span className="daycard__pitems">
-                            {(ov[p] ?? []).join("、")}
-                          </span>
-                        </div>
-                      ) : null,
-                    )}
-                  </div>
-                  <span className="daycard__arrow">→</span>
-                </Link>
-              </Reveal>
-            );
-          })}
         </div>
-      </section>
+      </div>
 
-      {/* ---------- 主旨报告 ---------- */}
-      <section className="container section">
-        <Reveal>
-          <div className="section__head">
-            <div className="eyebrow">Keynotes</div>
-            <h2 className="section__title">大会主旨报告</h2>
-            <p className="section__desc">
-              {keynotes.length} 场特邀主旨报告，汇聚院士与产业领军者。
-            </p>
-          </div>
-        </Reveal>
-        <div className="keynotes">
-          {keynotes.map((t, i) => {
-            const sp = t.speakers?.[0];
-            return (
-              <Reveal key={i} delay={(i % 3) * 0.05}>
-                <div className="keynote">
-                  <div className="keynote__speaker">
-                    <span className="keynote__name">{sp?.name}</span>
-                    {sp?.honorifics?.map((h) => (
-                      <span key={h} className="tag tag--code">{h}</span>
-                    ))}
-                  </div>
-                  <div className="keynote__aff">{sp?.affiliation_raw}</div>
-                  <div className="keynote__topic">
-                    {t.title_status === "tbd" ? (
-                      <span className="tag tag--tbd">题目待定</span>
-                    ) : (
-                      t.title?.zh
-                    )}
-                  </div>
-                </div>
-              </Reveal>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* ---------- 论坛专场 ---------- */}
-      <section className="container section">
-        <Reveal>
-          <div className="section__head">
-            <div className="eyebrow">Forums</div>
-            <h2 className="section__title">{forums.length} 场平行技术论坛</h2>
-            <p className="section__desc">
-              含 {sponsoredForums.length} 场企业与实验室专场。点击进入日程逐场浏览。
-            </p>
-          </div>
-        </Reveal>
-        <div className="chipwrap">
-          {forums.map((f, i) => (
-            <motion.div
-              key={f.code}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0.6 }}
-              transition={{ duration: 0.3, delay: Math.min(i * 0.012, 0.4) }}
+      {/* sticky control bar */}
+      <div className="toolbar">
+        <div className="container toolbar__inner">
+          <div className="daypills">
+            <button
+              className={`daypill ${dayFilter === "all" ? "is-active" : ""}`}
+              onClick={() => setDayFilter("all")}
             >
-              <Link to={`/forum/${f.code}`} className="fchip">
-                <span className="fchip__code">{f.code}</span>
-                <span className="fchip__title">{f.title.zh}</span>
-                {f.sponsor && <span className="tag tag--sponsor">{f.sponsor}</span>}
-              </Link>
-            </motion.div>
-          ))}
+              全部
+            </button>
+            {scheduleDays.map((d) => (
+              <button
+                key={d.date}
+                className={`daypill ${dayFilter === d.date ? "is-active" : ""}`}
+                onClick={() => setDayFilter(d.date)}
+              >
+                <span className="daypill__md">{d.md}</span>
+                <span className="daypill__wd">{d.weekday}</span>
+              </button>
+            ))}
+          </div>
+
+          <div className="toolbar__right">
+            <div className="search">
+              <span className="search__icon" aria-hidden>⌕</span>
+              <input
+                className="search__input"
+                type="search"
+                placeholder="搜索论坛 / 主题 / 讲者 / 单位…"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+              />
+              {query && (
+                <button className="search__clear" onClick={() => setQuery("")} aria-label="清除">
+                  ✕
+                </button>
+              )}
+            </div>
+            <button
+              className={`filterchip ${onlyFollowed ? "is-on" : ""}`}
+              onClick={() => setOnlyFollowed((v) => !v)}
+            >
+              ★ 我的关注{followedCount ? ` ${followedCount}` : ""}
+            </button>
+            <button
+              className={`filterchip ${onlySponsored ? "is-on" : ""}`}
+              onClick={() => setOnlySponsored((v) => !v)}
+            >
+              赞助专场
+            </button>
+          </div>
         </div>
-      </section>
+      </div>
+
+      <div className="container dash">
+        <div className="dash__resultbar">
+          <span>
+            共 <strong>{totalShown}</strong> 场论坛
+            {q && ` · 匹配“${query}”`}
+            {onlyFollowed && " · 仅关注"}
+            {onlySponsored && " · 仅赞助专场"}
+          </span>
+          {followedCount > 0 && (
+            <button className="linkbtn" onClick={clearAll}>
+              清空我的关注
+            </button>
+          )}
+        </div>
+
+        {visibleDays.length === 0 ? (
+          <div className="dash__empty">
+            <div className="dash__emptyicon">◷</div>
+            <p>
+              没有符合条件的论坛。
+              {onlyFollowed && "点击论坛或讲者旁的 ☆ 可加入“我的关注”。"}
+            </p>
+          </div>
+        ) : (
+          visibleDays.map(({ day, slots }) => (
+            <DaySection key={day.date} day={day} slots={slots} />
+          ))
+        )}
+
+        <div className="dash__hint">
+          需要按时间线逐场浏览？前往
+          <Link to="/schedule" className="linkbtn linkbtn--inline">完整日程</Link>
+          。全部时段为并行论坛（{periodLabel.afternoon}/{periodLabel.morning}）。
+        </div>
+      </div>
     </motion.div>
   );
 }
