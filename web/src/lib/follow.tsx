@@ -14,6 +14,13 @@ import {
 
 const FORUMS_KEY = "ccfchip.followed.forums";
 const SPEAKERS_KEY = "ccfchip.followed.speakers";
+const TALKS_KEY = "ccfchip.followed.talks";
+
+// A talk has no stable id in the dataset, so we key it by its forum code plus
+// its index within that forum: `${code}#${index}`.
+export function talkId(code: string, index: number): string {
+  return `${code}#${index}`;
+}
 
 function load(key: string): Set<string> {
   if (typeof localStorage === "undefined") return new Set();
@@ -39,10 +46,13 @@ function save(key: string, set: Set<string>) {
 interface FollowState {
   forums: Set<string>;
   speakers: Set<string>;
+  talks: Set<string>;
   toggleForum: (code: string) => void;
   toggleSpeaker: (name: string) => void;
+  toggleTalk: (id: string) => void;
   isForum: (code: string) => boolean;
   isSpeaker: (name: string) => boolean;
+  isTalk: (id: string) => boolean;
   clearAll: () => void;
 }
 
@@ -51,9 +61,11 @@ const FollowCtx = createContext<FollowState | null>(null);
 export function FollowProvider({ children }: { children: React.ReactNode }) {
   const [forums, setForums] = useState<Set<string>>(() => load(FORUMS_KEY));
   const [speakers, setSpeakers] = useState<Set<string>>(() => load(SPEAKERS_KEY));
+  const [talks, setTalks] = useState<Set<string>>(() => load(TALKS_KEY));
 
   useEffect(() => save(FORUMS_KEY, forums), [forums]);
   useEffect(() => save(SPEAKERS_KEY, speakers), [speakers]);
+  useEffect(() => save(TALKS_KEY, talks), [talks]);
 
   const toggleForum = useCallback((code: string) => {
     setForums((prev) => {
@@ -71,22 +83,34 @@ export function FollowProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
+  const toggleTalk = useCallback((id: string) => {
+    setTalks((prev) => {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
+  }, []);
+
   const clearAll = useCallback(() => {
     setForums(new Set());
     setSpeakers(new Set());
+    setTalks(new Set());
   }, []);
 
   const value = useMemo<FollowState>(
     () => ({
       forums,
       speakers,
+      talks,
       toggleForum,
       toggleSpeaker,
+      toggleTalk,
       isForum: (c) => forums.has(c),
       isSpeaker: (n) => speakers.has(n),
+      isTalk: (id) => talks.has(id),
       clearAll,
     }),
-    [forums, speakers, toggleForum, toggleSpeaker, clearAll],
+    [forums, speakers, talks, toggleForum, toggleSpeaker, toggleTalk, clearAll],
   );
 
   return <FollowCtx.Provider value={value}>{children}</FollowCtx.Provider>;
