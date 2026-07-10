@@ -41,15 +41,10 @@ export default function Committee() {
             >
               {c.members.map((m, i) => (
                 <motion.div key={i} variants={riseItem} className="member">
-                  <span className="avatar avatar--sm" aria-hidden>
-                    {m.name[0]}
-                  </span>
-                  <div className="member__body">
-                    <div className="member__name">{m.name}</div>
-                    {m.affiliation_raw && (
-                      <div className="member__aff">{m.affiliation_raw}</div>
-                    )}
-                  </div>
+                  <div className="member__name">{m.name}</div>
+                  {m.affiliation_raw && (
+                    <div className="member__aff">{m.affiliation_raw}</div>
+                  )}
                 </motion.div>
               ))}
             </motion.div>
