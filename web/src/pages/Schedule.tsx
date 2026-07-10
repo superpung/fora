@@ -107,10 +107,8 @@ function ForumsBlock({ block }: { block: Block }) {
           return (
             <motion.div key={e.forum_code} variants={riseItem}>
               <Link to={`/forum/${e.forum_code}`} className="forumcard">
-                <div className="forumcard__head">
-                  <span className="tag tag--code">{e.forum_code}</span>
-                  <span className="tag tag--room">{e.room}</span>
-                </div>
+                <span className="forumcard__room mono">{e.room ?? f?.room}</span>
+                <span className="forumcard__code mono">{e.forum_code}</span>
                 <div className="forumcard__title">{f?.title.zh ?? e.forum_code}</div>
                 <div className="forumcard__foot">
                   {f?.sponsor && <span className="tag tag--sponsor">{f.sponsor}</span>}
