@@ -1,6 +1,8 @@
 import { conference } from "../lib/data";
+import Icon from "./Icon";
 
 export default function Footer() {
+  const site = conference.source_url;
   return (
     <footer className="footer">
       <div className="container footer__inner">
@@ -10,16 +12,12 @@ export default function Footer() {
             {conference.name.en} · {conference.start_date} – {conference.end_date}
           </div>
         </div>
-        <div className="footer__meta">
-          {conference.contact?.email && (
-            <a href={`mailto:${conference.contact.email}`}>
-              {conference.contact.email}
-            </a>
-          )}
-          <span className="footer__note">
-            数据解析自官网 · 演示原型 · 非官方发布
-          </span>
-        </div>
+        {site && (
+          <a className="footer__site" href={site} target="_blank" rel="noreferrer">
+            官方网站
+            <Icon name="external" size={14} />
+          </a>
+        )}
       </div>
     </footer>
   );

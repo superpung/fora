@@ -11,8 +11,9 @@ import {
   type ScheduleDay,
   type ForumSlot,
 } from "../lib/data";
-import { useFollow } from "../lib/follow";
+import { useFollow, talkId } from "../lib/follow";
 import { pageVariants } from "../lib/motion";
+import Icon from "../components/Icon";
 import type { Talk } from "../types";
 
 /* ---------------- small pieces ---------------- */
@@ -40,7 +41,7 @@ function StarButton({
         onClick();
       }}
     >
-      {active ? "★" : "☆"}
+      <Icon name="star" filled={active} size={16} />
     </button>
   );
 }
@@ -155,7 +156,9 @@ function DaySection({ day, slots }: { day: ScheduleDay; slots: ForumSlot[] }) {
             aria-expanded={showKeynotes}
           >
             主旨报告 · 上午 · {day.keynotes.length} 场
-            <span className={`caret ${showKeynotes ? "caret--up" : ""}`}>⌄</span>
+            <span className={`caret ${showKeynotes ? "caret--up" : ""}`}>
+              <Icon name="chevron-down" size={16} />
+            </span>
           </button>
           {showKeynotes && (
             <div className="krail__list">
@@ -179,14 +182,21 @@ function DaySection({ day, slots }: { day: ScheduleDay; slots: ForumSlot[] }) {
 /* ---------------- dashboard ---------------- */
 
 export default function Home() {
-  const { forums: followedForums, speakers: followedSpeakers, isSpeaker, clearAll } =
-    useFollow();
+  const {
+    forums: followedForums,
+    speakers: followedSpeakers,
+    talks: followedTalks,
+    isSpeaker,
+    isTalk,
+    clearAll,
+  } = useFollow();
   const [dayFilter, setDayFilter] = useState<string>("all");
   const [query, setQuery] = useState("");
   const [onlyFollowed, setOnlyFollowed] = useState(false);
   const [onlySponsored, setOnlySponsored] = useState(false);
 
-  const followedCount = followedForums.size + followedSpeakers.size;
+  const followedCount =
+    followedForums.size + followedSpeakers.size + followedTalks.size;
   const q = query.trim().toLowerCase();
 
   const visibleDays = useMemo(() => {
@@ -198,7 +208,9 @@ export default function Home() {
           if (onlySponsored && !s.forum?.sponsor) return false;
           if (onlyFollowed) {
             const tracked =
-              followedForums.has(s.code) || s.people.some((n) => isSpeaker(n));
+              followedForums.has(s.code) ||
+              s.people.some((n) => isSpeaker(n)) ||
+              (s.forum?.talks ?? []).some((_, i) => isTalk(talkId(s.code, i)));
             if (!tracked) return false;
           }
           return true;
@@ -206,7 +218,7 @@ export default function Home() {
         return { day: d, slots };
       })
       .filter((x) => x.slots.length > 0);
-  }, [dayFilter, q, onlyFollowed, onlySponsored, followedForums, followedSpeakers, isSpeaker]);
+  }, [dayFilter, q, onlyFollowed, onlySponsored, followedForums, followedSpeakers, followedTalks, isSpeaker, isTalk]);
 
   const totalShown = visibleDays.reduce((n, x) => n + x.slots.length, 0);
   const { md: startMd } = formatDate(conference.start_date);
@@ -219,7 +231,7 @@ export default function Home() {
         <div className="container dashhead__inner">
           <div className="dashhead__id">
             <div className="eyebrow">
-              {conference.edition} · {startMd}–{endMd}
+              {startMd}–{endMd}
             </div>
             <h1 className="dashhead__title">{conference.name.zh}</h1>
             <div className="dashhead__venue">
@@ -266,7 +278,9 @@ export default function Home() {
 
           <div className="toolbar__right">
             <div className="search">
-              <span className="search__icon" aria-hidden>⌕</span>
+              <span className="search__icon" aria-hidden>
+                <Icon name="search" size={15} />
+              </span>
               <input
                 className="search__input"
                 type="search"
@@ -275,8 +289,8 @@ export default function Home() {
                 onChange={(e) => setQuery(e.target.value)}
               />
               {query && (
-                <button className="search__clear" onClick={() => setQuery("")} aria-label="清除">
-                  ✕
+                <button className="search__clear" onClick={() => setQuery("")} aria-label="清除搜索">
+                  <Icon name="x" size={14} />
                 </button>
               )}
             </div>
@@ -284,7 +298,8 @@ export default function Home() {
               className={`filterchip ${onlyFollowed ? "is-on" : ""}`}
               onClick={() => setOnlyFollowed((v) => !v)}
             >
-              ★ 我的关注{followedCount ? ` ${followedCount}` : ""}
+              <Icon name="star" filled={onlyFollowed} size={14} />
+              我的关注{followedCount ? ` ${followedCount}` : ""}
             </button>
             <button
               className={`filterchip ${onlySponsored ? "is-on" : ""}`}
@@ -315,7 +330,7 @@ export default function Home() {
           <div className="dash__empty">
             <p>
               没有符合条件的论坛。
-              {onlyFollowed && "点击论坛或讲者旁的 ☆ 可加入“我的关注”。"}
+              {onlyFollowed && "点击论坛、报告或讲者旁的星标即可加入“我的关注”。"}
             </p>
           </div>
         ) : (

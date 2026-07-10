@@ -2,6 +2,7 @@ import { NavLink, Link } from "react-router-dom";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useState } from "react";
 import ThemeToggle from "./ThemeToggle";
+import Icon from "./Icon";
 import { conference } from "../lib/data";
 
 const LINKS = [
@@ -25,7 +26,9 @@ export default function Nav() {
     >
       <div className="nav__inner container">
         <Link to="/" className="nav__brand">
-          <span className="nav__logo" aria-hidden>◇</span>
+          <span className="nav__logo" aria-hidden>
+            <Icon name="chip" size={18} />
+          </span>
           <span className="nav__brandtext">
             {conference.name.en ?? conference.name.zh}
           </span>
