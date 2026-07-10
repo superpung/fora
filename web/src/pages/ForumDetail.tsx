@@ -2,55 +2,63 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useParams, Link } from "react-router-dom";
 import { getForum, formatDate, periodLabel } from "../lib/data";
-import { useFollow } from "../lib/follow";
+import { useFollow, talkId } from "../lib/follow";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
+import Icon from "../components/Icon";
+import Avatar from "../components/Avatar";
 import type { Person } from "../types";
 
-function PersonLine({ p, role }: { p: Person; role?: string }) {
+function PersonLine({ p, role, avatarSize = 40 }: { p: Person; role?: string; avatarSize?: number }) {
   const [open, setOpen] = useState(false);
   const { isSpeaker, toggleSpeaker } = useFollow();
   const followed = p.name ? isSpeaker(p.name) : false;
   return (
     <div className="person">
-      <div className="person__head">
-        <span className="person__name">{p.name}</span>
-        {p.name && (
-          <button
-            className={`star star--sm ${followed ? "is-on" : ""}`}
-            aria-pressed={followed}
-            title={followed ? `取消关注 ${p.name}` : `关注 ${p.name}`}
-            onClick={() => toggleSpeaker(p.name)}
-          >
-            {followed ? "★" : "☆"}
-          </button>
+      <Avatar person={p} size={avatarSize} />
+      <div className="person__main">
+        <div className="person__head">
+          <span className="person__name">{p.name}</span>
+          {p.name && (
+            <button
+              className={`star star--sm ${followed ? "is-on" : ""}`}
+              aria-pressed={followed}
+              aria-label={followed ? `取消关注 ${p.name}` : `关注 ${p.name}`}
+              title={followed ? `取消关注 ${p.name}` : `关注 ${p.name}`}
+              onClick={() => toggleSpeaker(p.name)}
+            >
+              <Icon name="star" filled={followed} size={15} />
+            </button>
+          )}
+          {role && <span className="person__role">{role}</span>}
+          {p.honorifics?.map((h) => (
+            <span key={h} className="tag">{h}</span>
+          ))}
+        </div>
+        <div className="person__aff">{p.affiliation_raw}</div>
+        {p.bio && (
+          <>
+            <button className="person__toggle" onClick={() => setOpen((v) => !v)}>
+              {open ? "收起简介" : "个人简介"}
+              <span className={`caret ${open ? "caret--up" : ""}`}>
+                <Icon name="chevron-down" size={14} />
+              </span>
+            </button>
+            <AnimatePresence initial={false}>
+              {open && (
+                <motion.p
+                  className="person__bio"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {p.bio}
+                </motion.p>
+              )}
+            </AnimatePresence>
+          </>
         )}
-        {role && <span className="person__role">{role}</span>}
-        {p.honorifics?.map((h) => (
-          <span key={h} className="tag">{h}</span>
-        ))}
       </div>
-      <div className="person__aff">{p.affiliation_raw}</div>
-      {p.bio && (
-        <>
-          <button className="person__toggle" onClick={() => setOpen((v) => !v)}>
-            {open ? "收起简介" : "个人简介"}
-            <span className={`caret ${open ? "caret--up" : ""}`}>⌄</span>
-          </button>
-          <AnimatePresence initial={false}>
-            {open && (
-              <motion.p
-                className="person__bio"
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              >
-                {p.bio}
-              </motion.p>
-            )}
-          </AnimatePresence>
-        </>
-      )}
     </div>
   );
 }
@@ -58,7 +66,7 @@ function PersonLine({ p, role }: { p: Person; role?: string }) {
 export default function ForumDetail() {
   const { code } = useParams();
   const forum = code ? getForum(code) : undefined;
-  const { isForum, toggleForum } = useFollow();
+  const { isForum, toggleForum, isTalk, toggleTalk } = useFollow();
   const forumFollowed = code ? isForum(code) : false;
 
   if (!forum) {
@@ -80,7 +88,9 @@ export default function ForumDetail() {
       animate="animate"
       exit="exit"
     >
-      <Link to="/" className="backlink">← 返回日程面板</Link>
+      <Link to="/" className="backlink">
+        <Icon name="arrow-left" size={14} /> 返回日程面板
+      </Link>
 
       <header className="fd__header">
         <div className="fd__meta">
@@ -100,7 +110,8 @@ export default function ForumDetail() {
             className={`followbtn ${forumFollowed ? "is-on" : ""}`}
             onClick={() => code && toggleForum(code)}
           >
-            {forumFollowed ? "★ 已收藏" : "☆ 收藏论坛"}
+            <Icon name="star" filled={forumFollowed} size={15} />
+            {forumFollowed ? "已收藏" : "收藏论坛"}
           </button>
         </div>
       </header>
@@ -133,33 +144,48 @@ export default function ForumDetail() {
             initial="initial"
             animate="animate"
           >
-            {forum.talks.map((t, i) => (
-              <motion.article key={i} variants={riseItem} className="talk">
-                <div className="talk__no">{String(i + 1).padStart(2, "0")}</div>
-                <div className="talk__body">
-                  <h3 className="talk__title">
-                    {t.title_status === "tbd" ? (
-                      <span className="muted-i">报告题目待确认</span>
-                    ) : (
-                      t.title?.zh
-                    )}
-                  </h3>
-                  {t.flags?.length ? (
-                    <div className="talk__flag" title={t.flags.join("\n")}>
-                      ⚠ 源数据存在标注，已如实保留
+            {forum.talks.map((t, i) => {
+              const id = talkId(forum.code, i);
+              const followed = isTalk(id);
+              return (
+                <motion.article key={i} variants={riseItem} className="talk">
+                  <div className="talk__no">{String(i + 1).padStart(2, "0")}</div>
+                  <div className="talk__body">
+                    <div className="talk__titlerow">
+                      <h3 className="talk__title">
+                        {t.title_status === "tbd" ? (
+                          <span className="muted-i">报告题目待确认</span>
+                        ) : (
+                          t.title?.zh
+                        )}
+                      </h3>
+                      <button
+                        className={`star star--sm talk__star ${followed ? "is-on" : ""}`}
+                        aria-pressed={followed}
+                        aria-label={followed ? "取消收藏该报告" : "收藏该报告"}
+                        title={followed ? "取消收藏该报告" : "收藏该报告"}
+                        onClick={() => toggleTalk(id)}
+                      >
+                        <Icon name="star" filled={followed} size={16} />
+                      </button>
                     </div>
-                  ) : null}
-                  {t.speakers?.map((sp, j) => (
-                    <PersonLine key={j} p={sp} />
-                  ))}
-                  {t.abstract ? (
-                    <p className="talk__abstract">{t.abstract}</p>
-                  ) : t.abstract_status === "tbd" ? (
-                    <p className="talk__abstract muted-i">演讲摘要待确认</p>
-                  ) : null}
-                </div>
-              </motion.article>
-            ))}
+                    {t.flags?.length ? (
+                      <div className="talk__flag" title={t.flags.join("\n")}>
+                        <Icon name="alert" size={13} /> 源数据存在标注，已如实保留
+                      </div>
+                    ) : null}
+                    {t.speakers?.map((sp, j) => (
+                      <PersonLine key={j} p={sp} avatarSize={34} />
+                    ))}
+                    {t.abstract ? (
+                      <p className="talk__abstract">{t.abstract}</p>
+                    ) : t.abstract_status === "tbd" ? (
+                      <p className="talk__abstract muted-i">演讲摘要待确认</p>
+                    ) : null}
+                  </div>
+                </motion.article>
+              );
+            })}
           </motion.div>
         </section>
       ) : (

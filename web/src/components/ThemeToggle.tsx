@@ -1,10 +1,11 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "../lib/theme";
+import Icon, { type IconName } from "./Icon";
 
-const ICON: Record<string, string> = {
-  system: "◐",
-  light: "☀",
-  dark: "☾",
+const ICON: Record<string, IconName> = {
+  system: "monitor",
+  light: "sun",
+  dark: "moon",
 };
 const LABEL: Record<string, string> = {
   system: "跟随系统",
@@ -30,7 +31,7 @@ export default function ThemeToggle() {
           transition={{ duration: 0.25 }}
           className="theme-toggle__icon"
         >
-          {ICON[mode]}
+          <Icon name={ICON[mode]} size={16} />
         </motion.span>
       </AnimatePresence>
     </button>

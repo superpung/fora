@@ -3,7 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import { conference, days, formatDate, venueName, blockKindLabel } from "../lib/data";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
-import type { Block } from "../types";
+import Icon, { type IconName } from "../components/Icon";
+import type { Block, Talk, Break } from "../types";
 
 const daysForumLookup = Object.fromEntries(
   (conference.forums ?? []).map((f) => [f.code, f]),
@@ -19,46 +20,67 @@ function TimeRange({ start, end }: { start?: string | null; end?: string | null 
   );
 }
 
+// Merge talks and breaks into a single chronological list so a mid-morning
+// tea break sits between the talks it actually falls between — not at the end.
+type Row =
+  | { kind: "talk"; start?: string | null; end?: string | null; talk: Talk }
+  | { kind: "break"; start?: string | null; end?: string | null; brk: Break };
+
+function chronoRows(block: Block): Row[] {
+  const rows: Row[] = [
+    ...(block.talks ?? []).map(
+      (t): Row => ({ kind: "talk", start: t.start, end: t.end, talk: t }),
+    ),
+    ...(block.breaks ?? []).map(
+      (b): Row => ({ kind: "break", start: b.start, end: b.end, brk: b }),
+    ),
+  ];
+  return rows.sort((a, b) => (a.start ?? "").localeCompare(b.start ?? ""));
+}
+
 function KeynotesBlock({ block }: { block: Block }) {
   return (
     <div className="talklist">
-      {(block.talks ?? []).map((t, i) => (
-        <motion.div key={i} variants={riseItem} className="talkrow">
-          <div className="talkrow__time">
-            <TimeRange start={t.start} end={t.end} />
+      {chronoRows(block).map((row, i) =>
+        row.kind === "break" ? (
+          <div key={`br${i}`} className="breakrow">
+            <TimeRange start={row.start} end={row.end} />
+            <span className="breakrow__label">
+              <Icon name="coffee" size={14} /> {row.brk.name}
+            </span>
           </div>
-          <div className="talkrow__body">
-            {t.type === "opening" ? (
-              <div className="talkrow__title">{t.title?.zh}</div>
-            ) : (
-              <>
-                <div className="talkrow__title">
-                  {t.title_status === "tbd" ? (
-                    <span className="tag tag--tbd">报告题目待定</span>
-                  ) : (
-                    t.title?.zh
-                  )}
-                </div>
-                <div className="talkrow__speaker">
-                  <strong>{t.speakers?.[0]?.name}</strong>
-                  {t.speakers?.[0]?.honorifics?.map((h) => (
-                    <span key={h} className="tag tag--code">{h}</span>
-                  ))}
-                  <span className="talkrow__aff">
-                    {t.speakers?.[0]?.affiliation_raw}
-                  </span>
-                </div>
-              </>
-            )}
-          </div>
-        </motion.div>
-      ))}
-      {(block.breaks ?? []).map((b, i) => (
-        <div key={`br${i}`} className="breakrow">
-          <TimeRange start={b.start} end={b.end} />
-          <span className="breakrow__label">{b.name}</span>
-        </div>
-      ))}
+        ) : (
+          <motion.div key={`t${i}`} variants={riseItem} className="talkrow">
+            <div className="talkrow__time">
+              <TimeRange start={row.start} end={row.end} />
+            </div>
+            <div className="talkrow__body">
+              {row.talk.type === "opening" ? (
+                <div className="talkrow__title">{row.talk.title?.zh}</div>
+              ) : (
+                <>
+                  <div className="talkrow__title">
+                    {row.talk.title_status === "tbd" ? (
+                      <span className="tag tag--tbd">报告题目待定</span>
+                    ) : (
+                      row.talk.title?.zh
+                    )}
+                  </div>
+                  <div className="talkrow__speaker">
+                    <strong>{row.talk.speakers?.[0]?.name}</strong>
+                    {row.talk.speakers?.[0]?.honorifics?.map((h) => (
+                      <span key={h} className="tag tag--code">{h}</span>
+                    ))}
+                    <span className="talkrow__aff">
+                      {row.talk.speakers?.[0]?.affiliation_raw}
+                    </span>
+                  </div>
+                </>
+              )}
+            </div>
+          </motion.div>
+        ),
+      )}
     </div>
   );
 }
@@ -66,11 +88,14 @@ function KeynotesBlock({ block }: { block: Block }) {
 function ForumsBlock({ block }: { block: Block }) {
   return (
     <>
-      {(block.breaks ?? []).length > 0 && (
-        <div className="forums__breakhint">
-          {block.breaks!.map((b) => `${b.name} ${b.start}–${b.end}`).join(" · ")}
+      {(block.breaks ?? []).map((b, i) => (
+        <div key={`fbr${i}`} className="breakrow breakrow--forums">
+          <TimeRange start={b.start} end={b.end} />
+          <span className="breakrow__label">
+            <Icon name="coffee" size={14} /> {b.name}（各分论坛同时休息）
+          </span>
         </div>
-      )}
+      ))}
       <motion.div
         className="forumgrid"
         variants={stagger(0, 0.035)}
@@ -91,10 +116,14 @@ function ForumsBlock({ block }: { block: Block }) {
                   {f?.sponsor && <span className="tag tag--sponsor">{f.sponsor}</span>}
                   {f?.detail_extracted ? (
                     <span className="forumcard__count">
-                      {(f.talks ?? []).length} 报告 ›
+                      {(f.talks ?? []).length} 报告
+                      <Icon name="chevron-right" size={13} />
                     </span>
                   ) : (
-                    <span className="forumcard__pending">详情待补 ›</span>
+                    <span className="forumcard__pending">
+                      详情待补
+                      <Icon name="chevron-right" size={13} />
+                    </span>
                   )}
                 </div>
               </Link>
@@ -120,13 +149,14 @@ function MeetingsBlock({ block }: { block: Block }) {
   );
 }
 
-const KIND_ICON: Record<string, string> = {
-  registration: "✎",
-  keynotes: "◆",
-  forums: "❖",
-  banquet: "♦",
-  committee_meetings: "⬡",
-  other: "•",
+const KIND_ICON: Record<string, IconName> = {
+  registration: "registration",
+  keynotes: "keynotes",
+  forums: "forums",
+  break: "coffee",
+  banquet: "banquet",
+  committee_meetings: "committee",
+  other: "dot",
 };
 
 export default function Schedule() {
@@ -201,7 +231,7 @@ export default function Schedule() {
               >
                 <div className="block__head">
                   <span className="block__icon" aria-hidden>
-                    {KIND_ICON[block.kind]}
+                    <Icon name={KIND_ICON[block.kind] ?? "dot"} size={16} />
                   </span>
                   <h3 className="block__title">
                     {block.title?.zh ?? blockKindLabel[block.kind]}
