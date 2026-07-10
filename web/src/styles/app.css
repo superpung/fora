@@ -307,8 +307,14 @@ svg { display: block; }
 .person__bio { overflow: hidden; color: var(--fg-secondary); font-size: 13.5px; line-height: 1.75; margin: 8px 0 0; max-width: 72ch; }
 
 .tallist { border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
-.talk { display: grid; grid-template-columns: 40px 1fr; gap: 16px; padding: 20px 16px; border-top: 1px solid var(--border); }
+.talk { display: grid; grid-template-columns: 40px 1fr; gap: 16px; padding: 20px 16px; border-top: 1px solid var(--border); scroll-margin-top: calc(var(--nav-h) + 16px); }
 .talk:first-child { border-top: none; }
+.talk--highlight { animation: talk-flash 1.8s ease-out; }
+@keyframes talk-flash {
+  0%, 30% { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+  100% { background: transparent; }
+}
+@media (prefers-reduced-motion: reduce) { .talk--highlight { animation: none; } }
 .talk__no { font-family: var(--font-mono); font-size: 13px; color: var(--fg-muted); padding-top: 3px; font-variant-numeric: tabular-nums; }
 .talk__body { min-width: 0; }
 .talk__titlerow { display: flex; align-items: flex-start; gap: 10px; }
@@ -348,14 +354,16 @@ svg { display: block; }
 
 .spcard__talks { overflow: hidden; }
 .sptalk {
-  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4px 12px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
   padding: 11px 16px 11px 72px; border-top: 1px solid var(--border);
 }
 .sptalk--link { transition: background 0.12s; }
 .sptalk--link:hover { background: var(--bg-hover); }
-.sptalk--link svg { color: var(--fg-muted); justify-self: end; }
+.sptalk--link svg { color: var(--fg-muted); flex: 0 0 auto; }
+.sptalk__body { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
 .sptalk__title { font-size: 13.5px; font-weight: 500; line-height: 1.45; }
-.sptalk__meta { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; color: var(--fg-muted); font-size: 12px; }
+.sptalk__no { font-family: var(--font-mono); color: var(--fg-muted); font-size: 12px; margin-right: 8px; }
+.sptalk__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; color: var(--fg-muted); font-size: 12px; }
 .sptalk__forum { color: var(--fg-secondary); }
 .sptalk__room { color: var(--fg-secondary); }
 .sptalk__time { color: var(--accent); }
