@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/Home";
 import Schedule from "./pages/Schedule";
+import Speakers from "./pages/Speakers";
 import ForumDetail from "./pages/ForumDetail";
 import Committee from "./pages/Committee";
 import Organizations from "./pages/Organizations";
@@ -20,6 +21,7 @@ export default function App() {
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
             <Route path="/schedule" element={<Schedule />} />
+            <Route path="/speakers" element={<Speakers />} />
             <Route path="/forum/:code" element={<ForumDetail />} />
             <Route path="/committee" element={<Committee />} />
             <Route path="/organizations" element={<Organizations />} />
