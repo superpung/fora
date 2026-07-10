@@ -8,6 +8,7 @@ import { conference } from "../lib/data";
 const LINKS = [
   { to: "/", label: "日程面板", end: true },
   { to: "/schedule", label: "时间线" },
+  { to: "/speakers", label: "讲者" },
   { to: "/committee", label: "委员会" },
   { to: "/organizations", label: "组织与赞助" },
 ];
