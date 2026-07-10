@@ -110,18 +110,18 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 600; line-height: 
 ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 6px; border: 3px solid var(--bg); }
 ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 
-/* ============ shared bits ============ */
+/* ============ shared bits (flat/line system; see app.css) ============ */
 .tag {
   display: inline-flex; align-items: center; gap: 5px;
-  font-size: 12px; font-weight: 600; line-height: 1;
-  padding: 5px 9px; border-radius: 999px;
-  background: var(--bg-sunken); color: var(--text-secondary);
-  border: 1px solid var(--border);
+  font-size: 11.5px; font-weight: 600; line-height: 1;
+  padding: 3px 7px; border-radius: 0;
+  background: transparent; color: var(--text-secondary);
+  border: 1px solid var(--border-strong);
   white-space: nowrap;
 }
-.tag--code { background: var(--accent-soft); color: var(--accent-text); border-color: transparent; letter-spacing: 0.02em; }
-.tag--tbd { background: var(--tag-tbd-bg); color: var(--tag-tbd-text); border-color: transparent; }
-.tag--sponsor { background: var(--tag-sponsor-bg); color: var(--tag-sponsor-text); border-color: transparent; }
+.tag--code { color: var(--accent-text); border-color: var(--accent); letter-spacing: 0.02em; }
+.tag--tbd { color: var(--tag-tbd-text); border-color: var(--tag-tbd-text); }
+.tag--sponsor { color: var(--tag-sponsor-text); border-color: var(--tag-sponsor-text); }
 .tag--room { font-variant-numeric: tabular-nums; }
 
 .eyebrow {
@@ -130,9 +130,4 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 600; line-height: 
   font-size: 12px; font-weight: 700; color: var(--accent-text);
 }
 
-.card {
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-}
+.card { background: transparent; border: 1px solid var(--border); }
