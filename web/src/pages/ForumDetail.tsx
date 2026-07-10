@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import { getForum, formatDate, periodLabel } from "../lib/data";
 import { useFollow, talkId } from "../lib/follow";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
@@ -65,9 +65,22 @@ function PersonLine({ p, role, avatarSize = 40 }: { p: Person; role?: string; av
 
 export default function ForumDetail() {
   const { code } = useParams();
+  const { hash } = useLocation();
   const forum = code ? getForum(code) : undefined;
   const { isForum, toggleForum, isTalk, toggleTalk } = useFollow();
   const forumFollowed = code ? isForum(code) : false;
+
+  // deep-link: scroll to a specific talk when arriving with #talk-<index>
+  useEffect(() => {
+    if (!hash.startsWith("#talk-")) return;
+    const el = document.getElementById(hash.slice(1));
+    if (!el) return;
+    const id = requestAnimationFrame(() => {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      el.classList.add("talk--highlight");
+    });
+    return () => cancelAnimationFrame(id);
+  }, [hash, forum]);
 
   if (!forum) {
     return (
@@ -148,7 +161,7 @@ export default function ForumDetail() {
               const id = talkId(forum.code, i);
               const followed = isTalk(id);
               return (
-                <motion.article key={i} variants={riseItem} className="talk">
+                <motion.article key={i} id={`talk-${i}`} variants={riseItem} className="talk">
                   <div className="talk__no">{String(i + 1).padStart(2, "0")}</div>
                   <div className="talk__body">
                     <div className="talk__titlerow">

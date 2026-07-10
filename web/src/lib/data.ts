@@ -142,6 +142,7 @@ export const uniqueSpeakerCount = new Set(
 // ---- Speaker directory (aggregate every talk a person gives) ----
 export interface SpeakerTalk {
   forumCode?: string; // undefined for main-conference keynotes
+  talkIndex?: number; // 0-based position within the forum's talk list
   forumTitle: string; // forum name, or the keynote block label
   talkTitle?: I18n;
   titleStatus?: Status;
@@ -183,10 +184,11 @@ function addSpeakerTalk(sp: Person, talk: SpeakerTalk) {
 
 // forum talks
 (conference.forums ?? []).forEach((f) => {
-  (f.talks ?? []).forEach((t) => {
+  (f.talks ?? []).forEach((t, ti) => {
     (t.speakers ?? []).forEach((sp) =>
       addSpeakerTalk(sp, {
         forumCode: f.code,
+        talkIndex: ti,
         forumTitle: f.title.zh,
         talkTitle: t.title,
         titleStatus: t.title_status,
