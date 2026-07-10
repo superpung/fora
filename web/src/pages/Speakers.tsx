@@ -9,9 +9,11 @@ import Avatar from "../components/Avatar";
 
 function TalkLine({ t }: { t: SpeakerTalk }) {
   const dateInfo = t.date ? formatDate(t.date) : null;
+  const no = t.talkIndex != null ? String(t.talkIndex + 1).padStart(2, "0") : null;
   const body = (
-    <>
+    <span className="sptalk__body">
       <span className="sptalk__title">
+        {no && <span className="sptalk__no mono">{no}</span>}
         {t.titleStatus === "tbd" ? (
           <span className="muted-i">题目待定</span>
         ) : (
@@ -38,14 +40,14 @@ function TalkLine({ t }: { t: SpeakerTalk }) {
           </span>
         )}
       </span>
-    </>
+    </span>
   );
 
-  // keynotes aren't a forum page; only forum talks link out
+  // keynotes aren't a forum page; forum talks deep-link to their position
   return t.forumCode ? (
-    <Link to={`/forum/${t.forumCode}`} className="sptalk sptalk--link">
+    <Link to={`/forum/${t.forumCode}#talk-${t.talkIndex}`} className="sptalk sptalk--link">
       {body}
-      <Icon name="chevron-right" size={14} />
+      <Icon name="chevron-right" size={16} />
     </Link>
   ) : (
     <div className="sptalk">{body}</div>
@@ -139,9 +141,6 @@ export default function Speakers() {
       <div className="section__head">
         <div className="eyebrow">Speakers</div>
         <h2 className="section__title">讲者</h2>
-        <p className="section__desc">
-          共 {speakerList.length} 位讲者，点击任意讲者查看其全部报告。
-        </p>
       </div>
 
       <div className="sptoolbar">
