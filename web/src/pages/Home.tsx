@@ -21,14 +21,16 @@ function StarButton({
   active,
   onClick,
   label,
+  className = "",
 }: {
   active: boolean;
   onClick: () => void;
   label: string;
+  className?: string;
 }) {
   return (
     <button
-      className={`star ${active ? "is-on" : ""}`}
+      className={`star ${className} ${active ? "is-on" : ""}`}
       aria-pressed={active}
       aria-label={label}
       title={label}
@@ -48,138 +50,128 @@ function timeRange(b?: { start?: string | null; end?: string | null }) {
   return b.end ? `${b.start}–${b.end}` : b.start;
 }
 
-function KeynoteChip({ t }: { t: Talk }) {
+function KeynoteRow({ t }: { t: Talk }) {
   const { isSpeaker, toggleSpeaker } = useFollow();
   const sp = t.speakers?.[0];
   const isOpening = t.type === "opening" || !sp;
   return (
-    <div className={`kchip ${isOpening ? "kchip--opening" : ""}`}>
-      <div className="kchip__time">
+    <div className={`krow ${isOpening ? "krow--opening" : ""}`}>
+      <div className="krow__time">
         {t.start}
         {t.end ? `–${t.end}` : ""}
       </div>
-      <div className="kchip__title">
-        {t.title_status === "tbd" ? (
-          <span className="tag tag--tbd">题目待定</span>
-        ) : (
-          t.title?.zh
+      <div className="krow__main">
+        <div className="krow__title">
+          {t.title_status === "tbd" ? (
+            <span className="muted-i">题目待定</span>
+          ) : (
+            t.title?.zh
+          )}
+        </div>
+        {sp && (
+          <div className="krow__speaker">
+            <StarButton
+              active={isSpeaker(sp.name)}
+              onClick={() => toggleSpeaker(sp.name)}
+              label={`关注 ${sp.name}`}
+              className="star--sm"
+            />
+            <strong>{sp.name}</strong>
+            <span className="krow__aff">{sp.affiliation_raw}</span>
+          </div>
         )}
       </div>
-      {sp && (
-        <div className="kchip__speaker">
-          <StarButton
-            active={isSpeaker(sp.name)}
-            onClick={() => toggleSpeaker(sp.name)}
-            label={`关注 ${sp.name}`}
-          />
-          <strong>{sp.name}</strong>
-          <span className="kchip__aff">{sp.affiliation_raw}</span>
-        </div>
-      )}
     </div>
   );
 }
 
-function ForumCard({ slot }: { slot: ForumSlot }) {
+function ForumRow({ slot }: { slot: ForumSlot }) {
   const { isForum, toggleForum, isSpeaker } = useFollow();
   const f = slot.forum;
   const talks = f?.talks ?? [];
   const followedHere = slot.people.filter((n) => isSpeaker(n));
-  const previewNames = slot.people.slice(0, 3);
+  const previewNames = slot.people.slice(0, 4);
   const extra = slot.people.length - previewNames.length;
 
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.28 }}
-      className={`fcard ${followedHere.length ? "fcard--tracked" : ""}`}
-    >
+    <div className={`frow ${followedHere.length ? "frow--tracked" : ""}`}>
+      <Link to={`/forum/${slot.code}`} className="frow__link">
+        <span className="frow__room">{slot.room}</span>
+        <span className="frow__code">{slot.code}</span>
+        <span className="frow__body">
+          <span className="frow__title">{f?.title.zh ?? slot.code}</span>
+          {previewNames.length > 0 && (
+            <span className="frow__people">
+              {previewNames.map((n, i) => (
+                <span key={n} className={isSpeaker(n) ? "is-followed" : ""}>
+                  {n}
+                  {i < previewNames.length - 1 || extra > 0 ? "、" : ""}
+                </span>
+              ))}
+              {extra > 0 && <span className="frow__more">等 {slot.people.length} 人</span>}
+            </span>
+          )}
+        </span>
+        <span className="frow__meta">
+          {f?.sponsor && <span className="frow__sponsor">{f.sponsor}</span>}
+          {f?.detail_extracted ? (
+            <span className="frow__count">{talks.length} 报告</span>
+          ) : (
+            <span className="frow__pending">详情待补</span>
+          )}
+        </span>
+      </Link>
       <StarButton
         active={isForum(slot.code)}
         onClick={() => toggleForum(slot.code)}
         label={`收藏论坛 ${slot.code}`}
       />
-      <Link to={`/forum/${slot.code}`} className="fcard__link">
-        <div className="fcard__head">
-          <span className="tag tag--code">{slot.code}</span>
-          <span className="tag tag--room">{slot.room}</span>
-        </div>
-        <h3 className="fcard__title">{f?.title.zh ?? slot.code}</h3>
-
-        {previewNames.length > 0 && (
-          <div className="fcard__people">
-            {previewNames.map((n) => (
-              <span
-                key={n}
-                className={`fcard__person ${isSpeaker(n) ? "is-followed" : ""}`}
-              >
-                {n}
-              </span>
-            ))}
-            {extra > 0 && <span className="fcard__more">+{extra}</span>}
-          </div>
-        )}
-
-        <div className="fcard__foot">
-          {f?.sponsor && <span className="tag tag--sponsor">{f.sponsor}</span>}
-          {f?.detail_extracted ? (
-            <span className="fcard__count">{talks.length} 报告</span>
-          ) : (
-            <span className="fcard__pending">详情待补</span>
-          )}
-          {followedHere.length > 0 && (
-            <span className="fcard__track" title={followedHere.join("、")}>
-              ★ 关注讲者
-            </span>
-          )}
-        </div>
-      </Link>
-    </motion.div>
+    </div>
   );
 }
 
-function DaySection({
-  day,
-  slots,
-}: {
-  day: ScheduleDay;
-  slots: ForumSlot[];
-}) {
+function DaySection({ day, slots }: { day: ScheduleDay; slots: ForumSlot[] }) {
+  const [showKeynotes, setShowKeynotes] = useState(false);
   if (slots.length === 0) return null;
   return (
     <section className="dashday">
       <div className="dashday__head">
-        <div className="dashday__date">
+        <h2 className="dashday__date">
           <span className="dashday__md">{day.md}</span>
           <span className="dashday__wd">{day.weekday}</span>
-        </div>
+        </h2>
         <div className="dashday__meta">
           <span>{day.venue}</span>
-          {day.forumBlock && (
-            <span className="dashday__time">{timeRange(day.forumBlock)}</span>
-          )}
-          <span className="dashday__n">{slots.length} 场并行论坛</span>
+          {day.forumBlock && <span className="dashday__time">{timeRange(day.forumBlock)}</span>}
+          <span className="dashday__n">{slots.length} 场并行</span>
         </div>
       </div>
 
       {day.keynotes.length > 0 && (
         <div className="krail">
-          <div className="krail__label">主旨报告 · 上午</div>
-          <div className="krail__track">
-            {day.keynotes.map((t, i) => (
-              <KeynoteChip key={i} t={t} />
-            ))}
-          </div>
+          <button
+            className="krail__toggle"
+            onClick={() => setShowKeynotes((v) => !v)}
+            aria-expanded={showKeynotes}
+          >
+            主旨报告 · 上午 · {day.keynotes.length} 场
+            <span className={`caret ${showKeynotes ? "caret--up" : ""}`}>⌄</span>
+          </button>
+          {showKeynotes && (
+            <div className="krail__list">
+              {day.keynotes.map((t, i) => (
+                <KeynoteRow key={i} t={t} />
+              ))}
+            </div>
+          )}
         </div>
       )}
 
-      <motion.div layout className="fgrid">
+      <div className="ftable">
         {slots.map((s) => (
-          <ForumCard key={s.code} slot={s} />
+          <ForumRow key={s.code} slot={s} />
         ))}
-      </motion.div>
+      </div>
     </section>
   );
 }
@@ -222,7 +214,7 @@ export default function Home() {
 
   return (
     <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
-      {/* compact masthead — not a hero */}
+      {/* masthead — line-based, no hero */}
       <div className="dashhead">
         <div className="container dashhead__inner">
           <div className="dashhead__id">
@@ -321,7 +313,6 @@ export default function Home() {
 
         {visibleDays.length === 0 ? (
           <div className="dash__empty">
-            <div className="dash__emptyicon">◷</div>
             <p>
               没有符合条件的论坛。
               {onlyFollowed && "点击论坛或讲者旁的 ☆ 可加入“我的关注”。"}
@@ -335,8 +326,8 @@ export default function Home() {
 
         <div className="dash__hint">
           需要按时间线逐场浏览？前往
-          <Link to="/schedule" className="linkbtn linkbtn--inline">完整日程</Link>
-          。全部时段为并行论坛（{periodLabel.afternoon}/{periodLabel.morning}）。
+          <Link to="/schedule" className="linkbtn linkbtn--inline">完整日程</Link>。
+          全部论坛时段为并行（{periodLabel.afternoon} / {periodLabel.morning}）。
         </div>
       </div>
     </motion.div>
