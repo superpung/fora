@@ -40,6 +40,16 @@ export function FollowProvider({ children }: { children: React.ReactNode }) {
     setTalks(new Set());
   }, []);
 
+  const importFollows = useCallback(
+    (data: { forums: string[]; speakers: string[]; talks: string[] }) => {
+      setForums((prev) => new Set([...prev, ...data.forums]));
+      setSpeakers((prev) => new Set([...prev, ...data.speakers]));
+      setTalks((prev) => new Set([...prev, ...data.talks]));
+      return data.forums.length + data.speakers.length + data.talks.length;
+    },
+    [],
+  );
+
   const value = useMemo<FollowState>(
     () => ({
       forums,
@@ -52,8 +62,9 @@ export function FollowProvider({ children }: { children: React.ReactNode }) {
       isSpeaker: (n) => speakers.has(n),
       isTalk: (id) => talks.has(id),
       clearAll,
+      importFollows,
     }),
-    [forums, speakers, talks, toggleForum, toggleSpeaker, toggleTalk, clearAll],
+    [forums, speakers, talks, toggleForum, toggleSpeaker, toggleTalk, clearAll, importFollows],
   );
 
   return <FollowCtx.Provider value={value}>{children}</FollowCtx.Provider>;

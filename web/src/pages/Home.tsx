@@ -14,6 +14,7 @@ import { useFollow, talkId, keynoteId } from "../lib/follow-store";
 import { pageVariants } from "../lib/motion";
 import Icon from "../components/Icon";
 import ExportMenu from "../components/ExportMenu";
+import ImportButton from "../components/ImportButton";
 import type { Talk } from "../types";
 
 /* ---------------- small pieces ---------------- */
@@ -604,14 +605,15 @@ export default function Home() {
               </button>
             )}
           </span>
-          {followedCount > 0 && (
-            <div className="dash__actions">
-              <ExportMenu />
+          <div className="dash__actions">
+            <ImportButton />
+            {followedCount > 0 && <ExportMenu />}
+            {followedCount > 0 && (
               <button className="linkbtn" onClick={clearAll}>
                 清空我的关注
               </button>
-            </div>
-          )}
+            )}
+          </div>
         </div>
 
         <AnimatePresence mode="wait">
