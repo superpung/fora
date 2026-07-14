@@ -1,32 +1,38 @@
-# React + TypeScript + Vite
+# web — conference agenda viewer
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A React + Vite + framer-motion single-page app that renders the datasets built by
+`source/build_dataset.py`. The visual language is Vercel / Geist (see the design
+system in the repo-root `AGENTS.md`).
 
-Currently, two official plugins are available:
+## Multi-conference
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The site hosts several conferences. `/` is a hub listing every conference (from
+`src/data/manifest.json`); each conference lives under `/:conf/...`.
 
-## React Compiler
+- `src/lib/data.ts` — pure `buildConferenceViews(raw)` factory + conference-
+  independent helpers (dates, pinyin index, speaker categories). No module
+  singletons.
+- `src/lib/conferences.ts` — registry: reads the manifest, lazily code-splits and
+  loads each dataset (`import.meta.glob`), and memoises the built views per id.
+- `src/lib/conference.tsx` / `conference-store.ts` — `ConferenceProvider` +
+  `useConference()`; the provider suspends on the dataset load.
+- `src/components/ConferenceLayout.tsx` — validates `:conf`, provides its views,
+  and scopes follows (`FollowProvider`, keyed by id) to that conference.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Adding a conference is a data-only change: drop `data/<id>.json` in and rerun
+`build_dataset.py` (it writes `src/data/conferences/<id>.json` and refreshes the
+manifest). The hub, switcher, and routing pick it up with no code change.
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+## Commands
+```bash
+pnpm dev        # dev server (HMR)
+pnpm build      # tsc -b && vite build
+pnpm lint       # oxlint
+pnpm preview    # serve the production build
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Personal agenda (follows)
+Talks, whole forums, and speakers can be starred; follows are persisted to
+`localStorage` namespaced per conference (`<id>:followed.*`). The dashboard
+exports the resolved agenda (`.ics` / `.csv` / `.md`) and a round-trippable
+`.json` backup that can be re-imported (into the same conference).

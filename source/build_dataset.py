@@ -1,9 +1,18 @@
 #!/usr/bin/env python3
-"""装配 CCF Chip 2026 完整数据集 -> data/ccfchip2026.json（符合 schema/schema.json）。
-数据来源：
-  - 总览级信息（会议元数据/主席团keynote/48论坛→会议室/专委会/晚宴）：本文件内编码，来自 大会议程 6 张总览图。
-  - 结构化内容：source/extracted/{people,sponsors,texts,forum_images}.json
-  - 论坛详情：data/forums_detail/CF*.json（已视觉解析的论坛，逐步补全）
+"""Assemble the full CCF Chip 2026 dataset (conforms to schema/schema.json).
+
+Outputs:
+  - data/<id>.json                       canonical dataset
+  - web/src/data/conferences/<id>.json   the web app's copy (kept identical)
+  - web/src/data/manifest.json           lightweight index of all conferences,
+                                         regenerated from every conference file
+
+Data sources:
+  - Overview-level info (conference metadata / chair-panel keynotes / 48 forums ->
+    rooms / committees / banquet): encoded in this file, from the 6 agenda
+    overview images.
+  - Structured content: source/extracted/{people,sponsors,texts,forum_images}.json
+  - Forum details: data/forums_detail/CF*.json (visually parsed forums)
 """
 import json, pathlib, datetime, glob, os, hashlib
 
