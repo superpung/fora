@@ -22,6 +22,11 @@ export type IconName =
   | "coffee"
   | "banquet"
   | "committee"
+  | "calendar"
+  | "users"
+  | "building"
+  | "link"
+  | "check"
   | "dot";
 
 // Each entry is the inner markup of a 0 0 24 24 viewBox, stroked with currentColor.
@@ -113,6 +118,33 @@ const PATHS: Record<IconName, ReactElement> = {
       <path d="M16 6.5a3 3 0 0 1 0 5.5M17 15.5a5.5 5.5 0 0 1 3.5 4.5" />
     </>
   ),
+  calendar: (
+    <>
+      <rect x="3.5" y="4.5" width="17" height="16" rx="2" />
+      <path d="M3.5 9h17M8 2.5v4M16 2.5v4" />
+    </>
+  ),
+  users: (
+    <>
+      <circle cx="8.5" cy="8" r="3.2" />
+      <path d="M2.5 20a6 6 0 0 1 12 0" />
+      <path d="M15.5 5.2a3.2 3.2 0 0 1 0 5.6M17 14.4a6 6 0 0 1 4.5 5.6" />
+    </>
+  ),
+  building: (
+    <>
+      <path d="M4 21V5a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v16" />
+      <path d="M15 9h4a1 1 0 0 1 1 1v11M2.5 21h19" />
+      <path d="M7.5 8h3M7.5 12h3M7.5 16h3" />
+    </>
+  ),
+  link: (
+    <>
+      <path d="M9 15l6-6" />
+      <path d="M11 7l1-1a3.5 3.5 0 0 1 5 5l-1 1M13 17l-1 1a3.5 3.5 0 0 1-5-5l1-1" />
+    </>
+  ),
+  check: <path d="M4 12.5l5 5 11-11" />,
   dot: <circle cx="12" cy="12" r="2.5" />,
 };
 

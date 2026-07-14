@@ -17,3 +17,14 @@
 - 数据模型完全自建（`schema/schema.json`），**不兼容/不映射** pretalx/frab 等任何现成格式。
 - 脏数据按"如实记录 + `flags` 标记"处理，不擅自修正。
 - 网页设计需对齐 claude.ai 风格，细节到位，必须有动画。
+
+## UI copy rules (hard)
+- **No decorative eyebrow/kicker labels.** Never place a small label above a title
+  just for decoration (e.g. `Program` over 完整日程, `Speakers` over 讲者,
+  `Organizers` over 组织与赞助). If a heading needs reinforcement, use an icon, not
+  an English kicker.
+- **No prose-as-UI.** Do not explain an action in a sentence when an
+  icon (or icon + short label) button conveys it. E.g. never write
+  "需要按时间线逐场浏览？前往完整日程。" — ship a button instead.
+- **Never stack text above a page's main title.** Supporting metadata (dates,
+  location) goes *below* the title, not above it.
