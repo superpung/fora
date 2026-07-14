@@ -75,6 +75,11 @@ svg { display: block; }
 .btn--ghost:hover, .followbtn:hover, .filterchip:hover { background: var(--bg-hover); border-color: var(--border-strong); }
 .filterchip { color: var(--fg-secondary); }
 .filterchip.is-on { background: var(--primary-bg); color: var(--primary-fg); border-color: var(--primary-bg); }
+.filterchip__n {
+  font-family: var(--font-mono); font-size: 11px; min-width: 16px; height: 16px; padding: 0 4px;
+  display: inline-grid; place-items: center; border-radius: 999px;
+  background: color-mix(in srgb, currentColor 16%, transparent);
+}
 .followbtn.is-on { background: var(--bg-active); color: var(--fg); border-color: var(--border-strong); }
 
 /* ============================ SECTION (generic) ============================ */
@@ -141,6 +146,12 @@ svg { display: block; }
 .dash { padding-top: 24px; padding-bottom: 64px; }
 .dash__resultbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--fg-secondary); font-size: 13px; margin-bottom: 4px; flex-wrap: wrap; }
 .dash__resultbar strong { color: var(--fg); font-weight: 600; }
+.filtertag {
+  display: inline-flex; align-items: center; gap: 4px; margin-left: 8px; vertical-align: middle;
+  padding: 2px 5px 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 500;
+  color: var(--primary-fg); background: var(--primary-bg); border: none;
+}
+.filtertag svg { opacity: 0.75; }
 .dash__empty { text-align: center; padding: 60px 20px; color: var(--fg-muted); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-top: 20px; }
 .dash__hint { margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--fg-muted); font-size: 13px; }
 
@@ -171,39 +182,64 @@ svg { display: block; }
 .krow__speaker { display: flex; align-items: center; gap: 6px; margin-top: 4px; font-size: 12.5px; color: var(--fg-secondary); flex-wrap: wrap; }
 .krow__aff { color: var(--fg-muted); }
 
-/* ---- forum table (card with rows) ---- */
+/* ---- forum table (card with expandable rows) ---- */
 .ftable { border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
 .frow { border-top: 1px solid var(--border); }
 .frow:first-child { border-top: none; }
-.frow__head { position: relative; transition: background 0.12s; }
-.frow__head:hover { background: var(--bg-hover); }
-.frow__link {
-  display: grid; align-items: center; gap: 4px 16px;
-  grid-template-columns: 58px 58px 1fr auto; padding: 13px 42px 13px 16px;
+.frow.is-open { background: var(--bg-subtle); }
+.frow__head { display: flex; align-items: stretch; }
+.frow__main {
+  flex: 1; min-width: 0; display: grid; align-items: center; gap: 2px 16px;
+  grid-template-columns: 58px 58px 1fr auto; padding: 12px 10px 12px 16px;
+  background: none; border: none; text-align: left; color: inherit; font: inherit;
+  transition: background 0.12s;
 }
+.frow__main:not(:disabled):hover { background: var(--bg-hover); }
+.frow__main:disabled { cursor: default; }
 .frow__room { font-family: var(--font-mono); color: var(--fg-secondary); font-size: 13px; }
 .frow__code { font-family: var(--font-mono); color: var(--fg); font-weight: 500; font-size: 13px; }
 .frow__body { min-width: 0; }
 .frow__title { display: block; font-size: 14px; font-weight: 500; line-height: 1.45; letter-spacing: -0.005em; }
-.frow__people { display: block; margin-top: 3px; font-size: 12.5px; color: var(--fg-muted); line-height: 1.5; }
-.frow__people .is-followed { color: var(--accent); font-weight: 500; }
-.frow__more { color: var(--fg-muted); margin-left: 4px; white-space: nowrap; }
-.frow__meta { display: flex; align-items: center; gap: 12px; white-space: nowrap; justify-self: end; }
+.frow__sub { display: flex; align-items: center; gap: 12px; margin-top: 3px; }
 .frow__sponsor { font-size: 12px; color: var(--blue-fg); font-weight: 500; }
 .frow__count { font-family: var(--font-mono); font-size: 12px; color: var(--fg-secondary); }
 .frow__pending { font-size: 12px; color: var(--fg-muted); }
+.frow__caret { color: var(--fg-muted); }
+.frow__actions { display: flex; align-items: center; gap: 4px; padding: 0 10px 0 4px; }
+.frow__actions .star { position: static; transform: none; }
+.frow__enter {
+  display: inline-flex; align-items: center; gap: 2px; white-space: nowrap;
+  padding: 6px 9px; border-radius: var(--radius); font-size: 12.5px; font-weight: 500;
+  color: var(--fg-secondary); border: 1px solid var(--border); background: var(--bg);
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.frow__enter:hover { color: var(--fg); border-color: var(--border-strong); background: var(--bg-hover); }
 
-/* ---- followed-talk sublist (shown under a forum in filtered view) ---- */
-.frow__talks { border-top: 1px solid var(--border); background: var(--bg-subtle); }
+/* speaker chips (click to filter the board by that person) */
+.frow__people { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 12px 12px 16px; }
+.pchip {
+  font: inherit; font-size: 12px; line-height: 1.4; color: var(--fg-secondary);
+  background: var(--bg); border: 1px solid var(--border); border-radius: 999px;
+  padding: 3px 10px; transition: color 0.12s, border-color 0.12s, background 0.12s;
+}
+.pchip:hover { color: var(--fg); border-color: var(--border-strong); background: var(--bg-hover); }
+.pchip.is-followed { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 40%, var(--border)); }
+.pchip.is-active { background: var(--primary-bg); color: var(--primary-fg); border-color: var(--primary-bg); }
+.pchip--sm { font-size: 11.5px; padding: 2px 8px; }
+
+/* ---- talk sublist (expands under a forum) ---- */
+.frow__talks { overflow: hidden; border-top: 1px solid var(--border); background: var(--bg); }
 .ftalk { position: relative; border-top: 1px solid var(--border); transition: background 0.12s; }
 .ftalk:first-child { border-top: none; }
 .ftalk:hover { background: var(--bg-hover); }
-.ftalk__link { display: grid; grid-template-columns: 58px 1fr; align-items: baseline; gap: 16px; padding: 10px 42px 10px 16px; }
+.ftalk--hit { background: color-mix(in srgb, var(--accent) 8%, transparent); }
+.ftalk__link { display: grid; grid-template-columns: 40px 1fr; align-items: baseline; gap: 16px; padding: 11px 42px 11px 16px; }
 .ftalk__no { font-family: var(--font-mono); font-size: 12px; color: var(--fg-muted); font-variant-numeric: tabular-nums; text-align: right; }
 .ftalk__main { min-width: 0; }
 .ftalk__title { font-size: 13.5px; font-weight: 500; line-height: 1.45; }
-.ftalk__speaker { display: block; margin-top: 2px; font-size: 12.5px; color: var(--fg-muted); }
-.ftalk__star.star { color: var(--accent); }
+.ftalk__speakers { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 7px; }
+.ftalk__star.star { color: var(--fg-muted); }
+.ftalk__star.star.is-on { color: var(--accent); }
 
 /* ---- star buttons ---- */
 .star {
@@ -441,16 +477,23 @@ svg { display: block; }
   .daypills { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .daypills::-webkit-scrollbar { display: none; }
   .daypill { flex: 1 0 auto; }
-  .toolbar__right { width: 100%; margin-left: 0; gap: 8px; }
-  .search { flex: 1 1 100%; }
+  /* toolbar collapses to 2 rows: day pills, then search + icon-only chips */
+  .toolbar__right { width: 100%; margin-left: 0; gap: 6px; flex-wrap: nowrap; }
+  .search { flex: 1 1 auto; min-width: 0; }
   .search__input { width: 100%; }
-  .filterchip { flex: 1 1 0; }
+  .filterchip { flex: 0 0 auto; padding: 0 10px; }
+  .filterchip__label { display: none; }
 
-  .frow__link { grid-template-columns: 52px 1fr; gap: 2px 12px; padding: 12px 36px 12px 14px; }
+  .frow__main { grid-template-columns: 46px 1fr auto; gap: 2px 12px; padding: 12px 6px 12px 14px; }
   .frow__room { grid-row: 1; grid-column: 1; }
   .frow__code { grid-row: 2; grid-column: 1; font-size: 12px; }
   .frow__body { grid-row: 1 / span 2; grid-column: 2; }
-  .frow__meta { grid-row: 3; grid-column: 1 / -1; justify-self: start; margin-top: 6px; }
+  .frow__caret { grid-row: 1 / span 2; grid-column: 3; align-self: center; }
+  .frow__actions { padding: 0 8px 0 2px; }
+  .frow__enter-label { display: none; }
+  .frow__enter { padding: 6px 7px; }
+  .frow__people { padding: 0 12px 12px 14px; }
+  .ftalk__link { padding: 11px 40px 11px 14px; }
   .krail__list { grid-template-columns: 1fr; }
 
   .talk { grid-template-columns: 28px 1fr; gap: 12px; padding: 18px 14px; }
