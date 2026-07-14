@@ -170,9 +170,23 @@ export const categoryLabel: Record<SpeakerCategory, string> = {
 // research institute (e.g. 电科集团…研究所) reads as an institute, not a company.
 export function speakerCategory(aff?: string | null): SpeakerCategory {
   const s = aff ?? "";
-  if (/研究院|研究所|科学院|工程院|实验室|\d+所|Institut|Laborator|Academy/i.test(s)) return "research";
-  if (/大学|学院|University|College|School/i.test(s)) return "university";
-  if (/公司|集团|科技|技术|微电子|半导体|电子|股份|有限|Inc\.?|Corp|Ltd|Technolog|Semiconductor/i.test(s))
+  // Research institutes / national labs / R&D centres (incl. abbreviations like
+  // 中科院, and corporate research institutes such as 电科集团…研究所).
+  if (
+    /研究院|研究所|科学院|工程院|实验室|研究中心|科学中心|中科院|计算所|总体设计部|设计院|\d+所|Institut|Laborator|Academy|Research (?:Institut|Cent|Fellow|Council)/i.test(
+      s,
+    )
+  )
+    return "research";
+  // Universities (incl. abbreviations like 国防科大 / 中科大 / 电子科大).
+  if (/大学|学院|University|College|School|国防科大|中科大|电子科大|华中科大/i.test(s)) return "university";
+  // Companies: legal-entity / sector keywords, well-known brands, or industry
+  // roles (科大讯飞's "科大" is a company, not the 国防科大 university).
+  if (
+    /公司|集团|科技|技术|微电子|半导体|电子|股份|有限|Inc\.?|Corp|Ltd|Technolog|Semiconductor|阿里巴巴|字节跳动|科大讯飞|浪潮|沐曦|华大九天|天数智芯|合见工软|中科麒芯|寒武纪|地平线|海光|燧原|华为|腾讯|百度|CEO|CTO|总裁|总经理|事业部/i.test(
+      s,
+    )
+  )
     return "industry";
   return "other";
 }
