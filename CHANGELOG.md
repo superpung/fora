@@ -17,8 +17,8 @@ the repository language rule (see AGENTS.md).
 ### Changed
 - **Namespaced storage keys.** This site can host several conferences, so all
   per-conference state is now keyed under the conference id
-  (`ccfchip2026:followed.*`) instead of a hard-coded `ccfchip.*` prefix; existing
-  data is migrated on first load. (Theme stays a site-wide preference.)
+  (`ccfchip2026:followed.*`) instead of a hard-coded `ccfchip.*` prefix. (Theme
+  stays a site-wide preference.)
 - **Forum page header:** the code / room / date / period meta moved *below* the
   title, and the top "返回日程面板" back button was removed (the nav already links
   back). The timeline forum cards already put this meta beside the title, so they
