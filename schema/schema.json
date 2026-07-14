@@ -225,7 +225,12 @@
         },
         "talks": { "type": "array", "items": { "$ref": "#/$defs/talk" } },
         "poster": { "anyOf": [{ "$ref": "#/$defs/asset" }, { "type": "null" }] },
-        "detail_extracted": { "type": "boolean", "description": "海报是否已完成视觉解析" }
+        "detail_extracted": { "type": "boolean", "description": "海报是否已完成视觉解析" },
+        "flags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "论坛级数据标注（如源材料间的名称不一致），如实记录不擅自修正"
+        }
       },
       "additionalProperties": false
     },

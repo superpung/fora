@@ -95,7 +95,7 @@ channel), `raw/images/` (76 images), `raw/files/` (PDF/docx),
 - [x] Structured content (51 committee members / sponsors / text / overview
   metadata for 48 forums) extracted → `extracted/`.
 - [x] Forum-poster slicing pipeline `slice_poster.py` / `batch_slice.py`.
-- [x] Posters CF01–CF48 visually parsed one by one (47/48 done →
-  `../data/forums_detail/CFxx.json`).
-- [ ] Only **CF10** is missing its source poster, so it has no internal talk data
-  (`detail_extracted:false`; the UI shows “详情待补” / "details pending").
+- [x] Posters CF01–CF48 visually parsed one by one (all 48 done →
+  `../data/forums_detail/CFxx.json`). CF10's poster was added late by the
+  organizers (its title reads “抗量子密码应用论坛” vs the overview's
+  “后量子密码应用论坛”; recorded via a forum-level `flags` note).

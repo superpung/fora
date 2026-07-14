@@ -21,8 +21,7 @@ to drive a web viewer. First sample conference: the 3rd CCF Chip Conference
 schema/schema.json          Self-designed JSON Schema (draft 2020-12)
 data/
   ccfchip2026.json          ★ Full dataset (conforms to the schema, validated)
-  forums_detail/CFxx.json   Visually parsed forum details (CF01–CF48; only CF10
-                            lacks a source poster)
+  forums_detail/CFxx.json   Visually parsed forum details (CF01–CF48, all 48)
 source/
   SITE_ANALYSIS.md          Reverse-engineering of the site (data sources / APIs)
   fetch_all.py              Crawl all 78 channels + 76 assets -> raw/
@@ -59,6 +58,4 @@ is a content fingerprint; a real `generated_at` timestamp is written only when
 - Conference metadata / multiple venues / hosts & co-hosts / chair-panel keynotes
   / 4 days of time blocks / overview metadata for 48 forums / 51 committee
   members: **complete**.
-- Forum-internal talks: **47/48 visually parsed** (334 speakers/chairs); only
-  **CF10** is empty because its source poster is missing (the UI shows
-  “详情待补” / "details pending").
+- Forum-internal talks: **48/48 visually parsed** (340 speakers/chairs).
