@@ -4,6 +4,36 @@ All notable changes to this project. The project is unversioned (no release
 tags yet), so entries are grouped by date, newest first. Written in English per
 the repository language rule (see AGENTS.md).
 
+## 2026-07-14 — UI optimization, round 2 (review feedback)
+
+### Added
+- **Real official forum URLs.** Recovered each forum's `general_NNNN` article URL
+  from the site (getShortUrl short-url table joined to the channel tree, verified
+  live); the "官网" button now opens the article page, not the poster. Stored in
+  `source/extracted/forum_source_urls.json` and exposed as `forum.source_url`.
+- **Sticky A–Z labels.** Speaker letter-group headers pin under the nav while
+  their group is in view.
+
+### Changed
+- **Dashboard forum rows** redesigned: room/code on the left; title and authors
+  share one left edge; authors are hover-underline links (not pills); the whole
+  header is a single hover/expand unit; enter is an icon-only button.
+- **Keynote rail**: single column, with an animated expand/collapse.
+- **Content icons** added inside rows (forum meta, speaker talk rows); the
+  speakers section icon changed so it no longer duplicates the committee icon.
+- Anchor/permalink highlight uses a full-surface tint only — no left-edge bar
+  (now forbidden in AGENTS.md).
+
+### Fixed
+- **Speaker categorization** (data): companies (阿里巴巴/字节跳动/科大讯飞/…),
+  universities (国防科大/…) and institutes (中科院计算所/…) that fell into 其他 are
+  now classified correctly; 0 remain uncategorized.
+- **Scroll restoration**: Back now lands on the exact previous position (the
+  cleanup save had been clobbering it with the clamped scroll of the next page).
+- **Committee grid dividers**: cells above a partial last row kept their bottom
+  divider; each cell now owns its own bottom+right hairline.
+- Off-centre star fix, tea-break full-bleed, mobile day tabs, etc. (round 1).
+
 ## 2026-07-14 — Web UI optimization pass
 
 A round of usability and polish work on the web viewer, plus a data refresh.
