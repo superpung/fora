@@ -1,14 +1,11 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import { conference, days, formatDate, venueName, blockKindLabel } from "../lib/data";
+import { formatDate, blockKindLabel } from "../lib/data";
+import { useConference } from "../lib/conference-store";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Icon, { type IconName } from "../components/Icon";
 import type { Block, Talk, Break } from "../types";
-
-const daysForumLookup = Object.fromEntries(
-  (conference.forums ?? []).map((f) => [f.code, f]),
-);
 
 function TimeRange({ start, end }: { start?: string | null; end?: string | null }) {
   if (!start && !end) return null;
@@ -86,6 +83,7 @@ function KeynotesBlock({ block }: { block: Block }) {
 }
 
 function ForumsBlock({ block }: { block: Block }) {
+  const { id: confId, forumsByCode } = useConference();
   return (
     <>
       {(block.breaks ?? []).map((b, i) => (
@@ -103,10 +101,10 @@ function ForumsBlock({ block }: { block: Block }) {
         animate="animate"
       >
         {(block.forum_entries ?? []).map((e) => {
-          const f = daysForumLookup[e.forum_code];
+          const f = forumsByCode[e.forum_code];
           return (
             <motion.div key={e.forum_code} variants={riseItem}>
-              <Link to={`/forum/${e.forum_code}`} className="forumcard">
+              <Link to={`/${confId}/forum/${e.forum_code}`} className="forumcard">
                 <span className="forumcard__room mono">
                   <Icon name="pin" size={11} /> {e.room ?? f?.room}
                 </span>
@@ -160,6 +158,7 @@ const KIND_ICON: Record<string, IconName> = {
 };
 
 export default function Schedule() {
+  const { days, venueName } = useConference();
   const hash = useLocation().hash.replace("#", "");
   const initial = days.findIndex((d) => d.date === hash);
   const [active, setActive] = useState(initial >= 0 ? initial : 0);

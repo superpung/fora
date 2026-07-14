@@ -1,11 +1,12 @@
 import { lazy, Suspense } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
-import Nav from "./components/Nav";
-import Footer from "./components/Footer";
+import { Routes, Route, Navigate } from "react-router-dom";
 import ScrollManager from "./components/ScrollManager";
+import ConferenceLayout from "./components/ConferenceLayout";
+import PageLoader from "./components/PageLoader";
 
 // Route-level code splitting: each page ships as its own chunk so the initial
 // download is just the shell (nav/footer/router), not every page at once.
+const Hub = lazy(() => import("./pages/Hub"));
 const Home = lazy(() => import("./pages/Home"));
 const Schedule = lazy(() => import("./pages/Schedule"));
 const Speakers = lazy(() => import("./pages/Speakers"));
@@ -14,27 +15,31 @@ const Committee = lazy(() => import("./pages/Committee"));
 const Organizations = lazy(() => import("./pages/Organizations"));
 
 export default function App() {
-  const location = useLocation();
   return (
     <>
       <ScrollManager />
-      <Nav />
-      <main>
-        {/* key by pathname so each page remounts and plays its enter animation;
-            no AnimatePresence — route-level exit stacks pages and deadlocks on
-            #hash navigation (see motion.ts pageVariants). */}
-        <Suspense fallback={null}>
-          <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<Home />} />
-            <Route path="/schedule" element={<Schedule />} />
-            <Route path="/speakers" element={<Speakers />} />
-            <Route path="/forum/:code" element={<ForumDetail />} />
-            <Route path="/committee" element={<Committee />} />
-            <Route path="/organizations" element={<Organizations />} />
-          </Routes>
-        </Suspense>
-      </main>
-      <Footer />
+      {/* The site hosts several conferences. `/` is the conference hub; each
+          conference lives under `/:conf/...`. ConferenceLayout loads the active
+          conference's data and provides it to its child routes. */}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Suspense fallback={<PageLoader />}>
+              <Hub />
+            </Suspense>
+          }
+        />
+        <Route path="/:conf" element={<ConferenceLayout />}>
+          <Route index element={<Home />} />
+          <Route path="schedule" element={<Schedule />} />
+          <Route path="speakers" element={<Speakers />} />
+          <Route path="committee" element={<Committee />} />
+          <Route path="organizations" element={<Organizations />} />
+          <Route path="forum/:code" element={<ForumDetail />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
     </>
   );
 }

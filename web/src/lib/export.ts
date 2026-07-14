@@ -2,15 +2,7 @@
 // calendar / spreadsheet / markdown. A forum talk has no time of its own, so we
 // fall back to its forum block's window; the location is the full venue name
 // joined with the room (e.g. "无锡国际会议中心 205A").
-import {
-  conference,
-  getForum,
-  forumTimeWindow,
-  keynoteById,
-  keynoteEntries,
-  mainVenueName,
-  blockKindLabel,
-} from "./data";
+import { blockKindLabel, type ConferenceViews } from "./data";
 import { isKeynoteId } from "./follow-store";
 import type { Forum, Talk } from "../types";
 
@@ -48,13 +40,13 @@ function talkTitle(t: Talk): string {
 function speakerNames(t: Talk): string {
   return (t.speakers ?? []).map((s) => s.name).filter(Boolean).join("、");
 }
-function fullLocation(room?: string | null): string {
+function fullLocation(mainVenueName: string, room?: string | null): string {
   return [mainVenueName, room].filter(Boolean).join(" ");
 }
 
-function forumTalkItem(forum: Forum, i: number): ExportItem {
+function forumTalkItem(forum: Forum, i: number, views: ConferenceViews): ExportItem {
   const t = (forum.talks ?? [])[i];
-  const win = forumTimeWindow(forum);
+  const win = views.forumTimeWindow(forum);
   return {
     uid: `${forum.code}-${i}`,
     title: talkTitle(t),
@@ -64,12 +56,12 @@ function forumTalkItem(forum: Forum, i: number): ExportItem {
     date: forum.day_date ?? "",
     start: t.start ?? win.start ?? null,
     end: t.end ?? win.end ?? null,
-    location: fullLocation(forum.room),
+    location: fullLocation(views.mainVenueName, forum.room),
     abstract: t.abstract ?? null,
   };
 }
-function keynoteItem(id: string): ExportItem | null {
-  const e = keynoteById.get(id);
+function keynoteItem(id: string, views: ConferenceViews): ExportItem | null {
+  const e = views.keynoteById.get(id);
   if (!e) return null;
   return {
     uid: id.replace(/[:#]/g, "-"),
@@ -79,42 +71,42 @@ function keynoteItem(id: string): ExportItem | null {
     date: e.date,
     start: e.talk.start ?? null,
     end: e.talk.end ?? null,
-    location: fullLocation(e.location),
+    location: fullLocation(views.mainVenueName, e.location),
     abstract: e.talk.abstract ?? null,
   };
 }
 
 /** Every talk the user follows, via a starred talk, forum, or speaker (deduped). */
-export function collectFollowedItems(f: FollowSnapshot): ExportItem[] {
+export function collectFollowedItems(f: FollowSnapshot, views: ConferenceViews): ExportItem[] {
   const map = new Map<string, ExportItem>();
   const putForum = (forum: Forum, i: number) => {
     const key = `${forum.code}#${i}`;
-    if (!map.has(key)) map.set(key, forumTalkItem(forum, i));
+    if (!map.has(key)) map.set(key, forumTalkItem(forum, i, views));
   };
   const putKeynote = (id: string) => {
     if (map.has(id)) return;
-    const it = keynoteItem(id);
+    const it = keynoteItem(id, views);
     if (it) map.set(id, it);
   };
 
   f.talks.forEach((id) => {
     if (isKeynoteId(id)) return putKeynote(id);
     const [code, idx] = id.split("#");
-    const forum = getForum(code);
+    const forum = views.getForum(code);
     const i = Number(idx);
     if (forum && (forum.talks ?? [])[i]) putForum(forum, i);
   });
   f.forums.forEach((code) => {
-    const forum = getForum(code);
+    const forum = views.getForum(code);
     (forum?.talks ?? []).forEach((_, i) => forum && putForum(forum, i));
   });
   if (f.speakers.size) {
-    (conference.forums ?? []).forEach((forum) =>
+    (views.conference.forums ?? []).forEach((forum) =>
       (forum.talks ?? []).forEach((t, i) => {
         if ((t.speakers ?? []).some((s) => f.speakers.has(s.name))) putForum(forum, i);
       }),
     );
-    keynoteEntries.forEach((e) => {
+    views.keynoteEntries.forEach((e) => {
       if ((e.talk.speakers ?? []).some((s) => f.speakers.has(s.name))) putKeynote(e.id);
     });
   }
@@ -126,7 +118,7 @@ export function collectFollowedItems(f: FollowSnapshot): ExportItem[] {
 
 /** A download filename built from the conference name + the dates it spans,
     e.g. "CCF Chip 2026 我的日程 2026-07-18~07-19.ics". */
-export function exportFilename(items: ExportItem[], ext: string): string {
+export function exportFilename(items: ExportItem[], ext: string, views: ConferenceViews): string {
   const dates = [...new Set(items.map((it) => it.date).filter(Boolean))].sort();
   const first = dates[0];
   const last = dates[dates.length - 1];
@@ -134,7 +126,7 @@ export function exportFilename(items: ExportItem[], ext: string): string {
   if (dates.length === 1) range = first;
   else if (dates.length > 1)
     range = first.slice(0, 4) === last.slice(0, 4) ? `${first}~${last.slice(5)}` : `${first}~${last}`;
-  const base = conference.name.en || conference.name.zh;
+  const base = views.conference.name.en || views.conference.name.zh;
   return `${[base, "我的日程", range].filter(Boolean).join(" ")}.${ext}`;
 }
 
@@ -145,14 +137,14 @@ export function exportFilename(items: ExportItem[], ext: string): string {
 // speaker — so they can't be imported back losslessly. JSON stores the raw
 // follow ids instead, which restores the exact same state. That's why import
 // uses JSON, not the calendar/spreadsheet exports.
-export function toFollowJSON(f: FollowSnapshot, stampISO: string): string {
+export function toFollowJSON(f: FollowSnapshot, stampISO: string, views: ConferenceViews): string {
   return JSON.stringify(
     {
       app: "conf-scheduler",
       kind: "follows",
       version: 1,
-      conference: conference.id,
-      conferenceName: conference.name.zh,
+      conference: views.conference.id,
+      conferenceName: views.conference.name.zh,
       exportedAt: stampISO,
       follows: {
         forums: [...f.forums].sort(),
@@ -165,7 +157,7 @@ export function toFollowJSON(f: FollowSnapshot, stampISO: string): string {
   );
 }
 
-export function parseFollowJSON(text: string): ParsedFollows | null {
+export function parseFollowJSON(text: string, currentId: string): ParsedFollows | null {
   let data: unknown;
   try {
     data = JSON.parse(text);
@@ -180,7 +172,7 @@ export function parseFollowJSON(text: string): ParsedFollows | null {
   const follows = { forums: strArr(f.forums), speakers: strArr(f.speakers), talks: strArr(f.talks) };
   if (!follows.forums.length && !follows.speakers.length && !follows.talks.length) return null;
   const conf = typeof obj.conference === "string" ? obj.conference : undefined;
-  return { follows, conference: conf, conferenceMismatch: !!conf && conf !== conference.id };
+  return { follows, conference: conf, conferenceMismatch: !!conf && conf !== currentId };
 }
 
 /* ---------------- formatters ---------------- */
@@ -200,14 +192,14 @@ export function toCSV(items: ExportItem[]): string {
   return "﻿" + [head.map(csvCell).join(","), ...rows].join("\r\n");
 }
 
-export function toMarkdown(items: ExportItem[]): string {
+export function toMarkdown(items: ExportItem[], views: ConferenceViews): string {
   const byDate = new Map<string, ExportItem[]>();
   items.forEach((it) => {
     const arr = byDate.get(it.date);
     if (arr) arr.push(it);
     else byDate.set(it.date, [it]);
   });
-  let out = `# 我的日程 · ${conference.name.zh}\n\n> 共 ${items.length} 场\n`;
+  let out = `# 我的日程 · ${views.conference.name.zh}\n\n> 共 ${items.length} 场\n`;
   for (const [date, list] of byDate) {
     out += `\n## ${date}\n\n`;
     for (const it of list) {
@@ -253,18 +245,20 @@ function icsFold(line: string): string {
   return parts.join("\r\n ");
 }
 
-export function toICS(items: ExportItem[], stampISO: string): string {
+export function toICS(items: ExportItem[], stampISO: string, views: ConferenceViews): string {
   const stamp = stampISO.replace(/[-:]/g, "").replace(/\.\d+Z$/, "Z");
+  const confId = views.conference.id;
+  const prodName = views.conference.name.en || views.conference.name.zh;
   const lines: string[] = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//conf-scheduler//CCF Chip 2026//ZH",
+    `PRODID:-//conf-scheduler//${prodName}//ZH`,
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
   ];
   for (const it of items) {
     lines.push("BEGIN:VEVENT");
-    lines.push(`UID:${it.uid}@ccfchip2026`);
+    lines.push(`UID:${it.uid}@${confId}`);
     lines.push(`DTSTAMP:${stamp}`);
     if (it.start && it.date) {
       lines.push(`DTSTART:${icsDateTime(it.date, it.start)}`);

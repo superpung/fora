@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Icon from "./Icon";
 import { useFollow } from "../lib/follow-store";
+import { useConference } from "../lib/conference-store";
 import {
   collectFollowedItems,
   exportFilename,
@@ -22,6 +23,7 @@ const FORMATS: { key: ExportFormat; label: string; icon: "calendar" | "file" }[]
 
 export default function ExportMenu() {
   const { forums, speakers, talks } = useFollow();
+  const views = useConference();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -36,20 +38,20 @@ export default function ExportMenu() {
 
   const run = (fmt: ExportFormat) => {
     const snapshot = { forums, speakers, talks };
-    const items = collectFollowedItems(snapshot);
+    const items = collectFollowedItems(snapshot, views);
     setOpen(false);
     if (!items.length) return;
     const now = new Date().toISOString();
     if (fmt === "ics")
-      download(exportFilename(items, "ics"), toICS(items, now), "text/calendar;charset=utf-8");
+      download(exportFilename(items, "ics", views), toICS(items, now, views), "text/calendar;charset=utf-8");
     else if (fmt === "csv")
-      download(exportFilename(items, "csv"), toCSV(items), "text/csv;charset=utf-8");
+      download(exportFilename(items, "csv", views), toCSV(items), "text/csv;charset=utf-8");
     else if (fmt === "md")
-      download(exportFilename(items, "md"), toMarkdown(items), "text/markdown;charset=utf-8");
+      download(exportFilename(items, "md", views), toMarkdown(items, views), "text/markdown;charset=utf-8");
     else
       download(
-        exportFilename(items, "json"),
-        toFollowJSON(snapshot, now),
+        exportFilename(items, "json", views),
+        toFollowJSON(snapshot, now, views),
         "application/json;charset=utf-8",
       );
   };

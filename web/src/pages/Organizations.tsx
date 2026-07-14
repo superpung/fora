@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { conference } from "../lib/data";
+import { useConference } from "../lib/conference-store";
 import { pageVariants } from "../lib/motion";
 import Reveal from "../components/Reveal";
 import Icon from "../components/Icon";
@@ -15,6 +15,7 @@ const ROLE_LABEL: Record<string, string> = {
 const ROLE_ORDER = ["host", "co_host", "support", "sponsor"];
 
 export default function Organizations() {
+  const { id: confId, conference } = useConference();
   const orgs = conference.organizations ?? [];
   const grouped: Record<string, Organization[]> = {};
   for (const o of orgs) (grouped[o.role] ??= []).push(o);
@@ -62,7 +63,7 @@ export default function Organizations() {
           <h3 className="orgcol__title">企业 / 实验室专场</h3>
           <div className="sponsorwrap">
             {sponsoredForums.map((f) => (
-              <Link key={f.code} to={`/forum/${f.code}`} className="sponsorcard">
+              <Link key={f.code} to={`/${confId}/forum/${f.code}`} className="sponsorcard">
                 <span className="sponsorcard__name">{f.sponsor}</span>
                 <span className="sponsorcard__forum">
                   {f.code} · {f.title.zh}

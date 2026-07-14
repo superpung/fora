@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
-import { conference } from "../lib/data";
+import { useConference } from "../lib/conference-store";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Reveal from "../components/Reveal";
 import Icon from "../components/Icon";
 import Avatar from "../components/Avatar";
 
 export default function Committee() {
+  const { conference } = useConference();
   const committees = conference.committees ?? [];
   return (
     <motion.div
