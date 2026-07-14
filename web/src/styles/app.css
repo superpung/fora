@@ -256,9 +256,11 @@ svg { display: block; }
 .daytabs {
   display: flex; gap: 2px; margin-bottom: 8px; border-bottom: 1px solid var(--border);
   position: sticky; top: var(--nav-h); z-index: 20; background: var(--bg);
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
 }
+.daytabs::-webkit-scrollbar { display: none; }
 .daytab {
-  position: relative; border: none; background: transparent; color: var(--fg-secondary);
+  position: relative; flex: 0 0 auto; border: none; background: transparent; color: var(--fg-secondary);
   padding: 12px 14px; display: flex; align-items: baseline; gap: 6px;
   white-space: nowrap; border-bottom: 2px solid transparent; transition: color 0.15s, border-color 0.15s;
 }
@@ -294,6 +296,9 @@ svg { display: block; }
 .breakrow .time { color: var(--fg-muted); }
 .breakrow__label { display: inline-flex; align-items: center; gap: 6px; }
 .breakrow--forums { border-bottom: 1px solid var(--border); }
+/* Tea breaks inside the keynotes list sit within .talklist's 16px padding; pull
+   them back out so the band spans the full card width, flush with both borders. */
+.talklist .breakrow { margin-left: -16px; margin-right: -16px; }
 
 .forumgrid { }
 .forumcard {
