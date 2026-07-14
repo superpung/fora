@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { speakerList, formatDate, periodLabel, type SpeakerAgg, type SpeakerTalk } from "../lib/data";
-import { useFollow } from "../lib/follow";
+import { useFollow } from "../lib/follow-store";
 import { pageVariants } from "../lib/motion";
 import Icon from "../components/Icon";
 import Avatar from "../components/Avatar";
@@ -127,7 +127,8 @@ export default function Speakers() {
         if (onlyFollowed && !isSpeaker(s.name)) return false;
         return true;
       }),
-    [q, onlyFollowed, followedSpeakers, isSpeaker],
+    // isSpeaker changes whenever the followed set changes, so it's sufficient.
+    [q, onlyFollowed, isSpeaker],
   );
 
   return (

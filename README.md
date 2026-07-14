@@ -15,16 +15,19 @@
 schema/schema.json          自建 JSON Schema (draft 2020-12)
 data/
   ccfchip2026.json          ★ 完整数据集（符合 schema，已校验通过）
-  forums_detail/CF01.json   已视觉解析的论坛详情（逐步补全 CF02–CF48）
+  forums_detail/CFxx.json   已视觉解析的论坛详情（CF01–CF48，仅 CF10 源海报缺失）
 source/
   SITE_ANALYSIS.md          官网结构逆向分析（数据源/接口/信息组织）
   fetch_all.py              抓取全站 78 栏目 + 76 资源 -> raw/
   extract_structured.py     抽取结构化内容(委员/赞助/文本/论坛映射) -> extracted/
   slice_poster.py           论坛超长海报切片，便于逐块视觉解析
-  build_dataset.py          装配 data/ccfchip2026.json
+  batch_slice.py            批量切片多张论坛海报
+  build_dataset.py          装配 data/ccfchip2026.json（同时写 web/src/data/conference.json）
   validate.py               用 schema 校验数据
   raw/                      原始落盘：api/channels/*.json, images/, files/, manifest.json
   extracted/               结构化中间产物
+web/
+  src/data/conference.json  ← 由 build_dataset.py 生成，前端唯一数据源（勿手改）
 ```
 
 ## 复现
@@ -32,10 +35,13 @@ source/
 cd source
 python3 fetch_all.py          # 抓取（已完成，产物在 raw/）
 python3 extract_structured.py # 抽取结构化内容
-python3 build_dataset.py      # 生成 data/ccfchip2026.json
+python3 build_dataset.py      # 生成 data/ccfchip2026.json + web/src/data/conference.json
 python3 validate.py           # 校验（需 pip install jsonschema）
 ```
+`build_dataset.py` 会把数据集同时写入 `data/` 与 `web/src/data/`，两份内容始终一致，无需手工同步。
+输出是**确定性**的：源数据不变则重跑产物字节一致（`extraction.content_sha256` 为内容指纹；
+设置 `SOURCE_DATE_EPOCH` 时才写入真实时间戳 `generated_at`）。
 
 ## 抽取状态
 - 会议元数据 / 多场地 / 主承协办 / 主席团 keynote / 4 天时段块 / 48 论坛总览元数据 / 51 位委员：**完整**。
-- 论坛内部报告：CF01 **完整**（5 报告 + 2 主席）；CF02–CF48 待逐张海报视觉解析（管线已就绪）。
+- 论坛内部报告：**47/48 已视觉解析**（334 位讲者/主席）；仅 **CF10** 因源海报缺失留空（UI 显示「详情待补」）。

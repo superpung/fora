@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useParams, Link, useLocation } from "react-router-dom";
 import { getForum, formatDate, periodLabel } from "../lib/data";
-import { useFollow, talkId } from "../lib/follow";
+import { useFollow, talkId } from "../lib/follow-store";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Icon from "../components/Icon";
 import Avatar from "../components/Avatar";
@@ -75,11 +75,18 @@ export default function ForumDetail() {
     if (!hash.startsWith("#talk-")) return;
     const el = document.getElementById(hash.slice(1));
     if (!el) return;
-    const id = requestAnimationFrame(() => {
+    const raf = requestAnimationFrame(() => {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
       el.classList.add("talk--highlight");
     });
-    return () => cancelAnimationFrame(id);
+    // fade the highlight out again so it reads as a transient cue, not a
+    // permanent state stuck on whichever talk was last deep-linked.
+    const timer = setTimeout(() => el.classList.remove("talk--highlight"), 2400);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(timer);
+      el.classList.remove("talk--highlight");
+    };
   }, [hash, forum]);
 
   if (!forum) {
