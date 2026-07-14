@@ -1,9 +1,8 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
-import ScrollToTop from "./components/ScrollToTop";
+import ScrollManager from "./components/ScrollManager";
 
 // Route-level code splitting: each page ships as its own chunk so the initial
 // download is just the shell (nav/footer/router), not every page at once.
@@ -18,20 +17,21 @@ export default function App() {
   const location = useLocation();
   return (
     <>
-      <ScrollToTop />
+      <ScrollManager />
       <Nav />
       <main>
+        {/* key by pathname so each page remounts and plays its enter animation;
+            no AnimatePresence — route-level exit stacks pages and deadlocks on
+            #hash navigation (see motion.ts pageVariants). */}
         <Suspense fallback={null}>
-          <AnimatePresence mode="wait">
-            <Routes location={location} key={location.pathname}>
-              <Route path="/" element={<Home />} />
-              <Route path="/schedule" element={<Schedule />} />
-              <Route path="/speakers" element={<Speakers />} />
-              <Route path="/forum/:code" element={<ForumDetail />} />
-              <Route path="/committee" element={<Committee />} />
-              <Route path="/organizations" element={<Organizations />} />
-            </Routes>
-          </AnimatePresence>
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<Home />} />
+            <Route path="/schedule" element={<Schedule />} />
+            <Route path="/speakers" element={<Speakers />} />
+            <Route path="/forum/:code" element={<ForumDetail />} />
+            <Route path="/committee" element={<Committee />} />
+            <Route path="/organizations" element={<Organizations />} />
+          </Routes>
         </Suspense>
       </main>
       <Footer />
