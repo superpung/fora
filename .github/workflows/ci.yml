@@ -24,9 +24,9 @@ jobs:
         # stale / was hand-edited — fail so the two can never silently drift.
         run: |
           uv run python source/build_dataset.py
-          if ! git diff --quiet -- data/ccfchip2026.json web/src/data/conference.json; then
+          if ! git diff --quiet -- data/ 'web/src/data/conferences/' web/src/data/manifest.json; then
             echo "::error::Dataset out of sync — run 'python source/build_dataset.py' and commit the result."
-            git --no-pager diff -- data/ccfchip2026.json web/src/data/conference.json
+            git --no-pager diff -- data/ 'web/src/data/conferences/' web/src/data/manifest.json
             exit 1
           fi
 
