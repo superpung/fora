@@ -2,14 +2,14 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://conf-scheduler/schema/conference.json",
   "title": "Conference Agenda (self-designed)",
-  "description": "本项目自建的会议议程通用模型。不兼容/不映射任何现成格式(pretalx/frab/pentabarf)，完全依据真实会议(CCF Chip 2026)的结构设计。核心：会议→天→时段块→论坛→报告 的多层结构；论坛为一等实体；报告允许无独立时间；广泛支持双语与TBD状态。",
+  "description": "This project's self-designed, general conference-agenda model. Not compatible with / mapped to any existing format (pretalx / frab / pentabarf). Core: conference -> day -> time block -> forum -> talk; a forum is a first-class entity; a talk may have no time of its own; bilingual and TBD states are supported throughout. The model is a stable core plus an open `extra` escape hatch at each level: when a conference has something the core does not model, it is captured faithfully under `extra` (and/or `flags`) rather than forced into an ill-fitting field or dropped. First-class fields are added by additive schema evolution once a concept recurs.",
   "type": "object",
   "required": ["id", "name", "start_date", "end_date"],
   "properties": {
-    "id": { "type": "string", "description": "会议唯一短标识，如 ccfchip2026" },
+    "id": { "type": "string", "description": "Unique short conference id, e.g. ccfchip2026" },
     "source_url": { "type": "string" },
-    "name": { "$ref": "#/$defs/i18n", "description": "会议名称（中英）" },
-    "edition": { "type": "string", "description": "届次，如 第三届" },
+    "name": { "$ref": "#/$defs/i18n", "description": "Conference name (zh/en)" },
+    "edition": { "type": "string", "description": "Edition, e.g. 第三届" },
     "start_date": { "type": "string", "format": "date" },
     "end_date": { "type": "string", "format": "date" },
     "timezone": { "type": "string", "default": "Asia/Shanghai" },
@@ -20,7 +20,7 @@
     },
     "links": {
       "type": "object",
-      "description": "官网/注册/酒店等入口",
+      "description": "Entry points: official site / registration / hotel, etc.",
       "additionalProperties": { "type": "string" }
     },
     "venues": { "type": "array", "items": { "$ref": "#/$defs/venue" } },
@@ -29,16 +29,17 @@
     "days": { "type": "array", "items": { "$ref": "#/$defs/day" } },
     "forums": {
       "type": "array",
-      "description": "所有技术论坛（一等实体）。schedule 中的 forum_block 通过 code 引用它们。",
+      "description": "All technical forums (first-class entities). A schedule's forum block references them by code.",
       "items": { "$ref": "#/$defs/forum" }
     },
-    "extraction": { "$ref": "#/$defs/extraction_meta" }
+    "extraction": { "$ref": "#/$defs/extraction_meta" },
+    "extra": { "$ref": "#/$defs/extra" }
   },
   "additionalProperties": false,
 
   "$defs": {
     "i18n": {
-      "description": "双语文本；zh 必填，en 可选。",
+      "description": "Bilingual text; zh is required, en is optional.",
       "type": "object",
       "required": ["zh"],
       "properties": {
@@ -48,14 +49,20 @@
       "additionalProperties": false
     },
 
+    "extra": {
+      "description": "Escape hatch for conference-specific data the core model does not (yet) represent. An open object: record such data faithfully here instead of forcing it into an ill-fitting field or dropping it. Recurring keys are candidates to promote to first-class fields by additive schema evolution.",
+      "type": "object",
+      "additionalProperties": true
+    },
+
     "status": {
-      "description": "字段确定状态：confirmed=已定；tbd=待定(源标注如“待确认/待定”)；unknown=源未提供。",
+      "description": "Field certainty: confirmed = fixed; tbd = the source marks it pending (e.g. 待确认/待定); unknown = the source did not provide it.",
       "type": "string",
       "enum": ["confirmed", "tbd", "unknown"]
     },
 
     "asset": {
-      "description": "本地已下载的资源引用。",
+      "description": "Reference to a locally downloaded asset.",
       "type": "object",
       "properties": {
         "local_path": { "type": ["string", "null"] },
@@ -72,50 +79,54 @@
         "name": { "$ref": "#/$defs/i18n" },
         "type": { "type": "string", "enum": ["main", "hotel", "other"], "default": "main" },
         "city": { "type": "string" },
-        "note": { "type": "string" }
+        "note": { "type": "string" },
+        "extra": { "$ref": "#/$defs/extra" }
       },
       "additionalProperties": false
     },
 
     "organization": {
-      "description": "主办/承办/协办/赞助单位。",
+      "description": "Host / co-host / supporter / sponsor organization.",
       "type": "object",
       "required": ["name", "role"],
       "properties": {
         "name": { "$ref": "#/$defs/i18n" },
         "role": { "type": "string", "enum": ["host", "co_host", "support", "sponsor"] },
-        "sponsor_tier": { "type": ["string", "null"], "description": "赞助档位，如 金钻/钻石/铂金/黄金/白银" },
-        "logo": { "$ref": "#/$defs/asset" }
+        "sponsor_tier": { "type": ["string", "null"], "description": "Sponsorship tier, e.g. 金钻/钻石/铂金/黄金/白银" },
+        "logo": { "$ref": "#/$defs/asset" },
+        "extra": { "$ref": "#/$defs/extra" }
       },
       "additionalProperties": false
     },
 
     "person": {
-      "description": "人物。affiliation_raw 保留源上的“单位+职称”原文；可选拆解为结构化字段。",
+      "description": "A person. affiliation_raw keeps the source's 'affiliation + title' verbatim; it may optionally be split into structured fields.",
       "type": "object",
       "required": ["name"],
       "properties": {
         "name": { "type": "string" },
         "name_en": { "type": ["string", "null"] },
-        "affiliation_raw": { "type": ["string", "null"], "description": "如 “南京邮电大学 教授”“中国科学院院士 深圳大学讲席教授”" },
+        "affiliation_raw": { "type": ["string", "null"], "description": "e.g. 南京邮电大学 教授 / 中国科学院院士 深圳大学讲席教授" },
         "organization": { "type": ["string", "null"] },
-        "title": { "type": ["string", "null"], "description": "职称，如 教授/研究员/CEO" },
-        "honorifics": { "type": "array", "items": { "type": "string" }, "description": "如 院士/IEEE Fellow" },
+        "title": { "type": ["string", "null"], "description": "Academic/role title, e.g. 教授/研究员/CEO" },
+        "honorifics": { "type": "array", "items": { "type": "string" }, "description": "e.g. 院士/IEEE Fellow" },
         "photo": { "$ref": "#/$defs/asset" },
         "bio": { "type": ["string", "null"] },
-        "chair_role": { "type": ["string", "null"], "description": "当作为论坛主席时的角色，如 论坛主席/共同主席" }
+        "chair_role": { "type": ["string", "null"], "description": "Role when acting as a forum chair, e.g. 论坛主席/共同主席" },
+        "extra": { "$ref": "#/$defs/extra" }
       },
       "additionalProperties": false
     },
 
     "committee": {
-      "description": "一个委员会/角色组，如 大会主席、程序委员会主席、大会指导委员会。",
+      "description": "A committee / role group, e.g. 大会主席, 程序委员会主席, 大会指导委员会.",
       "type": "object",
       "required": ["role", "members"],
       "properties": {
         "role": { "$ref": "#/$defs/i18n" },
-        "ordering_note": { "type": ["string", "null"], "description": "如 “按拼音排序”" },
-        "members": { "type": "array", "items": { "$ref": "#/$defs/person" } }
+        "ordering_note": { "type": ["string", "null"], "description": "e.g. 按拼音排序" },
+        "members": { "type": "array", "items": { "$ref": "#/$defs/person" } },
+        "extra": { "$ref": "#/$defs/extra" }
       },
       "additionalProperties": false
     },
@@ -127,7 +138,7 @@
         "date": { "type": "string", "format": "date" },
         "venue_id": { "type": ["string", "null"] },
         "overview": {
-          "description": "总览矩阵里该天 上午/下午/晚上 的粗粒度标签（展示用，冗余可推导）。",
+          "description": "Coarse morning/afternoon/evening labels for this day in the overview matrix (display-only, derivable/redundant).",
           "type": "object",
           "properties": {
             "morning": { "type": "array", "items": { "type": "string" } },
@@ -136,13 +147,14 @@
           },
           "additionalProperties": false
         },
-        "blocks": { "type": "array", "items": { "$ref": "#/$defs/block" } }
+        "blocks": { "type": "array", "items": { "$ref": "#/$defs/block" } },
+        "extra": { "$ref": "#/$defs/extra" }
       },
       "additionalProperties": false
     },
 
     "block": {
-      "description": "一天内的一个时段块。kind 决定其载荷字段。",
+      "description": "A time block within a day. kind determines which payload fields apply.",
       "type": "object",
       "required": ["kind"],
       "properties": {
@@ -152,12 +164,12 @@
           "enum": ["registration", "keynotes", "forums", "break", "banquet", "committee_meetings", "other"]
         },
         "title": { "$ref": "#/$defs/i18n" },
-        "start": { "type": ["string", "null"], "description": "HH:MM，可空（如仅时段）" },
+        "start": { "type": ["string", "null"], "description": "HH:MM, may be null (e.g. period-only)" },
         "end": { "type": ["string", "null"] },
-        "location": { "type": ["string", "null"], "description": "会议室/地点，如 太湖厅AB、大会推荐酒店" },
+        "location": { "type": ["string", "null"], "description": "Room/location, e.g. 太湖厅AB, 大会推荐酒店" },
         "note": { "type": ["string", "null"] },
         "breaks": {
-          "description": "块内茶歇等（含起止）。",
+          "description": "In-block breaks such as tea breaks (with start/end).",
           "type": "array",
           "items": {
             "type": "object",
@@ -170,12 +182,12 @@
           }
         },
         "talks": {
-          "description": "kind=keynotes 时的主旨报告序列（此层报告通常有独立时间）。",
+          "description": "The keynote sequence when kind=keynotes (talks at this level usually have their own time).",
           "type": "array",
           "items": { "$ref": "#/$defs/talk" }
         },
         "forum_entries": {
-          "description": "kind=forums 时，并行论坛与其会议室的列表（引用 forums[].code）。",
+          "description": "When kind=forums, the parallel forums and their rooms (references forums[].code).",
           "type": "array",
           "items": {
             "type": "object",
@@ -188,7 +200,7 @@
           }
         },
         "meetings": {
-          "description": "kind=committee_meetings 时的并行会议（各自时间/会议室）。",
+          "description": "When kind=committee_meetings, the parallel meetings (each with its own time/room).",
           "type": "array",
           "items": {
             "type": "object",
@@ -201,20 +213,21 @@
             },
             "additionalProperties": false
           }
-        }
+        },
+        "extra": { "$ref": "#/$defs/extra" }
       },
       "additionalProperties": false
     },
 
     "forum": {
-      "description": "技术论坛（一等实体）。内部报告(talks)通常无独立时间，仅继承所属 forum_block 的时间窗。",
+      "description": "A technical forum (first-class entity). Its talks usually have no time of their own and inherit the enclosing forum block's time window (but a talk may carry its own start/end).",
       "type": "object",
       "required": ["code", "title"],
       "properties": {
-        "code": { "type": "string", "description": "如 CF01" },
+        "code": { "type": "string", "description": "e.g. CF01" },
         "title": { "$ref": "#/$defs/i18n" },
-        "sponsor": { "type": ["string", "null"], "description": "专场赞助商，如 知存科技/阿里巴巴达摩院" },
-        "series_part": { "type": ["string", "null"], "description": "系列分场标记，如 “（一）/（二）”" },
+        "sponsor": { "type": ["string", "null"], "description": "Session sponsor, e.g. 知存科技/阿里巴巴达摩院" },
+        "series_part": { "type": ["string", "null"], "description": "Series-part marker, e.g. （一）/（二）" },
         "day_date": { "type": ["string", "null"], "format": "date" },
         "session_period": { "type": ["string", "null"], "enum": ["morning", "afternoon", "evening", null] },
         "room": { "type": ["string", "null"] },
@@ -225,25 +238,26 @@
         },
         "talks": { "type": "array", "items": { "$ref": "#/$defs/talk" } },
         "poster": { "anyOf": [{ "$ref": "#/$defs/asset" }, { "type": "null" }] },
-        "source_url": { "type": ["string", "null"], "description": "官网该论坛文章页 URL（general_NNNN）" },
-        "detail_extracted": { "type": "boolean", "description": "海报是否已完成视觉解析" },
+        "source_url": { "type": ["string", "null"], "description": "Official article-page URL for this forum (e.g. general_NNNN)" },
+        "detail_extracted": { "type": "boolean", "description": "Whether the forum's details have been extracted" },
         "flags": {
           "type": "array",
           "items": { "type": "string" },
-          "description": "论坛级数据标注（如源材料间的名称不一致），如实记录不擅自修正"
-        }
+          "description": "Forum-level data annotations (e.g. inconsistent names across sources), recorded faithfully and not silently corrected"
+        },
+        "extra": { "$ref": "#/$defs/extra" }
       },
       "additionalProperties": false
     },
 
     "talk": {
-      "description": "一场报告。用于主旨报告(有时间)与论坛报告(通常无时间)。",
+      "description": "A single talk. Used for keynotes (timed) and forum talks (usually untimed).",
       "type": "object",
       "properties": {
         "order": { "type": ["integer", "null"] },
         "title": { "$ref": "#/$defs/i18n" },
         "title_status": { "$ref": "#/$defs/status" },
-        "start": { "type": ["string", "null"], "description": "HH:MM，论坛内报告一般为 null" },
+        "start": { "type": ["string", "null"], "description": "HH:MM; usually null for talks inside a forum" },
         "end": { "type": ["string", "null"] },
         "speakers": { "type": "array", "items": { "$ref": "#/$defs/person" } },
         "abstract": { "type": ["string", "null"] },
@@ -252,8 +266,9 @@
         "flags": {
           "type": "array",
           "items": { "type": "string" },
-          "description": "数据异常标记，如 “title_abstract_mismatch”（源海报题目与摘要疑似不一致）"
-        }
+          "description": "Data-anomaly markers, e.g. title_abstract_mismatch (source title and abstract appear inconsistent)"
+        },
+        "extra": { "$ref": "#/$defs/extra" }
       },
       "additionalProperties": false
     },
