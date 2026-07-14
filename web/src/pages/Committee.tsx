@@ -3,6 +3,7 @@ import { conference } from "../lib/data";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Reveal from "../components/Reveal";
 import Icon from "../components/Icon";
+import Avatar from "../components/Avatar";
 
 export default function Committee() {
   const committees = conference.committees ?? [];
@@ -46,10 +47,13 @@ export default function Committee() {
             >
               {c.members.map((m, i) => (
                 <motion.div key={i} variants={riseItem} className="member">
-                  <div className="member__name">{m.name}</div>
-                  {m.affiliation_raw && (
-                    <div className="member__aff">{m.affiliation_raw}</div>
-                  )}
+                  <Avatar person={m} size={34} />
+                  <div className="member__info">
+                    <div className="member__name">{m.name}</div>
+                    {m.affiliation_raw && (
+                      <div className="member__aff">{m.affiliation_raw}</div>
+                    )}
+                  </div>
                 </motion.div>
               ))}
             </motion.div>
