@@ -4,6 +4,26 @@ All notable changes to this project. The project is unversioned (no release
 tags yet), so entries are grouped by date, newest first. Written in English per
 the repository language rule (see AGENTS.md).
 
+## 2026-07-14 — UI optimization, round 5 (review feedback)
+
+### Added
+- **Import a saved agenda.** A new "导入" control on the dashboard reads a JSON
+  backup and merges its follows into the current agenda (available even with no
+  follows yet). Export gained a matching **JSON backup** format. JSON is the only
+  round-trippable format: the calendar/spreadsheet/markdown exports list resolved
+  talks and can't say whether a talk was followed directly, via its forum, or via
+  a speaker. Imports are rejected if the file names a different conference.
+
+### Changed
+- **Namespaced storage keys.** This site can host several conferences, so all
+  per-conference state is now keyed under the conference id
+  (`ccfchip2026:followed.*`) instead of a hard-coded `ccfchip.*` prefix; existing
+  data is migrated on first load. (Theme stays a site-wide preference.)
+- **Forum page header:** the code / room / date / period meta moved *below* the
+  title, and the top "返回日程面板" back button was removed (the nav already links
+  back). The timeline forum cards already put this meta beside the title, so they
+  were left as-is.
+
 ## 2026-07-14 — UI optimization, round 4 (review feedback)
 
 ### Added
