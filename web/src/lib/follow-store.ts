@@ -1,5 +1,4 @@
 import { createContext, useContext } from "react";
-import conferenceData from "../data/conference.json";
 
 // Personal-agenda state helpers, context and hook. Kept in a component-free
 // module so the provider file (follow.tsx) exports only a component and stays
@@ -7,13 +6,22 @@ import conferenceData from "../data/conference.json";
 // reloads. Speakers are keyed by name (the dataset has no stable person id);
 // collisions are rare and acceptable for a "follow" convenience feature.
 
-// This site can host several conferences, so every persisted key is namespaced
-// under the conference id — otherwise two conferences' agendas would collide in
-// the same localStorage. (Site-wide preferences like theme stay un-namespaced.)
-const NS = (conferenceData as { id?: string }).id || "conf";
-export const FORUMS_KEY = `${NS}:followed.forums`;
-export const SPEAKERS_KEY = `${NS}:followed.speakers`;
-export const TALKS_KEY = `${NS}:followed.talks`;
+// This site hosts several conferences, so every persisted key is namespaced
+// under the active conference id — otherwise two conferences' agendas would
+// collide in the same localStorage. (Site-wide preferences like theme stay
+// un-namespaced.) The provider builds these keys from the current conference id.
+export interface FollowKeys {
+  forums: string;
+  speakers: string;
+  talks: string;
+}
+export function followKeys(confId: string): FollowKeys {
+  return {
+    forums: `${confId}:followed.forums`,
+    speakers: `${confId}:followed.speakers`,
+    talks: `${confId}:followed.talks`,
+  };
+}
 
 // A talk has no stable id in the dataset, so we key it by its forum code plus
 // its index within that forum: `${code}#${index}`.

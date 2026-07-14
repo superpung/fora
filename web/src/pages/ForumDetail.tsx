@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useParams, Link, useLocation, useNavigate } from "react-router-dom";
-import { getForum, formatDate, periodLabel, officialAssetUrl } from "../lib/data";
+import { formatDate, periodLabel } from "../lib/data";
+import { useConference } from "../lib/conference-store";
 import { useFollow, talkId } from "../lib/follow-store";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Icon from "../components/Icon";
@@ -64,6 +65,7 @@ function PersonLine({ p, role, avatarSize = 40 }: { p: Person; role?: string; av
 }
 
 export default function ForumDetail() {
+  const { id: confId, getForum, officialAssetUrl } = useConference();
   const { code } = useParams();
   const { hash } = useLocation();
   const navigate = useNavigate();
@@ -103,7 +105,7 @@ export default function ForumDetail() {
     return (
       <div className="container section">
         <p>未找到论坛 {code}。</p>
-        <Link to="/schedule" className="linkbtn">返回日程</Link>
+        <Link to={`/${confId}/schedule`} className="linkbtn">返回日程</Link>
       </div>
     );
   }
