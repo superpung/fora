@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""从已抓取的栏目 JSON 中抽取【结构化/文本】内容（非海报图部分），落盘到 extracted/。
-海报类(CF论坛)只输出 图片映射，供后续视觉读取。"""
+"""Extract structured / text content (the non-poster-image parts) from the
+crawled channel JSON, writing to extracted/. Poster-based channels (CF forums)
+only emit an image map, for later visual reading."""
 import json, re, html, pathlib, ast
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -42,7 +43,8 @@ def imgs_in(body):
 
 
 def parse_file_field(v):
-    """FILE_ 字段是被截断/转义的伪 JSON，尽量取出附件ID/文件名。"""
+    """The FILE_ field is truncated / escaped pseudo-JSON; best-effort extract
+    the attachment id / filename."""
     if not v:
         return []
     try:
@@ -51,7 +53,7 @@ def parse_file_field(v):
         return [{"raw": v[:120]}]
 
 
-# ---- 1. 组织机构 / 程序委员会等人员类 (ZZJG 模板: NAME_INFO/MAIN_INFO) ----
+# ---- 1. Org / program-committee people (ZZJG template: NAME_INFO/MAIN_INFO) ----
 PEOPLE_SUPERS = set()
 for c in chans:
     if c["name"] in ("组织机构",):
@@ -75,9 +77,10 @@ for c in chans:
 (OUT / "people.json").write_text(json.dumps(people, ensure_ascii=False, indent=2))
 print("people roles:", len(people), "total persons:", sum(len(v) for v in people.values()))
 
-# ---- 2. 纯文本类栏目 (会议介绍/程序委员会/论文征集/技术论坛intro/邀请函/住宿/赞助) ----
-# 不同模板字段名不同(MAIN_BODY / INTRODUCTION / INTRODUCTION_SHORT / LINK_CONTENT ...)
-# 通用做法: 收集文章里所有"看起来像正文"的字段
+# ---- 2. Plain-text channels (intro / program committee / call for papers /
+#         technical-forum intro / invitation / accommodation / sponsorship) ----
+# Field names vary by template (MAIN_BODY / INTRODUCTION / INTRODUCTION_SHORT /
+# LINK_CONTENT ...); the general approach is to collect every "body-like" field.
 HTML_FIELDS = ("MAIN_BODY", "INTRODUCTION", "INTRODUCTION_SHORT",
                "ADDRESS_CONTENT", "LINK_CONTENT", "CONTENT", "MAIN_INFO")
 texts = {}
@@ -101,7 +104,7 @@ for name in ["会议介绍", "程序委员会", "论文征集", "技术论坛", 
 (OUT / "texts.json").write_text(json.dumps(texts, ensure_ascii=False, indent=2))
 print("text channels:", list(texts.keys()))
 
-# ---- 3. 合作单位 / 赞助 (可能含 NAME_INFO 或 logo 图) ----
+# ---- 3. Partners / sponsors (may carry NAME_INFO or a logo image) ----
 sponsors = {}
 for c in chans:
     if c["super"] and any(p["name"] == "合作单位" for p in by_name.get("合作单位", []) if p["id"] == c["super"]):
@@ -118,7 +121,7 @@ for c in chans:
 (OUT / "sponsors.json").write_text(json.dumps(sponsors, ensure_ascii=False, indent=2))
 print("sponsor tiers:", list(sponsors.keys()))
 
-# ---- 4. CF 论坛海报图映射 ----
+# ---- 4. CF forum poster-image map ----
 forums = []
 for c in sorted([c for c in chans if re.fullmatch(r"CF\d+", c["name"])],
                 key=lambda c: c["name"]):

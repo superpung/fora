@@ -20,7 +20,7 @@ export default function Organizations() {
   const grouped: Record<string, Organization[]> = {};
   for (const o of orgs) (grouped[o.role] ??= []).push(o);
 
-  // 赞助专场（来自论坛 sponsor 字段）
+  // Sponsored sessions (from each forum's sponsor field).
   const sponsoredForums = (conference.forums ?? []).filter((f) => f.sponsor);
 
   return (

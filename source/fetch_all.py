@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""抓取 CCF Chip 2026 (ccf.org.cn/ccfchip2026) 全站栏目内容并落盘。
+"""Crawl all channel content of CCF Chip 2026 (ccf.org.cn/ccfchip2026) to disk.
 
-数据来源（jsonp 接口，需带 Referer 到会议页）：
-  1. getMeetingIdByMeetingShort.action  短名 -> meetingId
-  2. api/show.action code=api_channel    -> 栏目树
-  3. api/newsAll.action channelId=<id>   -> 该栏目文章(含 MAIN_BODY 富文本)
+Data sources (jsonp APIs, require a Referer to the conference page):
+  1. getMeetingIdByMeetingShort.action  short name -> meetingId
+  2. api/show.action code=api_channel    -> channel tree
+  3. api/newsAll.action channelId=<id>   -> articles for that channel (incl. the
+                                            MAIN_BODY rich text)
 """
 import json, re, time, urllib.parse, urllib.request, pathlib, sys
 

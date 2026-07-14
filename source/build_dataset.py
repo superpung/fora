@@ -34,7 +34,7 @@ forum_imgs = {f["code"]: f for f in load(EXT / "forum_images.json")}
 # getShortUrl.action short-url table joined to each forum's channel id.
 forum_urls = load(EXT / "forum_source_urls.json")
 
-# ---------------- 会议元数据 ----------------
+# ---------------- conference metadata ----------------
 conf = {
     "id": "ccfchip2026",
     "source_url": "https://ccf.org.cn/ccfchip2026",
@@ -51,7 +51,7 @@ conf = {
     ],
 }
 
-# ---------------- 组织单位 ----------------
+# ---------------- organizations ----------------
 conf["organizations"] = [
     {"name": {"zh": "中国计算机学会", "en": None}, "role": "host", "sponsor_tier": None},
 ] + [
@@ -62,7 +62,7 @@ conf["organizations"] = [
     {"name": {"zh": n, "en": None}, "role": "support", "sponsor_tier": None}
     for n in ["东南大学", "江南大学"]
 ]
-# 赞助单位（按档位）
+# sponsors (by tier)
 for tier, items in sponsors_raw.items():
     for it in items:
         nm = it.get("name") or (it.get("text") or "").strip()
@@ -70,7 +70,7 @@ for tier, items in sponsors_raw.items():
             conf["organizations"].append(
                 {"name": {"zh": nm, "en": None}, "role": "sponsor", "sponsor_tier": tier})
 
-# ---------------- 委员会（51 人） ----------------
+# ---------------- committees (51 members) ----------------
 conf["committees"] = []
 for role, members in people.items():
     ordering = "按拼音排序" if "拼音" in role else None
@@ -85,7 +85,7 @@ for role, members in people.items():
         ],
     })
 
-# ---------------- 主旨报告 ----------------
+# ---------------- keynotes ----------------
 def kt(s, e, name, aff, title, honor=None, typ="keynote", status="confirmed"):
     sp = {"name": name, "affiliation_raw": aff, "honorifics": honor or []}
     return {"start": s, "end": e, "type": typ,
@@ -117,10 +117,10 @@ keynotes_0719 = [
        "Chips Z：2.5D/3D AI EDA+ 开启先进封装STCO系统协同新时代"),
 ]
 
-# ---------------- 48 论坛总览元数据 ----------------
+# ---------------- overview metadata for the 48 forums ----------------
 # (code, title, room, day, period, sponsor, series_part)
 FORUM_META = [
-    # 7/18 下午
+    # 7/18 afternoon
     ("CF37", "从Copilot到AI原生系统-迈向Agentic EDA的未来", "105A", "2026-07-18", "afternoon", None, None),
     ("CF17", "具身智能专用芯片论坛", "102A", "2026-07-18", "afternoon", None, None),
     ("CF34", "AI/LLM赋能的EDA仿真技术", "102B", "2026-07-18", "afternoon", None, None),
@@ -139,7 +139,7 @@ FORUM_META = [
     ("CF23", "芯片安全架构工程实现与应用论坛", "203C", "2026-07-18", "afternoon", None, None),
     ("CF10", "后量子密码应用论坛", "205A", "2026-07-18", "afternoon", None, None),
     ("CF44", "无线短距芯片论坛", "205B", "2026-07-18", "afternoon", "是德科技", None),
-    # 7/19 下午
+    # 7/19 afternoon
     ("CF26", "数据流计算：后GPU时代的智能计算新范式?", "102B", "2026-07-19", "afternoon", None, None),
     ("CF14", "中国密态计算论坛", "102C", "2026-07-19", "afternoon", None, None),
     ("CF38", "AI辅助的综合、物理设计和验证（一）", "103", "2026-07-19", "afternoon", None, "（一）"),
@@ -156,7 +156,7 @@ FORUM_META = [
     ("CF24", "量子计算芯片技术论坛", "203C", "2026-07-19", "afternoon", None, None),
     ("CF11", "大模型下半场：面向高效推理的软硬件协同优化", "205A", "2026-07-19", "afternoon", None, None),
     ("CF41", "openDACS V5.0 开源EDA版本发布论坛", "205B", "2026-07-19", "afternoon", None, None),
-    # 7/20 上午
+    # 7/20 morning
     ("CF39", "AI辅助的综合、物理设计和验证（二）", "103", "2026-07-20", "morning", None, "（二）"),
     ("CF05", "人工智能赋能芯片设计新范式", "107A", "2026-07-20", "morning", None, None),
     ("CF09", "智算芯片与系统建模与优化", "107B", "2026-07-20", "morning", None, None),
@@ -174,7 +174,7 @@ FORUM_META = [
 ]
 assert len(FORUM_META) == 48, len(FORUM_META)
 
-# 载入已解析的论坛详情
+# load parsed forum details
 details = {}
 for p in glob.glob(str(DETAIL / "CF*.json")):
     d = load(p)
@@ -215,7 +215,7 @@ for code, title, room, day, period, sponsor, series in FORUM_META:
     })
 conf["forums"] = forums
 
-# ---------------- 排期（天→块） ----------------
+# ---------------- schedule (day -> block) ----------------
 def forum_entries(day, period):
     return [{"forum_code": c, "room": r}
             for (c, _t, r, d, p, _s, _se) in FORUM_META if d == day and p == period]
