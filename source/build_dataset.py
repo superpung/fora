@@ -309,38 +309,10 @@ for p in (out, web_out):
     p.write_text(payload_out)
     print("wrote", p)
 
-# Regenerate the web app's conference manifest from every per-conference file
-# present. The switcher and hub list conferences from this lightweight index
-# (a few KB) without loading any full dataset.
-manifest = []
-for cf in sorted(web_dir.glob("*.json")):
-    d = json.loads(cf.read_text())
-    venues = d.get("venues") or []
-    main_v = next((v for v in venues if v.get("type") == "main"), None) or (venues[0] if venues else {})
-    keynotes = sum(
-        1
-        for day in d.get("days", [])
-        for b in day.get("blocks", [])
-        if b.get("kind") == "keynotes"
-        for t in (b.get("talks") or [])
-        if t.get("type") == "keynote"
-    )
-    manifest.append({
-        "id": d["id"],
-        "name": d["name"],
-        "edition": d.get("edition"),
-        "start_date": d["start_date"],
-        "end_date": d["end_date"],
-        "city": (main_v or {}).get("city"),
-        "venue": ((main_v or {}).get("name") or {}).get("zh"),
-        "forums": len(d.get("forums", [])),
-        "keynotes": keynotes,
-        "days": len(d.get("days", [])),
-    })
-manifest.sort(key=lambda m: m["id"])  # deterministic; the UI sorts for display
-manifest_out = ROOT / "web" / "src" / "data" / "manifest.json"
-manifest_out.write_text(json.dumps(manifest, ensure_ascii=False, indent=2))
-print("wrote", manifest_out, f"({len(manifest)} conferences)")
+# Refresh the web app's conference manifest (shared, conference-agnostic step).
+from build_manifest import build_manifest, MANIFEST
+_entries = build_manifest()
+print("wrote", MANIFEST, f"({len(_entries)} conferences)")
 print("committees:", len(conf["committees"]),
       "| persons:", sum(len(c["members"]) for c in conf["committees"]))
 print("organizations:", len(conf["organizations"]))
