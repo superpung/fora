@@ -32,6 +32,7 @@ export type IconName =
   | "link"
   | "check"
   | "download"
+  | "upload"
   | "file"
   | "dot";
 
@@ -173,6 +174,12 @@ const PATHS: Record<IconName, ReactElement> = {
   download: (
     <>
       <path d="M12 3v12m0 0l4-4m-4 4l-4-4" />
+      <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
+    </>
+  ),
+  upload: (
+    <>
+      <path d="M12 15V3m0 0l4 4m-4-4l-4 4" />
       <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
     </>
   ),
