@@ -39,6 +39,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
+        with:
+          # package.json lives in web/, not the repo root the action defaults to
+          package_json_file: web/package.json
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
