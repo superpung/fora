@@ -225,6 +225,7 @@
         },
         "talks": { "type": "array", "items": { "$ref": "#/$defs/talk" } },
         "poster": { "anyOf": [{ "$ref": "#/$defs/asset" }, { "type": "null" }] },
+        "source_url": { "type": ["string", "null"], "description": "官网该论坛文章页 URL（general_NNNN）" },
         "detail_extracted": { "type": "boolean", "description": "海报是否已完成视觉解析" },
         "flags": {
           "type": "array",
