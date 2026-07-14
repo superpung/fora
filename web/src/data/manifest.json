@@ -1,0 +1,17 @@
+[
+  {
+    "id": "ccfchip2026",
+    "name": {
+      "zh": "第三届CCF芯片大会",
+      "en": "CCF Chip 2026"
+    },
+    "edition": "第三届",
+    "start_date": "2026-07-17",
+    "end_date": "2026-07-20",
+    "city": "无锡",
+    "venue": "无锡国际会议中心",
+    "forums": 48,
+    "keynotes": 12,
+    "days": 4
+  }
+]
