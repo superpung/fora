@@ -28,3 +28,6 @@
   "需要按时间线逐场浏览？前往完整日程。" — ship a button instead.
 - **Never stack text above a page's main title.** Supporting metadata (dates,
   location) goes *below* the title, not above it.
+- **No left-edge highlight bars.** Do not indicate an active/anchored/selected
+  item with a colored strip on its left edge (e.g. `box-shadow: inset 3px 0 0`).
+  Use a full-surface background tint (and/or an icon) instead.
