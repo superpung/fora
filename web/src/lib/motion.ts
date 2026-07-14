@@ -18,12 +18,12 @@ export const pageVariants: Variants = {
   },
 };
 
-// 交错容器
+// Stagger container.
 export const stagger = (delayChildren = 0.05, stagger = 0.06): Variants => ({
   animate: { transition: { delayChildren, staggerChildren: stagger } },
 });
 
-// 子项上浮
+// Child rise-up.
 export const riseItem: Variants = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0, transition: { duration: 0.55, ease: easeOut } },

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""把超长论坛海报切成等高竖条，便于视觉逐块阅读。
-用法: python3 slice_poster.py <image_path> [tile_height=2200] [overlap=120]
-输出到 tiles/<basename>/NN.png
+"""Slice a very tall forum poster into equal-height vertical tiles for chunked
+visual reading.
+Usage: python3 slice_poster.py <image_path> [tile_height=2200] [overlap=120]
+Output goes to tiles/<basename>/NN.png
 """
 import sys, pathlib
 from PIL import Image

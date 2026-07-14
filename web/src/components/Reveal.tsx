@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 import { riseItem } from "../lib/motion";
 
-/** 滚动进入视口时上浮揭示 */
+/** Rise-and-reveal when scrolled into view. */
 export default function Reveal({
   children,
   className,
