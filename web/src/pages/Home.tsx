@@ -10,9 +10,10 @@ import {
   type ScheduleDay,
   type ForumSlot,
 } from "../lib/data";
-import { useFollow, talkId } from "../lib/follow-store";
+import { useFollow, talkId, keynoteId } from "../lib/follow-store";
 import { pageVariants } from "../lib/motion";
 import Icon from "../components/Icon";
+import ExportMenu from "../components/ExportMenu";
 import type { Talk } from "../types";
 
 /* ---------------- small pieces ---------------- */
@@ -50,10 +51,12 @@ function timeRange(b?: { start?: string | null; end?: string | null }) {
   return b.end ? `${b.start}–${b.end}` : b.start;
 }
 
-function KeynoteRow({ t }: { t: Talk }) {
-  const { isSpeaker, toggleSpeaker } = useFollow();
+function KeynoteRow({ t, date, index }: { t: Talk; date: string; index: number }) {
+  const { isTalk, toggleTalk } = useFollow();
   const sp = t.speakers?.[0];
   const isOpening = t.type === "opening" || !sp;
+  const id = keynoteId(date, index);
+  const followed = isTalk(id);
   return (
     <div className={`krow ${isOpening ? "krow--opening" : ""}`}>
       <div className="krow__time">
@@ -61,21 +64,25 @@ function KeynoteRow({ t }: { t: Talk }) {
         {t.end ? `–${t.end}` : ""}
       </div>
       <div className="krow__main">
-        <div className="krow__title">
-          {t.title_status === "tbd" ? (
-            <span className="muted-i">题目待定</span>
-          ) : (
-            t.title?.zh
+        <div className="krow__titlerow">
+          <div className="krow__title">
+            {t.title_status === "tbd" ? (
+              <span className="muted-i">题目待定</span>
+            ) : (
+              t.title?.zh
+            )}
+          </div>
+          {!isOpening && (
+            <StarButton
+              active={followed}
+              onClick={() => toggleTalk(id)}
+              label={followed ? "取消收藏该主旨报告" : "收藏该主旨报告"}
+              className="star--sm"
+            />
           )}
         </div>
         {sp && (
           <div className="krow__speaker">
-            <StarButton
-              active={isSpeaker(sp.name)}
-              onClick={() => toggleSpeaker(sp.name)}
-              label={`关注 ${sp.name}`}
-              className="star--sm"
-            />
             <strong>{sp.name}</strong>
             <span className="krow__aff">{sp.affiliation_raw}</span>
           </div>
@@ -130,27 +137,34 @@ function ForumRow({
         onClick={() => hasTalks && setUserOpen(!open)}
       >
         <span className="frow__rc">
-          <span className="frow__room">{slot.room}</span>
+          <span className="frow__room">
+            <Icon name="pin" size={11} /> {slot.room}
+          </span>
           <span className="frow__code">{slot.code}</span>
         </span>
         <div className="frow__body">
-          <div className="frow__title">{f?.title.zh ?? slot.code}</div>
-          <div className="frow__sub">
-            {f?.sponsor && (
-              <span className="frow__sponsor">
-                <Icon name="building" size={12} /> {f.sponsor}
-              </span>
-            )}
-            {hasTalks ? (
-              <span className="frow__count">
-                <Icon name="keynotes" size={12} /> {talks.length} 报告
-              </span>
-            ) : (
-              <span className="frow__pending">详情待补</span>
-            )}
+          <div className="frow__titleline">
+            <div className="frow__title">{f?.title.zh ?? slot.code}</div>
+            <div className="frow__sub">
+              {hasTalks ? (
+                <span className="frow__count">
+                  <Icon name="keynotes" size={12} /> {talks.length} 报告
+                </span>
+              ) : (
+                <span className="frow__pending">详情待补</span>
+              )}
+              {f?.sponsor && (
+                <span className="frow__sponsor">
+                  <Icon name="building" size={12} /> {f.sponsor}
+                </span>
+              )}
+            </div>
           </div>
           {slot.people.length > 0 && (
             <div className="frow__people">
+              <span className="frow__peopleicon" aria-hidden>
+                <Icon name="user" size={12} />
+              </span>
               {slot.people.map((n) => (
                 <button
                   key={n}
@@ -287,9 +301,17 @@ function DaySection({
           <span className="dashday__wd">{day.weekday}</span>
         </h2>
         <div className="dashday__meta">
-          <span>{day.venue}</span>
-          {day.forumBlock && <span className="dashday__time">{timeRange(day.forumBlock)}</span>}
-          <span className="dashday__n">{slots.length} 场并行</span>
+          <span>
+            <Icon name="building" size={12} /> {day.venue}
+          </span>
+          {day.forumBlock && (
+            <span className="dashday__time">
+              <Icon name="clock" size={12} /> {timeRange(day.forumBlock)}
+            </span>
+          )}
+          <span className="dashday__n">
+            <Icon name="forums" size={12} /> {slots.length} 场并行
+          </span>
         </div>
       </div>
 
@@ -316,7 +338,7 @@ function DaySection({
                 transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
               >
                 {day.keynotes.map((t, i) => (
-                  <KeynoteRow key={i} t={t} />
+                  <KeynoteRow key={i} t={t} date={day.date} index={i} />
                 ))}
               </motion.div>
             )}
@@ -500,9 +522,12 @@ export default function Home() {
             )}
           </span>
           {followedCount > 0 && (
-            <button className="linkbtn" onClick={clearAll}>
-              清空我的关注
-            </button>
+            <div className="dash__actions">
+              <ExportMenu />
+              <button className="linkbtn" onClick={clearAll}>
+                清空我的关注
+              </button>
+            </div>
           )}
         </div>
 

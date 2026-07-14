@@ -137,7 +137,13 @@ function SpeakerCard({ s }: { s: SpeakerAgg }) {
   );
 }
 
-const CATS: (SpeakerCategory | "all")[] = ["all", "university", "research", "industry", "other"];
+// Only offer categories that actually have members (skip empty buckets, e.g. 其他).
+const CATS: (SpeakerCategory | "all")[] = [
+  "all",
+  ...(["university", "research", "industry", "other"] as SpeakerCategory[]).filter(
+    (c) => speakerCategoryCounts[c] > 0,
+  ),
+];
 const ALPHABET = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ", "#"];
 
 export default function Speakers() {

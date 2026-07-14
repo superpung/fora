@@ -27,9 +27,12 @@ export type IconName =
   | "committee"
   | "calendar"
   | "users"
+  | "user"
   | "building"
   | "link"
   | "check"
+  | "download"
+  | "file"
   | "dot";
 
 // Each entry is the inner markup of a 0 0 24 24 viewBox, stroked with currentColor.
@@ -147,6 +150,12 @@ const PATHS: Record<IconName, ReactElement> = {
       <path d="M15.5 5.2a3.2 3.2 0 0 1 0 5.6M17 14.4a6 6 0 0 1 4.5 5.6" />
     </>
   ),
+  user: (
+    <>
+      <circle cx="12" cy="8" r="3.6" />
+      <path d="M5 20a7 7 0 0 1 14 0" />
+    </>
+  ),
   building: (
     <>
       <path d="M4 21V5a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v16" />
@@ -161,6 +170,18 @@ const PATHS: Record<IconName, ReactElement> = {
     </>
   ),
   check: <path d="M4 12.5l5 5 11-11" />,
+  download: (
+    <>
+      <path d="M12 3v12m0 0l4-4m-4 4l-4-4" />
+      <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
+    </>
+  ),
+  file: (
+    <>
+      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+      <path d="M14 3v5h5M8.5 13h7M8.5 17h7" />
+    </>
+  ),
   dot: <circle cx="12" cy="12" r="2.5" />,
 };
 
