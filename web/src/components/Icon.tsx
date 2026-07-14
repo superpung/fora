@@ -8,6 +8,9 @@ export type IconName =
   | "chevron-down"
   | "chevron-right"
   | "arrow-left"
+  | "arrow-right"
+  | "pin"
+  | "clock"
   | "search"
   | "x"
   | "alert"
@@ -34,6 +37,19 @@ const PATHS: Record<IconName, ReactElement> = {
   "chevron-down": <path d="M6 9l6 6 6-6" />,
   "chevron-right": <path d="M9 6l6 6-6 6" />,
   "arrow-left": <path d="M19 12H5m6-7l-7 7 7 7" />,
+  "arrow-right": <path d="M5 12h14m-6-7l7 7-7 7" />,
+  pin: (
+    <>
+      <path d="M12 21s7-5.5 7-11a7 7 0 0 0-14 0c0 5.5 7 11 7 11z" />
+      <circle cx="12" cy="10" r="2.5" />
+    </>
+  ),
+  clock: (
+    <>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7v5l3.5 2" />
+    </>
+  ),
   search: (
     <>
       <circle cx="11" cy="11" r="7" />
