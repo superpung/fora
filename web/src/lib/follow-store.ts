@@ -15,14 +15,6 @@ export const FORUMS_KEY = `${NS}:followed.forums`;
 export const SPEAKERS_KEY = `${NS}:followed.speakers`;
 export const TALKS_KEY = `${NS}:followed.talks`;
 
-// Pre-namespacing keys, migrated to the namespaced ones on first load so an
-// existing visitor doesn't lose their saved agenda.
-const LEGACY_KEYS: Record<string, string> = {
-  [FORUMS_KEY]: "ccfchip.followed.forums",
-  [SPEAKERS_KEY]: "ccfchip.followed.speakers",
-  [TALKS_KEY]: "ccfchip.followed.talks",
-};
-
 // A talk has no stable id in the dataset, so we key it by its forum code plus
 // its index within that forum: `${code}#${index}`.
 export function talkId(code: string, index: number): string {
@@ -41,15 +33,7 @@ export function isKeynoteId(id: string): boolean {
 export function load(key: string): Set<string> {
   if (typeof localStorage === "undefined") return new Set();
   try {
-    let raw = localStorage.getItem(key);
-    // One-time migration from the old (un-namespaced) key.
-    if (raw == null && LEGACY_KEYS[key]) {
-      raw = localStorage.getItem(LEGACY_KEYS[key]);
-      if (raw != null) {
-        localStorage.setItem(key, raw);
-        localStorage.removeItem(LEGACY_KEYS[key]);
-      }
-    }
+    const raw = localStorage.getItem(key);
     if (!raw) return new Set();
     const arr = JSON.parse(raw);
     return Array.isArray(arr) ? new Set(arr as string[]) : new Set();
