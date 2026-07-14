@@ -80,8 +80,14 @@ svg { display: block; }
 /* ============================ SECTION (generic) ============================ */
 .section { padding-top: clamp(28px, 5vw, 52px); padding-bottom: clamp(28px, 5vw, 52px); }
 .section__head { margin-bottom: 24px; }
-.section__title { font-size: clamp(24px, 3.4vw, 34px); margin: 6px 0 0; letter-spacing: -0.03em; }
-.section__desc { color: var(--fg-secondary); margin: 10px 0 0; max-width: 60ch; font-size: 14px; }
+.section__titlerow { display: flex; align-items: center; gap: 12px; }
+.section__icon {
+  display: inline-grid; place-items: center; flex: 0 0 auto;
+  width: 38px; height: 38px; border: 1px solid var(--border);
+  border-radius: var(--radius); color: var(--fg-secondary); background: var(--bg-subtle);
+}
+.section__title { font-size: clamp(24px, 3.4vw, 34px); margin: 0; letter-spacing: -0.03em; }
+.section__desc { color: var(--fg-secondary); margin: 12px 0 0; max-width: 60ch; font-size: 14px; }
 
 /* ============================ DASHBOARD MASTHEAD ============================ */
 .dashhead { border-bottom: 1px solid var(--border); background: var(--bg); }
