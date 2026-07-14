@@ -75,7 +75,8 @@ export default function ForumDetail() {
   // The talk pointed at by the URL hash (1-based, e.g. #talk-3) stays highlighted
   // for as long as the hash is present — it's a shareable anchor, not a flash.
   const activeId = hash.startsWith("#talk-") ? hash.slice(1) : null;
-  const posterUrl = officialAssetUrl(forum?.poster?.source_url);
+  // Prefer the official article page (general_NNNN); fall back to the CMS poster.
+  const officialUrl = forum?.source_url ?? officialAssetUrl(forum?.poster?.source_url);
 
   // deep-link: scroll to the anchored talk when arriving with / changing #talk-<n>
   useEffect(() => {
@@ -143,13 +144,13 @@ export default function ForumDetail() {
               <Icon name="star" filled={forumFollowed} size={15} />
               {forumFollowed ? "已收藏" : "收藏论坛"}
             </button>
-            {posterUrl && (
+            {officialUrl && (
               <a
                 className="btn btn--ghost"
-                href={posterUrl}
+                href={officialUrl}
                 target="_blank"
                 rel="noreferrer"
-                title="在官网查看该论坛海报原图"
+                title="在官网查看该论坛页面"
               >
                 <Icon name="external" size={15} /> 官网
               </a>

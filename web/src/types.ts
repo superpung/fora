@@ -121,6 +121,7 @@ export interface Forum {
   chairs?: Person[];
   talks?: Talk[];
   poster?: Asset | null;
+  source_url?: string | null;
   detail_extracted?: boolean;
   flags?: string[];
 }
