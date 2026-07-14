@@ -1,28 +1,5 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-  type ReactNode,
-} from "react";
-
-type ThemeMode = "system" | "light" | "dark";
-interface ThemeCtx {
-  mode: ThemeMode;
-  resolved: "light" | "dark";
-  cycle: () => void;
-}
-
-const Ctx = createContext<ThemeCtx | null>(null);
-const KEY = "cs-theme";
-
-function systemDark() {
-  return (
-    typeof window !== "undefined" &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-  );
-}
+import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { Ctx, KEY, systemDark, type ThemeCtx, type ThemeMode } from "./theme-store";
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [mode, setMode] = useState<ThemeMode>(
@@ -60,10 +37,4 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   );
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
-}
-
-export function useTheme() {
-  const c = useContext(Ctx);
-  if (!c) throw new Error("useTheme outside provider");
-  return c;
 }
