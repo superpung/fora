@@ -27,7 +27,6 @@ export default function Hub() {
       <div className="container hub">
         <div className="hub__head">
           <h1 className="hub__title">会议</h1>
-          <p className="hub__sub">选择一个会议，查看其完整日程、讲者与技术论坛。</p>
         </div>
 
         <motion.div
@@ -49,13 +48,12 @@ export default function Hub() {
                   <h2 className="hubcard__name">{c.name.zh}</h2>
                   {c.name.en && <div className="hubcard__en">{c.name.en}</div>}
                   <div className="hubcard__meta">
-                    {c.edition && <span className="hubcard__edition">{c.edition}</span>}
                     <span>
-                      <Icon name="calendar" size={13} /> {year} · {start.md}–{end.md}
+                      <Icon name="calendar" size={13} /> {year}年{start.md}-{end.md}
                     </span>
                     {c.city && (
                       <span>
-                        <Icon name="pin" size={13} /> {c.city}
+                        <Icon name="pin" size={13} /> 中国·{c.city}
                       </span>
                     )}
                   </div>
@@ -70,9 +68,6 @@ export default function Hub() {
                       <strong>{c.days}</strong> 会期
                     </span>
                   </div>
-                  <span className="hubcard__enter">
-                    进入日程 <Icon name="arrow-right" size={15} />
-                  </span>
                 </Link>
               </motion.div>
             );
