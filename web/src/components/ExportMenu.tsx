@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Icon from "./Icon";
 import { useFollow } from "../lib/follow-store";
 import {
   collectFollowedItems,
+  exportFilename,
   toICS,
   toCSV,
   toMarkdown,
@@ -35,9 +37,14 @@ export default function ExportMenu() {
     setOpen(false);
     if (!items.length) return;
     if (fmt === "ics")
-      download("我的日程.ics", toICS(items, new Date().toISOString()), "text/calendar;charset=utf-8");
-    else if (fmt === "csv") download("我的日程.csv", toCSV(items), "text/csv;charset=utf-8");
-    else download("我的日程.md", toMarkdown(items), "text/markdown;charset=utf-8");
+      download(
+        exportFilename(items, "ics"),
+        toICS(items, new Date().toISOString()),
+        "text/calendar;charset=utf-8",
+      );
+    else if (fmt === "csv")
+      download(exportFilename(items, "csv"), toCSV(items), "text/csv;charset=utf-8");
+    else download(exportFilename(items, "md"), toMarkdown(items), "text/markdown;charset=utf-8");
   };
 
   return (
@@ -45,15 +52,24 @@ export default function ExportMenu() {
       <button className="linkbtn exportmenu__btn" onClick={() => setOpen((v) => !v)} aria-expanded={open}>
         <Icon name="download" size={13} /> 导出
       </button>
-      {open && (
-        <div className="exportmenu__pop" role="menu">
-          {FORMATS.map((f) => (
-            <button key={f.key} role="menuitem" onClick={() => run(f.key)}>
-              <Icon name={f.icon} size={14} /> {f.label}
-            </button>
-          ))}
-        </div>
-      )}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="exportmenu__pop"
+            role="menu"
+            initial={{ opacity: 0, y: -6, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -6, scale: 0.97 }}
+            transition={{ duration: 0.16, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {FORMATS.map((f) => (
+              <button key={f.key} role="menuitem" onClick={() => run(f.key)}>
+                <Icon name={f.icon} size={14} /> {f.label}
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
