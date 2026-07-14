@@ -34,7 +34,9 @@ export default function ScrollManager() {
         let raf = 0;
         const deadline = performance.now() + 800;
         const apply = () => {
-          window.scrollTo(0, y);
+          // Instant, not smooth: the global `scroll-behavior: smooth` would
+          // otherwise animate every re-apply and the loop would never settle.
+          window.scrollTo({ top: y, left: 0, behavior: "instant" as ScrollBehavior });
           if (window.scrollY < y - 2 && performance.now() < deadline) {
             raf = requestAnimationFrame(apply);
           }
@@ -47,13 +49,13 @@ export default function ScrollManager() {
   }, [key, navType, location.hash]);
 
   // Continuously record the scroll offset for the current history entry.
+  // Only via the scroll event — NOT on cleanup: navigating to a shorter page
+  // clamps window.scrollY before cleanup runs, which would overwrite the real
+  // position we need to preserve for Back.
   useEffect(() => {
     const onScroll = () => positions.set(key, window.scrollY);
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      positions.set(key, window.scrollY);
-      window.removeEventListener("scroll", onScroll);
-    };
+    return () => window.removeEventListener("scroll", onScroll);
   }, [key]);
 
   return null;
