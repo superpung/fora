@@ -13,5 +13,20 @@
     "forums": 48,
     "keynotes": 12,
     "days": 4
+  },
+  {
+    "id": "chinasoft2025",
+    "name": {
+      "zh": "2025 CCF中国软件大会",
+      "en": "ChinaSoft 2025"
+    },
+    "edition": null,
+    "start_date": "2025-11-27",
+    "end_date": "2025-11-30",
+    "city": "武汉",
+    "venue": "武汉国际会议中心",
+    "forums": 2,
+    "keynotes": 4,
+    "days": 2
   }
 ]
