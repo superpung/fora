@@ -65,6 +65,12 @@ restrained, and detailed. Match it; do not drift toward other looks.
   `web/src/styles/global.css`; use the tokens, don't hard-code colors.
 
 ## UI copy / layout rules (hard)
+- **Minimal by default — ship only the text that is asked for, nothing else.**
+  Never add hero subtitles, taglines, helper/explanatory sentences, call-to-action
+  labels ("进入日程", "查看更多"), badges, or any decorative wording "to be
+  helpful." If a piece of text is not required to identify or operate the item,
+  do not write it. When unsure whether a word earns its place, leave it out. This
+  overrides any instinct to make a screen feel "complete."
 - **No decorative eyebrow/kicker labels.** Never place a small label above a
   title just for decoration (e.g. `Program` over 完整日程, `Speakers` over 讲者,
   `Organizers` over 组织与赞助). If a heading needs reinforcement, use an icon,
