@@ -122,32 +122,53 @@ function ForumRow({
     <div
       className={`frow ${followedHere.length ? "frow--tracked" : ""} ${open ? "is-open" : ""}`}
     >
-      <div className="frow__head">
-        <button
-          className="frow__main"
-          onClick={() => hasTalks && setUserOpen(!open)}
-          aria-expanded={open}
-          disabled={!hasTalks}
-        >
+      {/* The whole header row is one hover/expand unit; interactive children
+          (author links, star, enter, caret) stop propagation so they don't
+          also toggle the row. */}
+      <div
+        className={`frow__row ${hasTalks ? "frow__row--expandable" : ""}`}
+        onClick={() => hasTalks && setUserOpen(!open)}
+      >
+        <span className="frow__rc">
           <span className="frow__room">{slot.room}</span>
           <span className="frow__code">{slot.code}</span>
-          <span className="frow__body">
-            <span className="frow__title">{f?.title.zh ?? slot.code}</span>
-            <span className="frow__sub">
-              {f?.sponsor && <span className="frow__sponsor">{f.sponsor}</span>}
-              {hasTalks ? (
-                <span className="frow__count">{talks.length} 报告</span>
-              ) : (
-                <span className="frow__pending">详情待补</span>
-              )}
-            </span>
-          </span>
-          {hasTalks && (
-            <span className={`caret frow__caret ${open ? "caret--up" : ""}`}>
-              <Icon name="chevron-down" size={16} />
-            </span>
+        </span>
+        <div className="frow__body">
+          <div className="frow__title">{f?.title.zh ?? slot.code}</div>
+          <div className="frow__sub">
+            {f?.sponsor && (
+              <span className="frow__sponsor">
+                <Icon name="building" size={12} /> {f.sponsor}
+              </span>
+            )}
+            {hasTalks ? (
+              <span className="frow__count">
+                <Icon name="keynotes" size={12} /> {talks.length} 报告
+              </span>
+            ) : (
+              <span className="frow__pending">详情待补</span>
+            )}
+          </div>
+          {slot.people.length > 0 && (
+            <div className="frow__people">
+              {slot.people.map((n) => (
+                <button
+                  key={n}
+                  className={`pauthor ${activeSpeaker === n ? "is-active" : ""} ${
+                    isSpeaker(n) ? "is-followed" : ""
+                  }`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onSpeaker(n);
+                  }}
+                  title={`筛选包含 ${n} 的论坛与报告`}
+                >
+                  {n}
+                </button>
+              ))}
+            </div>
           )}
-        </button>
+        </div>
         <div className="frow__actions">
           <StarButton
             active={isForum(slot.code)}
@@ -160,29 +181,27 @@ function ForumRow({
             className="frow__enter"
             aria-label={`进入论坛 ${slot.code}`}
             title="进入论坛详情页"
+            onClick={(e) => e.stopPropagation()}
           >
-            <span className="frow__enter-label">进入</span>
-            <Icon name="chevron-right" size={15} />
+            <Icon name="arrow-right" size={16} />
           </Link>
+          {hasTalks && (
+            <button
+              className="frow__caretbtn"
+              onClick={(e) => {
+                e.stopPropagation();
+                setUserOpen(!open);
+              }}
+              aria-expanded={open}
+              aria-label={open ? "收起报告" : "展开报告"}
+            >
+              <span className={`caret ${open ? "caret--up" : ""}`}>
+                <Icon name="chevron-down" size={16} />
+              </span>
+            </button>
+          )}
         </div>
       </div>
-
-      {slot.people.length > 0 && (
-        <div className="frow__people">
-          {slot.people.map((n) => (
-            <button
-              key={n}
-              className={`pchip ${activeSpeaker === n ? "is-active" : ""} ${
-                isSpeaker(n) ? "is-followed" : ""
-              }`}
-              onClick={() => onSpeaker(n)}
-              title={`筛选包含 ${n} 的论坛与报告`}
-            >
-              {n}
-            </button>
-          ))}
-        </div>
-      )}
 
       <AnimatePresence initial={false}>
         {open && (
@@ -215,9 +234,7 @@ function ForumRow({
                           {t.speakers!.map((s) => (
                             <button
                               key={s.name}
-                              className={`pchip pchip--sm ${
-                                activeSpeaker === s.name ? "is-active" : ""
-                              }`}
+                              className={`pauthor ${activeSpeaker === s.name ? "is-active" : ""}`}
                               onClick={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
@@ -283,18 +300,27 @@ function DaySection({
             onClick={() => setShowKeynotes((v) => !v)}
             aria-expanded={showKeynotes}
           >
+            <Icon name="keynotes" size={15} />
             主旨报告 · 上午 · {day.keynotes.length} 场
             <span className={`caret ${showKeynotes ? "caret--up" : ""}`}>
               <Icon name="chevron-down" size={16} />
             </span>
           </button>
-          {showKeynotes && (
-            <div className="krail__list">
-              {day.keynotes.map((t, i) => (
-                <KeynoteRow key={i} t={t} />
-              ))}
-            </div>
-          )}
+          <AnimatePresence initial={false}>
+            {showKeynotes && (
+              <motion.div
+                className="krail__list"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {day.keynotes.map((t, i) => (
+                  <KeynoteRow key={i} t={t} />
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       )}
 

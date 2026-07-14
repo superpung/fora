@@ -40,7 +40,11 @@ function TalkLine({ t }: { t: SpeakerTalk }) {
         ) : (
           <span className="sptalk__forum mono">{t.forumCode}</span>
         )}
-        {t.room && <span className="sptalk__room mono">{t.room}</span>}
+        {t.room && (
+          <span className="sptalk__room mono">
+            <Icon name="pin" size={11} /> {t.room}
+          </span>
+        )}
         {dateInfo && (
           <span className="mono">
             {dateInfo.md}
@@ -49,7 +53,7 @@ function TalkLine({ t }: { t: SpeakerTalk }) {
         )}
         {t.start && (
           <span className="sptalk__time mono">
-            {t.start}
+            <Icon name="clock" size={11} /> {t.start}
             {t.end ? `–${t.end}` : ""}
           </span>
         )}
@@ -186,7 +190,7 @@ export default function Speakers() {
       <div className="section__head">
         <div className="section__titlerow">
           <span className="section__icon" aria-hidden>
-            <Icon name="users" size={19} />
+            <Icon name="keynotes" size={19} />
           </span>
           <h2 className="section__title">讲者</h2>
         </div>
