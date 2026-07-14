@@ -4,6 +4,34 @@ All notable changes to this project. The project is unversioned (no release
 tags yet), so entries are grouped by date, newest first. Written in English per
 the repository language rule (see AGENTS.md).
 
+## 2026-07-14 — UI optimization, round 4 (review feedback)
+
+### Added
+- **Shared author line** across the dashboard: person icon + name (hover
+  underline) + affiliation/title. Forum-talk authors now show their affiliation
+  like keynotes do, and keynote authors were restyled to match (icon + hover).
+  Each forum chair carries its own person icon.
+- **Follow-view highlighting.** Toggling "我的关注" now highlights *every* talk
+  that resolves to a follow — followed directly, via its forum, or via one of its
+  speakers — while the filled star still marks only the explicitly-followed unit
+  (talk / forum / speaker). Tracked forums auto-expand and the keynote rail
+  auto-opens so highlighted items are visible.
+- **CJK–Latin visual spacing** (`text-autospace`): a gap between Chinese and
+  Latin/numerals without inserting real space characters.
+
+### Changed
+- **Forum row layout:** the sponsor and report count moved into the right-hand
+  action cluster, vertically centred with the star/enter/caret; the report count
+  stays rightmost with the sponsor to its left (no longer baseline-aligned to the
+  title).
+- **Export filename** is now the conference name plus the date range it spans
+  (e.g. `CCF Chip 2026 我的日程 2026-07-18~07-20.ics`).
+- **Consistent hover/animation:** the export dropdown animates open/close; added
+  the missing hover transitions on link buttons, export-menu items, and the
+  filter tag.
+- **Favicon** is now a project-level scheduler/agenda glyph (monochrome) instead
+  of a conference-specific chip — conf-scheduler will host other conferences.
+
 ## 2026-07-14 — UI optimization, round 3 (review feedback)
 
 ### Added
