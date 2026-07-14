@@ -177,8 +177,12 @@ export default function Schedule() {
       exit="exit"
     >
       <div className="section__head">
-        <div className="eyebrow">Program</div>
-        <h2 className="section__title">完整日程</h2>
+        <div className="section__titlerow">
+          <span className="section__icon" aria-hidden>
+            <Icon name="calendar" size={19} />
+          </span>
+          <h2 className="section__title">完整日程</h2>
+        </div>
       </div>
 
       {/* day tabs */}

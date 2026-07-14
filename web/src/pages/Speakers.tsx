@@ -140,8 +140,12 @@ export default function Speakers() {
       exit="exit"
     >
       <div className="section__head">
-        <div className="eyebrow">Speakers</div>
-        <h2 className="section__title">讲者</h2>
+        <div className="section__titlerow">
+          <span className="section__icon" aria-hidden>
+            <Icon name="users" size={19} />
+          </span>
+          <h2 className="section__title">讲者</h2>
+        </div>
       </div>
 
       <div className="sptoolbar">

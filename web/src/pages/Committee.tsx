@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { conference } from "../lib/data";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Reveal from "../components/Reveal";
+import Icon from "../components/Icon";
 
 export default function Committee() {
   const committees = conference.committees ?? [];
@@ -14,8 +15,12 @@ export default function Committee() {
       exit="exit"
     >
       <div className="section__head">
-        <div className="eyebrow">Committee</div>
-        <h2 className="section__title">大会委员会</h2>
+        <div className="section__titlerow">
+          <span className="section__icon" aria-hidden>
+            <Icon name="committee" size={19} />
+          </span>
+          <h2 className="section__title">大会委员会</h2>
+        </div>
         <p className="section__desc">
           {committees.reduce((n, c) => n + c.members.length, 0)} 位专家 ·
           {committees.length} 个委员会角色

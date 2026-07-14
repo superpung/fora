@@ -6,7 +6,6 @@ import {
   scheduleDays,
   stats,
   uniqueSpeakerCount,
-  periodLabel,
   formatDate,
   type ScheduleDay,
   type ForumSlot,
@@ -271,6 +270,7 @@ export default function Home() {
   const totalShown = visibleDays.reduce((n, x) => n + x.slots.length, 0);
   const { md: startMd } = formatDate(conference.start_date);
   const { md: endMd } = formatDate(conference.end_date);
+  const mainCity = conference.venues?.find((v) => v.type === "main")?.city;
 
   return (
     <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
@@ -278,12 +278,10 @@ export default function Home() {
       <div className="dashhead">
         <div className="container dashhead__inner">
           <div className="dashhead__id">
-            <div className="eyebrow">
-              {startMd}–{endMd}
-            </div>
             <h1 className="dashhead__title">{conference.name.zh}</h1>
             <div className="dashhead__venue">
-              {conference.venues?.map((v) => v.name.zh).join(" · ")}
+              {startMd}–{endMd}
+              {mainCity && ` · 中国·${mainCity}`}
             </div>
           </div>
           <div className="dashhead__stats">
@@ -388,9 +386,9 @@ export default function Home() {
         )}
 
         <div className="dash__hint">
-          需要按时间线逐场浏览？前往
-          <Link to="/schedule" className="linkbtn linkbtn--inline">完整日程</Link>。
-          全部论坛时段为并行（{periodLabel.afternoon} / {periodLabel.morning}）。
+          <Link to="/schedule" className="btn btn--ghost">
+            <Icon name="calendar" size={15} /> 时间线视图
+          </Link>
         </div>
       </div>
     </motion.div>
