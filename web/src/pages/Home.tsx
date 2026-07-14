@@ -51,14 +51,66 @@ function timeRange(b?: { start?: string | null; end?: string | null }) {
   return b.end ? `${b.start}–${b.end}` : b.start;
 }
 
-function KeynoteRow({ t, date, index }: { t: Talk; date: string; index: number }) {
-  const { isTalk, toggleTalk } = useFollow();
-  const sp = t.speakers?.[0];
-  const isOpening = t.type === "opening" || !sp;
+/** A clickable author: person icon + name (hover underline) + affiliation.
+    Shared by keynote rows and forum-talk rows so both read identically. */
+function PersonLine({
+  name,
+  affiliation,
+  active,
+  followed,
+  onSpeaker,
+}: {
+  name: string;
+  affiliation?: string | null;
+  active?: boolean;
+  followed?: boolean;
+  onSpeaker: (name: string) => void;
+}) {
+  return (
+    <span className="pline">
+      <button
+        className={`pauthor ${active ? "is-active" : ""} ${followed ? "is-followed" : ""}`}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          onSpeaker(name);
+        }}
+        title={`筛选包含 ${name} 的论坛与报告`}
+      >
+        <Icon name="user" size={11} />
+        {name}
+      </button>
+      {affiliation && <span className="pline__aff">{affiliation}</span>}
+    </span>
+  );
+}
+
+function KeynoteRow({
+  t,
+  date,
+  index,
+  filtered,
+  activeSpeaker,
+  onSpeaker,
+}: {
+  t: Talk;
+  date: string;
+  index: number;
+  filtered: boolean;
+  activeSpeaker: string | null;
+  onSpeaker: (name: string) => void;
+}) {
+  const { isTalk, toggleTalk, isSpeaker } = useFollow();
+  const speakers = t.speakers ?? [];
+  const isOpening = t.type === "opening" || speakers.length === 0;
   const id = keynoteId(date, index);
   const followed = isTalk(id);
+  // In the "我的关注" view, highlight a keynote that is followed directly or via
+  // one of its speakers — same treatment as forum talks (star marks the explicit
+  // unit, tint marks "this resolves to a followed talk").
+  const followHit = filtered && (followed || speakers.some((s) => isSpeaker(s.name)));
   return (
-    <div className={`krow ${isOpening ? "krow--opening" : ""}`}>
+    <div className={`krow ${isOpening ? "krow--opening" : ""} ${followHit ? "krow--hit" : ""}`}>
       <div className="krow__time">
         {t.start}
         {t.end ? `–${t.end}` : ""}
@@ -81,10 +133,18 @@ function KeynoteRow({ t, date, index }: { t: Talk; date: string; index: number }
             />
           )}
         </div>
-        {sp && (
+        {speakers.length > 0 && (
           <div className="krow__speaker">
-            <strong>{sp.name}</strong>
-            <span className="krow__aff">{sp.affiliation_raw}</span>
+            {speakers.map((s) => (
+              <PersonLine
+                key={s.name}
+                name={s.name}
+                affiliation={s.affiliation_raw}
+                active={activeSpeaker === s.name}
+                followed={isSpeaker(s.name)}
+                onSpeaker={onSpeaker}
+              />
+            ))}
           </div>
         )}
       </div>
@@ -118,9 +178,10 @@ function ForumRow({
   const talkOnly = filtered && !forumTracked && followedTalks.length > 0;
   const speakerHit = activeSpeaker != null && slot.people.includes(activeSpeaker);
 
-  // Rows auto-open when a filter needs them (starred-talk-only view, or a speaker
-  // filter that matched here); otherwise the user drives it by clicking the row.
-  const forcedOpen = talkOnly || speakerHit;
+  // Rows auto-open when a filter needs them: the starred-talk-only view, a speaker
+  // filter that matched here, or the "我的关注" view (so every followed talk is
+  // visible and highlighted). Otherwise the user drives it by clicking the row.
+  const forcedOpen = talkOnly || speakerHit || (filtered && forumTracked && hasTalks);
   const [userOpen, setUserOpen] = useState<boolean | null>(null);
   const open = hasTalks && (userOpen ?? forcedOpen);
   const shownTalks = talkOnly ? followedTalks : talks.map((t, i) => ({ t, i }));
@@ -143,28 +204,9 @@ function ForumRow({
           <span className="frow__code">{slot.code}</span>
         </span>
         <div className="frow__body">
-          <div className="frow__titleline">
-            <div className="frow__title">{f?.title.zh ?? slot.code}</div>
-            <div className="frow__sub">
-              {hasTalks ? (
-                <span className="frow__count">
-                  <Icon name="keynotes" size={12} /> {talks.length} 报告
-                </span>
-              ) : (
-                <span className="frow__pending">详情待补</span>
-              )}
-              {f?.sponsor && (
-                <span className="frow__sponsor">
-                  <Icon name="building" size={12} /> {f.sponsor}
-                </span>
-              )}
-            </div>
-          </div>
+          <div className="frow__title">{f?.title.zh ?? slot.code}</div>
           {slot.people.length > 0 && (
             <div className="frow__people">
-              <span className="frow__peopleicon" aria-hidden>
-                <Icon name="user" size={12} />
-              </span>
               {slot.people.map((n) => (
                 <button
                   key={n}
@@ -177,6 +219,7 @@ function ForumRow({
                   }}
                   title={`筛选包含 ${n} 的论坛与报告`}
                 >
+                  <Icon name="user" size={11} />
                   {n}
                 </button>
               ))}
@@ -184,6 +227,22 @@ function ForumRow({
           )}
         </div>
         <div className="frow__actions">
+          {/* meta (sponsor · N 报告) sits to the left of the buttons and is
+              vertically centred with them — the report count stays rightmost. */}
+          <div className="frow__meta">
+            {f?.sponsor && (
+              <span className="frow__sponsor">
+                <Icon name="building" size={12} /> {f.sponsor}
+              </span>
+            )}
+            {hasTalks ? (
+              <span className="frow__count">
+                <Icon name="keynotes" size={12} /> {talks.length} 报告
+              </span>
+            ) : (
+              <span className="frow__pending">详情待补</span>
+            )}
+          </div>
           <StarButton
             active={isForum(slot.code)}
             onClick={() => toggleForum(slot.code)}
@@ -231,8 +290,16 @@ function ForumRow({
               const spHit =
                 activeSpeaker != null &&
                 (t.speakers ?? []).some((s) => s.name === activeSpeaker);
+              // In the "我的关注" view, highlight every talk that is followed —
+              // directly, via its forum, or via one of its speakers — even though
+              // only the explicitly-followed unit carries a filled star.
+              const followHit =
+                filtered &&
+                (isForum(slot.code) ||
+                  tFollowed ||
+                  (t.speakers ?? []).some((s) => isSpeaker(s.name)));
               return (
-                <div className={`ftalk ${spHit ? "ftalk--hit" : ""}`} key={i}>
+                <div className={`ftalk ${spHit || followHit ? "ftalk--hit" : ""}`} key={i}>
                   <Link to={`/forum/${slot.code}#talk-${i + 1}`} className="ftalk__link">
                     <span className="ftalk__no">{String(i + 1).padStart(2, "0")}</span>
                     <span className="ftalk__main">
@@ -246,17 +313,14 @@ function ForumRow({
                       {(t.speakers ?? []).length > 0 && (
                         <span className="ftalk__speakers">
                           {t.speakers!.map((s) => (
-                            <button
+                            <PersonLine
                               key={s.name}
-                              className={`pauthor ${activeSpeaker === s.name ? "is-active" : ""}`}
-                              onClick={(e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                onSpeaker(s.name);
-                              }}
-                            >
-                              {s.name}
-                            </button>
+                              name={s.name}
+                              affiliation={s.affiliation_raw}
+                              active={activeSpeaker === s.name}
+                              followed={isSpeaker(s.name)}
+                              onSpeaker={onSpeaker}
+                            />
                           ))}
                         </span>
                       )}
@@ -291,8 +355,19 @@ function DaySection({
   activeSpeaker: string | null;
   onSpeaker: (name: string) => void;
 }) {
+  const { isTalk, isSpeaker } = useFollow();
   const [showKeynotes, setShowKeynotes] = useState(false);
   if (slots.length === 0) return null;
+  // In the follow view, auto-open the keynote rail if one of its keynotes is
+  // followed, so the highlighted talk is actually visible.
+  const anyKeyFollowed =
+    filtered &&
+    day.keynotes.some(
+      (t, i) =>
+        isTalk(keynoteId(day.date, i)) ||
+        (t.speakers ?? []).some((s) => isSpeaker(s.name)),
+    );
+  const keyOpen = showKeynotes || anyKeyFollowed;
   return (
     <section className="dashday">
       <div className="dashday__head">
@@ -320,16 +395,16 @@ function DaySection({
           <button
             className="krail__toggle"
             onClick={() => setShowKeynotes((v) => !v)}
-            aria-expanded={showKeynotes}
+            aria-expanded={keyOpen}
           >
             <Icon name="keynotes" size={15} />
             主旨报告 · 上午 · {day.keynotes.length} 场
-            <span className={`caret ${showKeynotes ? "caret--up" : ""}`}>
+            <span className={`caret ${keyOpen ? "caret--up" : ""}`}>
               <Icon name="chevron-down" size={16} />
             </span>
           </button>
           <AnimatePresence initial={false}>
-            {showKeynotes && (
+            {keyOpen && (
               <motion.div
                 className="krail__list"
                 initial={{ height: 0, opacity: 0 }}
@@ -338,7 +413,15 @@ function DaySection({
                 transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
               >
                 {day.keynotes.map((t, i) => (
-                  <KeynoteRow key={i} t={t} date={day.date} index={i} />
+                  <KeynoteRow
+                    key={i}
+                    t={t}
+                    date={day.date}
+                    index={i}
+                    filtered={filtered}
+                    activeSpeaker={activeSpeaker}
+                    onSpeaker={onSpeaker}
+                  />
                 ))}
               </motion.div>
             )}
