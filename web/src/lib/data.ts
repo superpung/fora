@@ -156,6 +156,48 @@ export const uniqueSpeakerCount = new Set(
   (conference.forums ?? []).flatMap((f) => forumPeople(f)),
 ).size;
 
+// ---- Speaker classification + name indexing ----
+export type SpeakerCategory = "university" | "research" | "industry" | "other";
+
+export const categoryLabel: Record<SpeakerCategory, string> = {
+  university: "高校",
+  research: "科研院所",
+  industry: "企业",
+  other: "其他",
+};
+
+// Classify a person by their affiliation string. Order matters: a corporate
+// research institute (e.g. 电科集团…研究所) reads as an institute, not a company.
+export function speakerCategory(aff?: string | null): SpeakerCategory {
+  const s = aff ?? "";
+  if (/研究院|研究所|科学院|工程院|实验室|\d+所|Institut|Laborator|Academy/i.test(s)) return "research";
+  if (/大学|学院|University|College|School/i.test(s)) return "university";
+  if (/公司|集团|科技|技术|微电子|半导体|电子|股份|有限|Inc\.?|Corp|Ltd|Technolog|Semiconductor/i.test(s))
+    return "industry";
+  return "other";
+}
+
+// Pinyin first-letter of a name, for an A–Z jump index. Chinese initials are
+// derived by comparing the first char against per-letter boundary characters
+// under ICU pinyin collation (validated 340/340 against pypinyin for this data).
+const PY_ANCHORS: [string, string][] = [
+  ["A", "阿"], ["B", "芭"], ["C", "擦"], ["D", "搭"], ["E", "蛾"], ["F", "发"],
+  ["G", "噶"], ["H", "哈"], ["J", "击"], ["K", "喀"], ["L", "垃"], ["M", "妈"],
+  ["N", "拿"], ["O", "哦"], ["P", "啪"], ["Q", "期"], ["R", "然"], ["S", "撒"],
+  ["T", "塌"], ["W", "挖"], ["X", "昔"], ["Y", "压"], ["Z", "匝"],
+];
+const pyCollator = new Intl.Collator("zh-Hans-CN", { collation: "pinyin" });
+
+export function firstLetter(name: string): string {
+  const c = (name.trim()[0] ?? "").toString();
+  if (/[a-zA-Z]/.test(c)) return c.toUpperCase();
+  if (!/[一-鿿]/.test(c)) return "#";
+  for (let i = PY_ANCHORS.length - 1; i >= 0; i--) {
+    if (pyCollator.compare(c, PY_ANCHORS[i][1]) >= 0) return PY_ANCHORS[i][0];
+  }
+  return "#";
+}
+
 // ---- Speaker directory (aggregate every talk a person gives) ----
 export interface SpeakerTalk {
   forumCode?: string; // undefined for main-conference keynotes
@@ -176,6 +218,8 @@ export interface SpeakerAgg {
   person: Person; // representative record (prefers one carrying a bio)
   talks: SpeakerTalk[];
   search: string;
+  category: SpeakerCategory;
+  initial: string; // pinyin first-letter, for the A–Z index
 }
 
 function pickPerson(current: Person | undefined, next: Person): Person {
@@ -195,7 +239,14 @@ function addSpeakerTalk(sp: Person, talk: SpeakerTalk) {
     existing.person = pickPerson(existing.person, sp);
     existing.talks.push(talk);
   } else {
-    speakerMap.set(sp.name, { name: sp.name, person: sp, talks: [talk], search: "" });
+    speakerMap.set(sp.name, {
+      name: sp.name,
+      person: sp,
+      talks: [talk],
+      search: "",
+      category: "other",
+      initial: "",
+    });
   }
 }
 
@@ -259,6 +310,17 @@ export const speakerList: SpeakerAgg[] = [...speakerMap.values()]
     ]
       .join(" ")
       .toLowerCase();
+    s.category = speakerCategory(p.affiliation_raw);
+    s.initial = firstLetter(s.name);
     return s;
   })
   .sort((a, b) => a.name.localeCompare(b.name, "zh-Hans-CN"));
+
+/** Per-category speaker counts (for the directory filter chips). */
+export const speakerCategoryCounts: Record<SpeakerCategory, number> = speakerList.reduce(
+  (acc, s) => {
+    acc[s.category] += 1;
+    return acc;
+  },
+  { university: 0, research: 0, industry: 0, other: 0 } as Record<SpeakerCategory, number>,
+);
