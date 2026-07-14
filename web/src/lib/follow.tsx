@@ -1,22 +1,24 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   FollowCtx,
-  FORUMS_KEY,
-  SPEAKERS_KEY,
-  TALKS_KEY,
+  followKeys,
   load,
   save,
   type FollowState,
 } from "./follow-store";
 
-export function FollowProvider({ children }: { children: React.ReactNode }) {
-  const [forums, setForums] = useState<Set<string>>(() => load(FORUMS_KEY));
-  const [speakers, setSpeakers] = useState<Set<string>>(() => load(SPEAKERS_KEY));
-  const [talks, setTalks] = useState<Set<string>>(() => load(TALKS_KEY));
+// Follows are per-conference: the provider is mounted inside the conference
+// layout keyed by conference id, so switching conferences remounts it with that
+// conference's own persisted follows (and never mixes two agendas together).
+export function FollowProvider({ confId, children }: { confId: string; children: React.ReactNode }) {
+  const keys = useMemo(() => followKeys(confId), [confId]);
+  const [forums, setForums] = useState<Set<string>>(() => load(keys.forums));
+  const [speakers, setSpeakers] = useState<Set<string>>(() => load(keys.speakers));
+  const [talks, setTalks] = useState<Set<string>>(() => load(keys.talks));
 
-  useEffect(() => save(FORUMS_KEY, forums), [forums]);
-  useEffect(() => save(SPEAKERS_KEY, speakers), [speakers]);
-  useEffect(() => save(TALKS_KEY, talks), [talks]);
+  useEffect(() => save(keys.forums, forums), [keys.forums, forums]);
+  useEffect(() => save(keys.speakers, speakers), [keys.speakers, speakers]);
+  useEffect(() => save(keys.talks, talks), [keys.talks, talks]);
 
   const toggle = useCallback(
     (setter: React.Dispatch<React.SetStateAction<Set<string>>>) =>

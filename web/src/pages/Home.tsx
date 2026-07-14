@@ -1,15 +1,8 @@
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import {
-  conference,
-  scheduleDays,
-  stats,
-  uniqueSpeakerCount,
-  formatDate,
-  type ScheduleDay,
-  type ForumSlot,
-} from "../lib/data";
+import { formatDate, type ScheduleDay, type ForumSlot } from "../lib/data";
+import { useConference } from "../lib/conference-store";
 import { useFollow, talkId, keynoteId } from "../lib/follow-store";
 import { pageVariants } from "../lib/motion";
 import Icon from "../components/Icon";
@@ -165,6 +158,7 @@ function ForumRow({
   onSpeaker: (name: string) => void;
 }) {
   const { isForum, toggleForum, isSpeaker, isTalk, toggleTalk } = useFollow();
+  const { id: confId } = useConference();
   const f = slot.forum;
   const talks = f?.talks ?? [];
   const hasTalks = !!f?.detail_extracted && talks.length > 0;
@@ -251,7 +245,7 @@ function ForumRow({
             className="frow__star"
           />
           <Link
-            to={`/forum/${slot.code}`}
+            to={`/${confId}/forum/${slot.code}`}
             className="frow__enter"
             aria-label={`进入论坛 ${slot.code}`}
             title="进入论坛详情页"
@@ -301,7 +295,7 @@ function ForumRow({
                   (t.speakers ?? []).some((s) => isSpeaker(s.name)));
               return (
                 <div className={`ftalk ${spHit || followHit ? "ftalk--hit" : ""}`} key={i}>
-                  <Link to={`/forum/${slot.code}#talk-${i + 1}`} className="ftalk__link">
+                  <Link to={`/${confId}/forum/${slot.code}#talk-${i + 1}`} className="ftalk__link">
                     <span className="ftalk__no">{String(i + 1).padStart(2, "0")}</span>
                     <span className="ftalk__main">
                       <span className="ftalk__title">
@@ -448,6 +442,7 @@ function DaySection({
 /* ---------------- dashboard ---------------- */
 
 export default function Home() {
+  const { id: confId, conference, scheduleDays, stats, uniqueSpeakerCount } = useConference();
   const {
     forums: followedForums,
     speakers: followedSpeakers,
@@ -491,7 +486,7 @@ export default function Home() {
       .filter((x) => x.slots.length > 0);
     // isSpeaker / isTalk are re-created whenever the followed sets change, so
     // depending on them is enough — the raw sets are redundant here.
-  }, [dayFilter, q, onlyFollowed, onlySponsored, speakerFilter, followedForums, isSpeaker, isTalk]);
+  }, [scheduleDays, dayFilter, q, onlyFollowed, onlySponsored, speakerFilter, followedForums, isSpeaker, isTalk]);
 
   const totalShown = visibleDays.reduce((n, x) => n + x.slots.length, 0);
   const { md: startMd } = formatDate(conference.start_date);
@@ -647,7 +642,7 @@ export default function Home() {
         </AnimatePresence>
 
         <div className="dash__hint">
-          <Link to="/schedule" className="btn btn--ghost">
+          <Link to={`/${confId}/schedule`} className="btn btn--ghost">
             <Icon name="calendar" size={15} /> 时间线视图
           </Link>
         </div>
