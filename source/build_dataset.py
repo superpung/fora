@@ -21,6 +21,9 @@ people = load(EXT / "people.json")
 sponsors_raw = load(EXT / "sponsors.json")
 texts = load(EXT / "texts.json")
 forum_imgs = {f["code"]: f for f in load(EXT / "forum_images.json")}
+# Official per-forum article URL (general_NNNN), recovered from the site's
+# getShortUrl.action short-url table joined to each forum's channel id.
+forum_urls = load(EXT / "forum_source_urls.json")
 
 # ---------------- 会议元数据 ----------------
 conf = {
@@ -182,6 +185,7 @@ for code, title, room, day, period, sponsor, series in FORUM_META:
         d["session_period"] = period
         d["sponsor"] = d.get("sponsor") or sponsor
         d["series_part"] = d.get("series_part") or series
+        d["source_url"] = forum_urls.get(code)
         forums.append(d)
         continue
     img = (forum_imgs.get(code, {}).get("poster_images") or [None])[0]
@@ -197,6 +201,7 @@ for code, title, room, day, period, sponsor, series in FORUM_META:
         "chairs": [],
         "talks": [],
         "poster": {"local_path": img, "source_url": None} if img else None,
+        "source_url": forum_urls.get(code),
         "detail_extracted": False,
     })
 conf["forums"] = forums
