@@ -4,6 +4,24 @@ All notable changes to this project. The project is unversioned (no release
 tags yet), so entries are grouped by date, newest first. Written in English per
 the repository language rule (see AGENTS.md).
 
+## 2026-07-14 — UI optimization, round 3 (review feedback)
+
+### Added
+- **Followable keynotes** and **agenda export.** Main-conference keynotes can be
+  starred; the dashboard exports all followed talks (starred talks, whole
+  followed forums, and followed speakers' talks) as calendar (.ics), CSV, or
+  Markdown. Forum talks with no time inherit their forum block's window; the
+  location is the full venue name + room.
+- Small icons before each field of the dashboard day meta (venue/time/parallel),
+  a person icon on author lists, and location pins on rooms; the timeline venue
+  gets a distinct building icon.
+
+### Changed
+- Dashboard forum rows: the report count and sponsor moved onto the title line.
+- Category chips with a 0 count are hidden (e.g. 其他).
+- Removed the committee "N 位专家 · M 个角色" subtitle.
+- Monochrome (black/white) favicon.
+
 ## 2026-07-14 — UI optimization, round 2 (review feedback)
 
 ### Added
