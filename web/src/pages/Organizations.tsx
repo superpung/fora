@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { conference } from "../lib/data";
 import { pageVariants } from "../lib/motion";
 import Reveal from "../components/Reveal";
+import Icon from "../components/Icon";
 import type { Organization } from "../types";
 
 const ROLE_LABEL: Record<string, string> = {
@@ -30,8 +31,12 @@ export default function Organizations() {
       exit="exit"
     >
       <div className="section__head">
-        <div className="eyebrow">Organizers</div>
-        <h2 className="section__title">组织与赞助</h2>
+        <div className="section__titlerow">
+          <span className="section__icon" aria-hidden>
+            <Icon name="building" size={19} />
+          </span>
+          <h2 className="section__title">组织与赞助</h2>
+        </div>
       </div>
 
       <div className="orgcols">
