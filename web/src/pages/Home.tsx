@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   conference,
@@ -85,98 +85,181 @@ function KeynoteRow({ t }: { t: Talk }) {
   );
 }
 
-function ForumRow({ slot, filtered }: { slot: ForumSlot; filtered: boolean }) {
+function ForumRow({
+  slot,
+  filtered,
+  activeSpeaker,
+  onSpeaker,
+}: {
+  slot: ForumSlot;
+  filtered: boolean;
+  activeSpeaker: string | null;
+  onSpeaker: (name: string) => void;
+}) {
   const { isForum, toggleForum, isSpeaker, isTalk, toggleTalk } = useFollow();
   const f = slot.forum;
   const talks = f?.talks ?? [];
+  const hasTalks = !!f?.detail_extracted && talks.length > 0;
   const followedHere = slot.people.filter((n) => isSpeaker(n));
   const followedTalks = talks
     .map((t, i) => ({ t, i }))
     .filter(({ i }) => isTalk(talkId(slot.code, i)));
-  const previewNames = slot.people.slice(0, 4);
-  const extra = slot.people.length - previewNames.length;
 
   // When filtering "我的关注", if this forum surfaced ONLY because of a starred
-  // talk (the forum itself / its speakers aren't followed), present it talk-first:
-  // suppress the whole-forum summary and list just the followed talk(s) below.
+  // talk (the forum / its speakers aren't followed), show just those talks.
   const forumTracked = isForum(slot.code) || followedHere.length > 0;
   const talkOnly = filtered && !forumTracked && followedTalks.length > 0;
+  const speakerHit = activeSpeaker != null && slot.people.includes(activeSpeaker);
+
+  // Rows auto-open when a filter needs them (starred-talk-only view, or a speaker
+  // filter that matched here); otherwise the user drives it by clicking the row.
+  const forcedOpen = talkOnly || speakerHit;
+  const [userOpen, setUserOpen] = useState<boolean | null>(null);
+  const open = hasTalks && (userOpen ?? forcedOpen);
+  const shownTalks = talkOnly ? followedTalks : talks.map((t, i) => ({ t, i }));
 
   return (
-    <div className={`frow ${followedHere.length ? "frow--tracked" : ""}`}>
+    <div
+      className={`frow ${followedHere.length ? "frow--tracked" : ""} ${open ? "is-open" : ""}`}
+    >
       <div className="frow__head">
-      <Link to={`/forum/${slot.code}`} className="frow__link">
-        <span className="frow__room">{slot.room}</span>
-        <span className="frow__code">{slot.code}</span>
-        <span className="frow__body">
-          <span className="frow__title">{f?.title.zh ?? slot.code}</span>
-          {!talkOnly && previewNames.length > 0 && (
-            <span className="frow__people">
-              {previewNames.map((n, i) => (
-                <span key={n} className={isSpeaker(n) ? "is-followed" : ""}>
-                  {n}
-                  {i < previewNames.length - 1 || extra > 0 ? "、" : ""}
-                </span>
-              ))}
-              {extra > 0 && <span className="frow__more">等 {slot.people.length} 人</span>}
+        <button
+          className="frow__main"
+          onClick={() => hasTalks && setUserOpen(!open)}
+          aria-expanded={open}
+          disabled={!hasTalks}
+        >
+          <span className="frow__room">{slot.room}</span>
+          <span className="frow__code">{slot.code}</span>
+          <span className="frow__body">
+            <span className="frow__title">{f?.title.zh ?? slot.code}</span>
+            <span className="frow__sub">
+              {f?.sponsor && <span className="frow__sponsor">{f.sponsor}</span>}
+              {hasTalks ? (
+                <span className="frow__count">{talks.length} 报告</span>
+              ) : (
+                <span className="frow__pending">详情待补</span>
+              )}
+            </span>
+          </span>
+          {hasTalks && (
+            <span className={`caret frow__caret ${open ? "caret--up" : ""}`}>
+              <Icon name="chevron-down" size={16} />
             </span>
           )}
-          {talkOnly && (
-            <span className="frow__people">已收藏本论坛的 {followedTalks.length} 场报告</span>
-          )}
-        </span>
-        <span className="frow__meta">
-          {f?.sponsor && <span className="frow__sponsor">{f.sponsor}</span>}
-          {!talkOnly &&
-            (f?.detail_extracted ? (
-              <span className="frow__count">{talks.length} 报告</span>
-            ) : (
-              <span className="frow__pending">详情待补</span>
-            ))}
-        </span>
-      </Link>
-      <StarButton
-        active={isForum(slot.code)}
-        onClick={() => toggleForum(slot.code)}
-        label={`收藏论坛 ${slot.code}`}
-      />
+        </button>
+        <div className="frow__actions">
+          <StarButton
+            active={isForum(slot.code)}
+            onClick={() => toggleForum(slot.code)}
+            label={`收藏论坛 ${slot.code}`}
+            className="frow__star"
+          />
+          <Link
+            to={`/forum/${slot.code}`}
+            className="frow__enter"
+            aria-label={`进入论坛 ${slot.code}`}
+            title="进入论坛详情页"
+          >
+            <span className="frow__enter-label">进入</span>
+            <Icon name="chevron-right" size={15} />
+          </Link>
+        </div>
       </div>
 
-      {filtered && followedTalks.length > 0 && (
-        <div className="frow__talks">
-          {followedTalks.map(({ t, i }) => {
-            const sp = t.speakers?.[0];
-            return (
-              <div className="ftalk" key={i}>
-                <Link to={`/forum/${slot.code}`} className="ftalk__link">
-                  <span className="ftalk__no">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="ftalk__main">
-                    <span className="ftalk__title">
-                      {t.title_status === "tbd" ? (
-                        <span className="muted-i">题目待定</span>
-                      ) : (
-                        t.title?.zh
-                      )}
-                    </span>
-                    {sp && <span className="ftalk__speaker">{sp.name}</span>}
-                  </span>
-                </Link>
-                <StarButton
-                  active
-                  onClick={() => toggleTalk(talkId(slot.code, i))}
-                  label={`取消收藏该报告`}
-                  className="ftalk__star"
-                />
-              </div>
-            );
-          })}
+      {slot.people.length > 0 && (
+        <div className="frow__people">
+          {slot.people.map((n) => (
+            <button
+              key={n}
+              className={`pchip ${activeSpeaker === n ? "is-active" : ""} ${
+                isSpeaker(n) ? "is-followed" : ""
+              }`}
+              onClick={() => onSpeaker(n)}
+              title={`筛选包含 ${n} 的论坛与报告`}
+            >
+              {n}
+            </button>
+          ))}
         </div>
       )}
+
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            className="frow__talks"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {shownTalks.map(({ t, i }) => {
+              const tFollowed = isTalk(talkId(slot.code, i));
+              const spHit =
+                activeSpeaker != null &&
+                (t.speakers ?? []).some((s) => s.name === activeSpeaker);
+              return (
+                <div className={`ftalk ${spHit ? "ftalk--hit" : ""}`} key={i}>
+                  <Link to={`/forum/${slot.code}#talk-${i + 1}`} className="ftalk__link">
+                    <span className="ftalk__no">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="ftalk__main">
+                      <span className="ftalk__title">
+                        {t.title_status === "tbd" ? (
+                          <span className="muted-i">题目待定</span>
+                        ) : (
+                          t.title?.zh
+                        )}
+                      </span>
+                      {(t.speakers ?? []).length > 0 && (
+                        <span className="ftalk__speakers">
+                          {t.speakers!.map((s) => (
+                            <button
+                              key={s.name}
+                              className={`pchip pchip--sm ${
+                                activeSpeaker === s.name ? "is-active" : ""
+                              }`}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                onSpeaker(s.name);
+                              }}
+                            >
+                              {s.name}
+                            </button>
+                          ))}
+                        </span>
+                      )}
+                    </span>
+                  </Link>
+                  <StarButton
+                    active={tFollowed}
+                    onClick={() => toggleTalk(talkId(slot.code, i))}
+                    label={tFollowed ? "取消收藏该报告" : "收藏该报告"}
+                    className="ftalk__star"
+                  />
+                </div>
+              );
+            })}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
 
-function DaySection({ day, slots, filtered }: { day: ScheduleDay; slots: ForumSlot[]; filtered: boolean }) {
+function DaySection({
+  day,
+  slots,
+  filtered,
+  activeSpeaker,
+  onSpeaker,
+}: {
+  day: ScheduleDay;
+  slots: ForumSlot[];
+  filtered: boolean;
+  activeSpeaker: string | null;
+  onSpeaker: (name: string) => void;
+}) {
   const [showKeynotes, setShowKeynotes] = useState(false);
   if (slots.length === 0) return null;
   return (
@@ -217,7 +300,13 @@ function DaySection({ day, slots, filtered }: { day: ScheduleDay; slots: ForumSl
 
       <div className="ftable">
         {slots.map((s) => (
-          <ForumRow key={s.code} slot={s} filtered={filtered} />
+          <ForumRow
+            key={s.code}
+            slot={s}
+            filtered={filtered}
+            activeSpeaker={activeSpeaker}
+            onSpeaker={onSpeaker}
+          />
         ))}
       </div>
     </section>
@@ -239,6 +328,10 @@ export default function Home() {
   const [query, setQuery] = useState("");
   const [onlyFollowed, setOnlyFollowed] = useState(false);
   const [onlySponsored, setOnlySponsored] = useState(false);
+  // Clicking a speaker chip filters the board down to that person's forums/talks.
+  const [speakerFilter, setSpeakerFilter] = useState<string | null>(null);
+  const onSpeaker = (name: string) =>
+    setSpeakerFilter((s) => (s === name ? null : name));
 
   const followedCount =
     followedForums.size + followedSpeakers.size + followedTalks.size;
@@ -251,6 +344,7 @@ export default function Home() {
         const slots = d.slots.filter((s) => {
           if (q && !s.search.includes(q)) return false;
           if (onlySponsored && !s.forum?.sponsor) return false;
+          if (speakerFilter && !s.people.includes(speakerFilter)) return false;
           if (onlyFollowed) {
             const tracked =
               followedForums.has(s.code) ||
@@ -265,7 +359,7 @@ export default function Home() {
       .filter((x) => x.slots.length > 0);
     // isSpeaker / isTalk are re-created whenever the followed sets change, so
     // depending on them is enough — the raw sets are redundant here.
-  }, [dayFilter, q, onlyFollowed, onlySponsored, followedForums, isSpeaker, isTalk]);
+  }, [dayFilter, q, onlyFollowed, onlySponsored, speakerFilter, followedForums, isSpeaker, isTalk]);
 
   const totalShown = visibleDays.reduce((n, x) => n + x.slots.length, 0);
   const { md: startMd } = formatDate(conference.start_date);
@@ -343,15 +437,19 @@ export default function Home() {
             <button
               className={`filterchip ${onlyFollowed ? "is-on" : ""}`}
               onClick={() => setOnlyFollowed((v) => !v)}
+              title="只看我的关注"
             >
               <Icon name="star" filled={onlyFollowed} size={14} />
-              我的关注{followedCount ? ` ${followedCount}` : ""}
+              <span className="filterchip__label">我的关注</span>
+              {followedCount ? <span className="filterchip__n">{followedCount}</span> : null}
             </button>
             <button
               className={`filterchip ${onlySponsored ? "is-on" : ""}`}
               onClick={() => setOnlySponsored((v) => !v)}
+              title="只看赞助专场"
             >
-              赞助专场
+              <Icon name="building" size={14} />
+              <span className="filterchip__label">赞助专场</span>
             </button>
           </div>
         </div>
@@ -359,11 +457,21 @@ export default function Home() {
 
       <div className="container dash">
         <div className="dash__resultbar">
-          <span>
+          <span className="dash__resultinfo">
             共 <strong>{totalShown}</strong> 场论坛
             {q && ` · 匹配“${query}”`}
             {onlyFollowed && " · 仅关注"}
             {onlySponsored && " · 仅赞助专场"}
+            {speakerFilter && (
+              <button
+                className="filtertag"
+                onClick={() => setSpeakerFilter(null)}
+                title="清除讲者筛选"
+              >
+                讲者：{speakerFilter}
+                <Icon name="x" size={12} />
+              </button>
+            )}
           </span>
           {followedCount > 0 && (
             <button className="linkbtn" onClick={clearAll}>
@@ -372,18 +480,35 @@ export default function Home() {
           )}
         </div>
 
-        {visibleDays.length === 0 ? (
-          <div className="dash__empty">
-            <p>
-              没有符合条件的论坛。
-              {onlyFollowed && "点击论坛、报告或讲者旁的星标即可加入“我的关注”。"}
-            </p>
-          </div>
-        ) : (
-          visibleDays.map(({ day, slots }) => (
-            <DaySection key={day.date} day={day} slots={slots} filtered={onlyFollowed} />
-          ))
-        )}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={dayFilter}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {visibleDays.length === 0 ? (
+              <div className="dash__empty">
+                <p>
+                  没有符合条件的论坛。
+                  {onlyFollowed && "点击论坛、报告或讲者旁的星标即可加入“我的关注”。"}
+                </p>
+              </div>
+            ) : (
+              visibleDays.map(({ day, slots }) => (
+                <DaySection
+                  key={day.date}
+                  day={day}
+                  slots={slots}
+                  filtered={onlyFollowed}
+                  activeSpeaker={speakerFilter}
+                  onSpeaker={onSpeaker}
+                />
+              ))
+            )}
+          </motion.div>
+        </AnimatePresence>
 
         <div className="dash__hint">
           <Link to="/schedule" className="btn btn--ghost">
