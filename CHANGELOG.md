@@ -4,6 +4,38 @@ All notable changes to this project. The project is unversioned (no release
 tags yet), so entries are grouped by date, newest first. Written in English per
 the repository language rule (see AGENTS.md).
 
+## 2026-07-15 — Multi-conference architecture
+
+The viewer now hosts **several conferences** instead of being hard-wired to one.
+
+### Added
+- **Conference hub at `/`.** A catalogue page lists every hosted conference as a
+  card (name, dates, city, forum/keynote/day counts) and links into it. Rendered
+  from a lightweight `manifest.json` — no full dataset is loaded just to list
+  conferences.
+- **Per-conference routes `/:conf/...`.** Each conference lives under its own id
+  (`/ccfchip2026/schedule`, `/ccfchip2026/forum/CF01`, …). This also fixes forum
+  codes (CF01, …) not being unique across conferences: the id in the path
+  disambiguates them, so every forum link is now shareable.
+- **Conference switcher** in the nav (Vercel/Linear-style): the brand shows the
+  active conference and opens a popover to jump to another or back to the hub —
+  same open/close animation as the export menu.
+- **Lazy per-conference data.** Each conference's dataset is code-split into its
+  own chunk and fetched only when that conference is entered; a page loader shows
+  while it loads. The built views for a conference are memoised (built once).
+
+### Changed
+- **Data layer is no longer a module singleton.** `lib/data.ts` exposes a pure
+  `buildConferenceViews(raw)` factory (plus conference-independent helpers);
+  components read the active conference's views through `useConference()`.
+- **Per-conference data files + manifest.** `web/src/data/conference.json` moved
+  to `web/src/data/conferences/<id>.json`, and the build regenerates
+  `web/src/data/manifest.json` from every conference file present.
+- **Follows are scoped per conference.** The follow provider is mounted inside
+  the conference layout (keyed by id), so each conference keeps its own agenda
+  (`<id>:followed.*`) and switching never mixes two agendas.
+- Unknown or legacy flat URLs (`/schedule`, `/bogus/…`) redirect to the hub.
+
 ## 2026-07-14 — UI optimization, round 5 (review feedback)
 
 ### Added

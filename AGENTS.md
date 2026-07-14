@@ -17,6 +17,13 @@
 - 数据模型完全自建（`schema/schema.json`），**不兼容/不映射** pretalx/frab 等任何现成格式。
 - 脏数据按"如实记录 + `flags` 标记"处理，不擅自修正。
 - 网页设计需对齐 claude.ai 风格，细节到位，必须有动画。
+- **站点托管多个会议**：`/` 是会议 Hub，每个会议在 `/:conf/...` 下（`conf` = 会议 id）。
+  - 数据不是模块单例：`lib/data.ts` 的 `buildConferenceViews(raw)` 是纯工厂，注册表
+    （`lib/conferences.ts`）按 id 构建并缓存视图，组件通过 `useConference()` 取当前会议。
+  - 每会议一份数据 `web/src/data/conferences/<id>.json`，`manifest.json` 由构建脚本
+    从这些文件重新生成，供 Hub / 切换器渲染（不加载整份数据集）。
+  - 所有 per-conference 的存储 key 都命名空间化在会议 id 下（`<id>:followed.*`）；
+    主题等站点级偏好不加命名空间。
 
 ## UI copy rules (hard)
 - **No decorative eyebrow/kicker labels.** Never place a small label above a title
