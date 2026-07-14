@@ -1,7 +1,8 @@
-import { conference } from "../lib/data";
+import { useConference } from "../lib/conference-store";
 import Icon from "./Icon";
 
 export default function Footer() {
+  const { conference } = useConference();
   const site = conference.source_url;
   return (
     <footer className="footer">

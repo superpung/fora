@@ -4,16 +4,15 @@ import { BrowserRouter } from "react-router-dom";
 import "./styles/global.css";
 import "./styles/app.css";
 import { ThemeProvider } from "./lib/theme";
-import { FollowProvider } from "./lib/follow";
 import App from "./App";
 
+// Follows are per-conference, so FollowProvider is mounted inside the conference
+// layout (ConferenceLayout), not globally. Theme is a site-wide preference.
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <ThemeProvider>
-        <FollowProvider>
-          <App />
-        </FollowProvider>
+        <App />
       </ThemeProvider>
     </BrowserRouter>
   </StrictMode>,

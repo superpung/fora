@@ -2,15 +2,14 @@ import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
-  speakerList,
   formatDate,
   periodLabel,
   categoryLabel,
-  speakerCategoryCounts,
   type SpeakerAgg,
   type SpeakerTalk,
   type SpeakerCategory,
 } from "../lib/data";
+import { useConference } from "../lib/conference-store";
 import { useFollow } from "../lib/follow-store";
 import { pageVariants } from "../lib/motion";
 import Icon from "../components/Icon";
@@ -22,6 +21,7 @@ import Avatar from "../components/Avatar";
 const openCards = new Set<string>();
 
 function TalkLine({ t }: { t: SpeakerTalk }) {
+  const { id: confId } = useConference();
   const dateInfo = t.date ? formatDate(t.date) : null;
   const no = t.talkIndex != null ? String(t.talkIndex + 1).padStart(2, "0") : null;
   const body = (
@@ -63,7 +63,10 @@ function TalkLine({ t }: { t: SpeakerTalk }) {
 
   // keynotes aren't a forum page; forum talks deep-link to their 1-based position
   return t.forumCode ? (
-    <Link to={`/forum/${t.forumCode}#talk-${(t.talkIndex ?? 0) + 1}`} className="sptalk sptalk--link">
+    <Link
+      to={`/${confId}/forum/${t.forumCode}#talk-${(t.talkIndex ?? 0) + 1}`}
+      className="sptalk sptalk--link"
+    >
       {body}
       <Icon name="chevron-right" size={16} />
     </Link>
@@ -137,21 +140,23 @@ function SpeakerCard({ s }: { s: SpeakerAgg }) {
   );
 }
 
-// Only offer categories that actually have members (skip empty buckets, e.g. 其他).
-const CATS: (SpeakerCategory | "all")[] = [
-  "all",
-  ...(["university", "research", "industry", "other"] as SpeakerCategory[]).filter(
-    (c) => speakerCategoryCounts[c] > 0,
-  ),
-];
 const ALPHABET = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ", "#"];
 
 export default function Speakers() {
+  const { speakerList, speakerCategoryCounts } = useConference();
   const { speakers: followedSpeakers, isSpeaker } = useFollow();
   const [query, setQuery] = useState("");
   const [onlyFollowed, setOnlyFollowed] = useState(false);
   const [cat, setCat] = useState<SpeakerCategory | "all">("all");
   const q = query.trim().toLowerCase();
+
+  // Only offer categories that actually have members (skip empty buckets, e.g. 其他).
+  const CATS: (SpeakerCategory | "all")[] = [
+    "all",
+    ...(["university", "research", "industry", "other"] as SpeakerCategory[]).filter(
+      (c) => speakerCategoryCounts[c] > 0,
+    ),
+  ];
 
   const visible = useMemo(
     () =>
@@ -162,7 +167,7 @@ export default function Speakers() {
         return true;
       }),
     // isSpeaker changes whenever the followed set changes, so it's sufficient.
-    [q, onlyFollowed, isSpeaker, cat],
+    [speakerList, q, onlyFollowed, isSpeaker, cat],
   );
 
   // Group the (already name-sorted) list by pinyin initial for the jump index.

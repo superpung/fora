@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import Icon from "./Icon";
 import { useFollow } from "../lib/follow-store";
+import { useConference } from "../lib/conference-store";
 import { parseFollowJSON } from "../lib/export";
 
 // Import a previously-exported JSON backup (see toFollowJSON) and merge its
@@ -8,6 +9,7 @@ import { parseFollowJSON } from "../lib/export";
 // blocking alert.
 export default function ImportButton() {
   const { importFollows } = useFollow();
+  const { id: currentId } = useConference();
   const inputRef = useRef<HTMLInputElement>(null);
   const [status, setStatus] = useState<{ kind: "ok" | "err"; text: string } | null>(null);
 
@@ -21,7 +23,7 @@ export default function ImportButton() {
     e.target.value = ""; // let the same file be re-selected later
     if (!file) return;
     try {
-      const parsed = parseFollowJSON(await file.text());
+      const parsed = parseFollowJSON(await file.text(), currentId);
       if (!parsed) return flash("err", "无法识别的文件，请选择本站导出的 .json 备份");
       if (parsed.conferenceMismatch)
         return flash("err", `该备份属于其他会议（${parsed.conference}），无法导入`);
