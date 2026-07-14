@@ -117,6 +117,20 @@ export function collectFollowedItems(f: FollowSnapshot): ExportItem[] {
   );
 }
 
+/** A download filename built from the conference name + the dates it spans,
+    e.g. "CCF Chip 2026 我的日程 2026-07-18~07-19.ics". */
+export function exportFilename(items: ExportItem[], ext: string): string {
+  const dates = [...new Set(items.map((it) => it.date).filter(Boolean))].sort();
+  const first = dates[0];
+  const last = dates[dates.length - 1];
+  let range = "";
+  if (dates.length === 1) range = first;
+  else if (dates.length > 1)
+    range = first.slice(0, 4) === last.slice(0, 4) ? `${first}~${last.slice(5)}` : `${first}~${last}`;
+  const base = conference.name.en || conference.name.zh;
+  return `${[base, "我的日程", range].filter(Boolean).join(" ")}.${ext}`;
+}
+
 /* ---------------- formatters ---------------- */
 
 function csvCell(v: string | null | undefined): string {
