@@ -224,8 +224,18 @@
       "type": "object",
       "required": ["code", "title"],
       "properties": {
-        "code": { "type": "string", "description": "e.g. CF01" },
+        "code": { "type": "string", "description": "e.g. CF01, or a category-coded id like R1/I3" },
         "title": { "$ref": "#/$defs/i18n" },
+        "category": {
+          "description": "Forum grouping/track, when a conference organizes forums into categories (e.g. 学术论坛/产业论坛/教育论坛/院士峰会). `key` is a stable machine slug; `name` is the display label. Optional — conferences with a single flat forum list omit it.",
+          "type": "object",
+          "required": ["name"],
+          "properties": {
+            "key": { "type": ["string", "null"], "description": "stable slug, e.g. academic-forum" },
+            "name": { "$ref": "#/$defs/i18n" }
+          },
+          "additionalProperties": false
+        },
         "sponsor": { "type": ["string", "null"], "description": "Session sponsor, e.g. 知存科技/阿里巴巴达摩院" },
         "series_part": { "type": ["string", "null"], "description": "Series-part marker, e.g. （一）/（二）" },
         "day_date": { "type": ["string", "null"], "format": "date" },
