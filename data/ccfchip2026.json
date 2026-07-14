@@ -8606,10 +8606,10 @@
     }
   ],
   "extraction": {
-    "generated_at": "2026-07-10T00:42:04",
     "source": "ccf.org.cn/ccfchip2026",
     "forums_total": 48,
     "forums_detail_extracted": 47,
-    "notes": "总览级信息+结构化内容完整；论坛内部报告仅 CF01 已视觉解析，CF02-CF48 待续。"
+    "notes": "总览级信息+结构化内容完整；47/48 论坛已视觉解析，仅 CF10 因源海报缺失留空。",
+    "content_sha256": "71cea7e1366cddc45b94a8eb9d38ce940c5c4ca300f5ae545a01ee8aefbf0cfa"
   }
 }

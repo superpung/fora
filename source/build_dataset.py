@@ -5,7 +5,7 @@
   - 结构化内容：source/extracted/{people,sponsors,texts,forum_images}.json
   - 论坛详情：data/forums_detail/CF*.json（已视觉解析的论坛，逐步补全）
 """
-import json, pathlib, datetime, glob
+import json, pathlib, datetime, glob, os, hashlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SRC = ROOT / "source"
@@ -171,7 +171,18 @@ for p in glob.glob(str(DETAIL / "CF*.json")):
 forums = []
 for code, title, room, day, period, sponsor, series in FORUM_META:
     if code in details:
-        forums.append(details[code])
+        # FORUM_META (from the overview poster) is the single authority for
+        # scheduling placement: room / day / period. The forum's own detail
+        # poster may carry a richer sponsor / series label, so prefer that and
+        # only fall back to the overview value. This keeps one authority per
+        # field and prevents the two sources from silently diverging.
+        d = details[code]
+        d["room"] = room
+        d["day_date"] = day
+        d["session_period"] = period
+        d["sponsor"] = d.get("sponsor") or sponsor
+        d["series_part"] = d.get("series_part") or series
+        forums.append(d)
         continue
     img = (forum_imgs.get(code, {}).get("poster_images") or [None])[0]
     forums.append({
@@ -251,17 +262,35 @@ conf["days"] = [
      ]},
 ]
 
+n_extracted = sum(1 for f in forums if f.get("detail_extracted"))
 conf["extraction"] = {
-    "generated_at": datetime.datetime.now().isoformat(timespec="seconds"),
     "source": "ccf.org.cn/ccfchip2026",
     "forums_total": 48,
-    "forums_detail_extracted": sum(1 for f in forums if f.get("detail_extracted")),
-    "notes": "总览级信息+结构化内容完整；论坛内部报告仅 CF01 已视觉解析，CF02-CF48 待续。",
+    "forums_detail_extracted": n_extracted,
+    "notes": (f"总览级信息+结构化内容完整；{n_extracted}/48 论坛已视觉解析，"
+              "仅 CF10 因源海报缺失留空。"),
 }
+# Content fingerprint over everything except the extraction block itself, so a
+# rerun with unchanged source data produces a byte-identical file (no spurious
+# git diffs). A real wall-clock timestamp is recorded only when the caller opts
+# in via SOURCE_DATE_EPOCH (reproducible-builds convention).
+payload = json.dumps({k: v for k, v in conf.items() if k != "extraction"},
+                     ensure_ascii=False, sort_keys=True)
+conf["extraction"]["content_sha256"] = hashlib.sha256(payload.encode()).hexdigest()
+epoch = os.environ.get("SOURCE_DATE_EPOCH")
+if epoch:
+    conf["extraction"]["generated_at"] = (
+        datetime.datetime.fromtimestamp(int(epoch), datetime.timezone.utc)
+        .isoformat(timespec="seconds"))
 
+payload_out = json.dumps(conf, ensure_ascii=False, indent=2)
+# Single source of truth: write the canonical dataset AND the copy the web app
+# imports, so the two can never drift.
 out = ROOT / "data" / "ccfchip2026.json"
-out.write_text(json.dumps(conf, ensure_ascii=False, indent=2))
-print("wrote", out)
+web_out = ROOT / "web" / "src" / "data" / "conference.json"
+for p in (out, web_out):
+    p.write_text(payload_out)
+    print("wrote", p)
 print("committees:", len(conf["committees"]),
       "| persons:", sum(len(c["members"]) for c in conf["committees"]))
 print("organizations:", len(conf["organizations"]))

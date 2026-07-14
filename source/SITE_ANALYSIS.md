@@ -65,5 +65,6 @@
 ## 5. 抽取状态
 - [x] 全部 78 栏目原始 JSON + 76 资源 已落盘。
 - [x] 结构化内容（51 委员 / 赞助 / 文本 / 48 论坛总览元数据）已抽取 → `extracted/`。
-- [x] 论坛海报切片管线 `slice_poster.py`；CF01 已完整视觉解析 → `../data/forums_detail/CF01.json`。
-- [ ] CF02–CF48 海报待逐张视觉解析（各约 12–18 切片；机械但量大，可分批续跑）。
+- [x] 论坛海报切片管线 `slice_poster.py` / `batch_slice.py`。
+- [x] CF01–CF48 海报已逐张视觉解析（47/48 完成 → `../data/forums_detail/CFxx.json`）。
+- [ ] 仅 **CF10** 源海报缺失，无内部报告数据（`detail_extracted:false`，UI 显示「详情待补」）。

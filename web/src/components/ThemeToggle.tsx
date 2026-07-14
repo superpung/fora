@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useTheme } from "../lib/theme";
+import { useTheme } from "../lib/theme-store";
 import Icon, { type IconName } from "./Icon";
 
 const ICON: Record<string, IconName> = {
