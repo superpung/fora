@@ -33,7 +33,14 @@ export interface FollowSnapshot {
   talks: Set<string>;
 }
 
-export type ExportFormat = "ics" | "csv" | "md";
+export type ExportFormat = "ics" | "csv" | "md" | "json";
+
+export interface ParsedFollows {
+  follows: { forums: string[]; speakers: string[]; talks: string[] };
+  conference?: string;
+  /** true when the file names a different conference than the current one. */
+  conferenceMismatch: boolean;
+}
 
 function talkTitle(t: Talk): string {
   return t.title_status === "tbd" || !t.title?.zh ? "（题目待定）" : t.title.zh;
@@ -129,6 +136,51 @@ export function exportFilename(items: ExportItem[], ext: string): string {
     range = first.slice(0, 4) === last.slice(0, 4) ? `${first}~${last.slice(5)}` : `${first}~${last}`;
   const base = conference.name.en || conference.name.zh;
   return `${[base, "我的日程", range].filter(Boolean).join(" ")}.${ext}`;
+}
+
+/* ---------------- backup (JSON, round-trippable) ---------------- */
+
+// ICS / CSV / Markdown are display formats: they list the *resolved* talks and
+// can't say whether a talk was followed directly, via its forum, or via a
+// speaker — so they can't be imported back losslessly. JSON stores the raw
+// follow ids instead, which restores the exact same state. That's why import
+// uses JSON, not the calendar/spreadsheet exports.
+export function toFollowJSON(f: FollowSnapshot, stampISO: string): string {
+  return JSON.stringify(
+    {
+      app: "conf-scheduler",
+      kind: "follows",
+      version: 1,
+      conference: conference.id,
+      conferenceName: conference.name.zh,
+      exportedAt: stampISO,
+      follows: {
+        forums: [...f.forums].sort(),
+        speakers: [...f.speakers].sort(),
+        talks: [...f.talks].sort(),
+      },
+    },
+    null,
+    2,
+  );
+}
+
+export function parseFollowJSON(text: string): ParsedFollows | null {
+  let data: unknown;
+  try {
+    data = JSON.parse(text);
+  } catch {
+    return null;
+  }
+  const obj = data as { follows?: unknown; conference?: unknown };
+  const f = obj?.follows as { forums?: unknown; speakers?: unknown; talks?: unknown } | undefined;
+  if (!f || typeof f !== "object") return null;
+  const strArr = (v: unknown): string[] =>
+    Array.isArray(v) ? v.filter((x): x is string => typeof x === "string") : [];
+  const follows = { forums: strArr(f.forums), speakers: strArr(f.speakers), talks: strArr(f.talks) };
+  if (!follows.forums.length && !follows.speakers.length && !follows.talks.length) return null;
+  const conf = typeof obj.conference === "string" ? obj.conference : undefined;
+  return { follows, conference: conf, conferenceMismatch: !!conf && conf !== conference.id };
 }
 
 /* ---------------- formatters ---------------- */

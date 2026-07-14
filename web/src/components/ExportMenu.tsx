@@ -8,6 +8,7 @@ import {
   toICS,
   toCSV,
   toMarkdown,
+  toFollowJSON,
   download,
   type ExportFormat,
 } from "../lib/export";
@@ -16,6 +17,7 @@ const FORMATS: { key: ExportFormat; label: string; icon: "calendar" | "file" }[]
   { key: "ics", label: "日历 (.ics)", icon: "calendar" },
   { key: "csv", label: "表格 (.csv)", icon: "file" },
   { key: "md", label: "Markdown (.md)", icon: "file" },
+  { key: "json", label: "备份·可导入 (.json)", icon: "file" },
 ];
 
 export default function ExportMenu() {
@@ -33,18 +35,23 @@ export default function ExportMenu() {
   }, [open]);
 
   const run = (fmt: ExportFormat) => {
-    const items = collectFollowedItems({ forums, speakers, talks });
+    const snapshot = { forums, speakers, talks };
+    const items = collectFollowedItems(snapshot);
     setOpen(false);
     if (!items.length) return;
+    const now = new Date().toISOString();
     if (fmt === "ics")
-      download(
-        exportFilename(items, "ics"),
-        toICS(items, new Date().toISOString()),
-        "text/calendar;charset=utf-8",
-      );
+      download(exportFilename(items, "ics"), toICS(items, now), "text/calendar;charset=utf-8");
     else if (fmt === "csv")
       download(exportFilename(items, "csv"), toCSV(items), "text/csv;charset=utf-8");
-    else download(exportFilename(items, "md"), toMarkdown(items), "text/markdown;charset=utf-8");
+    else if (fmt === "md")
+      download(exportFilename(items, "md"), toMarkdown(items), "text/markdown;charset=utf-8");
+    else
+      download(
+        exportFilename(items, "json"),
+        toFollowJSON(snapshot, now),
+        "application/json;charset=utf-8",
+      );
   };
 
   return (
