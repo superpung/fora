@@ -22,10 +22,6 @@ export default function Committee() {
           </span>
           <h2 className="section__title">大会委员会</h2>
         </div>
-        <p className="section__desc">
-          {committees.reduce((n, c) => n + c.members.length, 0)} 位专家 ·
-          {committees.length} 个委员会角色
-        </p>
       </div>
 
       <div className="committees">
