@@ -291,6 +291,7 @@ svg { display: block; }
 .fd__room { color: var(--fg-secondary); }
 .fd__sponsor { color: var(--blue-fg); }
 .fd__titlerow { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.fd__actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .fd__title { font-size: clamp(24px, 4vw, 36px); line-height: 1.14; margin: 0; letter-spacing: -0.03em; }
 .fd__desc { color: var(--fg-secondary); line-height: 1.75; font-size: 14.5px; max-width: 70ch; margin: 22px 0 0; }
 
@@ -313,19 +314,28 @@ svg { display: block; }
 .person__bio { overflow: hidden; color: var(--fg-secondary); font-size: 13.5px; line-height: 1.75; margin: 8px 0 0; max-width: 72ch; }
 
 .tallist { border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
-.talk { display: grid; grid-template-columns: 40px 1fr; gap: 16px; padding: 20px 16px; border-top: 1px solid var(--border); scroll-margin-top: calc(var(--nav-h) + 16px); }
+.talk { display: grid; grid-template-columns: 40px 1fr; gap: 16px; padding: 20px 16px; border-top: 1px solid var(--border); scroll-margin-top: calc(var(--nav-h) + 16px); transition: background 0.3s ease; }
 .talk:first-child { border-top: none; }
-.talk--highlight { animation: talk-flash 1.8s ease-out; }
-@keyframes talk-flash {
-  0%, 30% { background: color-mix(in srgb, var(--accent) 12%, transparent); }
-  100% { background: transparent; }
+/* Persistent anchor highlight: stays lit while the URL hash points here, with a
+   one-shot arrival pulse that settles into (not away from) the highlighted state. */
+.talk--active { background: color-mix(in srgb, var(--accent) 9%, transparent); box-shadow: inset 3px 0 0 var(--accent); animation: talk-arrive 0.9s ease-out; }
+@keyframes talk-arrive {
+  0% { background: color-mix(in srgb, var(--accent) 22%, transparent); }
+  100% { background: color-mix(in srgb, var(--accent) 9%, transparent); }
 }
-@media (prefers-reduced-motion: reduce) { .talk--highlight { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .talk--active { animation: none; } }
 .talk__no { font-family: var(--font-mono); font-size: 13px; color: var(--fg-muted); padding-top: 3px; font-variant-numeric: tabular-nums; }
 .talk__body { min-width: 0; }
-.talk__titlerow { display: flex; align-items: flex-start; gap: 10px; }
+.talk__titlerow { display: flex; align-items: flex-start; gap: 6px; }
 .talk__title { flex: 1; min-width: 0; font-size: 16px; font-weight: 600; margin: 0 0 4px; line-height: 1.35; letter-spacing: -0.01em; }
 .talk__star { margin-top: 2px; width: 26px; height: 26px; }
+.iconbtn {
+  flex: 0 0 auto; padding: 0; margin-top: 2px; border: none; background: transparent;
+  border-radius: var(--radius); width: 26px; height: 26px; display: grid; place-items: center;
+  color: var(--fg-muted); transition: color 0.12s, background 0.12s;
+}
+.iconbtn:hover { color: var(--fg); background: var(--bg-active); }
+.talk__perma.is-copied { color: var(--teal-fg); }
 .talk__flag { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; color: var(--amber-fg); border: 1px solid color-mix(in srgb, var(--amber-fg) 40%, var(--border)); border-radius: var(--radius-sm); padding: 2px 8px; margin: 6px 0 4px; cursor: help; }
 .talk__abstract { color: var(--fg-secondary); font-size: 13.5px; line-height: 1.75; margin: 12px 0 0; max-width: 74ch; }
 

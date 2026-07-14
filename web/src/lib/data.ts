@@ -25,6 +25,23 @@ export function venueName(id?: string | null): string {
   return v?.name.zh ?? "";
 }
 
+// Origin of the official conference site, derived from the dataset (not hard-coded)
+// so per-forum assets stored as site-absolute paths can be linked back to the source.
+export const siteOrigin: string = (() => {
+  try {
+    return new URL(conference.source_url ?? "").origin;
+  } catch {
+    return "";
+  }
+})();
+
+/** Resolve a site-absolute asset path (e.g. a poster) to a full official URL. */
+export function officialAssetUrl(path?: string | null): string | null {
+  if (!path) return null;
+  if (/^https?:\/\//.test(path)) return path;
+  return siteOrigin ? siteOrigin + path : null;
+}
+
 export const days: Day[] = conference.days ?? [];
 
 // 统计数字（首页展示）

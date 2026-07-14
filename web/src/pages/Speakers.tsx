@@ -45,7 +45,7 @@ function TalkLine({ t }: { t: SpeakerTalk }) {
 
   // keynotes aren't a forum page; forum talks deep-link to their position
   return t.forumCode ? (
-    <Link to={`/forum/${t.forumCode}#talk-${t.talkIndex}`} className="sptalk sptalk--link">
+    <Link to={`/forum/${t.forumCode}#talk-${(t.talkIndex ?? 0) + 1}`} className="sptalk sptalk--link">
       {body}
       <Icon name="chevron-right" size={16} />
     </Link>
