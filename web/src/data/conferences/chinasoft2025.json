@@ -1,0 +1,728 @@
+{
+  "id": "chinasoft2025",
+  "source_url": "https://chinasoft.ccf.org.cn/2025/",
+  "name": {
+    "zh": "2025 CCF中国软件大会",
+    "en": "ChinaSoft 2025"
+  },
+  "start_date": "2025-11-27",
+  "end_date": "2025-11-30",
+  "timezone": "Asia/Shanghai",
+  "links": {
+    "official": "https://chinasoft.ccf.org.cn/2025/"
+  },
+  "venues": [
+    {
+      "id": "wuhan-icc",
+      "name": {
+        "zh": "武汉国际会议中心",
+        "en": null
+      },
+      "type": "main",
+      "city": "武汉"
+    }
+  ],
+  "organizations": [
+    {
+      "name": {
+        "zh": "中国计算机学会",
+        "en": "CCF"
+      },
+      "role": "host",
+      "sponsor_tier": null
+    },
+    {
+      "name": {
+        "zh": "CCF软件工程专业委员会",
+        "en": null
+      },
+      "role": "co_host",
+      "sponsor_tier": null
+    },
+    {
+      "name": {
+        "zh": "CCF系统软件专业委员会",
+        "en": null
+      },
+      "role": "co_host",
+      "sponsor_tier": null
+    },
+    {
+      "name": {
+        "zh": "CCF形式化方法专业委员会",
+        "en": null
+      },
+      "role": "co_host",
+      "sponsor_tier": null
+    },
+    {
+      "name": {
+        "zh": "武汉大学",
+        "en": null
+      },
+      "role": "co_host",
+      "sponsor_tier": null
+    },
+    {
+      "name": {
+        "zh": "武汉计算机软件工程学会",
+        "en": null
+      },
+      "role": "support",
+      "sponsor_tier": null
+    },
+    {
+      "name": {
+        "zh": "华中科技大学",
+        "en": null
+      },
+      "role": "support",
+      "sponsor_tier": null
+    },
+    {
+      "name": {
+        "zh": "中国地质大学（武汉）",
+        "en": null
+      },
+      "role": "support",
+      "sponsor_tier": null
+    },
+    {
+      "name": {
+        "zh": "武汉理工大学",
+        "en": null
+      },
+      "role": "support",
+      "sponsor_tier": null
+    },
+    {
+      "name": {
+        "zh": "华中师范大学",
+        "en": null
+      },
+      "role": "support",
+      "sponsor_tier": null
+    },
+    {
+      "name": {
+        "zh": "武汉软件工程职业学院（武汉开放大学）",
+        "en": null
+      },
+      "role": "support",
+      "sponsor_tier": null
+    },
+    {
+      "name": {
+        "zh": "湖北大学",
+        "en": null
+      },
+      "role": "support",
+      "sponsor_tier": null
+    },
+    {
+      "name": {
+        "zh": "武汉科技大学",
+        "en": null
+      },
+      "role": "support",
+      "sponsor_tier": null
+    },
+    {
+      "name": {
+        "zh": "中南民族大学",
+        "en": null
+      },
+      "role": "support",
+      "sponsor_tier": null
+    },
+    {
+      "name": {
+        "zh": "江汉大学",
+        "en": null
+      },
+      "role": "support",
+      "sponsor_tier": null
+    }
+  ],
+  "committees": [],
+  "days": [
+    {
+      "date": "2025-11-28",
+      "venue_id": "wuhan-icc",
+      "blocks": [
+        {
+          "kind": "forums",
+          "title": {
+            "zh": "论坛",
+            "en": null
+          },
+          "start": null,
+          "end": null,
+          "location": null,
+          "forum_entries": [
+            {
+              "forum_code": "I3",
+              "room": "二楼荆玉厅210"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2025-11-29",
+      "venue_id": "wuhan-icc",
+      "blocks": [
+        {
+          "kind": "keynotes",
+          "title": {
+            "zh": "大会特邀报告",
+            "en": null
+          },
+          "start": "09:00",
+          "end": "15:20",
+          "location": "武汉国际会议中心 五楼主会议厅",
+          "breaks": [
+            {
+              "name": "茶歇",
+              "start": "11:00",
+              "end": "11:15"
+            },
+            {
+              "name": "午餐",
+              "start": "12:05",
+              "end": "14:00"
+            }
+          ],
+          "talks": [
+            {
+              "title": {
+                "zh": "复杂智能软件系统构造与演化",
+                "en": null
+              },
+              "title_status": "confirmed",
+              "start": "09:40",
+              "end": "10:20",
+              "speakers": [
+                {
+                  "name": "王怀民",
+                  "affiliation_raw": "中国科学院院士",
+                  "honorifics": [
+                    "中国科学院院士"
+                  ],
+                  "bio": "王怀民，中国科学院院士，中国计算机学会（CCF）会士，第十四届全国政协委员，CCF开源发展委员会主任，中国软件行业协会理事长，国家百千万人才工程领军人才，教育部科学技术委员会委员。曾获国家杰出青年基金资助，获聘教育部长江学者特聘教授。长期从事分布计算领域研究和人才培养，在分布计算模型、技术与平台方面做出系统性和创造性工作。"
+                }
+              ],
+              "abstract": "以大模型应用系统为代表的智能软件正成为支撑人类社会运转的新型基础设施，报告围绕这类复杂智能软件系统的构造与演化支撑技术展开介绍，提出了智能软件系统开发的“持续演化模型”，并围绕数据工程、模型训练、推理服务、应用开发、可信保障、人机协作等六个主要步骤，分析了每个步骤面临的挑战及潜在技术问题。",
+              "abstract_status": "confirmed",
+              "type": "keynote"
+            },
+            {
+              "title": {
+                "zh": "密态计算：一种蒙着眼睛进行计算的范式",
+                "en": null
+              },
+              "title_status": "confirmed",
+              "start": "10:20",
+              "end": "11:00",
+              "speakers": [
+                {
+                  "name": "冯登国",
+                  "affiliation_raw": "中国科学院院士",
+                  "honorifics": [
+                    "中国科学院院士"
+                  ],
+                  "bio": "冯登国，网络与信息安全专家，中国科学院院士。在通信安全、网络安全、可信计算等方面成绩显著，荣获国家科技进步一等奖、国家技术发明二等奖等多项奖励；主持研制了祖冲之（ZUC）算法等多项国际和国家标准。"
+                }
+              ],
+              "abstract": "密态计算是解决开放计算环境下数据安全与隐私保护挑战的关键核心技术，可实现数据的“可用不可见”。本报告介绍密态计算的研究背景，阐述其一般数学模型，概述同态加密、机密计算和联邦学习等三种典型密态计算技术的基本思想及其主要问题和挑战。",
+              "abstract_status": "confirmed",
+              "type": "keynote"
+            },
+            {
+              "title": {
+                "zh": "院士高峰论坛",
+                "en": null
+              },
+              "title_status": "confirmed",
+              "start": "11:15",
+              "end": "12:05",
+              "speakers": [],
+              "abstract": null,
+              "abstract_status": "unknown",
+              "type": "other"
+            },
+            {
+              "title": {
+                "zh": "Algorithm Design Automation",
+                "en": null
+              },
+              "title_status": "confirmed",
+              "start": "14:00",
+              "end": "14:40",
+              "speakers": [
+                {
+                  "name": "罗智泉",
+                  "affiliation_raw": "中国工程院外籍院士",
+                  "honorifics": [
+                    "中国工程院外籍院士"
+                  ]
+                }
+              ],
+              "abstract": null,
+              "abstract_status": "unknown",
+              "type": "keynote"
+            },
+            {
+              "title": {
+                "zh": "北太天元，逆数而行",
+                "en": null
+              },
+              "title_status": "confirmed",
+              "start": "14:40",
+              "end": "15:20",
+              "speakers": [
+                {
+                  "name": "张平文",
+                  "affiliation_raw": "中国科学院院士",
+                  "honorifics": [
+                    "中国科学院院士"
+                  ]
+                }
+              ],
+              "abstract": null,
+              "abstract_status": "unknown",
+              "type": "keynote"
+            }
+          ]
+        },
+        {
+          "kind": "forums",
+          "title": {
+            "zh": "论坛",
+            "en": null
+          },
+          "start": null,
+          "end": null,
+          "location": null,
+          "forum_entries": [
+            {
+              "forum_code": "R1",
+              "room": "二楼荆沁厅205"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "forums": [
+    {
+      "code": "R1",
+      "title": {
+        "zh": "青年人才成长",
+        "en": null
+      },
+      "category": {
+        "key": "academic-forum",
+        "name": {
+          "zh": "学术论坛",
+          "en": "Academic Forum"
+        }
+      },
+      "day_date": "2025-11-29",
+      "session_period": "afternoon",
+      "room": "二楼荆沁厅205",
+      "description": "青年科技人才是软件学科发展的生力军。青年人才成长论坛面向高年级博士生和青年教师，围绕如何凝练科学问题、如何申报科研项目等主题，为我国从事软件相关研究的青年科技人才搭建一个合作交流平台。",
+      "chairs": [
+        {
+          "name": "江贺",
+          "affiliation_raw": "大连理工大学",
+          "chair_role": "论坛组织委员会"
+        },
+        {
+          "name": "刘辉",
+          "affiliation_raw": "北京理工大学",
+          "chair_role": "论坛组织委员会"
+        },
+        {
+          "name": "李姗姗",
+          "affiliation_raw": "国防科技大学",
+          "chair_role": "论坛组织委员会"
+        }
+      ],
+      "talks": [
+        {
+          "title": {
+            "zh": "面向高性能计算的数值程序分析",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "15:30",
+          "end": "15:45",
+          "speakers": [
+            {
+              "name": "于恒彪",
+              "affiliation_raw": "国防科技大学",
+              "title": "副研究员",
+              "bio": "国防科技大学计算机学院副研究员。主要从事高性能计算和高可信软件等领域的研究，参与了“天河”系列超级计算机的研制。在OOPSLA、ICSE、Science China Information Sciences、IPDPS、软件学报等高水平期刊会议上发表论文20余篇，授权专利10余项。"
+            }
+          ],
+          "abstract": "浮点运算在高性能计算中扮演着重要角色，但浮点舍入误差和异常不可避免。本报告介绍一种基于链式条件数的浮点误差检测技术和一种面向闭源GPU程序的浮点异常检测方法，并介绍一种面向编译优化结果不一致性的问题代码定位方法。",
+          "abstract_status": "confirmed",
+          "type": "talk"
+        },
+        {
+          "title": {
+            "zh": "基于大规模代码仓库的依赖更新数据集自动化挖掘",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "15:45",
+          "end": "16:00",
+          "speakers": [
+            {
+              "name": "高恺",
+              "affiliation_raw": "北京科技大学"
+            }
+          ],
+          "abstract": null,
+          "abstract_status": "unknown",
+          "type": "talk"
+        },
+        {
+          "title": {
+            "zh": "模型驱动的软件开发相关技术的探索与实践",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "16:00",
+          "end": "16:15",
+          "speakers": [
+            {
+              "name": "苏卓",
+              "affiliation_raw": "北京航空航天大学"
+            }
+          ],
+          "abstract": null,
+          "abstract_status": "unknown",
+          "type": "talk"
+        },
+        {
+          "title": {
+            "zh": "代码智能体基础模型研究",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "16:15",
+          "end": "16:30",
+          "speakers": [
+            {
+              "name": "马迎伟",
+              "affiliation_raw": "月之暗面"
+            }
+          ],
+          "abstract": null,
+          "abstract_status": "unknown",
+          "type": "talk"
+        },
+        {
+          "title": {
+            "zh": "软件工程中的大模型相关研究：从能力测评、瓶颈突破到工具赋能",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "16:50",
+          "end": "17:05",
+          "speakers": [
+            {
+              "name": "王尚文",
+              "affiliation_raw": "国防科技大学"
+            }
+          ],
+          "abstract": null,
+          "abstract_status": "unknown",
+          "type": "talk"
+        },
+        {
+          "title": {
+            "zh": "基于历史数据的重构引擎测试技术研究",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "17:05",
+          "end": "17:20",
+          "speakers": [
+            {
+              "name": "姜艳杰",
+              "affiliation_raw": "天津大学"
+            }
+          ],
+          "abstract": null,
+          "abstract_status": "unknown",
+          "type": "talk"
+        },
+        {
+          "title": {
+            "zh": "基于数据的智能软件理解与优化",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "17:20",
+          "end": "17:35",
+          "speakers": [
+            {
+              "name": "杨燕鸣",
+              "affiliation_raw": "武汉大学"
+            }
+          ],
+          "abstract": null,
+          "abstract_status": "unknown",
+          "type": "talk"
+        },
+        {
+          "title": {
+            "zh": "领域软件智能化开发与质量保障",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "17:35",
+          "end": "17:50",
+          "speakers": [
+            {
+              "name": "张元良",
+              "affiliation_raw": "国防科技大学"
+            }
+          ],
+          "abstract": null,
+          "abstract_status": "unknown",
+          "type": "talk"
+        },
+        {
+          "title": {
+            "zh": "云原生软件智能化运维研究",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "17:50",
+          "end": "18:05",
+          "speakers": [
+            {
+              "name": "张晨曦",
+              "affiliation_raw": "西安电子科技大学"
+            }
+          ],
+          "abstract": null,
+          "abstract_status": "unknown",
+          "type": "talk"
+        },
+        {
+          "title": {
+            "zh": "领域增强大模型：赋能异构软件生态的智能安全分析",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "18:05",
+          "end": "18:20",
+          "speakers": [
+            {
+              "name": "赵彦杰",
+              "affiliation_raw": "华中科技大学"
+            }
+          ],
+          "abstract": null,
+          "abstract_status": "unknown",
+          "type": "talk"
+        }
+      ],
+      "detail_extracted": true,
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/youth"
+    },
+    {
+      "code": "I3",
+      "title": {
+        "zh": "RISC-V系统软件及软硬协同前沿进展",
+        "en": null
+      },
+      "category": {
+        "key": "industry-forum",
+        "name": {
+          "zh": "工业论坛",
+          "en": "Industry Forum"
+        }
+      },
+      "day_date": "2025-11-28",
+      "session_period": "morning",
+      "room": "二楼荆玉厅210",
+      "description": "RISC-V指令集的自由、开放特性使其成为继x86、Arm之外新的主流指令集架构。本论坛召集RISC-V产业界的商业、教育及技术领袖、开源社区专家、独立软件商代表，交流未来三至五年RISC-V系统软件及软硬协同的发展趋势、科研挑战、技术难点与商业机遇。",
+      "chairs": [
+        {
+          "name": "吴伟",
+          "affiliation_raw": "苦芽科技",
+          "chair_role": "论坛组织委员会"
+        },
+        {
+          "name": "高鹏",
+          "affiliation_raw": "北京算能科技有限公司",
+          "chair_role": "论坛组织委员会"
+        },
+        {
+          "name": "谢涛",
+          "affiliation_raw": "北京大学",
+          "chair_role": "论坛组织委员会"
+        }
+      ],
+      "talks": [
+        {
+          "title": {
+            "zh": "大模型时代下RISC-V软件生态发展的新突破与新机遇",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "09:00",
+          "end": "09:30",
+          "speakers": [
+            {
+              "name": "谢涛",
+              "affiliation_raw": "北京大学",
+              "title": "教授"
+            }
+          ],
+          "abstract": null,
+          "abstract_status": "unknown",
+          "type": "talk"
+        },
+        {
+          "title": {
+            "zh": "基于RISC-V的AI处理器软硬件协同设计实践",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "09:30",
+          "end": "10:00",
+          "speakers": [
+            {
+              "name": "高鹏",
+              "affiliation_raw": "北京算能科技有限公司"
+            }
+          ],
+          "abstract": null,
+          "abstract_status": "unknown",
+          "type": "talk"
+        },
+        {
+          "title": {
+            "zh": "RISC-V全球生态进展暨甲辰计划2025年度回顾",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "10:00",
+          "end": "10:20",
+          "speakers": [
+            {
+              "name": "吴伟",
+              "affiliation_raw": "苦芽科技"
+            }
+          ],
+          "abstract": null,
+          "abstract_status": "unknown",
+          "type": "talk"
+        },
+        {
+          "title": {
+            "zh": "面向RISC-V架构的内存安全现状与演变趋势",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "10:40",
+          "end": "11:10",
+          "speakers": [
+            {
+              "name": "吴国伟",
+              "affiliation_raw": "大连理工大学"
+            }
+          ],
+          "abstract": null,
+          "abstract_status": "unknown",
+          "type": "talk"
+        },
+        {
+          "title": {
+            "zh": "RISC-V硬件漏洞挖掘及利用技术—— HACK硬件挖掘比赛冠军经验分享",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "11:10",
+          "end": "11:30",
+          "speakers": [
+            {
+              "name": "芮志清",
+              "affiliation_raw": "中国科学院软件研究所"
+            }
+          ],
+          "abstract": null,
+          "abstract_status": "unknown",
+          "type": "talk"
+        },
+        {
+          "title": {
+            "zh": "编译器 Pass 序列自动调优的探索与实践",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "11:30",
+          "end": "11:50",
+          "speakers": [
+            {
+              "name": "潘浩林",
+              "affiliation_raw": "中国科学院软件研究所"
+            }
+          ],
+          "abstract": null,
+          "abstract_status": "unknown",
+          "type": "talk"
+        },
+        {
+          "title": {
+            "zh": "圆桌讨论：展望2026",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "11:50",
+          "end": "12:30",
+          "speakers": [
+            {
+              "name": "吴伟",
+              "affiliation_raw": "苦芽科技",
+              "chair_role": "主持"
+            }
+          ],
+          "abstract": null,
+          "abstract_status": "unknown",
+          "type": "other"
+        }
+      ],
+      "detail_extracted": true,
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/industry-forum/riscv"
+    }
+  ],
+  "extra": {
+    "theme": "软件定义智能互联新世界",
+    "subconferences": [
+      "NASAC（全国软件与应用学术会议）",
+      "FMAC（全国形式化方法与应用会议）"
+    ],
+    "competition_keys": [
+      "auto-software-repair",
+      "cangjie",
+      "heterogeneous-systems-programming",
+      "prototype-competition",
+      "theorem-proving"
+    ],
+    "slice_note": "Partial slice: keynotes + 2 of ~65 forums; captured for schema/rendering validation."
+  },
+  "extraction": {
+    "source": "chinasoft.ccf.org.cn/2025",
+    "forums_total": 2,
+    "forums_detail_extracted": 2,
+    "notes": "Hand-authored partial slice (keynotes + academic R1 + industry I3) to validate the schema and web rendering for a structurally different conference. The full reproducible adapter and the remaining ~63 forums are pending the bulk phase."
+  }
+}
