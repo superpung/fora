@@ -16,6 +16,15 @@ export function talkId(code: string, index: number): string {
   return `${code}#${index}`;
 }
 
+// Main-conference keynotes live in day blocks (no forum code), so they get their
+// own id namespace, keyed by day + position within that day's keynote list.
+export function keynoteId(date: string, index: number): string {
+  return `KEYNOTE:${date}#${index}`;
+}
+export function isKeynoteId(id: string): boolean {
+  return id.startsWith("KEYNOTE:");
+}
+
 export function load(key: string): Set<string> {
   if (typeof localStorage === "undefined") return new Set();
   try {

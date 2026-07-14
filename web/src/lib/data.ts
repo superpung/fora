@@ -1,4 +1,5 @@
 import raw from "../data/conference.json";
+import { keynoteId } from "./follow-store";
 import type { Conference, Forum, Day, Block, Talk, Person, I18n, Status } from "../types";
 
 export const conference = raw as unknown as Conference;
@@ -155,6 +156,44 @@ export const scheduleDays: ScheduleDay[] = days
 export const uniqueSpeakerCount = new Set(
   (conference.forums ?? []).flatMap((f) => forumPeople(f)),
 ).size;
+
+// ---- Keynote index (followable / exportable main-conference talks) ----
+export interface KeynoteEntry {
+  id: string;
+  date: string;
+  index: number;
+  talk: Talk;
+  location?: string | null;
+}
+
+/** Flattened main-conference keynotes, indexed the same way the dashboard rail is. */
+export const keynoteEntries: KeynoteEntry[] = days.flatMap((d) => {
+  const talks = d.blocks
+    .filter((b) => b.kind === "keynotes")
+    .flatMap((b) => (b.talks ?? []).map((t) => ({ t, loc: b.location })));
+  return talks.map(({ t, loc }, i) => ({
+    id: keynoteId(d.date, i),
+    date: d.date,
+    index: i,
+    talk: t,
+    location: loc,
+  }));
+});
+export const keynoteById = new Map(keynoteEntries.map((e) => [e.id, e]));
+
+/** The main venue name (used to build a complete export location). */
+export const mainVenueName: string =
+  (conference.venues ?? []).find((v) => v.type === "main")?.name.zh ??
+  (conference.venues ?? [])[0]?.name.zh ??
+  "";
+
+const forumBlockByDate = new Map(scheduleDays.map((d) => [d.date, d.forumBlock]));
+
+/** A forum talk has no time of its own; fall back to its forum block's window. */
+export function forumTimeWindow(forum: Forum): { start?: string | null; end?: string | null } {
+  const blk = forum.day_date ? forumBlockByDate.get(forum.day_date) : undefined;
+  return { start: blk?.start, end: blk?.end };
+}
 
 // ---- Speaker classification + name indexing ----
 export type SpeakerCategory = "university" | "research" | "industry" | "other";

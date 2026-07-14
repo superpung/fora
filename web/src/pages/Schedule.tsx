@@ -107,7 +107,9 @@ function ForumsBlock({ block }: { block: Block }) {
           return (
             <motion.div key={e.forum_code} variants={riseItem}>
               <Link to={`/forum/${e.forum_code}`} className="forumcard">
-                <span className="forumcard__room mono">{e.room ?? f?.room}</span>
+                <span className="forumcard__room mono">
+                  <Icon name="pin" size={11} /> {e.room ?? f?.room}
+                </span>
                 <span className="forumcard__code mono">{e.forum_code}</span>
                 <div className="forumcard__title">{f?.title.zh ?? e.forum_code}</div>
                 <div className="forumcard__foot">
@@ -218,7 +220,9 @@ export default function Schedule() {
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="dayhead">
-            <span className="dayhead__venue">{venueName(day.venue_id)}</span>
+            <span className="dayhead__venue">
+              <Icon name="building" size={13} /> {venueName(day.venue_id)}
+            </span>
           </div>
 
           <div className="blocks">
@@ -242,7 +246,9 @@ export default function Schedule() {
                     <span className="block__meta">
                       <TimeRange start={block.start} end={block.end} />
                       {block.location && (
-                        <span className="block__loc">{block.location}</span>
+                        <span className="block__loc">
+                          <Icon name="pin" size={12} /> {block.location}
+                        </span>
                       )}
                     </span>
                   )}
