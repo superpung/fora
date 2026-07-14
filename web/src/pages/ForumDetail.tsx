@@ -118,30 +118,7 @@ export default function ForumDetail() {
       animate="animate"
       exit="exit"
     >
-      <Link to="/" className="backlink">
-        <Icon name="arrow-left" size={14} /> 返回日程面板
-      </Link>
-
       <header className="fd__header">
-        <div className="fd__meta">
-          <span className="fd__code">{forum.code}</span>
-          {forum.room && (
-            <span className="fd__room">
-              <Icon name="pin" size={13} /> {forum.room}
-            </span>
-          )}
-          {dateInfo && (
-            <span>
-              <Icon name="calendar" size={13} /> {dateInfo.md} {dateInfo.weekday}
-              {forum.session_period && ` · ${periodLabel[forum.session_period]}`}
-            </span>
-          )}
-          {forum.sponsor && (
-            <span className="fd__sponsor">
-              <Icon name="building" size={13} /> {forum.sponsor}专场
-            </span>
-          )}
-        </div>
         <div className="fd__titlerow">
           <h1 className="fd__title">{forum.title.zh}</h1>
           <div className="fd__actions">
@@ -164,6 +141,25 @@ export default function ForumDetail() {
               </a>
             )}
           </div>
+        </div>
+        <div className="fd__meta">
+          <span className="fd__code">{forum.code}</span>
+          {forum.room && (
+            <span className="fd__room">
+              <Icon name="pin" size={13} /> {forum.room}
+            </span>
+          )}
+          {dateInfo && (
+            <span>
+              <Icon name="calendar" size={13} /> {dateInfo.md} {dateInfo.weekday}
+              {forum.session_period && ` · ${periodLabel[forum.session_period]}`}
+            </span>
+          )}
+          {forum.sponsor && (
+            <span className="fd__sponsor">
+              <Icon name="building" size={13} /> {forum.sponsor}专场
+            </span>
+          )}
         </div>
       </header>
 

@@ -154,7 +154,12 @@ svg { display: block; }
 }
 .filtertag:hover { background: var(--primary-hover); }
 .filtertag svg { opacity: 0.75; }
-.dash__actions { display: flex; align-items: center; gap: 14px; }
+.dash__actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.importbtn { display: inline-flex; align-items: center; gap: 8px; }
+.importbtn .linkbtn { display: inline-flex; align-items: center; gap: 4px; }
+.importbtn__status { font-size: 12px; }
+.importbtn__status--ok { color: var(--accent); }
+.importbtn__status--err { color: var(--danger); }
 .exportmenu { position: relative; }
 .exportmenu__btn { display: inline-flex; align-items: center; gap: 4px; }
 .exportmenu__pop {
@@ -359,11 +364,9 @@ svg { display: block; }
 
 /* ============================ FORUM DETAIL ============================ */
 .forumdetail { max-width: 820px; }
-.backlink { color: var(--fg-muted); font-size: 13px; display: inline-flex; align-items: center; gap: 5px; margin-bottom: 24px; transition: color 0.15s; }
-.backlink:hover { color: var(--fg); }
 
 .fd__header { padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-.fd__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; color: var(--fg-muted); font-size: 13px; margin-bottom: 12px; font-family: var(--font-mono); }
+.fd__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; color: var(--fg-muted); font-size: 13px; margin-top: 14px; font-family: var(--font-mono); }
 .fd__meta > span { display: inline-flex; align-items: center; gap: 4px; }
 .fd__meta svg { color: var(--fg-muted); }
 .fd__code { color: var(--fg); font-weight: 500; }

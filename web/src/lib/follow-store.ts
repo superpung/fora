@@ -1,4 +1,5 @@
 import { createContext, useContext } from "react";
+import conferenceData from "../data/conference.json";
 
 // Personal-agenda state helpers, context and hook. Kept in a component-free
 // module so the provider file (follow.tsx) exports only a component and stays
@@ -6,9 +7,21 @@ import { createContext, useContext } from "react";
 // reloads. Speakers are keyed by name (the dataset has no stable person id);
 // collisions are rare and acceptable for a "follow" convenience feature.
 
-export const FORUMS_KEY = "ccfchip.followed.forums";
-export const SPEAKERS_KEY = "ccfchip.followed.speakers";
-export const TALKS_KEY = "ccfchip.followed.talks";
+// This site can host several conferences, so every persisted key is namespaced
+// under the conference id — otherwise two conferences' agendas would collide in
+// the same localStorage. (Site-wide preferences like theme stay un-namespaced.)
+const NS = (conferenceData as { id?: string }).id || "conf";
+export const FORUMS_KEY = `${NS}:followed.forums`;
+export const SPEAKERS_KEY = `${NS}:followed.speakers`;
+export const TALKS_KEY = `${NS}:followed.talks`;
+
+// Pre-namespacing keys, migrated to the namespaced ones on first load so an
+// existing visitor doesn't lose their saved agenda.
+const LEGACY_KEYS: Record<string, string> = {
+  [FORUMS_KEY]: "ccfchip.followed.forums",
+  [SPEAKERS_KEY]: "ccfchip.followed.speakers",
+  [TALKS_KEY]: "ccfchip.followed.talks",
+};
 
 // A talk has no stable id in the dataset, so we key it by its forum code plus
 // its index within that forum: `${code}#${index}`.
@@ -28,7 +41,15 @@ export function isKeynoteId(id: string): boolean {
 export function load(key: string): Set<string> {
   if (typeof localStorage === "undefined") return new Set();
   try {
-    const raw = localStorage.getItem(key);
+    let raw = localStorage.getItem(key);
+    // One-time migration from the old (un-namespaced) key.
+    if (raw == null && LEGACY_KEYS[key]) {
+      raw = localStorage.getItem(LEGACY_KEYS[key]);
+      if (raw != null) {
+        localStorage.setItem(key, raw);
+        localStorage.removeItem(LEGACY_KEYS[key]);
+      }
+    }
     if (!raw) return new Set();
     const arr = JSON.parse(raw);
     return Array.isArray(arr) ? new Set(arr as string[]) : new Set();
@@ -57,6 +78,9 @@ export interface FollowState {
   isSpeaker: (name: string) => boolean;
   isTalk: (id: string) => boolean;
   clearAll: () => void;
+  /** Merge imported follow ids into the current sets; returns how many ids the
+      payload carried (forums + speakers + talks). */
+  importFollows: (data: { forums: string[]; speakers: string[]; talks: string[] }) => number;
 }
 
 export const FollowCtx = createContext<FollowState | null>(null);
