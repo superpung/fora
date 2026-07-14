@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useParams, Link, useLocation } from "react-router-dom";
-import { getForum, formatDate, periodLabel } from "../lib/data";
+import { useParams, Link, useLocation, useNavigate } from "react-router-dom";
+import { getForum, formatDate, periodLabel, officialAssetUrl } from "../lib/data";
 import { useFollow, talkId } from "../lib/follow-store";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Icon from "../components/Icon";
@@ -66,28 +66,37 @@ function PersonLine({ p, role, avatarSize = 40 }: { p: Person; role?: string; av
 export default function ForumDetail() {
   const { code } = useParams();
   const { hash } = useLocation();
+  const navigate = useNavigate();
   const forum = code ? getForum(code) : undefined;
   const { isForum, toggleForum, isTalk, toggleTalk } = useFollow();
   const forumFollowed = code ? isForum(code) : false;
+  const [copied, setCopied] = useState<number | null>(null);
 
-  // deep-link: scroll to a specific talk when arriving with #talk-<index>
+  // The talk pointed at by the URL hash (1-based, e.g. #talk-3) stays highlighted
+  // for as long as the hash is present — it's a shareable anchor, not a flash.
+  const activeId = hash.startsWith("#talk-") ? hash.slice(1) : null;
+  const posterUrl = officialAssetUrl(forum?.poster?.source_url);
+
+  // deep-link: scroll to the anchored talk when arriving with / changing #talk-<n>
   useEffect(() => {
-    if (!hash.startsWith("#talk-")) return;
-    const el = document.getElementById(hash.slice(1));
+    if (!activeId) return;
+    const el = document.getElementById(activeId);
     if (!el) return;
     const raf = requestAnimationFrame(() => {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
-      el.classList.add("talk--highlight");
     });
-    // fade the highlight out again so it reads as a transient cue, not a
-    // permanent state stuck on whichever talk was last deep-linked.
-    const timer = setTimeout(() => el.classList.remove("talk--highlight"), 2400);
-    return () => {
-      cancelAnimationFrame(raf);
-      clearTimeout(timer);
-      el.classList.remove("talk--highlight");
-    };
-  }, [hash, forum]);
+    return () => cancelAnimationFrame(raf);
+  }, [activeId, forum]);
+
+  // Copy a talk's shareable permalink and move the URL hash to it (so it lights up).
+  function shareTalk(i: number) {
+    const anchor = `talk-${i + 1}`;
+    const url = `${window.location.origin}${window.location.pathname}#${anchor}`;
+    navigator.clipboard?.writeText(url).catch(() => {});
+    navigate(`#${anchor}`, { replace: false });
+    setCopied(i);
+    window.setTimeout(() => setCopied((c) => (c === i ? null : c)), 1600);
+  }
 
   if (!forum) {
     return (
@@ -126,13 +135,26 @@ export default function ForumDetail() {
         </div>
         <div className="fd__titlerow">
           <h1 className="fd__title">{forum.title.zh}</h1>
-          <button
-            className={`followbtn ${forumFollowed ? "is-on" : ""}`}
-            onClick={() => code && toggleForum(code)}
-          >
-            <Icon name="star" filled={forumFollowed} size={15} />
-            {forumFollowed ? "已收藏" : "收藏论坛"}
-          </button>
+          <div className="fd__actions">
+            <button
+              className={`followbtn ${forumFollowed ? "is-on" : ""}`}
+              onClick={() => code && toggleForum(code)}
+            >
+              <Icon name="star" filled={forumFollowed} size={15} />
+              {forumFollowed ? "已收藏" : "收藏论坛"}
+            </button>
+            {posterUrl && (
+              <a
+                className="btn btn--ghost"
+                href={posterUrl}
+                target="_blank"
+                rel="noreferrer"
+                title="在官网查看该论坛海报原图"
+              >
+                <Icon name="external" size={15} /> 官网
+              </a>
+            )}
+          </div>
         </div>
       </header>
 
@@ -167,8 +189,15 @@ export default function ForumDetail() {
             {forum.talks.map((t, i) => {
               const id = talkId(forum.code, i);
               const followed = isTalk(id);
+              const anchor = `talk-${i + 1}`;
+              const isActive = activeId === anchor;
               return (
-                <motion.article key={i} id={`talk-${i}`} variants={riseItem} className="talk">
+                <motion.article
+                  key={i}
+                  id={anchor}
+                  variants={riseItem}
+                  className={`talk ${isActive ? "talk--active" : ""}`}
+                >
                   <div className="talk__no">{String(i + 1).padStart(2, "0")}</div>
                   <div className="talk__body">
                     <div className="talk__titlerow">
@@ -179,6 +208,14 @@ export default function ForumDetail() {
                           t.title?.zh
                         )}
                       </h3>
+                      <button
+                        className={`iconbtn talk__perma ${copied === i ? "is-copied" : ""}`}
+                        aria-label="复制该报告的分享链接"
+                        title={copied === i ? "链接已复制" : "复制分享链接"}
+                        onClick={() => shareTalk(i)}
+                      >
+                        <Icon name={copied === i ? "check" : "link"} size={15} />
+                      </button>
                       <button
                         className={`star star--sm talk__star ${followed ? "is-on" : ""}`}
                         aria-pressed={followed}
