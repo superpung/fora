@@ -2,7 +2,13 @@ import type { Variants, Transition } from "framer-motion";
 
 export const easeOut: Transition["ease"] = [0.22, 1, 0.36, 1];
 
-// 页面进入/退出
+// Page enter animation. There is intentionally NO route-level `exit`: with a
+// route-level exit + AnimatePresence, an outgoing page is kept mounted while it
+// animates out, which (a) stacks it below the incoming page — doubling document
+// height — and (b) deadlocks when navigating to a #hash URL because the retained
+// outgoing <Routes> re-matches the new route and suspends on its lazy chunk,
+// blanking the page on Back. Pages now unmount immediately and the new one
+// animates in; per-component AnimatePresence (cards, day switch) keeps its exit.
 export const pageVariants: Variants = {
   initial: { opacity: 0, y: 14 },
   animate: {
@@ -10,7 +16,6 @@ export const pageVariants: Variants = {
     y: 0,
     transition: { duration: 0.5, ease: easeOut, when: "beforeChildren" },
   },
-  exit: { opacity: 0, y: -10, transition: { duration: 0.28, ease: easeOut } },
 };
 
 // 交错容器
