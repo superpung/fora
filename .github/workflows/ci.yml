@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  data:
+    name: Dataset (schema + determinism)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.10"
+      - name: Install deps
+        run: uv sync --dev
+      - name: Validate against schema
+        run: uv run python source/validate.py
+      - name: Rebuild dataset and assert it is in sync
+        # build_dataset.py is deterministic and writes both data/ and web/src/data/.
+        # If a rerun changes anything, the committed dataset (or the web copy) is
+        # stale / was hand-edited — fail so the two can never silently drift.
+        run: |
+          uv run python source/build_dataset.py
+          if ! git diff --quiet -- data/ccfchip2026.json web/src/data/conference.json; then
+            echo "::error::Dataset out of sync — run 'python source/build_dataset.py' and commit the result."
+            git --no-pager diff -- data/ccfchip2026.json web/src/data/conference.json
+            exit 1
+          fi
+
+  web:
+    name: Web (lint + build)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: pnpm
+          cache-dependency-path: web/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm build

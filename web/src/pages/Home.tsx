@@ -11,7 +11,7 @@ import {
   type ScheduleDay,
   type ForumSlot,
 } from "../lib/data";
-import { useFollow, talkId } from "../lib/follow";
+import { useFollow, talkId } from "../lib/follow-store";
 import { pageVariants } from "../lib/motion";
 import Icon from "../components/Icon";
 import type { Talk } from "../types";
@@ -264,7 +264,9 @@ export default function Home() {
         return { day: d, slots };
       })
       .filter((x) => x.slots.length > 0);
-  }, [dayFilter, q, onlyFollowed, onlySponsored, followedForums, followedSpeakers, followedTalks, isSpeaker, isTalk]);
+    // isSpeaker / isTalk are re-created whenever the followed sets change, so
+    // depending on them is enough — the raw sets are redundant here.
+  }, [dayFilter, q, onlyFollowed, onlySponsored, followedForums, isSpeaker, isTalk]);
 
   const totalShown = visibleDays.reduce((n, x) => n + x.slots.length, 0);
   const { md: startMd } = formatDate(conference.start_date);
