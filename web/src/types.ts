@@ -122,6 +122,7 @@ export interface Forum {
   talks?: Talk[];
   poster?: Asset | null;
   detail_extracted?: boolean;
+  flags?: string[];
 }
 
 export interface Conference {

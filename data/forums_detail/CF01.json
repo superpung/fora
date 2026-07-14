@@ -61,7 +61,7 @@
     },
     {
       "order": 3,
-      "title": { "zh": "毫米级智能医疗机器人芯片与系统设计", "en": null },
+      "title": { "zh": "面向隐私计算的高能效环面全同态加密处理器芯片研究", "en": null },
       "title_status": "confirmed",
       "speakers": [
         {
@@ -73,8 +73,7 @@
         }
       ],
       "abstract": "云端低时延隐私增强计算，对商用服务器芯片的性能、功耗与成本提出严苛要求。本报告介绍国际首款硅验证环面全同态加密处理器芯片：通过可编程自举流水线与atomic swizzling内存架构解决密文膨胀、访存冲突问题；构建具备安全等级保障的环面代数系统量化方案与密钥提示生成器，压缩密钥体积、降低计算时延；采用分治式乘法引擎攻克多项式乘法瓶颈、削减运算能耗。未来该芯片可作为核心IP芯粒融入Chiplets异构算力芯片，全面支撑AI云端安全及LLM as a Service等高性能加密计算应用。",
-      "abstract_status": "confirmed",
-      "flags": ["title_abstract_mismatch: 海报中报告题目横幅为“毫米级智能医疗机器人芯片与系统设计”，但演讲摘要为全同态加密处理器芯片内容，二者疑似不一致（源海报可能存在粘贴错误），此处如实保留原文"]
+      "abstract_status": "confirmed"
     },
     {
       "order": 4,
@@ -110,8 +109,8 @@
     }
   ],
   "poster": {
-    "local_path": "source/raw/images/195d1eba5dc947a3b8acd538e03f16c8.jpg",
-    "source_url": "/cmsFileManager/UeditorImg/195d1eba5dc947a3b8acd538e03f16c8.jpg"
+    "local_path": "source/raw/images/374fe207271546bab61a202680785e74.jpg",
+    "source_url": "/cmsFileManager/UeditorImg/374fe207271546bab61a202680785e74.jpg"
   },
   "detail_extracted": true
 }
