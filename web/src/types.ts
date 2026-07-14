@@ -1,4 +1,4 @@
-// 类型对应 schema/schema.json（自建模型，不兼容任何现成格式）
+// Types mirror schema/schema.json (a self-designed model, not compatible with any existing format).
 export type Status = "confirmed" | "tbd" | "unknown";
 
 export interface I18n {

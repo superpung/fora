@@ -16,9 +16,15 @@ work around it, or pick a "default that works."**
 - **Everything else in English**: code, code comments, documentation prose
   (including this file, README, CHANGELOG), commit messages, and the assistant's
   own reasoning.
-- Exception: content that is inherently Chinese — the conference data itself and
-  user-facing UI display strings (the audience is Chinese) — stays in Chinese;
-  that is content, not code/docs.
+- **In source code, every comment and docstring is English — always.** Never
+  write a Chinese comment. This holds for all languages in the repo (`.py`,
+  `.ts`, `.tsx`, `.css`, …).
+- Exception: content that is inherently Chinese — the conference **data literals**
+  (names, titles, affiliations) and user-facing **UI display strings** (the
+  audience is Chinese) — stays in Chinese; that is content, not code/docs. An
+  English comment may *quote* such a Chinese value as an example (e.g.
+  `// categories: 高校 / 科研院所 / 企业`), but the comment's own prose stays
+  English.
 
 ## Project facts
 - Conference-agenda parsing + web viewer. Sample conference: CCF Chip 2026.
