@@ -1,11 +1,25 @@
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { speakerList, formatDate, periodLabel, type SpeakerAgg, type SpeakerTalk } from "../lib/data";
+import {
+  speakerList,
+  formatDate,
+  periodLabel,
+  categoryLabel,
+  speakerCategoryCounts,
+  type SpeakerAgg,
+  type SpeakerTalk,
+  type SpeakerCategory,
+} from "../lib/data";
 import { useFollow } from "../lib/follow-store";
 import { pageVariants } from "../lib/motion";
 import Icon from "../components/Icon";
 import Avatar from "../components/Avatar";
+
+// Which speaker cards are open, kept module-level so the state survives a trip
+// to a forum page and back (paired with scroll restoration for req: browser Back
+// returns you to exactly where you were).
+const openCards = new Set<string>();
 
 function TalkLine({ t }: { t: SpeakerTalk }) {
   const dateInfo = t.date ? formatDate(t.date) : null;
@@ -43,7 +57,7 @@ function TalkLine({ t }: { t: SpeakerTalk }) {
     </span>
   );
 
-  // keynotes aren't a forum page; forum talks deep-link to their position
+  // keynotes aren't a forum page; forum talks deep-link to their 1-based position
   return t.forumCode ? (
     <Link to={`/forum/${t.forumCode}#talk-${(t.talkIndex ?? 0) + 1}`} className="sptalk sptalk--link">
       {body}
@@ -55,24 +69,29 @@ function TalkLine({ t }: { t: SpeakerTalk }) {
 }
 
 function SpeakerCard({ s }: { s: SpeakerAgg }) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(() => openCards.has(s.name));
   const { isSpeaker, toggleSpeaker } = useFollow();
   const followed = isSpeaker(s.name);
   const p = s.person;
+
+  const toggle = () =>
+    setOpen((v) => {
+      const next = !v;
+      if (next) openCards.add(s.name);
+      else openCards.delete(s.name);
+      return next;
+    });
 
   return (
     <div className={`spcard ${open ? "is-open" : ""}`}>
       <div className="spcard__head">
         <Avatar person={p} size={44} />
-        <button
-          className="spcard__main"
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
-        >
+        <button className="spcard__main" onClick={toggle} aria-expanded={open}>
           <span className="spcard__name">{p.name}</span>
           {p.affiliation_raw && <span className="spcard__aff">{p.affiliation_raw}</span>}
         </button>
         <div className="spcard__side">
+          <span className="spcard__cat">{categoryLabel[s.category]}</span>
           <span className="spcard__count mono">{s.talks.length} 场</span>
           <button
             className={`star star--sm ${followed ? "is-on" : ""}`}
@@ -85,7 +104,7 @@ function SpeakerCard({ s }: { s: SpeakerAgg }) {
           </button>
           <button
             className="spcard__toggle"
-            onClick={() => setOpen((v) => !v)}
+            onClick={toggle}
             aria-expanded={open}
             aria-label={open ? "收起报告" : "展开报告"}
           >
@@ -114,10 +133,14 @@ function SpeakerCard({ s }: { s: SpeakerAgg }) {
   );
 }
 
+const CATS: (SpeakerCategory | "all")[] = ["all", "university", "research", "industry", "other"];
+const ALPHABET = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ", "#"];
+
 export default function Speakers() {
   const { speakers: followedSpeakers, isSpeaker } = useFollow();
   const [query, setQuery] = useState("");
   const [onlyFollowed, setOnlyFollowed] = useState(false);
+  const [cat, setCat] = useState<SpeakerCategory | "all">("all");
   const q = query.trim().toLowerCase();
 
   const visible = useMemo(
@@ -125,11 +148,32 @@ export default function Speakers() {
       speakerList.filter((s) => {
         if (q && !s.search.includes(q)) return false;
         if (onlyFollowed && !isSpeaker(s.name)) return false;
+        if (cat !== "all" && s.category !== cat) return false;
         return true;
       }),
     // isSpeaker changes whenever the followed set changes, so it's sufficient.
-    [q, onlyFollowed, isSpeaker],
+    [q, onlyFollowed, isSpeaker, cat],
   );
+
+  // Group the (already name-sorted) list by pinyin initial for the jump index.
+  const groups = useMemo(() => {
+    const m = new Map<string, SpeakerAgg[]>();
+    for (const s of visible) {
+      const k = s.initial || "#";
+      const arr = m.get(k);
+      if (arr) arr.push(s);
+      else m.set(k, [s]);
+    }
+    return [...m.entries()].sort((a, b) =>
+      a[0] === "#" ? 1 : b[0] === "#" ? -1 : a[0].localeCompare(b[0]),
+    );
+  }, [visible]);
+
+  const activeLetters = new Set(groups.map((g) => g[0]));
+
+  function jump(letter: string) {
+    document.getElementById(`sp-${letter}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 
   return (
     <motion.div
@@ -175,15 +219,49 @@ export default function Speakers() {
         </button>
       </div>
 
+      <div className="spcats">
+        {CATS.map((c) => (
+          <button
+            key={c}
+            className={`chipfilter ${cat === c ? "is-on" : ""}`}
+            onClick={() => setCat(c)}
+          >
+            {c === "all" ? "全部" : categoryLabel[c]}
+            <span className="chipfilter__n">
+              {c === "all" ? speakerList.length : speakerCategoryCounts[c]}
+            </span>
+          </button>
+        ))}
+      </div>
+
       <div className="spresult">共 {visible.length} 位</div>
 
       {visible.length === 0 ? (
         <div className="dash__empty">没有符合条件的讲者。</div>
       ) : (
-        <div className="splist">
-          {visible.map((s) => (
-            <SpeakerCard key={s.name} s={s} />
-          ))}
+        <div className="splayout">
+          <div className="splist">
+            {groups.map(([letter, list]) => (
+              <div className="spgroup" id={`sp-${letter}`} key={letter}>
+                <div className="spgroup__label mono">{letter}</div>
+                {list.map((s) => (
+                  <SpeakerCard key={s.name} s={s} />
+                ))}
+              </div>
+            ))}
+          </div>
+          <nav className="spindex" aria-label="按姓名首字母定位">
+            {ALPHABET.map((L) => (
+              <button
+                key={L}
+                className="spindex__l"
+                disabled={!activeLetters.has(L)}
+                onClick={() => jump(L)}
+              >
+                {L}
+              </button>
+            ))}
+          </nav>
         </div>
       )}
     </motion.div>
