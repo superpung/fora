@@ -125,14 +125,22 @@ export default function ForumDetail() {
       <header className="fd__header">
         <div className="fd__meta">
           <span className="fd__code">{forum.code}</span>
-          {forum.room && <span className="fd__room">{forum.room}</span>}
+          {forum.room && (
+            <span className="fd__room">
+              <Icon name="pin" size={13} /> {forum.room}
+            </span>
+          )}
           {dateInfo && (
             <span>
-              {dateInfo.md} {dateInfo.weekday}
+              <Icon name="calendar" size={13} /> {dateInfo.md} {dateInfo.weekday}
               {forum.session_period && ` · ${periodLabel[forum.session_period]}`}
             </span>
           )}
-          {forum.sponsor && <span className="fd__sponsor">{forum.sponsor}专场</span>}
+          {forum.sponsor && (
+            <span className="fd__sponsor">
+              <Icon name="building" size={13} /> {forum.sponsor}专场
+            </span>
+          )}
         </div>
         <div className="fd__titlerow">
           <h1 className="fd__title">{forum.title.zh}</h1>
