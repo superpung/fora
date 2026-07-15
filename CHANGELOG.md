@@ -4,6 +4,21 @@ All notable changes to this project. The project is unversioned (no release
 tags yet), so entries are grouped by date, newest first. Written in English per
 the repository language rule (see AGENTS.md).
 
+## 2026-07-15 — Timeline collapse no longer snaps + bottom fade seam closed
+
+### Fixed
+- **Timeline card collapse no longer snaps behind the next card.** On un-hover the
+  card's z-index dropped to base instantly while it was still tall, so the next
+  (opaque) card painted over its lower half — a visible jump. The base z-index is
+  now numeric (0) and its change is delayed by the animation duration, so the card
+  stays raised (z 5) for the whole collapse and only drops once it has shrunk.
+- **Short cells no longer leak text through a bottom seam.** The bottom fade sat
+  at `bottom: 1px` (leaving a 1px uncovered strip — a bright seam in dark mode)
+  and `left: 12px` (the first character uncovered), and was too gentle to hide an
+  overflowing line. It now reaches the very bottom (`bottom: 0`), starts near the
+  left edge (`left: 4px`), and turns solid earlier (gradient solid from 60%), so
+  an overflowing title fades to a faint ghost instead of a readable strip.
+
 ## 2026-07-15 — David Lo bio restored + dashboard forum-row meta on line 2
 
 ### Fixed
