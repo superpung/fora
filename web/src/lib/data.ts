@@ -338,7 +338,7 @@ export function buildConferenceViews(raw: unknown): ConferenceViews {
           if (t.type === "opening") return; // ceremony, no speaker
           (t.speakers ?? []).forEach((sp) =>
             addSpeakerTalk(sp, {
-              forumTitle: b.title?.zh ?? blockKindLabel.keynotes,
+              forumTitle: b.title?.zh ?? "大会主旨报告",
               talkTitle: t.title,
               titleStatus: t.title_status,
               room: b.location,
