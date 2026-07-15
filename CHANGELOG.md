@@ -14,11 +14,21 @@ the repository language rule (see AGENTS.md).
   offline. Real anomalies (competition training/awards tables, a lab with no
   schedule, a dateless forum) are recorded as `flags`, never guessed.
 
+- **Forum categories in the UI.** The dashboard gained a category filter row +
+  per-row tags, and the forum page shows its category — all conditional on the
+  conference having categories (ccfchip2026 is unchanged). Competitions surface
+  here as first-class `竞赛论坛` forums.
+- **`add-conference` skill** (`.claude/skills/`): the onboarding playbook (recon →
+  fetch → map with escape-hatch → validate → wire → verify), with schema.json as
+  the source of truth.
+
 ### Changed
 - **The schema is now an evolvable contract.** Added an open `extra` escape hatch
   at every level — conference-specific data the core doesn't model is captured
   there (and/or via `flags`) instead of being forced or dropped — and a
   first-class optional `forum.category`. Descriptions are now English.
+- The keynote rail derives its period label from the talks' times (no longer
+  hardcoded "上午"), so keynotes spanning morning + afternoon read "上午·下午".
 - **`validate.py` is a regression gate** over every conference (a schema change
   can't silently break an existing one); **`build_manifest.py`** is a shared,
   conference-agnostic manifest builder. CI rebuilds all conferences and asserts
