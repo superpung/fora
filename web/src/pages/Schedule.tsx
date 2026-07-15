@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import { formatDate } from "../lib/data";
 import { useConference } from "../lib/conference-store";
+import { useFollow, talkId } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Icon, { type IconName } from "../components/Icon";
@@ -93,15 +94,25 @@ function KeynotesBlock({ block }: { block: Block }) {
   );
 }
 
-function ForumsBlock({ block }: { block: Block }) {
+function ForumsBlock({ block, filtered }: { block: Block; filtered: boolean }) {
   const { id: confId, forumsByCode } = useConference();
   const { t } = useI18n();
+  const { isForum, isTalk, isSpeaker } = useFollow();
   // When talks carry real times, show the time-vs-forum matrix; otherwise the
   // conference only has forum-level slots, so fall back to the card grid.
-  if (hasForumTimes(block, forumsByCode)) return <TimeGrid block={block} />;
+  if (hasForumTimes(block, forumsByCode)) return <TimeGrid block={block} filtered={filtered} />;
+  const entries = (block.forum_entries ?? []).filter((e) => {
+    if (!filtered) return true;
+    const f = forumsByCode[e.forum_code];
+    return (
+      isForum(e.forum_code) ||
+      (f?.talks ?? []).some((t, i) => isTalk(talkId(e.forum_code, i))) ||
+      (f?.talks ?? []).some((t) => (t.speakers ?? []).some((s) => isSpeaker(s.name)))
+    );
+  });
   return (
     <>
-      {(block.breaks ?? []).map((b, i) => (
+      {!filtered && (block.breaks ?? []).map((b, i) => (
         <div key={`fbr${i}`} className="breakrow breakrow--forums">
           <TimeRange start={b.start} end={b.end} />
           <span className="breakrow__label">
@@ -115,7 +126,7 @@ function ForumsBlock({ block }: { block: Block }) {
         initial="initial"
         animate="animate"
       >
-        {(block.forum_entries ?? []).map((e) => {
+        {entries.map((e) => {
           const f = forumsByCode[e.forum_code];
           return (
             <motion.div key={e.forum_code} variants={riseItem}>
@@ -175,6 +186,9 @@ const KIND_ICON: Record<string, IconName> = {
 export default function Schedule() {
   const { days, venueName } = useConference();
   const { t, lang } = useI18n();
+  const { forums, speakers, talks } = useFollow();
+  const followCount = forums.size + speakers.size + talks.size;
+  const [onlyFollowed, setOnlyFollowed] = useState(false);
   const hash = useLocation().hash.replace("#", "");
   const initial = days.findIndex((d) => d.date === hash);
   const [active, setActive] = useState(initial >= 0 ? initial : 0);
@@ -184,6 +198,12 @@ export default function Schedule() {
   }, [initial]);
 
   const day = days[active];
+  // In the follow view only the forum timeline is meaningful (that's where a
+  // "room / forum" lives); non-forum blocks — keynotes, check-in, committee
+  // meetings, breaks — aren't followable, so hide them while filtering.
+  const blocks = onlyFollowed
+    ? day.blocks.filter((b) => b.kind === "forums")
+    : day.blocks;
 
   return (
     <motion.div
@@ -200,6 +220,16 @@ export default function Schedule() {
           </span>
           <h2 className="section__title">{t("schedule.title")}</h2>
         </div>
+        <button
+          className={`filterchip ${onlyFollowed ? "is-on" : ""}`}
+          onClick={() => setOnlyFollowed((v) => !v)}
+          title={t("timeline.onlyFollowsTip")}
+          aria-pressed={onlyFollowed}
+        >
+          <Icon name="star" filled={onlyFollowed} size={14} />
+          <span className="filterchip__label">{t("timeline.onlyFollows")}</span>
+          {followCount ? <span className="filterchip__n">{followCount}</span> : null}
+        </button>
       </div>
 
       {/* day tabs */}
@@ -241,7 +271,10 @@ export default function Schedule() {
           </div>
 
           <div className="blocks">
-            {day.blocks.map((block, bi) => (
+            {onlyFollowed && blocks.length === 0 && (
+              <div className="tgrid__empty">{t("timeline.noFollows")}</div>
+            )}
+            {blocks.map((block, bi) => (
               <motion.section
                 key={bi}
                 className={`block block--${block.kind}`}
@@ -270,7 +303,7 @@ export default function Schedule() {
                 </div>
 
                 {block.kind === "keynotes" && <KeynotesBlock block={block} />}
-                {block.kind === "forums" && <ForumsBlock block={block} />}
+                {block.kind === "forums" && <ForumsBlock block={block} filtered={onlyFollowed} />}
                 {block.kind === "committee_meetings" && <MeetingsBlock block={block} />}
                 {block.note && <div className="simplerow">{block.note}</div>}
               </motion.section>
