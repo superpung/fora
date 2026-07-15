@@ -297,6 +297,7 @@ export default function ForumDetail() {
   const confDate = confDateRange(conference.start_date, conference.end_date);
   const mainVenue =
     conference.venues?.find((v) => v.type === "main") ?? conference.venues?.[0];
+  const confVenue = mainVenue?.name.zh ?? null;
   const confLocation = mainVenue?.city ? `中国·${mainVenue.city}` : null;
 
   // Build the forum-level share poster (title + chairs + every talk).
@@ -323,6 +324,7 @@ export default function ForumDetail() {
       spec: {
         confName: conference.name.zh,
         confDate,
+        confVenue,
         confLocation,
         chip: f.category?.name.zh ?? tr("poster.kindForum"),
         code: f.code,
@@ -330,7 +332,6 @@ export default function ForumDetail() {
         metaLines,
         accent: accentColor(),
         qrUrl: shareUrl(),
-        peopleIcon: "users",
         peopleLabel: chairs.length ? tr("forum.chairs") : undefined,
         people: chairs,
         talksLabel: talks.length ? tr("poster.talksLabel", { n: talks.length }) : undefined,
@@ -357,6 +358,7 @@ export default function ForumDetail() {
       spec: {
         confName: conference.name.zh,
         confDate,
+        confVenue,
         confLocation,
         chip: f.category?.name.zh ?? tr("poster.kindTalk"),
         code: f.code,
@@ -365,7 +367,6 @@ export default function ForumDetail() {
         metaLines,
         accent: accentColor(),
         qrUrl: `${shareUrl()}#talk-${i + 1}`,
-        peopleIcon: "users",
         peopleLabel: speakers.length ? tr("poster.speakers") : undefined,
         people: speakers,
         abstractLabel: abstract ? tr("poster.abstractLabel") : undefined,
