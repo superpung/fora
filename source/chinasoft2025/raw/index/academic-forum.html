@@ -1,0 +1,120 @@
+<div class="banner">
+        <img src="images/logo/banner.jpg" alt="Background" class="banner-background" />
+</div>
+
+<!--插入CSS文件-->
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="./css/agenda.css">
+
+<!-- 插入JavaScript文件 -->
+<script src="./js/agenda.js"></script>
+
+<div class="forum-container">
+        <!-- 左侧导航栏 -->
+        <div class="sidebar">
+                <ul>
+                        <li><a href="#agenda/academic-forum/youth" class="sidebar-item active"
+                                        onclick="loadAgenda('academic-forum', 'youth')">青年人才成长</a></li>
+                        <li><a href="#agenda/academic-forum/software-frontier" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'software-frontier')">软件前沿技术导引</a></li>
+                        <li><a href="#agenda/academic-forum/edge-software-system" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'edge-software-system')">边缘智能软件与系统</a>
+                        </li>
+                        <li><a href="#agenda/academic-forum/mobile" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'mobile')">移动软件工程</a></li>
+                        <li><a href="#agenda/academic-forum/intelligent-dev" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'intelligent-dev')">智能化软件开发和维护</a></li>
+                        <li><a href="#agenda/academic-forum/intelligent-arch" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'intelligent-arch')">智能化软件需求与架构建模</a></li>
+                        <li><a href="#agenda/academic-forum/space-software-os" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'space-software-os')">星载智能软件和操作系统</a></li>
+                        <li><a href="#agenda/academic-forum/service-computing" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'service-computing')">智能体时代的服务计算</a></li>
+                        <li><a href="#agenda/academic-forum/llm-data" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'llm-data')">大模型的软件数据工程</a></li>
+                        <li><a href="#agenda/academic-forum/ai-software-testing" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'ai-software-testing')">面向AI融合软件的分析与测试</a>
+                        </li>
+                        <li><a href="#agenda/academic-forum/llm-driven-testing" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'llm-driven-testing')">大模型驱动软件测试</a></li>
+                        <li><a href="#agenda/academic-forum/simulation" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'simulation')">复杂智能系统仿真测试</a></li>
+                        <li><a href="#agenda/academic-forum/llm-reliability" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'llm-reliability')">大模型可靠性与安全性</a></li>
+                        <li><a href="#agenda/academic-forum/blockchain" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'blockchain')">区块链可靠性</a></li>
+                        <li><a href="#agenda/academic-forum/system-frontier-security" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'system-frontier-security')">智能系统前沿安全技术</a>
+                        </li>
+                        <li><a href="#agenda/academic-forum/system-model" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'system-model')">系统软件与大模型技术</a></li>
+                        <li><a href="#agenda/academic-forum/safety-software" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'safety-software')">安全攸关软件的智能开发与验证</a>
+                        </li>
+                        <li><a href="#agenda/academic-forum/cloud" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'cloud')">云原生与智能化运维</a></li>
+                        <li><a href="#agenda/academic-forum/agent" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'agent')">智能化研发智能体技术</a></li>
+                        <li><a href="#agenda/academic-forum/opensource" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'opensource')">开源生态成长式构建与度量</a></li>
+                        <li><a href="#agenda/academic-forum/trusted-execution" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'trusted-execution')">可信执行环境系统软件</a></li>
+                        <li><a href="#agenda/academic-forum/analysis-safety" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'analysis-safety')">软件分析与软件安全新技术</a></li>
+                        <li><a href="#agenda/academic-forum/architecture" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'architecture')">高性能统一智能计算架构的系统软件</a></li>
+                        <li><a href="#agenda/academic-forum/rust-system" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'rust-system')">Rust系统软件</a></li>
+                        <li><a href="#agenda/academic-forum/language" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'language')">编程语言前沿技术</a></li>
+                        <li><a href="#agenda/academic-forum/eda" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'eda')">EDA软件技术前沿</a></li>
+                        <li><a href="#agenda/academic-forum/formal-llm" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'formal-llm')">形式化方法与大模型技术</a></li>
+                        <li><a href="#agenda/academic-forum/neural-symbolic" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'neural-symbolic')">神经符号融合软件的前沿理论和方法</a>
+                        </li>
+                        <li><a href="#agenda/academic-forum/constraint-solving" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'constraint-solving')">约束求解技术与应用</a></li>
+                        <li><a href="#agenda/academic-forum/supply-chain" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'supply-chain')">开源供应链安全分析前沿研究</a></li>
+                        <li><a href="#agenda/academic-forum/requirements-engineering" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'requirements-engineering')">需求工程学组研讨</a>
+                        </li>
+                        <li><a href="#agenda/academic-forum/quantum-software" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'quantum-software')">量子计算与软件</a></li>
+
+                        <li><a href="#agenda/academic-forum/multimodal-ops-arch" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'multimodal-ops-arch')">多模态大模型驱动的信息系统运维与架构优化技术</a>
+                        </li>
+                        <li><a href="#agenda/academic-forum/resilience" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'resilience')">韧性软件</a></li>
+
+                        <li><a href="#agenda/academic-forum/software-data-space" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'software-data-space')">软件定义可信数据空间关键技术</a>
+                        </li>
+                        <li><a href="#agenda/academic-forum/embodied-intelligence" class="sidebar-item"
+                                        onclick="loadAgenda('academic-forum', 'embodied-intelligence')">具身智能与泛在计算系统软件</a>
+                        </li>
+
+                </ul>
+        </div>
+
+        <!-- 右侧内容区 -->
+        <div id="agenda-content" class="agenda-content">
+
+
+                <div class="container">
+                        <h2 class="section-title">学术论坛</h2>
+                        <div class="section-title-en">Academic Forum</div>
+
+                        <p>请从左侧选择感兴趣的分论坛主题查看详情。</p>
+
+
+                </div>
+
+        </div>
+
+</div>
+
+<!-- <p style="margin-bottom: 500px;"></p> -->

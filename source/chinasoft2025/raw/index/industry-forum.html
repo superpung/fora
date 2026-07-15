@@ -1,0 +1,58 @@
+<div class="banner">
+        <img src="images/logo/banner.jpg" alt="Background" class="banner-background" />
+</div>
+
+<!--插入CSS文件-->
+<link rel="stylesheet" type="text/css" href="./css/index.css">
+<link rel="stylesheet" type="text/css" href="./css/agenda.css">
+
+<!-- 插入JavaScript文件 -->
+<script src="./js/agenda.js"></script>
+
+<div class="forum-container">
+        <!-- 左侧导航栏 -->
+        <div class="sidebar">
+                <ul>
+                        <li><a href="#agenda/industry-forum/key-software-ai" class="sidebar-item active"
+                                        onclick="loadAgenda('industry-forum', 'key-software-ai')">关键行业软件与AI融合发展</a></li>
+                        <li><a href="#agenda/industry-forum/ide" class="sidebar-item"
+                                        onclick="loadAgenda('industry-forum', 'ide')">智能化IDE研究与实践</a></li>
+                        <li><a href="#agenda/industry-forum/riscv" class="sidebar-item"
+                                        onclick="loadAgenda('industry-forum', 'riscv')">RISC-V系统软件及软硬协同前沿进展</a></li>
+                        <li><a href="#agenda/industry-forum/llm-software-dev" class="sidebar-item"
+                                        onclick="loadAgenda('industry-forum', 'llm-software-dev')">大语言模型赋能软件研发的效能度量和改进</a>
+                        </li>
+                        <li><a href="#agenda/industry-forum/cloud-native" class="sidebar-item"
+                                        onclick="loadAgenda('industry-forum', 'cloud-native')">大模型时代面向云原生软件生态的系统工程</a>
+                        </li>
+                        <li><a href="#agenda/industry-forum/vehicle-software" class="sidebar-item"
+                                        onclick="loadAgenda('industry-forum', 'vehicle-software')">车载软件智能研发：从代码生成到安全保障</a>
+                        </li>
+                        <li><a href="#agenda/industry-forum/embedded-software" class="sidebar-item"
+                                        onclick="loadAgenda('industry-forum', 'embedded-software')">智能嵌入式系统基础软件</a></li>
+                        <li><a href="#agenda/industry-forum/smart-terminal" class="sidebar-item"
+                                        onclick="loadAgenda('industry-forum', 'smart-terminal')">智能终端的基础软件技术论坛：从编程语言到端侧AI</a>
+                        </li>
+                        <li><a href="#agenda/industry-forum/os-security" class="sidebar-item"
+                                        onclick="loadAgenda('industry-forum', 'os-security')">操作系统安全技术</a></li>
+                        <li><a href="#agenda/industry-forum/heterogeneous-os" class="sidebar-item"
+                                        onclick="loadAgenda('industry-forum', 'heterogeneous-os')">AI 时代的异构融合操作系统</a>
+                        </li>
+                        <li><a href="#agenda/industry-forum/trusted-embedded" class="sidebar-item"
+                                        onclick="loadAgenda('industry-forum', 'trusted-embedded')">智能化高可信嵌入式软件工程技术</a>
+                        </li>
+                        <li><a href="#agenda/industry-forum/domestic-os-future" class="sidebar-item"
+                                        onclick="loadAgenda('industry-forum', 'domestic-os-future')">国产操作系统的未来发展路径</a>
+                        </li>
+                </ul>
+        </div>
+
+        <!-- 右侧内容区 -->
+        <div id="agenda-content" class="agenda-content">
+                <div class="container">
+                        <h2 class="section-title">工业论坛</h2>
+                        <div class="section-title-en">Industry Forum</div>
+                        <p>请从左侧选择感兴趣的论坛主题查看详情。</p>
+                </div>
+        </div>
+</div>

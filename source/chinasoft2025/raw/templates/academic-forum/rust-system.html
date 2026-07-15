@@ -1,0 +1,216 @@
+<div class="container">
+
+    <h2 class="section-title">Rust系统软件</h2>
+    <div class="section-title-en">学术论坛 R24</div>
+
+    <section class="forum-section">
+        <h3>一、论坛介绍</h3>
+        <p>随着系统软件对安全、性能和可靠性的要求日益严苛，Rust语言正以其独特的所有权系统和内存安全保证，成为各种软件基础设施的首选编程语言和中流砥柱。本次“Rust与系统软件”专题论坛，将汇聚国内外顶尖学者与工程师，为您呈现一场理论与实践交融的思想盛宴。论坛将探讨如何对Rust的核心语义进行提取与形式化建模，并建立相应的编译过程验证框架，旨在为语言的安全承诺提供坚实的数学基础；同时，在自动化验证技术层面，论坛报告将介绍如何结合有界模型检测等轻量级形式化方法与大语言模型在代码理解上的能力，以应对Rust所有权系统等复杂语义带来的验证挑战，提升内存安全属性验证的覆盖范围与效率；而在工程实践与系统构建层面，论坛将关注Rust与现有C++生态的协同问题，总结在大型项目中实现两种语言高效、安全互操作的设计模式与实践经验。同时，还将分享基于Rust开发完整操作系统在架构设计、核心机制实现及社区协作方面的系统性经验；论坛将展望探讨如何构建能够利用已有验证反馈进行自我优化的证明系统，以期逐步实现针对Rust代码的自动化形式验证，降低其应用门槛。
+        </p>
+        <p>本论坛旨在为学术界与工业界的研究者及开发者提供一个交流平台，共同推动Rust在系统软件领域的可靠应用与理论发展。</p>
+    </section>
+
+    <section class="forum-section">
+        <h3>二、论坛组织委员会</h3>
+        <ul class="committee-list">
+            <li>
+                <span class="member-name">陈渝</span>
+                <span class="member-unit">（清华大学）</span>
+            </li>
+            <li>
+                <span class="member-name">冯洋</span>
+                <span class="member-unit">（南京大学）</span>
+            </li>
+            <li>
+                <span class="member-name">徐辉</span>
+                <span class="member-unit">（复旦大学）</span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="forum-section">
+        <h3>三、论坛安排</h3>
+        <h4>日程安排：</h4>
+        <p> <strong>时间：</strong>11月28日星期五 09:00-12:15</p>
+        <p> <strong>地点：</strong>武汉国际会议中心 二楼VIP V23</p>
+
+        <h4>论坛议程：</h4>
+        <table class="forum-table">
+            <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>题目</th>
+                    <th>报告嘉宾</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>09:00-09:25</td>
+                    <td>Rust核心子集的编译验证方法</td>
+                    <td>汪宇霆<br>上海交通大学</td>
+                </tr>
+                <tr>
+                    <td>09:25-09:50</td>
+                    <td>Rust内存安全的形式化验证：BMC方法与LLM赋能</td>
+                    <td>王明华<br>蚂蚁技术研究院</td>
+                </tr>
+
+                <tr>
+                    <td>09:50-10:15</td>
+                    <td>hicc：Rust和C++混合编程实践总结</td>
+                    <td>韩霆军<br>华为</td>
+                </tr>
+                <tr>
+                    <td>10:15-10:35</td>
+                    <td>茶歇</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>10:35-11:00</td>
+                    <td>Rust语言开发蓝河操作系统技术实践与开源探索</td>
+                    <td>贺程<br>vivo</td>
+                </tr>
+                <tr>
+                    <td>11:00-11:25</td>
+                    <td>自我进化实现 Rust 自动形式化证明</td>
+                    <td>陈天宇<br>微软</td>
+                </tr>
+                <tr>
+                    <td>11:25-12:15</td>
+                    <td>圆桌讨论</td>
+                    <td>所有嘉宾</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="forum-section">
+        <h3>四、论坛报告嘉宾简介</h3>
+        <div class="speaker-member">
+            <h4>1. 报告人：汪宇霆 副教授</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/汪宇霆.png" alt="汪宇霆头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>Rust核心子集的编译验证方法</p>
+                    <p><strong>摘要：</strong>编译器是关键性的系统软件，任何编译器中存在的漏洞都可能导致源程序端花费大量努力得到的安全保障失效。形式化验证可以在逻辑层面保证编译器不存在任何漏洞，因此备受关注。虽然现有编译器验证方法已在传统命令式和函数式编程语言上得到应用，但如何有效支持Rust语言的新特性仍是一个开放问题。为解决该问题，我们提出了针对Rust核心语言的形式化语义、编译算法、以及编译器验证框架。通过与将Rust程序编译为C程序，并与CompCert编译器连接，我们验证了从Rust核心语言到汇编代码的完整编译过程。此外，借助该框架支持开放模块的特性，我们实现了Safe
+                        Rust代码和Unsafe 代码单独编译、验证、组合的分离编译流程。</p>
+                    <p><strong>简介：</strong>汪宇霆，上海交通大学John
+                        Hopcroft计算机科学中心副教授，此前于美国耶鲁大学计算机系担任博士后研究员，博士毕业于美国明尼苏达大学双城分校计算机系。长期从事形式化方法方面研究，内容涵盖形式化验证和程序设计语言的理论基础（包括程序语义、逻辑框架等）以及它们在关键性系统软件（如编译器和操作系统）中的应用，代表性研究成果发表于形式化验证和程序设计语言的国际顶会（如POPL、PLDI、CAV、OOPSLA等）。
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>2. 报告人：王明华 蚂蚁技术研究院研究员</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/王明华.png" alt="王明华头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>Rust内存安全的形式化验证：BMC方法与LLM赋能</p>
+                    <p><strong>摘要：</strong>Rust语言通过其独特的所有权系统，在编译期即可消除大部分内存安全风险，显著提升了软件的安全基线。然而，Rust
+                        Unsafe的存在使得开发者能够绕过这些安全保证，从而引入了潜在的内存安全隐患。为提升Rust
+                        Unsafe的安全性，形式化验证成为了不可或缺的关键环节。本报告将系统性地介绍如何利用有界模型检验（BMC）来验证Rust程序的内存安全属性。首先，介绍我们使用BMC的方法在蚂蚁具体Rust项目（TECC）中的验证实践，展示如何在实际工业场景中应用该技术以发现深层缺陷（FM
+                        ’24发表)。其次，我们将探讨如何利用LLM赋能形式化验证流程中的关键步骤，以期克服传统验证方法的瓶颈，显著提升验证效率（ICSE
+                        ’26接收)。最后，我们将基于现有实践，对融合形式化方法与LLM的未来研究方向进行展望。</p>
+                    <p><strong>简介：</strong>王明华，博士毕业于中国科学院软件研究所，研究方向为软件安全与程序分析、软件漏洞利用与防御。现于蚂蚁集团技术研究院形式化方法团队，担任研究员，主要从事Rust形式化验证相关的研究工作。本人已有研究成果已发表在FM、ICSE、CCS、ATC、DAC、TIFS等多个软件工程与安全领域的顶级会议与期刊。
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>3. 报告人：韩霆军 华为软件技术专家</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/韩霆军.png" alt="韩霆军头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>hic c：Rust和C++混合编程实践总结</p>
+                    <p><strong>摘要：</strong>Rust和C++在软件生态链中的定位重合度较高，无论是用Rust新开发功能还是重构已有系统，都可能涉及到和已有C++软件的相互调用。但目前这种互调用实现非常困难，无论是谷歌还是微软，在他们推广应用Rust的总结中，都将此列为关键挑战，至今也没有特别有效的解决方案。在华为公司内推广应用Rust也遇到同样的困难，在最近一年的实战中，我们终于找到了一种解决方案，约一行Rust代码可调用任何C++
+                        API，并且还支持实现C++的继承行为和模板类，支持几乎任何函数和任意变量。从此Rust调用C++ API，天堑变通途。</p>
+                    <p><strong>简介：</strong>韩霆军，华为技术有限公司软件技术专家。长期从事软件产品的设计、开发和测试方面的工作。当前聚焦于Rust语言在公司内的推广应用，重点识别并解决Rust在产品实际应用过程中的关键问题，包括提升Rust和其他语言间互调用的开发效率，缩减Rust制品的二进制大小等。
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>4. 报告人：贺程 vivo系统研发总监</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/贺程.png" alt="贺程头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>Rust语言开发蓝河操作系统技术实践与开源探索</p>
+                    <p><strong>摘要：</strong>操作系统70%的严重安全漏洞都和内存使用不当相关，Rust语言以其所有权系统在编译阶段保障内存安全，可以发现大部分内存安全风险。vivo在2019年开始探索基于Rust语言自研蓝河操作系统，经过了7年实践，蓝河操作系统已经有了比较完备的技术能力储备。在Rust语言开发操作系统软件领域积累了丰富的经验。为了加快推进Rust语言软硬件生态发展和人才培养，过去几年vivo也一直与学术界和产业界携手，在2023年发起了蓝河系统创新赛C2Rust转译赛题、在2025年将Rust语言自研的BlueKernel内核项目正式开源。本报告分享基于Rust语言开发蓝河操作系统的技术实践，以及BlueKernel内核开源项目的最新进展和后续的规划，促进产学研Rust语言技术交流和发展。
+                    </p>
+                    <p><strong>简介：</strong>贺程，vivo系统研发总监。拥有10多年的操作系统研发经验，负责vivo蓝河操作系统（BlueOS）的架构设计及研发工作。作为团队核心成员，长期专注于蓝河操作系统核心方向的技术架构设计和中长期规划，积极推动Rust语言在软硬件生态中的融合应用，并致力于促进蓝河操作系统技术与产业实践的结合。
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>5. 报告人：陈天宇 研究员</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/陈天宇.png" alt="陈天宇头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>自我进化实现 Rust 自动形式化证明</p>
+                    <p><strong>摘要：</strong>形式化验证是通过数学方法来证明软件正确性的手段，它要求开发者用形式化语言写出软件系统需要满足的属性，再写出形式化的证明，用自动定理求解器去证明软件满足这些属性。高昂的人工成本使得开发者对使用这类方法望而却步，这也导致形式化证明的代码很少，即便是大语言模型，也由于缺乏训练数据难以生成这样的证明代码。</p>
+                    <p>
+对此，本文通过让大语言模型自我进化的方式，实现了 Rust 代码上的自动形式化证明。自我进化框架能够迭代式地合成更高质量的数据，并用于训练更强的能够生成形式化证明代码的模型。具体来说，本文首先收集了大量适合于证明的 Rust 代码，将它们翻译成能够被证明的形式化语言 Verus，所有被 Verus 编译器通过的代码将被保留作为种子数据进行合成。本文随后用大语言模型自我进化的方式生成 Verus 规约，即代码需要满足的形式化属性，在每一轮进化中，前一轮生成的规约将用于训练一个新的、经过微调的开源模型，从而在下一轮微调中生成更多质量更高的规约。最后，为了获得能够通过验证的代码，模型还需要生成证明代码以证明上述规约能被满足。本文同样使用了自我进化的方式微调大语言模型，在这个过程中，所有合成的能被 Verus 验证的代码将会作为训练语料，同时，在生成过程中的错误代码会和它的错误信息一起，作为训练模型自我修复能力的语料。</p>
+                    <p>
+在由 Verus 专家构建的基准上，经过自我进化的开源模型在自动生成证明代码的任务上的 pass@10 通过率达到了70.50%，相较于未经训练时的17.27%有了巨大的飞跃。这一成果充分验证了本文中提出的自我进化数据合成与微调框架的有效性。
+                    </p>
+                    <p><strong>简介：</strong>现任微软亚洲研究院研究员，2025年博士毕业于北京大学计算机学院，师从谢涛教授。主要研究方向包括：基于大语言模型的开源软件安全和软件形式化验证，以第一作者在TOSEM,
+                        ACL，ICLR，ECOOP 等国际顶级会议/期刊发表论文多篇。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="forum-section">
+        <h3>五、论坛组织委员会简介</h3>
+        <div class="committee-member">
+            <h4>1. 论坛主席：陈渝 副教授</h4>
+            <div class="committee-profile">
+                <div class="committee-image">
+                    <img src="./images/academic-forum/陈渝.png" alt="陈渝头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <p><strong>简介：</strong>清华大学计算机系长聘副教授，博导，MIT访问学者，CCF系统软件专委常务委员，开源发展委员会委员。主要研究方向包括操作系统，编译原理，程序分析，系统可靠性与性能优化等。获得国家科技进步二等奖一次和省部级一等奖三次。发表高水平学术论文六十余篇，出版操作系统等相关教材和配套参考书3本、译著2本，担任国内外有影响力学术会议的主席和程序委员会委员等。曾获教育部-华为“智能基座”优秀教师奖、中国高校计算机专业优秀教师奖等。
+                </p>
+            </div>
+        </div>
+        <div class="committee-member">
+            <h4>2. 论坛主席：冯洋 副教授</h4>
+            <div class="committee-profile">
+                <div class="committee-image">
+                    <img src="./images/academic-forum/冯洋.png" alt="冯洋头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <p><strong>简介：</strong>南京大学计算机学院准聘副教授，博导，CCF开源发展委员会委员，研究方向为复杂软件系统质量保障，具体研究课题包括复杂软件系统的质量保障技术，基于程序设计语言的软件质量保障等。近年来以通讯或一作发表相关论文40余篇，其中包括ICSE、FSE、ASE、ISSTA、TSE、TOSEM等CCF-A类期刊与会议发表学术论文30余篇，并于2022年ASE，2023年FSE大会，2023年Internetware大会获杰出论文奖，华为火花奖等奖项。
+                </p>
+            </div>
+        </div>
+        <div class="committee-member">
+            <h4>3. 论坛主席：徐辉 副教授</h4>
+            <div class="committee-profile">
+                <div class="committee-image">
+                    <img src="./images/academic-forum/徐辉.png" alt="徐辉头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <p><strong>简介：</strong>复旦大学计算与智能创新学院副教授，长期从事程序分析和软件可靠性研究，在该领域的重要国际学术会议和期刊发表多篇和Rust程序分析相关的论文，获得ACM
+                    SIGSOFT杰出论文、IEEE ISSRE候选最佳论文、上海市计算机学会自然科学奖等荣誉。担任上海市普适计算和嵌入式软件专委会副主任，曾任DSN 2021大会宣传主席、DSML
+                    2021会议主席、ISSRE 2024 Fast Abstract Track主席等职务。</p>
+            </div>
+        </div>
+    </section>
+</div>

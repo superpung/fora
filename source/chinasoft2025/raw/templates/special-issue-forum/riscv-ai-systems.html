@@ -1,0 +1,229 @@
+<div class="container">
+
+    <h2 class="section-title">RISC-V与人工智能系统软件前沿进展</h2>
+    <div class="section-title-en">专刊论坛 S3</div>
+
+    <section class="forum-section">
+        <h3>一、论坛介绍</h3>
+        <p>系统软件作为计算机系统中连接底层硬件和上层应用的桥梁，对于发挥RISC-V架构的优势和潜力起到了关键性作用。然而，与x86和ARM相比，RISC-V的软件生态仍然处于发展阶段，在操作系统、开发工具、基础库等方面仍然存在诸多问题和挑战。特别是在人工智能领域，随着AI相关的RISC-V扩展指令集的发展、基于RISC-V的AI计算芯片的推出和DeepSeek等大模型的兴起，RISC-V架构和系统软件在AI系统中的重要性日益突显。</p><p>RISC-V与人工智能系统软件前沿进展论坛立足于RISC-V与人工智能系统软件，聚焦操作系统、编译器、模拟器、基础库等系统软件在RISC-V平台上的基础性问题，同时还特别关注面向人工智能领域的AI系统软件栈及关键技术，旨在进一步推动国内RISC-V相关的技术发展和生态建设，促进学术交流。欢迎相关领域的专家学者及科研人员前来参会。</p>
+    </section>
+
+    <section class="forum-section">
+        <h3>二、论坛组织委员会</h3>
+        <ul class="committee-list">
+            <li>
+                <span class="member-name">武延军</span>
+                <span class="member-unit">（中国科学院软件研究所）</span>
+            </li>
+            <li>
+                <span class="member-name">谢涛</span>
+                <span class="member-unit">（北京大学）</span>
+            </li>
+            <li>
+                <span class="member-name">侯锐</span>
+                <span class="member-unit">（中国科学院信息工程研究所）</span>
+            </li>
+            <li>
+                <span class="member-name">宋威</span>
+                <span class="member-unit">（中国科学院信息工程研究所）</span>
+            </li>
+            <li>
+                <span class="member-name">邢明杰</span>
+                <span class="member-unit">（中国科学院软件研究所）</span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="forum-section">
+        <h3>三、论坛安排</h3>
+        <h4>日程安排：</h4>
+        <p> <strong>时间：</strong>11月28日星期五 14:00-17:40</p>
+        <p> <strong>地点：</strong>武汉国际会议中心 二楼荆月厅209</p>
+
+        <h4>论坛议程：</h4>
+        <table class="forum-table">
+            <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>题目</th>
+                    <th>报告嘉宾</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>14:00-14:10</td>
+                    <td>开场致辞</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <td>14:10-14:40</td>
+                    <td>编译优化的进化：从人工优化到AI驱动<br>（特邀报告）</td>
+                    <td>吕方<br>中国科学院计算所</td>
+                </tr>
+                <tr>
+                    <td>14:40-15:10</td>
+                    <td>基于大语言模型与符号执行协同的<br>RISC-V二进制代码反编译研究</td>
+                    <td>李玉璋<br>北京邮电大学</td>
+                </tr>
+                <tr>
+                    <td>15:10-15:40</td>
+                    <td>面向RISC-V指令集多样性的兼容性感知<br>多层级构建方法</td>
+                    <td>屈晟<br>中国科学院软件研究所</td>
+                </tr>
+                <tr>
+                    <td>15:40-16:10</td>
+                    <td>茶歇</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <td>16:10-16:40</td>
+                    <td>用户透明、高性能的RISC-V异构计算系统<br>（特邀报告）</td>
+                    <td>齐冀<br>中国科学院软件研究所</td>
+                </tr>
+                <tr>
+                    <td>16:40-17:10</td>
+                    <td>MARC: 基于多智能体协同的硬件安全缺陷<br>早期检测方法</td>
+                    <td>芮志清<br>中国科学院软件研究所</td>
+                </tr>
+                <tr>
+                    <td>17:10-17:40</td>
+                    <td>面向RISC-V架构的深度学习算子测试</td>
+                    <td>刘佳玮<br>南京大学</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="forum-section">
+        <h3>四、论坛报告嘉宾简介</h3>
+        <div class="speaker-member">
+            <h4>1. 报告人：吕方 高级工程师</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/吕方.png" alt="吕方头像" onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>编译优化的进化：从人工优化到AI驱动</p>
+                    <p><strong>摘要：</strong>开源的RISC-V标准在催生丰富芯片架构的同时，也凸显了传统编译优化方法的不足：其静态、固化的启发式规则高度依赖与专家的调优经验，难以实现跨架构的性能泛化。本报告将系统介绍一系列针对RISC-V新特性的编译优化技术，并重点探索如何利用AI技术，实现从“人工调优”到“智能泛化”的转变。</p>
+                    <p><strong>简介：</strong>吕方，博士，中国科学院计算所高级工程师，处理器芯片重点实验室编译团队，香山高性能RISC-V编译器团队负责人。研究方向为通用高性能编译器与敏捷编译技术。参与并负责安腾、龙芯系列处理器、申威、ARM、RISC-V等多款高性能处理器芯片的编译器研发，并担任多项敏捷编译技术任务的负责人，先后在CGO、NeurIPS、PLDI、ICS等计算机体系结构领域重要的国际会议和期刊发表论文近20篇，申请10余项专利。</p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>2. 报告人：李玉璋 博士生</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/李玉璋.png" alt="李玉璋头像" onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>基于大语言模型与符号执行协同的RISC-V二进制代码反编译研究</p>
+                    <p><strong>摘要：</strong>反编译是软件逆向工程中的基础技术, 其目标是从面向硬件的二进制代码中恢复出高级语言代码, 以支持人工阅读、分析或重工程任务. 尽管该技术已得到广泛研究, 但传统基于规则的反编译器所生成的反编译代码往往可读性较差, 且难以复用. 此外, 由于传统反编译器的开发周期较长, 其对RISC-V等新兴指令集架构的支持通常较为滞后. 在当前大语言模型(large language model, LLM)技术广泛应用于自动化软件工程任务并取得显著成效的背景下, 面向RISC-V架构的反编译需求, 提出了一种结合LLM与符号执行的反编译方法BinDec. 该方法通过LLM生成与符号执行验证的交替迭代, 充分利用LLM的代码理解与生成能力, 以产生更易于理解与重用的反编译代码; 同时借助符号执行的代码分析与验证能力, 确保生成结果的可靠性. 通过一系列实验对BinDec的有效性进行了评估, 实验结果表明, 该方法在达到与传统反编译器相近的语义准确性的同时显著提升了代码的可读性.</p>
+                    <p><strong>简介：</strong>李玉璋，北京邮电大学网络空间安全学院在读博士生, 主要研究领域为自动软件工程, 软件供应链安全.</p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>3. 报告人：屈晟 高级工程师</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/屈晟.png" alt="屈晟头像" onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>面向RISC-V指令集多样性的兼容性感知多层级构建方法</p>
+                    <p><strong>摘要：</strong>RISC-V指令集架构凭借其开放性与模块化设计，推动了芯片架构实现创新与定制化，但与此同时也引发了严重的软件生态碎片化问题。本文提出了一种面向RISC-V平台的兼容性感知多层级编译方法——RuyiBuild工具链，以LLVM IR为中间表示，结合非侵入式编译流程拦截机制，实现了对现有软件构建系统的透明适配，使构建生成的操作系统软件包既具备面向不同RISC-V扩展指令集的兼容性，又可以面向最终运行平台进行基于扩展指令集的自适应优化，有效解决了RISC-V指令集多样性背景下，多指令扩展组合与平台差异下二进制高性能优化与广泛兼容性的双目标统筹实现问题。RuyiBuild工具链围绕LLVM IR的提取与部署、转换与优化设计了一套完整的跨平台软件分发与精细化优化框架，主要包含四个核心机制:透明化双路径编译与LLVM IR提取机制，动态链接与LLVM IR链接转换机制， LLVM IR 驱动的软件包封装与集成机制，以及客户端与云端协同的LLVM IR到目标平台二进制程序转换机制。实验结果表明，RuyiBuild能够面向多种RISC-V指令集扩展与微架构组合实现对目标程序的部署，有效应对硬件兼容性与硬件性能充分发挥之间的矛盾。</p>
+                    <p><strong>简介：</strong>中国科学院软件研究所高级工程师，带领团队研发 openEuler RISC-V版本，兼任openEuler委员会常务委员会委员，RISE 基金会 TSC 成员，主要研究方向为 RISC-V 高性能开源操作系统。</p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>4. 报告人：齐冀 助理研究员</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/齐冀.png" alt="齐冀头像" onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>用户透明、高性能的RISC-V异构计算系统</p>
+                    <p><strong>摘要：</strong>RISC-V的“基础指令集 + 可选扩展指令集”ISAX（ISA+eXtension）异构计算范式逐渐走向主流。如何在异构处理器间无缝复用既有软件生态、同时兼顾高性能与正确性，是当前RISC-V异构计算的关键挑战。为此，我们提出一套基于轻量级二进制重写的RISC-V异构计算系统：当程序在异构RISC-V处理器间调度迁移时，系统透明翻译不兼容指令，并以系统级机制确保指令行为语义的正确性。利用RISC-V指令集编码特性，我们突破了传统二进制重写方法在性能与正确性之间的取舍。基于矩阵计算、数值库等通用基准及真实应用的评测表明，系统在保持语义等价的前提下大幅缩小了与理论最优之间的性能差距，性能显著优于现有二进制重写方案。总体而言，本工作通过软硬件协同设计，为RISC-V异构计算提供了可扩展、可落地的新思路和新方法，并首次在系统软件层面尝试解决了RISC-V的生态碎片化难题。</p>
+                    <p><strong>简介：</strong>中国科学院软件研究所助理研究员，入选中国科学院“率先行动”人才计划。长期从事操作系统与分布式系统研究，聚焦构建高安全、高性能的软件栈基础设施。近五年以第一作者或通讯作者在SOSP、EuroSys、ATC、SIGMOD、TSC等计算机系统高水平会议和期刊发表论文十篇，获中国首个ACM SIGMETRICS 最佳学生论文奖。</p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>5. 报告人：芮志清 博士生</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/芮志清.png" alt="芮志清头像" onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>MARC: 基于多智能体协同的硬件安全缺陷早期检测方法</p>
+                    <p><strong>摘要：</strong>随着开源RISC-V架构的迅猛发展,其开放与模块化的特性在催生繁荣硬件生态的同时，也给硬件电路的安全性保障带来巨大挑战.在硬件设计流程的前期进行安全缺陷早期检测，能够以最低成本在缺陷固化于物理芯片前将其消除.尽管静态分析已用于硬件安全缺陷早期检测，但由于规约知识未充分利用以及代码上下文语义理解不足，现有检测方法存在高漏报率和高误报率的问题。针对这些问题，本文提出MARC，一种基于大语言模型多智能体协同的硬件安全缺陷早期检测方法。该方法通过构建设计依赖分析、文档分析、安全缺陷检测、安全缺陷确认四类智能体及协同工作框架，从补充跨模块上下文、结构化模块文档知识、快速初筛安全缺陷、深度推理安全缺陷风险分析等多维度协同作用，有效降低硬件电路设计阶段早期安全缺陷检测的误报率，提升检测准确性。实验表明，MARC 有效缓解了硬件安全缺陷早期检测中的误报问题，提升了安全缺陷检测的准确性与效率，为硬件安全提供了更可靠的技术支撑。实验表明，MARC框架在工业级数据集上将早期缺陷检测的MARC的漏报率降低至0.3829，相较于基准方法降低了约18.2%，误报率达到了0.3695，相较于基准方法降低了约19.1%。另外,本文方法还支撑作者团队夺得HACK@DATE 2025硬件漏洞挖掘竞赛全球冠军，成功挖掘了1个获CVE编号的硬件漏洞，在真实世界中验证了其有效性。</p>
+                    <p><strong>简介：</strong>芮志清，中国科学院软件研究所在读博士生，导师为吴敬征研究员。主要研究方向为软件安全、RISC-V安全、物联网安全，相关研究成果发表于ICSE、IJCAI、计算机研究与发展、软件学报等国内外会议及期刊，曾获得HACK@DATE25国际硬件漏洞挖掘竞赛全球冠军、HACK@CHES25国际硬件漏洞挖掘竞赛全球冠军、DataCon24大数据安全分析竞赛冠军、ACM SIGSOFT杰出论文奖等奖项。</p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>6. 报告人：刘佳玮 博士后</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/刘佳玮.png" alt="刘佳玮头像" onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>面向RISC-V架构的深度学习算子测试</p>
+                    <p><strong>摘要：</strong>随着端侧智能软件的发展，RISC-V 架构因其开源、模块化及低成本优势在学术界和产业界受到广泛关注。然而，将智能软件部署到RISC-V架构上面临诸多挑战。智能软件的运行依赖于执行卷积、归一化等基本张量运算的深度学习算子，而算子在不同硬件架构上的实现质量直接决定了软件性能。一旦算子在RISC-V架构上出现问题，将直接影响上层大量智能软件的执行效率、准确性和可靠性，因此针对RISC-V架构的算子质量评估至关重要。本文提出 RIVdoo，一种面向 RISC-V 架构的深度学习算子质量评估方法，该方法基于输入空间复杂度在不同计算负载的情况下系统性地开展了多维度深度学习算子测试，有效地识别算子中的性能异常及架构适配问题。</p>
+                    <p><strong>简介：</strong>刘佳玮，博士，南京大学智能软件工程实验室成员。她的研究专注于人工智能基础软件的高可信度与质量保障，大规模深度学习库和算子的测试方面有着丰富的经验。近年来，她致力于解决智能软件在多架构复杂部署场景中的可靠性问题，研究成果发表于TOSEM、IJCV、ASE等期刊和会议。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="forum-section">
+        <h3>五、论坛组织委员会简介</h3>
+        <div class="committee-member">
+            <h4>1. 论坛主席：武延军 研究员</h4>
+            <div class="committee-profile">
+                <div class="committee-image">
+                    <img src="./images/academic-forum/武延军.png" alt="武延军头像" onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <p><strong>简介：</strong>武延军，CCF杰出会员，中国科学院软件研究所副所长、总工程师，同时兼任中电标协RISC-V工委会轮值会长，开源鸿蒙TSC委员，开放原子基金会开源安全委员会主席。曾在国内外重要期刊和会议上发表论文100余篇，获得专利30余项。获国家级领军人才、北京市科技新星、中国科学院青促会优秀会员等荣誉称号，2023年获CCF科技进步特等奖。当前主要研究方向为开源软件供应链与RISC-V基础软件。</p>
+            </div>
+        </div>
+        <div class="committee-member">
+            <h4>2. 论坛主席：谢涛 教授</h4>
+            <div class="committee-profile">
+                <div class="committee-image">
+                    <img src="./images/academic-forum/谢涛.png" alt="谢涛头像" onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <p><strong>简介：</strong>谢涛，CCF会士，CCF系统软件专委会主任，北京大学讲席教授，复旦大学双聘顶尖人才，北京大学计算机学院软件科学与工程系主任，上海开放处理器产业创新中心秘书长，北京开源芯片研究院首席科学家。曾任美国UIUC计算机系正教授。当选欧洲科学院外籍院士、ACM/IEEE/AAAS会士。担任RISC-V+AI算力生态（RACE）委员会主席、RISC-V国际基金会人工智能与机器学习专委会（AI/ML SIG）主席、2024 RISC-V中国峰会大会共同主席等。</p>
+            </div>
+        </div>
+        <div class="committee-member">
+            <h4>3. 论坛主席：侯锐 研究员</h4>
+            <div class="committee-profile">
+                <div class="committee-image">
+                    <img src="./images/academic-forum/侯锐.png" alt="侯锐头像" onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <p><strong>简介：</strong>网络空间安全防御全国重点实验室主任，获得国家杰出青年科学基金、优秀青年科学基金资助，获国务院政府特殊津贴。主要研究方向是计算机体系结构、处理器芯片设计与安全。长期从事国产自主安全可控高性能处理器芯片的研制和开发，主持、参与了多款高性能处理器芯片的设计开发工作。在国内外期刊及会议上发表论文50余篇，包括ACM TOCS、TC、HPCA，ASPLOS，ISCA，Micro、S&amp;P，NDSS 等多个体系结构和安全领域顶级会议及期刊，国内外已授权专利50余项。</p>
+            </div>
+        </div>
+        <div class="committee-member">
+            <h4>4. 论坛主席：宋威 副研究员</h4>
+            <div class="committee-profile">
+                <div class="committee-image">
+                    <img src="./images/academic-forum/宋威.png" alt="宋威头像" onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <p><strong>简介：</strong>CCF高级会员，中国科学院信息工程研究所副研究员，博士生导师。英国曼彻斯特大学博士，剑桥大学博士后。长期从事处理器安全架构和 RISC-V 处理器设计的研究工作，曾任剑桥大学RISC-V开源多核项目lowRISC的硬件负责人，2020年获中国科学院率先行动“引才计划”支持, 主持国家自然科学基金青年和面上项目各一项，发表论文近50篇，英文专著一本。</p>
+            </div>
+        </div>
+        <div class="committee-member">
+            <h4>5. 论坛主席：邢明杰 高级工程师</h4>
+            <div class="committee-profile">
+                <div class="committee-image">
+                    <img src="./images/academic-forum/邢明杰.png" alt="邢明杰头像" onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <p><strong>简介：</strong>中国科学院软件研究所高级工程师，长期从事编译工具链相关工作。先后承担国家重点研发计划课题和中国科学院先导专项课题“RISC-V核心开发组件”各一项、企业合作项目多项, 涉及到的工作内容包括: RISC-V指令集架构支持、程序优化、并行编程模型、异构编译框架、领域专用编程语言及编译系统等。近年来在面向RISC-V指令集架构的编译优化、人工智能相结合的编译优化等方向开展研究，在国内外期刊及会议上发表论文近20篇，授权专利10项。</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+
