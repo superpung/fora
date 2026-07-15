@@ -267,7 +267,12 @@ def parse_bios(soup):
             if not strong:
                 continue
             label = clean(strong.get_text())
+            # The <strong> label ("报告摘要"/"个人简介") usually excludes the
+            # colon that separates it from the value in the source markup, so
+            # removing just the label leaves a dangling leading "：". Strip any
+            # leading separator/whitespace so the stored text starts at the prose.
             val = clean(p.get_text()).replace(label, "", 1).strip()
+            val = re.sub(r"^[\s:：、，,。.]+", "", val)
             if "摘要" in label:
                 info["abstract"] = val
             elif "简介" in label:
