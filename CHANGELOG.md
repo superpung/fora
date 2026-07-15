@@ -4,6 +4,38 @@ All notable changes to this project. The project is unversioned (no release
 tags yet), so entries are grouped by date, newest first. Written in English per
 the repository language rule (see AGENTS.md).
 
+## 2026-07-15 — Share posters, mobile timeline, follow filter, PC roster
+
+### Added
+- **Share posters for a forum and for each report.** A "论坛海报" button in the
+  forum header and a poster button on every report's top-right open a modal that
+  renders a portrait share card (conference · forum/report · time/room/category ·
+  chairs/speakers · link) to a `<canvas>` and saves it as PNG. Fully offline — no
+  new dependency, drawn with the 2D API — and always light-on-white so it reads
+  the same wherever it's shared, in either app theme.
+- **Timeline "我的关注" filter.** A toggle on the timeline keeps only followed
+  rooms/reports; rooms (columns) with nothing followed are dropped, and non-forum
+  blocks are hidden while filtering — parity with the dashboard's follow filter.
+- **Touch tap-to-expand on the timeline.** On a coarse pointer (no hover), tapping
+  a compressed card expands it in place with an explicit enter button, instead of
+  navigating away on the first tap; desktop keeps the hover reveal. (Mobile-only —
+  desktop behaviour is unchanged.)
+- **ccfchip2026 full program committee (130 members).** The roster lived only as
+  prose in the fetched raw (the people template carried just its 4 chairs); it's
+  now parsed into a real `程序委员会` committee group, placed after 程序委员会主席.
+  The add-conference skill gained an "extraction completeness" check so this class
+  of silent drop (fetched but never structured) is caught.
+
+### Fixed
+- **Timeline hover expand/collapse jank reduced.** The animated `box-shadow` (a
+  blurred-shadow repaint every frame) is now snapped instead of transitioned, the
+  bottom fade eases via opacity rather than a `display` flip that popped at the
+  end of the collapse, and the raised z-index outlasts the height animation so the
+  last frame can't be overpainted.
+- **Forum reports now show their time** in the dashboard's expanded forum rows.
+- **Forum category chip** now matches the surrounding meta (12.5px + a tag icon)
+  instead of the smaller, icon-less muted text it was.
+
 ## 2026-07-15 — i18n (zh/en) with localStorage, same URL for every language
 
 ### Added
