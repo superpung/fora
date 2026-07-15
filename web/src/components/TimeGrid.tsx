@@ -41,11 +41,31 @@ interface Cell {
 interface Column {
   forum: Forum;
   code: string;
+  key: string; // unique per column (a parallel-room forum yields several)
   room: string;
   start: number; // earliest timed talk (for sorting)
   cells: Cell[];
   bottom: number; // px extent of laid content (incl. untimed note)
   untimed: number; // count of talks with no start (shown as a footer note)
+}
+
+// Split a forum's timed talks into tracks at each backward time jump — used to
+// separate the parallel rooms of a multi-room forum, whose agenda is stored as
+// one flat list with the second room's schedule appended (its clock resets).
+function splitByReset<T extends { s: number }>(items: T[]): T[][] {
+  const segs: T[][] = [];
+  let cur: T[] = [];
+  let prev = -1;
+  for (const it of items) {
+    if (prev !== -1 && it.s < prev && cur.length) {
+      segs.push(cur);
+      cur = [];
+    }
+    prev = it.s;
+    cur.push(it);
+  }
+  if (cur.length) segs.push(cur);
+  return segs;
 }
 
 export default function TimeGrid({ block }: { block: Block }) {
@@ -56,6 +76,7 @@ export default function TimeGrid({ block }: { block: Block }) {
   const raw: {
     forum: Forum;
     code: string;
+    key: string;
     room: string;
     timed: { t: Talk; i: number; s: number; e: number }[];
     untimed: number;
@@ -79,14 +100,37 @@ export default function TimeGrid({ block }: { block: Block }) {
       hi = Math.max(hi, e2);
     });
     if (timed.length === 0 && untimed === 0) continue;
-    timed.sort((a, b) => a.s - b.s);
-    raw.push({
-      forum,
-      code: e.forum_code,
-      room: (e.room ?? forum.room ?? "").replace(/\s+/g, " ").trim() || "—",
-      timed,
-      untimed,
-    });
+    const roomStr = (e.room ?? forum.room ?? "").replace(/\s+/g, " ").trim();
+    const roomParts = roomStr
+      .split(/[、，,]/)
+      .map((s) => s.trim())
+      .filter(Boolean);
+    // Multi-room forum: split into one column per room when the reset-count
+    // matches the room-count; otherwise keep it as a single column.
+    const segs = roomParts.length > 1 ? splitByReset(timed) : [timed];
+    if (roomParts.length > 1 && segs.length === roomParts.length) {
+      segs.forEach((seg, k) => {
+        seg.sort((a, b) => a.s - b.s);
+        raw.push({
+          forum,
+          code: e.forum_code,
+          key: `${e.forum_code}#${k}`,
+          room: roomParts[k],
+          timed: seg,
+          untimed: k === 0 ? untimed : 0,
+        });
+      });
+    } else {
+      timed.sort((a, b) => a.s - b.s);
+      raw.push({
+        forum,
+        code: e.forum_code,
+        key: e.forum_code,
+        room: roomStr || "—",
+        timed,
+        untimed,
+      });
+    }
   }
 
   if (raw.length === 0 || !isFinite(lo)) return null;
@@ -111,6 +155,7 @@ export default function TimeGrid({ block }: { block: Block }) {
     return {
       forum: c.forum,
       code: c.code,
+      key: c.key,
       room: c.room,
       start: cells.length ? Math.min(...c.timed.map((x) => x.s)) : Infinity,
       cells,
@@ -144,7 +189,7 @@ export default function TimeGrid({ block }: { block: Block }) {
 
         {/* one column per forum */}
         {columns.map((c) => (
-          <div className="tgrid__col" key={c.code}>
+          <div className="tgrid__col" key={c.key}>
             <Link
               to={`/${confId}/forum/${c.code}`}
               className="tgrid__chead"
