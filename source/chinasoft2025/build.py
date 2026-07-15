@@ -62,22 +62,47 @@ def schedule_date(body_text):
     return None
 
 
+# A cell that is really an institution / venue / room, not a person's name.
+INST_RE = re.compile(
+    r"大学|大學|学院|學院|研究所|研究院|公司|实验室|集团|中心|会议中心|厅|楼|室|校区|"
+    r"University|Institute|Laborator|College|Academy"
+)
+
+
+def split_name_aff(part):
+    """'Name Affiliation' -> (name, affiliation). Handles CJK names (a contiguous
+    CJK run, then the affiliation) and Latin names (leading Latin words, e.g.
+    'Bangchao Wang', until the CJK affiliation begins)."""
+    part = part.strip()
+    if not part:
+        return None, None
+    if re.match(r"^[一-鿿]", part):
+        m = re.match(r"^([一-鿿·•]+)\s*(.*)$", part)
+        name, aff = m.group(1), m.group(2).strip()
+    else:
+        m = re.match(r"^([A-Za-z][A-Za-z.\-']*(?:\s+[A-Za-z.\-']+)*)\s*(.*)$", part)
+        if not m:
+            return None, None
+        name, aff = m.group(1).strip(), m.group(2).strip()
+    return name, (aff or None)
+
+
 def parse_person_cell(cell):
-    """'于恒彪 国防科技大学' -> [{name, affiliation_raw, chair_role?}], supports 、-separated."""
+    """A '报告嘉宾' cell -> [{name, affiliation_raw, chair_role?}]. Splits multiple
+    speakers on 、，,/ and English ' and ' / '&'; drops cells that are actually an
+    affiliation / venue / room rather than a person."""
     out = []
-    for part in re.split(r"[、,，/]", clean(cell)):
+    for part in re.split(r"[、，,／/]|\s+and\s+|\s*&\s*", clean(cell)):
         part = part.strip()
-        if not part or part in ("-", "--", "—", "/"):
+        if not part or part in ("-", "--", "—"):
             continue
         chair_role = None
-        mrole = re.search(r"[（(]([^）)]*主持[^）)]*)[）)]", part)
-        if mrole:
+        if re.search(r"[（(][^）)]*主持[^）)]*[）)]", part):
             chair_role = "主持"
-            part = re.sub(r"[（(][^）)]*[）)]", "", part).strip()
-        # split name from affiliation on the first whitespace
-        bits = part.split(" ", 1)
-        name = bits[0].strip()
-        aff = bits[1].strip() if len(bits) > 1 else None
+        part = re.sub(r"[（(][^）)]*[）)]", "", part).strip()
+        name, aff = split_name_aff(part)
+        if not name or INST_RE.search(name):
+            continue  # empty, or an institution/venue/room mistaken for a speaker
         p = {"name": name}
         if aff:
             p["affiliation_raw"] = aff
