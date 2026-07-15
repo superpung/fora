@@ -144,7 +144,1237 @@
       "sponsor_tier": null
     }
   ],
-  "committees": [],
+  "committees": [
+    {
+      "role": {
+        "zh": "指导委员会 荣誉主席",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "林惠民"
+        },
+        {
+          "name": "梅宏"
+        },
+        {
+          "name": "吕建"
+        },
+        {
+          "name": "张平文"
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "指导委员会 主席",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "马晓星"
+        },
+        {
+          "name": "谢涛"
+        },
+        {
+          "name": "詹乃军"
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "指导委员会 委员",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "金芝"
+        },
+        {
+          "name": "李宣东"
+        },
+        {
+          "name": "王戟"
+        },
+        {
+          "name": "陈海波"
+        },
+        {
+          "name": "傅育熙"
+        },
+        {
+          "name": "黄志球"
+        },
+        {
+          "name": "彭鑫"
+        },
+        {
+          "name": "蒲戈光"
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "大会主席",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "马晓星"
+        },
+        {
+          "name": "谢涛"
+        },
+        {
+          "name": "詹乃军"
+        },
+        {
+          "name": "杜博"
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "程序委员会主席",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "刘辉"
+        },
+        {
+          "name": "卜磊"
+        },
+        {
+          "name": "吴志林"
+        },
+        {
+          "name": "玄跻峰"
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "本地组织委员会主席",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "玄跻峰"
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "本地组织委员会副主席",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "陈金富"
+        },
+        {
+          "name": "梁鹏"
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "财务委员会主席",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "李戈"
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "宣传委员会主席",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "谢晓园"
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "赞助委员会主席",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "李兵"
+        },
+        {
+          "name": "彭蓉"
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "出版委员会主席",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "辛奇"
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "程序委员会",
+        "en": null
+      },
+      "ordering_note": "以姓名拼音顺序排序",
+      "members": [
+        {
+          "name": "David Lo",
+          "affiliation_raw": "新加坡管理大学"
+        },
+        {
+          "name": "安杰",
+          "affiliation_raw": "中国科学院软件研究所"
+        },
+        {
+          "name": "白家驹",
+          "affiliation_raw": "北京航空航天大学"
+        },
+        {
+          "name": "边攀",
+          "affiliation_raw": "华为"
+        },
+        {
+          "name": "卜磊",
+          "affiliation_raw": "南京大学"
+        },
+        {
+          "name": "蔡少伟",
+          "affiliation_raw": "中国科学院软件研究所"
+        },
+        {
+          "name": "曹嘉伦",
+          "affiliation_raw": "香港科技大学"
+        },
+        {
+          "name": "曹钦翔",
+          "affiliation_raw": "上海交通大学"
+        },
+        {
+          "name": "陈碧欢",
+          "affiliation_raw": "复旦大学"
+        },
+        {
+          "name": "陈刚",
+          "affiliation_raw": "武汉大学"
+        },
+        {
+          "name": "陈嘉弛",
+          "affiliation_raw": "中山大学"
+        },
+        {
+          "name": "陈金富",
+          "affiliation_raw": "武汉大学"
+        },
+        {
+          "name": "陈俊洁",
+          "affiliation_raw": "天津大学"
+        },
+        {
+          "name": "陈立前",
+          "affiliation_raw": "国防科技大学"
+        },
+        {
+          "name": "陈榕",
+          "affiliation_raw": "上海交通大学"
+        },
+        {
+          "name": "陈睿",
+          "affiliation_raw": "北京轩宇信息技术有限公司"
+        },
+        {
+          "name": "陈翔",
+          "affiliation_raw": "北京大学"
+        },
+        {
+          "name": "陈小红",
+          "affiliation_raw": "华东师范大学"
+        },
+        {
+          "name": "陈渝",
+          "affiliation_raw": "清华大学"
+        },
+        {
+          "name": "陈宇奇",
+          "affiliation_raw": "上海科技大学"
+        },
+        {
+          "name": "陈振邦",
+          "affiliation_raw": "国防科技大学"
+        },
+        {
+          "name": "陈振宇",
+          "affiliation_raw": "南京大学"
+        },
+        {
+          "name": "储著飞",
+          "affiliation_raw": "宁波大学"
+        },
+        {
+          "name": "崔西宁",
+          "affiliation_raw": "航空工业计算所"
+        },
+        {
+          "name": "狄鹏",
+          "affiliation_raw": "蚂蚁集团"
+        },
+        {
+          "name": "翟季冬",
+          "affiliation_raw": "清华大学"
+        },
+        {
+          "name": "丁华",
+          "affiliation_raw": "浙江西图盟数字科技有限公司吉利汽车研究院"
+        },
+        {
+          "name": "丁滟",
+          "affiliation_raw": "国防科技大学"
+        },
+        {
+          "name": "董威",
+          "affiliation_raw": "国防科技大学"
+        },
+        {
+          "name": "董震",
+          "affiliation_raw": "复旦大学"
+        },
+        {
+          "name": "杜德慧",
+          "affiliation_raw": "华东师范大学软件工程学院"
+        },
+        {
+          "name": "方志军",
+          "affiliation_raw": "东华大学"
+        },
+        {
+          "name": "房春荣",
+          "affiliation_raw": "南京大学"
+        },
+        {
+          "name": "冯新宇",
+          "affiliation_raw": "南京大学"
+        },
+        {
+          "name": "冯洋",
+          "affiliation_raw": "南京大学"
+        },
+        {
+          "name": "高翠芸",
+          "affiliation_raw": "哈尔滨工业大学（深圳）"
+        },
+        {
+          "name": "高洪皓",
+          "affiliation_raw": "上海大学"
+        },
+        {
+          "name": "高鹏",
+          "affiliation_raw": "北京算能科技有限公司"
+        },
+        {
+          "name": "高尚",
+          "affiliation_raw": "瑞典厄勒布鲁大学"
+        },
+        {
+          "name": "葛宁",
+          "affiliation_raw": "北京航空航天大学"
+        },
+        {
+          "name": "顾斌",
+          "affiliation_raw": "北京轩宇信息技术有限公司"
+        },
+        {
+          "name": "郭耀",
+          "affiliation_raw": "北京大学"
+        },
+        {
+          "name": "郭御风",
+          "affiliation_raw": "飞腾信息技术有限公司"
+        },
+        {
+          "name": "何强",
+          "affiliation_raw": "华中科技大学"
+        },
+        {
+          "name": "侯锐",
+          "affiliation_raw": "中国科学院信息工程研究所"
+        },
+        {
+          "name": "胡春明",
+          "affiliation_raw": "北京航空航天大学"
+        },
+        {
+          "name": "胡欣蔚",
+          "affiliation_raw": "华为"
+        },
+        {
+          "name": "胡星",
+          "affiliation_raw": "浙江大学"
+        },
+        {
+          "name": "黄勃",
+          "affiliation_raw": "上海工程技术大学"
+        },
+        {
+          "name": "黄涛",
+          "affiliation_raw": "中国科学院软件研究所"
+        },
+        {
+          "name": "江贺",
+          "affiliation_raw": "大连理工大学"
+        },
+        {
+          "name": "江云松",
+          "affiliation_raw": "北京轩宇信息技术有限公司"
+        },
+        {
+          "name": "姜佳君",
+          "affiliation_raw": "天津大学"
+        },
+        {
+          "name": "姜艳杰",
+          "affiliation_raw": "天津大学"
+        },
+        {
+          "name": "金芝",
+          "affiliation_raw": "武汉大学"
+        },
+        {
+          "name": "邝砾",
+          "affiliation_raw": "中南大学"
+        },
+        {
+          "name": "劳玲玲",
+          "affiliation_raw": "国防科技大学"
+        },
+        {
+          "name": "黎立",
+          "affiliation_raw": "北京航空航天大学"
+        },
+        {
+          "name": "李锭",
+          "affiliation_raw": "北京大学"
+        },
+        {
+          "name": "李戈",
+          "affiliation_raw": "北京大学"
+        },
+        {
+          "name": "李国强",
+          "affiliation_raw": "上海交通大学"
+        },
+        {
+          "name": "李建文",
+          "affiliation_raw": "华东师范大学"
+        },
+        {
+          "name": "李建欣",
+          "affiliation_raw": "北京航空航天大学"
+        },
+        {
+          "name": "李青山",
+          "affiliation_raw": "西安电子科技大学"
+        },
+        {
+          "name": "李清安",
+          "affiliation_raw": "武汉大学"
+        },
+        {
+          "name": "李姗姗",
+          "affiliation_raw": "国防科技大学"
+        },
+        {
+          "name": "李希萌",
+          "affiliation_raw": "首都师范大学"
+        },
+        {
+          "name": "李宣东",
+          "affiliation_raw": "南京大学"
+        },
+        {
+          "name": "李运喜",
+          "affiliation_raw": "中航工业集团西安航空计算技术研究所"
+        },
+        {
+          "name": "李智",
+          "affiliation_raw": "广西师范大学"
+        },
+        {
+          "name": "梁广泰",
+          "affiliation_raw": "华为"
+        },
+        {
+          "name": "梁鹏",
+          "affiliation_raw": "武汉大学"
+        },
+        {
+          "name": "廖鑫",
+          "affiliation_raw": "湖南大学"
+        },
+        {
+          "name": "林云",
+          "affiliation_raw": "上海交通大学"
+        },
+        {
+          "name": "凌祥",
+          "affiliation_raw": "中国科学院软件研究所"
+        },
+        {
+          "name": "刘辉",
+          "affiliation_raw": "北京理工大学"
+        },
+        {
+          "name": "刘进",
+          "affiliation_raw": "武汉大学"
+        },
+        {
+          "name": "刘逵",
+          "affiliation_raw": "华为"
+        },
+        {
+          "name": "刘名威",
+          "affiliation_raw": "中山大学"
+        },
+        {
+          "name": "刘威",
+          "affiliation_raw": "华为"
+        },
+        {
+          "name": "刘杨",
+          "affiliation_raw": "南洋理工大学"
+        },
+        {
+          "name": "刘哲",
+          "affiliation_raw": "华为"
+        },
+        {
+          "name": "刘忠鑫",
+          "affiliation_raw": "浙江大学"
+        },
+        {
+          "name": "卢放",
+          "affiliation_raw": "岚图汽车科技有限公司"
+        },
+        {
+          "name": "罗川",
+          "affiliation_raw": "北京航空航天大学"
+        },
+        {
+          "name": "马菲菲",
+          "affiliation_raw": "中科院软件所"
+        },
+        {
+          "name": "马晓星",
+          "affiliation_raw": "南京大学"
+        },
+        {
+          "name": "毛新军",
+          "affiliation_raw": "国防科技大学"
+        },
+        {
+          "name": "聂长海",
+          "affiliation_raw": "南京大学"
+        },
+        {
+          "name": "牛建伟",
+          "affiliation_raw": "北京航空航天大学"
+        },
+        {
+          "name": "欧中洪",
+          "affiliation_raw": "北京邮电大学"
+        },
+        {
+          "name": "潘瑞琪",
+          "affiliation_raw": "华为"
+        },
+        {
+          "name": "潘旭东",
+          "affiliation_raw": "复旦大学"
+        },
+        {
+          "name": "彭鑫",
+          "affiliation_raw": "复旦大学"
+        },
+        {
+          "name": "戚正伟",
+          "affiliation_raw": "上海交通大学"
+        },
+        {
+          "name": "秦彬娟",
+          "affiliation_raw": "华为"
+        },
+        {
+          "name": "任晗",
+          "affiliation_raw": "华为"
+        },
+        {
+          "name": "任志磊",
+          "affiliation_raw": "大连理工大学"
+        },
+        {
+          "name": "荣国平",
+          "affiliation_raw": "南京大学"
+        },
+        {
+          "name": "申博",
+          "affiliation_raw": "视界引擎"
+        },
+        {
+          "name": "申文博",
+          "affiliation_raw": "浙江大学"
+        },
+        {
+          "name": "施晓牧",
+          "affiliation_raw": "中国科学院软件研究所"
+        },
+        {
+          "name": "石亮",
+          "affiliation_raw": "华东师范大学"
+        },
+        {
+          "name": "石琳",
+          "affiliation_raw": "北京航空航天大学"
+        },
+        {
+          "name": "石宣化",
+          "affiliation_raw": "华中科技大学"
+        },
+        {
+          "name": "时清凯",
+          "affiliation_raw": "南京大学"
+        },
+        {
+          "name": "司徒凌云",
+          "affiliation_raw": "南京大学"
+        },
+        {
+          "name": "宋威",
+          "affiliation_raw": "中国科学院信息工程研究所"
+        },
+        {
+          "name": "宋莹",
+          "affiliation_raw": "北京信息科技大学"
+        },
+        {
+          "name": "苏亭",
+          "affiliation_raw": "华东师范大学"
+        },
+        {
+          "name": "苏义博",
+          "affiliation_raw": "华为"
+        },
+        {
+          "name": "孙伟松",
+          "affiliation_raw": "南洋理工大学"
+        },
+        {
+          "name": "孙毓忠",
+          "affiliation_raw": "中国科学院计算技术研究所"
+        },
+        {
+          "name": "谈鉴锋",
+          "affiliation_raw": "蚂蚁集团"
+        },
+        {
+          "name": "谭郁松",
+          "affiliation_raw": "国防科技大学"
+        },
+        {
+          "name": "陶先平",
+          "affiliation_raw": "南京大学"
+        },
+        {
+          "name": "田晖",
+          "affiliation_raw": "华侨大学"
+        },
+        {
+          "name": "万成城",
+          "affiliation_raw": "华东师范大学"
+        },
+        {
+          "name": "万燕",
+          "affiliation_raw": "东华大学"
+        },
+        {
+          "name": "王博",
+          "affiliation_raw": "北京交通大学"
+        },
+        {
+          "name": "王德奎",
+          "affiliation_raw": "西北大学"
+        },
+        {
+          "name": "王迪",
+          "affiliation_raw": "北京大学"
+        },
+        {
+          "name": "王锋",
+          "affiliation_raw": "湖南大学"
+        },
+        {
+          "name": "王豪杰",
+          "affiliation_raw": "清华大学"
+        },
+        {
+          "name": "王浩宇",
+          "affiliation_raw": "华中科技大学"
+        },
+        {
+          "name": "王慧妍",
+          "affiliation_raw": "南京大学"
+        },
+        {
+          "name": "王戟",
+          "affiliation_raw": "国防科技大学"
+        },
+        {
+          "name": "王竟亦",
+          "affiliation_raw": "浙江大学"
+        },
+        {
+          "name": "王俊杰",
+          "affiliation_raw": "中国科学院软件研究所"
+        },
+        {
+          "name": "王林章",
+          "affiliation_raw": "南京大学"
+        },
+        {
+          "name": "王璐",
+          "affiliation_raw": "西安电子科技大学"
+        },
+        {
+          "name": "王千祥",
+          "affiliation_raw": "华为"
+        },
+        {
+          "name": "王尚广",
+          "affiliation_raw": "北京邮电大学"
+        },
+        {
+          "name": "王尚文",
+          "affiliation_raw": "国防科技大学"
+        },
+        {
+          "name": "王涛",
+          "affiliation_raw": "国防科技大学"
+        },
+        {
+          "name": "王晓风",
+          "affiliation_raw": "意大利博尔扎诺自由大学"
+        },
+        {
+          "name": "王学智",
+          "affiliation_raw": "华为"
+        },
+        {
+          "name": "王焱林",
+          "affiliation_raw": "中山大学"
+        },
+        {
+          "name": "王莹",
+          "affiliation_raw": "东北大学"
+        },
+        {
+          "name": "王莹洁",
+          "affiliation_raw": "烟台大学"
+        },
+        {
+          "name": "王肇国",
+          "affiliation_raw": "上海交通大学"
+        },
+        {
+          "name": "王喆",
+          "affiliation_raw": "中国科学院计算技术研究所"
+        },
+        {
+          "name": "魏昭",
+          "affiliation_raw": "腾讯"
+        },
+        {
+          "name": "文俊浩",
+          "affiliation_raw": "重庆大学"
+        },
+        {
+          "name": "文明",
+          "affiliation_raw": "华中科技大学"
+        },
+        {
+          "name": "吴敬征",
+          "affiliation_raw": "中国科学院软件研究所"
+        },
+        {
+          "name": "吴伟",
+          "affiliation_raw": "苦芽科技"
+        },
+        {
+          "name": "吴志林",
+          "affiliation_raw": "中国科学院软件研究所"
+        },
+        {
+          "name": "武延军",
+          "affiliation_raw": "中国科学院软件研究所"
+        },
+        {
+          "name": "武永卫",
+          "affiliation_raw": "清华大学"
+        },
+        {
+          "name": "夏鑫",
+          "affiliation_raw": "浙江大学"
+        },
+        {
+          "name": "夏虞斌",
+          "affiliation_raw": "上海交通大学"
+        },
+        {
+          "name": "向剑文",
+          "affiliation_raw": "武汉理工大学"
+        },
+        {
+          "name": "肖然",
+          "affiliation_raw": "Thoughtworks"
+        },
+        {
+          "name": "谢涛",
+          "affiliation_raw": "北京大学"
+        },
+        {
+          "name": "谢晓园",
+          "affiliation_raw": "武汉大学"
+        },
+        {
+          "name": "辛奇",
+          "affiliation_raw": "武汉大学"
+        },
+        {
+          "name": "邢明杰",
+          "affiliation_raw": "中国科学院软件研究所"
+        },
+        {
+          "name": "邢薇薇",
+          "affiliation_raw": "北京交通大学"
+        },
+        {
+          "name": "熊英飞",
+          "affiliation_raw": "北京大学"
+        },
+        {
+          "name": "徐尔茨",
+          "affiliation_raw": "上海交通大学"
+        },
+        {
+          "name": "徐辉",
+          "affiliation_raw": "复旦大学"
+        },
+        {
+          "name": "徐梦炜",
+          "affiliation_raw": "北京邮电大学"
+        },
+        {
+          "name": "徐悦甡",
+          "affiliation_raw": "西安电子科技大学"
+        },
+        {
+          "name": "许畅",
+          "affiliation_raw": "南京大学"
+        },
+        {
+          "name": "玄跻峰",
+          "affiliation_raw": "武汉大学"
+        },
+        {
+          "name": "薛春",
+          "affiliation_raw": "穆罕默德·本·扎耶德人工智能大学"
+        },
+        {
+          "name": "晏荣杰",
+          "affiliation_raw": "中国科学院软件研究所"
+        },
+        {
+          "name": "杨开睿",
+          "affiliation_raw": "易控智驾自动驾驶实验室"
+        },
+        {
+          "name": "杨丽蕴",
+          "affiliation_raw": "中国电子技术标准化研究院"
+        },
+        {
+          "name": "杨任宇",
+          "affiliation_raw": "北京航空航天大学"
+        },
+        {
+          "name": "姚冬",
+          "affiliation_raw": "华为"
+        },
+        {
+          "name": "姚培森",
+          "affiliation_raw": "浙江大学"
+        },
+        {
+          "name": "姚鹏晖",
+          "affiliation_raw": "南京大学"
+        },
+        {
+          "name": "姚远",
+          "affiliation_raw": "南京大学"
+        },
+        {
+          "name": "殷永峰",
+          "affiliation_raw": "北京航空航天大学"
+        },
+        {
+          "name": "殷昱煜",
+          "affiliation_raw": "杭州电子科技大学"
+        },
+        {
+          "name": "应圣钢",
+          "affiliation_raw": "中科院软件所"
+        },
+        {
+          "name": "应时",
+          "affiliation_raw": "武汉大学"
+        },
+        {
+          "name": "于东晓",
+          "affiliation_raw": "山东大学"
+        },
+        {
+          "name": "于浩",
+          "affiliation_raw": "香港科技大学"
+        },
+        {
+          "name": "虞圣呈",
+          "affiliation_raw": "慕尼黑工业大学"
+        },
+        {
+          "name": "袁胜浩",
+          "affiliation_raw": "浙江大学"
+        },
+        {
+          "name": "岳涛",
+          "affiliation_raw": "北京航空航天大学"
+        },
+        {
+          "name": "詹博华",
+          "affiliation_raw": "华为"
+        },
+        {
+          "name": "詹乃军",
+          "affiliation_raw": "北京大学"
+        },
+        {
+          "name": "张冬梅",
+          "affiliation_raw": "微软"
+        },
+        {
+          "name": "张贺",
+          "affiliation_raw": "南京大学"
+        },
+        {
+          "name": "张洪宇",
+          "affiliation_raw": "重庆大学"
+        },
+        {
+          "name": "张健",
+          "affiliation_raw": "武汉大学"
+        },
+        {
+          "name": "张莉",
+          "affiliation_raw": "北京航空航天大学"
+        },
+        {
+          "name": "张路",
+          "affiliation_raw": "北京大学"
+        },
+        {
+          "name": "张民",
+          "affiliation_raw": "华东师范大学"
+        },
+        {
+          "name": "张敏灵",
+          "affiliation_raw": "东南大学"
+        },
+        {
+          "name": "张能",
+          "affiliation_raw": "华中师范大学"
+        },
+        {
+          "name": "张宇霞",
+          "affiliation_raw": "北京理工大学"
+        },
+        {
+          "name": "张羽",
+          "affiliation_raw": "西北工业大学"
+        },
+        {
+          "name": "张昱",
+          "affiliation_raw": "中国科学技术大学计算机科学与技术学院"
+        },
+        {
+          "name": "张源",
+          "affiliation_raw": "复旦大学"
+        },
+        {
+          "name": "赵磊",
+          "affiliation_raw": "武汉大学"
+        },
+        {
+          "name": "赵永望",
+          "affiliation_raw": "浙江大学"
+        },
+        {
+          "name": "郑子彬",
+          "affiliation_raw": "中山大学"
+        },
+        {
+          "name": "钟浩",
+          "affiliation_raw": "上海交通大学"
+        },
+        {
+          "name": "周明辉",
+          "affiliation_raw": "北京大学"
+        },
+        {
+          "name": "周琦",
+          "affiliation_raw": "阿里云计算有限公司"
+        },
+        {
+          "name": "朱敦尧",
+          "affiliation_raw": "武汉光庭信息技术股份有限公司"
+        },
+        {
+          "name": "朱少民",
+          "affiliation_raw": "同济大学"
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "本地组织委员会",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "廖小飞",
+          "affiliation_raw": "华中科技大学"
+        },
+        {
+          "name": "张洪艳",
+          "affiliation_raw": "中国地质大学（武汉）"
+        },
+        {
+          "name": "胡成玉",
+          "affiliation_raw": "中国地质大学（武汉）"
+        },
+        {
+          "name": "郑渤龙",
+          "affiliation_raw": "武汉理工大学"
+        },
+        {
+          "name": "向剑文",
+          "affiliation_raw": "武汉理工大学"
+        },
+        {
+          "name": "马于涛",
+          "affiliation_raw": "华中师范大学"
+        },
+        {
+          "name": "蒋兴鹏",
+          "affiliation_raw": "武汉软件工程职业学院（武汉开放大学）"
+        },
+        {
+          "name": "张龑",
+          "affiliation_raw": "湖北大学"
+        },
+        {
+          "name": "曾诚",
+          "affiliation_raw": "湖北大学"
+        },
+        {
+          "name": "张凯",
+          "affiliation_raw": "武汉科技大学"
+        },
+        {
+          "name": "帖军",
+          "affiliation_raw": "中南民族大学"
+        },
+        {
+          "name": "詹志明",
+          "affiliation_raw": "江汉大学"
+        },
+        {
+          "name": "李登实",
+          "affiliation_raw": "江汉大学"
+        },
+        {
+          "name": "李兵",
+          "affiliation_raw": "武汉计算机软件工程学会"
+        },
+        {
+          "name": "应时",
+          "affiliation_raw": "武汉大学"
+        },
+        {
+          "name": "王健",
+          "affiliation_raw": "武汉大学"
+        },
+        {
+          "name": "王翀",
+          "affiliation_raw": "武汉大学"
+        },
+        {
+          "name": "王峰",
+          "affiliation_raw": "武汉大学"
+        },
+        {
+          "name": "李清安",
+          "affiliation_raw": "武汉大学"
+        },
+        {
+          "name": "赵小刚",
+          "affiliation_raw": "武汉大学"
+        },
+        {
+          "name": "邓娟",
+          "affiliation_raw": "武汉大学"
+        },
+        {
+          "name": "贾向阳",
+          "affiliation_raw": "武汉大学"
+        },
+        {
+          "name": "邹瑶",
+          "affiliation_raw": "武汉大学"
+        },
+        {
+          "name": "陈晨",
+          "affiliation_raw": "武汉大学"
+        },
+        {
+          "name": "季晨",
+          "affiliation_raw": "武汉大学"
+        },
+        {
+          "name": "屈鹏",
+          "affiliation_raw": "武汉大学"
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "财务委员会委员",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "梁鹏"
+        },
+        {
+          "name": "帅子琦"
+        },
+        {
+          "name": "陈晨"
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "宣传委员会委员",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "杨燕鸣"
+        },
+        {
+          "name": "宋壹"
+        },
+        {
+          "name": "王璐"
+        },
+        {
+          "name": "沈博"
+        },
+        {
+          "name": "张舒扬"
+        },
+        {
+          "name": "徐海燕"
+        },
+        {
+          "name": "邓洋"
+        },
+        {
+          "name": "邹瑶"
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "赞助委员会委员",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "李瑞引"
+        },
+        {
+          "name": "李佳"
+        },
+        {
+          "name": "刘孝凡"
+        }
+      ]
+    },
+    {
+      "role": {
+        "zh": "出版委员会委员",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "帅子琦"
+        },
+        {
+          "name": "赵壮"
+        },
+        {
+          "name": "刘绍廷"
+        }
+      ]
+    }
+  ],
   "days": [
     {
       "date": "2025-11-28",

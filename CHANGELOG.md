@@ -7,12 +7,16 @@ the repository language rule (see AGENTS.md).
 ## 2026-07-15 — Committee-fetch fix + highlight/animation/icon polish
 
 ### Fixed
-- **ChinaSoft committee pages were never fetched.** The intro page is a mini-SPA
-  whose nav lazy-loads 9 committee sub-pages via `loadIntroPage('committee-*')`;
-  `fetch.py` only saved the landing prose. It now follows the intro nav and
-  fetches every committee sub-page. (Populating `committees` needs a network fetch
-  + a build.py parser — pending.) The add-conference skill gained a recon rule to
-  enumerate all nav sections and cross-check the schema's top-level arrays.
+- **ChinaSoft committee page was empty; now populated (17 groups, 281 members).**
+  The intro page is a mini-SPA whose nav lazy-loads committee sub-pages via
+  `loadIntroPage('committee-*')` (`./pages/intro/<page>.html`); `fetch.py` only
+  saved the landing prose. It now follows the intro nav and fetches every
+  committee sub-page, and `build.py` parses them (two page layouts: role-sectioned
+  name grids, and flat `name [unit]` lists with affiliations) into the schema
+  `committees`. Bare sub-roles (荣誉主席/主席/委员) are prefixed with the committee
+  name for context. The add-conference skill gained a recon rule to enumerate all
+  nav sections and cross-check the schema's top-level arrays so this class of
+  silent omission is caught.
 - **Timeline anchor highlight** now spans the whole row (time + rail + card),
   instead of only the card right of the rail line.
 
