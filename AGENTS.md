@@ -83,5 +83,11 @@ restrained, and detailed. Match it; do not drift toward other looks.
   line — never on a line above it. This applies to every title/heading (page
   titles, section heads, card/row headers), not just the page's main title.
 - **No left-edge highlight bars.** Do not indicate an active/anchored/selected
-  item with a colored strip on its left edge (e.g. `box-shadow: inset 3px 0 0`).
-  Use a full-surface background tint (and/or an icon) instead.
+  item with a colored strip that runs the full left edge, hugging the rounded
+  corners (e.g. `border-left` / `box-shadow: inset 3px 0 0` on a rounded card).
+  Use a full-surface background tint (and/or an icon) for selection state.
+  - A short **inset vertical accent bar** is a *different, permitted* device: a
+    `::before` strip that stops clear of the rounded corners (e.g.
+    `left:0; top:6px; bottom:6px; width:3px`), so no highlight ever appears in a
+    corner. Used on the timeline talk cards. This is not the forbidden full-edge
+    bar — the corner test is what distinguishes them.
