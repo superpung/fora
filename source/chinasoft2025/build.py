@@ -43,6 +43,21 @@ def clean(s):
     return re.sub(r"\s+", " ", (s or "").replace("\xa0", " ")).strip()
 
 
+_WRAP_PAIRS = [("[", "]"), ("【", "】"), ("（", "）"), ("(", ")")]
+
+
+def unwrap(s):
+    """Remove a single balanced pair of wrapping brackets/parens, e.g.
+    '[新加坡管理大学]' -> '新加坡管理大学'. Unlike str.strip(chars), it won't eat a
+    legitimate trailing paren on an unwrapped string (e.g. '哈尔滨工业大学（深圳）'
+    stays intact because it doesn't start with an opener)."""
+    s = (s or "").strip()
+    for lo, hi in _WRAP_PAIRS:
+        if s.startswith(lo) and s.endswith(hi) and len(s) > len(lo) + len(hi):
+            return s[len(lo) : -len(hi)].strip()
+    return s
+
+
 def parse_subtitle(text):
     """'学术论坛 R1' -> ('学术论坛', 'R1'); a bare 'I12' -> (None, 'I12')."""
     t = clean(text)
@@ -185,7 +200,7 @@ def parse_chairs(soup):
         name = clean(name_el.get_text())
         if not name:
             continue
-        aff = clean(unit_el.get_text()).strip("（）()") if unit_el else None
+        aff = unwrap(clean(unit_el.get_text())) if unit_el else None
         if name not in chairs:
             chairs[name] = {"name": name, "chair_role": "论坛组织委员会"}
             order.append(name)
@@ -199,9 +214,17 @@ def parse_chairs(soup):
         htext = clean(h4.get_text())
         mm = re.search(r"[:：]\s*(.+)$", htext)
         who = mm.group(1) if mm else htext
-        bits = who.split(" ", 1)
-        name = bits[0].strip()
-        title = bits[1].strip() if len(bits) > 1 else None
+        # Split "<name> <title>". A Latin name can contain spaces ("David Lo"),
+        # so for a Latin-initial entry take the name up to the first CJK title
+        # ("David Lo 教授" -> "David Lo" + "教授"); a title-less Latin name stays
+        # whole. CJK names are a single contiguous token, so split on first space.
+        if re.match(r"^[A-Za-z]", who):
+            mt = re.match(r"^(.*?)\s+([一-鿿].*)$", who)
+            name, title = (mt.group(1).strip(), mt.group(2).strip()) if mt else (who.strip(), None)
+        else:
+            bits = who.split(" ", 1)
+            name = bits[0].strip()
+            title = bits[1].strip() if len(bits) > 1 else None
         if not name:
             continue
         role = None
