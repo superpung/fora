@@ -554,6 +554,62 @@ def parse_committees():
     return committees
 
 
+def _overview_kind(event):
+    """Map an overview row's event text to a non-forum block kind, or None for
+    rows already covered by the detailed forum/keynote pages (分领域论坛, 开幕式,
+    特邀报告, 高峰论坛, 颁奖/闭幕 sessions)."""
+    if "签到" in event or "注册" in event:
+        return "registration"
+    if "晚宴" in event or "宴会" in event:
+        return "banquet"
+    if "年会" in event or "工作会议" in event:
+        return "committee_meetings"
+    return None
+
+
+def parse_overview():
+    """Parse the agenda overview (总览) timetable into extra day blocks keyed by
+    ISO date — the check-in / banquet / 专委会 annual-meeting rows that have no
+    per-forum page. Forum and keynote rows are skipped (parsed in full elsewhere).
+    Returns {} when the overview page wasn't fetched."""
+    p = RAW / "agenda-overview.html"
+    if not p.exists():
+        return {}
+    soup = BeautifulSoup(p.read_text(encoding="utf-8"), "html.parser")
+    table = soup.find("table", class_="forum-table")
+    if not table:
+        return {}
+    by_date = {}
+    cur_iso = None
+    for tr in table.find_all("tr"):
+        th = tr.find("th")
+        if th:
+            m = MONTH_DAY.search(clean(th.get_text()))
+            if m:
+                cur_iso = f"{YEAR}-{int(m.group(1)):02d}-{int(m.group(2)):02d}"
+        tds = tr.find_all("td")
+        if len(tds) < 3 or cur_iso is None:
+            continue
+        time_s, event, loc = (clean(tds[0].get_text()),
+                              clean(tds[1].get_text()),
+                              clean(tds[2].get_text()))
+        kind = _overview_kind(event)
+        if not kind:
+            continue
+        tr_m = TIME_RANGE.search(time_s)
+        start, end = (tr_m.group(1), tr_m.group(2)) if tr_m else (None, None)
+        loc = loc.replace(" （", "（").replace(" (", "(")
+        block = {"kind": kind, "title": i18n(event),
+                 "start": start, "end": end, "location": loc}
+        if kind == "committee_meetings":
+            block["meetings"] = [{"name": i18n(event), "room": loc,
+                                  "start": start, "end": end}]
+        by_date.setdefault(cur_iso, []).append(block)
+    for d in by_date:
+        by_date[d].sort(key=lambda b: b["start"] or "")
+    return by_date
+
+
 def build():
     forums = []
     diag = {}
@@ -568,9 +624,16 @@ def build():
         diag[cat] = n
 
     keynote_days = parse_keynotes()
+    overview_days = parse_overview()
 
-    # synthesize days: a forums block per date + keynotes block on keynote dates
-    dates = sorted({f["day_date"] for f in forums if f["day_date"]} | set(keynote_days))
+    # synthesize days: a forums block per date + keynotes block on keynote dates,
+    # plus the overview's non-forum blocks (check-in / banquet / 专委会 meetings).
+    # The overview adds dates the forums don't (e.g. the check-in day before).
+    dates = sorted(
+        {f["day_date"] for f in forums if f["day_date"]}
+        | set(keynote_days)
+        | set(overview_days)
+    )
     days = []
     for d in dates:
         blocks = []
@@ -587,6 +650,9 @@ def build():
             blocks.append({"kind": "forums", "title": i18n("论坛"),
                            "start": None, "end": None, "location": None,
                            "forum_entries": entries})
+        # non-forum overview rows (check-in / banquet / annual meetings) sit after
+        # the day's sessions, ordered among themselves by start time.
+        blocks.extend(overview_days.get(d, []))
         days.append({"date": d, "venue_id": "wuhan-icc", "blocks": blocks})
 
     co_hosts = ["CCF软件工程专业委员会", "CCF系统软件专业委员会", "CCF形式化方法专业委员会", "武汉大学"]

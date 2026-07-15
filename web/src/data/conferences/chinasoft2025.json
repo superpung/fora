@@ -5,7 +5,7 @@
     "zh": "2025 CCF中国软件大会",
     "en": "ChinaSoft 2025"
   },
-  "start_date": "2025-11-28",
+  "start_date": "2025-11-27",
   "end_date": "2025-11-30",
   "timezone": "Asia/Shanghai",
   "links": {
@@ -1377,6 +1377,22 @@
   ],
   "days": [
     {
+      "date": "2025-11-27",
+      "venue_id": "wuhan-icc",
+      "blocks": [
+        {
+          "kind": "registration",
+          "title": {
+            "zh": "签到",
+            "en": null
+          },
+          "start": "12:00",
+          "end": "21:00",
+          "location": "武汉国际会议中心入口（假日酒店大堂）"
+        }
+      ]
+    },
+    {
       "date": "2025-11-28",
       "venue_id": "wuhan-icc",
       "blocks": [
@@ -1529,6 +1545,27 @@
             {
               "forum_code": "C5",
               "room": "二楼荆花厅 206"
+            }
+          ]
+        },
+        {
+          "kind": "committee_meetings",
+          "title": {
+            "zh": "CCF软件工程专委会年会",
+            "en": null
+          },
+          "start": "19:30",
+          "end": "21:30",
+          "location": "会议中心二楼荆风厅202",
+          "meetings": [
+            {
+              "name": {
+                "zh": "CCF软件工程专委会年会",
+                "en": null
+              },
+              "room": "会议中心二楼荆风厅202",
+              "start": "19:30",
+              "end": "21:30"
             }
           ]
         }
@@ -1713,6 +1750,37 @@
             {
               "forum_code": "C4",
               "room": "二楼荆通厅V24"
+            }
+          ]
+        },
+        {
+          "kind": "banquet",
+          "title": {
+            "zh": "晚宴",
+            "en": null
+          },
+          "start": "18:30",
+          "end": "20:30",
+          "location": "会议中心五楼大会议厅"
+        },
+        {
+          "kind": "committee_meetings",
+          "title": {
+            "zh": "CCF形式化方法专委会年会",
+            "en": null
+          },
+          "start": "20:30",
+          "end": "22:30",
+          "location": "会议中心二楼荆风厅202",
+          "meetings": [
+            {
+              "name": {
+                "zh": "CCF形式化方法专委会年会",
+                "en": null
+              },
+              "room": "会议中心二楼荆风厅202",
+              "start": "20:30",
+              "end": "22:30"
             }
           ]
         }
@@ -1914,6 +1982,27 @@
             {
               "forum_code": "U1",
               "room": "一楼楚悟厅V15 、 二楼荆南厅V27"
+            }
+          ]
+        },
+        {
+          "kind": "committee_meetings",
+          "title": {
+            "zh": "CCF系统软件专委会年会",
+            "en": null
+          },
+          "start": "16:30",
+          "end": "18:30",
+          "location": "会议中心二楼荆风厅202",
+          "meetings": [
+            {
+              "name": {
+                "zh": "CCF系统软件专委会年会",
+                "en": null
+              },
+              "room": "会议中心二楼荆风厅202",
+              "start": "16:30",
+              "end": "18:30"
             }
           ]
         }

@@ -27,6 +27,11 @@ CATEGORIES = [
 ]
 # Standalone metadata pages (plain fragments, no templates).
 META_PAGES = ["introduction", "register", "contact"]
+# The agenda's day-by-day overview (总览) tab. It is a SEPARATE page from the
+# per-forum templates and is the only source of the non-forum schedule —
+# check-in / 签到, banquet, and the专委会 annual meetings — none of which appear
+# on any individual forum page.
+OVERVIEW_PAGE = "pages/agenda/agenda-overview/index.html"
 
 HEADERS = {"User-Agent": "Mozilla/5.0 conf-scheduler/chinasoft-adapter"}
 
@@ -95,6 +100,10 @@ def main():
                 if sub_html is not None:
                     save(f"meta/intro/{sub}.html", sub_html)
                 time.sleep(0.05)
+    ov = get(f"{BASE}/{OVERVIEW_PAGE}")
+    if ov is not None:
+        save("agenda-overview.html", ov)
+        print("overview: saved")
     print(f"\nTotal templates: {total}")
     print("Per category:", summary)
 
