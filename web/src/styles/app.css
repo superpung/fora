@@ -142,7 +142,7 @@ svg { display: block; }
 .hubcard {
   display: flex; flex-direction: column; gap: 4px; height: 100%; padding: 20px;
   border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg);
-  transition: border-color 0.3s ease-in-out, background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  transition: border-color 0.22s ease-in-out, background 0.22s ease-in-out, box-shadow 0.22s ease-in-out;
 }
 .hubcard:hover {
   border-color: var(--border-strong); background: var(--bg-subtle);
@@ -513,7 +513,8 @@ svg { display: block; }
   position: absolute; left: 3px; right: 3px; display: flex; flex-direction: column; gap: 1px;
   padding: 3px 7px 3px 11px; overflow: hidden; background: var(--bg-subtle);
   border: 1px solid var(--border); border-radius: var(--radius-sm);
-  transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  transition: height 0.22s ease-in-out, background 0.22s ease-in-out,
+    box-shadow 0.22s ease-in-out, border-color 0.22s ease-in-out;
 }
 /* Accent bar: a short INSET vertical strip that stops clear of the rounded
    corners — deliberately not a full left-edge bar hugging the corners (see the
@@ -626,20 +627,14 @@ svg { display: block; }
 .talk__flag { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; color: var(--amber-fg); border: 1px solid color-mix(in srgb, var(--amber-fg) 40%, var(--border)); border-radius: var(--radius-sm); padding: 2px 8px; margin: 6px 0 4px; cursor: help; }
 /* Bare-name co-authors: a compact, wrapping row (keeps the colored letter
    avatar). Borderless — no pill outline — to match the rest of the page's flat,
-   frameless design. Clicking a name follows/unfollows that author; the star sits
-   muted until hovered or followed. */
-.talk__authors { display: flex; flex-flow: row wrap; gap: 8px 20px; margin-top: 12px; }
+   frameless design. Avatar + name are plain text; only the trailing star toggles
+   following (same as PersonLine). */
+.talk__authors { display: flex; flex-flow: row wrap; gap: 8px 16px; margin-top: 12px; }
 .authorchip {
-  display: inline-flex; align-items: center; gap: 7px; padding: 0;
-  background: none; border: none; color: var(--fg); font-size: 13px; line-height: 1; cursor: pointer;
-  transition: color 0.15s ease;
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--fg); font-size: 13px; line-height: 1;
 }
-.authorchip:hover { color: var(--accent); }
 .authorchip__name { font-weight: 500; }
-.authorchip > svg { color: var(--border-strong); transition: color 0.15s ease; }
-.authorchip:hover > svg { color: var(--fg-muted); }
-.authorchip.is-on { color: var(--accent); }
-.authorchip.is-on > svg { color: var(--accent); }
 .talk__abstract { margin: 12px 0 0; color: var(--fg-secondary); font-size: 13.5px; line-height: 1.75; max-width: 74ch; }
 /* height is animated (clamped ~3 lines <-> full) by the Abstract component */
 .talk__abstracttext { margin: 0; }

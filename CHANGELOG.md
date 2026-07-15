@@ -4,6 +4,27 @@ All notable changes to this project. The project is unversioned (no release
 tags yet), so entries are grouped by date, newest first. Written in English per
 the repository language rule (see AGENTS.md).
 
+## 2026-07-15 — Dynamic document title + hover expand animation + author tweaks
+
+### Fixed
+- **Document title was stuck at "CCF Chip 2026 · 大会议程".** It was hardcoded in
+  index.html and never updated. A central `DocumentTitle` (inside the conference
+  provider) now sets it from the active conference + page, e.g. "完整日程 · 2025
+  CCF中国软件大会 · 会议日程", a forum's own name for `/forum/:code`, and the plain
+  site name "会议日程" on the hub.
+- **Timeline card hover now animates its expand/shrink, not just the colours.**
+  The card grew to full content instantly because CSS can't transition to
+  `height: auto`; enabling `interpolate-size: allow-keywords` and adding `height`
+  to the transition makes the growth ease in/out like everything else.
+- **Card hover speed retuned.** The previous 0.3s felt sluggish; all hover
+  transitions (hub card + timeline card, background + height) are now 0.22s
+  ease-in-out.
+
+### Changed
+- **Co-author entries: only the star toggles following.** The whole chip used to
+  be a button; now the avatar + name are plain text and just the trailing star
+  button follows/unfollows, matching the full PersonLine rows.
+
 ## 2026-07-15 — Parallel-room forums + borderless co-authors + hover/fade polish
 
 ### Fixed
