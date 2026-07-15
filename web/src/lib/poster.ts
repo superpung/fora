@@ -466,22 +466,24 @@ function layout(ctx: CanvasRenderingContext2D, spec: PosterSpec, dry: boolean): 
   if (talks.length > 0) {
     y += 40;
     y = sectionLabel(ctx, dry, spec.talksLabel ?? "", accent, x, y);
-    // Two columns: a fixed left column (number over time) and a right column
-    // (title over speakers), so number+time and title+speakers read as a pair.
+    // Two columns: a fixed left column (a large index number over a quieter
+    // time) and a right column (title over speakers). The big number balances
+    // the long timestamp beneath it, and a wide gutter separates the columns.
     const numW = 150;
-    const tx = x + numW + 24;
-    const tW = maxW - numW - 24;
+    const gutter = 54;
+    const tx = x + numW + gutter;
+    const tW = maxW - numW - gutter;
     for (let k = 0; k < talks.length; k++) {
       const t = talks[k];
       const rowTop = y;
       if (!dry) {
         ctx.fillStyle = accent;
-        ctx.font = font(700, 26, true);
-        ctx.fillText(String(t.index).padStart(2, "0"), x, rowTop);
+        ctx.font = font(700, 40, true);
+        ctx.fillText(String(t.index).padStart(2, "0"), x, rowTop - 2);
         if (t.time) {
-          ctx.fillStyle = accent;
-          ctx.font = font(500, 25, true);
-          ctx.fillText(t.time, x, rowTop + 34);
+          ctx.fillStyle = SUB;
+          ctx.font = font(500, 23, true);
+          ctx.fillText(t.time, x, rowTop + 50);
         }
       }
       let ty = textBlock(ctx, dry, t.title, tx, rowTop, tW, font(650, 34), INK, 46, 3);
@@ -494,7 +496,7 @@ function layout(ctx: CanvasRenderingContext2D, spec: PosterSpec, dry: boolean): 
         });
         ty = styledFlow(ctx, dry, segs, tx, ty + 10, tW, 40);
       }
-      const leftBottom = rowTop + (t.time ? 34 + 30 : 30);
+      const leftBottom = rowTop + (t.time ? 50 + 26 : 44);
       y = Math.max(ty, leftBottom);
       if (k < talks.length - 1) y += 34;
     }
