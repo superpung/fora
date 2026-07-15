@@ -4,6 +4,34 @@ All notable changes to this project. The project is unversioned (no release
 tags yet), so entries are grouped by date, newest first. Written in English per
 the repository language rule (see AGENTS.md).
 
+## 2026-07-15 — Timeline hover/crop fixes + compact talk co-authors
+
+### Fixed
+- **Timeline talk cells no longer drop content or mid-title-ellipsis.** The old
+  height tiers clamped titles to 1 line and hid the speaker on short slots,
+  producing an ellipsis even when the slot could show more. Each cell now renders
+  its full time + title + speaker and simply shows as much as fits, fading the
+  overflow out at the bottom (no ellipsis, no dropped fields). Hovering reveals
+  the complete content.
+- **Hovered (expanded) timeline card now tucks under the sticky time gutter and
+  column headers** instead of sliding over them (raised the gutter/header
+  z-index above the hovered card).
+- **Two-line forum names in the timeline column headers were clipped** — the
+  header was too short. Raised its height so a room line + a two-line title show
+  in full.
+- **Calmer, consistent card hover.** The timeline talk hover and the hub
+  conference-card hover were too fast with a heavy drop shadow (and the hub card
+  also lifted). Both now use a gentle, matching transition and a light shadow,
+  with no transform.
+
+### Changed
+- **Multi-author talks render as a compact chip row.** Paper co-authors (name
+  only) previously each took a full keynote-style PersonLine (big avatar +
+  affiliation + bio toggle), so a 6-author paper filled the screen. Bare names
+  now collapse into a horizontal, wrapping row of pill chips (colored letter
+  avatar + name + follow star); speakers that carry real detail
+  (affiliation/bio/title) still get the full card.
+
 ## 2026-07-15 — Committee-fetch fix + highlight/animation/icon polish
 
 ### Fixed
