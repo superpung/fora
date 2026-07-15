@@ -2546,14 +2546,11 @@
           "end": "09:35",
           "speakers": [
             {
-              "name": "Shing-Chi",
-              "affiliation_raw": "Cheung Hong Kong University of Science and Technology",
-              "title": "Cheung 教授",
-              "bio": "Professor Shing-chi Cheung from the Hong Kong University of Science and Technology specializes in leveraging advanced testing methodologies, artificial intelligence technologies, and empirical research techniques to identify, diagnose, and repair faults in reliable and intelligent software systems. He holds the prestigious titles of lEEE Fellow and Chair Professor. He is supervising 14 doctoral students. Professor Cheung's contributions to software engineering are well-recognized, with papers widely presented at leading academic conferences and six ACM SIGSOF'T Outstanding Paper Awards in the last decade. He ranks among the top ten scholars in terms of publications at the premier conferences ICSE and ESEC/FSE. In 1998, Professor Cheung introduced Metamorphic Testing, which has since emerged as a leading testing methodology in artificial intelligence system testing. Recently, with the advancement and successful deployment of large language models in software testing, Professor Cheung has also made significant contributions to the field of intelligent software testing."
+              "name": "Technology"
             }
           ],
-          "abstract": "随着 DeepSeek-R1 的流行与 AI4Math 研究的深入，大模型在辅助形式化证明写作方面的需求日益增长。作为数学推理最直接的应用场景，形式化推理与验证也获得持续关注。然而，近期的形式化推理大模型大多只针对单一形式化语言模型，缺乏对多形式化语言、多形式化任务场景的深度探索。 为了探索这个问题，我们首先对形式化验证任务进行了分层拆解，从非形式化的自然语言输入到可验证的形式化证明或可检测的模型；将传统的端到端形式化验证流程细化为六个子任务，包括验证需求分解、形式化规约片段生成、规约补全、填空，以及代码到形式化规约的自动生成。此外，我们进一步探索了形式化数据微调对大模型数学、推理和编程等任务上的迁移能力。通过对比微调前后在上述任务上的表现差异，以验证大模型能否通过形式化验证能力训练中习得推理、数学等元能力。最后，报告还将介绍对程序行为建模的初步探索。",
-          "abstract_status": "confirmed",
+          "abstract": null,
+          "abstract_status": "unknown",
           "type": "talk"
         },
         {
@@ -2950,7 +2947,7 @@
           "speakers": [
             {
               "name": "高翠芸",
-              "affiliation_raw": "哈尔滨工业大学（深圳）",
+              "affiliation_raw": "哈尔滨工业大学",
               "title": "教授",
               "bio": "高翠芸，CCF软件工程专委执委，哈尔滨工业大学（深圳）教授，哈工大青年拔尖人才。入选第九届中国科协青年人才托举工程，ACM TOSEM Associate Editor。主要研究领域包括：智能化软件数据分析和软件可靠性，近年来在相关领域的顶级会议和期刊如TSE、TOSEM、ICSE、FSE、ASE等上发表论文100余篇，荣获CCF A类会议ICSE 2025杰出论文奖、ICSE 2024杰出论文奖和ASE 2023杰出论文奖。"
             }
@@ -3070,7 +3067,7 @@
           "speakers": [
             {
               "name": "贺品嘉",
-              "affiliation_raw": "香港中文大学（深圳）",
+              "affiliation_raw": "香港中文大学",
               "title": "助理教授",
               "bio": "香港中文大学（深圳）助理教授，国家级青年人才，校长青年学者。贺品嘉教授的研究方向为软件工程、AI for SE、SE for AI、大模型安全。他在ICSE, FSE, NeurIPS, ICLR, ACL等顶级会议期刊发表论文60余篇。获得IEEE TCSE Rising Star Award、IEEE开源软件服务奖、ISSRE最有影响力论文奖等奖项。谷歌学术引用7000余次。主导的开源项目在GitHub上被star 7000余次，并被450多个学界业界组织下载9万余次。担任顶刊TOSEM的Associate Editor，顶会FSE 2025的Social Media Co-Chair，四大软件工程顶会的程序委员会成员。"
             }
@@ -3267,14 +3264,12 @@
           "end": "11:33",
           "speakers": [
             {
-              "name": "Sergey",
-              "affiliation_raw": "Mechtaev 北京大学",
-              "title": "Mechtaev Assistant Professor",
-              "bio": "：Sergey Mechtaev is an Assistant Professor at Peking University. Previously, he obtained a PhD degree from the National University of Singapore, and was a faculty member at University College London. His research aims to automate the development and maintenance of trustworthy software. Among other things, he developed Angelix, the first constraint-based program repair system that scaled to real-world programs, founded program-repair.org, the largest online community of program repair researchers, and co-founded International Workshop on Automated Program Repair. His research has been recognized by various awards, notably, an ACM SIGSOFT Outstanding Dissertation Award and two ACM SIGSOFT Distinguished Paper Awards. The results of his work have been deployed in industry and academia, notably at Bloomberg and IIT Kanpur."
+              "name": "Sergey Mechtaev",
+              "affiliation_raw": "北京大学"
             }
           ],
-          "abstract": "：While software requirements are often expressed in natural language, verifying the correctness of a program against natural language requirements is a hard and underexplored problem. Large language models (LLMs) are promising candidates for addressing this challenge, however our experience shows that they are ineffective in this task, often failing to detect even straightforward bugs. To address this gap, we introduce HoarePrompt, a novel approach that adapts fundamental ideas from program analysis and verification to natural language artifacts. Drawing inspiration from the strongest postcondition calculus, HoarePrompt employs a systematic, step-by-step process in which an LLM generates natural language descriptions of reachable program states at various points in the code. To manage loops, we propose few-shot-driven k-induction, an adaptation of the k-induction method widely used in model checking. Once program states are described, HoarePrompt leverages the LLM to assess whether the program, annotated with these state descriptions, conforms to the natural language requirements. Our experiments show that HoarePrompt significantly improves the quality of correctness classification w.r.t. natural language requirements compared to LLM and testing baselines. Apart from that, it is effective as a feedback mechanism for iterative code generation.",
-          "abstract_status": "confirmed",
+          "abstract": null,
+          "abstract_status": "unknown",
           "type": "talk"
         },
         {
@@ -3483,7 +3478,7 @@
           "speakers": [
             {
               "name": "钟俊勇",
-              "affiliation_raw": "（Chong Chun Yong） 华为",
+              "affiliation_raw": "华为",
               "title": "（Chong Chun Yong） 华为主任工程师",
               "bio": "钟俊勇现任华为香港主任工程师，负责AI辅助研发工具及大模型代码能力评估体系的构建。在加入华为前，他于莫纳什大学（马来西亚）从事AI4SE与软件测试的研究，其多项成果屡获发表，见于软件工程顶刊TOSEM以及ICSE、ASE、ISSTA等国际顶级会议。此外，他还积极参与学术社区服务，多次担任各类软工顶会的程序委员会成员。"
             }
@@ -4634,8 +4629,8 @@
           "end": "12:30",
           "speakers": [
             {
-              "name": "主持人：应时",
-              "affiliation_raw": "武汉大学 嘉宾：翟季冬 粱辰晔 王晔晖 庄表伟 慕冬亮 葛修婷"
+              "name": "主持人",
+              "affiliation_raw": "：应时 武汉大学 嘉宾：翟季冬 粱辰晔 王晔晖 庄表伟 慕冬亮 葛修婷"
             }
           ],
           "abstract": null,
@@ -4758,7 +4753,7 @@
           "speakers": [
             {
               "name": "王鑫",
-              "affiliation_raw": "香港科技大学（广州）",
+              "affiliation_raw": "香港科技大学",
               "title": "副教授",
               "bio": "王鑫，香港科技大学（广州）信息枢纽人工智能学域副教授，国家高层次青年人才，IEEE Senior Member，CCF量子计算专委执委，长期从事量子信息、量子计算、量子机器学习的研究，目前担任国际权威期刊IEEE Transactions on Information Theory副主编、Quantum的编委、中国科学：信息科学和Chip的青年编委。他于2019年-2023年在百度研究院带领团队开发量子机器学习平台“量桨”。他于2018年在悉尼科技大学获得博士学位，获评校长杰出博士论文。他在PRL、PRX Quantum、IEEE TIT、IEEE JSAC、CMP、Nature Computational Science、npj Quantum Information、Quantum、NeurIPS、AAAI、ISCA、HPCA、MICRO等物理、计算机、人工智能领域的权威期刊与会议发表80余篇文章。他受邀在量子计算顶会TQC作主旨报告（大陆首个）以及在美国物理学年会APS March Meeting做邀请报告。他在量子计算方向申请和授权了50余项中美专利。他是QIP、ISIT、AQIS、QCTiP、QTML、AAAI等国际学术会议的程序委员会委员，并连续多年入选全球前2%顶尖科学家榜单。"
             }
@@ -5477,14 +5472,11 @@
           "end": "09:30",
           "speakers": [
             {
-              "name": "Jean-Pierre",
-              "affiliation_raw": "Talpin INRIA",
-              "title": "Talpin",
-              "bio": "Jean-Pierre Talpin is a senior scientist with INRIA. He received a Master degree in Theoretical Computer Science from University Paris VI and a Ph.D. Thesis by Ecole des Mines de Paris under the supervision of Pierre Jouvelot. He joined the European Computer-Industry Research Centre (Munich) for three years before being hired by INRIA in 1995. His early works on effect inference and on region-based memory management have been awarded the 2004 ACM Award for the most influential POPL paper (for 1994) with Mads Tofte and the 2012 ACM/IEEE LICS Test of Time Award (for 1992) with Pierre Jouvelot. After joining Inria, Jean-Pierre consecutively lead two project-teams: ESPRESSO, on synchronous programming, and TEA, on architecture ad scheduling analysis, from 2000 to 2023. Ever since and career-long studies on logic, type, concurrency theory and experiences in program analysis, verification, and system design, his late research interests focus on novel and challenging topics such as end-to-end mechanized program verification, design of advanced process calculi to model the logic of mobile, dynamic cyber-physical system networks and compositional contract-algebraic methodologies to verify them."
+              "name": "Jean-Pierre Talpin INRIA"
             }
           ],
-          "abstract": "An era of ubiquitous computing arises under the novel paradigm of mobile cyber-physical networks which intertwines continuous dynamics in physical spaces to intermittent discrete computations and communications in digital and social spaces. The hybrid pi-calculus offers capacities to express the complexity of such networks using a lean and simple proof system. Here be dragons! however, as this simplicity comes at the cost of uncharted challenges to formal verification. This talk will share key process algebraic concepts to put the HPC in motion, and hint the steep and arduous path ahead to type, analyze, verify, and implement it with the help of vast literatures on bisimulation, session type, contract theory and computer-assisted proofs.",
-          "abstract_status": "confirmed",
+          "abstract": null,
+          "abstract_status": "unknown",
           "type": "talk"
         },
         {
@@ -8368,7 +8360,7 @@
           "speakers": [
             {
               "name": "户保田",
-              "affiliation_raw": "哈尔滨工业大学（深圳）",
+              "affiliation_raw": "哈尔滨工业大学",
               "title": "教授",
               "bio": "：博士，哈尔滨工业大学（深圳）教授，博导，国家优青，中国中文信息学会大模型与生成专委会秘书长。主要从事大模型与智能体方面的研究，发表NeurIPS/ACL/ACM MM/KDD/IEEE Transactions等顶级学术会议或期刊论文100余篇，单篇一作最高引用1700+。主持包括国家自然科学基金、深圳市基础研究、企业合作项目十余项。担任IJCNLP-AACL2023程序委员会联合主席（Program Committee Co-Chair），Neural Networks编委，多个顶级学术会议包括ACL、EMNLP、IJCAI的领域主席(AC)和高级程序委员会成员(SPC)。"
             }
@@ -8530,7 +8522,7 @@
           "speakers": [
             {
               "name": "陈国银",
-              "affiliation_raw": "此芯科技（上海）有限公司",
+              "affiliation_raw": "此芯科技有限公司",
               "title": "高级工程师",
               "bio": "陈国银，此芯科技软件开发和AI技术高级总监，主要从事AI算法和底层操作系统研究。曾经长期在国外和国内芯片大厂工作，主导相关芯片Android BSP的开发，业界第一款RISCV Android OS移植，AI在端侧芯片落地和开发等工作。"
             }
@@ -9809,7 +9801,7 @@
           "speakers": [
             {
               "name": "蒋兴鹏",
-              "affiliation_raw": "武汉软件工程职业学院 （武汉开放大学）",
+              "affiliation_raw": "武汉软件工程职业学院",
               "title": "教授",
               "bio": "蒋兴鹏，武汉软件工程职业学院（武汉开放大学）党委书记，教授，任国家开放大学学术委员会副主任、湖北省生物信息学会副理事长、IEEE BIBM 2023程序委员会联合主席、中国计算机学会生物信息学专委委员、中国计算机学会教育专委委员。主持国家自然科学基金面上项目、教育部新工科项目、国家语委重点项目、科技部外专项目等多项国家级和省部级项目。在国内外期刊和会议上发表100余篇学术论文。"
             }
@@ -10029,9 +10021,6 @@
             {
               "name": "张莉",
               "affiliation_raw": "国防科技大学"
-            },
-            {
-              "name": "北京航空航天大学"
             }
           ],
           "abstract": null,
@@ -10410,9 +10399,6 @@
             {
               "name": "陈渝",
               "affiliation_raw": "中国科学技术大学"
-            },
-            {
-              "name": "清华大学"
             }
           ],
           "abstract": null,
@@ -10530,7 +10516,7 @@
           "speakers": [
             {
               "name": "夏文",
-              "affiliation_raw": "哈尔滨工业大学（深圳）",
+              "affiliation_raw": "哈尔滨工业大学",
               "title": "教授",
               "bio": "夏文，哈尔滨工业大学（深圳）长聘教授，博士生导师，教育部青年长江学者，研究方向：存储系统、操作系统，在OSDI、FAST、ASPLOS、ACM TOS等会议期刊发表论文80余篇，授权发明专利30余项；获教育部自然科学一等奖、湖北省科技进步一等奖、广东省科技进步二等奖、华为火花奖等荣誉；研究成果应用在Zstd、Ceph、SZ等多个知名开源项目；担任FAST、EuroSys等国际会议程序委员会委员；指导学生获得ACM ChinaSys/SIGCSE中国优秀博士论文奖。主持广东省一流本科课程《操作系统》，获全国计算机教育大会最佳论文奖、全国计算机类课程实验设计竞赛一等奖等荣誉，指导学生获得全国大学生操作系统设计赛、全国大学生物联网设计赛、“挑战杯”、“国创赛”等国家级学科竞赛奖50余项。"
             }
@@ -10569,8 +10555,8 @@
           "end": "17:30",
           "speakers": [
             {
-              "name": "主持：陈向群",
-              "affiliation_raw": "北京大学"
+              "name": "主持",
+              "affiliation_raw": "：陈向群 北京大学"
             }
           ],
           "abstract": null,
@@ -11498,20 +11484,19 @@
           "end": "16:00",
           "speakers": [
             {
-              "name": "Tao",
-              "affiliation_raw": "Liu"
+              "name": "Tao Liu"
             },
             {
-              "name": "Mengdi",
-              "affiliation_raw": "Li"
+              "name": "Mengdi Li"
             },
             {
-              "name": "He",
-              "affiliation_raw": "Wang"
+              "name": "He Wang"
             },
             {
-              "name": "Gaofei",
-              "affiliation_raw": "Wu and Yuqing Zhang"
+              "name": "Gaofei Wu"
+            },
+            {
+              "name": "Yuqing Zhang"
             }
           ],
           "abstract": null,
@@ -11528,36 +11513,31 @@
           "end": "16:10",
           "speakers": [
             {
-              "name": "Jincheng",
-              "affiliation_raw": "Liu"
+              "name": "Jincheng Liu"
             },
             {
-              "name": "Senrong",
-              "affiliation_raw": "Xu"
+              "name": "Senrong Xu"
             },
             {
-              "name": "Yuan",
-              "affiliation_raw": "Yao"
+              "name": "Yuan Yao"
             },
             {
-              "name": "Yibin",
-              "affiliation_raw": "Shen"
+              "name": "Yibin Shen"
             },
             {
-              "name": "Yicong",
-              "affiliation_raw": "Zhao"
+              "name": "Yicong Zhao"
             },
             {
-              "name": "Xiaorui",
-              "affiliation_raw": "Zhu"
+              "name": "Xiaorui Zhu"
             },
             {
-              "name": "Ping",
-              "affiliation_raw": "Yu"
+              "name": "Ping Yu"
             },
             {
-              "name": "Feng",
-              "affiliation_raw": "Xu and Xiaoxing Ma"
+              "name": "Feng Xu"
+            },
+            {
+              "name": "Xiaoxing Ma"
             }
           ],
           "abstract": null,
@@ -11574,20 +11554,19 @@
           "end": "16:20",
           "speakers": [
             {
-              "name": "Chunying",
-              "affiliation_raw": "Zhou"
+              "name": "Chunying Zhou"
             },
             {
-              "name": "Gong",
-              "affiliation_raw": "Chen"
+              "name": "Gong Chen"
             },
             {
-              "name": "Xiaoyuan",
-              "affiliation_raw": "Xie"
+              "name": "Xiaoyuan Xie"
             },
             {
-              "name": "Peng",
-              "affiliation_raw": "He and Lin Xu"
+              "name": "Peng He"
+            },
+            {
+              "name": "Lin Xu"
             }
           ],
           "abstract": null,
@@ -11604,20 +11583,19 @@
           "end": "16:30",
           "speakers": [
             {
-              "name": "Jialing",
-              "affiliation_raw": "Huang"
+              "name": "Jialing Huang"
             },
             {
-              "name": "Tingting",
-              "affiliation_raw": "Wu"
+              "name": "Tingting Wu"
             },
             {
-              "name": "Zuohua",
-              "affiliation_raw": "Ding"
+              "name": "Zuohua Ding"
             },
             {
-              "name": "Yongkui",
-              "affiliation_raw": "Xu and Yunwei Dong"
+              "name": "Yongkui Xu"
+            },
+            {
+              "name": "Yunwei Dong"
             }
           ],
           "abstract": null,
@@ -11634,20 +11612,19 @@
           "end": "16:40",
           "speakers": [
             {
-              "name": "Weifeng",
-              "affiliation_raw": "Sun"
+              "name": "Weifeng Sun"
             },
             {
-              "name": "Ruifeng",
-              "affiliation_raw": "Wu"
+              "name": "Ruifeng Wu"
             },
             {
-              "name": "Hongyan",
-              "affiliation_raw": "Li"
+              "name": "Hongyan Li"
             },
             {
-              "name": "Ying",
-              "affiliation_raw": "Fu and Meng Yan"
+              "name": "Ying Fu"
+            },
+            {
+              "name": "Meng Yan"
             }
           ],
           "abstract": null,
@@ -11664,32 +11641,28 @@
           "end": "16:50",
           "speakers": [
             {
-              "name": "Jianlei",
-              "affiliation_raw": "Chi"
+              "name": "Jianlei Chi"
             },
             {
-              "name": "Ke",
-              "affiliation_raw": "Wang"
+              "name": "Ke Wang"
             },
             {
-              "name": "Lechen",
-              "affiliation_raw": "Yu"
+              "name": "Lechen Yu"
             },
             {
-              "name": "Yu",
-              "affiliation_raw": "Qu"
+              "name": "Yu Qu"
             },
             {
-              "name": "Ming",
-              "affiliation_raw": "Fan"
+              "name": "Ming Fan"
             },
             {
-              "name": "Xiaodong",
-              "affiliation_raw": "Zhang"
+              "name": "Xiaodong Zhang"
             },
             {
-              "name": "Ye",
-              "affiliation_raw": "Tian and Jianguo Sun"
+              "name": "Ye Tian"
+            },
+            {
+              "name": "Jianguo Sun"
             }
           ],
           "abstract": null,
@@ -11706,24 +11679,22 @@
           "end": "17:00",
           "speakers": [
             {
-              "name": "Quanjun",
-              "affiliation_raw": "Zhang"
+              "name": "Quanjun Zhang"
             },
             {
-              "name": "Ye",
-              "affiliation_raw": "Shang"
+              "name": "Ye Shang"
             },
             {
-              "name": "Haichuan",
-              "affiliation_raw": "Hu"
+              "name": "Haichuan Hu"
             },
             {
-              "name": "Chunrong",
-              "affiliation_raw": "Fang"
+              "name": "Chunrong Fang"
             },
             {
-              "name": "Zhenyu",
-              "affiliation_raw": "Chen and Liang Xiao"
+              "name": "Zhenyu Chen"
+            },
+            {
+              "name": "Liang Xiao"
             }
           ],
           "abstract": null,
@@ -11740,28 +11711,25 @@
           "end": "17:10",
           "speakers": [
             {
-              "name": "Hao",
-              "affiliation_raw": "Wen"
+              "name": "Hao Wen"
             },
             {
-              "name": "Yueheng",
-              "affiliation_raw": "Zhu"
+              "name": "Yueheng Zhu"
             },
             {
-              "name": "Chao",
-              "affiliation_raw": "Liu"
+              "name": "Chao Liu"
             },
             {
-              "name": "Xiaoxue",
-              "affiliation_raw": "Ren"
+              "name": "Xiaoxue Ren"
             },
             {
-              "name": "Weiwei",
-              "affiliation_raw": "Du"
+              "name": "Weiwei Du"
             },
             {
-              "name": "Meng",
-              "affiliation_raw": "Yan and Hongyu Zhang"
+              "name": "Meng Yan"
+            },
+            {
+              "name": "Hongyu Zhang"
             }
           ],
           "abstract": null,
@@ -11778,28 +11746,25 @@
           "end": "17:20",
           "speakers": [
             {
-              "name": "Zhihao",
-              "affiliation_raw": "Lin"
+              "name": "Zhihao Lin"
             },
             {
-              "name": "Zhaofeng",
-              "affiliation_raw": "Liu"
+              "name": "Zhaofeng Liu"
             },
             {
-              "name": "Mingyi",
-              "affiliation_raw": "Zhou"
+              "name": "Mingyi Zhou"
             },
             {
-              "name": "Zihan",
-              "affiliation_raw": "Huang"
+              "name": "Zihan Huang"
             },
             {
-              "name": "Chi",
-              "affiliation_raw": "Chen"
+              "name": "Chi Chen"
             },
             {
-              "name": "Wei",
-              "affiliation_raw": "Ma and Li Li"
+              "name": "Wei Ma"
+            },
+            {
+              "name": "Li Li"
             }
           ],
           "abstract": null,
@@ -11816,28 +11781,25 @@
           "end": "17:30",
           "speakers": [
             {
-              "name": "Wenhao",
-              "affiliation_raw": "Wang"
+              "name": "Wenhao Wang"
             },
             {
-              "name": "Jiaxi",
-              "affiliation_raw": "Peng"
+              "name": "Jiaxi Peng"
             },
             {
-              "name": "Hongbin",
-              "affiliation_raw": "Xiao"
+              "name": "Hongbin Xiao"
             },
             {
-              "name": "Yang",
-              "affiliation_raw": "Hua"
+              "name": "Yang Hua"
             },
             {
-              "name": "Yufei",
-              "affiliation_raw": "Zhou"
+              "name": "Yufei Zhou"
             },
             {
-              "name": "Zhi",
-              "affiliation_raw": "Li and Xiaoli Wang"
+              "name": "Zhi Li"
+            },
+            {
+              "name": "Xiaoli Wang"
             }
           ],
           "abstract": null,
@@ -11854,36 +11816,31 @@
           "end": "17:40",
           "speakers": [
             {
-              "name": "Dongjun",
-              "affiliation_raw": "Yu"
+              "name": "Dongjun Yu"
             },
             {
-              "name": "Xiao",
-              "affiliation_raw": "Yan"
+              "name": "Xiao Yan"
             },
             {
-              "name": "Zhenrui",
-              "affiliation_raw": "Li"
+              "name": "Zhenrui Li"
             },
             {
-              "name": "Jipeng",
-              "affiliation_raw": "Xiao"
+              "name": "Jipeng Xiao"
             },
             {
-              "name": "Haochuan",
-              "affiliation_raw": "He"
+              "name": "Haochuan He"
             },
             {
-              "name": "Yongda",
-              "affiliation_raw": "Yu"
+              "name": "Yongda Yu"
             },
             {
-              "name": "Hao",
-              "affiliation_raw": "Zhang"
+              "name": "Hao Zhang"
             },
             {
-              "name": "Guoping",
-              "affiliation_raw": "Rong and Xiaobo Huang"
+              "name": "Guoping Rong"
+            },
+            {
+              "name": "Xiaobo Huang"
             }
           ],
           "abstract": null,
@@ -12169,8 +12126,7 @@
           "end": "15:15",
           "speakers": [
             {
-              "name": "Yifan",
-              "affiliation_raw": "Wan"
+              "name": "Yifan Wan"
             }
           ],
           "abstract": null,
@@ -12204,8 +12160,7 @@
           "end": "16:05",
           "speakers": [
             {
-              "name": "Chunhui",
-              "affiliation_raw": "Wang"
+              "name": "Chunhui Wang"
             }
           ],
           "abstract": null,
@@ -12222,8 +12177,7 @@
           "end": "16:20",
           "speakers": [
             {
-              "name": "Jiahao",
-              "affiliation_raw": "Zhu"
+              "name": "Jiahao Zhu"
             }
           ],
           "abstract": null,
@@ -12240,8 +12194,7 @@
           "end": "16:35",
           "speakers": [
             {
-              "name": "Bangchao",
-              "affiliation_raw": "Wang"
+              "name": "Bangchao Wang"
             }
           ],
           "abstract": null,
@@ -12258,8 +12211,7 @@
           "end": "16:50",
           "speakers": [
             {
-              "name": "Quan",
-              "affiliation_raw": "Zhang"
+              "name": "Quan Zhang"
             }
           ],
           "abstract": null,
@@ -12276,8 +12228,7 @@
           "end": "17:05",
           "speakers": [
             {
-              "name": "Zhengkang",
-              "affiliation_raw": "Zuo"
+              "name": "Zhengkang Zuo"
             }
           ],
           "abstract": null,
@@ -12294,8 +12245,7 @@
           "end": "17:20",
           "speakers": [
             {
-              "name": "Chao",
-              "affiliation_raw": "Zhou"
+              "name": "Chao Zhou"
             }
           ],
           "abstract": null,
@@ -13756,7 +13706,7 @@
           "speakers": [
             {
               "name": "高翠芸",
-              "affiliation_raw": "哈尔滨工业大学（深圳）",
+              "affiliation_raw": "哈尔滨工业大学",
               "title": "教授",
               "bio": "高翠芸，哈尔滨工业大学（深圳）教授，哈工大青年拔尖人才。入选第九届中国科协青年人才托举工程，ACM TOSEM Associate Editor。主要研究领域包括：智能化软件数据分析和软件可靠性，近年来在相关领域的顶级会议和期刊如TSE、TOSEM、ICSE、FSE、ASE等上发表论文100余篇，荣获CCF A类会议ICSE 2025杰出论文奖、ICSE 2024杰出论文奖和ASE 2023杰出论文奖。"
             }
@@ -14379,7 +14329,7 @@
           "speakers": [
             {
               "name": "贺品嘉",
-              "affiliation_raw": "香港中文大学（深圳）",
+              "affiliation_raw": "香港中文大学",
               "title": "助理教授",
               "bio": "香港中文大学（深圳）助理教授，国家级青年人才，校长青年学者。贺品嘉教授的研究方向为软件工程、AI for SE、SE for AI、大模型安全。他在ICSE, FSE, NeurIPS, ICLR, ACL等顶级会议期刊发表论文60余篇。获得IEEE TCSE Rising Star Award、IEEE开源软件服务奖、ISSRE最有影响力论文奖等奖项。谷歌学术引用7000余次。主导的开源项目在GitHub上被star 7000余次，并被450多个学界业界组织下载9万余次。担任顶刊TOSEM的Associate Editor，顶会FSE 2025的Social Media Co-Chair，四大软件工程顶会的程序委员会成员。"
             }
@@ -14541,15 +14491,10 @@
           "title_status": "confirmed",
           "start": "16:50",
           "end": "17:05",
-          "speakers": [
-            {
-              "name": "华南理工大学",
-              "affiliation_raw": "贵州民族大学"
-            }
-          ],
+          "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "other"
         },
         {
           "title": {
@@ -14559,15 +14504,10 @@
           "title_status": "confirmed",
           "start": "17:05",
           "end": "17:20",
-          "speakers": [
-            {
-              "name": "上海第二工业大学",
-              "affiliation_raw": "国防科技大学"
-            }
-          ],
+          "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "other"
         },
         {
           "title": {
@@ -14577,15 +14517,10 @@
           "title_status": "confirmed",
           "start": "17:20",
           "end": "17:35",
-          "speakers": [
-            {
-              "name": "南京邮电大学",
-              "affiliation_raw": "杭州安恒信息技术股份有限公司"
-            }
-          ],
+          "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "other"
         },
         {
           "title": {
@@ -14595,14 +14530,10 @@
           "title_status": "confirmed",
           "start": "17:35",
           "end": "17:50",
-          "speakers": [
-            {
-              "name": "南方科技大学"
-            }
-          ],
+          "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "other"
         },
         {
           "title": {
@@ -14612,15 +14543,10 @@
           "title_status": "confirmed",
           "start": "17:50",
           "end": "18:05",
-          "speakers": [
-            {
-              "name": "蚂蚁集团",
-              "affiliation_raw": "南京大学"
-            }
-          ],
+          "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "other"
         },
         {
           "title": {
@@ -14630,15 +14556,10 @@
           "title_status": "confirmed",
           "start": "18:05",
           "end": "18:20",
-          "speakers": [
-            {
-              "name": "南京大学",
-              "affiliation_raw": "香港理工大学"
-            }
-          ],
+          "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "other"
         },
         {
           "title": {
@@ -14648,14 +14569,10 @@
           "title_status": "confirmed",
           "start": "18:20",
           "end": "18:35",
-          "speakers": [
-            {
-              "name": "华中科技大学"
-            }
-          ],
+          "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "other"
         }
       ],
       "detail_extracted": true,
@@ -14754,7 +14671,8 @@
           "end": "17:00",
           "speakers": [
             {
-              "name": "CCF中国软件大会会场"
+              "name": "CCF",
+              "affiliation_raw": "中国软件大会会场"
             }
           ],
           "abstract": null,
@@ -14769,14 +14687,10 @@
           "title_status": "confirmed",
           "start": "9:00",
           "end": "12:00",
-          "speakers": [
-            {
-              "name": "武汉大学计算机学院楼B302"
-            }
-          ],
+          "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "other"
         },
         {
           "title": {
@@ -14788,7 +14702,8 @@
           "end": "17:00",
           "speakers": [
             {
-              "name": "CCF中国软件大会会场"
+              "name": "CCF",
+              "affiliation_raw": "中国软件大会会场"
             }
           ],
           "abstract": null,
@@ -14963,14 +14878,10 @@
           "title_status": "confirmed",
           "start": "9:00",
           "end": "12:30",
-          "speakers": [
-            {
-              "name": "中国软件大会武汉国际会议中心二楼荆通厅V24"
-            }
-          ],
+          "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "other"
         },
         {
           "title": {
@@ -14980,11 +14891,7 @@
           "title_status": "confirmed",
           "start": "14:00",
           "end": "17:00",
-          "speakers": [
-            {
-              "name": "中国软件大会武汉国际会议中心五楼大会议厅"
-            }
-          ],
+          "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
           "type": "other"
@@ -15672,7 +15579,7 @@
           "speakers": [
             {
               "name": "余旻晨",
-              "affiliation_raw": "香港中文大学（深圳）"
+              "affiliation_raw": "香港中文大学"
             }
           ],
           "abstract": null,
