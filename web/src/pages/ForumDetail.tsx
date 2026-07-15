@@ -214,16 +214,22 @@ export default function ForumDetail() {
   const officialUrl = forum?.source_url ?? officialAssetUrl(forum?.poster?.source_url);
 
   // deep-link: scroll to the anchored talk when arriving with / changing #talk-<n>.
-  // The page plays an enter animation (container + per-row translateY easing to 0)
-  // when it mounts. scrollIntoView reads the element's *transformed* box, so during
-  // that animation it lands short of the final resting spot. Instead we scroll to
-  // the element's untransformed LAYOUT top (summed offsetTop, which ignores the
-  // transform), minus the sticky-nav height — precise regardless of the animation.
+  // We scroll to the element's untransformed LAYOUT top (summed offsetTop, which
+  // ignores the enter animation's transform), minus the sticky-nav height.
+  //
+  // The catch: the page keeps relaying out AFTER the first frame — each Abstract
+  // clamps its height in a useLayoutEffect (content above the target shrinks) and
+  // avatars load — so a one-shot scroll lands too low. Re-run the scroll a few
+  // times over ~0.5s so the final position is measured once the layout has
+  // settled. Instant scrolls (not smooth) so the corrections don't visibly jitter.
+  // A regression test guards this — see web/tests/permalink-scroll.mjs.
   useEffect(() => {
     if (!activeId) return;
-    const el = document.getElementById(activeId);
-    if (!el) return;
-    const raf = requestAnimationFrame(() => {
+    if (!document.getElementById(activeId)) return;
+    let cancelled = false;
+    const scrollToAnchor = () => {
+      const el = document.getElementById(activeId);
+      if (!el || cancelled) return;
       let top = 0;
       let node: HTMLElement | null = el;
       while (node) {
@@ -235,9 +241,13 @@ export default function ForumDetail() {
           getComputedStyle(document.documentElement).getPropertyValue("--nav-h"),
           10,
         ) || 56;
-      window.scrollTo({ top: Math.max(0, top - navH - 16), behavior: "smooth" });
-    });
-    return () => cancelAnimationFrame(raf);
+      window.scrollTo({ top: Math.max(0, top - navH - 16), behavior: "auto" });
+    };
+    const timers = [0, 90, 220, 450].map((d) => window.setTimeout(scrollToAnchor, d));
+    return () => {
+      cancelled = true;
+      timers.forEach((t) => clearTimeout(t));
+    };
   }, [activeId, forum]);
 
   // Copy a talk's shareable permalink and move the URL hash to it (so it lights up).
@@ -548,7 +558,7 @@ export default function ForumDetail() {
                 <motion.div
                   className="tline"
                   variants={stagger(0.04, 0.05)}
-                  initial="initial"
+                  initial={activeId ? false : "initial"}
                   animate="animate"
                 >
                   {track.talks.map(({ t, i }) => renderTalk(t, i))}
@@ -559,7 +569,7 @@ export default function ForumDetail() {
             <motion.div
               className={timed ? "tline" : "tallist"}
               variants={stagger(0.04, 0.05)}
-              initial="initial"
+              initial={activeId ? false : "initial"}
               animate="animate"
             >
               {forum.talks.map((t, i) => renderTalk(t, i))}
