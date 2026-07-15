@@ -395,7 +395,9 @@ svg { display: block; }
 .ftalk__no { font-family: var(--font-mono); font-size: 12px; color: var(--fg-muted); font-variant-numeric: tabular-nums; text-align: right; }
 .ftalk__main { min-width: 0; }
 .ftalk__title { font-size: 13.5px; font-weight: 500; line-height: 1.45; }
-.ftalk__speakers { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; margin-top: 6px; }
+/* talk authors: horizontal, wrapping, never clipped (the full list matters here,
+   unlike the forum-row author line which truncates with a fade) */
+.ftalk__speakers { display: flex; flex-flow: row wrap; align-items: baseline; gap: 5px 18px; margin-top: 6px; }
 .ftalk__star.star { color: var(--fg-muted); }
 .ftalk__star.star.is-on { color: var(--accent); }
 
@@ -503,17 +505,18 @@ svg { display: block; }
 .tgrid__ccode { display: none; }
 .tgrid__cbody { position: relative; }
 .tgrid__line { position: absolute; left: 0; right: 0; height: 1px; background: var(--border); opacity: 0.55; }
+/* full-surface tinted cell — no colored left edge (see AGENTS.md UI rules) */
 .tgrid__talk {
   position: absolute; left: 3px; right: 3px; display: flex; flex-direction: column; gap: 1px;
-  padding: 4px 7px; overflow: hidden; background: var(--bg-subtle);
-  border: 1px solid var(--border); border-left: 2px solid var(--accent); border-radius: var(--radius-sm);
-  transition: background 0.12s, box-shadow 0.12s;
+  padding: 3px 7px; overflow: hidden; background: var(--bg-subtle);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  transition: background 0.12s, box-shadow 0.12s, border-color 0.12s;
 }
-.tgrid__talk:hover { background: var(--bg-hover); box-shadow: var(--shadow-sm); z-index: 1; }
-.tgrid__ttime { font-size: 10.5px; color: var(--fg-muted); white-space: nowrap; }
-.tgrid__ttitle { font-size: 12px; font-weight: 500; line-height: 1.3; color: var(--fg); display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.tgrid__tspk { font-size: 11px; color: var(--fg-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.tgrid__more { position: absolute; left: 3px; right: 3px; font-size: 11px; color: var(--fg-muted); padding: 6px 7px; }
+.tgrid__talk:hover { background: var(--bg-hover); border-color: var(--border-strong); box-shadow: 0 4px 12px color-mix(in srgb, #000 10%, transparent); z-index: 1; }
+.tgrid__ttime { font-size: 10.5px; line-height: 1.35; color: var(--fg-muted); white-space: nowrap; }
+.tgrid__ttitle { font-size: 12px; font-weight: 500; line-height: 1.3; color: var(--fg); display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
+.tgrid__tspk { font-size: 11px; line-height: 1.3; color: var(--fg-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tgrid__more { position: absolute; left: 3px; right: 3px; font-size: 11px; color: var(--fg-muted); padding: 4px 7px; }
 
 .meetlist { padding: 4px 16px; }
 .meetrow { display: flex; align-items: center; gap: 14px; padding: 11px 0; font-size: 14px; border-top: 1px solid var(--border); }
