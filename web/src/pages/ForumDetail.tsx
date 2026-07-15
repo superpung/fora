@@ -209,6 +209,12 @@ export default function ForumDetail() {
                   <div className="talk__no">{String(i + 1).padStart(2, "0")}</div>
                   <div className="talk__body">
                     <div className="talk__titlerow">
+                      {(t.start || t.end) && (
+                        <span className="talk__time">
+                          {t.start}
+                          {t.end ? `–${t.end}` : ""}
+                        </span>
+                      )}
                       <h3 className="talk__title">
                         {t.title_status === "tbd" ? (
                           <span className="muted-i">报告题目待确认</span>
