@@ -4,7 +4,25 @@ All notable changes to this project. The project is unversioned (no release
 tags yet), so entries are grouped by date, newest first. Written in English per
 the repository language rule (see AGENTS.md).
 
-## 2026-07-15 — Dynamic document title + hover expand animation + author tweaks
+## 2026-07-15 — Deep-link scroll precision, bio-collapse fix, chair data cleanup
+
+### Fixed
+- **Deep-link (copy-permalink → refresh) now scrolls precisely to the talk.**
+  `scrollIntoView` reads the element's *transformed* box, and the page's enter
+  animation (container + per-row translateY easing to 0) meant it landed short.
+  It now scrolls to the element's untransformed layout top (summed `offsetTop`)
+  minus the sticky-nav height — drift measured at 0px.
+- **Person bio collapse no longer stutters at the end.** The bio kept a static
+  `margin-top: 8px` that wasn't animated, so when the height reached 0 the 8px
+  gap lingered then snapped away on unmount. `marginTop` is now animated together
+  with the height.
+- **S8 (and P4) chair affiliations were wrapped in literal brackets** ("[浙江大学]")
+  — an extraction artifact. Stripped a single wrapping bracket pair from all 7
+  affected affiliations.
+- **S8 chair "David Lo" was split into two rows** — a proper "David Lo · 新加坡管理
+  大学" plus a corrupt fragment "David" with title "Lo 教授". Merged into one
+  (title "教授"). A sweep of both conferences found no other split of this shape
+  ("肖然 · Thoughtworks 中国区总经理" is a legitimate title, left as-is).
 
 ### Fixed
 - **Document title was stuck at "CCF Chip 2026 · 大会议程".** It was hardcoded in
