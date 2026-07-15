@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Icon from "./Icon";
 import { useFollow } from "../lib/follow-store";
 import { useConference } from "../lib/conference-store";
+import { useI18n } from "../lib/i18n-store";
 import {
   collectFollowedItems,
   exportFilename,
@@ -14,16 +15,17 @@ import {
   type ExportFormat,
 } from "../lib/export";
 
-const FORMATS: { key: ExportFormat; label: string; icon: "calendar" | "file" }[] = [
-  { key: "ics", label: "日历 (.ics)", icon: "calendar" },
-  { key: "csv", label: "表格 (.csv)", icon: "file" },
-  { key: "md", label: "Markdown (.md)", icon: "file" },
-  { key: "json", label: "备份·可导入 (.json)", icon: "file" },
+const FORMATS: { key: ExportFormat; labelKey: string; icon: "calendar" | "file" }[] = [
+  { key: "ics", labelKey: "export.ics", icon: "calendar" },
+  { key: "csv", labelKey: "export.csv", icon: "file" },
+  { key: "md", labelKey: "export.md", icon: "file" },
+  { key: "json", labelKey: "export.json", icon: "file" },
 ];
 
 export default function ExportMenu() {
   const { forums, speakers, talks } = useFollow();
   const views = useConference();
+  const { t } = useI18n();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -59,7 +61,7 @@ export default function ExportMenu() {
   return (
     <div className="exportmenu" ref={ref}>
       <button className="linkbtn exportmenu__btn" onClick={() => setOpen((v) => !v)} aria-expanded={open}>
-        <Icon name="download" size={13} /> 导出
+        <Icon name="download" size={13} /> {t("export.button")}
       </button>
       <AnimatePresence>
         {open && (
@@ -73,7 +75,7 @@ export default function ExportMenu() {
           >
             {FORMATS.map((f) => (
               <button key={f.key} role="menuitem" onClick={() => run(f.key)}>
-                <Icon name={f.icon} size={14} /> {f.label}
+                <Icon name={f.icon} size={14} /> {t(f.labelKey)}
               </button>
             ))}
           </motion.div>

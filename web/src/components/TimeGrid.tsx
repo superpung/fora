@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useConference } from "../lib/conference-store";
+import { useI18n } from "../lib/i18n-store";
 import Icon from "../components/Icon";
 import type { Block, Forum, Talk } from "../types";
 
@@ -70,6 +71,7 @@ function splitByReset<T extends { s: number }>(items: T[]): T[][] {
 
 export default function TimeGrid({ block }: { block: Block }) {
   const { id: confId, forumsByCode } = useConference();
+  const { t: tr } = useI18n();
 
   // First pass: gather each forum's timed talks as minute offsets, and the day's
   // overall time span.
@@ -173,7 +175,7 @@ export default function TimeGrid({ block }: { block: Block }) {
   for (let h = lo; h <= hi; h += HOUR) hours.push(h);
 
   return (
-    <div className="tgrid" role="grid" aria-label="按时间排列的论坛并行日程">
+    <div className="tgrid" role="grid" aria-label={tr("timeline.aria")}>
       <div className="tgrid__inner">
         {/* time gutter (sticky left) */}
         <div className="tgrid__gutter">
@@ -220,7 +222,7 @@ export default function TimeGrid({ block }: { block: Block }) {
                       {t.end ? `–${t.end}` : ""}
                     </span>
                     <span className="tgrid__ttitle">
-                      {t.title_status === "tbd" ? "题目待定" : t.title?.zh}
+                      {t.title_status === "tbd" ? tr("timeline.tbd") : t.title?.zh}
                     </span>
                     {sp?.name && <span className="tgrid__tspk">{sp.name}</span>}
                   </Link>
@@ -228,7 +230,7 @@ export default function TimeGrid({ block }: { block: Block }) {
               })}
               {c.untimed > 0 && (
                 <div className="tgrid__more" style={{ top: c.bottom - 22 }}>
-                  另有 {c.untimed} 场未标注时间
+                  {tr("timeline.moreUntimed", { n: c.untimed })}
                 </div>
               )}
             </div>

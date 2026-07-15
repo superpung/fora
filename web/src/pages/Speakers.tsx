@@ -3,14 +3,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   formatDate,
-  periodLabel,
-  categoryLabel,
   type SpeakerAgg,
   type SpeakerTalk,
   type SpeakerCategory,
 } from "../lib/data";
 import { useConference } from "../lib/conference-store";
 import { useFollow } from "../lib/follow-store";
+import { useI18n } from "../lib/i18n-store";
 import { pageVariants } from "../lib/motion";
 import Icon from "../components/Icon";
 import Avatar from "../components/Avatar";
@@ -22,14 +21,15 @@ const openCards = new Set<string>();
 
 function TalkLine({ t }: { t: SpeakerTalk }) {
   const { id: confId } = useConference();
-  const dateInfo = t.date ? formatDate(t.date) : null;
+  const { t: tr, lang } = useI18n();
+  const dateInfo = t.date ? formatDate(t.date, lang) : null;
   const no = t.talkIndex != null ? String(t.talkIndex + 1).padStart(2, "0") : null;
   const body = (
     <span className="sptalk__body">
       <span className="sptalk__title">
         {no && <span className="sptalk__no mono">{no}</span>}
         {t.titleStatus === "tbd" ? (
-          <span className="muted-i">题目待定</span>
+          <span className="muted-i">{tr("speakers.tbd")}</span>
         ) : (
           t.talkTitle?.zh
         )}
@@ -48,7 +48,7 @@ function TalkLine({ t }: { t: SpeakerTalk }) {
         {dateInfo && (
           <span className="mono">
             {dateInfo.md}
-            {t.period ? ` ${periodLabel[t.period]}` : ""}
+            {t.period ? ` ${tr(`period.${t.period}`)}` : ""}
           </span>
         )}
         {t.start && (
@@ -78,6 +78,7 @@ function TalkLine({ t }: { t: SpeakerTalk }) {
 function SpeakerCard({ s }: { s: SpeakerAgg }) {
   const [open, setOpen] = useState(() => openCards.has(s.name));
   const { isSpeaker, toggleSpeaker } = useFollow();
+  const { t } = useI18n();
   const followed = isSpeaker(s.name);
   const p = s.person;
 
@@ -98,13 +99,13 @@ function SpeakerCard({ s }: { s: SpeakerAgg }) {
           {p.affiliation_raw && <span className="spcard__aff">{p.affiliation_raw}</span>}
         </button>
         <div className="spcard__side">
-          <span className="spcard__cat">{categoryLabel[s.category]}</span>
-          <span className="spcard__count mono">{s.talks.length} 场</span>
+          <span className="spcard__cat">{t(`cat.${s.category}`)}</span>
+          <span className="spcard__count mono">{t("common.sessionsCount", { n: s.talks.length })}</span>
           <button
             className={`star star--sm ${followed ? "is-on" : ""}`}
             aria-pressed={followed}
-            aria-label={followed ? `取消关注 ${s.name}` : `关注 ${s.name}`}
-            title={followed ? `取消关注 ${s.name}` : `关注 ${s.name}`}
+            aria-label={followed ? t("common.followRemove", { name: s.name }) : t("common.followAdd", { name: s.name })}
+            title={followed ? t("common.followRemove", { name: s.name }) : t("common.followAdd", { name: s.name })}
             onClick={() => toggleSpeaker(s.name)}
           >
             <Icon name="star" filled={followed} size={15} />
@@ -113,7 +114,7 @@ function SpeakerCard({ s }: { s: SpeakerAgg }) {
             className="spcard__toggle"
             onClick={toggle}
             aria-expanded={open}
-            aria-label={open ? "收起报告" : "展开报告"}
+            aria-label={open ? t("common.collapseReports") : t("common.expandReports")}
           >
             <span className={`caret ${open ? "caret--up" : ""}`}>
               <Icon name="chevron-down" size={16} />
@@ -145,6 +146,7 @@ const ALPHABET = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ", "#"];
 export default function Speakers() {
   const { speakerList, speakerCategoryCounts } = useConference();
   const { speakers: followedSpeakers, isSpeaker } = useFollow();
+  const { t } = useI18n();
   const [query, setQuery] = useState("");
   const [onlyFollowed, setOnlyFollowed] = useState(false);
   const [cat, setCat] = useState<SpeakerCategory | "all">("all");
@@ -203,7 +205,7 @@ export default function Speakers() {
           <span className="section__icon" aria-hidden>
             <Icon name="keynotes" size={19} />
           </span>
-          <h2 className="section__title">讲者</h2>
+          <h2 className="section__title">{t("speakers.title")}</h2>
         </div>
       </div>
 
@@ -215,12 +217,12 @@ export default function Speakers() {
           <input
             className="search__input"
             type="search"
-            placeholder="搜索讲者 / 单位 / 报告…"
+            placeholder={t("speakers.searchPlaceholder")}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
           {query && (
-            <button className="search__clear" onClick={() => setQuery("")} aria-label="清除搜索">
+            <button className="search__clear" onClick={() => setQuery("")} aria-label={t("common.clearSearch")}>
               <Icon name="x" size={14} />
             </button>
           )}
@@ -230,7 +232,7 @@ export default function Speakers() {
           onClick={() => setOnlyFollowed((v) => !v)}
         >
           <Icon name="star" filled={onlyFollowed} size={14} />
-          仅关注{followedSpeakers.size ? ` ${followedSpeakers.size}` : ""}
+          {t("speakers.onlyFollows")}{followedSpeakers.size ? ` ${followedSpeakers.size}` : ""}
         </button>
       </div>
 
@@ -241,7 +243,7 @@ export default function Speakers() {
             className={`chipfilter ${cat === c ? "is-on" : ""}`}
             onClick={() => setCat(c)}
           >
-            {c === "all" ? "全部" : categoryLabel[c]}
+            {c === "all" ? t("common.all") : t(`cat.${c}`)}
             <span className="chipfilter__n">
               {c === "all" ? speakerList.length : speakerCategoryCounts[c]}
             </span>
@@ -249,10 +251,10 @@ export default function Speakers() {
         ))}
       </div>
 
-      <div className="spresult">共 {visible.length} 位</div>
+      <div className="spresult">{t("speakers.countShown", { n: visible.length })}</div>
 
       {visible.length === 0 ? (
-        <div className="dash__empty">没有符合条件的讲者。</div>
+        <div className="dash__empty">{t("speakers.none")}</div>
       ) : (
         <div className="splayout">
           <div className="splist">
@@ -265,7 +267,7 @@ export default function Speakers() {
               </div>
             ))}
           </div>
-          <nav className="spindex" aria-label="按姓名首字母定位">
+          <nav className="spindex" aria-label={t("speakers.indexAria")}>
             {ALPHABET.map((L) => (
               <button
                 key={L}

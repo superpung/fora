@@ -12,39 +12,23 @@ import type { Conference, Forum, Day, Talk, Person, I18n, Status } from "../type
 
 /* ===================== conference-independent helpers ===================== */
 
-const WEEKDAY = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
-export function formatDate(iso: string): { md: string; weekday: string } {
+import type { Lang } from "./i18n-store";
+
+const WEEKDAY_ZH = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+const WEEKDAY_EN = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const MONTH_EN = [
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+];
+// Locale-aware short date. zh: "11月30日 / 周日"; en: "Nov 30 / Sun".
+export function formatDate(iso: string, lang: Lang = "zh"): { md: string; weekday: string } {
   const d = new Date(iso + "T00:00:00");
-  return {
-    md: `${d.getMonth() + 1}月${d.getDate()}日`,
-    weekday: WEEKDAY[d.getDay()],
-  };
+  return lang === "en"
+    ? { md: `${MONTH_EN[d.getMonth()]} ${d.getDate()}`, weekday: WEEKDAY_EN[d.getDay()] }
+    : { md: `${d.getMonth() + 1}月${d.getDate()}日`, weekday: WEEKDAY_ZH[d.getDay()] };
 }
 
-export const blockKindLabel: Record<string, string> = {
-  registration: "签到",
-  keynotes: "大会主旨报告",
-  forums: "技术论坛",
-  break: "茶歇",
-  banquet: "晚宴",
-  committee_meetings: "专委工作会议",
-  other: "其他",
-};
-
-export const periodLabel: Record<string, string> = {
-  morning: "上午",
-  afternoon: "下午",
-  evening: "晚上",
-};
-
 export type SpeakerCategory = "university" | "research" | "industry" | "other";
-
-export const categoryLabel: Record<SpeakerCategory, string> = {
-  university: "高校",
-  research: "科研院所",
-  industry: "企业",
-  other: "其他",
-};
 
 // Classify a person by their affiliation string. Order matters: a corporate
 // research institute (e.g. 电科集团…研究所) reads as an institute, not a company.
