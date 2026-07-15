@@ -4,6 +4,26 @@ All notable changes to this project. The project is unversioned (no release
 tags yet), so entries are grouped by date, newest first. Written in English per
 the repository language rule (see AGENTS.md).
 
+## 2026-07-15 — Schema evolution + second conference (ChinaSoft 2025)
+
+### Added
+- **Second conference: CCF ChinaSoft 2025** — 73 forums across 7 categories, 9
+  keynotes, ~575 speakers. Parsed from its (structurally different, static) site
+  by a reproducible per-conference adapter, `source/chinasoft2025/`: `fetch.py`
+  saves the source to a committed `raw/`, `build.py` parses it deterministically
+  offline. Real anomalies (competition training/awards tables, a lab with no
+  schedule, a dateless forum) are recorded as `flags`, never guessed.
+
+### Changed
+- **The schema is now an evolvable contract.** Added an open `extra` escape hatch
+  at every level — conference-specific data the core doesn't model is captured
+  there (and/or via `flags`) instead of being forced or dropped — and a
+  first-class optional `forum.category`. Descriptions are now English.
+- **`validate.py` is a regression gate** over every conference (a schema change
+  can't silently break an existing one); **`build_manifest.py`** is a shared,
+  conference-agnostic manifest builder. CI rebuilds all conferences and asserts
+  no drift.
+
 ## 2026-07-15 — Multi-conference architecture
 
 The viewer now hosts **several conferences** instead of being hard-wired to one.

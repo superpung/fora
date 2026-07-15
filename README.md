@@ -46,7 +46,18 @@ web/
                             a full dataset
 ```
 
-## Reproduce
+## Adding a conference
+Every conference is an independent **adapter** producing a schema-conforming
+`data/<id>.json` — there is no universal parser, because every source site
+differs. The pattern (see `source/chinasoft2025/`): `fetch.py` saves the source
+to a committed `raw/`, `build.py` parses it into the schema deterministically
+offline. Then `python source/build_manifest.py` refreshes the hub/switcher index
+and `python source/validate.py` checks every conference. Structure the core
+schema doesn't model goes into the open `extra` field (never forced or faked);
+recurring concepts get promoted to first-class fields by additive schema
+evolution (which must keep all existing conferences valid).
+
+## Reproduce (ccfchip2026)
 ```bash
 cd source
 python3 fetch_all.py          # crawl (done; artifacts in raw/)
