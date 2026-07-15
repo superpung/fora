@@ -19,6 +19,7 @@ export type IconName =
   | "moon"
   | "monitor"
   | "chip"
+  | "conference"
   | "registration"
   | "keynotes"
   | "forums"
@@ -96,6 +97,15 @@ const PATHS: Record<IconName, ReactElement> = {
     <>
       <rect x="7" y="7" width="10" height="10" rx="1.5" />
       <path d="M10 7V4M14 7V4M10 20v-3M14 20v-3M7 10H4M7 14H4M20 10h-3M20 14h-3" />
+    </>
+  ),
+  // generic conference mark: a presentation board (agenda lines) on a stand —
+  // not tied to any one conference (unlike `chip`, which is CCF-Chip-specific)
+  conference: (
+    <>
+      <rect x="3" y="4" width="18" height="12" rx="2" />
+      <path d="M7 8h10M7 12h6" />
+      <path d="M12 16v5M8.5 21h7" />
     </>
   ),
   registration: (
