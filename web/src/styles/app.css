@@ -58,7 +58,14 @@ svg { display: block; }
 @media (max-width: 600px) {
   .confsw__name { display: none; }
   .nav__inner { gap: 6px; }
-  .nav__links { margin: 0 auto; }
+  /* pin the switcher + theme toggle; the links scroll horizontally between them
+     so the row never overflows the viewport (was pushing the toggle off-screen) */
+  .confsw, .theme-toggle { flex: 0 0 auto; }
+  .nav__links {
+    margin: 0; flex: 1 1 auto; min-width: 0; justify-content: flex-start;
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .nav__links::-webkit-scrollbar { display: none; }
   .nav__link { padding: 7px 8px; font-size: 13px; }
 }
 
@@ -120,8 +127,14 @@ svg { display: block; }
 .hubtop__logo { color: var(--fg); display: inline-flex; }
 .hubtop__name { font-size: 14px; letter-spacing: -0.01em; }
 .hub { padding: 48px 0 80px; }
-.hub__head { margin-bottom: 32px; }
+.hub__head { margin-bottom: 28px; }
 .hub__title { font-size: 30px; font-weight: 650; letter-spacing: -0.03em; margin: 0; }
+.hubgroup { margin-bottom: 36px; }
+.hubgroup__title {
+  display: flex; align-items: center; gap: 8px; margin: 0 0 14px;
+  font-size: 15px; font-weight: 600; color: var(--fg-secondary);
+}
+.hubgroup__n { font-family: var(--font-mono); font-size: 12px; font-weight: 500; color: var(--fg-muted); }
 .hubgrid {
   display: grid; gap: 16px;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -673,16 +686,19 @@ svg { display: block; }
   .filterchip { flex: 0 0 auto; padding: 0 10px; }
   .filterchip__label { display: none; }
 
-  .frow__row { grid-template-columns: 48px minmax(0, 1fr) auto; gap: 0 12px; padding: 12px 8px 12px 14px; }
-  .frow__code { font-size: 12px; }
+  /* wider left column so ChinaSoft's longer room names wrap to <=2 lines */
+  .frow__row { grid-template-columns: 66px minmax(0, 1fr) auto; gap: 0 10px; padding: 12px 8px 12px 14px; }
+  .frow__room { font-size: 11.5px; }
+  .frow__code { font-size: 11.5px; padding-left: 12px; }
+  .frow__cat { padding-left: 12px; }
   .ftalk__link { padding: 11px 40px 11px 14px; }
   .krail__list { grid-template-columns: 1fr; }
 
   .talk { grid-template-columns: 28px 1fr; gap: 12px; padding: 18px 14px; }
   .talkrow { grid-template-columns: 88px 1fr; gap: 12px; }
-  .forumcard { grid-template-columns: 52px 1fr; gap: 2px 12px; }
-  .forumcard__room { grid-row: 1; grid-column: 1; }
-  .forumcard__code { grid-row: 2; grid-column: 1; font-size: 12px; }
+  .forumcard { grid-template-columns: 68px 1fr; gap: 2px 12px; }
+  .forumcard__room { grid-row: 1; grid-column: 1; font-size: 11.5px; }
+  .forumcard__code { grid-row: 2; grid-column: 1; font-size: 11.5px; }
   .forumcard__title { grid-row: 1 / span 2; grid-column: 2; }
   .forumcard__foot { grid-row: 3; grid-column: 1 / -1; justify-self: start; margin-top: 4px; }
   .sponsorcard { flex-direction: column; gap: 3px; }
