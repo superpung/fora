@@ -4,6 +4,21 @@ All notable changes to this project. The project is unversioned (no release
 tags yet), so entries are grouped by date, newest first. Written in English per
 the repository language rule (see AGENTS.md).
 
+## 2026-07-15 — Forum-detail timeline layout + abstract collapse
+
+### Added
+- **Vertical time-rail layout on the forum-detail page** for forums whose talks
+  carry times: a continuous rail with a node dot per talk, the start/end time on
+  the left, and the talk card (title, speakers, abstract) on the right — the
+  chronological flow is now visual. Falls back to the numbered card list for
+  untimed forums / conferences (e.g. CCF Chip).
+
+### Changed
+- **Talk abstracts collapse to a 3-line preview** with a 展开/收起 toggle (the
+  toggle only appears when the text overflows). A long forum page (e.g. ChinaSoft
+  S2, 21 talks) drops from ~15,600px to ~4,900px, so all talks are scannable
+  without endless scrolling. Speaker avatars are unchanged.
+
 ## 2026-07-15 — Timeline grid redesign + AGENTS compliance
 
 ### Fixed
