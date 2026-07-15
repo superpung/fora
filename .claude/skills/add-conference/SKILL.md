@@ -37,6 +37,16 @@ either.
    API / PDF / poster images / a CMS). Find the real data endpoints or files.
    `curl` the site; inspect its routing/JS. Decide the extraction tactic from what
    you find — don't assume.
+   - **Enumerate every nav section, not just the agenda.** Conference sites carry
+     committees, organizers/sponsors, venue, registration, etc. in separate menus
+     (often their own hash routes / lazy-loaded fragments, e.g. an intro page whose
+     nav calls `loadIntroPage('committee-steering')`). Walk each menu and fetch
+     **every** linked sub-page — a landing page usually shows only its first tab.
+   - **Cross-check the fetch against the schema's top-level sections.** For each of
+     `committees`, `organizations`, `venues` (and any other first-class array),
+     confirm the site either has no such content or you captured its source. An
+     empty `committees: []` when the site clearly has committee pages is a fetch
+     miss, not "no data" — the omission is silent, so check it explicitly.
 
 2. **Fetch → commit raw.** Save the source to a committed `raw/` under a new
    `source/<id>/` adapter dir (a `fetch.py`), so the build is reproducible offline.

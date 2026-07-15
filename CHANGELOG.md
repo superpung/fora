@@ -4,6 +4,25 @@ All notable changes to this project. The project is unversioned (no release
 tags yet), so entries are grouped by date, newest first. Written in English per
 the repository language rule (see AGENTS.md).
 
+## 2026-07-15 — Committee-fetch fix + highlight/animation/icon polish
+
+### Fixed
+- **ChinaSoft committee pages were never fetched.** The intro page is a mini-SPA
+  whose nav lazy-loads 9 committee sub-pages via `loadIntroPage('committee-*')`;
+  `fetch.py` only saved the landing prose. It now follows the intro nav and
+  fetches every committee sub-page. (Populating `committees` needs a network fetch
+  + a build.py parser — pending.) The add-conference skill gained a recon rule to
+  enumerate all nav sections and cross-check the schema's top-level arrays.
+- **Timeline anchor highlight** now spans the whole row (time + rail + card),
+  instead of only the card right of the rail line.
+
+### Changed
+- **Talk abstract expand/collapse is animated** (house easing), consistent with
+  the bio / talk-sublist expansions.
+- Removed the dashboard **sponsor-session filter** (`赞助专场`) and its code.
+- Replaced the CCF-Chip-specific `chip` brand glyph with a generic `conference`
+  icon on the hub cards and conference switcher.
+
 ## 2026-07-15 — Timeline card accents + hover-expand + forum-row reorder
 
 ### Added

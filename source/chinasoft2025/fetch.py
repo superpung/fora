@@ -81,8 +81,21 @@ def main():
         print(f"{cat}: {len(ids)} templates")
     for pg in META_PAGES:
         html = get(f"{BASE}/pages/{pg}.html")
-        if html is not None:
-            save(f"meta/{pg}.html", html)
+        if html is None:
+            continue
+        save(f"meta/{pg}.html", html)
+        # The intro page is itself a mini-SPA: its nav links to committee
+        # sub-pages via loadIntroPage('committee-*'); follow every one so the
+        # conference committees (steering / program / organizing / ...) are
+        # captured, not just the landing prose.
+        if pg == "introduction":
+            for sub in sorted(set(re.findall(r"loadIntroPage\('([^']+)'\)", html))):
+                if sub == "introduction":
+                    continue
+                sub_html = get(f"{BASE}/pages/{sub}.html")
+                if sub_html is not None:
+                    save(f"meta/{sub}.html", sub_html)
+                time.sleep(0.05)
     print(f"\nTotal templates: {total}")
     print("Per category:", summary)
 
