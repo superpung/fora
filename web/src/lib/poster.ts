@@ -59,12 +59,6 @@ export const POSTER_W = 1080;
 const MAX_PX_H = 6000;
 const PAD = 92;
 
-// masthead (dark)
-const MAST_BG = "#0f1218";
-const MAST_FG = "#ffffff";
-const MAST_SUB = "#aeb6c2";
-const MAST_ICON = "#7c8594";
-// body (light)
 const INK = "#111318";
 const SUB = "#54606e";
 const MUTE = "#8b93a0";
@@ -132,7 +126,25 @@ function wrapText(ctx: CanvasRenderingContext2D, text: string, maxWidth: number)
     else line = tk;
   }
   if (line) lines.push(line.replace(/\s+$/, ""));
-  return lines.length ? lines : [""];
+  return applyKinsoku(lines.length ? lines : [""]);
+}
+
+// Kinsoku: a closing mark may not begin a line, an opening mark may not end one —
+// so a bracket never drops alone to the next line.
+const NO_START = "）)]}〉》」』】、。，．·・？！：；’”%〕〗";
+const NO_END = "（([{〈《「『【〔〖‘“";
+function applyKinsoku(lines: string[]): string[] {
+  for (let i = 0; i < lines.length - 1; i++) {
+    while (lines[i + 1] && NO_START.includes(lines[i + 1][0])) {
+      lines[i] += lines[i + 1][0];
+      lines[i + 1] = lines[i + 1].slice(1);
+    }
+    while (lines[i] && NO_END.includes(lines[i][lines[i].length - 1])) {
+      lines[i + 1] = lines[i][lines[i].length - 1] + lines[i + 1];
+      lines[i] = lines[i].slice(0, -1);
+    }
+  }
+  return lines.filter((l) => l.length);
 }
 
 function clampLines(lines: string[], max: number): string[] {
@@ -220,10 +232,17 @@ function styledFlow(
     lx += w;
   }
   if (!dry) {
+    // Bottom-align mixed sizes on a line: a smaller affiliation drops so its
+    // baseline sits with the larger name's, instead of sharing the top edge.
+    const sizeOf = (f: string) => {
+      const m = f.match(/(\d+)px/);
+      return m ? parseInt(m[1], 10) : 0;
+    };
+    const refSize = placed.reduce((mx, p) => Math.max(mx, sizeOf(p.font)), 0);
     for (const p of placed) {
       ctx.font = p.font;
       ctx.fillStyle = p.color;
-      ctx.fillText(p.t, p.x, p.y);
+      ctx.fillText(p.t, p.x, p.y + (refSize - sizeOf(p.font)) * 0.82);
     }
   }
   return cy + lineH;
@@ -285,25 +304,22 @@ function iconMeta(
   return textBlock(ctx, dry, text, tx, y + Math.round((lineH - fs) / 2) - 2, maxW - isz - gap, font(500, fs), color, lineH, 2);
 }
 
-/** Section label with a short accent underline (no hairline rule). Returns the
-    content-start y, with generous room below the label. */
+/** A quiet section label — smaller, mid-grey, no accent underline — so it recedes
+    behind the content it introduces. Returns the content-start y. */
 function sectionLabel(
   ctx: CanvasRenderingContext2D,
   dry: boolean,
   label: string,
-  accent: string,
+  _accent: string,
   x: number,
   y: number,
 ): number {
   if (!dry) {
-    ctx.fillStyle = INK;
-    ctx.font = font(700, 33);
+    ctx.fillStyle = MUTE;
+    ctx.font = font(600, 24);
     ctx.fillText(label, x, y);
-    ctx.fillStyle = accent;
-    roundRect(ctx, x, y + 48, 46, 4, 2);
-    ctx.fill();
   }
-  return y + 48 + 4 + 28;
+  return y + 24 + 24;
 }
 
 function roundRect(
@@ -324,13 +340,13 @@ function roundRect(
   ctx.closePath();
 }
 
-/** Dark masthead: accent kicker + conference name (white) + date/venue/location
-    (icon-tagged, light gray). Measures its lines first, then (wet) paints the
-    dark band and text. Returns its height. */
+/** Light masthead (no dark band): an accent kicker + the conference name +
+    a date · location line. The venue is not shown here — it moves down to the
+    room meta. Measures its lines first, then paints. Returns its height. */
 function masthead(ctx: CanvasRenderingContext2D, spec: PosterSpec, dry: boolean): number {
   const x = PAD;
   const maxW = POSTER_W - PAD * 2;
-  const topPad = 74;
+  const topPad = 66;
   const kickerH = 5;
 
   ctx.font = font(700, 44);
@@ -338,24 +354,21 @@ function masthead(ctx: CanvasRenderingContext2D, spec: PosterSpec, dry: boolean)
   const nameLH = 56;
 
   const items: PosterMeta[] = [{ icon: "calendar", text: spec.confDate }];
-  if (spec.confVenue) items.push({ icon: "building", text: spec.confVenue });
   if (spec.confLocation) items.push({ icon: "pin", text: spec.confLocation });
 
-  const nameTop = topPad + kickerH + 24;
-  const metaTop = nameTop + nameLines.length * nameLH + 22;
-  const metaBottom = iconFlow(ctx, true, items, x, metaTop, maxW, 27, MAST_SUB, MAST_ICON);
-  const height = metaBottom + 60;
+  const nameTop = topPad + kickerH + 22;
+  const metaTop = nameTop + nameLines.length * nameLH + 20;
+  const metaBottom = iconFlow(ctx, true, items, x, metaTop, maxW, 27, SUB, MUTE);
+  const height = metaBottom + 28;
 
   if (!dry) {
-    ctx.fillStyle = MAST_BG;
-    ctx.fillRect(0, 0, POSTER_W, height);
     ctx.fillStyle = spec.accent;
     roundRect(ctx, x, topPad, 52, kickerH, 2.5);
     ctx.fill();
-    ctx.fillStyle = MAST_FG;
+    ctx.fillStyle = INK;
     ctx.font = font(700, 44);
     for (let i = 0; i < nameLines.length; i++) ctx.fillText(nameLines[i], x, nameTop + i * nameLH);
-    iconFlow(ctx, false, items, x, metaTop, maxW, 27, MAST_SUB, MAST_ICON);
+    iconFlow(ctx, false, items, x, metaTop, maxW, 27, SUB, MUTE);
   }
   return height;
 }
@@ -389,7 +402,7 @@ function layout(ctx: CanvasRenderingContext2D, spec: PosterSpec, dry: boolean): 
   const x = PAD;
   const maxW = POSTER_W - PAD * 2;
 
-  let y = masthead(ctx, spec, dry) + 60;
+  let y = masthead(ctx, spec, dry) + 44;
 
   // category (or kind) chip + code
   if (spec.chip || spec.code) {
@@ -453,19 +466,25 @@ function layout(ctx: CanvasRenderingContext2D, spec: PosterSpec, dry: boolean): 
   if (talks.length > 0) {
     y += 40;
     y = sectionLabel(ctx, dry, spec.talksLabel ?? "", accent, x, y);
-    const numW = 58;
-    const tx = x + numW;
-    const tW = maxW - numW;
+    // Two columns: a fixed left column (number over time) and a right column
+    // (title over speakers), so number+time and title+speakers read as a pair.
+    const numW = 150;
+    const tx = x + numW + 24;
+    const tW = maxW - numW - 24;
     for (let k = 0; k < talks.length; k++) {
       const t = talks[k];
       const rowTop = y;
       if (!dry) {
         ctx.fillStyle = accent;
-        ctx.font = font(700, 27, true);
-        ctx.fillText(String(t.index).padStart(2, "0"), x, y + 3);
+        ctx.font = font(700, 26, true);
+        ctx.fillText(String(t.index).padStart(2, "0"), x, rowTop);
+        if (t.time) {
+          ctx.fillStyle = accent;
+          ctx.font = font(500, 25, true);
+          ctx.fillText(t.time, x, rowTop + 34);
+        }
       }
-      let ty = textBlock(ctx, dry, t.title, tx, y, tW, font(650, 34), INK, 46, 3);
-      if (t.time) ty = textBlock(ctx, dry, t.time, tx, ty + 4, tW, font(500, 25, true), accent, 34, 1);
+      let ty = textBlock(ctx, dry, t.title, tx, rowTop, tW, font(650, 34), INK, 46, 3);
       if (t.speakers.length > 0) {
         const segs: Seg[] = [];
         t.speakers.forEach((s, i) => {
@@ -475,7 +494,8 @@ function layout(ctx: CanvasRenderingContext2D, spec: PosterSpec, dry: boolean): 
         });
         ty = styledFlow(ctx, dry, segs, tx, ty + 10, tW, 40);
       }
-      y = Math.max(ty, rowTop + 40);
+      const leftBottom = rowTop + (t.time ? 34 + 30 : 30);
+      y = Math.max(ty, leftBottom);
       if (k < talks.length - 1) y += 34;
     }
   }
