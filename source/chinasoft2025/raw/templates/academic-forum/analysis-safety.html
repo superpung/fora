@@ -1,0 +1,257 @@
+<div class="container">
+
+    <h2 class="section-title">软件分析与软件安全新技术</h2>
+    <div class="section-title-en">学术论坛 R22</div>
+
+    <section class="forum-section">
+        <h3>一、论坛介绍</h3>
+        <p>"软件分析与软件安全新技术"论坛致力于汇聚国内外顶尖学者与行业专家，探讨"大模型"与"人机物融合”时代下的软件分析技术以及基于软件分析的软件安全技术前沿进展。论坛重点关注静态程序分析、动态程序分析、形式化验证等核心技术，以及上述技术在漏洞检测、恶意代码分析、安全编码等关键场景中的应用；特别地，此次论坛还将同时探讨大模型给上述研究方向带来的机遇与挑战以及已有的创新应用。通过推动分析方法创新、提升防护能力、促进学科交叉，论坛将深化产学研协同、加强国际交流，为应对复杂安全威胁、推动数字经济健康发展提供强有力的技术支撑，对构建安全可靠的数字社会具有重要意义。</p>
+    </section>
+
+    <section class="forum-section">
+        <h3>二、论坛组织委员会</h3>
+        <ul class="committee-list">
+            <li>
+                <span class="member-name">时清凯</span>
+                <span class="member-unit">（南京大学）</span>
+            </li>
+            <li>
+                <span class="member-name">姚培森</span>
+                <span class="member-unit">（浙江大学）</span>
+            </li>
+            <li>
+                <span class="member-name">李锭</span>
+                <span class="member-unit">（北京大学）</span>
+            </li>
+            <li>
+                <span class="member-name">林云</span>
+                <span class="member-unit">（上海交通大学）</span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="forum-section">
+        <h3>三、论坛安排</h3>
+        <h4>日程安排：</h4>
+        <p> <strong>时间：</strong>11月30日星期日 09:00-12:10</p>
+        <p> <strong>地点：</strong>武汉国际会议中心 二楼荆宵厅201</p>
+
+        <h4>论坛议程：</h4>
+        <table class="forum-table">
+            <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>题目</th>
+                    <th>报告嘉宾</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>09:00-09:30</td>
+                    <td>【特邀报告】PredicateFix：利用桥接谓词修复静态分析警报</td>
+                    <td>熊英飞<br>北京大学</td>
+                </tr>
+                <tr>
+                    <td>09:30-09:50</td>
+                    <td>面向安全修复生命周期的智能漏洞修复与补丁后向迁移研究</td>
+                    <td>慕冬亮<br>华中科技大学</td>
+                </tr>
+                <tr>
+                    <td>09:50-10:10</td>
+                    <td>Fuzzing JavaScript Engines by Fusing JavaScript and WebAssembly</td>
+                    <td>钱晨雄<br>香港大学</td>
+                </tr>
+                <tr>
+                    <td>10:10-10:30</td>
+                    <td>Novel Path Prioritization for Symbolic Execution via Path Cover</td>
+                    <td>佘东冬<br>香港科技大学</td>
+                </tr>
+                <tr>
+                    <td>10:30-10:50</td>
+                    <td>茶歇</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>10:50-11:10</td>
+                    <td>大模型驱动的软件漏洞治理</td>
+                    <td>张源<br>复旦大学</td>
+                </tr>
+                <tr>
+                    <td>11:10-11:30</td>
+                    <td>面向可信AI供应链的开源神经网络演化与复用安全分析</td>
+                    <td>薛吟兴<br>中科工业人工智能研究院</td>
+                </tr>
+                <tr>
+                    <td>11:30-11:50</td>
+                    <td>移动端视角下的物联网安全缺陷研究</td>
+                    <td>刁文瑞<br>山东大学</td>
+                </tr>
+                <tr>
+                    <td>11:50-12:10</td>
+                    <td>自动驾驶系统安全测试</td>
+                    <td>周远<br>浙江理工大学</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="forum-section">
+        <h3>四、论坛报告嘉宾简介</h3>
+        <div class="speaker-member">
+            <h4>1. 报告人：熊英飞 长聘副教授</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/熊英飞.png" alt="熊英飞头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>PredicateFix：利用桥接谓词修复静态分析警报</p>
+                    <p><strong>摘要：</strong>使用大语言模型（LLM）修复程序代码中的静态分析警报正日益普及且成效显著。然而，这类模型常存在“幻觉”问题，对于复杂和罕见警报的处理效果较差，限制了其应用效果。检索增强生成（RAG）技术试图通过为模型提供相关示例来解决该问题，但示例质量参差不齐的现状对现有方法的有效性提出了挑战。针对这一难题，本报告介绍如何利用分析规则中的谓词构建桥梁，将警报与代码库中的相关代码片段（称为关键示例）进行关联。基于此思路，我们提出了一种自动为警报检索关键示例的算法，并构建了名为PredicateFix的RAG流程，用于修复静态代码扫描工具的警报。本方法在CodeQL上实现，使用多种大语言模型的评估结果表明，PredicateFix可将正确修复数量提升27.1%∼72.5%，显著优于其他基线RAG方法。本方法也成功应用于中兴公司的Go语言静态检查工具，已经支撑16个实际项目的开发，相比之前的内部工具提升达72.5%。</p>
+                    <p><strong>简介：</strong>熊英飞于2009年从日本东京大学获得博士学位，2009-2011年在加拿大滑铁卢大学工作，2012年加入北京大学，现任新体制长聘副教授、软件研究所副所长。熊英飞的研究兴趣是程序设计语言和软件工程，特别是程序合成、修复、分析和验证。他的工作帮助产生了一系列不同规模的效果同期最优代码生成神经网络模型，如DeepSeek-Coder模型；大幅提升了缺陷修复的正确率、修复数量和修复效率；提出了最广泛使用的两大双向变换模型之一——基于差别的双向变换；成功自动求解大量算法问题，包括世界顶级算法竞赛中的问题。他的工作也被工业界采用，比如华为公司、中兴公司、新一代Linux内核配置项目等。他在OOPSLA担任副主席、ASE担任领域主席、IEEE TSE担任编委，PLDI、ICSE、FSE、OOPSLA、ASE、ISSTA等会议定期担任PC，5次在ICSE和FSE会议上获得杰出审稿人奖。他承担了优青、青年973、重点研发课题等科研项目。他获得国家技术发明一等奖（排名6）、电子学会自然科学一等奖（排名1）、CCF-IEEE CS青年科学家奖、MODELS十年最有影响力论文奖，5次获得ACM SIGSOFT/IEEE TCSE杰出论文奖，是ACM杰出会员和IFIP WG 2.4唯一来自中国的成员。</p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>2. 报告人：慕冬亮 副教授</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/慕冬亮.png" alt="慕冬亮头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>面向安全修复生命周期的智能漏洞修复与补丁后向迁移研究</p>
+                    <p><strong>摘要：</strong>在开源软件供应链安全治理的实践中，漏洞修复的自动化生成与后向迁移已成为关键支撑技术；而大型语言模型（LLM）的快速演进，为该技术的突破提供了核心驱动力。然而，现有工具仍存在明显局限：一方面，因缺乏有效的故障定位能力与自动化补丁验证机制，难以适配现实世界中端到端的应用需求；另一方面，人工执行后向迁移任务不仅强度高、效率低，现有自动化方法也因过度依赖预定义的语法或语义规则，普遍缺乏处理复杂补丁的灵活性。​为此，本文将介绍两款基于 LLM 的自动化工具 ——PatchAgent 与 PortGPT。它们可通过大模型智能体模拟安全专家的决策逻辑与操作流程，高效完成安全领域的复杂任务，为开源软件供应链的漏洞修复与后向迁移提供新的解决方案。</p>
+                    <p><strong>简介：</strong>华中科技大学网络空间安全学院副教授，武汉开源创新中心（开源安全）副主任，Linux内核Reviewer。慕老师长期从事软件与系统安全研究，在开源安全漏洞研究方面成果突出，并在国际会议上发表十余篇高质量论文。慕冬亮于2023年创立华中科技大学开放原子开源俱乐部，并指导建设“华中大内核贡献团队”，已向Linux内核社区提交超180个内核补丁。同时，慕老师还因Linux内核开源贡献还获得了2023 Google Open Source Peer Bounus奖项。</p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>3. 报告人：钱晨雄 助理教授</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/钱晨雄.png" alt="钱晨雄头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>Fuzzing JavaScript Engines by Fusing JavaScript and WebAssembly</p>
+                    <p><strong>摘要：</strong>JavaScript engines are a fundamental part of modern browsers, and many efforts have been invested in testing them to enhance their security. However, the incorporation of WebAssembly into JavaScript engines introduces new attack surfaces that have not received sufficient attention. Existing fuzzers for JavaScript engines primarily focus on JavaScript, neglecting WebAssembly code and its interactions with JavaScript. We introduce MAD-EYE, the first fuzzer that can test the JavaScript-WebAssembly interaction using a novel cross-language code fusion technique. Evaluations of MAD-EYE on V8, SpiderMonkey, and JavaScriptCore detected 21 previously unknown vulnerabilities, with 20 confirmed and 18 fixed and merged into mainstream browsers by the developers, who acknowledged our reports with vulnerability bounties.</p>
+                    <p><strong>简介：</strong>Dr. Chenxiong Qian is an Assistant Professor in the School of Computing and Data Science at The University of Hong Kong, where he leads the System Security Lab. His research focuses on designing and building secure computer systems, drawing upon methodologies from programming languages, software engineering, operating systems, and artificial intelligence. He received his Ph.D. in Computer Science from the Georgia Institute of Technology and his Bachelor&#39;s degree in Software Engineering from Nanjing University.</p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>4. 报告人：佘东冬 助理教授</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/佘东冬.png" alt="佘东冬头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>Novel Path Prioritization for Symbolic Execution via Path Cover</p>
+                    <p><strong>摘要：</strong>Symbolic execution is an essential program analysis technique to formally reason program behaviors and detect software vulnerabilities. Despite its effectiveness, symbolic execution has an inherent limitation: path explosion. Path explosion occurs when symbolic execution encounters an overwhelming number (exponential to the program size) of paths. Traditional approaches rank the vast number of paths with heuristic-based weights. However, they often fail to be generalized to diverse programs. In this talk, I will introduce our recent work, Empc (IEEE S&amp;P’25, Distinguished Paper Award), a novel path prioritization technique for symbolic execution. We compute a path cover, i.e., a minimal subset of paths that can cover all code blocks, then only search and schedule within the minimal path cover instead of the vast number of all possible paths. By reducing the path search space, Empc can significantly boost symbolic execution performance.</p>
+                    <p><strong>简介：</strong>Dongdong She is an assistant professor at the Hong Kong University of Science and Technology, CSE department. He obtained his PhD from the CS department at Columbia University. Before Columbia, He earned his M.S. from UC Riverside and B.S. from Huazhong University of Science and Technology. He is broadly interested in security and machine learning. He is particularly interested in applying data-driven approaches (e.g., LLM, ML, optimization) to solve traditional security problems. His current project include LLM security and LLM for traditional security problem. His work has won distinguished paper awards in IEEE S&amp;P , ISSTA, the best paper runner-up award in CCS and CSAW applied research award finalist.</p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>5. 报告人：张源 教授</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/张源.png" alt="张源头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>大模型驱动的软件漏洞治理</p>
+                    <p><strong>摘要：</strong>软件漏洞治理涉及漏洞挖掘、修复等环节，其核心在于高质量的漏洞数据和高效能的程序分析技术。本次报告将从漏洞数据增强、零天漏洞检测、已知漏洞修复三个方面介绍如何利用大模型技术赋能软件漏洞治理，具体包括：利用大模型对海量漏洞数据库进行关联挖掘及信息补全，构建大规模高质量漏洞数据库；建立大模型代码语义理解与传统程序分析的协同机制，形成高效能的智能化代码分析技术，赋能零天漏洞检测；结合代码上下文与语法约束建模，实现大模型赋能的漏洞补丁自动化部署，构建全生命周期的漏洞治理能力。</p>
+                    <p><strong>简介：</strong>张源，复旦大学教授，博士生导师，国家级青年人才，主要研究方向为软件安全，研究工作获USENIX Security 2022杰出论文奖、ACM SIGSOFT 2024杰出论文奖、IEEE S&amp;P 2025杰出论文奖，部分研究成果应用于华为、阿里、OPPO、vivo等公司，获华为优秀技术成果奖、阿里巴巴优秀技术合作项目、OPPO产学研优秀合作伙伴、vivo最佳安全技术合作伙伴奖。带领复旦白泽战队获得国内外顶尖安全攻防赛事20余次冠军，发现大量真实软硬件系统高危漏洞，获2021年国家信息安全漏洞库最具价值漏洞奖。</p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>6. 报告人：薛吟兴 研究员</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/薛吟兴.png" alt="薛吟兴头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>面向可信AI供应链的开源神经网络演化与复用安全分析</p>
+                    <p><strong>摘要：</strong>随着神经网络在智能系统中的广泛应用，AI 软件供应链的安全与可信问题日益凸显。开源社区中神经网络项目的快速增长带来了依赖复杂、演化迅速等特征，使传统 SBOM 框架难以适用。为此，本研究提出 NNBOM（Neural Network Bill of Materials），构建覆盖 55,997 个 PyTorch 仓库的神经网络材料清单数据库，系统刻画了开源 AI 软件在组件规模、复用模式与跨域依赖方面的演化规律，并开发了多仓库演化分析与单仓库组件评估原型系统，为 AI 供应链的依赖透明化与可信治理提供基础支撑。在此基础上，研究进一步提出 NNReuse 框架，针对 20,000 个开源项目识别三类神经网络结构代码复用模式，发现 55.6% 的项目存在结构级重用且 64.3% 可能涉及许可证冲突，揭示了开源生态中的合规风险。综合来看，本报告从 NNBOM 与 NNReuse 两个视角出发，探讨了 AI 供应链在依赖追踪与代码合规方面的安全挑战，为构建可追溯、可监管的可信 AI 供应链提供了实证依据与方法框架。</p>
+                    <p><strong>简介：</strong>薛吟兴，现为中科工业人工智能研究院研究员，主要研究领域为软件安全。博士毕业于新加坡国立大学，其后在新加坡国立大学、南洋理工大学淡马锡实验室从事新加坡国防项目研究。2018年由中国科学院人才计划和安徽省人才计划引进回国加入中科大，2025加入中科工业人工智能研究院。先后主持国家重点研发计划课题、国家自然科学基金面上项目、安徽省科技重大专项等国家和省部级项目 6 项；牵头推进两项智能网联车ISO/ITU国际标准，其中已成功立项一项ITU标准、一项IEEE标准。 近六年以一作/通讯作者发表CCF A类论文20余篇，两次获得ACM SIGSOFT杰出论文奖。</p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>7. 报告人：刁文瑞 教授</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/刁文瑞.png" alt="刁文瑞头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>移动端视角下的物联网安全缺陷研究</p>
+                    <p><strong>摘要：</strong>本报告以“应用到设备（App-to-Thing）”为视角，探讨移动端如何揭示物联网设备中的安全缺陷。随着物联网设备的大规模部署，其安全性问题日益受到关注。现代智能物联网设备通常配套移动应用程序（IoT Companion App），以提供远程控制和管理功能。而这些配套应用也为安全分析提供了新的切入点，使研究者在无需获取固件镜像的情况下，能够对设备行为进行安全分析。报告将结合实际研究工作，介绍相关探索与进展，包括利用配套应用对物联网设备进行模糊测试、揭示设备蓝牙协议实现中的配置错误，以及分析设备固件更新流程中的信息泄露问题等。通过这些示例，展示移动端视角在物联网安全研究中的可行性与实践价值。</p>
+                    <p><strong>简介：</strong>刁文瑞，山东大学网络空间安全学院教授、博士生导师，入选山东省泰山学者青年专家、小米青年学者，博士毕业于香港中文大学。研究方向为软件与系统安全，特别是移动生态与物联网系统安全，致力于自动化漏洞挖掘与分析。研究成果发表于IEEE S&amp;P、USENIX-SEC、ACM CCS、NDSS、ASE、ICSE等系统安全与软件工程领域顶级国际学术会议，所识别的安全漏洞多次获得Google、华为、小米等厂商的官方致谢。曾获ACM CCS 2024杰出论文奖、Cybersecurity Award 2025最佳实践论文奖、ACM SIGSAC中国新星奖等学术荣誉。受邀担任USENIX-SEC、ACM CCS、IEEE EuroS&amp;P等知名国际学术会议程序委员会委员。研究团队在多个安全竞赛中表现优异，曾获得DataCon 2024大数据安全分析竞赛AI安全赛道亚军、软件供应链安全赛道季军等奖项。</p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>8. 报告人：周远 研究员</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/周远.png" alt="周远头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>自动驾驶系统安全测试</p>
+                    <p><strong>摘要：</strong>自动驾驶系统作为典型的安全攸关系统，其可靠性验证是实际部署的关键前提。然而，实际道路测试面临场景覆盖不足、成本高昂等瓶颈问题，基于场景的仿真测试已成为系统性评估自动驾驶安全性能的核心手段。当前测试面临的主要挑战在于：开放道路环境的高维复杂性---天气条件、交通流和车辆行为等多重因素相互耦合，导致场景空间呈现指数级增长，如何高效生成多样化的失效场景成为亟待解决的难题。本报告将系统介绍我们在自动驾驶安全测试领域的系列研究成果，主要包括四个方面：第一，提出了一种面向自动驾驶系统的安全测试描述语言，实现场景与测试规约的高效形式化定义；第二，设计了基于地图拓扑结构的测试生成技术，系统性评估自动驾驶系统在不同道路几何结构下的性能表现；第三，构建了基于多维度场景度量体系的测试方法，实现多样化失效场景的高效生成；第四，面向决策模块鲁棒性验证，开发针对性的测试技术。上述研究为自动驾驶系统的全面安全验证提供了理论基础与技术支撑。</p>
+                    <p><strong>简介：</strong>周远，浙江理工大学研究员，入选浙江省省级引才计划。2019年获新加坡南洋理工大学博士学位，曾在新加坡南洋理工大学和管理大学从事博士后研究。研究方向为自主智能无人系统（机器人系统、自动驾驶系统、具身智能）安全。主持国家自然科学基金面上项目1项；作为技术负责人，完成多项由新加坡国防部、新加坡教育部、大陆集团和德赛西威等机构资助的科研项目。发表国内外高水平期刊和会议论文50余篇，其中以第一作者或者通讯作者发表SCI一区论文和CCF A类论文20余篇；相关成果在德赛西威、蔚来、阿里巴巴和百度等企业的自动驾驶系统上进行了实际应用，显著提升了自动驾驶系统的安全性和可靠性。获ACM SIGSOFT杰出论文奖（ASE 2024）、2024年世界机器人大会最佳论文提名奖、IEEE ISPA 2021最佳创新论文奖等。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="forum-section">
+        <h3>五、论坛组织委员会简介</h3>
+        <div class="committee-member">
+            <h4>1. 论坛主席：时清凯 副教授</h4>
+            <div class="committee-profile">
+                <div class="committee-image">
+                    <img src="./images/academic-forum/时清凯.png" alt="时清凯头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <p><strong>简介：</strong>南京大学计算机学院副教授，博士生导师，紫金学者，国家级高层次青年人才，2020年于香港科技大学获得博士学位，曾任源伞科技联合创始人、蚂蚁集团技术专家、美国普渡大学博士后研究员，目前主要从事编译技术及基于编译的软件安全技术研究，其研究成果广泛发表于程序设计语言（如PLDI，OOPSLA）、软件工程（如ICSE，ESEC/FSE）、网络安全（如SP，CCS）等领域的CCF A类会议或期刊，其中第一作者论文10篇，并受邀担任相关会议审稿人，曾获ACM SIGSOFT杰出论文奖2次、ACM SIGPLAN杰出论文奖2次、Google论文奖、Hong Kong Ph.D. Fellowship,曾三次参加全国软件大会原型竞赛均获一等奖。其研究成果广泛应用于诸如蚂蚁、华为等高新技术企业，已帮助企业识别数百个高危漏洞。</p>
+            </div>
+        </div>
+        <div class="committee-member">
+            <h4>2. 论坛主席：姚培森 研究员</h4>
+            <div class="committee-profile">
+                <div class="committee-image">
+                    <img src="./images/academic-forum/姚培森.png" alt="姚培森头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <p><strong>简介：</strong>浙江大学计算机学院&#34;百人计划&#34;研究员，博导，CCF形式化方法专委、理论计算机科学专委执行委员，ACM SIGPLAN、SIGSAC会员，入选国家级青年人才计划。研究方向为编程语言(程序分析与验证、程序合成与优化)、数理逻辑(自动定理证明)、软件安全(漏洞挖掘)。相关成果发表于编程语言(PLDI, OOPSLA)、软件工程(ICSE, FSE, ISSTA, ASE, TOSEM)、信息安全(S&amp;P, USENIX Security, TDSC)、计算机系统(ASPLOS)等领域的CCF-A会议或期刊，获OOPSLA杰出论文奖、ISSTA杰出论文奖等奖项。担任相关领域顶级会议(如POPL, PLDI, OOPSLA, CCS, ISSTA)程序委员会委员。</p>
+            </div>
+        </div>
+        <div class="committee-member">
+            <h4>3. 论坛主席：李锭 助理教授</h4>
+            <div class="committee-profile">
+                <div class="committee-image">
+                    <img src="./images/academic-forum/李锭.png" alt="李锭头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <p><strong>简介：</strong>北京大学计算机学院助理教授，博导，CCF系统软件专委执行委员，入选国家级青年人才计划。研究方向为系统安全和程序分析。相关成果发表于信息安全（S&amp;P，CCS， Usenix Security， NDSS， TDSC）、软件工程（ICSE， FSE， ISSTA， ASE） 、操作系统（RTSS）等多个领域的CCF-A类会议或期刊，获ISSTA杰出论文奖、ISSTA最有影响力论文奖等论文奖项，CCF-腾讯犀牛鸟创意基金卓创奖、NEC优秀发明奖、NEC商业贡献奖等工业界奖项。多次担任CCF-A类会议（如CCS，ASE等）的程序委员会委员。</p>
+            </div>
+        </div>
+        <div class="committee-member">
+            <h4>4. 论坛主席：林云 副教授</h4>
+            <div class="committee-profile">
+                <div class="committee-image">
+                    <img src="./images/academic-forum/林云.png" alt="林云头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <p><strong>简介：</strong>上海交通大学计算机系副教授，系主任助理，博士生导师，原新加坡国立大学助理教授（研究岗），入选国家海外高层次青年人才计划，毕业于复旦大学计算机学院获得博士学位。研究工作包括自动化代码编程、测试与调试、模型训练的可视化解释与调试、欺诈信息检测等。发表国际顶级会议和期刊发表论文近50篇，获ICSE2018杰出论文奖。担任PRDC2023国际会议程序委员会联合主席，ICSE、FSE、USENIX Security等重要国际会议的程序委员会委员。主持国家基金委海外优青项目、华为x-explore人才基金，以及多项校企合作并落地。</p>
+            </div>
+        </div>
+    </section>
+</div>

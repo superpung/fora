@@ -1,0 +1,265 @@
+<div class="container">
+
+    <h2 class="section-title">形式化方法与大模型技术</h2>
+    <div class="section-title-en">学术论坛 R27</div>
+
+    <section class="forum-section">
+        <h3>一、论坛介绍</h3>
+        <p>形式化方法在传统领域如安全关键任务软件工程、嵌入式系统、网络安全等领域中已有广泛应用，为确保系统正确性和可靠性提供了数学上的严格保障。当下，大模型的蓬勃发展为形式化方法提供了新的机遇。一方面，大模型强大的文本处理、计算和推理能力能够有效提升形式化建模和验证的效率，推动形式化方法在更多领域的广泛应用，为复杂系统的开发和验证提供有力支持；另一方面，形式化方法通过严格的数理逻辑方法，有望为大模型的安全性、可靠性、可解释性和可信性提供更高级别的安全保障，确保大模型在金融、医疗、自动驾驶、系统开发等高安全要求领域的可靠落地，从而促进大模型技术及产业的健康、安全、可持续发展。
+        </p>
+        <p>本论坛旨在推动形式化方法与大模型的深度融合，催生新型验证理论，为企业提供更加可落地的验证工具与方法论；同时，推动形式化方法在大模型及其应用可信保障上的系统应用，助力构建社会公众对人工智能的信任，支撑数字经济的可持续发展。
+        </p>
+    </section>
+
+    <section class="forum-section">
+        <h3>二、论坛组织委员会</h3>
+        <ul class="committee-list">
+            <li>
+                <span class="member-name">王竟亦</span>
+                <span class="member-unit">（浙江大学）</span>
+            </li>
+            <li>
+                <span class="member-name">曹嘉伦</span>
+                <span class="member-unit">（香港科技大学）</span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="forum-section">
+        <h3>三、论坛安排</h3>
+        <h4>日程安排：</h4>
+        <p> <strong>时间：</strong>11月30日星期日 09:00-12:30</p>
+        <p> <strong>地点：</strong>武汉国际会议中心 二楼荆汇厅V20</p>
+
+        <h4>论坛议程：</h4>
+        <table class="forum-table">
+            <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>题目</th>
+                    <th>报告嘉宾</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>09:00-09:05</td>
+                    <td>开场介绍</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>09:05-09:35</td>
+                    <td>Abstraction is a key: Incorporating and Evaluating LLMs on<br> Natural Language Requirements to
+                        Verifiable Formal Proofs</td>
+                    <td>Shing-Chi Cheung<br>Hong Kong University of Science and Technology</td>
+                </tr>
+                <tr>
+                    <td>09:35-10:05</td>
+                    <td>Formal Methods for AI Agent Safety</td>
+                    <td>孙军<br>新加坡管理大学</td>
+                </tr>
+                <tr>
+                    <td>10:05-10:35</td>
+                    <td>大模型+形式化验证: 筑牢软件智能验证的基石</td>
+                    <td>田聪<br>西安电子科技大学</td>
+                </tr>
+                <tr>
+                    <td>10:35-10:55</td>
+                    <td>茶歇</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>10:55-11:25</td>
+                    <td>Linking Symbolic Reasoning and Neural Computing<br> via Abstraction</td>
+                    <td>张民<br>华东师范大学</td>
+                </tr>
+                <tr>
+                    <td>11:25-11:55</td>
+                    <td>Automata-Based Steering of Large Language Models for<br> Diverse Structured Generation</td>
+                    <td>孙猛<br>北京大学</td>
+                </tr>
+                <tr>
+                    <td>11:55-12:25</td>
+                    <td>大规模代码自动验证探索：潜在错误引导的规约生成框架</td>
+                    <td>李昊坤<br>华为</td>
+                </tr>
+                <tr>
+                    <td>12:25-12:30</td>
+                    <td>会议总结与闭幕</td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="forum-section">
+        <h3>四、论坛报告嘉宾简介</h3>
+        <div class="speaker-member">
+            <h4>1. 报告人：Shing-Chi Cheung 教授</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/shing-chi-cheung.png" alt="shing-chi cheung头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>Abstraction is a key: Incorporating and Evaluating LLMs on Natural Language
+                        Requirements to Verifiable Formal Proofs</p>
+                    <p><strong>摘要：</strong>随着 DeepSeek-R1 的流行与 AI4Math
+                        研究的深入，大模型在辅助形式化证明写作方面的需求日益增长。作为数学推理最直接的应用场景，形式化推理与验证也获得持续关注。然而，近期的形式化推理大模型大多只针对单一形式化语言模型，缺乏对多形式化语言、多形式化任务场景的深度探索。
+                        为了探索这个问题，我们首先对形式化验证任务进行了分层拆解，从非形式化的自然语言输入到可验证的形式化证明或可检测的模型；将传统的端到端形式化验证流程细化为六个子任务，包括验证需求分解、形式化规约片段生成、规约补全、填空，以及代码到形式化规约的自动生成。此外，我们进一步探索了形式化数据微调对大模型数学、推理和编程等任务上的迁移能力。通过对比微调前后在上述任务上的表现差异，以验证大模型能否通过形式化验证能力训练中习得推理、数学等元能力。最后，报告还将介绍对程序行为建模的初步探索。
+                    </p>
+                    <p><strong>简介：</strong>Professor Shing-chi Cheung from the Hong Kong University of Science and
+                        Technology specializes in leveraging advanced testing methodologies, artificial intelligence
+                        technologies, and empirical research techniques to identify, diagnose, and repair faults in
+                        reliable and intelligent software systems. He holds the prestigious titles of lEEE Fellow and
+                        Chair Professor. He is supervising 14 doctoral students. Professor Cheung&#39;s contributions to
+                        software engineering are well-recognized, with papers widely presented at leading academic
+                        conferences and six ACM SIGSOF&#39;T Outstanding Paper Awards in the last decade. He ranks among
+                        the top ten scholars in terms of publications at the premier conferences ICSE and ESEC/FSE. In
+                        1998, Professor Cheung introduced Metamorphic Testing, which has since emerged as a leading
+                        testing methodology in artificial intelligence system testing. Recently, with the advancement
+                        and successful deployment of large language models in software testing, Professor Cheung has
+                        also made significant contributions to the field of intelligent software testing.</p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>2. 报告人：孙军 教授</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/孙军.png" alt="孙军头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>Formal Methods for AI Agent Safety</p>
+                    <p><strong>摘要：</strong>AI agents are rapidly being deployed across a wide range of domains,
+                        including safety-critical applications. Unlike static LLMs, these agents can directly interact
+                        with and modify the real world—making AI safety not just a theoretical concern but an immediate
+                        and tangible one. However, unlike traditional software systems, AI agents operate through
+                        dynamically generated workflows, rendering conventional formal methods based on fixed execution
+                        paths insufficient. This raises a pressing question: if safety must be assured, how can we
+                        achieve it? In this talk, I will present our recent efforts toward ensuring the safety of AI
+                        agents and discuss several fundamental challenges that lie ahead.</p>
+                    <p><strong>简介：</strong>Jun Sun is a Professor at Singapore Management University. He earned his
+                        Bachelor’s and Ph.D. degrees in Computer Science from the National University of Singapore in
+                        2002 and 2006, respectively, and has been a faculty member since 2010. Professor Sun’s research
+                        interests span formal methods, AI safety, and software engineering. He is passionate about
+                        designing algorithms to solve challenging real-world problems and is equally devoted to enjoying
+                        life. He has published extensively in top venues. For more information, please visit his
+                        website: https://sunjun.site.</p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>3. 报告人：田聪 教授</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/田聪.png" alt="田聪头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>大模型+形式化验证: 筑牢软件智能验证的基石</p>
+                    <p><strong>摘要：</strong>本报告将介绍形式化方法在软件可信保障中的研究进展，包括可信验证理论体系、嵌入式中断与并发程序验证、EDA
+                        工具链验证、智能软件与神经网络的安全性和鲁棒性分析，以及AI赋能形式化验证的最新研究进展。报告将重点探讨这些方法在航空航天、控制、任务调度和自主决策等关键环节中的应用潜力。</p>
+                    <p><strong>简介：</strong>田聪，西安电子科技大学，二级教授，国家级领军人才。长期从事可信软件、形式化验证理论与方法研究，在LICS、CAV、ICSE、FSE、ASE、IJCAI、ISSTA、TOSEM、TSE、软件学报等国内外顶级期刊和会议发表论文200余篇；主持国家自然科学基金重大课题、重点和优青项目、科技部重点研发计划课题、军委装备发展部等项目十余项；担任计算机学会形式化方法专委会副主任，获中创软件人才奖、教育部自然科学一等奖1项、陕西省科学技术一等奖2项；相关研究成果应用于航天控制软件开发和芯片设计EDA软件验证等领域。
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>4. 报告人：张民 教授</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/张民.png" alt="张民头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>Linking Symbolic Reasoning and Neural Computing via Abstraction</p>
+                    <p><strong>摘要：</strong>This talk focuses on bridging symbolic reasoning and neural computing — two
+                        core paradigms in AI — via abstraction. It first notes their inherent trade-offs: symbolic
+                        reasoning excels at interpretable logical deduction but struggles with noisy real-world data,
+                        while neural computing handles complex data well yet lacks transparency and abstract reasoning.
+                        The key challenge of integrating them is then highlighted, with abstraction introduced as the
+                        critical solution. The talk explains abstraction’s dual roles: it enhances symbolic reasoning by
+                        simplifying knowledge representation for flexible deduction, and enables neural computing to
+                        learn high-level abstract features beyond raw data patterns. Specific integration mechanisms
+                        (e.g., neuro-symbolic machines) are outlined, where abstraction converts symbolic rules into
+                        neural-processable vectors and translates neural-learned patterns into interpretable symbols.
+                    </p>
+                    <p><strong>简介：</strong>张民是华东师范大学软件工程学院的教授，上海市高可信计算重点实验室主任，同时也是中国计算机学会形式化方法专委会副主任。他于 2011
+                        年在日本北陆先端科学技术大学院大学获得博士学位，2014
+                        年回国加入华东师范大学。他的研究兴趣主要集中在安全关键系统的形式化方法上，包括实时嵌入式系统和人工智能驱动的系统。最近，他专注于智能系统的形式化验证以及基于形式化验证的可信智能控制系统训练与开发。
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>5. 报告人：孙猛 教授</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/孙猛.png" alt="孙猛头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>Automata-Based Steering of Large Language Models for Diverse Structured
+                        Generation</p>
+                    <p><strong>摘要：</strong>Large language models (LLMs) are increasingly tasked with generating
+                        structured outputs. While structured generation methods ensure validity, they often lack output
+                        diversity, a critical limitation that we confirm in our preliminary study. We propose a novel
+                        method to enhance diversity in automaton-based structured generation. Our approach utilizes
+                        automata traversal history to steer LLMs towards novel structural patterns. Evaluations show our
+                        method significantly improves structural and content diversity while maintaining comparable
+                        generation efficiency. Furthermore, we conduct a case study showcasing the effectiveness of our
+                        method in generating diverse test cases for testing open-source libraries.</p>
+                    <p><strong>简介：</strong>孙猛，北京大学数学科学学院信息与计算科学系教授，博士生导师，
+                        CCF形式化方法专委执行委员，CCF区块链专委执行委员，CSIAM区块链专委常务委员，CSIAM金融科技与算法专委常务委员，CAAI人工智能逻辑专委委员。主要研究领域包括程序理论、软件形式化方法、信息物理系统、深度学习、区块链与智能合约，主持及作为主要成员参与国家自然科学基金、重点研发计划等国家及省部级项目十余项，在TSE、TDSC、ICSE、FSE、NeuIPS、ICML、AAAI、FM等期刊及会议发表论文150余篇，获FSE2025、SBMF2017、TASE2015、AMAST2004等国际会议最佳/杰出论文奖，曾任ICFEM2024、FACS2024、TASE2023、ICFEM2018、TTSS2011、FACS2009等国际会议程序委员会主席及FM、TACAS等多个国际会议程序委员会委员。
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>6. 报告人：李昊坤 华为主任工程师 形式化方法专家</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/李昊坤.png" alt="李昊坤头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>大规模代码自动验证探索：潜在错误引导的规约生成框架</p>
+                    <p><strong>摘要：</strong>在形式化方法的发展中，如何实现大规模程序的自动化验证始终是关键挑战。传统演绎验证依赖人工编写的形式规约，这不仅是工业级应用中的主要成本来源，也成为限制验证规模扩展的核心瓶颈。近年来，大语言模型（LLM）为规约自动生成带来了新的契机，但仍受到上下文长度限制与跨过程语义推理困难等问题的制约。
+                    </p>
+                    <p><strong>简介：</strong>李昊坤，2022年获北京大学博士学位，现于华为2012可信费马实验室形式化方法专家，参与多个重要的形式化验证项目。主要研究方向为符号计算，定理证明及程序验证。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="forum-section">
+        <h3>五、论坛组织委员会简介</h3>
+        <div class="committee-member">
+            <h4>1. 论坛主席：王竟亦 研究员</h4>
+            <div class="committee-profile">
+                <div class="committee-image">
+                    <img src="./images/academic-forum/王竟亦1.png" alt="王竟亦头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <p><strong>简介：</strong>浙江大学研究员，长期从事形式化方法与安全，可信人工智能和智能软件工程等方向研究。在相关领域国际顶级会议和期刊如S&amp;P、CCS、ICSE、WWW、FM、TACAS等发表论文多篇，获得了两次ACM
+                    SIGSOFT杰出论文奖（ICSE 2018和ICSE 2020)，并入选ACM SIGSOFT Research Highlights。受邀担任ICFEM
+                    2025程序委员会主席，CCS、ICSE、ASE、ISSTA、ATVA等程序委员会委员及TSE、TOSEM、TDSC等审稿人。主持了国家重点研发子课题、浙江省
+                    “尖兵”课题、NSFC青年基金、CCF-华为胡杨林基金、蚂蚁金服/华为产业课题等。获2024年中国指挥与控制学会科技进步一等奖。</p>
+            </div>
+        </div>
+        <div class="committee-member">
+            <h4>2. 论坛主席：曹嘉伦 研究助理教授</h4>
+            <div class="committee-profile">
+                <div class="committee-image">
+                    <img src="./images/academic-forum/曹嘉伦.png" alt="曹嘉伦头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <p><strong>简介：</strong>香港科技大学研究助理教授，长期从事人工智能测试，智能软件开发、测试与验证等方向的研究。在相关领域国际顶级会议和期刊如 ICSE、ESEC/FSE、CAV、ASE、USENIX
+                    Security 等发表多篇论文，获得2025年ACM SIGSOFT Outstanding Doctoral Dissertation
+                    Award。受邀担任ICSE、FSE、ASE等国际顶级会议的程序委员会委员，及TOSEM、TSE、EmSE、TKDD、TMC等国际顶级期刊审稿人。</p>
+            </div>
+        </div>
+    </section>
+</div>

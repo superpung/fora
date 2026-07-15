@@ -14,7 +14,8 @@ web/dist/
 web/.vite/
 *.local
 
-# 抓取产物：大体积二进制不入库（可由 source/fetch_all.py 确定性重拉）
+# Crawl artifacts: large binaries stay out of the repo (deterministically
+# re-fetchable via source/fetch_all.py). The parsed HTML/JSON is committed.
 source/raw/images/
 source/raw/files/
 source/tiles/

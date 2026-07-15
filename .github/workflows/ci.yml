@@ -23,9 +23,11 @@ jobs:
         # If a rerun changes anything, the committed dataset (or the web copy) is
         # stale / was hand-edited — fail so the two can never silently drift.
         run: |
-          uv run python source/build_dataset.py
+          uv run python source/build_dataset.py            # ccfchip2026 (+ manifest)
+          uv run python source/chinasoft2025/build.py       # chinasoft2025 (from committed raw/)
+          uv run python source/build_manifest.py            # manifest across all conferences
           if ! git diff --quiet -- data/ 'web/src/data/conferences/' web/src/data/manifest.json; then
-            echo "::error::Dataset out of sync — run 'python source/build_dataset.py' and commit the result."
+            echo "::error::Dataset out of sync — rerun the build scripts and commit the result."
             git --no-pager diff -- data/ 'web/src/data/conferences/' web/src/data/manifest.json
             exit 1
           fi
