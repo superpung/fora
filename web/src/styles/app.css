@@ -329,7 +329,7 @@ svg { display: block; }
 .frow.is-open .frow__row { background: var(--bg-subtle); }
 /* body stacks: code + title (heading line), then room · category (metadata
    below the heading, per the AGENTS.md rule), then the speaker line. */
-.frow__body { grid-area: body; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.frow__body { grid-area: body; min-width: 0; display: flex; flex-direction: column; gap: 5px; }
 .frow__title { display: flex; align-items: baseline; gap: 8px; min-width: 0; font-size: 14px; font-weight: 500; line-height: 1.45; letter-spacing: -0.005em; }
 .frow__titletext { min-width: 0; }
 .frow__code { flex: none; font-family: var(--font-mono); color: var(--fg-secondary); font-weight: 500; font-size: 12.5px; }
@@ -338,9 +338,8 @@ svg { display: block; }
 .frow__rc { display: flex; align-items: center; flex-wrap: wrap; gap: 2px 10px; min-width: 0; }
 .frow__room { display: inline-flex; align-items: center; gap: 3px; font-family: var(--font-mono); color: var(--fg-secondary); font-size: 12.5px; white-space: nowrap; }
 .frow__room svg { flex: none; color: var(--fg-muted); }
-/* meta (sponsor · N 报告) lives in the actions cluster, vertically centred with
-   the buttons; report count stays rightmost, sponsor to its left. */
-.frow__meta { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 2px 12px; margin-right: 6px; }
+/* sponsor (企业信息) and report count sit inline on the metadata line, to the
+   right of room · category — not off in the far-right actions cluster. */
 .frow__sponsor { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: var(--blue-fg); font-weight: 500; white-space: nowrap; }
 .frow__count { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: var(--fg-secondary); white-space: nowrap; }
 .frow__count svg { color: var(--fg-muted); }
@@ -358,7 +357,7 @@ svg { display: block; }
 /* speakers stay on a single line regardless of width: extras are clipped with a
    soft right fade (the full list is on the forum page / when the row expands) */
 .frow__people {
-  display: flex; align-items: center; flex-wrap: nowrap; gap: 2px 14px; margin-top: 8px;
+  display: flex; align-items: center; flex-wrap: nowrap; gap: 2px 14px;
   /* clip overflowing authors on the right, but leave 3px below so the hover
      underline (bottom: -1px on .pauthor) isn't clipped away by overflow */
   overflow: hidden; padding-bottom: 3px; margin-bottom: -3px;

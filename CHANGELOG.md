@@ -4,7 +4,23 @@ All notable changes to this project. The project is unversioned (no release
 tags yet), so entries are grouped by date, newest first. Written in English per
 the repository language rule (see AGENTS.md).
 
-## 2026-07-15 — Timeline hover reveal in sync + longer accent bar
+## 2026-07-15 — David Lo bio restored + dashboard forum-row meta on line 2
+
+### Fixed
+- **S8 chair David Lo lost his bio in the earlier merge.** The split fragment
+  that was deleted ("David" / "Lo 教授") was the row that actually carried the
+  343-char bio; the kept "David Lo" row had none. Recovered the bio and attached
+  it to the merged entry.
+
+### Changed
+- **Dashboard forum-row meta moved onto the metadata line.** The report count
+  ("N 报告" / "详情待补") and sponsor (企业信息) were pinned to the far-right actions
+  cluster; they now sit inline on the second line, to the right of room ·
+  category. The right cluster keeps just the star / enter / caret buttons.
+- **Evened out the forum row's three-line spacing.** The speaker line carried an
+  extra `margin-top: 8px` on top of the body's 3px gap, so line 2→3 was ~11px vs
+  line 1→2 at 3px (the gap you flagged). Removed the extra margin and set a
+  uniform 5px rhythm across all three lines.
 
 ### Fixed
 - **Timeline card hover no longer jumps on grow/shrink.** The hover flipped
