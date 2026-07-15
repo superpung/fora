@@ -509,11 +509,15 @@ svg { display: block; }
 .tgrid__cbody { position: relative; }
 .tgrid__line { position: absolute; left: 0; right: 0; height: 1px; background: var(--border); opacity: 0.55; }
 .tgrid__talk {
-  position: absolute; left: 3px; right: 3px; display: flex; flex-direction: column; gap: 1px;
+  position: absolute; left: 3px; right: 3px; z-index: 0; display: flex; flex-direction: column; gap: 1px;
   padding: 3px 7px 3px 11px; overflow: hidden; background: var(--bg-subtle);
   border: 1px solid var(--border); border-radius: var(--radius-sm);
+  /* z-index change is delayed by the animation duration so that when the mouse
+     leaves, the card stays raised for the whole collapse (otherwise it drops
+     behind the next opaque card the instant hover ends and appears to snap
+     shorter). Hover overrides this to raise immediately — see :hover below. */
   transition: height 0.22s ease-in-out, background 0.22s ease-in-out,
-    box-shadow 0.22s ease-in-out, border-color 0.22s ease-in-out;
+    box-shadow 0.22s ease-in-out, border-color 0.22s ease-in-out, z-index 0s linear 0.22s;
 }
 /* Accent bar: an inset vertical strip whose ends reach the point where the card's
    rounded corner begins (top/bottom inset == the corner radius) so it runs the
@@ -528,9 +532,9 @@ svg { display: block; }
    fits and the fade signals "there's more, hover to see it". Over a cell with
    room to spare the gradient runs bg→bg and is invisible. */
 .tgrid__talk::after {
-  content: ""; position: absolute; left: 12px; right: 1px; bottom: 1px; height: 15px;
-  background: linear-gradient(to bottom, transparent, var(--bg-subtle));
-  border-radius: 0 0 var(--radius-sm) 0; pointer-events: none;
+  content: ""; position: absolute; left: 4px; right: 1px; bottom: 0; height: 15px;
+  background: linear-gradient(to bottom, transparent, var(--bg-subtle) 60%);
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm); pointer-events: none;
 }
 /* Compressed cells reveal everything on hover: the cell grows to fit its full
    content and floats over the row below. It stays UNDER the sticky time gutter
@@ -542,6 +546,10 @@ svg { display: block; }
   height: auto !important; z-index: 5;
   background: var(--bg-hover); border-color: var(--border-strong);
   box-shadow: 0 3px 10px color-mix(in srgb, #000 7%, transparent);
+  /* raise immediately on hover (no z-index delay) so the card grows above its
+     neighbours from the first frame; the delayed drop lives on the base rule. */
+  transition: height 0.22s ease-in-out, background 0.22s ease-in-out,
+    box-shadow 0.22s ease-in-out, border-color 0.22s ease-in-out, z-index 0s;
 }
 .tgrid__talk:hover::after { display: none; }
 .tgrid__ttime { font-size: 10.5px; line-height: 1.35; color: var(--fg-muted); white-space: nowrap; }
