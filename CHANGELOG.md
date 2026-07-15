@@ -4,6 +4,21 @@ All notable changes to this project. The project is unversioned (no release
 tags yet), so entries are grouped by date, newest first. Written in English per
 the repository language rule (see AGENTS.md).
 
+## 2026-07-15 — i18n (zh/en) with localStorage, same URL for every language
+
+### Added
+- **Bilingual UI (中文 / English) with a language toggle in the nav & hub.** A
+  lightweight custom i18n (`i18n-store` + `I18nProvider` + a `t()` with `{var}`
+  interpolation) — no dependency, matching the existing theme/follow stores. The
+  choice persists to `localStorage` (`cs-lang`) and defaults from
+  `navigator.language`; the URL never changes (every language shares one URL), so
+  it's state-based i18n, not path/subdomain-based. Dates and structural labels
+  (weekday, period, block kind, org role, speaker category) are locale-aware.
+- Only UI chrome is translated. Conference **content** (forum titles, speaker
+  names, affiliations, bios, descriptions) comes from the dataset, which is
+  Chinese-only, so it renders as-is in both languages (the English name is used
+  where the dataset provides one, e.g. the conference switcher and browser title).
+
 ## 2026-07-15 — Timeline collapse no longer snaps + bottom fade seam closed
 
 ### Fixed

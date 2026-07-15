@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import Icon from "./Icon";
 import { useFollow } from "../lib/follow-store";
 import { useConference } from "../lib/conference-store";
+import { useI18n } from "../lib/i18n-store";
 import { parseFollowJSON } from "../lib/export";
 
 // Import a previously-exported JSON backup (see toFollowJSON) and merge its
@@ -10,6 +11,7 @@ import { parseFollowJSON } from "../lib/export";
 export default function ImportButton() {
   const { importFollows } = useFollow();
   const { id: currentId } = useConference();
+  const { t } = useI18n();
   const inputRef = useRef<HTMLInputElement>(null);
   const [status, setStatus] = useState<{ kind: "ok" | "err"; text: string } | null>(null);
 
@@ -24,20 +26,20 @@ export default function ImportButton() {
     if (!file) return;
     try {
       const parsed = parseFollowJSON(await file.text(), currentId);
-      if (!parsed) return flash("err", "无法识别的文件，请选择本站导出的 .json 备份");
+      if (!parsed) return flash("err", t("import.badFile"));
       if (parsed.conferenceMismatch)
-        return flash("err", `该备份属于其他会议（${parsed.conference}），无法导入`);
+        return flash("err", t("import.mismatch", { conf: parsed.conference ?? "" }));
       const n = importFollows(parsed.follows);
-      flash("ok", `已导入 ${n} 项关注`);
+      flash("ok", t("import.done", { n }));
     } catch {
-      flash("err", "导入失败：文件无法解析");
+      flash("err", t("import.failed"));
     }
   };
 
   return (
     <div className="importbtn">
-      <button className="linkbtn" onClick={() => inputRef.current?.click()} title="导入 .json 备份">
-        <Icon name="upload" size={13} /> 导入
+      <button className="linkbtn" onClick={() => inputRef.current?.click()} title={t("import.title")}>
+        <Icon name="upload" size={13} /> {t("import.button")}
       </button>
       <input
         ref={inputRef}

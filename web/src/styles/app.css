@@ -55,12 +55,22 @@ svg { display: block; }
 }
 .theme-toggle:hover { color: var(--fg); border-color: var(--border-strong); background: var(--bg-hover); }
 .theme-toggle__icon { display: block; line-height: 1; }
+.nav__tools { display: flex; align-items: center; gap: 6px; margin-left: 8px; }
+.lang-toggle {
+  height: 34px; min-width: 34px; padding: 0 9px; border-radius: var(--radius);
+  border: 1px solid var(--border); background: var(--bg);
+  color: var(--fg-secondary); font-size: 13px; font-weight: 600; font-family: var(--font-mono);
+  display: grid; place-items: center; overflow: hidden;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.lang-toggle:hover { color: var(--fg); border-color: var(--border-strong); background: var(--bg-hover); }
+.lang-toggle__label { display: block; line-height: 1; }
 @media (max-width: 600px) {
   .confsw__name { display: none; }
   .nav__inner { gap: 6px; }
   /* pin the switcher + theme toggle; the links scroll horizontally between them
      so the row never overflows the viewport (was pushing the toggle off-screen) */
-  .confsw, .theme-toggle { flex: 0 0 auto; }
+  .confsw, .nav__tools { flex: 0 0 auto; }
   .nav__links {
     margin: 0; flex: 1 1 auto; min-width: 0; justify-content: flex-start;
     overflow-x: auto; scrollbar-width: none;

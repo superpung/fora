@@ -1,21 +1,17 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useConference } from "../lib/conference-store";
+import { useI18n } from "../lib/i18n-store";
 import { pageVariants } from "../lib/motion";
 import Reveal from "../components/Reveal";
 import Icon from "../components/Icon";
 import type { Organization } from "../types";
 
-const ROLE_LABEL: Record<string, string> = {
-  host: "主办单位",
-  co_host: "承办单位",
-  support: "协办单位",
-  sponsor: "赞助单位",
-};
 const ROLE_ORDER = ["host", "co_host", "support", "sponsor"];
 
 export default function Organizations() {
   const { id: confId, conference } = useConference();
+  const { t } = useI18n();
   const orgs = conference.organizations ?? [];
   const grouped: Record<string, Organization[]> = {};
   for (const o of orgs) (grouped[o.role] ??= []).push(o);
@@ -36,14 +32,14 @@ export default function Organizations() {
           <span className="section__icon" aria-hidden>
             <Icon name="building" size={19} />
           </span>
-          <h2 className="section__title">组织与赞助</h2>
+          <h2 className="section__title">{t("orgs.title")}</h2>
         </div>
       </div>
 
       <div className="orgcols">
         {ROLE_ORDER.filter((r) => grouped[r]?.length).map((role) => (
           <Reveal key={role} className="orgcol">
-            <h3 className="orgcol__title">{ROLE_LABEL[role]}</h3>
+            <h3 className="orgcol__title">{t(`orgRole.${role}`)}</h3>
             <ul className="orglist">
               {grouped[role].map((o, i) => (
                 <li key={i} className="orgitem">
@@ -60,7 +56,7 @@ export default function Organizations() {
 
       {sponsoredForums.length > 0 && (
         <Reveal className="section" delay={0.05}>
-          <h3 className="orgcol__title">企业 / 实验室专场</h3>
+          <h3 className="orgcol__title">{t("orgs.enterpriseLabs")}</h3>
           <div className="sponsorwrap">
             {sponsoredForums.map((f) => (
               <Link key={f.code} to={`/${confId}/forum/${f.code}`} className="sponsorcard">

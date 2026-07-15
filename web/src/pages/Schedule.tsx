@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import { formatDate, blockKindLabel } from "../lib/data";
+import { formatDate } from "../lib/data";
 import { useConference } from "../lib/conference-store";
+import { useI18n } from "../lib/i18n-store";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Icon, { type IconName } from "../components/Icon";
 import TimeGrid from "../components/TimeGrid";
@@ -45,6 +46,7 @@ function chronoRows(block: Block): Row[] {
 }
 
 function KeynotesBlock({ block }: { block: Block }) {
+  const { t } = useI18n();
   return (
     <div className="talklist">
       {chronoRows(block).map((row, i) =>
@@ -67,7 +69,7 @@ function KeynotesBlock({ block }: { block: Block }) {
                 <>
                   <div className="talkrow__title">
                     {row.talk.title_status === "tbd" ? (
-                      <span className="tag tag--tbd">报告题目待定</span>
+                      <span className="tag tag--tbd">{t("schedule.talkTbd")}</span>
                     ) : (
                       row.talk.title?.zh
                     )}
@@ -93,6 +95,7 @@ function KeynotesBlock({ block }: { block: Block }) {
 
 function ForumsBlock({ block }: { block: Block }) {
   const { id: confId, forumsByCode } = useConference();
+  const { t } = useI18n();
   // When talks carry real times, show the time-vs-forum matrix; otherwise the
   // conference only has forum-level slots, so fall back to the card grid.
   if (hasForumTimes(block, forumsByCode)) return <TimeGrid block={block} />;
@@ -102,7 +105,7 @@ function ForumsBlock({ block }: { block: Block }) {
         <div key={`fbr${i}`} className="breakrow breakrow--forums">
           <TimeRange start={b.start} end={b.end} />
           <span className="breakrow__label">
-            <Icon name="coffee" size={14} /> {b.name}（各分论坛同时休息）
+            <Icon name="coffee" size={14} /> {b.name}{t("schedule.breakNote")}
           </span>
         </div>
       ))}
@@ -126,12 +129,12 @@ function ForumsBlock({ block }: { block: Block }) {
                   {f?.sponsor && <span className="tag tag--sponsor">{f.sponsor}</span>}
                   {f?.detail_extracted ? (
                     <span className="forumcard__count">
-                      {(f.talks ?? []).length} 报告
+                      {t("common.reportsCount", { n: (f.talks ?? []).length })}
                       <Icon name="chevron-right" size={13} />
                     </span>
                   ) : (
                     <span className="forumcard__pending">
-                      详情待补
+                      {t("common.pending")}
                       <Icon name="chevron-right" size={13} />
                     </span>
                   )}
@@ -171,6 +174,7 @@ const KIND_ICON: Record<string, IconName> = {
 
 export default function Schedule() {
   const { days, venueName } = useConference();
+  const { t, lang } = useI18n();
   const hash = useLocation().hash.replace("#", "");
   const initial = days.findIndex((d) => d.date === hash);
   const [active, setActive] = useState(initial >= 0 ? initial : 0);
@@ -194,14 +198,14 @@ export default function Schedule() {
           <span className="section__icon" aria-hidden>
             <Icon name="calendar" size={19} />
           </span>
-          <h2 className="section__title">完整日程</h2>
+          <h2 className="section__title">{t("schedule.title")}</h2>
         </div>
       </div>
 
       {/* day tabs */}
       <div className="daytabs">
         {days.map((d, i) => {
-          const { md, weekday } = formatDate(d.date);
+          const { md, weekday } = formatDate(d.date, lang);
           return (
             <button
               key={d.date}
@@ -251,7 +255,7 @@ export default function Schedule() {
                     <Icon name={KIND_ICON[block.kind] ?? "dot"} size={16} />
                   </span>
                   <h3 className="block__title">
-                    {block.title?.zh ?? blockKindLabel[block.kind]}
+                    {block.title?.zh ?? t(`block.${block.kind}`)}
                   </h3>
                   {(block.start || block.location) && (
                     <span className="block__meta">
