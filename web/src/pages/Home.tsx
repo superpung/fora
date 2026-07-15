@@ -204,15 +204,17 @@ function ForumRow({
         className={`frow__row ${hasTalks ? "frow__row--expandable" : ""}`}
         onClick={() => hasTalks && setUserOpen(!open)}
       >
-        <span className="frow__rc">
-          <span className="frow__room">
-            <Icon name="pin" size={11} /> {slot.room}
-          </span>
-          <span className="frow__code">{slot.code}</span>
-          {f?.category && <span className="frow__cat">{f.category.name.zh}</span>}
-        </span>
         <div className="frow__body">
-          <div className="frow__title">{f?.title.zh ?? slot.code}</div>
+          <div className="frow__title">
+            <span className="frow__code">{slot.code}</span>
+            <span className="frow__titletext">{f?.title.zh ?? slot.code}</span>
+          </div>
+          <span className="frow__rc">
+            <span className="frow__room">
+              <Icon name="pin" size={11} /> {slot.room}
+            </span>
+            {f?.category && <span className="frow__cat">{f.category.name.zh}</span>}
+          </span>
           {slot.people.length > 0 && (
             <div className="frow__people">
               {slot.people.map((n) => (

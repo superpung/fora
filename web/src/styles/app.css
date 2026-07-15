@@ -320,22 +320,24 @@ svg { display: block; }
 /* the whole header is one hover/click unit (room/code · body · actions) */
 .frow__row {
   display: grid; grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-areas: "rc actions" "body actions";
+  grid-template-areas: "body actions";
   align-items: center; gap: 3px 14px;
   padding: 12px 12px 12px 16px; transition: background 0.12s;
 }
 .frow__row--expandable { cursor: pointer; }
 .frow__row:hover { background: var(--bg-hover); }
 .frow.is-open .frow__row { background: var(--bg-subtle); }
-/* room · code · category share one horizontal line above the title, so long
-   room names ("二楼荆沁厅205") stay on a single line instead of folding into
-   the old narrow left rail (and the pin icon keeps its size). */
-.frow__rc { grid-area: rc; display: flex; align-items: center; flex-wrap: wrap; gap: 2px 10px; min-width: 0; }
+/* body stacks: code + title (heading line), then room · category (metadata
+   below the heading, per the AGENTS.md rule), then the speaker line. */
+.frow__body { grid-area: body; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.frow__title { display: flex; align-items: baseline; gap: 8px; min-width: 0; font-size: 14px; font-weight: 500; line-height: 1.45; letter-spacing: -0.005em; }
+.frow__titletext { min-width: 0; }
+.frow__code { flex: none; font-family: var(--font-mono); color: var(--fg-secondary); font-weight: 500; font-size: 12.5px; }
+/* room · category on one line below the title; long room names stay on a single
+   line (the pin icon keeps its size). */
+.frow__rc { display: flex; align-items: center; flex-wrap: wrap; gap: 2px 10px; min-width: 0; }
 .frow__room { display: inline-flex; align-items: center; gap: 3px; font-family: var(--font-mono); color: var(--fg-secondary); font-size: 12.5px; white-space: nowrap; }
 .frow__room svg { flex: none; color: var(--fg-muted); }
-.frow__code { font-family: var(--font-mono); color: var(--fg); font-weight: 500; font-size: 13px; }
-.frow__body { grid-area: body; min-width: 0; }
-.frow__title { min-width: 0; font-size: 14px; font-weight: 500; line-height: 1.45; letter-spacing: -0.005em; }
 /* meta (sponsor · N 报告) lives in the actions cluster, vertically centred with
    the buttons; report count stays rightmost, sponsor to its left. */
 .frow__meta { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 2px 12px; margin-right: 6px; }
@@ -505,17 +507,33 @@ svg { display: block; }
 .tgrid__ccode { display: none; }
 .tgrid__cbody { position: relative; }
 .tgrid__line { position: absolute; left: 0; right: 0; height: 1px; background: var(--border); opacity: 0.55; }
-/* full-surface tinted cell — no colored left edge (see AGENTS.md UI rules) */
 .tgrid__talk {
   position: absolute; left: 3px; right: 3px; display: flex; flex-direction: column; gap: 1px;
-  padding: 3px 7px; overflow: hidden; background: var(--bg-subtle);
+  padding: 3px 7px 3px 11px; overflow: hidden; background: var(--bg-subtle);
   border: 1px solid var(--border); border-radius: var(--radius-sm);
   transition: background 0.12s, box-shadow 0.12s, border-color 0.12s;
 }
-.tgrid__talk:hover { background: var(--bg-hover); border-color: var(--border-strong); box-shadow: 0 4px 12px color-mix(in srgb, #000 10%, transparent); z-index: 1; }
+/* Accent bar: a short INSET vertical strip that stops clear of the rounded
+   corners — deliberately not a full left-edge bar hugging the corners (see the
+   AGENTS.md left-edge rule). */
+.tgrid__talk::before {
+  content: ""; position: absolute; left: 0; top: 6px; bottom: 6px; width: 3px;
+  border-radius: 3px; background: var(--accent);
+}
+/* Compressed cells reveal everything on hover: the cell grows to fit its full
+   content and floats over the row below (title unclamped, hidden speaker shown). */
+.tgrid__talk:hover {
+  height: auto !important; overflow: visible; z-index: 5;
+  background: var(--bg-hover); border-color: var(--border-strong);
+  box-shadow: 0 4px 14px color-mix(in srgb, #000 14%, transparent);
+}
+.tgrid__talk:hover .tgrid__ttitle { -webkit-line-clamp: unset; }
+.tgrid__talk:hover .tgrid__tspk { white-space: normal; overflow: visible; }
+.tgrid__talk:hover .tgrid__tspk--hide { display: block; }
 .tgrid__ttime { font-size: 10.5px; line-height: 1.35; color: var(--fg-muted); white-space: nowrap; }
 .tgrid__ttitle { font-size: 12px; font-weight: 500; line-height: 1.3; color: var(--fg); display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
 .tgrid__tspk { font-size: 11px; line-height: 1.3; color: var(--fg-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tgrid__tspk--hide { display: none; }
 .tgrid__more { position: absolute; left: 3px; right: 3px; font-size: 11px; color: var(--fg-muted); padding: 4px 7px; }
 
 .meetlist { padding: 4px 16px; }
@@ -786,10 +804,9 @@ svg { display: block; }
   .filterchip { flex: 0 0 auto; padding: 0 10px; }
   .filterchip__label { display: none; }
 
-  /* mobile: title spans full width under the actions (which stay pinned top-right
-     next to the room line); the rc line already sits on top for every width */
+  /* mobile: the body (code+title / room·category / speakers) keeps the actions
+     pinned top-right beside it */
   .frow__row {
-    grid-template-areas: "rc actions" "body body";
     gap: 6px 12px; padding: 12px 12px 12px 14px;
   }
   .frow__room, .frow__code { font-size: 12px; }

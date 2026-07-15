@@ -4,6 +4,21 @@ All notable changes to this project. The project is unversioned (no release
 tags yet), so entries are grouped by date, newest first. Written in English per
 the repository language rule (see AGENTS.md).
 
+## 2026-07-15 — Timeline card accents + hover-expand + forum-row reorder
+
+### Added
+- **Inset accent bar on timeline talk cards**: a short vertical strip on the left
+  that stops clear of the rounded corners (not the forbidden full-edge bar — see
+  the refined AGENTS.md rule).
+- **Hover-expand on compressed timeline cards**: a short talk whose content was
+  clamped/hidden now grows to its full title + speaker on hover, floating over
+  the row below.
+
+### Changed
+- **Dashboard forum row reordered** to `code + title` / `room · category` /
+  speakers (was `room · code · category` above the title). The title is now the
+  prominent top line and metadata sits below it, per the AGENTS.md heading rule.
+
 ## 2026-07-15 — Forum-detail timeline layout + abstract collapse
 
 ### Added
