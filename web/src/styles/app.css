@@ -535,6 +535,14 @@ svg { display: block; }
 .chipfilter.is-on { background: var(--primary-bg); color: var(--primary-fg); border-color: var(--primary-bg); }
 .chipfilter__n { font-family: var(--font-mono); font-size: 11px; opacity: 0.7; }
 
+/* forum category: filter row (dashboard) + row tag + forum-detail tag */
+.dashcats { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.frow__cat { padding-left: 14px; font-size: 11px; color: var(--fg-muted); }
+.fd__cat {
+  padding: 1px 8px; border-radius: 999px; font-family: var(--font-sans);
+  font-size: 12px; color: var(--fg-secondary); background: var(--bg-active);
+}
+
 /* list + A–Z jump index */
 .splayout { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: start; }
 /* NOTE: no overflow:hidden here — it would confine the sticky letter labels. */
