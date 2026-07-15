@@ -4,6 +4,27 @@ All notable changes to this project. The project is unversioned (no release
 tags yet), so entries are grouped by date, newest first. Written in English per
 the repository language rule (see AGENTS.md).
 
+## 2026-07-15 — Timeline grid + forum-talk times
+
+### Added
+- **Time-vs-forum matrix on the timeline page** (Schedule): the vertical axis is
+  wall-clock time and each forum is a column, so you can read "at 10:00, which
+  talk is each forum running". Talks are placed at their real start/end; a sticky
+  time gutter and sticky column headers make the wide grid scannable, and the
+  panel scrolls both axes. Falls back to the forum-card list for conferences
+  whose talks carry no per-talk times (e.g. CCF Chip). Talks with no time are
+  counted in a per-column footer note rather than dropped.
+
+### Fixed
+- **Forum-detail talks now show their time** (ChinaSoft carries per-talk
+  start/end): a mono time pill sits before each report title.
+- **Dashboard author hover underline restored**: the one-line speaker clip
+  (`overflow: hidden`) was cutting off the `.pauthor` underline; the row now
+  reserves space below the baseline so the underline shows.
+- **Forum room address stays on one line** on every width: room/code/category
+  share a full-width top line above the title (was a narrow left rail that folded
+  long ChinaSoft room names into 3–4 lines and shrank the pin icon).
+
 ## 2026-07-15 — Mobile layout fixes + hub grouping
 
 ### Fixed
