@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { formatDate, type ScheduleDay, type ForumSlot } from "../lib/data";
 import { useConference } from "../lib/conference-store";
 import { useFollow, talkId, keynoteId } from "../lib/follow-store";
+import { useI18n } from "../lib/i18n-store";
 import { pageVariants } from "../lib/motion";
 import Icon from "../components/Icon";
 import ExportMenu from "../components/ExportMenu";
@@ -45,16 +46,17 @@ function timeRange(b?: { start?: string | null; end?: string | null }) {
   return b.end ? `${b.start}–${b.end}` : b.start;
 }
 
-// Period(s) a keynote set actually spans, derived from the talks' start times
-// (some conferences run keynotes across morning and afternoon).
-function keynotePeriods(talks: Talk[]): string {
+// Period key(s) a keynote set actually spans, derived from the talks' start
+// times (some conferences run keynotes across morning and afternoon). The caller
+// translates the keys (see DaySection).
+function keynotePeriods(talks: Talk[]): string[] {
   const set = new Set<string>();
   for (const t of talks) {
     if (!t.start) continue;
     const h = parseInt(t.start.split(":")[0], 10);
-    set.add(h < 12 ? "上午" : h < 18 ? "下午" : "晚上");
+    set.add(h < 12 ? "morning" : h < 18 ? "afternoon" : "evening");
   }
-  return [...set].join("·");
+  return [...set];
 }
 
 /** A clickable author: person icon + name (hover underline) + affiliation.
@@ -72,6 +74,7 @@ function PersonLine({
   followed?: boolean;
   onSpeaker: (name: string) => void;
 }) {
+  const { t } = useI18n();
   return (
     <span className="pline">
       <button
@@ -81,7 +84,7 @@ function PersonLine({
           e.stopPropagation();
           onSpeaker(name);
         }}
-        title={`筛选包含 ${name} 的论坛与报告`}
+        title={t("home.filterForums", { name })}
       >
         <Icon name="user" size={11} />
         {name}
@@ -107,6 +110,7 @@ function KeynoteRow({
   onSpeaker: (name: string) => void;
 }) {
   const { isTalk, toggleTalk, isSpeaker } = useFollow();
+  const { t: tr } = useI18n();
   const speakers = t.speakers ?? [];
   const isOpening = t.type === "opening" || speakers.length === 0;
   const id = keynoteId(date, index);
@@ -125,7 +129,7 @@ function KeynoteRow({
         <div className="krow__titlerow">
           <div className="krow__title">
             {t.title_status === "tbd" ? (
-              <span className="muted-i">题目待定</span>
+              <span className="muted-i">{tr("home.tbd")}</span>
             ) : (
               t.title?.zh
             )}
@@ -134,7 +138,7 @@ function KeynoteRow({
             <StarButton
               active={followed}
               onClick={() => toggleTalk(id)}
-              label={followed ? "取消收藏该主旨报告" : "收藏该主旨报告"}
+              label={followed ? tr("home.keynoteFollowRemove") : tr("home.keynoteFollowAdd")}
               className="star--sm"
             />
           )}
@@ -171,6 +175,7 @@ function ForumRow({
 }) {
   const { isForum, toggleForum, isSpeaker, isTalk, toggleTalk } = useFollow();
   const { id: confId } = useConference();
+  const { t: tr } = useI18n();
   const f = slot.forum;
   const talks = f?.talks ?? [];
   const hasTalks = !!f?.detail_extracted && talks.length > 0;
@@ -221,10 +226,10 @@ function ForumRow({
             )}
             {hasTalks ? (
               <span className="frow__count">
-                <Icon name="keynotes" size={12} /> {talks.length} 报告
+                <Icon name="keynotes" size={12} /> {tr("common.reportsCount", { n: talks.length })}
               </span>
             ) : (
-              <span className="frow__pending">详情待补</span>
+              <span className="frow__pending">{tr("common.pending")}</span>
             )}
           </span>
           {slot.people.length > 0 && (
@@ -239,7 +244,7 @@ function ForumRow({
                     e.stopPropagation();
                     onSpeaker(n);
                   }}
-                  title={`筛选包含 ${n} 的论坛与报告`}
+                  title={tr("home.filterForums", { name: n })}
                 >
                   <Icon name="user" size={11} />
                   {n}
@@ -252,14 +257,14 @@ function ForumRow({
           <StarButton
             active={isForum(slot.code)}
             onClick={() => toggleForum(slot.code)}
-            label={`收藏论坛 ${slot.code}`}
+            label={tr("home.saveForum", { code: slot.code })}
             className="frow__star"
           />
           <Link
             to={`/${confId}/forum/${slot.code}`}
             className="frow__enter"
-            aria-label={`进入论坛 ${slot.code}`}
-            title="进入论坛详情页"
+            aria-label={tr("home.enterForum", { code: slot.code })}
+            title={tr("home.forumDetail")}
             onClick={(e) => e.stopPropagation()}
           >
             <Icon name="arrow-right" size={16} />
@@ -272,7 +277,7 @@ function ForumRow({
                 setUserOpen(!open);
               }}
               aria-expanded={open}
-              aria-label={open ? "收起报告" : "展开报告"}
+              aria-label={open ? tr("common.collapseReports") : tr("common.expandReports")}
             >
               <span className={`caret ${open ? "caret--up" : ""}`}>
                 <Icon name="chevron-down" size={16} />
@@ -311,7 +316,7 @@ function ForumRow({
                     <span className="ftalk__main">
                       <span className="ftalk__title">
                         {t.title_status === "tbd" ? (
-                          <span className="muted-i">题目待定</span>
+                          <span className="muted-i">{tr("home.tbd")}</span>
                         ) : (
                           t.title?.zh
                         )}
@@ -335,7 +340,7 @@ function ForumRow({
                   <StarButton
                     active={tFollowed}
                     onClick={() => toggleTalk(talkId(slot.code, i))}
-                    label={tFollowed ? "取消收藏该报告" : "收藏该报告"}
+                    label={tFollowed ? tr("common.talkFollowRemove") : tr("common.talkFollowAdd")}
                     className="ftalk__star"
                   />
                 </div>
@@ -362,8 +367,10 @@ function DaySection({
   onSpeaker: (name: string) => void;
 }) {
   const { isTalk, isSpeaker } = useFollow();
+  const { t, lang } = useI18n();
   const [showKeynotes, setShowKeynotes] = useState(false);
   if (slots.length === 0) return null;
+  const { md, weekday } = formatDate(day.date, lang);
   // In the follow view, auto-open the keynote rail if one of its keynotes is
   // followed, so the highlighted talk is actually visible.
   const anyKeyFollowed =
@@ -378,8 +385,8 @@ function DaySection({
     <section className="dashday">
       <div className="dashday__head">
         <h2 className="dashday__date">
-          <span className="dashday__md">{day.md}</span>
-          <span className="dashday__wd">{day.weekday}</span>
+          <span className="dashday__md">{md}</span>
+          <span className="dashday__wd">{weekday}</span>
         </h2>
         <div className="dashday__meta">
           <span>
@@ -391,7 +398,7 @@ function DaySection({
             </span>
           )}
           <span className="dashday__n">
-            <Icon name="forums" size={12} /> {slots.length} 场并行
+            <Icon name="forums" size={12} /> {t("home.parallel", { n: slots.length })}
           </span>
         </div>
       </div>
@@ -404,8 +411,10 @@ function DaySection({
             aria-expanded={keyOpen}
           >
             <Icon name="keynotes" size={15} />
-            主旨报告{keynotePeriods(day.keynotes) && ` · ${keynotePeriods(day.keynotes)}`} ·{" "}
-            {day.keynotes.length} 场
+            {t("home.keynotes")}
+            {keynotePeriods(day.keynotes).length > 0 &&
+              ` · ${keynotePeriods(day.keynotes).map((p) => t(`period.${p}`)).join("·")}`}{" "}
+            · {t("common.sessionsCount", { n: day.keynotes.length })}
             <span className={`caret ${keyOpen ? "caret--up" : ""}`}>
               <Icon name="chevron-down" size={16} />
             </span>
@@ -455,6 +464,7 @@ function DaySection({
 
 export default function Home() {
   const { id: confId, conference, scheduleDays, stats, uniqueSpeakerCount } = useConference();
+  const { t, lang } = useI18n();
   const {
     forums: followedForums,
     speakers: followedSpeakers,
@@ -513,8 +523,8 @@ export default function Home() {
   }, [scheduleDays, dayFilter, q, onlyFollowed, categoryFilter, speakerFilter, followedForums, isSpeaker, isTalk]);
 
   const totalShown = visibleDays.reduce((n, x) => n + x.slots.length, 0);
-  const { md: startMd } = formatDate(conference.start_date);
-  const { md: endMd } = formatDate(conference.end_date);
+  const { md: startMd } = formatDate(conference.start_date, lang);
+  const { md: endMd } = formatDate(conference.end_date, lang);
   const mainCity = conference.venues?.find((v) => v.type === "main")?.city;
 
   return (
@@ -526,15 +536,15 @@ export default function Home() {
             <h1 className="dashhead__title">{conference.name.zh}</h1>
             <div className="dashhead__venue">
               {startMd}–{endMd}
-              {mainCity && ` · 中国·${mainCity}`}
+              {mainCity && ` · ${t("common.inChina", { city: mainCity })}`}
             </div>
           </div>
           <div className="dashhead__stats">
             {[
-              { n: stats.forums, label: "技术论坛" },
-              { n: stats.keynotes, label: "主旨报告" },
-              { n: uniqueSpeakerCount, label: "讲者" },
-              { n: stats.days, label: "会期" },
+              { n: stats.forums, label: t("stats.forums") },
+              { n: stats.keynotes, label: t("stats.keynotes") },
+              { n: uniqueSpeakerCount, label: t("stats.speakers") },
+              { n: stats.days, label: t("stats.days") },
             ].map((s) => (
               <div key={s.label} className="dstat">
                 <div className="dstat__n">{s.n}</div>
@@ -553,18 +563,21 @@ export default function Home() {
               className={`daypill ${dayFilter === "all" ? "is-active" : ""}`}
               onClick={() => setDayFilter("all")}
             >
-              全部
+              {t("common.all")}
             </button>
-            {scheduleDays.map((d) => (
-              <button
-                key={d.date}
-                className={`daypill ${dayFilter === d.date ? "is-active" : ""}`}
-                onClick={() => setDayFilter(d.date)}
-              >
-                <span className="daypill__md">{d.md}</span>
-                <span className="daypill__wd">{d.weekday}</span>
-              </button>
-            ))}
+            {scheduleDays.map((d) => {
+              const { md, weekday } = formatDate(d.date, lang);
+              return (
+                <button
+                  key={d.date}
+                  className={`daypill ${dayFilter === d.date ? "is-active" : ""}`}
+                  onClick={() => setDayFilter(d.date)}
+                >
+                  <span className="daypill__md">{md}</span>
+                  <span className="daypill__wd">{weekday}</span>
+                </button>
+              );
+            })}
           </div>
 
           <div className="toolbar__right">
@@ -575,12 +588,12 @@ export default function Home() {
               <input
                 className="search__input"
                 type="search"
-                placeholder="搜索论坛 / 主题 / 讲者 / 单位…"
+                placeholder={t("home.searchPlaceholder")}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
               />
               {query && (
-                <button className="search__clear" onClick={() => setQuery("")} aria-label="清除搜索">
+                <button className="search__clear" onClick={() => setQuery("")} aria-label={t("common.clearSearch")}>
                   <Icon name="x" size={14} />
                 </button>
               )}
@@ -588,10 +601,10 @@ export default function Home() {
             <button
               className={`filterchip ${onlyFollowed ? "is-on" : ""}`}
               onClick={() => setOnlyFollowed((v) => !v)}
-              title="只看我的关注"
+              title={t("home.onlyFollowsTip")}
             >
               <Icon name="star" filled={onlyFollowed} size={14} />
-              <span className="filterchip__label">我的关注</span>
+              <span className="filterchip__label">{t("home.myFollows")}</span>
               {followedCount ? <span className="filterchip__n">{followedCount}</span> : null}
             </button>
           </div>
@@ -605,7 +618,7 @@ export default function Home() {
               className={`chipfilter ${!categoryFilter ? "is-on" : ""}`}
               onClick={() => setCategoryFilter(null)}
             >
-              全部
+              {t("common.all")}
             </button>
             {categories.map(([key, zh]) => (
               <button
@@ -620,16 +633,16 @@ export default function Home() {
         )}
         <div className="dash__resultbar">
           <span className="dash__resultinfo">
-            共 <strong>{totalShown}</strong> 场论坛
-            {q && ` · 匹配“${query}”`}
-            {onlyFollowed && " · 仅关注"}
+            {t("home.forumsCountPre")}<strong>{totalShown}</strong>{t("home.forumsCountSuf")}
+            {q && t("home.matching", { q: query })}
+            {onlyFollowed && t("home.onlyFollows")}
             {speakerFilter && (
               <button
                 className="filtertag"
                 onClick={() => setSpeakerFilter(null)}
-                title="清除讲者筛选"
+                title={t("home.clearSpeaker")}
               >
-                讲者：{speakerFilter}
+                {t("home.speakerFilter", { name: speakerFilter })}
                 <Icon name="x" size={12} />
               </button>
             )}
@@ -639,7 +652,7 @@ export default function Home() {
             {followedCount > 0 && <ExportMenu />}
             {followedCount > 0 && (
               <button className="linkbtn" onClick={clearAll}>
-                清空我的关注
+                {t("home.clearMyFollows")}
               </button>
             )}
           </div>
@@ -656,8 +669,8 @@ export default function Home() {
             {visibleDays.length === 0 ? (
               <div className="dash__empty">
                 <p>
-                  没有符合条件的论坛。
-                  {onlyFollowed && "点击论坛、报告或讲者旁的星标即可加入“我的关注”。"}
+                  {t("home.noForums")}
+                  {onlyFollowed && t("home.noForumsHint")}
                 </p>
               </div>
             ) : (
@@ -677,7 +690,7 @@ export default function Home() {
 
         <div className="dash__hint">
           <Link to={`/${confId}/schedule`} className="btn btn--ghost">
-            <Icon name="calendar" size={15} /> 时间线视图
+            <Icon name="calendar" size={15} /> {t("home.timelineView")}
           </Link>
         </div>
       </div>

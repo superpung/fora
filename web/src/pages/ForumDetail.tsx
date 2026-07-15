@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useParams, Link, useLocation, useNavigate } from "react-router-dom";
-import { formatDate, periodLabel } from "../lib/data";
+import { formatDate } from "../lib/data";
 import { useConference } from "../lib/conference-store";
 import { useFollow, talkId } from "../lib/follow-store";
+import { useI18n } from "../lib/i18n-store";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Icon from "../components/Icon";
 import Avatar from "../components/Avatar";
@@ -46,6 +47,7 @@ function splitParallelTracks(
 function PersonLine({ p, role, avatarSize = 40 }: { p: Person; role?: string; avatarSize?: number }) {
   const [open, setOpen] = useState(false);
   const { isSpeaker, toggleSpeaker } = useFollow();
+  const { t } = useI18n();
   const followed = p.name ? isSpeaker(p.name) : false;
   return (
     <div className="person">
@@ -57,8 +59,8 @@ function PersonLine({ p, role, avatarSize = 40 }: { p: Person; role?: string; av
             <button
               className={`star star--sm ${followed ? "is-on" : ""}`}
               aria-pressed={followed}
-              aria-label={followed ? `取消关注 ${p.name}` : `关注 ${p.name}`}
-              title={followed ? `取消关注 ${p.name}` : `关注 ${p.name}`}
+              aria-label={followed ? t("common.followRemove", { name: p.name }) : t("common.followAdd", { name: p.name })}
+              title={followed ? t("common.followRemove", { name: p.name }) : t("common.followAdd", { name: p.name })}
               onClick={() => toggleSpeaker(p.name)}
             >
               <Icon name="star" filled={followed} size={15} />
@@ -73,7 +75,7 @@ function PersonLine({ p, role, avatarSize = 40 }: { p: Person; role?: string; av
         {p.bio && (
           <>
             <button className="person__toggle" onClick={() => setOpen((v) => !v)}>
-              {open ? "收起简介" : "个人简介"}
+              {open ? t("forum.hideBio") : t("forum.showBio")}
               <span className={`caret ${open ? "caret--up" : ""}`}>
                 <Icon name="chevron-down" size={14} />
               </span>
@@ -119,6 +121,7 @@ function isRichPerson(p: Person): boolean {
     following (avatar + name are not clickable), matching PersonLine. */
 function AuthorChip({ p }: { p: Person }) {
   const { isSpeaker, toggleSpeaker } = useFollow();
+  const { t } = useI18n();
   if (!p.name) return null;
   const followed = isSpeaker(p.name);
   return (
@@ -128,8 +131,8 @@ function AuthorChip({ p }: { p: Person }) {
       <button
         className={`star star--sm ${followed ? "is-on" : ""}`}
         aria-pressed={followed}
-        aria-label={followed ? `取消关注 ${p.name}` : `关注 ${p.name}`}
-        title={followed ? `取消关注 ${p.name}` : `关注 ${p.name}`}
+        aria-label={followed ? t("common.followRemove", { name: p.name }) : t("common.followAdd", { name: p.name })}
+        title={followed ? t("common.followRemove", { name: p.name }) : t("common.followAdd", { name: p.name })}
         onClick={() => toggleSpeaker(p.name)}
       >
         <Icon name="star" filled={followed} size={13} />
@@ -143,6 +146,7 @@ function AuthorChip({ p }: { p: Person }) {
     sublist). The toggle only appears when the text actually overflows. */
 function Abstract({ text }: { text: string }) {
   const [open, setOpen] = useState(false);
+  const { t } = useI18n();
   const [dims, setDims] = useState<{ clamped: number; full: number } | null>(null);
   const ref = useRef<HTMLParagraphElement>(null);
   useLayoutEffect(() => {
@@ -171,7 +175,7 @@ function Abstract({ text }: { text: string }) {
       </motion.p>
       {(overflowing || open) && (
         <button className="talk__absmore" onClick={() => setOpen((v) => !v)}>
-          {open ? "收起" : "展开"}
+          {open ? t("common.collapse") : t("common.expand")}
           <span className={`caret ${open ? "caret--up" : ""}`}>
             <Icon name="chevron-down" size={13} />
           </span>
@@ -188,6 +192,7 @@ export default function ForumDetail() {
   const navigate = useNavigate();
   const forum = code ? getForum(code) : undefined;
   const { isForum, toggleForum, isTalk, toggleTalk } = useFollow();
+  const { t: tr, lang } = useI18n();
   const forumFollowed = code ? isForum(code) : false;
   const [copied, setCopied] = useState<number | null>(null);
 
@@ -237,13 +242,13 @@ export default function ForumDetail() {
   if (!forum) {
     return (
       <div className="container section">
-        <p>未找到论坛 {code}。</p>
-        <Link to={`/${confId}/schedule`} className="linkbtn">返回日程</Link>
+        <p>{tr("forum.notFound", { code: code ?? "" })}</p>
+        <Link to={`/${confId}/schedule`} className="linkbtn">{tr("forum.backToSchedule")}</Link>
       </div>
     );
   }
 
-  const dateInfo = forum.day_date ? formatDate(forum.day_date) : null;
+  const dateInfo = forum.day_date ? formatDate(forum.day_date, lang) : null;
   // When any talk carries a start time, render the talks on a vertical time rail;
   // otherwise fall back to the numbered card list (untimed forums / conferences).
   const timed = (forum.talks ?? []).some((t) => t.start);
@@ -273,15 +278,15 @@ export default function ForumDetail() {
           )}
           <h3 className="talk__title">
             {t.title_status === "tbd" ? (
-              <span className="muted-i">报告题目待确认</span>
+              <span className="muted-i">{tr("forum.titleTbd")}</span>
             ) : (
               t.title?.zh
             )}
           </h3>
           <button
             className={`iconbtn talk__perma ${copied === i ? "is-copied" : ""}`}
-            aria-label="复制该报告的分享链接"
-            title={copied === i ? "链接已复制" : "复制分享链接"}
+            aria-label={tr("forum.copyLink")}
+            title={copied === i ? tr("forum.linkCopied") : tr("forum.copyShareLink")}
             onClick={() => shareTalk(i)}
           >
             <Icon name={copied === i ? "check" : "link"} size={15} />
@@ -289,8 +294,8 @@ export default function ForumDetail() {
           <button
             className={`star star--sm talk__star ${followed ? "is-on" : ""}`}
             aria-pressed={followed}
-            aria-label={followed ? "取消收藏该报告" : "收藏该报告"}
-            title={followed ? "取消收藏该报告" : "收藏该报告"}
+            aria-label={followed ? tr("common.talkFollowRemove") : tr("common.talkFollowAdd")}
+            title={followed ? tr("common.talkFollowRemove") : tr("common.talkFollowAdd")}
             onClick={() => toggleTalk(id)}
           >
             <Icon name="star" filled={followed} size={16} />
@@ -298,7 +303,7 @@ export default function ForumDetail() {
         </div>
         {t.flags?.length ? (
           <div className="talk__flag" title={t.flags.join("\n")}>
-            <Icon name="alert" size={13} /> 源数据存在标注，已如实保留
+            <Icon name="alert" size={13} /> {tr("forum.sourceAnnotated")}
           </div>
         ) : null}
         {(() => {
@@ -323,7 +328,7 @@ export default function ForumDetail() {
         {t.abstract ? (
           <Abstract text={t.abstract} />
         ) : t.abstract_status === "tbd" ? (
-          <p className="talk__abstract muted-i">演讲摘要待确认</p>
+          <p className="talk__abstract muted-i">{tr("forum.abstractTbd")}</p>
         ) : null}
       </>
     );
@@ -386,7 +391,7 @@ export default function ForumDetail() {
               onClick={() => code && toggleForum(code)}
             >
               <Icon name="star" filled={forumFollowed} size={15} />
-              {forumFollowed ? "已收藏" : "收藏论坛"}
+              {forumFollowed ? tr("forum.saved") : tr("forum.save")}
             </button>
             {officialUrl && (
               <a
@@ -394,9 +399,9 @@ export default function ForumDetail() {
                 href={officialUrl}
                 target="_blank"
                 rel="noreferrer"
-                title="在官网查看该论坛页面"
+                title={tr("forum.viewOfficial")}
               >
-                <Icon name="external" size={15} /> 官网
+                <Icon name="external" size={15} /> {tr("forum.official")}
               </a>
             )}
           </div>
@@ -412,12 +417,12 @@ export default function ForumDetail() {
           {dateInfo && (
             <span>
               <Icon name="calendar" size={13} /> {dateInfo.md} {dateInfo.weekday}
-              {forum.session_period && ` · ${periodLabel[forum.session_period]}`}
+              {forum.session_period && ` · ${tr(`period.${forum.session_period}`)}`}
             </span>
           )}
           {forum.sponsor && (
             <span className="fd__sponsor">
-              <Icon name="building" size={13} /> {forum.sponsor}专场
+              <Icon name="building" size={13} /> {tr("forum.sponsorSession", { sponsor: forum.sponsor })}
             </span>
           )}
         </div>
@@ -431,10 +436,10 @@ export default function ForumDetail() {
 
       {forum.chairs && forum.chairs.length > 0 && (
         <section className="fd__section">
-          <h2 className="fd__sectitle">论坛主席</h2>
+          <h2 className="fd__sectitle">{tr("forum.chairs")}</h2>
           <div className="fd__people">
             {forum.chairs.map((c, i) => (
-              <PersonLine key={i} p={c} role={c.chair_role ?? "论坛主席"} />
+              <PersonLine key={i} p={c} role={c.chair_role ?? tr("forum.chairRole")} />
             ))}
           </div>
         </section>
@@ -443,7 +448,7 @@ export default function ForumDetail() {
       {forum.detail_extracted && forum.talks && forum.talks.length > 0 ? (
         <section className="fd__section">
           <h2 className="fd__sectitle">
-            论坛报告 <span className="fd__seccount">{forum.talks.length}</span>
+            {tr("forum.talks")} <span className="fd__seccount">{forum.talks.length}</span>
           </h2>
           {tracks ? (
             tracks.map((track, k) => (
@@ -451,7 +456,7 @@ export default function ForumDetail() {
                 <div className="fd__trackhead">
                   <Icon name="pin" size={14} />
                   <span className="fd__trackroom">{track.room}</span>
-                  <span className="fd__tracktag">分会场 {k + 1}</span>
+                  <span className="fd__tracktag">{tr("forum.track", { n: k + 1 })}</span>
                 </div>
                 <motion.div
                   className="tline"
@@ -477,11 +482,8 @@ export default function ForumDetail() {
       ) : (
         <section className="fd__section">
           <div className="pending">
-            <div className="pending__title">论坛详情整理中</div>
-            <p className="pending__text">
-              该论坛的报告与讲者信息以海报形式发布，尚未完成结构化解析。
-              当前可见其编号、名称、会议室与时段等总览信息。
-            </p>
+            <div className="pending__title">{tr("forum.pendingTitle")}</div>
+            <p className="pending__text">{tr("forum.pendingText")}</p>
           </div>
         </section>
       )}
