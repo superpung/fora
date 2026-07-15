@@ -28,7 +28,7 @@ function ConferenceCard({ c }: { c: ConferenceMeta }) {
     <motion.div variants={riseItem}>
       <Link to={`/${c.id}`} className="hubcard">
         <span className="hubcard__logo" aria-hidden>
-          <Icon name="chip" size={18} />
+          <Icon name="conference" size={18} />
         </span>
         <h3 className="hubcard__name">{c.name.zh}</h3>
         {c.name.en && <div className="hubcard__en">{c.name.en}</div>}

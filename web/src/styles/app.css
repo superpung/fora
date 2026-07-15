@@ -601,11 +601,8 @@ svg { display: block; }
 .talk__perma.is-copied { color: var(--teal-fg); }
 .talk__flag { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; color: var(--amber-fg); border: 1px solid color-mix(in srgb, var(--amber-fg) 40%, var(--border)); border-radius: var(--radius-sm); padding: 2px 8px; margin: 6px 0 4px; cursor: help; }
 .talk__abstract { margin: 12px 0 0; color: var(--fg-secondary); font-size: 13.5px; line-height: 1.75; max-width: 74ch; }
+/* height is animated (clamped ~3 lines <-> full) by the Abstract component */
 .talk__abstracttext { margin: 0; }
-/* collapsed by default: 3-line preview until 展开 (see Abstract in ForumDetail) */
-.talk__abstracttext.is-clamped {
-  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden;
-}
 .talk__absmore {
   margin-top: 6px; padding: 0; background: none; border: none; cursor: pointer;
   color: var(--accent); font-size: 12.5px; font-weight: 500;
@@ -637,12 +634,11 @@ svg { display: block; }
   background: var(--bg); border: 2px solid var(--border-strong); transition: border-color 0.2s, background 0.2s;
 }
 .tlrow--active .tlrow__dot { border-color: var(--accent); background: var(--accent); }
-.tlrow__card {
-  min-width: 0; padding: 14px 12px 22px 2px; border-radius: var(--radius);
-  transition: background 0.3s ease;
-}
-.tlrow--active .tlrow__card { background: color-mix(in srgb, var(--accent) 9%, transparent); animation: talk-arrive 0.9s ease-out; }
-@media (prefers-reduced-motion: reduce) { .tlrow--active .tlrow__card { animation: none; } }
+.tlrow__card { min-width: 0; padding: 14px 12px 22px 2px; }
+/* anchor highlight spans the whole row (time + rail + card), not just the card */
+.tlrow { border-radius: var(--radius); transition: background 0.3s ease; }
+.tlrow--active { background: color-mix(in srgb, var(--accent) 9%, transparent); animation: talk-arrive 0.9s ease-out; }
+@media (prefers-reduced-motion: reduce) { .tlrow--active { animation: none; } }
 
 .pending { padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-lg); }
 .pending__title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }

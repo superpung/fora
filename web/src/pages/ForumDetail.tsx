@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useParams, Link, useLocation, useNavigate } from "react-router-dom";
 import { formatDate, periodLabel } from "../lib/data";
@@ -64,21 +64,37 @@ function PersonLine({ p, role, avatarSize = 40 }: { p: Person; role?: string; av
   );
 }
 
-/** A talk abstract, clamped to three lines by default with a 展开/收起 toggle.
-    The toggle only appears when the text actually overflows the clamp. */
+/** A talk abstract, clamped to three lines by default with a 展开/收起 toggle
+    that animates the height open/closed (same house easing as the bio / talk
+    sublist). The toggle only appears when the text actually overflows. */
 function Abstract({ text }: { text: string }) {
   const [open, setOpen] = useState(false);
-  const [overflowing, setOverflowing] = useState(false);
+  const [dims, setDims] = useState<{ clamped: number; full: number } | null>(null);
   const ref = useRef<HTMLParagraphElement>(null);
-  useEffect(() => {
+  useLayoutEffect(() => {
     const el = ref.current;
-    if (el) setOverflowing(el.scrollHeight - el.clientHeight > 4);
+    if (!el) return;
+    const prev = el.style.height;
+    el.style.height = "auto";
+    const full = el.scrollHeight;
+    el.style.height = prev;
+    const lh = parseFloat(getComputedStyle(el).lineHeight) || 22;
+    const clamped = Math.min(full, Math.round(lh * 3) + 2); // ~3 lines
+    setDims({ clamped, full });
   }, [text]);
+  const overflowing = dims ? dims.full - dims.clamped > 4 : false;
   return (
     <div className="talk__abstract">
-      <p ref={ref} className={`talk__abstracttext ${open ? "" : "is-clamped"}`}>
+      <motion.p
+        ref={ref}
+        className="talk__abstracttext"
+        style={{ overflow: "hidden" }}
+        initial={false}
+        animate={{ height: dims ? (open ? dims.full : dims.clamped) : "auto" }}
+        transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+      >
         {text}
-      </p>
+      </motion.p>
       {(overflowing || open) && (
         <button className="talk__absmore" onClick={() => setOpen((v) => !v)}>
           {open ? "收起" : "展开"}

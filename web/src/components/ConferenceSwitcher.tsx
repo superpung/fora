@@ -32,7 +32,7 @@ export default function ConferenceSwitcher({ confId }: { confId: string }) {
         title="切换会议"
       >
         <span className="confsw__logo" aria-hidden>
-          <Icon name="chip" size={16} />
+          <Icon name="conference" size={16} />
         </span>
         <span className="confsw__name">{current?.name.en ?? current?.name.zh}</span>
         <span className={`caret ${open ? "caret--up" : ""}`}>
