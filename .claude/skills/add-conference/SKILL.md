@@ -47,6 +47,17 @@ either.
      confirm the site either has no such content or you captured its source. An
      empty `committees: []` when the site clearly has committee pages is a fetch
      miss, not "no data" — the omission is silent, so check it explicitly.
+   - **Then cross-check extraction, not just the fetch.** Fetching the source is
+     not enough — verify every group/section visible in the captured raw actually
+     became a *populated* structured entry. A page often mixes formats: e.g. a
+     committee page may list its chairs in the CMS's structured people template
+     but its full member roster as a plain `<p>`/`<td>` table the people-parser
+     skips — so `committees` is non-empty (the chairs made it) yet the ~100-member
+     body is silently dropped into prose. For each heading in the raw
+     (`大会程序委员会主席` **and** `大会程序委员会委员`, every `组`/`委员会`/`主席` block),
+     confirm a matching `committees[].members` group with the right count — a
+     non-empty array is *not* proof of completeness. Reconcile counts against the
+     source, not against "did we fetch it".
 
 2. **Fetch → commit raw.** Save the source to a committed `raw/` under a new
    `source/<id>/` adapter dir (a `fetch.py`), so the build is reproducible offline.
