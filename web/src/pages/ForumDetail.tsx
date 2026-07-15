@@ -311,7 +311,8 @@ export default function ForumDetail() {
           `${dateInfo.md} ${dateInfo.weekday}` +
           (f.session_period ? ` · ${tr(`period.${f.session_period}`)}` : ""),
       });
-    if (f.room) metaLines.push({ icon: "pin", text: f.room });
+    const forumRoom = [confVenue, f.room].filter(Boolean).join(" ");
+    if (forumRoom) metaLines.push({ icon: "pin", text: forumRoom });
     const chairs = (f.chairs ?? []).map((c) => ({ name: c.name, aff: c.affiliation_raw }));
     const talks = (f.talks ?? []).map((t, i) => ({
       index: i + 1,
@@ -350,7 +351,8 @@ export default function ForumDetail() {
       .join(" · ");
     const metaLines: PosterMeta[] = [];
     if (when) metaLines.push({ icon: "clock", text: when });
-    if (f.room) metaLines.push({ icon: "pin", text: f.room });
+    const talkRoom = [confVenue, f.room].filter(Boolean).join(" ");
+    if (talkRoom) metaLines.push({ icon: "pin", text: talkRoom });
     metaLines.push({ icon: "forums", text: f.title.zh });
     const speakers = (t.speakers ?? []).map((s) => ({ name: s.name, aff: s.affiliation_raw }));
     const abstract = t.abstract && t.abstract_status !== "tbd" ? t.abstract : null;
