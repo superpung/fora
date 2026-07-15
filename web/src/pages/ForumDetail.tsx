@@ -8,7 +8,17 @@ import { useI18n } from "../lib/i18n-store";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Icon from "../components/Icon";
 import Avatar from "../components/Avatar";
+import PosterModal from "../components/PosterModal";
+import type { PosterSpec } from "../lib/poster";
 import type { Person, Talk } from "../types";
+
+function accentColor(): string {
+  if (typeof document === "undefined") return "#0070f3";
+  return (
+    getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() ||
+    "#0070f3"
+  );
+}
 
 const toMin = (t: string): number => {
   const [h, m] = t.split(":").map((x) => parseInt(x, 10));
@@ -186,7 +196,7 @@ function Abstract({ text }: { text: string }) {
 }
 
 export default function ForumDetail() {
-  const { id: confId, getForum, officialAssetUrl } = useConference();
+  const { id: confId, conference, getForum, officialAssetUrl } = useConference();
   const { code } = useParams();
   const { hash } = useLocation();
   const navigate = useNavigate();
@@ -195,6 +205,7 @@ export default function ForumDetail() {
   const { t: tr, lang } = useI18n();
   const forumFollowed = code ? isForum(code) : false;
   const [copied, setCopied] = useState<number | null>(null);
+  const [poster, setPoster] = useState<{ spec: PosterSpec; filename: string } | null>(null);
 
   // The talk pointed at by the URL hash (1-based, e.g. #talk-3) stays highlighted
   // for as long as the hash is present — it's a shareable anchor, not a flash.
@@ -260,6 +271,67 @@ export default function ForumDetail() {
     .filter(Boolean);
   const tracks = timed ? splitParallelTracks(forum.talks ?? [], roomParts) : null;
 
+  const shareUrl = () => `${window.location.origin}${window.location.pathname}`;
+
+  // Build the forum-level share poster (title + chairs + date/room/category).
+  function openForumPoster() {
+    const f = forum!;
+    const metaLines: string[] = [];
+    if (dateInfo)
+      metaLines.push(
+        `${dateInfo.md} ${dateInfo.weekday}` +
+          (f.session_period ? ` · ${tr(`period.${f.session_period}`)}` : ""),
+      );
+    if (f.room) metaLines.push(tr("poster.roomMeta", { room: f.room }));
+    if (f.category) metaLines.push(tr("poster.catMeta", { cat: f.category.name.zh }));
+    const chairs = (f.chairs ?? []).map((c) => ({ name: c.name, aff: c.affiliation_raw }));
+    setPoster({
+      spec: {
+        brand: tr("common.siteName"),
+        confName: conference.name.zh,
+        kindLabel: tr("poster.kindForum"),
+        title: f.title.zh,
+        code: f.code,
+        metaLines,
+        peopleLabel: chairs.length ? tr("forum.chairs") : undefined,
+        people: chairs,
+        footer: shareUrl(),
+        accent: accentColor(),
+      },
+      filename: `${conference.name.zh}-${f.code}.png`,
+    });
+  }
+
+  // Build a single report's share poster (title + speakers + time/room/forum).
+  function openTalkPoster(t: Talk, i: number) {
+    const f = forum!;
+    const time = t.start ? `${t.start}${t.end ? `–${t.end}` : ""}` : "";
+    const when = [dateInfo ? `${dateInfo.md} ${dateInfo.weekday}` : "", time]
+      .filter(Boolean)
+      .join(" · ");
+    const metaLines: string[] = [];
+    if (when) metaLines.push(when);
+    if (f.room) metaLines.push(tr("poster.roomMeta", { room: f.room }));
+    metaLines.push(tr("poster.forumMeta", { forum: f.title.zh }));
+    const speakers = (t.speakers ?? []).map((s) => ({ name: s.name, aff: s.affiliation_raw }));
+    setPoster({
+      spec: {
+        brand: tr("common.siteName"),
+        confName: conference.name.zh,
+        kindLabel: tr("poster.kindTalk"),
+        title:
+          t.title_status === "tbd" || !t.title?.zh ? tr("forum.titleTbd") : t.title.zh,
+        code: f.code,
+        metaLines,
+        peopleLabel: speakers.length ? tr("poster.speakers") : undefined,
+        people: speakers,
+        footer: `${shareUrl()}#talk-${i + 1}`,
+        accent: accentColor(),
+      },
+      filename: `${conference.name.zh}-${f.code}-${i + 1}.png`,
+    });
+  }
+
   // One talk, rendered for either the timeline rail or the numbered card list.
   // Extracted so the parallel-track branch can reuse it per track.
   function renderTalk(t: Talk, i: number) {
@@ -283,6 +355,14 @@ export default function ForumDetail() {
               t.title?.zh
             )}
           </h3>
+          <button
+            className="iconbtn talk__poster"
+            aria-label={tr("poster.makeTalk")}
+            title={tr("poster.makeTalk")}
+            onClick={() => openTalkPoster(t, i)}
+          >
+            <Icon name="image" size={15} />
+          </button>
           <button
             className={`iconbtn talk__perma ${copied === i ? "is-copied" : ""}`}
             aria-label={tr("forum.copyLink")}
@@ -393,6 +473,13 @@ export default function ForumDetail() {
               <Icon name="star" filled={forumFollowed} size={15} />
               {forumFollowed ? tr("forum.saved") : tr("forum.save")}
             </button>
+            <button
+              className="btn btn--ghost"
+              onClick={openForumPoster}
+              title={tr("poster.makeForum")}
+            >
+              <Icon name="image" size={15} /> {tr("poster.forum")}
+            </button>
             {officialUrl && (
               <a
                 className="btn btn--ghost"
@@ -487,6 +574,12 @@ export default function ForumDetail() {
           </div>
         </section>
       )}
+
+      <PosterModal
+        spec={poster?.spec ?? null}
+        filename={poster?.filename ?? "poster.png"}
+        onClose={() => setPoster(null)}
+      />
     </motion.div>
   );
 }
