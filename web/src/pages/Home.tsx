@@ -470,7 +470,6 @@ export default function Home() {
   const [dayFilter, setDayFilter] = useState<string>("all");
   const [query, setQuery] = useState("");
   const [onlyFollowed, setOnlyFollowed] = useState(false);
-  const [onlySponsored, setOnlySponsored] = useState(false);
   // Clicking a speaker chip filters the board down to that person's forums/talks.
   const [speakerFilter, setSpeakerFilter] = useState<string | null>(null);
   const [categoryFilter, setCategoryFilter] = useState<string | null>(null);
@@ -499,7 +498,6 @@ export default function Home() {
       .map((d) => {
         const slots = d.slots.filter((s) => {
           if (q && !s.search.includes(q)) return false;
-          if (onlySponsored && !s.forum?.sponsor) return false;
           if (categoryFilter && s.forum?.category?.key !== categoryFilter) return false;
           if (speakerFilter && !s.people.includes(speakerFilter)) return false;
           if (onlyFollowed) {
@@ -516,7 +514,7 @@ export default function Home() {
       .filter((x) => x.slots.length > 0);
     // isSpeaker / isTalk are re-created whenever the followed sets change, so
     // depending on them is enough — the raw sets are redundant here.
-  }, [scheduleDays, dayFilter, q, onlyFollowed, onlySponsored, categoryFilter, speakerFilter, followedForums, isSpeaker, isTalk]);
+  }, [scheduleDays, dayFilter, q, onlyFollowed, categoryFilter, speakerFilter, followedForums, isSpeaker, isTalk]);
 
   const totalShown = visibleDays.reduce((n, x) => n + x.slots.length, 0);
   const { md: startMd } = formatDate(conference.start_date);
@@ -600,14 +598,6 @@ export default function Home() {
               <span className="filterchip__label">我的关注</span>
               {followedCount ? <span className="filterchip__n">{followedCount}</span> : null}
             </button>
-            <button
-              className={`filterchip ${onlySponsored ? "is-on" : ""}`}
-              onClick={() => setOnlySponsored((v) => !v)}
-              title="只看赞助专场"
-            >
-              <Icon name="building" size={14} />
-              <span className="filterchip__label">赞助专场</span>
-            </button>
           </div>
         </div>
       </div>
@@ -637,7 +627,6 @@ export default function Home() {
             共 <strong>{totalShown}</strong> 场论坛
             {q && ` · 匹配“${query}”`}
             {onlyFollowed && " · 仅关注"}
-            {onlySponsored && " · 仅赞助专场"}
             {speakerFilter && (
               <button
                 className="filtertag"
