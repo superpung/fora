@@ -109,9 +109,15 @@ export interface Day {
   blocks: Block[];
 }
 
+export interface ForumCategory {
+  key?: string | null;
+  name: I18n;
+}
+
 export interface Forum {
   code: string;
   title: I18n;
+  category?: ForumCategory;
   sponsor?: string | null;
   series_part?: string | null;
   day_date?: string | null;
