@@ -112,26 +112,29 @@ function isRichPerson(p: Person): boolean {
   );
 }
 
-/** A compact, wrappable chip for a name-only co-author. Many papers list 5–8
+/** A compact, wrappable entry for a name-only co-author. Many papers list 5–8
     authors; stacking each as a full PersonLine (big avatar + affiliation + bio
     toggle) wastes enormous vertical space, so bare names collapse into a single
-    horizontal row of chips. The colored letter avatar is kept; the whole chip
-    toggles following that person. */
+    horizontal row. The colored letter avatar is kept; only the star toggles
+    following (avatar + name are not clickable), matching PersonLine. */
 function AuthorChip({ p }: { p: Person }) {
   const { isSpeaker, toggleSpeaker } = useFollow();
   if (!p.name) return null;
   const followed = isSpeaker(p.name);
   return (
-    <button
-      className={`authorchip ${followed ? "is-on" : ""}`}
-      aria-pressed={followed}
-      title={followed ? `取消关注 ${p.name}` : `关注 ${p.name}`}
-      onClick={() => toggleSpeaker(p.name)}
-    >
+    <span className="authorchip">
       <Avatar person={p} size={24} />
       <span className="authorchip__name">{p.name}</span>
-      <Icon name="star" filled={followed} size={12} />
-    </button>
+      <button
+        className={`star star--sm ${followed ? "is-on" : ""}`}
+        aria-pressed={followed}
+        aria-label={followed ? `取消关注 ${p.name}` : `关注 ${p.name}`}
+        title={followed ? `取消关注 ${p.name}` : `关注 ${p.name}`}
+        onClick={() => toggleSpeaker(p.name)}
+      >
+        <Icon name="star" filled={followed} size={13} />
+      </button>
+    </span>
   );
 }
 

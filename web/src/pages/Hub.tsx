@@ -5,6 +5,7 @@ import Icon from "../components/Icon";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import { conferenceList, type ConferenceMeta } from "../lib/conferences";
 import { formatDate } from "../lib/data";
+import { useTitle } from "../lib/use-title";
 
 // The site hub: a catalogue of every hosted conference, grouped by status
 // (ongoing / upcoming / ended) relative to today. Rendered from the lightweight
@@ -59,6 +60,7 @@ function ConferenceCard({ c }: { c: ConferenceMeta }) {
 }
 
 export default function Hub() {
+  useTitle();
   const now = new Date();
   const today = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
   const statusOf = (c: ConferenceMeta): Status =>

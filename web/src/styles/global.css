@@ -1,5 +1,9 @@
 /* ============ Design tokens — Geist / Vercel system ============ */
 :root {
+  /* Let height/max-height transitions animate to & from `auto` (e.g. the
+     timeline talk card growing to fit its content on hover). Progressive
+     enhancement — browsers without support just snap, as before. */
+  interpolate-size: allow-keywords;
   /* light */
   --bg: #ffffff;
   --bg-subtle: #fafafa;

@@ -3,6 +3,7 @@ import { Outlet, Navigate, useParams, useLocation } from "react-router-dom";
 import Nav from "./Nav";
 import Footer from "./Footer";
 import PageLoader from "./PageLoader";
+import DocumentTitle from "./DocumentTitle";
 import { ConferenceProvider } from "../lib/conference";
 import { FollowProvider } from "../lib/follow";
 import { hasConference } from "../lib/conferences";
@@ -20,6 +21,7 @@ export default function ConferenceLayout() {
       <Nav confId={conf} />
       <Suspense fallback={<PageLoader />}>
         <ConferenceProvider id={conf}>
+          <DocumentTitle />
           {/* Keyed by conference so switching remounts follows with that
               conference's own saved agenda. */}
           <FollowProvider key={conf} confId={conf}>
