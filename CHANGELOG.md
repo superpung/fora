@@ -10,9 +10,19 @@ the repository language rule (see AGENTS.md).
 - **Mobile horizontal overflow** on every in-conference page: the nav (switcher +
   links + theme toggle) pushed the theme toggle ~19px off-screen. The switcher and
   toggle are now pinned and the links scroll horizontally between them.
-- **Cramped forum room column** on mobile: ChinaSoft's longer room names wrapped
-  to 3–4 lines. Widened the room/code column (dashboard rows + timeline cards) so
-  they wrap to ≤2 lines.
+- **Hub content flush to the edges** on mobile: `.hub` had set a `padding`
+  shorthand that zeroed the horizontal padding; only the vertical padding is set
+  now, so the title/cards keep the container gutter.
+- **Long room names** (ChinaSoft) no longer wrap into a cramped 3–4 line column:
+  the dashboard forum row puts room/code/category on a full-width top line on
+  mobile, and the timeline card stacks to a single column.
+- **Forum speakers stay on one line** on any screen (nowrap + soft right fade)
+  instead of wrapping into many lines.
+- **ChinaSoft speaker parsing**: English names were truncated
+  ("Bangchao Wang" → "Bangchao"), "A and B" cells mis-split, and affiliation /
+  venue / room strings (e.g. "北京航空航天大学") became fake speaker names. The
+  parser now handles CJK vs Latin names, multi-author cells, and drops
+  institution/venue cells.
 
 ### Changed
 - **The hub groups conferences by status** — 进行中 / 即将开始 / 已结束 — computed
