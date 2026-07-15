@@ -9,8 +9,19 @@ import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Icon from "../components/Icon";
 import Avatar from "../components/Avatar";
 import PosterModal from "../components/PosterModal";
-import type { PosterSpec } from "../lib/poster";
+import type { PosterSpec, PosterMeta } from "../lib/poster";
 import type { Person, Talk } from "../types";
+
+/** "2025年11月27–30日" — a compact CN date range, collapsing shared year/month. */
+function confDateRange(start: string, end: string): string {
+  const [ys, ms, ds] = start.split("-").map((n) => parseInt(n, 10));
+  const [ye, me, de] = end.split("-").map((n) => parseInt(n, 10));
+  if (!ye || !me || !de || (ys === ye && ms === me && ds === de))
+    return `${ys}年${ms}月${ds}日`;
+  if (ys === ye && ms === me) return `${ys}年${ms}月${ds}–${de}日`;
+  if (ys === ye) return `${ys}年${ms}月${ds}日–${me}月${de}日`;
+  return `${ys}年${ms}月${ds}日–${ye}年${me}月${de}日`;
+}
 
 function accentColor(): string {
   if (typeof document === "undefined") return "#0070f3";
@@ -282,18 +293,24 @@ export default function ForumDetail() {
   const tracks = timed ? splitParallelTracks(forum.talks ?? [], roomParts) : null;
 
   const shareUrl = () => `${window.location.origin}${window.location.pathname}`;
+  // Conference-level identity, shared by both posters.
+  const confDate = confDateRange(conference.start_date, conference.end_date);
+  const mainVenue =
+    conference.venues?.find((v) => v.type === "main") ?? conference.venues?.[0];
+  const confLocation = mainVenue?.city ? `中国·${mainVenue.city}` : null;
 
-  // Build the forum-level share poster (title + chairs + date/room/category).
+  // Build the forum-level share poster (title + chairs + every talk).
   function openForumPoster() {
     const f = forum!;
-    const metaLines: string[] = [];
+    const metaLines: PosterMeta[] = [];
     if (dateInfo)
-      metaLines.push(
-        `${dateInfo.md} ${dateInfo.weekday}` +
+      metaLines.push({
+        icon: "calendar",
+        text:
+          `${dateInfo.md} ${dateInfo.weekday}` +
           (f.session_period ? ` · ${tr(`period.${f.session_period}`)}` : ""),
-      );
-    if (f.room) metaLines.push(tr("poster.roomMeta", { room: f.room }));
-    if (f.category) metaLines.push(tr("poster.catMeta", { cat: f.category.name.zh }));
+      });
+    if (f.room) metaLines.push({ icon: "pin", text: f.room });
     const chairs = (f.chairs ?? []).map((c) => ({ name: c.name, aff: c.affiliation_raw }));
     const talks = (f.talks ?? []).map((t, i) => ({
       index: i + 1,
@@ -304,54 +321,55 @@ export default function ForumDetail() {
     }));
     setPoster({
       spec: {
-        brand: tr("common.siteName"),
         confName: conference.name.zh,
-        kindLabel: tr("poster.kindForum"),
-        title: f.title.zh,
+        confDate,
+        confLocation,
+        chip: f.category?.name.zh ?? tr("poster.kindForum"),
         code: f.code,
+        title: f.title.zh,
         metaLines,
+        accent: accentColor(),
+        qrUrl: shareUrl(),
+        peopleIcon: "users",
         peopleLabel: chairs.length ? tr("forum.chairs") : undefined,
         people: chairs,
         talksLabel: talks.length ? tr("poster.talksLabel", { n: talks.length }) : undefined,
         talks,
-        footer: shareUrl(),
-        footerNote: tr("poster.footerNote"),
-        accent: accentColor(),
       },
       filename: `${conference.name.zh}-${f.code}.png`,
     });
   }
 
-  // Build a single report's share poster (title + speakers + time/room/forum).
+  // Build a single report's share poster (title + speakers + full abstract).
   function openTalkPoster(t: Talk, i: number) {
     const f = forum!;
     const time = t.start ? `${t.start}${t.end ? `–${t.end}` : ""}` : "";
     const when = [dateInfo ? `${dateInfo.md} ${dateInfo.weekday}` : "", time]
       .filter(Boolean)
       .join(" · ");
-    const metaLines: string[] = [];
-    if (when) metaLines.push(when);
-    if (f.room) metaLines.push(tr("poster.roomMeta", { room: f.room }));
-    metaLines.push(tr("poster.forumMeta", { forum: f.title.zh }));
+    const metaLines: PosterMeta[] = [];
+    if (when) metaLines.push({ icon: "clock", text: when });
+    if (f.room) metaLines.push({ icon: "pin", text: f.room });
+    metaLines.push({ icon: "forums", text: f.title.zh });
     const speakers = (t.speakers ?? []).map((s) => ({ name: s.name, aff: s.affiliation_raw }));
-    const abstract =
-      t.abstract && t.abstract_status !== "tbd" ? t.abstract : null;
+    const abstract = t.abstract && t.abstract_status !== "tbd" ? t.abstract : null;
     setPoster({
       spec: {
-        brand: tr("common.siteName"),
         confName: conference.name.zh,
-        kindLabel: tr("poster.kindTalk"),
+        confDate,
+        confLocation,
+        chip: f.category?.name.zh ?? tr("poster.kindTalk"),
+        code: f.code,
         title:
           t.title_status === "tbd" || !t.title?.zh ? tr("forum.titleTbd") : t.title.zh,
-        code: f.code,
         metaLines,
+        accent: accentColor(),
+        qrUrl: `${shareUrl()}#talk-${i + 1}`,
+        peopleIcon: "users",
         peopleLabel: speakers.length ? tr("poster.speakers") : undefined,
         people: speakers,
         abstractLabel: abstract ? tr("poster.abstractLabel") : undefined,
         abstract,
-        footer: `${shareUrl()}#talk-${i + 1}`,
-        footerNote: tr("poster.footerNote"),
-        accent: accentColor(),
       },
       filename: `${conference.name.zh}-${f.code}-${i + 1}.png`,
     });
