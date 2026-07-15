@@ -45,6 +45,18 @@ function timeRange(b?: { start?: string | null; end?: string | null }) {
   return b.end ? `${b.start}–${b.end}` : b.start;
 }
 
+// Period(s) a keynote set actually spans, derived from the talks' start times
+// (some conferences run keynotes across morning and afternoon).
+function keynotePeriods(talks: Talk[]): string {
+  const set = new Set<string>();
+  for (const t of talks) {
+    if (!t.start) continue;
+    const h = parseInt(t.start.split(":")[0], 10);
+    set.add(h < 12 ? "上午" : h < 18 ? "下午" : "晚上");
+  }
+  return [...set].join("·");
+}
+
 /** A clickable author: person icon + name (hover underline) + affiliation.
     Shared by keynote rows and forum-talk rows so both read identically. */
 function PersonLine({
@@ -197,6 +209,7 @@ function ForumRow({
             <Icon name="pin" size={11} /> {slot.room}
           </span>
           <span className="frow__code">{slot.code}</span>
+          {f?.category && <span className="frow__cat">{f.category.name.zh}</span>}
         </span>
         <div className="frow__body">
           <div className="frow__title">{f?.title.zh ?? slot.code}</div>
@@ -393,7 +406,8 @@ function DaySection({
             aria-expanded={keyOpen}
           >
             <Icon name="keynotes" size={15} />
-            主旨报告 · 上午 · {day.keynotes.length} 场
+            主旨报告{keynotePeriods(day.keynotes) && ` · ${keynotePeriods(day.keynotes)}`} ·{" "}
+            {day.keynotes.length} 场
             <span className={`caret ${keyOpen ? "caret--up" : ""}`}>
               <Icon name="chevron-down" size={16} />
             </span>
@@ -457,8 +471,21 @@ export default function Home() {
   const [onlySponsored, setOnlySponsored] = useState(false);
   // Clicking a speaker chip filters the board down to that person's forums/talks.
   const [speakerFilter, setSpeakerFilter] = useState<string | null>(null);
+  const [categoryFilter, setCategoryFilter] = useState<string | null>(null);
   const onSpeaker = (name: string) =>
     setSpeakerFilter((s) => (s === name ? null : name));
+
+  // Distinct forum categories present (conferences that group forums; empty for
+  // a flat forum list like ccfchip). Drives the optional category filter row.
+  const categories = useMemo(() => {
+    const m = new Map<string, string>();
+    for (const d of scheduleDays)
+      for (const s of d.slots) {
+        const c = s.forum?.category;
+        if (c?.key && !m.has(c.key)) m.set(c.key, c.name.zh);
+      }
+    return [...m.entries()];
+  }, [scheduleDays]);
 
   const followedCount =
     followedForums.size + followedSpeakers.size + followedTalks.size;
@@ -471,6 +498,7 @@ export default function Home() {
         const slots = d.slots.filter((s) => {
           if (q && !s.search.includes(q)) return false;
           if (onlySponsored && !s.forum?.sponsor) return false;
+          if (categoryFilter && s.forum?.category?.key !== categoryFilter) return false;
           if (speakerFilter && !s.people.includes(speakerFilter)) return false;
           if (onlyFollowed) {
             const tracked =
@@ -486,7 +514,7 @@ export default function Home() {
       .filter((x) => x.slots.length > 0);
     // isSpeaker / isTalk are re-created whenever the followed sets change, so
     // depending on them is enough — the raw sets are redundant here.
-  }, [scheduleDays, dayFilter, q, onlyFollowed, onlySponsored, speakerFilter, followedForums, isSpeaker, isTalk]);
+  }, [scheduleDays, dayFilter, q, onlyFollowed, onlySponsored, categoryFilter, speakerFilter, followedForums, isSpeaker, isTalk]);
 
   const totalShown = visibleDays.reduce((n, x) => n + x.slots.length, 0);
   const { md: startMd } = formatDate(conference.start_date);
@@ -583,6 +611,25 @@ export default function Home() {
       </div>
 
       <div className="container dash">
+        {categories.length > 0 && (
+          <div className="dashcats">
+            <button
+              className={`chipfilter ${!categoryFilter ? "is-on" : ""}`}
+              onClick={() => setCategoryFilter(null)}
+            >
+              全部
+            </button>
+            {categories.map(([key, zh]) => (
+              <button
+                key={key}
+                className={`chipfilter ${categoryFilter === key ? "is-on" : ""}`}
+                onClick={() => setCategoryFilter((c) => (c === key ? null : key))}
+              >
+                {zh}
+              </button>
+            ))}
+          </div>
+        )}
         <div className="dash__resultbar">
           <span className="dash__resultinfo">
             共 <strong>{totalShown}</strong> 场论坛

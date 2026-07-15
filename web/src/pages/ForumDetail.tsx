@@ -146,6 +146,7 @@ export default function ForumDetail() {
         </div>
         <div className="fd__meta">
           <span className="fd__code">{forum.code}</span>
+          {forum.category && <span className="fd__cat">{forum.category.name.zh}</span>}
           {forum.room && (
             <span className="fd__room">
               <Icon name="pin" size={13} /> {forum.room}

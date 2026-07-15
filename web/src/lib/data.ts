@@ -160,7 +160,7 @@ function forumPeople(f?: Forum): string[] {
 function forumSearchText(f: Forum | undefined, code: string, room?: string | null): string {
   const parts: string[] = [code, room ?? ""];
   if (f) {
-    parts.push(f.title.zh, f.title.en ?? "", f.sponsor ?? "", f.description ?? "");
+    parts.push(f.title.zh, f.title.en ?? "", f.sponsor ?? "", f.description ?? "", f.category?.name.zh ?? "");
     (f.chairs ?? []).forEach((c) => parts.push(c.name, c.affiliation_raw ?? "", c.organization ?? ""));
     (f.talks ?? []).forEach((t) => {
       parts.push(t.title?.zh ?? "");
