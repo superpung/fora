@@ -2,7 +2,7 @@
 // calendar / spreadsheet / markdown. A forum talk has no time of its own, so we
 // fall back to its forum block's window; the location is the full venue name
 // joined with the room (e.g. "无锡国际会议中心 205A").
-import { blockKindLabel, type ConferenceViews } from "./data";
+import { type ConferenceViews } from "./data";
 import { isKeynoteId } from "./follow-store";
 import type { Forum, Talk } from "../types";
 
@@ -67,7 +67,7 @@ function keynoteItem(id: string, views: ConferenceViews): ExportItem | null {
     uid: id.replace(/[:#]/g, "-"),
     title: talkTitle(e.talk),
     speakers: speakerNames(e.talk),
-    session: blockKindLabel.keynotes,
+    session: "大会主旨报告",
     date: e.date,
     start: e.talk.start ?? null,
     end: e.talk.end ?? null,

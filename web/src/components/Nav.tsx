@@ -2,18 +2,21 @@ import { NavLink } from "react-router-dom";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useState } from "react";
 import ThemeToggle from "./ThemeToggle";
+import LangToggle from "./LangToggle";
 import ConferenceSwitcher from "./ConferenceSwitcher";
+import { useI18n } from "../lib/i18n-store";
 
 // In-conference links, relative to the active conference (`/:conf/...`).
 const LINKS = [
-  { to: "", label: "日程面板", end: true },
-  { to: "/schedule", label: "时间线" },
-  { to: "/speakers", label: "讲者" },
-  { to: "/committee", label: "委员会" },
-  { to: "/organizations", label: "组织与赞助" },
+  { to: "", key: "nav.dashboard", end: true },
+  { to: "/schedule", key: "nav.timeline" },
+  { to: "/speakers", key: "nav.speakers" },
+  { to: "/committee", key: "nav.committee" },
+  { to: "/organizations", key: "nav.orgs" },
 ];
 
 export default function Nav({ confId }: { confId: string }) {
+  const { t } = useI18n();
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
   useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 12));
@@ -35,11 +38,14 @@ export default function Nav({ confId }: { confId: string }) {
               end={l.end}
               className={({ isActive }) => `nav__link ${isActive ? "is-active" : ""}`}
             >
-              {l.label}
+              {t(l.key)}
             </NavLink>
           ))}
         </nav>
-        <ThemeToggle />
+        <div className="nav__tools">
+          <LangToggle />
+          <ThemeToggle />
+        </div>
       </div>
     </motion.header>
   );

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import Icon from "./Icon";
 import { conferenceList, conferenceMeta } from "../lib/conferences";
+import { useI18n } from "../lib/i18n-store";
 
 // The nav's brand doubles as a conference switcher (Vercel/Linear-style): it
 // shows the active conference and opens a popover to jump to another or back to
@@ -12,6 +13,7 @@ export default function ConferenceSwitcher({ confId }: { confId: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const current = conferenceMeta(confId);
+  const { t, lang } = useI18n();
 
   useEffect(() => {
     if (!open) return;
@@ -29,7 +31,7 @@ export default function ConferenceSwitcher({ confId }: { confId: string }) {
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-haspopup="menu"
-        title="切换会议"
+        title={t("confsw.switch")}
       >
         <span className="confsw__logo" aria-hidden>
           <Icon name="conference" size={16} />
@@ -49,7 +51,7 @@ export default function ConferenceSwitcher({ confId }: { confId: string }) {
             exit={{ opacity: 0, y: -6, scale: 0.97 }}
             transition={{ duration: 0.16, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="confsw__label">切换会议</div>
+            <div className="confsw__label">{t("confsw.switch")}</div>
             {conferenceList.map((c) => (
               <button
                 key={c.id}
@@ -61,7 +63,9 @@ export default function ConferenceSwitcher({ confId }: { confId: string }) {
                 }}
               >
                 <span className="confsw__itemmain">
-                  <span className="confsw__itemname">{c.name.zh}</span>
+                  <span className="confsw__itemname">
+                    {lang === "en" ? (c.name.en ?? c.name.zh) : c.name.zh}
+                  </span>
                   <span className="confsw__itemmeta">
                     {c.start_date}
                     {c.city ? ` · ${c.city}` : ""}
@@ -71,7 +75,7 @@ export default function ConferenceSwitcher({ confId }: { confId: string }) {
               </button>
             ))}
             <Link to="/" className="confsw__all" onClick={() => setOpen(false)}>
-              <Icon name="forums" size={14} /> 全部会议
+              <Icon name="forums" size={14} /> {t("confsw.all")}
             </Link>
           </motion.div>
         )}

@@ -1,8 +1,10 @@
 import { useConference } from "../lib/conference-store";
+import { useI18n } from "../lib/i18n-store";
 import Icon from "./Icon";
 
 export default function Footer() {
   const { conference } = useConference();
+  const { t } = useI18n();
   const site = conference.source_url;
   return (
     <footer className="footer">
@@ -15,7 +17,7 @@ export default function Footer() {
         </div>
         {site && (
           <a className="footer__site" href={site} target="_blank" rel="noreferrer">
-            官方网站
+            {t("common.official")}
             <Icon name="external" size={14} />
           </a>
         )}

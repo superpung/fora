@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useConference } from "../lib/conference-store";
+import { useI18n } from "../lib/i18n-store";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Reveal from "../components/Reveal";
 import Icon from "../components/Icon";
@@ -7,6 +8,7 @@ import Avatar from "../components/Avatar";
 
 export default function Committee() {
   const { conference } = useConference();
+  const { t } = useI18n();
   const committees = conference.committees ?? [];
   return (
     <motion.div
@@ -21,7 +23,7 @@ export default function Committee() {
           <span className="section__icon" aria-hidden>
             <Icon name="committee" size={19} />
           </span>
-          <h2 className="section__title">大会委员会</h2>
+          <h2 className="section__title">{t("committee.title")}</h2>
         </div>
       </div>
 
