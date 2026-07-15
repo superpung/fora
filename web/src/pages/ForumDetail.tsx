@@ -82,9 +82,9 @@ function PersonLine({ p, role, avatarSize = 40 }: { p: Person; role?: string; av
               {open && (
                 <motion.p
                   className="person__bio"
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
+                  initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                  animate={{ height: "auto", opacity: 1, marginTop: 8 }}
+                  exit={{ height: 0, opacity: 0, marginTop: 0 }}
                   transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                 >
                   {p.bio}
@@ -197,13 +197,29 @@ export default function ForumDetail() {
   // Prefer the official article page (general_NNNN); fall back to the CMS poster.
   const officialUrl = forum?.source_url ?? officialAssetUrl(forum?.poster?.source_url);
 
-  // deep-link: scroll to the anchored talk when arriving with / changing #talk-<n>
+  // deep-link: scroll to the anchored talk when arriving with / changing #talk-<n>.
+  // The page plays an enter animation (container + per-row translateY easing to 0)
+  // when it mounts. scrollIntoView reads the element's *transformed* box, so during
+  // that animation it lands short of the final resting spot. Instead we scroll to
+  // the element's untransformed LAYOUT top (summed offsetTop, which ignores the
+  // transform), minus the sticky-nav height — precise regardless of the animation.
   useEffect(() => {
     if (!activeId) return;
     const el = document.getElementById(activeId);
     if (!el) return;
     const raf = requestAnimationFrame(() => {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      let top = 0;
+      let node: HTMLElement | null = el;
+      while (node) {
+        top += node.offsetTop;
+        node = node.offsetParent as HTMLElement | null;
+      }
+      const navH =
+        parseInt(
+          getComputedStyle(document.documentElement).getPropertyValue("--nav-h"),
+          10,
+        ) || 56;
+      window.scrollTo({ top: Math.max(0, top - navH - 16), behavior: "smooth" });
     });
     return () => cancelAnimationFrame(raf);
   }, [activeId, forum]);
