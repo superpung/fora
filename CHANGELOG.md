@@ -4,6 +4,22 @@ All notable changes to this project. The project is unversioned (no release
 tags yet), so entries are grouped by date, newest first. Written in English per
 the repository language rule (see AGENTS.md).
 
+## 2026-07-15 — Timeline grid redesign + AGENTS compliance
+
+### Fixed
+- **Timeline grid no longer clips or overlaps talks.** Strict time-proportional
+  heights couldn't fit talks as short as 2 min (73 of them are ≤10 min), so
+  titles overflowed and collided. Talk cells now use push-down stacking (each
+  gets a readable floor height and drifts down only under congestion, never
+  overlapping) plus height-adaptive content: cells shrink by dropping the speaker,
+  then clamping the title to one line, so nothing is ever cut mid-line.
+- **Removed the colored left-edge bar on timeline talk cells** (violated the
+  AGENTS.md "no left-edge highlight bars" rule); cells use a full-surface tint
+  and a stronger border on hover instead.
+- **Dashboard talk authors now lay out horizontally and wrap** (were stacked
+  vertically). Unlike the forum-row author line, talk authors are never
+  truncated — the full author list is shown.
+
 ## 2026-07-15 — Timeline grid + forum-talk times
 
 ### Added
