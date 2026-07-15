@@ -4,6 +4,31 @@ All notable changes to this project. The project is unversioned (no release
 tags yet), so entries are grouped by date, newest first. Written in English per
 the repository language rule (see AGENTS.md).
 
+## 2026-07-15 — Parallel-room forums + borderless co-authors + hover/fade polish
+
+### Fixed
+- **Parallel-room forums now split into one timeline per room.** A forum whose
+  `room` names several rooms (e.g. U1 "一楼楚悟厅V15 、 二楼荆南厅V27") stores
+  both rooms' agendas as one flat `talks[]` with the second room appended (its
+  clock resets to the morning). The flat list rendered as a single timeline whose
+  time ran forward then jumped back — clearly wrong. It's now split at each
+  backward time jump into one labelled track per room, on both the ForumDetail
+  page (a headed sub-timeline per room) and the Schedule grid (one column per
+  room). The split only triggers when the reset-count matches the room-count, so
+  single-room multi-day competition schedules (C5, C3) keep their single
+  continuous timeline.
+- **Timeline cell bottom-fade no longer dims the left accent bar.** The overflow
+  fade started at the cell's left edge and washed over the accent strip; it now
+  insets past the bar so the accent stays solid.
+- **Timeline card hover is slower and eased.** The hover transition was fast and
+  linear-feeling; it now uses a gentler, longer ease-in-out (matching the hub
+  card), so it no longer snaps the instant the cursor lands.
+
+### Changed
+- **Multi-author talks drop the pill outline.** The compact co-author chips were
+  boxed in bordered pills; they're now borderless (avatar + name + muted follow
+  star) to match the page's flat, frameless design.
+
 ## 2026-07-15 — Timeline hover/crop fixes + compact talk co-authors
 
 ### Fixed
