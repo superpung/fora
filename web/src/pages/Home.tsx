@@ -214,6 +214,18 @@ function ForumRow({
               <Icon name="pin" size={11} /> {slot.room}
             </span>
             {f?.category && <span className="frow__cat">{f.category.name.zh}</span>}
+            {f?.sponsor && (
+              <span className="frow__sponsor">
+                <Icon name="building" size={12} /> {f.sponsor}
+              </span>
+            )}
+            {hasTalks ? (
+              <span className="frow__count">
+                <Icon name="keynotes" size={12} /> {talks.length} 报告
+              </span>
+            ) : (
+              <span className="frow__pending">详情待补</span>
+            )}
           </span>
           {slot.people.length > 0 && (
             <div className="frow__people">
@@ -237,22 +249,6 @@ function ForumRow({
           )}
         </div>
         <div className="frow__actions">
-          {/* meta (sponsor · N 报告) sits to the left of the buttons and is
-              vertically centred with them — the report count stays rightmost. */}
-          <div className="frow__meta">
-            {f?.sponsor && (
-              <span className="frow__sponsor">
-                <Icon name="building" size={12} /> {f.sponsor}
-              </span>
-            )}
-            {hasTalks ? (
-              <span className="frow__count">
-                <Icon name="keynotes" size={12} /> {talks.length} 报告
-              </span>
-            ) : (
-              <span className="frow__pending">详情待补</span>
-            )}
-          </div>
           <StarButton
             active={isForum(slot.code)}
             onClick={() => toggleForum(slot.code)}
