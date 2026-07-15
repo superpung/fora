@@ -442,6 +442,95 @@ def parse_keynotes():
     return days
 
 
+# Conference committees live in the intro mini-SPA
+# (raw/meta/intro/committee-*.html, fetched by following introduction.html's
+# loadIntroPage nav). Two page layouts:
+#   A) .section-title role headings, each followed by a .committee-grid of
+#      .committee-item/.committee-name (names only) — steering, chair, finance, …
+#   B) a .member-list of "name(s) [unit]" entries (<li> or <br>-separated) —
+#      program, organization (these carry affiliations).
+COMMITTEE_PAGES = [
+    ("committee-steering", "指导委员会"),
+    ("committee-chair", "会议组织委员会"),
+    ("committee-program", "程序委员会"),
+    ("committee-organization", "本地组织委员会"),
+    ("committee-finance", "财务委员会"),
+    ("committee-publicity", "宣传委员会"),
+    ("committee-sponsorship", "赞助委员会"),
+    ("committee-publication", "出版委员会"),
+]
+# Generic sub-roles that need the committee name for context: "荣誉主席" alone is
+# ambiguous, while "大会主席" / "财务委员会委员" already read on their own.
+BARE_ROLES = ("荣誉主席", "名誉主席", "主席", "副主席", "委员", "秘书长", "秘书", "执行主席")
+
+
+def committee_members_flat(member_list):
+    """Parse a .member-list of 'name(s) [unit]' entries (program / organization).
+    Names sharing one unit (e.g. '张洪艳、胡成玉 [中国地质大学（武汉）]') each become
+    a member carrying that unit."""
+    lis = member_list.select("li")
+    if lis:
+        entries = [clean(li.get_text(" ")) for li in lis]
+    else:
+        p = member_list.find("p") or member_list
+        for br in p.find_all("br"):
+            br.replace_with("\n")
+        entries = [clean(x) for x in p.get_text().split("\n")]
+    members = []
+    for e in entries:
+        if not e:
+            continue
+        munit = re.search(r"[\[【]([^\]】]+)[\]】]", e)
+        unit = clean(munit.group(1)) if munit else None
+        names = clean(re.sub(r"[\[【][^\]】]*[\]】]", "", e))
+        for nm in re.split(r"[、，,]", names):
+            nm = clean(nm)
+            if not nm:
+                continue
+            m = {"name": nm}
+            if unit:
+                m["affiliation_raw"] = unit
+            members.append(m)
+    return members
+
+
+def parse_committees():
+    """raw/meta/intro/committee-*.html -> schema committee[]. Each role section
+    (layout A) or flat member list (layout B) becomes one committee entry, so the
+    Committee page renders each as its own titled group."""
+    committees = []
+    intro = RAW / "meta" / "intro"
+    for slug, name in COMMITTEE_PAGES:
+        path = intro / f"{slug}.html"
+        if not path.exists():
+            continue
+        soup = BeautifulSoup(path.read_text(encoding="utf-8"), "html.parser")
+        note = "以姓名拼音顺序排序" if "拼音" in soup.get_text() else None
+        sections = soup.select(".section-title")
+        if sections:
+            for st in sections:
+                sub = clean(st.get_text())
+                grid = st.find_next_sibling(class_="committee-grid")
+                if not grid:
+                    continue
+                members = []
+                for item in grid.select(".committee-item"):
+                    ne = item.select_one(".committee-name")
+                    nm = clean(ne.get_text()) if ne else None
+                    if nm:
+                        members.append({"name": nm})
+                if not members:
+                    continue
+                role = f"{name} {sub}" if sub in BARE_ROLES else (sub or name)
+                committees.append({"role": i18n(role), "ordering_note": note, "members": members})
+        else:
+            ml = soup.select_one(".member-list")
+            members = committee_members_flat(ml) if ml else []
+            if members:
+                committees.append({"role": i18n(name), "ordering_note": note, "members": members})
+    return committees
+
+
 def build():
     forums = []
     diag = {}
@@ -497,7 +586,7 @@ def build():
             + [{"name": i18n(n), "role": "co_host", "sponsor_tier": None} for n in co_hosts]
             + [{"name": i18n(n), "role": "support", "sponsor_tier": None} for n in supporters]
         ),
-        "committees": [],
+        "committees": parse_committees(),
         "days": days,
         "forums": forums,
         "extra": {
