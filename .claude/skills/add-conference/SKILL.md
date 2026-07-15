@@ -42,6 +42,18 @@ either.
      (often their own hash routes / lazy-loaded fragments, e.g. an intro page whose
      nav calls `loadIntroPage('committee-steering')`). Walk each menu and fetch
      **every** linked sub-page — a landing page usually shows only its first tab.
+   - **Capture the agenda's own "overview / 总览" timetable, not just per-forum
+     pages.** The agenda usually has a day-by-day summary tab (e.g.
+     `#agenda/agenda-overview/index`) *alongside* the per-forum/keynote detail
+     pages. That overview is typically the **only** source of the non-forum
+     schedule — check-in / 签到 / registration, opening, tea breaks, lunches,
+     banquet, closing — none of which appear on any individual forum page. Fetch
+     it as a first-class source and parse its `registration`/`break`/`banquet`
+     blocks. Do **not** hardcode the tab/category list from what you happen to see
+     (that's how the ChinaSoft overview was missed and check-in wrongly reported
+     as "no data"): discover every agenda tab from the nav and fetch each. If a
+     day ends up with only `forums`/`keynotes` blocks and no check-in/breaks,
+     treat it as a probable overview-fetch miss and verify against the site.
    - **Cross-check the fetch against the schema's top-level sections.** For each of
      `committees`, `organizations`, `venues` (and any other first-class array),
      confirm the site either has no such content or you captured its source. An
