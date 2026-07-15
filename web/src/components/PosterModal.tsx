@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { drawPoster, POSTER_W, POSTER_H, type PosterSpec } from "../lib/poster";
+import { drawPoster, type PosterSpec } from "../lib/poster";
 import { useI18n } from "../lib/i18n-store";
 import Icon from "./Icon";
 
@@ -67,12 +67,13 @@ export default function PosterModal({
             transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
             onClick={(e) => e.stopPropagation()}
           >
-            <canvas
-              ref={canvasRef}
-              className="postermodal__canvas"
-              style={{ aspectRatio: `${POSTER_W} / ${POSTER_H}` }}
-              aria-label={t("poster.previewAria")}
-            />
+            <div className="postermodal__scroll">
+              <canvas
+                ref={canvasRef}
+                className="postermodal__canvas"
+                aria-label={t("poster.previewAria")}
+              />
+            </div>
             <div className="postermodal__actions">
               <button className="btn btn--ghost" onClick={onClose}>
                 {t("common.close")}

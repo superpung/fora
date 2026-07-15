@@ -589,14 +589,24 @@ svg { display: block; }
 }
 .postermodal__panel {
   display: flex; flex-direction: column; gap: 14px; max-height: 92vh;
-  max-width: min(420px, 92vw);
+  width: min(420px, 92vw);
+}
+/* Fixed width, scroll vertically: a long forum/abstract poster grows tall, and
+   this keeps the preview on-screen (and phone-friendly) with an inner scroll. */
+.postermodal__scroll {
+  flex: 1 1 auto; min-height: 0; overflow-y: auto; overflow-x: hidden;
+  border-radius: var(--radius-md);
+  box-shadow: 0 12px 40px color-mix(in srgb, #000 40%, transparent);
+  background: #fff;
+}
+.postermodal__scroll::-webkit-scrollbar { width: 8px; }
+.postermodal__scroll::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, #000 28%, transparent); border-radius: 8px;
 }
 .postermodal__canvas {
-  width: 100%; height: auto; min-height: 0; border-radius: var(--radius-md);
-  box-shadow: 0 12px 40px color-mix(in srgb, #000 40%, transparent);
-  background: #fff; object-fit: contain;
+  display: block; width: 100%; height: auto; background: #fff;
 }
-.postermodal__actions { display: flex; justify-content: flex-end; gap: 10px; }
+.postermodal__actions { display: flex; justify-content: flex-end; gap: 10px; flex: 0 0 auto; }
 .talk__poster.iconbtn { color: var(--fg-muted); }
 .talk__poster.iconbtn:hover { color: var(--fg); }
 .tgrid__ttime { font-size: 10.5px; line-height: 1.35; color: var(--fg-muted); white-space: nowrap; }
