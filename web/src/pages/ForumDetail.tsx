@@ -64,6 +64,43 @@ function PersonLine({ p, role, avatarSize = 40 }: { p: Person; role?: string; av
   );
 }
 
+/** A speaker who carries real detail (affiliation / bio / title / honorifics)
+    deserves the full PersonLine card; a bare name (the common paper co-author)
+    does not — see AuthorChip below. */
+function isRichPerson(p: Person): boolean {
+  return !!(
+    p.affiliation_raw ||
+    p.organization ||
+    p.title ||
+    p.bio ||
+    (p.honorifics && p.honorifics.length > 0) ||
+    p.photo
+  );
+}
+
+/** A compact, wrappable chip for a name-only co-author. Many papers list 5–8
+    authors; stacking each as a full PersonLine (big avatar + affiliation + bio
+    toggle) wastes enormous vertical space, so bare names collapse into a single
+    horizontal row of chips. The colored letter avatar is kept; the whole chip
+    toggles following that person. */
+function AuthorChip({ p }: { p: Person }) {
+  const { isSpeaker, toggleSpeaker } = useFollow();
+  if (!p.name) return null;
+  const followed = isSpeaker(p.name);
+  return (
+    <button
+      className={`authorchip ${followed ? "is-on" : ""}`}
+      aria-pressed={followed}
+      title={followed ? `取消关注 ${p.name}` : `关注 ${p.name}`}
+      onClick={() => toggleSpeaker(p.name)}
+    >
+      <Avatar person={p} size={24} />
+      <span className="authorchip__name">{p.name}</span>
+      <Icon name="star" filled={followed} size={12} />
+    </button>
+  );
+}
+
 /** A talk abstract, clamped to three lines by default with a 展开/收起 toggle
     that animates the height open/closed (same house easing as the bio / talk
     sublist). The toggle only appears when the text actually overflows. */
@@ -287,9 +324,25 @@ export default function ForumDetail() {
                       <Icon name="alert" size={13} /> 源数据存在标注，已如实保留
                     </div>
                   ) : null}
-                  {t.speakers?.map((sp, j) => (
-                    <PersonLine key={j} p={sp} avatarSize={34} />
-                  ))}
+                  {(() => {
+                    const speakers = t.speakers ?? [];
+                    const rich = speakers.filter(isRichPerson);
+                    const bare = speakers.filter((p) => !isRichPerson(p));
+                    return (
+                      <>
+                        {rich.map((sp, j) => (
+                          <PersonLine key={`r${j}`} p={sp} avatarSize={34} />
+                        ))}
+                        {bare.length > 0 && (
+                          <div className="talk__authors">
+                            {bare.map((sp, j) => (
+                              <AuthorChip key={`b${j}`} p={sp} />
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    );
+                  })()}
                   {t.abstract ? (
                     <Abstract text={t.abstract} />
                   ) : t.abstract_status === "tbd" ? (

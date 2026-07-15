@@ -14,6 +14,11 @@ import type { Block, Forum, Talk } from "../types";
 // overlaps neighbours. Instead each talk gets a readable floor height and is
 // pushed down only when a burst of short talks would otherwise collide — the
 // column drifts slightly below true time under congestion but never clips.
+//
+// Every cell always renders its full time + title + speaker; the cell simply
+// shows as much as its slot allows and fades out the overflow at the bottom (no
+// mid-title ellipsis, no dropped fields). Hovering a compressed cell reveals the
+// complete content (see .tgrid__talk:hover).
 
 const PX_PER_MIN = 3.4; // a 20-min talk (the median) ≈ 68px — fits time+title+speaker
 const HOUR = 60;
@@ -26,14 +31,6 @@ const toMin = (t: string): number => {
   return h * 60 + (m || 0);
 };
 const fmt = (min: number): string => `${pad(Math.floor(min / 60))}:${pad(min % 60)}`;
-
-// How much of a talk cell renders, chosen from its final laid-out height so
-// content never overflows: shrink by dropping the speaker, then the 2nd title line.
-function tier(h: number): { lines: number; spk: boolean } {
-  if (h >= 66) return { lines: 2, spk: true };
-  if (h >= 50) return { lines: 2, spk: false };
-  return { lines: 1, spk: false };
-}
 
 interface Cell {
   t: Talk;
@@ -163,7 +160,6 @@ export default function TimeGrid({ block }: { block: Block }) {
                 <div key={h} className="tgrid__line" style={{ top: (h - lo) * PX_PER_MIN }} />
               ))}
               {c.cells.map(({ t, i, top, h }) => {
-                const { lines, spk } = tier(h);
                 const sp = t.speakers?.[0];
                 return (
                   <Link
@@ -178,14 +174,10 @@ export default function TimeGrid({ block }: { block: Block }) {
                       {t.start}
                       {t.end ? `–${t.end}` : ""}
                     </span>
-                    <span className="tgrid__ttitle" style={{ WebkitLineClamp: lines }}>
+                    <span className="tgrid__ttitle">
                       {t.title_status === "tbd" ? "题目待定" : t.title?.zh}
                     </span>
-                    {sp?.name && (
-                      <span className={`tgrid__tspk ${spk ? "" : "tgrid__tspk--hide"}`}>
-                        {sp.name}
-                      </span>
-                    )}
+                    {sp?.name && <span className="tgrid__tspk">{sp.name}</span>}
                   </Link>
                 );
               })}
