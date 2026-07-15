@@ -8,17 +8,19 @@ the repository language rule (see AGENTS.md).
 
 ### Changed
 - **Share posters redesigned to the app's own Geist visual language** and made
-  self-contained. Flat white with a hairline system, near-black type, a monospace
+  self-contained. A clean light layout (no dark band), near-black type, a monospace
   face for codes/times/dates, thin line icons (the same feather glyphs as the UI,
   drawn on canvas), and a single restrained blue accent — replacing the earlier
   gradient/glow look.
-- **Forum poster now stands alone as a summary:** conference name + date range +
-  location (中国·city) at the top; the forum **category** (with a tag icon) sits
-  as the chip left of the code; date/room carry icons; and it lists **every
-  talk** (number, title, time, speakers + affiliations). Section headers (chairs,
-  talks) are larger with more breathing room, and chairs are spaced further apart.
+- **Forum poster stands alone as a summary:** a light header (accent tick +
+  conference name + date · location — the venue name moved down into the 地点/room
+  line); the forum **category** (tag-icon chip) left of the code; icon-tagged meta;
+  and **every talk** in a two-column grid — a fixed left column (number over time)
+  beside the title + speakers. Section labels are quiet (small, grey, no underline);
+  a speaker's affiliation sits baseline-aligned with the name (not top-aligned).
 - **Talk poster mirrors it:** category chip, icon-tagged time/room/forum, all
-  speakers with affiliations, and the **full abstract**.
+  speakers with affiliations, and the **full abstract**. Titles wrap with kinsoku so
+  a bracket never drops alone.
 - **A QR to the page replaces the footer URL/brand text** — bottom-right, encoding
   the forum/talk permalink so a scan opens it. The poster height is variable, so a
   long forum/abstract just makes the card taller (the preview modal scrolls).
