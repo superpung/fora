@@ -30,6 +30,8 @@ export type IconName =
   | "users"
   | "user"
   | "building"
+  | "tag"
+  | "image"
   | "link"
   | "check"
   | "download"
@@ -172,6 +174,19 @@ const PATHS: Record<IconName, ReactElement> = {
       <path d="M4 21V5a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v16" />
       <path d="M15 9h4a1 1 0 0 1 1 1v11M2.5 21h19" />
       <path d="M7.5 8h3M7.5 12h3M7.5 16h3" />
+    </>
+  ),
+  tag: (
+    <>
+      <path d="M3.5 11.3V5a1.5 1.5 0 0 1 1.5-1.5h6.3a2 2 0 0 1 1.4.6l7 7a1.8 1.8 0 0 1 0 2.5l-5.9 5.9a1.8 1.8 0 0 1-2.5 0l-7-7a2 2 0 0 1-.6-1.4z" />
+      <circle cx="7.75" cy="7.75" r="1.25" />
+    </>
+  ),
+  image: (
+    <>
+      <rect x="3.5" y="4.5" width="17" height="15" rx="2" />
+      <circle cx="8.5" cy="9.5" r="1.6" />
+      <path d="M4 17l4.5-4.5a1.5 1.5 0 0 1 2 0l3.5 3.5m-2-2l2-2a1.5 1.5 0 0 1 2 0L20 14" />
     </>
   ),
   link: (

@@ -199,7 +199,7 @@ svg { display: block; }
 
 /* ============================ SECTION (generic) ============================ */
 .section { padding-top: clamp(28px, 5vw, 52px); padding-bottom: clamp(28px, 5vw, 52px); }
-.section__head { margin-bottom: 24px; }
+.section__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 24px; }
 .section__titlerow { display: flex; align-items: center; gap: 12px; }
 .section__icon {
   display: inline-grid; place-items: center; flex: 0 0 auto;
@@ -405,6 +405,7 @@ svg { display: block; }
 .ftalk__link { display: grid; grid-template-columns: 40px 1fr; align-items: baseline; gap: 16px; padding: 11px 42px 11px 16px; }
 .ftalk__no { font-family: var(--font-mono); font-size: 12px; color: var(--fg-muted); font-variant-numeric: tabular-nums; text-align: right; }
 .ftalk__main { min-width: 0; }
+.ftalk__time { display: block; font-family: var(--font-mono); font-size: 11.5px; color: var(--fg-muted); margin-bottom: 3px; }
 .ftalk__title { font-size: 13.5px; font-weight: 500; line-height: 1.45; }
 /* talk authors: horizontal, wrapping, never clipped (the full list matters here,
    unlike the forum-row author line which truncates with a fade) */
@@ -520,14 +521,18 @@ svg { display: block; }
 .tgrid__line { position: absolute; left: 0; right: 0; height: 1px; background: var(--border); opacity: 0.55; }
 .tgrid__talk {
   position: absolute; left: 3px; right: 3px; z-index: 0; display: flex; flex-direction: column; gap: 1px;
-  padding: 3px 7px 3px 11px; overflow: hidden; background: var(--bg-subtle);
+  cursor: pointer; padding: 3px 7px 3px 11px; overflow: hidden; background: var(--bg-subtle);
   border: 1px solid var(--border); border-radius: var(--radius-sm);
-  /* z-index change is delayed by the animation duration so that when the mouse
-     leaves, the card stays raised for the whole collapse (otherwise it drops
-     behind the next opaque card the instant hover ends and appears to snap
-     shorter). Hover overrides this to raise immediately — see :hover below. */
+  /* Only height + background are animated. box-shadow is deliberately NOT
+     transitioned: animating a blurred shadow forces a large repaint every frame
+     and was the main source of the collapse/expand jank — it snaps in/out
+     instead, which is imperceptible next to the height motion.
+     z-index change is delayed slightly LONGER than the height (0.24s > 0.22s) so
+     when the mouse leaves the card stays raised until fully collapsed; without
+     the extra margin the drop lands on the last frame and a neighbouring opaque
+     card paints over it, reading as a snap. Hover raises immediately (see below). */
   transition: height 0.22s ease-in-out, background 0.22s ease-in-out,
-    box-shadow 0.22s ease-in-out, border-color 0.22s ease-in-out, z-index 0s linear 0.22s;
+    border-color 0.22s ease-in-out, z-index 0s linear 0.24s;
 }
 /* Accent bar: an inset vertical strip whose ends reach the point where the card's
    rounded corner begins (top/bottom inset == the corner radius) so it runs the
@@ -545,6 +550,7 @@ svg { display: block; }
   content: ""; position: absolute; left: 4px; right: 1px; bottom: 0; height: 15px;
   background: linear-gradient(to bottom, transparent, var(--bg-subtle) 60%);
   border-radius: 0 0 var(--radius-sm) var(--radius-sm); pointer-events: none;
+  opacity: 1; transition: opacity 0.18s ease-in-out;
 }
 /* Compressed cells reveal everything on hover: the cell grows to fit its full
    content and floats over the row below. It stays UNDER the sticky time gutter
@@ -552,16 +558,47 @@ svg { display: block; }
    overflow stays `hidden` (not visible) so the content is revealed in step with
    the height animation — otherwise the full text paints instantly before/after
    the box finishes growing/shrinking, which looked like a jump. */
-.tgrid__talk:hover {
+.tgrid__talk:hover, .tgrid__talk.is-open {
   height: auto !important; z-index: 5;
   background: var(--bg-hover); border-color: var(--border-strong);
   box-shadow: 0 3px 10px color-mix(in srgb, #000 7%, transparent);
   /* raise immediately on hover (no z-index delay) so the card grows above its
      neighbours from the first frame; the delayed drop lives on the base rule. */
   transition: height 0.22s ease-in-out, background 0.22s ease-in-out,
-    box-shadow 0.22s ease-in-out, border-color 0.22s ease-in-out, z-index 0s;
+    border-color 0.22s ease-in-out, z-index 0s;
 }
-.tgrid__talk:hover::after { display: none; }
+/* fade eases out (not display:none) so the bottom gradient doesn't pop back in
+   at the end of the collapse — that snap read as a stutter. */
+.tgrid__talk:hover::after, .tgrid__talk.is-open::after { opacity: 0; }
+/* touch tap-to-expand: an enter button appears bottom-right of the open card. */
+.tgrid__tenter {
+  position: absolute; right: 4px; bottom: 4px; display: inline-flex;
+  align-items: center; justify-content: center; width: 24px; height: 24px;
+  border-radius: var(--radius-sm); color: var(--fg-secondary);
+  background: var(--bg); border: 1px solid var(--border);
+}
+.tgrid__tenter:active { background: var(--bg-active); }
+.tgrid__empty { padding: 40px 16px; text-align: center; color: var(--fg-muted); font-size: 13.5px; }
+
+/* ============================ SHARE POSTER ============================ */
+.postermodal {
+  position: fixed; inset: 0; z-index: 100; display: flex; align-items: center;
+  justify-content: center; padding: 24px;
+  background: color-mix(in srgb, #000 55%, transparent);
+  backdrop-filter: blur(3px);
+}
+.postermodal__panel {
+  display: flex; flex-direction: column; gap: 14px; max-height: 92vh;
+  max-width: min(420px, 92vw);
+}
+.postermodal__canvas {
+  width: 100%; height: auto; min-height: 0; border-radius: var(--radius-md);
+  box-shadow: 0 12px 40px color-mix(in srgb, #000 40%, transparent);
+  background: #fff; object-fit: contain;
+}
+.postermodal__actions { display: flex; justify-content: flex-end; gap: 10px; }
+.talk__poster.iconbtn { color: var(--fg-muted); }
+.talk__poster.iconbtn:hover { color: var(--fg); }
 .tgrid__ttime { font-size: 10.5px; line-height: 1.35; color: var(--fg-muted); white-space: nowrap; }
 .tgrid__ttitle { font-size: 12px; font-weight: 500; line-height: 1.3; color: var(--fg); }
 .tgrid__tspk { font-size: 11px; line-height: 1.3; color: var(--fg-secondary); }
@@ -722,7 +759,8 @@ svg { display: block; }
 
 /* forum category: filter row (dashboard) + row tag + forum-detail tag */
 .dashcats { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
-.frow__cat { font-size: 11px; color: var(--fg-muted); white-space: nowrap; }
+.frow__cat { display: inline-flex; align-items: center; gap: 3px; font-size: 12.5px; color: var(--fg-secondary); white-space: nowrap; }
+.frow__cat svg { flex: none; color: var(--fg-muted); }
 .fd__cat {
   padding: 1px 8px; border-radius: 999px; font-family: var(--font-sans);
   font-size: 12px; color: var(--fg-secondary); background: var(--bg-active);
