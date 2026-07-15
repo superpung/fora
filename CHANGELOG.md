@@ -4,6 +4,31 @@ All notable changes to this project. The project is unversioned (no release
 tags yet), so entries are grouped by date, newest first. Written in English per
 the repository language rule (see AGENTS.md).
 
+## 2026-07-16 — Poster redesign: full content, QR, Geist styling
+
+### Changed
+- **Share posters redesigned to the app's own Geist visual language** and made
+  self-contained. Flat white with a hairline system, near-black type, a monospace
+  face for codes/times/dates, thin line icons (the same feather glyphs as the UI,
+  drawn on canvas), and a single restrained blue accent — replacing the earlier
+  gradient/glow look.
+- **Forum poster now stands alone as a summary:** conference name + date range +
+  location (中国·city) at the top; the forum **category** (with a tag icon) sits
+  as the chip left of the code; date/room carry icons; and it lists **every
+  talk** (number, title, time, speakers + affiliations). Section headers (chairs,
+  talks) are larger with more breathing room, and chairs are spaced further apart.
+- **Talk poster mirrors it:** category chip, icon-tagged time/room/forum, all
+  speakers with affiliations, and the **full abstract**.
+- **A QR to the page replaces the footer URL/brand text** — bottom-right, encoding
+  the forum/talk permalink so a scan opens it. The poster height is variable, so a
+  long forum/abstract just makes the card taller (the preview modal scrolls).
+
+### Added
+- **Offline QR + canvas icon set.** `lib/qr.ts` wraps `qrcode-generator` (pure JS,
+  no transitive deps, runs entirely client-side) into a boolean module matrix the
+  renderer paints as crisp squares; `lib/poster-icons.ts` renders the app's line
+  icons onto canvas. New dependency: `qrcode-generator`.
+
 ## 2026-07-15 — Share posters, mobile timeline, follow filter, PC roster
 
 ### Added
