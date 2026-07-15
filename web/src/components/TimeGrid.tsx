@@ -1,8 +1,27 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useConference } from "../lib/conference-store";
+import { useFollow, talkId } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
 import Icon from "../components/Icon";
 import type { Block, Forum, Talk } from "../types";
+
+// Touch devices have no hover, so the compressed cells can't reveal their full
+// content the way desktop does on hover. On a coarse pointer we switch to
+// tap-to-expand: the first tap opens the card in place (with an explicit enter
+// button to navigate); a second tap — or tapping another card — collapses it.
+function useCoarsePointer(): boolean {
+  const [coarse, setCoarse] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const mq = window.matchMedia("(hover: none)");
+    const sync = () => setCoarse(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+  return coarse;
+}
 
 // A time-vs-forum matrix for one day's parallel forum sessions: the vertical
 // axis is wall-clock time, each forum is a column, and every talk sits near its
@@ -69,9 +88,26 @@ function splitByReset<T extends { s: number }>(items: T[]): T[][] {
   return segs;
 }
 
-export default function TimeGrid({ block }: { block: Block }) {
+export default function TimeGrid({
+  block,
+  filtered = false,
+}: {
+  block: Block;
+  filtered?: boolean;
+}) {
   const { id: confId, forumsByCode } = useConference();
   const { t: tr } = useI18n();
+  const { isForum, isTalk, isSpeaker } = useFollow();
+  const coarse = useCoarsePointer();
+  const [openKey, setOpenKey] = useState<string | null>(null);
+
+  // A talk is "followed-relevant" when its forum is followed (keep the whole
+  // column), the talk itself is starred, or one of its speakers is followed —
+  // the same rule the dashboard's 我的关注 filter uses.
+  const relevant = (code: string, i: number, t: Talk): boolean =>
+    isForum(code) ||
+    isTalk(talkId(code, i)) ||
+    (t.speakers ?? []).some((s) => isSpeaker(s.name));
 
   // First pass: gather each forum's timed talks as minute offsets, and the day's
   // overall time span.
@@ -171,6 +207,23 @@ export default function TimeGrid({ block }: { block: Block }) {
     (a, b) => a.room.localeCompare(b.room, "zh-Hans-CN") || a.start - b.start,
   );
 
+  // 我的关注 filter: keep only followed-relevant cells; drop columns (rooms) that
+  // end up with nothing followed. Cells keep their original top positions, so the
+  // remaining talks still sit at their true clock time.
+  const shown = filtered
+    ? columns
+        .map((c) => ({
+          ...c,
+          cells: c.cells.filter(({ t, i }) => relevant(c.code, i, t)),
+          untimed: 0,
+        }))
+        .filter((c) => c.cells.length > 0)
+    : columns;
+
+  if (filtered && shown.length === 0) {
+    return <div className="tgrid__empty">{tr("timeline.noFollows")}</div>;
+  }
+
   const hours: number[] = [];
   for (let h = lo; h <= hi; h += HOUR) hours.push(h);
 
@@ -190,7 +243,7 @@ export default function TimeGrid({ block }: { block: Block }) {
         </div>
 
         {/* one column per forum */}
-        {columns.map((c) => (
+        {shown.map((c) => (
           <div className="tgrid__col" key={c.key}>
             <Link
               to={`/${confId}/forum/${c.code}`}
@@ -208,15 +261,11 @@ export default function TimeGrid({ block }: { block: Block }) {
               ))}
               {c.cells.map(({ t, i, top, h }) => {
                 const sp = t.speakers?.[0];
-                return (
-                  <Link
-                    key={i}
-                    to={`/${confId}/forum/${c.code}#talk-${i + 1}`}
-                    className="tgrid__talk"
-                    // minHeight lets a compressed cell grow to its full content on
-                    // hover (see .tgrid__talk:hover) without shrinking below its slot
-                    style={{ top, height: h, minHeight: h }}
-                  >
+                const to = `/${confId}/forum/${c.code}#talk-${i + 1}`;
+                const key = `${c.key}#${i}`;
+                const open = coarse && openKey === key;
+                const inner = (
+                  <>
                     <span className="tgrid__ttime mono">
                       {t.start}
                       {t.end ? `–${t.end}` : ""}
@@ -225,6 +274,49 @@ export default function TimeGrid({ block }: { block: Block }) {
                       {t.title_status === "tbd" ? tr("timeline.tbd") : t.title?.zh}
                     </span>
                     {sp?.name && <span className="tgrid__tspk">{sp.name}</span>}
+                  </>
+                );
+                // minHeight lets a compressed cell grow to its full content on
+                // hover/open (see .tgrid__talk:hover / .is-open) without shrinking
+                // below its slot.
+                const style = { top, height: h, minHeight: h };
+                // Coarse pointer (touch): tap toggles the card open, then an
+                // explicit enter button navigates. Fine pointer keeps the plain
+                // link + hover reveal.
+                if (coarse) {
+                  return (
+                    <div
+                      key={i}
+                      className={`tgrid__talk ${open ? "is-open" : ""}`}
+                      style={style}
+                      role="button"
+                      tabIndex={0}
+                      aria-expanded={open}
+                      onClick={() => setOpenKey(open ? null : key)}
+                      onKeyDown={(ev) => {
+                        if (ev.key === "Enter" || ev.key === " ") {
+                          ev.preventDefault();
+                          setOpenKey(open ? null : key);
+                        }
+                      }}
+                    >
+                      {inner}
+                      {open && (
+                        <Link
+                          to={to}
+                          className="tgrid__tenter"
+                          aria-label={tr("timeline.enterTalk")}
+                          onClick={(ev) => ev.stopPropagation()}
+                        >
+                          <Icon name="arrow-right" size={14} />
+                        </Link>
+                      )}
+                    </div>
+                  );
+                }
+                return (
+                  <Link key={i} to={to} className="tgrid__talk" style={style}>
+                    {inner}
                   </Link>
                 );
               })}
