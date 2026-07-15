@@ -4,6 +4,20 @@ All notable changes to this project. The project is unversioned (no release
 tags yet), so entries are grouped by date, newest first. Written in English per
 the repository language rule (see AGENTS.md).
 
+## 2026-07-15 — Mobile layout fixes + hub grouping
+
+### Fixed
+- **Mobile horizontal overflow** on every in-conference page: the nav (switcher +
+  links + theme toggle) pushed the theme toggle ~19px off-screen. The switcher and
+  toggle are now pinned and the links scroll horizontally between them.
+- **Cramped forum room column** on mobile: ChinaSoft's longer room names wrapped
+  to 3–4 lines. Widened the room/code column (dashboard rows + timeline cards) so
+  they wrap to ≤2 lines.
+
+### Changed
+- **The hub groups conferences by status** — 进行中 / 即将开始 / 已结束 — computed
+  from today's date, newest-relevant first. Empty groups are hidden.
+
 ## 2026-07-15 — Schema evolution + second conference (ChinaSoft 2025)
 
 ### Added
