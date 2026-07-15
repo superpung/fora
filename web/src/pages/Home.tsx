@@ -218,7 +218,11 @@ function ForumRow({
             <span className="frow__room">
               <Icon name="pin" size={11} /> {slot.room}
             </span>
-            {f?.category && <span className="frow__cat">{f.category.name.zh}</span>}
+            {f?.category && (
+              <span className="frow__cat">
+                <Icon name="tag" size={12} /> {f.category.name.zh}
+              </span>
+            )}
             {f?.sponsor && (
               <span className="frow__sponsor">
                 <Icon name="building" size={12} /> {f.sponsor}
@@ -314,6 +318,12 @@ function ForumRow({
                   <Link to={`/${confId}/forum/${slot.code}#talk-${i + 1}`} className="ftalk__link">
                     <span className="ftalk__no">{String(i + 1).padStart(2, "0")}</span>
                     <span className="ftalk__main">
+                      {t.start && (
+                        <span className="ftalk__time mono">
+                          {t.start}
+                          {t.end ? `–${t.end}` : ""}
+                        </span>
+                      )}
                       <span className="ftalk__title">
                         {t.title_status === "tbd" ? (
                           <span className="muted-i">{tr("home.tbd")}</span>
