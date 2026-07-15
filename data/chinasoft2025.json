@@ -14485,100 +14485,260 @@
         },
         {
           "title": {
-            "zh": "王海宁、马佳彤、陈欣悦、陈凯晨、向毅、冯夫健",
+            "zh": "",
             "en": null
           },
-          "title_status": "confirmed",
+          "title_status": "tbd",
           "start": "16:50",
           "end": "17:05",
-          "speakers": [],
+          "speakers": [
+            {
+              "name": "王海宁"
+            },
+            {
+              "name": "马佳彤"
+            },
+            {
+              "name": "陈欣悦"
+            },
+            {
+              "name": "陈凯晨"
+            },
+            {
+              "name": "向毅"
+            },
+            {
+              "name": "冯夫健"
+            }
+          ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "talk"
         },
         {
           "title": {
-            "zh": "吉祥、李一淼、王含涵、彭明月、冯俊翔、吴江、王家辉、陈方疏、于程程、孟宪凯",
+            "zh": "",
             "en": null
           },
-          "title_status": "confirmed",
+          "title_status": "tbd",
           "start": "17:05",
           "end": "17:20",
-          "speakers": [],
+          "speakers": [
+            {
+              "name": "吉祥"
+            },
+            {
+              "name": "李一淼"
+            },
+            {
+              "name": "王含涵"
+            },
+            {
+              "name": "彭明月"
+            },
+            {
+              "name": "冯俊翔"
+            },
+            {
+              "name": "吴江"
+            },
+            {
+              "name": "王家辉"
+            },
+            {
+              "name": "陈方疏"
+            },
+            {
+              "name": "于程程"
+            },
+            {
+              "name": "孟宪凯"
+            }
+          ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "talk"
         },
         {
           "title": {
-            "zh": "张迎周、朱林林、苏玉鹏、苑旭东、孙昊然、卢逸宁、魏晨雨、孙世祎、周心雨",
+            "zh": "",
             "en": null
           },
-          "title_status": "confirmed",
+          "title_status": "tbd",
           "start": "17:20",
           "end": "17:35",
-          "speakers": [],
+          "speakers": [
+            {
+              "name": "张迎周"
+            },
+            {
+              "name": "朱林林"
+            },
+            {
+              "name": "苏玉鹏"
+            },
+            {
+              "name": "苑旭东"
+            },
+            {
+              "name": "孙昊然"
+            },
+            {
+              "name": "卢逸宁"
+            },
+            {
+              "name": "魏晨雨"
+            },
+            {
+              "name": "孙世祎"
+            },
+            {
+              "name": "周心雨"
+            }
+          ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "talk"
         },
         {
           "title": {
-            "zh": "徐霄阳、何文孝、王玺华、王奥鑫",
+            "zh": "",
             "en": null
           },
-          "title_status": "confirmed",
+          "title_status": "tbd",
           "start": "17:35",
           "end": "17:50",
-          "speakers": [],
+          "speakers": [
+            {
+              "name": "徐霄阳",
+              "affiliation_raw": "南方科技大学"
+            },
+            {
+              "name": "何文孝",
+              "affiliation_raw": "南方科技大学"
+            },
+            {
+              "name": "王玺华",
+              "affiliation_raw": "南方科技大学"
+            },
+            {
+              "name": "王奥鑫",
+              "affiliation_raw": "南方科技大学"
+            }
+          ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "talk"
         },
         {
           "title": {
-            "zh": "董德俊、曾丞、郭瀚阳、张玉、杨宏俊、闫凌岳",
+            "zh": "",
             "en": null
           },
-          "title_status": "confirmed",
+          "title_status": "tbd",
           "start": "17:50",
           "end": "18:05",
-          "speakers": [],
+          "speakers": [
+            {
+              "name": "董德俊"
+            },
+            {
+              "name": "曾丞"
+            },
+            {
+              "name": "郭瀚阳"
+            },
+            {
+              "name": "张玉"
+            },
+            {
+              "name": "杨宏俊"
+            },
+            {
+              "name": "闫凌岳"
+            }
+          ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "talk"
         },
         {
           "title": {
-            "zh": "谢琳娜、温中镇、葛彧、李重、裴玉、张天、潘敏学",
+            "zh": "",
             "en": null
           },
-          "title_status": "confirmed",
+          "title_status": "tbd",
           "start": "18:05",
           "end": "18:20",
-          "speakers": [],
+          "speakers": [
+            {
+              "name": "谢琳娜"
+            },
+            {
+              "name": "温中镇"
+            },
+            {
+              "name": "葛彧"
+            },
+            {
+              "name": "李重"
+            },
+            {
+              "name": "裴玉"
+            },
+            {
+              "name": "张天"
+            },
+            {
+              "name": "潘敏学"
+            }
+          ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "talk"
         },
         {
           "title": {
-            "zh": "郭靖宜、魏子超、程凯、闫浩然",
+            "zh": "",
             "en": null
           },
-          "title_status": "confirmed",
+          "title_status": "tbd",
           "start": "18:20",
           "end": "18:35",
-          "speakers": [],
+          "speakers": [
+            {
+              "name": "郭靖宜",
+              "affiliation_raw": "华中科技大学"
+            },
+            {
+              "name": "魏子超",
+              "affiliation_raw": "华中科技大学"
+            },
+            {
+              "name": "程凯",
+              "affiliation_raw": "华中科技大学"
+            },
+            {
+              "name": "闫浩然",
+              "affiliation_raw": "华中科技大学"
+            }
+          ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "talk"
         }
       ],
       "detail_extracted": true,
       "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/competition/auto-software-repair",
       "flags": [
-        "multiple sections in template (2 titles); parsed the first, merged all schedule tables"
+        "multiple sections in template (2 titles); parsed the first, merged all schedule tables",
+        "team-roster row '16:50-17:05': 6 names were in the title column; recorded as speakers; units '华南理工大学 贵州民族大学' (per-person mapping unknown)",
+        "team-roster row '17:05-17:20': 10 names were in the title column; recorded as speakers; units '上海第二工业大学 国防科技大学' (per-person mapping unknown)",
+        "team-roster row '17:20-17:35': 9 names were in the title column; recorded as speakers; units '南京邮电大学 杭州安恒信息技术股份有限公司' (per-person mapping unknown)",
+        "team-roster row '17:35-17:50': 4 names were in the title column; recorded as speakers",
+        "team-roster row '17:50-18:05': 6 names were in the title column; recorded as speakers; units '蚂蚁集团 南京大学' (per-person mapping unknown)",
+        "team-roster row '18:05-18:20': 7 names were in the title column; recorded as speakers; units '南京大学 香港理工大学' (per-person mapping unknown)",
+        "team-roster row '18:20-18:35': 4 names were in the title column; recorded as speakers"
       ]
     },
     {
@@ -14652,14 +14812,10 @@
           "title_status": "confirmed",
           "start": "9:00",
           "end": "12:00",
-          "speakers": [
-            {
-              "name": "线上"
-            }
-          ],
+          "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "other"
         },
         {
           "title": {
@@ -14669,15 +14825,10 @@
           "title_status": "confirmed",
           "start": "14:00",
           "end": "17:00",
-          "speakers": [
-            {
-              "name": "CCF",
-              "affiliation_raw": "中国软件大会会场"
-            }
-          ],
+          "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "other"
         },
         {
           "title": {
@@ -14700,22 +14851,84 @@
           "title_status": "confirmed",
           "start": "13:30",
           "end": "17:00",
-          "speakers": [
-            {
-              "name": "CCF",
-              "affiliation_raw": "中国软件大会会场"
-            }
-          ],
+          "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
           "type": "other"
+        },
+        {
+          "title": {
+            "zh": "仓颉编程语言挑战赛赛前宣讲",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "14:00",
+          "end": "14:20",
+          "speakers": [
+            {
+              "name": "王学智"
+            }
+          ],
+          "abstract": "介绍仓颉语言的基础知识和相关工具，帮助开发者上手仓颉。",
+          "abstract_status": "confirmed",
+          "type": "talk"
+        },
+        {
+          "title": {
+            "zh": "仓颉语言基础知识及工具使用",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "14:20",
+          "end": "15:10",
+          "speakers": [
+            {
+              "name": "刘俊杰"
+            }
+          ],
+          "abstract": "介绍仓颉语言的基础知识和相关工具，帮助开发者上手仓颉。",
+          "abstract_status": "confirmed",
+          "type": "talk"
+        },
+        {
+          "title": {
+            "zh": "仓颉语言算法题目解析（一）",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "15:10",
+          "end": "16:00",
+          "speakers": [
+            {
+              "name": "詹博华"
+            }
+          ],
+          "abstract": "介绍使用仓颉语言的一些算法题目介绍。",
+          "abstract_status": "confirmed",
+          "type": "talk"
+        },
+        {
+          "title": {
+            "zh": "仓颉语言算法题目解析（二）",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "16:00",
+          "end": "16:50",
+          "speakers": [
+            {
+              "name": "史磊"
+            }
+          ],
+          "abstract": "继续介绍使用仓颉语言的一些算法，以及leetcode竞赛操作注意事项。",
+          "abstract_status": "confirmed",
+          "type": "talk"
         }
       ],
       "detail_extracted": true,
       "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/competition/cangjie",
       "flags": [
-        "multiple sections in template (2 titles); parsed the first, merged all schedule tables",
-        "non-schedule table headers ['培训时间', '培训老师', '培训主题', '摘要'] captured as extra"
+        "multiple sections in template (2 titles); parsed the first, merged all schedule tables"
       ]
     },
     {
@@ -14776,14 +14989,10 @@
           "title_status": "confirmed",
           "start": null,
           "end": null,
-          "speakers": [
-            {
-              "name": "线上"
-            }
-          ],
+          "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "other"
         },
         {
           "title": {
@@ -14793,14 +15002,10 @@
           "title_status": "confirmed",
           "start": "24:00",
           "end": null,
-          "speakers": [
-            {
-              "name": "线上"
-            }
-          ],
+          "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "other"
         },
         {
           "title": {
@@ -14810,14 +15015,10 @@
           "title_status": "confirmed",
           "start": null,
           "end": null,
-          "speakers": [
-            {
-              "name": "线上"
-            }
-          ],
+          "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "other"
         },
         {
           "title": {
@@ -14827,14 +15028,10 @@
           "title_status": "confirmed",
           "start": "24:00",
           "end": null,
-          "speakers": [
-            {
-              "name": "线上"
-            }
-          ],
+          "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "other"
         },
         {
           "title": {
@@ -14844,14 +15041,10 @@
           "title_status": "confirmed",
           "start": null,
           "end": null,
-          "speakers": [
-            {
-              "name": "线上"
-            }
-          ],
+          "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "other"
         },
         {
           "title": {
@@ -14861,14 +15054,10 @@
           "title_status": "confirmed",
           "start": "24:00",
           "end": null,
-          "speakers": [
-            {
-              "name": "线上"
-            }
-          ],
+          "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "other"
         },
         {
           "title": {

@@ -112,6 +112,49 @@ def parse_person_cell(cell):
     return out
 
 
+def classify_columns(headers):
+    """Map each schedule-table column to a semantic role by its header text, so
+    tables with reordered / renamed / extra columns parse correctly instead of by
+    fixed position. Returns role -> column index (first header match wins).
+
+    Roles: time, title, speaker, host, abstract, venue, unit, members. Examples:
+    '报告嘉宾' / '讲者' / '培训老师' -> speaker; '题目' / '主题' / '内容' -> title;
+    '地点' -> venue (a venue is not a speaker); '单位' -> unit; '团队成员' -> members.
+    """
+    roles = {}
+    for i, h in enumerate(headers):
+        if "时间" in h:
+            roles.setdefault("time", i)
+        elif "地点" in h:
+            roles.setdefault("venue", i)
+        elif "单位" in h:
+            roles.setdefault("unit", i)
+        elif "摘要" in h:
+            roles.setdefault("abstract", i)
+        elif any(k in h for k in ("嘉宾", "讲者", "老师", "报告人", "主讲", "演讲人")):
+            roles.setdefault("speaker", i)
+        elif "主持" in h:
+            roles.setdefault("host", i)
+        elif "成员" in h:
+            roles.setdefault("members", i)
+        elif any(k in h for k in ("题目", "主题", "内容", "报告")):
+            roles.setdefault("title", i)
+    return roles
+
+
+NAME_TOKEN = re.compile(r"[一-鿿·•]{2,4}$|[A-Za-z][A-Za-z.\-']*(?:\s+[A-Za-z.\-']+)*$")
+
+
+def looks_like_name_list(text):
+    """True when a cell is purely a 、/，-separated list of 2+ person names (no
+    talk title). Used to catch competition team-roster rows whose member names
+    landed in the title column of a merged-header table (e.g. C2)."""
+    parts = [p.strip() for p in re.split(r"[、，,]", clean(text)) if p.strip()]
+    if len(parts) < 2:
+        return False
+    return all(NAME_TOKEN.fullmatch(p) and not INST_RE.search(p) for p in parts)
+
+
 def parse_time(cell):
     m = TIME_RANGE.search(cell)
     if m:
@@ -256,8 +299,11 @@ def parse_forum(cat, tid, html):
     tables = soup.select(".forum-table")
     for tbl in tables:
         headers = [clean(th.get_text()) for th in tbl.select("thead th")]
-        is_schedule = any("题目" in h or "报告" in h or "内容" in h for h in headers) and \
-                      any("时间" in h for h in headers)
+        roles = classify_columns(headers)
+        # a schedule needs a time column plus something to say about each slot
+        is_schedule = "time" in roles and any(
+            r in roles for r in ("title", "speaker", "members")
+        )
         rows = tbl.select("tbody tr")
         if not is_schedule:
             flags.append(f"non-schedule table headers {headers} captured as extra")
@@ -266,23 +312,51 @@ def parse_forum(cat, tid, html):
             tds = [clean(td.get_text(" ")) for td in tr.select("td")]
             if len(tds) < 2:
                 continue
-            # map by header position: 时间/题目/报告嘉宾
-            tcell = tds[0]
-            title = tds[1] if len(tds) > 1 else ""
-            spk = tds[2] if len(tds) > 2 else ""
+
+            def col(role, default=""):
+                idx = roles.get(role)
+                return tds[idx] if idx is not None and idx < len(tds) else default
+
+            tcell = col("time", tds[0])
+            title = col("title")
+            spk = col("speaker")
+            abstract_cell = col("abstract")
             if any(w in title for w in BREAK_WORDS) and not any(w in title for w in PANEL_WORDS):
                 continue  # a break row, not a talk
             start, end = parse_time(tcell)
-            speakers = parse_person_cell(spk)
-            ttype = "other" if (not speakers or any(w in title for w in PANEL_WORDS)) else "talk"
+            speakers = parse_person_cell(col("members") or spk)
+            title_status = "confirmed" if title else "tbd"
+
+            # Competition team-roster row: member names landed in the title column
+            # of a merged-header table (e.g. C2), while the paired cell holds the
+            # units. Record the members as speakers, not as a talk title. Gate on
+            # the paired cell actually being institutions, so ordinary phrase-pair
+            # titles (e.g. '公布结果、现场颁奖') aren't mistaken for a name list.
+            if not speakers and INST_RE.search(spk) and looks_like_name_list(title):
+                names = [clean(p) for p in re.split(r"[、，,]", title) if clean(p)]
+                units = [u for u in re.split(r"[、，,\s]+", clean(spk)) if u]
+                speakers = [{"name": n} for n in names]
+                if len(units) == 1:  # unambiguous shared affiliation
+                    for sp in speakers:
+                        sp["affiliation_raw"] = units[0]
+                flags.append(
+                    f"team-roster row '{clean(tcell)}': {len(names)} names were in the "
+                    f"title column; recorded as speakers"
+                    + (f"; units '{clean(spk)}' (per-person mapping unknown)" if len(units) != 1 else "")
+                )
+                title, title_status = None, "tbd"
+
+            ttype = "other" if (not speakers or any(w in (title or "") for w in PANEL_WORDS)) else "talk"
             t = {
-                "title": i18n(title or None),
-                "title_status": "confirmed" if title else "tbd",
+                # keep zh a string even when the title is absent (title_status
+                # carries the tbd state); schema requires i18n.zh to be a string
+                "title": i18n(title or ""),
+                "title_status": title_status,
                 "start": start,
                 "end": end,
                 "speakers": speakers,
-                "abstract": None,
-                "abstract_status": "unknown",
+                "abstract": abstract_cell or None,
+                "abstract_status": "confirmed" if abstract_cell else "unknown",
                 "type": ttype,
             }
             # enrich from bios
