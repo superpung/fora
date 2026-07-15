@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useParams, Link, useLocation, useNavigate } from "react-router-dom";
 import { formatDate, periodLabel } from "../lib/data";
@@ -64,6 +64,33 @@ function PersonLine({ p, role, avatarSize = 40 }: { p: Person; role?: string; av
   );
 }
 
+/** A talk abstract, clamped to three lines by default with a 展开/收起 toggle.
+    The toggle only appears when the text actually overflows the clamp. */
+function Abstract({ text }: { text: string }) {
+  const [open, setOpen] = useState(false);
+  const [overflowing, setOverflowing] = useState(false);
+  const ref = useRef<HTMLParagraphElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (el) setOverflowing(el.scrollHeight - el.clientHeight > 4);
+  }, [text]);
+  return (
+    <div className="talk__abstract">
+      <p ref={ref} className={`talk__abstracttext ${open ? "" : "is-clamped"}`}>
+        {text}
+      </p>
+      {(overflowing || open) && (
+        <button className="talk__absmore" onClick={() => setOpen((v) => !v)}>
+          {open ? "收起" : "展开"}
+          <span className={`caret ${open ? "caret--up" : ""}`}>
+            <Icon name="chevron-down" size={13} />
+          </span>
+        </button>
+      )}
+    </div>
+  );
+}
+
 export default function ForumDetail() {
   const { id: confId, getForum, officialAssetUrl } = useConference();
   const { code } = useParams();
@@ -111,6 +138,9 @@ export default function ForumDetail() {
   }
 
   const dateInfo = forum.day_date ? formatDate(forum.day_date) : null;
+  // When any talk carries a start time, render the talks on a vertical time rail;
+  // otherwise fall back to the numbered card list (untimed forums / conferences).
+  const timed = (forum.talks ?? []).some((t) => t.start);
 
   return (
     <motion.div
@@ -189,7 +219,7 @@ export default function ForumDetail() {
             论坛报告 <span className="fd__seccount">{forum.talks.length}</span>
           </h2>
           <motion.div
-            className="tallist"
+            className={timed ? "tline" : "tallist"}
             variants={stagger(0.04, 0.05)}
             initial="initial"
             animate="animate"
@@ -199,6 +229,87 @@ export default function ForumDetail() {
               const followed = isTalk(id);
               const anchor = `talk-${i + 1}`;
               const isActive = activeId === anchor;
+              // Title row + speakers + abstract, shared by both layouts. In the
+              // timeline layout the time moves to the left rail, so the inline
+              // pill is only rendered for the untimed card layout.
+              const body = (
+                <>
+                  <div className="talk__titlerow">
+                    {!timed && (t.start || t.end) && (
+                      <span className="talk__time">
+                        {t.start}
+                        {t.end ? `–${t.end}` : ""}
+                      </span>
+                    )}
+                    <h3 className="talk__title">
+                      {t.title_status === "tbd" ? (
+                        <span className="muted-i">报告题目待确认</span>
+                      ) : (
+                        t.title?.zh
+                      )}
+                    </h3>
+                    <button
+                      className={`iconbtn talk__perma ${copied === i ? "is-copied" : ""}`}
+                      aria-label="复制该报告的分享链接"
+                      title={copied === i ? "链接已复制" : "复制分享链接"}
+                      onClick={() => shareTalk(i)}
+                    >
+                      <Icon name={copied === i ? "check" : "link"} size={15} />
+                    </button>
+                    <button
+                      className={`star star--sm talk__star ${followed ? "is-on" : ""}`}
+                      aria-pressed={followed}
+                      aria-label={followed ? "取消收藏该报告" : "收藏该报告"}
+                      title={followed ? "取消收藏该报告" : "收藏该报告"}
+                      onClick={() => toggleTalk(id)}
+                    >
+                      <Icon name="star" filled={followed} size={16} />
+                    </button>
+                  </div>
+                  {t.flags?.length ? (
+                    <div className="talk__flag" title={t.flags.join("\n")}>
+                      <Icon name="alert" size={13} /> 源数据存在标注，已如实保留
+                    </div>
+                  ) : null}
+                  {t.speakers?.map((sp, j) => (
+                    <PersonLine key={j} p={sp} avatarSize={34} />
+                  ))}
+                  {t.abstract ? (
+                    <Abstract text={t.abstract} />
+                  ) : t.abstract_status === "tbd" ? (
+                    <p className="talk__abstract muted-i">演讲摘要待确认</p>
+                  ) : null}
+                </>
+              );
+
+              if (timed) {
+                return (
+                  <motion.article
+                    key={i}
+                    id={anchor}
+                    variants={riseItem}
+                    className={`tlrow ${isActive ? "tlrow--active" : ""} ${
+                      t.start ? "" : "tlrow--notime"
+                    }`}
+                  >
+                    <div className="tlrow__time">
+                      {t.start ? (
+                        <>
+                          <span className="tlrow__start mono">{t.start}</span>
+                          {t.end && <span className="tlrow__end mono">{t.end}</span>}
+                        </>
+                      ) : (
+                        <span className="tlrow__tbd">—</span>
+                      )}
+                    </div>
+                    <div className="tlrow__rail" aria-hidden>
+                      <span className="tlrow__dot" />
+                    </div>
+                    <div className="tlrow__card">{body}</div>
+                  </motion.article>
+                );
+              }
+
               return (
                 <motion.article
                   key={i}
@@ -207,53 +318,7 @@ export default function ForumDetail() {
                   className={`talk ${isActive ? "talk--active" : ""}`}
                 >
                   <div className="talk__no">{String(i + 1).padStart(2, "0")}</div>
-                  <div className="talk__body">
-                    <div className="talk__titlerow">
-                      {(t.start || t.end) && (
-                        <span className="talk__time">
-                          {t.start}
-                          {t.end ? `–${t.end}` : ""}
-                        </span>
-                      )}
-                      <h3 className="talk__title">
-                        {t.title_status === "tbd" ? (
-                          <span className="muted-i">报告题目待确认</span>
-                        ) : (
-                          t.title?.zh
-                        )}
-                      </h3>
-                      <button
-                        className={`iconbtn talk__perma ${copied === i ? "is-copied" : ""}`}
-                        aria-label="复制该报告的分享链接"
-                        title={copied === i ? "链接已复制" : "复制分享链接"}
-                        onClick={() => shareTalk(i)}
-                      >
-                        <Icon name={copied === i ? "check" : "link"} size={15} />
-                      </button>
-                      <button
-                        className={`star star--sm talk__star ${followed ? "is-on" : ""}`}
-                        aria-pressed={followed}
-                        aria-label={followed ? "取消收藏该报告" : "收藏该报告"}
-                        title={followed ? "取消收藏该报告" : "收藏该报告"}
-                        onClick={() => toggleTalk(id)}
-                      >
-                        <Icon name="star" filled={followed} size={16} />
-                      </button>
-                    </div>
-                    {t.flags?.length ? (
-                      <div className="talk__flag" title={t.flags.join("\n")}>
-                        <Icon name="alert" size={13} /> 源数据存在标注，已如实保留
-                      </div>
-                    ) : null}
-                    {t.speakers?.map((sp, j) => (
-                      <PersonLine key={j} p={sp} avatarSize={34} />
-                    ))}
-                    {t.abstract ? (
-                      <p className="talk__abstract">{t.abstract}</p>
-                    ) : t.abstract_status === "tbd" ? (
-                      <p className="talk__abstract muted-i">演讲摘要待确认</p>
-                    ) : null}
-                  </div>
+                  <div className="talk__body">{body}</div>
                 </motion.article>
               );
             })}

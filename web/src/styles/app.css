@@ -582,7 +582,49 @@ svg { display: block; }
 .iconbtn:hover { color: var(--fg); background: var(--bg-active); }
 .talk__perma.is-copied { color: var(--teal-fg); }
 .talk__flag { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; color: var(--amber-fg); border: 1px solid color-mix(in srgb, var(--amber-fg) 40%, var(--border)); border-radius: var(--radius-sm); padding: 2px 8px; margin: 6px 0 4px; cursor: help; }
-.talk__abstract { color: var(--fg-secondary); font-size: 13.5px; line-height: 1.75; margin: 12px 0 0; max-width: 74ch; }
+.talk__abstract { margin: 12px 0 0; color: var(--fg-secondary); font-size: 13.5px; line-height: 1.75; max-width: 74ch; }
+.talk__abstracttext { margin: 0; }
+/* collapsed by default: 3-line preview until 展开 (see Abstract in ForumDetail) */
+.talk__abstracttext.is-clamped {
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden;
+}
+.talk__absmore {
+  margin-top: 6px; padding: 0; background: none; border: none; cursor: pointer;
+  color: var(--accent); font-size: 12.5px; font-weight: 500;
+  display: inline-flex; align-items: center; gap: 4px;
+}
+.talk__absmore:hover { color: var(--accent-hover); }
+
+/* ---- vertical time-rail layout (forums whose talks carry times) ---- */
+.tline { display: flex; flex-direction: column; }
+.tlrow {
+  display: grid; grid-template-columns: 48px 22px minmax(0, 1fr); gap: 0 14px;
+  scroll-margin-top: calc(var(--nav-h) + 16px);
+}
+.tlrow__time { display: flex; flex-direction: column; align-items: flex-end; gap: 1px; padding-top: 15px; }
+.tlrow__start { font-family: var(--font-mono); font-size: 13px; font-weight: 600; color: var(--fg); font-variant-numeric: tabular-nums; }
+.tlrow__end { font-family: var(--font-mono); font-size: 11px; color: var(--fg-muted); font-variant-numeric: tabular-nums; }
+.tlrow__tbd { padding-top: 15px; color: var(--fg-muted); font-family: var(--font-mono); }
+/* the rail: a continuous vertical line with a node dot aligned to the start time */
+.tlrow__rail { position: relative; }
+.tlrow__rail::before {
+  content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px;
+  transform: translateX(-50%); background: var(--border);
+}
+.tlrow:first-child .tlrow__rail::before { top: 22px; }
+.tlrow:last-child .tlrow__rail::before { bottom: auto; height: 22px; }
+.tlrow__dot {
+  position: absolute; left: 50%; top: 22px; width: 11px; height: 11px;
+  transform: translate(-50%, -50%); border-radius: 50%; z-index: 1;
+  background: var(--bg); border: 2px solid var(--border-strong); transition: border-color 0.2s, background 0.2s;
+}
+.tlrow--active .tlrow__dot { border-color: var(--accent); background: var(--accent); }
+.tlrow__card {
+  min-width: 0; padding: 14px 12px 22px 2px; border-radius: var(--radius);
+  transition: background 0.3s ease;
+}
+.tlrow--active .tlrow__card { background: color-mix(in srgb, var(--accent) 9%, transparent); animation: talk-arrive 0.9s ease-out; }
+@media (prefers-reduced-motion: reduce) { .tlrow--active .tlrow__card { animation: none; } }
 
 .pending { padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-lg); }
 .pending__title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
@@ -756,6 +798,7 @@ svg { display: block; }
   .krail__list { grid-template-columns: 1fr; }
 
   .talk { grid-template-columns: 28px 1fr; gap: 12px; padding: 18px 14px; }
+  .tlrow { grid-template-columns: 42px 18px minmax(0, 1fr); gap: 0 10px; }
   .talkrow { grid-template-columns: 88px 1fr; gap: 12px; }
   /* single column so the (often long) room name gets a full-width line */
   .forumcard { grid-template-columns: 1fr; gap: 3px 0; }
