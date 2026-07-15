@@ -7,7 +7,41 @@ import { useFollow, talkId } from "../lib/follow-store";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Icon from "../components/Icon";
 import Avatar from "../components/Avatar";
-import type { Person } from "../types";
+import type { Person, Talk } from "../types";
+
+const toMin = (t: string): number => {
+  const [h, m] = t.split(":").map((x) => parseInt(x, 10));
+  return h * 60 + (m || 0);
+};
+
+/** Some forums run two (or more) rooms in parallel but store the whole agenda as
+    one flat talks[] — the second room's schedule is appended after the first and
+    its clock resets to the morning. When forum.room names N rooms, split the
+    talks back into N tracks at each backward time jump, mapping track k to the
+    k-th room. Returns null when the shape doesn't match (single room, or the
+    reset-count ≠ room-count — e.g. a multi-day competition), so those forums keep
+    the normal single continuous timeline. */
+function splitParallelTracks(
+  talks: Talk[],
+  rooms: string[],
+): { room: string; talks: { t: Talk; i: number }[] }[] | null {
+  if (rooms.length < 2) return null;
+  const segs: { t: Talk; i: number }[][] = [];
+  let cur: { t: Talk; i: number }[] = [];
+  let prev = -1;
+  talks.forEach((t, i) => {
+    const s = t.start ? toMin(t.start) : null;
+    if (s !== null && prev !== -1 && s < prev && cur.length) {
+      segs.push(cur);
+      cur = [];
+    }
+    if (s !== null) prev = s;
+    cur.push({ t, i });
+  });
+  if (cur.length) segs.push(cur);
+  if (segs.length !== rooms.length) return null;
+  return segs.map((tk, k) => ({ room: rooms[k], talks: tk }));
+}
 
 function PersonLine({ p, role, avatarSize = 40 }: { p: Person; role?: string; avatarSize?: number }) {
   const [open, setOpen] = useState(false);
@@ -194,6 +228,127 @@ export default function ForumDetail() {
   // When any talk carries a start time, render the talks on a vertical time rail;
   // otherwise fall back to the numbered card list (untimed forums / conferences).
   const timed = (forum.talks ?? []).some((t) => t.start);
+  // A forum whose room lists several rooms (e.g. "厅A 、 厅B") runs those rooms
+  // in parallel; split its flat agenda into one timeline per room.
+  const roomParts = (forum.room ?? "")
+    .split(/[、，,]/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+  const tracks = timed ? splitParallelTracks(forum.talks ?? [], roomParts) : null;
+
+  // One talk, rendered for either the timeline rail or the numbered card list.
+  // Extracted so the parallel-track branch can reuse it per track.
+  function renderTalk(t: Talk, i: number) {
+    const id = talkId(forum!.code, i);
+    const followed = isTalk(id);
+    const anchor = `talk-${i + 1}`;
+    const isActive = activeId === anchor;
+    const body = (
+      <>
+        <div className="talk__titlerow">
+          {!timed && (t.start || t.end) && (
+            <span className="talk__time">
+              {t.start}
+              {t.end ? `–${t.end}` : ""}
+            </span>
+          )}
+          <h3 className="talk__title">
+            {t.title_status === "tbd" ? (
+              <span className="muted-i">报告题目待确认</span>
+            ) : (
+              t.title?.zh
+            )}
+          </h3>
+          <button
+            className={`iconbtn talk__perma ${copied === i ? "is-copied" : ""}`}
+            aria-label="复制该报告的分享链接"
+            title={copied === i ? "链接已复制" : "复制分享链接"}
+            onClick={() => shareTalk(i)}
+          >
+            <Icon name={copied === i ? "check" : "link"} size={15} />
+          </button>
+          <button
+            className={`star star--sm talk__star ${followed ? "is-on" : ""}`}
+            aria-pressed={followed}
+            aria-label={followed ? "取消收藏该报告" : "收藏该报告"}
+            title={followed ? "取消收藏该报告" : "收藏该报告"}
+            onClick={() => toggleTalk(id)}
+          >
+            <Icon name="star" filled={followed} size={16} />
+          </button>
+        </div>
+        {t.flags?.length ? (
+          <div className="talk__flag" title={t.flags.join("\n")}>
+            <Icon name="alert" size={13} /> 源数据存在标注，已如实保留
+          </div>
+        ) : null}
+        {(() => {
+          const speakers = t.speakers ?? [];
+          const rich = speakers.filter(isRichPerson);
+          const bare = speakers.filter((p) => !isRichPerson(p));
+          return (
+            <>
+              {rich.map((sp, j) => (
+                <PersonLine key={`r${j}`} p={sp} avatarSize={34} />
+              ))}
+              {bare.length > 0 && (
+                <div className="talk__authors">
+                  {bare.map((sp, j) => (
+                    <AuthorChip key={`b${j}`} p={sp} />
+                  ))}
+                </div>
+              )}
+            </>
+          );
+        })()}
+        {t.abstract ? (
+          <Abstract text={t.abstract} />
+        ) : t.abstract_status === "tbd" ? (
+          <p className="talk__abstract muted-i">演讲摘要待确认</p>
+        ) : null}
+      </>
+    );
+
+    if (timed) {
+      return (
+        <motion.article
+          key={i}
+          id={anchor}
+          variants={riseItem}
+          className={`tlrow ${isActive ? "tlrow--active" : ""} ${
+            t.start ? "" : "tlrow--notime"
+          }`}
+        >
+          <div className="tlrow__time">
+            {t.start ? (
+              <>
+                <span className="tlrow__start mono">{t.start}</span>
+                {t.end && <span className="tlrow__end mono">{t.end}</span>}
+              </>
+            ) : (
+              <span className="tlrow__tbd">—</span>
+            )}
+          </div>
+          <div className="tlrow__rail" aria-hidden>
+            <span className="tlrow__dot" />
+          </div>
+          <div className="tlrow__card">{body}</div>
+        </motion.article>
+      );
+    }
+
+    return (
+      <motion.article
+        key={i}
+        id={anchor}
+        variants={riseItem}
+        className={`talk ${isActive ? "talk--active" : ""}`}
+      >
+        <div className="talk__no">{String(i + 1).padStart(2, "0")}</div>
+        <div className="talk__body">{body}</div>
+      </motion.article>
+    );
+  }
 
   return (
     <motion.div
@@ -271,127 +426,34 @@ export default function ForumDetail() {
           <h2 className="fd__sectitle">
             论坛报告 <span className="fd__seccount">{forum.talks.length}</span>
           </h2>
-          <motion.div
-            className={timed ? "tline" : "tallist"}
-            variants={stagger(0.04, 0.05)}
-            initial="initial"
-            animate="animate"
-          >
-            {forum.talks.map((t, i) => {
-              const id = talkId(forum.code, i);
-              const followed = isTalk(id);
-              const anchor = `talk-${i + 1}`;
-              const isActive = activeId === anchor;
-              // Title row + speakers + abstract, shared by both layouts. In the
-              // timeline layout the time moves to the left rail, so the inline
-              // pill is only rendered for the untimed card layout.
-              const body = (
-                <>
-                  <div className="talk__titlerow">
-                    {!timed && (t.start || t.end) && (
-                      <span className="talk__time">
-                        {t.start}
-                        {t.end ? `–${t.end}` : ""}
-                      </span>
-                    )}
-                    <h3 className="talk__title">
-                      {t.title_status === "tbd" ? (
-                        <span className="muted-i">报告题目待确认</span>
-                      ) : (
-                        t.title?.zh
-                      )}
-                    </h3>
-                    <button
-                      className={`iconbtn talk__perma ${copied === i ? "is-copied" : ""}`}
-                      aria-label="复制该报告的分享链接"
-                      title={copied === i ? "链接已复制" : "复制分享链接"}
-                      onClick={() => shareTalk(i)}
-                    >
-                      <Icon name={copied === i ? "check" : "link"} size={15} />
-                    </button>
-                    <button
-                      className={`star star--sm talk__star ${followed ? "is-on" : ""}`}
-                      aria-pressed={followed}
-                      aria-label={followed ? "取消收藏该报告" : "收藏该报告"}
-                      title={followed ? "取消收藏该报告" : "收藏该报告"}
-                      onClick={() => toggleTalk(id)}
-                    >
-                      <Icon name="star" filled={followed} size={16} />
-                    </button>
-                  </div>
-                  {t.flags?.length ? (
-                    <div className="talk__flag" title={t.flags.join("\n")}>
-                      <Icon name="alert" size={13} /> 源数据存在标注，已如实保留
-                    </div>
-                  ) : null}
-                  {(() => {
-                    const speakers = t.speakers ?? [];
-                    const rich = speakers.filter(isRichPerson);
-                    const bare = speakers.filter((p) => !isRichPerson(p));
-                    return (
-                      <>
-                        {rich.map((sp, j) => (
-                          <PersonLine key={`r${j}`} p={sp} avatarSize={34} />
-                        ))}
-                        {bare.length > 0 && (
-                          <div className="talk__authors">
-                            {bare.map((sp, j) => (
-                              <AuthorChip key={`b${j}`} p={sp} />
-                            ))}
-                          </div>
-                        )}
-                      </>
-                    );
-                  })()}
-                  {t.abstract ? (
-                    <Abstract text={t.abstract} />
-                  ) : t.abstract_status === "tbd" ? (
-                    <p className="talk__abstract muted-i">演讲摘要待确认</p>
-                  ) : null}
-                </>
-              );
-
-              if (timed) {
-                return (
-                  <motion.article
-                    key={i}
-                    id={anchor}
-                    variants={riseItem}
-                    className={`tlrow ${isActive ? "tlrow--active" : ""} ${
-                      t.start ? "" : "tlrow--notime"
-                    }`}
-                  >
-                    <div className="tlrow__time">
-                      {t.start ? (
-                        <>
-                          <span className="tlrow__start mono">{t.start}</span>
-                          {t.end && <span className="tlrow__end mono">{t.end}</span>}
-                        </>
-                      ) : (
-                        <span className="tlrow__tbd">—</span>
-                      )}
-                    </div>
-                    <div className="tlrow__rail" aria-hidden>
-                      <span className="tlrow__dot" />
-                    </div>
-                    <div className="tlrow__card">{body}</div>
-                  </motion.article>
-                );
-              }
-
-              return (
-                <motion.article
-                  key={i}
-                  id={anchor}
-                  variants={riseItem}
-                  className={`talk ${isActive ? "talk--active" : ""}`}
+          {tracks ? (
+            tracks.map((track, k) => (
+              <div className="fd__track" key={k}>
+                <div className="fd__trackhead">
+                  <Icon name="pin" size={14} />
+                  <span className="fd__trackroom">{track.room}</span>
+                  <span className="fd__tracktag">分会场 {k + 1}</span>
+                </div>
+                <motion.div
+                  className="tline"
+                  variants={stagger(0.04, 0.05)}
+                  initial="initial"
+                  animate="animate"
                 >
-                  <div className="talk__no">{String(i + 1).padStart(2, "0")}</div>
-                  <div className="talk__body">{body}</div>
-                </motion.article>
-              );
-            })}
-          </motion.div>
+                  {track.talks.map(({ t, i }) => renderTalk(t, i))}
+                </motion.div>
+              </div>
+            ))
+          ) : (
+            <motion.div
+              className={timed ? "tline" : "tallist"}
+              variants={stagger(0.04, 0.05)}
+              initial="initial"
+              animate="animate"
+            >
+              {forum.talks.map((t, i) => renderTalk(t, i))}
+            </motion.div>
+          )}
         </section>
       ) : (
         <section className="fd__section">
