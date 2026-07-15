@@ -516,12 +516,13 @@ svg { display: block; }
   transition: height 0.22s ease-in-out, background 0.22s ease-in-out,
     box-shadow 0.22s ease-in-out, border-color 0.22s ease-in-out;
 }
-/* Accent bar: a short INSET vertical strip that stops clear of the rounded
-   corners — deliberately not a full left-edge bar hugging the corners (see the
-   AGENTS.md left-edge rule). */
+/* Accent bar: an inset vertical strip whose ends reach the point where the card's
+   rounded corner begins (top/bottom inset == the corner radius) so it runs the
+   full straight edge without ever following the curve. The strip itself keeps its
+   own pill-rounded ends. */
 .tgrid__talk::before {
-  content: ""; position: absolute; left: 0; top: 6px; bottom: 6px; width: 3px;
-  border-radius: 3px; background: var(--accent);
+  content: ""; position: absolute; left: 0; top: var(--radius-sm); bottom: var(--radius-sm);
+  width: 3px; border-radius: 3px; background: var(--accent);
 }
 /* When the slot is too short for the full text, the overflow fades out at the
    bottom instead of being hard-cut or ellipsised — the card shows as much as
@@ -534,9 +535,12 @@ svg { display: block; }
 }
 /* Compressed cells reveal everything on hover: the cell grows to fit its full
    content and floats over the row below. It stays UNDER the sticky time gutter
-   and column headers (their z-index is higher) so it never covers them. */
+   and column headers (their z-index is higher) so it never covers them.
+   overflow stays `hidden` (not visible) so the content is revealed in step with
+   the height animation — otherwise the full text paints instantly before/after
+   the box finishes growing/shrinking, which looked like a jump. */
 .tgrid__talk:hover {
-  height: auto !important; overflow: visible; z-index: 5;
+  height: auto !important; z-index: 5;
   background: var(--bg-hover); border-color: var(--border-strong);
   box-shadow: 0 3px 10px color-mix(in srgb, #000 7%, transparent);
 }

@@ -4,6 +4,21 @@ All notable changes to this project. The project is unversioned (no release
 tags yet), so entries are grouped by date, newest first. Written in English per
 the repository language rule (see AGENTS.md).
 
+## 2026-07-15 — Timeline hover reveal in sync + longer accent bar
+
+### Fixed
+- **Timeline card hover no longer jumps on grow/shrink.** The hover flipped
+  `overflow` to `visible`, so the full text painted instantly — appearing before
+  the box finished growing, and snapping away when the box shrank back. Overflow
+  now stays `hidden`, so the content is revealed/clipped in step with the height
+  animation (both directions smooth).
+
+### Changed
+- **Timeline card accent bar extended to the corner radius.** Its top/bottom
+  inset now equals the card's corner radius, so the straight strip spans the full
+  straight edge (reaching the point where the corner curve begins) without
+  following the curve; its own pill-rounded ends are unchanged.
+
 ## 2026-07-15 — Deep-link scroll precision, bio-collapse fix, chair data cleanup
 
 ### Fixed
