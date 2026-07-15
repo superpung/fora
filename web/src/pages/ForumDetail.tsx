@@ -295,6 +295,13 @@ export default function ForumDetail() {
     if (f.room) metaLines.push(tr("poster.roomMeta", { room: f.room }));
     if (f.category) metaLines.push(tr("poster.catMeta", { cat: f.category.name.zh }));
     const chairs = (f.chairs ?? []).map((c) => ({ name: c.name, aff: c.affiliation_raw }));
+    const talks = (f.talks ?? []).map((t, i) => ({
+      index: i + 1,
+      title:
+        t.title_status === "tbd" || !t.title?.zh ? tr("forum.titleTbd") : t.title.zh,
+      time: t.start ? `${t.start}${t.end ? `–${t.end}` : ""}` : null,
+      speakers: (t.speakers ?? []).map((s) => ({ name: s.name, aff: s.affiliation_raw })),
+    }));
     setPoster({
       spec: {
         brand: tr("common.siteName"),
@@ -305,7 +312,10 @@ export default function ForumDetail() {
         metaLines,
         peopleLabel: chairs.length ? tr("forum.chairs") : undefined,
         people: chairs,
+        talksLabel: talks.length ? tr("poster.talksLabel", { n: talks.length }) : undefined,
+        talks,
         footer: shareUrl(),
+        footerNote: tr("poster.footerNote"),
         accent: accentColor(),
       },
       filename: `${conference.name.zh}-${f.code}.png`,
@@ -324,6 +334,8 @@ export default function ForumDetail() {
     if (f.room) metaLines.push(tr("poster.roomMeta", { room: f.room }));
     metaLines.push(tr("poster.forumMeta", { forum: f.title.zh }));
     const speakers = (t.speakers ?? []).map((s) => ({ name: s.name, aff: s.affiliation_raw }));
+    const abstract =
+      t.abstract && t.abstract_status !== "tbd" ? t.abstract : null;
     setPoster({
       spec: {
         brand: tr("common.siteName"),
@@ -335,7 +347,10 @@ export default function ForumDetail() {
         metaLines,
         peopleLabel: speakers.length ? tr("poster.speakers") : undefined,
         people: speakers,
+        abstractLabel: abstract ? tr("poster.abstractLabel") : undefined,
+        abstract,
         footer: `${shareUrl()}#talk-${i + 1}`,
+        footerNote: tr("poster.footerNote"),
         accent: accentColor(),
       },
       filename: `${conference.name.zh}-${f.code}-${i + 1}.png`,
