@@ -70,7 +70,7 @@ for tier, items in sponsors_raw.items():
             conf["organizations"].append(
                 {"name": {"zh": nm, "en": None}, "role": "sponsor", "sponsor_tier": tier})
 
-# ---------------- committees (51 members) ----------------
+# ---------------- committees ----------------
 conf["committees"] = []
 for role, members in people.items():
     ordering = "按拼音排序" if "拼音" in role else None
@@ -84,6 +84,27 @@ for role, members in people.items():
             for m in members
         ],
     })
+
+# The program committee's full member roster (parsed from the 程序委员会 page's
+# HTML in extract_structured.py) is not in the NAME_INFO people template — only
+# its 4 chairs are — so add it as its own group, placed right after 程序委员会主席.
+pc_path = EXT / "program_committee.json"
+if pc_path.exists():
+    pc_members = load(pc_path)
+    if pc_members:
+        pc_group = {
+            "role": {"zh": "程序委员会", "en": None},
+            "ordering_note": "以姓名拼音顺序排序",
+            "members": [
+                {"name": m["name"], "affiliation_raw": m.get("affiliation_title"),
+                 "organization": None, "title": None, "honorifics": [], "bio": None}
+                for m in pc_members
+            ],
+        }
+        idx = next((i for i, c in enumerate(conf["committees"])
+                    if c["role"]["zh"] == "程序委员会主席"), None)
+        conf["committees"].insert(idx + 1 if idx is not None else len(conf["committees"]),
+                                  pc_group)
 
 # ---------------- keynotes ----------------
 def kt(s, e, name, aff, title, honor=None, typ="keynote", status="confirmed"):

@@ -104,6 +104,37 @@ for name in ["会议介绍", "程序委员会", "论文征集", "技术论坛", 
 (OUT / "texts.json").write_text(json.dumps(texts, ensure_ascii=False, indent=2))
 print("text channels:", list(texts.keys()))
 
+# ---- 2b. Program-committee member roster ------------------------------------
+# The 程序委员会 page's MAIN_BODY carries TWO groups: the chairs
+# (大会程序委员会主席 — also a structured NAME_INFO people channel, extracted in
+# step 1) and the full member roster (大会程序委员会委员). The roster is NOT in the
+# NAME_INFO template — it's a flat list of alternating name / affiliation <p>
+# elements — so step 1 misses it and only the 4 chairs ever reach the dataset.
+# Parse the roster here so the ~130 members become a real committee group.
+def _celltext(s):
+    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", "", s or ""))).strip()
+
+pc_members = []
+for c in by_name.get("程序委员会", []):
+    body = next((x.get("MAIN_BODY") for x in arts(c["id"]) if x.get("MAIN_BODY")), "")
+    if not body:
+        continue
+    toks, section = [], None
+    for m in re.finditer(r"<(h1|p)\b[^>]*>(.*?)</\1>", body, re.S):
+        tag, inner = m.group(1), _celltext(m.group(2))
+        if not inner:
+            continue
+        if tag == "h1":
+            section = inner
+        elif section and "委员" in section and "主席" not in section:
+            toks.append(inner)
+    # the roster alternates name, affiliation, name, affiliation, …
+    for i in range(0, len(toks) - 1, 2):
+        pc_members.append({"name": toks[i], "affiliation_title": toks[i + 1]})
+(OUT / "program_committee.json").write_text(
+    json.dumps(pc_members, ensure_ascii=False, indent=2))
+print("program committee members:", len(pc_members))
+
 # ---- 3. Partners / sponsors (may carry NAME_INFO or a logo image) ----
 sponsors = {}
 for c in chans:
