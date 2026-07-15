@@ -106,7 +106,7 @@ function ForumsBlock({ block, filtered }: { block: Block; filtered: boolean }) {
     const f = forumsByCode[e.forum_code];
     return (
       isForum(e.forum_code) ||
-      (f?.talks ?? []).some((t, i) => isTalk(talkId(e.forum_code, i))) ||
+      (f?.talks ?? []).some((_t, i) => isTalk(talkId(e.forum_code, i))) ||
       (f?.talks ?? []).some((t) => (t.speakers ?? []).some((s) => isSpeaker(s.name)))
     );
   });
