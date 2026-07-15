@@ -170,10 +170,9 @@ export default function TimeGrid({ block }: { block: Block }) {
                     key={i}
                     to={`/${confId}/forum/${c.code}#talk-${i + 1}`}
                     className="tgrid__talk"
-                    style={{ top, height: h }}
-                    title={`${t.start}${t.end ? `–${t.end}` : ""} ${
-                      t.title_status === "tbd" ? "题目待定" : t.title?.zh ?? ""
-                    }${sp?.name ? ` · ${sp.name}` : ""}`}
+                    // minHeight lets a compressed cell grow to its full content on
+                    // hover (see .tgrid__talk:hover) without shrinking below its slot
+                    style={{ top, height: h, minHeight: h }}
                   >
                     <span className="tgrid__ttime mono">
                       {t.start}
@@ -182,7 +181,11 @@ export default function TimeGrid({ block }: { block: Block }) {
                     <span className="tgrid__ttitle" style={{ WebkitLineClamp: lines }}>
                       {t.title_status === "tbd" ? "题目待定" : t.title?.zh}
                     </span>
-                    {spk && sp?.name && <span className="tgrid__tspk">{sp.name}</span>}
+                    {sp?.name && (
+                      <span className={`tgrid__tspk ${spk ? "" : "tgrid__tspk--hide"}`}>
+                        {sp.name}
+                      </span>
+                    )}
                   </Link>
                 );
               })}
