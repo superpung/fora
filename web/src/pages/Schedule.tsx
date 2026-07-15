@@ -5,7 +5,16 @@ import { formatDate, blockKindLabel } from "../lib/data";
 import { useConference } from "../lib/conference-store";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Icon, { type IconName } from "../components/Icon";
-import type { Block, Talk, Break } from "../types";
+import TimeGrid from "../components/TimeGrid";
+import type { Block, Forum, Talk, Break } from "../types";
+
+/** True when at least one talk in the day's forum block carries a start time —
+    the signal to switch from the forum-card list to the time-vs-forum matrix. */
+function hasForumTimes(block: Block, forumsByCode: Record<string, Forum>): boolean {
+  return (block.forum_entries ?? []).some((e) =>
+    (forumsByCode[e.forum_code]?.talks ?? []).some((t) => t.start),
+  );
+}
 
 function TimeRange({ start, end }: { start?: string | null; end?: string | null }) {
   if (!start && !end) return null;
@@ -84,6 +93,9 @@ function KeynotesBlock({ block }: { block: Block }) {
 
 function ForumsBlock({ block }: { block: Block }) {
   const { id: confId, forumsByCode } = useConference();
+  // When talks carry real times, show the time-vs-forum matrix; otherwise the
+  // conference only has forum-level slots, so fall back to the card grid.
+  if (hasForumTimes(block, forumsByCode)) return <TimeGrid block={block} />;
   return (
     <>
       {(block.breaks ?? []).map((b, i) => (
