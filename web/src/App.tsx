@@ -19,30 +19,36 @@ const Organizations = lazy(() => import("./pages/Organizations"));
 export default function App() {
   return (
     <FollowActionsProvider>
-      <ScrollManager />
-      {/* The site hosts several conferences. `/` is the conference hub; each
-          conference lives under `/:conf/...`. ConferenceLayout loads the active
-          conference's data and provides it to its child routes. */}
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Suspense fallback={<PageLoader />}>
-              <Hub />
-            </Suspense>
-          }
-        />
-        <Route path="/:conf" element={<ConferenceLayout />}>
-          <Route index element={<Home />} />
-          <Route path="schedule" element={<Schedule />} />
-          <Route path="speakers" element={<Speakers />} />
-          <Route path="committee" element={<Committee />} />
-          <Route path="organizations" element={<Organizations />} />
-          <Route path="forum/:code" element={<ForumDetail />} />
-        </Route>
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-      <Footer />
+      {/* A min-height flex column so the footer sits at the bottom of the viewport
+          on short pages and flows after the content on long ones. */}
+      <div className="app">
+        <ScrollManager />
+        {/* The site hosts several conferences. `/` is the conference hub; each
+            conference lives under `/:conf/...`. ConferenceLayout loads the active
+            conference's data and provides it to its child routes. */}
+        <div className="app__body">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Suspense fallback={<PageLoader />}>
+                  <Hub />
+                </Suspense>
+              }
+            />
+            <Route path="/:conf" element={<ConferenceLayout />}>
+              <Route index element={<Home />} />
+              <Route path="schedule" element={<Schedule />} />
+              <Route path="speakers" element={<Speakers />} />
+              <Route path="committee" element={<Committee />} />
+              <Route path="organizations" element={<Organizations />} />
+              <Route path="forum/:code" element={<ForumDetail />} />
+            </Route>
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
     </FollowActionsProvider>
   );
 }
