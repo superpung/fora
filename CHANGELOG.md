@@ -4,6 +4,66 @@ All notable changes to this project. The project is unversioned (no release
 tags yet), so entries are grouped by date, newest first. Written in English per
 the repository language rule (see AGENTS.md).
 
+## 2026-07-17 — Documentation: user-facing README + developer reference
+
+### Changed
+- **README rewritten as a user-facing product overview** — features and the
+  hosted conferences, in a product tone — and made **bilingual**: English by
+  default (`README.md`) with a `中文` switch link to `README.zh-CN.md`, and back.
+- **Developer content moved into `AGENTS.md`**: the data model / schema, the
+  repository layout, the build & reproduce steps, how to add a conference, and
+  the web-app notes now live under a "Developer reference" half of that file.
+- `web/README.md` trimmed to a short pointer at the root docs; Chinese comments
+  in `netlify.toml` translated to English (repository language rule).
+
+## 2026-07-17 — Current-time indicator + timeline / UI fixes
+
+### Added
+- **Live "now" indicator.** On the timeline grid: a red time pill + dot in the
+  gutter and a line across the columns. On the forum detail's vertical rail: the
+  currently-live talk's node dot and rail segment turn red (per parallel track).
+  Both appear only on the day the conference runs. Today's day tab is marked with
+  a red pill.
+
+### Fixed
+- **Talk poster/copy buttons restored to their borderless, star-matching style.**
+  A class-name collision (`.iconbtn` was redefined as the boxed 34px official-site
+  button) had silently turned them into framed boxes; the boxed variant is now
+  `.squarebtn`.
+- Timeline gutter now shows a **single** right border (no longer doubled with the
+  first column's left border) and stays **above** the forum column headers, which
+  slide under it on horizontal scroll.
+- **Sticky footer:** the footer sits at the bottom of the viewport on short pages
+  and flows after the content on long ones.
+- Removed the redundant "timeline view" button from the dashboard.
+
+### CI
+- Dataset determinism: check out the **full git history** so each dataset's
+  `updated_at` (derived from `git log`) is stable in CI, not "today".
+- Keep the pnpm minimum-release-age supply-chain gate for third-party packages,
+  excluding only the project's own `@repus/gist-sync`.
+
+## 2026-07-16 — Rebrand to Fora + GitHub login & cross-device sync
+
+### Added
+- **GitHub login + Gist sync of the personal agenda**, via `@repus/gist-sync`:
+  one private Gist per user, a schema-driven three-way merge across devices, and a
+  stateless Netlify OAuth broker (`web/netlify/functions/`). Sign-in returns to
+  the page it started from.
+- **Global account menu** unifying the GitHub account (login / sync status /
+  view-gist / sign-out) with the active conference's follow actions (import /
+  export / clear) — an animated popover, with a centered confirm dialog for
+  destructive actions. These actions were removed from the dashboard body.
+- **Project footer** (brand mark → hub, conference path, GitHub, version, date,
+  copyright) and a clickable brand mark in the hub / nav.
+
+### Changed
+- **Rebranded conf-scheduler → Fora** (GitHub repo `superpung/fora`; site name
+  "Fora"). localStorage keys renamed to `fora-*`; **legacy-key compatibility was
+  dropped (breaking)** — old local follows/preferences are not migrated.
+- Poster follow-ups: two-column forum talks, quieter section labels, a balanced
+  number/time column; stripped a stray leading "：" from ChinaSoft abstracts/bios.
+
 ## 2026-07-16 — Poster redesign: full content, QR, Geist styling
 
 ### Changed
