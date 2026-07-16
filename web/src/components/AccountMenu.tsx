@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useGistSync } from "@repus/gist-sync/react";
 import { useI18n } from "../lib/i18n-store";
 import { syncConfig } from "../lib/sync";
+import { easeOut } from "../lib/motion";
 import Icon from "./Icon";
+import ConfirmDialog from "./ConfirmDialog";
 
 // GitHub-login + Gist-sync account control for the global nav. All data and
 // actions come from useGistSync() — no sync logic lives here. Hidden entirely
@@ -27,6 +30,7 @@ export default function AccountMenu() {
   const { lang } = useI18n();
   const zh = lang !== "en";
   const [open, setOpen] = useState(false);
+  const [confirmOut, setConfirmOut] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -82,39 +86,78 @@ export default function AccountMenu() {
         {avatar("acct-av", 26)}
       </button>
 
-      {open && (
-        <div className="acct-pop" role="menu">
-          <div className="acct-id">
-            {avatar("acct-av acct-av--lg", 38)}
-            <div className="acct-idtext">
-              <div className="acct-name">{u?.name || u?.login}</div>
-              {u?.login && <div className="acct-sub">@{u.login}</div>}
-            </div>
-          </div>
-
-          {gs.conflict ? (
-            <div className="acct-conflict">
-              <div className="acct-conflict__t">{zh ? "本地与云端都有改动" : "Local and cloud both changed"}</div>
-              <div className="acct-conflict__b">
-                <button onClick={() => void gs.resolveConflict("local")}>{zh ? "保留本地" : "Keep local"}</button>
-                <button onClick={() => void gs.resolveConflict("cloud")}>{zh ? "用云端" : "Use cloud"}</button>
-                <button onClick={() => void gs.resolveConflict("merge")}>{zh ? "合并" : "Merge"}</button>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="acct-pop"
+            role="menu"
+            initial={{ opacity: 0, y: -6, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -6, scale: 0.97 }}
+            transition={{ duration: 0.16, ease: easeOut }}
+          >
+            <div className="acct-id">
+              {avatar("acct-av acct-av--lg", 38)}
+              <div className="acct-idtext">
+                <div className="acct-name">{u?.name || u?.login}</div>
+                {u?.login && <div className="acct-sub">@{u.login}</div>}
               </div>
             </div>
-          ) : (
-            <button className="acct-row" onClick={() => void gs.syncNow()}>
-              <Icon name="refresh" size={15} className={gs.status === "syncing" ? "spin" : undefined} />
-              <span className="acct-row__label">{statusText}</span>
-              {gs.lastSyncedAt && <span className="acct-row__meta">{relTime(gs.lastSyncedAt, zh)}</span>}
-            </button>
-          )}
 
-          <button className="acct-row acct-row--danger" onClick={() => { gs.logout(); setOpen(false); }}>
-            <Icon name="log-out" size={15} />
-            <span className="acct-row__label">{zh ? "退出登录" : "Sign out"}</span>
-          </button>
-        </div>
-      )}
+            {gs.conflict ? (
+              <div className="acct-conflict">
+                <div className="acct-conflict__t">{zh ? "本地与云端都有改动" : "Local and cloud both changed"}</div>
+                <div className="acct-conflict__b">
+                  <button onClick={() => void gs.resolveConflict("local")}>{zh ? "保留本地" : "Keep local"}</button>
+                  <button onClick={() => void gs.resolveConflict("cloud")}>{zh ? "用云端" : "Use cloud"}</button>
+                  <button onClick={() => void gs.resolveConflict("merge")}>{zh ? "合并" : "Merge"}</button>
+                </div>
+              </div>
+            ) : (
+              <button className="acct-row" onClick={() => void gs.syncNow()}>
+                <Icon name="refresh" size={15} className={gs.status === "syncing" ? "spin" : undefined} />
+                <span className="acct-row__label">{statusText}</span>
+                {gs.lastSyncedAt && <span className="acct-row__meta">{relTime(gs.lastSyncedAt, zh)}</span>}
+              </button>
+            )}
+
+            {u?.login && (
+              <a
+                className="acct-row"
+                href={`https://gist.github.com/${u.login}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Icon name="external" size={15} />
+                <span className="acct-row__label">{zh ? "查看 Gist" : "View gist"}</span>
+              </a>
+            )}
+
+            <button
+              className="acct-row acct-row--danger"
+              onClick={() => { setOpen(false); setConfirmOut(true); }}
+            >
+              <Icon name="log-out" size={15} />
+              <span className="acct-row__label">{zh ? "退出登录" : "Sign out"}</span>
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <ConfirmDialog
+        open={confirmOut}
+        title={zh ? "退出登录？" : "Sign out?"}
+        message={
+          zh
+            ? "退出后将停止在此设备与云端同步，你的本地关注仍会保留。"
+            : "Signing out stops syncing on this device. Your local follows stay on this device."
+        }
+        confirmLabel={zh ? "退出登录" : "Sign out"}
+        cancelLabel={zh ? "取消" : "Cancel"}
+        danger
+        onConfirm={() => { setConfirmOut(false); gs.logout(); }}
+        onCancel={() => setConfirmOut(false)}
+      />
     </div>
   );
 }
