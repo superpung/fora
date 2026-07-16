@@ -1,8 +1,59 @@
 # Changelog
 
-All notable changes to this project. The project is unversioned (no release
-tags yet), so entries are grouped by date, newest first. Written in English per
-the repository language rule (see AGENTS.md).
+All notable changes to this project, newest first. The top entry is the current
+release; the dated log beneath it records development day by day. Written in
+English per the repository language rule (see AGENTS.md).
+
+## v0.1.0 — 2026-07-17
+
+First public release.
+
+### Added
+- **Multi-conference viewer** — a hub of conferences; each opens to a dashboard,
+  a timeline, speakers, committee, and organizers, fully bilingual (中文 / English).
+- **Timeline** — parallel sessions on a time grid with a live "now" indicator on
+  the conference day; forum time rails highlight the currently-live talk too.
+- **Personal agenda** — star talks, sessions, and speakers; a filterable
+  dashboard of everything you follow.
+- **GitHub login + cross-device sync** — follows sync through a single private
+  Gist per user (via `@repus/gist-sync`), reconciled across devices and resynced
+  immediately on reconnect.
+- **Offline support (PWA)** — installable; a service worker precaches the app
+  shell and runtime-caches datasets, so Fora loads and runs offline after the
+  first visit.
+- **Export & import** — take your agenda as `.ics` / `.csv` / `.md`, or a
+  re-importable `.json` backup, from the account menu.
+- **Share posters** — a clean poster image (with QR and the Fora brand) for a
+  whole forum or a single talk.
+- **Light / dark theme**, following the system with a manual toggle. No tracking.
+- **MIT license**, README badges, and a clickable footer version → release page.
+
+### Fixed
+- Dataset builds are deterministic and CI asserts the committed data stays in
+  sync (CI checks out full git history so `updated_at` is stable).
+- Timeline polish: a single gutter border, correct header/gutter layering on
+  horizontal scroll, and borderless in-card talk actions (a CSS class-name
+  collision had boxed them).
+- The footer sticks to the bottom on short pages and flows after content on long
+  ones.
+
+---
+
+## 2026-07-17 — Public release polish, MIT license
+
+### Added
+- **MIT license** (`LICENSE`) and README badges (CI / license / release).
+- Share posters now carry the **Fora mark + wordmark** at the bottom-left.
+
+### Changed
+- **README** trimmed to a generic, product-facing overview — no specific
+  conferences or dataset internals.
+- **Footer**: copyright is now "Copyright © 2026 Super Lee & Claude" (Super Lee →
+  github.com/superpung, Claude → claude.com/product/claude-code); the "updated"
+  date reads as "Month D, YYYY" (en) / "YYYY年M月D日" (zh); and the version is a
+  link to its release page.
+- The **signed-out account button** is the same round icon trigger everywhere —
+  the hub no longer shows a text button — and the nav tools are evenly spaced.
 
 ## 2026-07-17 — Offline support (PWA) + instant resync on reconnect
 

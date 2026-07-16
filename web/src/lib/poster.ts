@@ -396,6 +396,25 @@ function paintQR(ctx: CanvasRenderingContext2D, url: string, x: number, y: numbe
   }
 }
 
+/** The Fora brand mark (the favicon): a dark rounded square with an "F" whose
+    bars double as agenda rows, the top bar in the brand accent. Drawn on the
+    32-unit favicon grid scaled to `size`. */
+function drawForaMark(ctx: CanvasRenderingContext2D, x: number, y: number, size: number): void {
+  const s = size / 32;
+  ctx.fillStyle = "#0b0b0c";
+  roundRect(ctx, x, y, size, size, 7 * s);
+  ctx.fill();
+  ctx.fillStyle = "#ffffff";
+  roundRect(ctx, x + 9.25 * s, y + 8 * s, 4 * s, 16 * s, 2 * s);
+  ctx.fill();
+  ctx.fillStyle = "#0070f3";
+  roundRect(ctx, x + 9.25 * s, y + 8 * s, 13.5 * s, 4 * s, 2 * s);
+  ctx.fill();
+  ctx.fillStyle = "#ffffff";
+  roundRect(ctx, x + 9.25 * s, y + 14.5 * s, 9.5 * s, 4 * s, 2 * s);
+  ctx.fill();
+}
+
 function layout(ctx: CanvasRenderingContext2D, spec: PosterSpec, dry: boolean): number {
   const accent = spec.accent;
   const accentRgb = hexToRgb(accent);
@@ -502,10 +521,19 @@ function layout(ctx: CanvasRenderingContext2D, spec: PosterSpec, dry: boolean): 
     }
   }
 
-  // footer: QR only, bottom-right (no caption text)
+  // footer: the Fora brand bottom-left, the QR bottom-right.
   y += 56;
   const qrX = POSTER_W - PAD - QR_SIZE;
-  if (!dry) paintQR(ctx, spec.qrUrl, qrX, y);
+  if (!dry) {
+    paintQR(ctx, spec.qrUrl, qrX, y);
+    const markSize = 54;
+    drawForaMark(ctx, PAD, y + Math.round((QR_SIZE - markSize) / 2), markSize);
+    ctx.fillStyle = INK;
+    ctx.font = font(700, 42);
+    ctx.textBaseline = "middle";
+    ctx.fillText("Fora", PAD + markSize + 18, y + QR_SIZE / 2 + 1);
+    ctx.textBaseline = "top";
+  }
   y += QR_SIZE;
 
   return y + PAD;
