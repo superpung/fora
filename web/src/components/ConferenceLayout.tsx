@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import { Outlet, Navigate, useParams, useLocation } from "react-router-dom";
 import Nav from "./Nav";
-import Footer from "./Footer";
 import PageLoader from "./PageLoader";
 import DocumentTitle from "./DocumentTitle";
 import { ConferenceProvider } from "../lib/conference";
@@ -31,7 +30,6 @@ export default function ConferenceLayout() {
               <Outlet />
             </main>
           </FollowProvider>
-          <Footer />
         </ConferenceProvider>
       </Suspense>
     </>

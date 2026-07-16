@@ -17,6 +17,9 @@ export interface ConferenceMeta {
   forums: number;
   keynotes: number;
   days: number;
+  /** Date (YYYY-MM-DD) the conference's dataset was last updated (from git,
+   *  baked into the manifest by source/build_manifest.py). */
+  updated_at?: string | null;
 }
 
 /** Conferences, newest first — the display order for the hub and switcher. */
@@ -26,6 +29,11 @@ export const conferenceList: ConferenceMeta[] = [...(manifest as ConferenceMeta[
 
 /** The conference a bare visit (or a legacy URL) resolves to — the newest one. */
 export const defaultConferenceId = conferenceList[0]?.id ?? "";
+
+/** The most recent `updated_at` across all conferences — the hub's "last
+ *  updated" date. Null when no conference carries a date. */
+export const latestUpdatedAt: string | null =
+  conferenceList.map((c) => c.updated_at).filter(Boolean).sort().pop() ?? null;
 
 export function hasConference(id: string | undefined): id is string {
   return !!id && conferenceList.some((c) => c.id === id);

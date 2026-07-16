@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import ScrollManager from "./components/ScrollManager";
 import ConferenceLayout from "./components/ConferenceLayout";
+import Footer from "./components/Footer";
 import PageLoader from "./components/PageLoader";
 
 // Route-level code splitting: each page ships as its own chunk so the initial
@@ -40,6 +41,7 @@ export default function App() {
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <Footer />
     </>
   );
 }
