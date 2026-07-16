@@ -20,6 +20,7 @@
   --primary-fg: #ffffff;
   --primary-hover: #333333;
   --danger: #e5484d;
+  --tg-now: #f5533d;         /* "now" indicator on the timeline */
 
   /* status/label hues (used sparingly) */
   --blue-fg: #0070f3;
@@ -56,6 +57,7 @@ html.dark {
   --primary-fg: #000000;
   --primary-hover: #cccccc;
   --danger: #ff6166;
+  --tg-now: #ff6a52;
   --blue-fg: #52a8ff;
   --amber-fg: #f0b429;
   --teal-fg: #2ec4b6;
@@ -79,6 +81,7 @@ html.dark {
     --primary-fg: #000000;
     --primary-hover: #cccccc;
     --danger: #ff6166;
+    --tg-now: #ff6a52;
     --blue-fg: #52a8ff;
     --amber-fg: #f0b429;
     --teal-fg: #2ec4b6;

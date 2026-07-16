@@ -238,8 +238,10 @@ const PATHS: Record<IconName, ReactElement> = {
   divider: <path d="M12 4v16" />,
   trash: (
     <>
-      <path d="M4 7h16M10 4h4M9 7l.5 12a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1L16 7" />
-      <path d="M10.5 11v6M13.5 11v6" />
+      <path d="M4 7h16" />
+      <path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
+      <path d="M6 7v12.5a1.5 1.5 0 0 0 1.5 1.5h9a1.5 1.5 0 0 0 1.5-1.5V7" />
+      <path d="M10 11v5.5M14 11v5.5" />
     </>
   ),
   dot: <circle cx="12" cy="12" r="2.5" />,
