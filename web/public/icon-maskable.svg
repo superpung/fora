@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Maskable variant: full-bleed dark square (no rounding — the platform mask
+       supplies the shape); the "F" sits well within the 80% safe zone. -->
+  <rect width="32" height="32" fill="#0b0b0c"/>
+  <rect x="9.25" y="8" width="4" height="16" rx="2" fill="#ffffff"/>
+  <rect x="9.25" y="8" width="13.5" height="4" rx="2" fill="#0070f3"/>
+  <rect x="9.25" y="14.5" width="9.5" height="4" rx="2" fill="#ffffff"/>
+</svg>

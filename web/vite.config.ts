@@ -18,6 +18,13 @@ export default defineConfig({
     chunkSizeWarningLimit: 800,
     rollupOptions: {
       output: {
+        // Emit each per-conference dataset chunk under assets/data/ so the
+        // service worker can tell datasets apart from app code — it precaches the
+        // app shell but runtime-caches datasets on first visit (see scripts/build-sw.mjs).
+        chunkFileNames: (info) =>
+          (info.facadeModuleId ?? "").includes("/src/data/conferences/")
+            ? "assets/data/[name]-[hash].js"
+            : "assets/[name]-[hash].js",
         // Split into independently-cached chunks by how often each changes:
         //   data   — the conference JSON (changes only when the dataset is rebuilt)
         //   motion — the animation library (largest dependency, rarely changes)
