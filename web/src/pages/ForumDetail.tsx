@@ -218,6 +218,14 @@ export default function ForumDetail() {
   const [copied, setCopied] = useState<number | null>(null);
   const [poster, setPoster] = useState<{ spec: PosterSpec; filename: string } | null>(null);
 
+  // A live clock so the "now" rail marker follows the current talk without a
+  // reload — only meaningful on the day this forum runs.
+  const [nowMs, setNowMs] = useState(() => Date.now());
+  useEffect(() => {
+    const id = window.setInterval(() => setNowMs(Date.now()), 30_000);
+    return () => window.clearInterval(id);
+  }, []);
+
   // The talk pointed at by the URL hash (1-based, e.g. #talk-3) stays highlighted
   // for as long as the hash is present — it's a shareable anchor, not a flash.
   const activeId = hash.startsWith("#talk-") ? hash.slice(1) : null;
@@ -291,6 +299,35 @@ export default function ForumDetail() {
     .map((s) => s.trim())
     .filter(Boolean);
   const tracks = timed ? splitParallelTracks(forum.talks ?? [], roomParts) : null;
+
+  // "Now" on the rail: only on the day this forum runs, find the currently-live
+  // talk in each track (start ≤ now < end, end inferred from the next talk when
+  // absent) and mark its rail segment + node dot red.
+  const nowD = new Date(nowMs);
+  const p2 = (n: number) => String(n).padStart(2, "0");
+  const todayStr = `${nowD.getFullYear()}-${p2(nowD.getMonth() + 1)}-${p2(nowD.getDate())}`;
+  const nowMin = nowD.getHours() * 60 + nowD.getMinutes();
+  const nowTalks = new Set<number>();
+  if (timed && forum.day_date === todayStr) {
+    const lists = tracks
+      ? tracks.map((tk) => tk.talks)
+      : [(forum.talks ?? []).map((t, i) => ({ t, i }))];
+    for (const list of lists) {
+      const items = list.filter((x) => x.t.start);
+      for (let j = 0; j < items.length; j++) {
+        const s = toMin(items[j].t.start!);
+        const end = items[j].t.end
+          ? toMin(items[j].t.end!)
+          : j + 1 < items.length
+            ? toMin(items[j + 1].t.start!)
+            : s + 30;
+        if (nowMin >= s && nowMin < end) {
+          nowTalks.add(items[j].i);
+          break;
+        }
+      }
+    }
+  }
 
   const shareUrl = () => `${window.location.origin}${window.location.pathname}`;
   // Conference-level identity, shared by both posters.
@@ -385,6 +422,7 @@ export default function ForumDetail() {
     const followed = isTalk(id);
     const anchor = `talk-${i + 1}`;
     const isActive = activeId === anchor;
+    const isNow = nowTalks.has(i);
     const body = (
       <>
         <div className="talk__titlerow">
@@ -466,8 +504,8 @@ export default function ForumDetail() {
           id={anchor}
           variants={riseItem}
           className={`tlrow ${isActive ? "tlrow--active" : ""} ${
-            t.start ? "" : "tlrow--notime"
-          }`}
+            isNow ? "tlrow--now" : ""
+          } ${t.start ? "" : "tlrow--notime"}`}
         >
           <div className="tlrow__time">
             {t.start ? (

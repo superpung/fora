@@ -248,10 +248,7 @@ export default function Schedule() {
               className={`daytab ${i === active ? "is-active" : ""} ${isToday ? "is-today" : ""}`}
               onClick={() => setActive(i)}
             >
-              <span className="daytab__md">
-                {md}
-                {isToday && <span className="daytab__today" aria-hidden />}
-              </span>
+              <span className="daytab__md">{md}</span>
               <span className="daytab__wd">{weekday}</span>
               {i === active && (
                 <motion.span
