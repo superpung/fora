@@ -205,3 +205,11 @@ pnpm preview    # serve the production build
   login → one private Gist per user) is powered by `@repus/gist-sync`; the
   Netlify function under `web/netlify/functions/` is the stateless OAuth broker
   (set `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET` in the Netlify dashboard).
+- **Offline / PWA:** `pnpm build` runs `scripts/build-sw.mjs` (workbox `generateSW`)
+  after `vite build` to emit `dist/sw.js` — a **post-build** step by design, so it
+  doesn't depend on the Vite 8 / rolldown plugin surface. It precaches the app
+  shell and runtime-caches per-conference datasets (emitted under `assets/data/`
+  via `vite.config.ts`'s `chunkFileNames`) on first visit. The SW is registered in
+  `main.tsx` in production only, and its navigation fallback denylists
+  `/.netlify/*` so login always hits the network. `public/manifest.webmanifest`
+  + the `icon-*.png` mark it installable.
