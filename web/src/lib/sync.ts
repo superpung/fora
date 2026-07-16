@@ -13,8 +13,8 @@ type FollowType = "forums" | "speakers" | "talks";
 export const syncConfig: GistSyncConfig = {
   clientId: (import.meta.env.VITE_GH_CLIENT_ID as string | undefined) ?? "",
   brokerPath: "/.netlify/functions/github-oauth",
-  gistFilename: "conf-scheduler-follows.json",
-  appMarker: "conf-scheduler",
+  gistFilename: "fora-follows.json",
+  appMarker: "fora",
 };
 
 export const syncSchema: Schema = {
@@ -53,7 +53,7 @@ export function serialize(): Bundle {
     const [, confId, type] = m;
     for (const v of readArray(key)) out.push(JSON.stringify([confId, type, v]));
   }
-  return { app: "conf-scheduler", version: 1, follows: out.sort() };
+  return { app: "fora", version: 1, follows: out.sort() };
 }
 
 /** Write a (possibly partial) bundle back into per-conference localStorage keys.

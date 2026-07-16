@@ -1,4 +1,4 @@
-# conf-scheduler
+# Fora
 
 Parse a conference agenda into a **custom, general-purpose format**, then use it
 to drive a web viewer. The viewer is **multi-conference**: `/` is a hub that
