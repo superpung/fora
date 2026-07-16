@@ -9,12 +9,13 @@
     <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
     <title>Fora</title>
     <!-- Apply the user's stored theme before first paint to avoid a
-         light/dark flash (FOUC). Must stay in sync with the "cs-theme" key
-         used by src/lib/theme.tsx. "system" (or unset) falls back to the
-         prefers-color-scheme media queries, so nothing to do there. -->
+         light/dark flash (FOUC). Must stay in sync with the "fora-theme" key
+         used by src/lib/theme.tsx (with a "cs-theme" fallback for pre-rebrand
+         users). "system" (or unset) falls back to the prefers-color-scheme
+         media queries, so nothing to do there. -->
     <script>
       try {
-        var m = localStorage.getItem("cs-theme");
+        var m = localStorage.getItem("fora-theme") || localStorage.getItem("cs-theme");
         if (m === "light" || m === "dark")
           document.documentElement.setAttribute("data-theme", m);
       } catch (e) {}
