@@ -16,11 +16,11 @@ import type { ExportFormat } from "../lib/export";
 // conference providers. Everything is optional: with no OAuth configured it's
 // just the follow menu, and outside a conference it's just the account menu.
 
-const EXPORTS: { key: ExportFormat; labelKey: string; icon: IconName }[] = [
-  { key: "ics", labelKey: "export.ics", icon: "calendar" },
-  { key: "csv", labelKey: "export.csv", icon: "file" },
-  { key: "md", labelKey: "export.md", icon: "file" },
-  { key: "json", labelKey: "export.json", icon: "file" },
+const EXPORTS: { key: ExportFormat; labelKey: string; ext: string; icon: IconName }[] = [
+  { key: "ics", labelKey: "export.ics", ext: ".ics", icon: "calendar" },
+  { key: "csv", labelKey: "export.csv", ext: ".csv", icon: "file" },
+  { key: "md", labelKey: "export.md", ext: ".md", icon: "file" },
+  { key: "json", labelKey: "export.json", ext: ".json", icon: "file" },
 ];
 
 function relTime(iso: string | null, zh: boolean): string {
@@ -229,6 +229,7 @@ export default function AccountMenu() {
                             >
                               <Icon name={f.icon} size={14} />
                               <span className="acct-row__label">{t(f.labelKey)}</span>
+                              <span className="acct-ext mono">{f.ext}</span>
                             </button>
                           ))}
                         </motion.div>

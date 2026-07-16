@@ -471,7 +471,7 @@ function DaySection({
 /* ---------------- dashboard ---------------- */
 
 export default function Home() {
-  const { id: confId, conference, scheduleDays, stats, uniqueSpeakerCount } = useConference();
+  const { conference, scheduleDays, stats, uniqueSpeakerCount } = useConference();
   const { t, lang } = useI18n();
   const {
     forums: followedForums,
@@ -699,12 +699,6 @@ export default function Home() {
             )}
           </motion.div>
         </AnimatePresence>
-
-        <div className="dash__hint">
-          <Link to={`/${confId}/schedule`} className="btn btn--ghost">
-            <Icon name="calendar" size={15} /> {t("home.timelineView")}
-          </Link>
-        </div>
       </div>
     </motion.div>
   );

@@ -268,7 +268,6 @@ svg { display: block; }
 .filtertag:hover { background: var(--primary-hover); }
 .filtertag svg { opacity: 0.75; }
 .dash__empty { text-align: center; padding: 60px 20px; color: var(--fg-muted); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-top: 20px; }
-.dash__hint { margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--fg-muted); font-size: 13px; }
 
 /* ---- day section ---- */
 .dashday { margin-top: 40px; }
@@ -415,9 +414,16 @@ svg { display: block; }
 }
 .daytab.is-active { color: var(--fg); border-bottom-color: var(--fg); }
 .daytab:hover:not(.is-active) { color: var(--fg); }
-.daytab__md { font-weight: 500; font-size: 14px; }
+.daytab__md { position: relative; font-weight: 500; font-size: 14px; }
 .daytab__wd { font-size: 11px; color: var(--fg-muted); }
 .daytab__bg { display: none; }
+/* "today" marker: a small dot above the date, in the same red as the timeline
+   "now" line so the two read as one signal. */
+.daytab.is-today .daytab__md { color: var(--tg-now); }
+.daytab__today {
+  position: absolute; top: -4px; right: -7px; width: 5px; height: 5px;
+  border-radius: 50%; background: var(--tg-now);
+}
 
 .dayhead { margin: 18px 0; }
 .dayhead__venue { display: inline-flex; align-items: center; gap: 5px; color: var(--fg-muted); font-size: 13px; }
@@ -475,10 +481,12 @@ svg { display: block; }
 }
 .tgrid__inner { display: flex; align-items: flex-start; width: max-content; }
 /* time gutter — sticky to the left as columns scroll horizontally. Its z-index
-   sits ABOVE a hovered (expanded) talk so the floating card tucks under the time
-   rail instead of sliding over it. */
-.tgrid__gutter { position: sticky; left: 0; z-index: 6; flex: 0 0 auto; width: 50px; background: var(--bg); }
-.tgrid__ghead { position: sticky; top: 0; z-index: 7; height: var(--tg-head); background: var(--bg); border-bottom: 1px solid var(--border); }
+   sits ABOVE both a hovered (expanded) talk AND the (lower) forum column headers,
+   so as the grid scrolls left the room/forum headers slide UNDER the time rail
+   instead of over it, and a floating card tucks under the rail too. */
+.tgrid__gutter { position: sticky; left: 0; z-index: 8; flex: 0 0 auto; width: 50px; background: var(--bg); border-right: 1px solid var(--border); }
+/* the top-left square sits above everything (both axes) so nothing scrolls over it */
+.tgrid__ghead { position: sticky; top: 0; z-index: 9; height: var(--tg-head); background: var(--bg); border-bottom: 1px solid var(--border); }
 .tgrid__gbody { position: relative; }
 .tgrid__htick { position: absolute; left: 0; right: 0; height: 1px; }
 .tgrid__hlabel { position: absolute; top: 1px; right: 7px; font-family: var(--font-mono); font-size: 11px; color: var(--fg-muted); }
@@ -496,6 +504,20 @@ svg { display: block; }
 .tgrid__ccode { display: none; }
 .tgrid__cbody { position: relative; }
 .tgrid__line { position: absolute; left: 0; right: 0; height: 1px; background: var(--border); opacity: 0.55; }
+/* "now" indicator — a red pill + dot in the time gutter and a line across the
+   columns, at the live clock position. Only rendered on today's day tab. */
+.tgrid__now { position: absolute; left: 0; right: 0; height: 0; }
+.tgrid__nowpill {
+  position: absolute; right: 8px; transform: translateY(-50%);
+  padding: 1px 5px; border-radius: 999px; font-size: 10.5px; line-height: 1.45;
+  font-weight: 600; color: #fff; background: var(--tg-now); white-space: nowrap;
+  box-shadow: 0 1px 4px color-mix(in srgb, var(--tg-now) 45%, transparent);
+}
+.tgrid__nowdot {
+  position: absolute; right: -3.5px; top: 0; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--tg-now); transform: translateY(-50%);
+}
+.tgrid__nowline { position: absolute; left: 0; right: 0; height: 2px; z-index: 4; background: var(--tg-now); }
 .tgrid__talk {
   position: absolute; left: 3px; right: 3px; z-index: 0; display: flex; flex-direction: column; gap: 1px;
   cursor: pointer; padding: 3px 7px 3px 11px; overflow: hidden; background: var(--bg-subtle);
@@ -958,6 +980,12 @@ svg { display: block; }
 .acct-row .caret { margin-left: auto; color: var(--fg-muted); display: inline-flex; }
 .acct-sub { overflow: hidden; }
 .acct-row--sub { padding-left: 30px; color: var(--fg-muted); }
+.acct-ext {
+  flex: none; font-size: 11px; line-height: 1.6; color: var(--fg-muted);
+  padding: 0 6px; border-radius: 999px;
+  background: var(--bg-active); border: 1px solid var(--border);
+}
+.acct-row--sub:hover .acct-ext { color: var(--fg-secondary); border-color: var(--border-strong); }
 .acct-status {
   margin: 4px 6px 2px; padding: 6px 8px; border-radius: var(--radius-sm);
   font-size: 12px; line-height: 1.45;

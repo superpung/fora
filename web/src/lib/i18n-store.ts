@@ -51,10 +51,10 @@ const zh: Dict = {
   "confsw.all": "全部会议",
 
   "export.button": "导出",
-  "export.ics": "日历 (.ics)",
-  "export.csv": "表格 (.csv)",
-  "export.md": "Markdown (.md)",
-  "export.json": "备份·可导入 (.json)",
+  "export.ics": "日历",
+  "export.csv": "表格",
+  "export.md": "Markdown",
+  "export.json": "备份",
 
   "import.button": "导入",
   "import.title": "导入 .json 备份",
@@ -91,7 +91,6 @@ const zh: Dict = {
   "home.clearMyFollows": "清空我的关注",
   "home.noForums": "没有符合条件的论坛。",
   "home.noForumsHint": "点击论坛、报告或讲者旁的星标即可加入“我的关注”。",
-  "home.timelineView": "时间线视图",
   "home.tbd": "题目待定",
 
   "stats.forums": "技术论坛",
@@ -216,10 +215,10 @@ const en: Dict = {
   "confsw.all": "All conferences",
 
   "export.button": "Export",
-  "export.ics": "Calendar (.ics)",
-  "export.csv": "Spreadsheet (.csv)",
-  "export.md": "Markdown (.md)",
-  "export.json": "Backup · importable (.json)",
+  "export.ics": "Calendar",
+  "export.csv": "Spreadsheet",
+  "export.md": "Markdown",
+  "export.json": "Backup",
 
   "import.button": "Import",
   "import.title": "Import a .json backup",
@@ -256,7 +255,6 @@ const en: Dict = {
   "home.clearMyFollows": "Clear my follows",
   "home.noForums": "No forums match.",
   "home.noForumsHint": "Tap the star next to a forum, talk, or speaker to add it to “My follows”.",
-  "home.timelineView": "Timeline view",
   "home.tbd": "TBD",
 
   "stats.forums": "Forums",
