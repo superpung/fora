@@ -4,6 +4,7 @@ import ScrollManager from "./components/ScrollManager";
 import ConferenceLayout from "./components/ConferenceLayout";
 import Footer from "./components/Footer";
 import PageLoader from "./components/PageLoader";
+import { FollowActionsProvider } from "./lib/follow-actions";
 
 // Route-level code splitting: each page ships as its own chunk so the initial
 // download is just the shell (nav/footer/router), not every page at once.
@@ -17,7 +18,7 @@ const Organizations = lazy(() => import("./pages/Organizations"));
 
 export default function App() {
   return (
-    <>
+    <FollowActionsProvider>
       <ScrollManager />
       {/* The site hosts several conferences. `/` is the conference hub; each
           conference lives under `/:conf/...`. ConferenceLayout loads the active
@@ -42,6 +43,6 @@ export default function App() {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Footer />
-    </>
+    </FollowActionsProvider>
   );
 }

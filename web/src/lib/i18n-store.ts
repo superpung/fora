@@ -23,7 +23,7 @@ export function detectLang(): Lang {
 type Dict = Record<string, string>;
 
 const zh: Dict = {
-  "nav.dashboard": "日程面板",
+  "nav.dashboard": "日程",
   "nav.timeline": "时间线",
   "nav.speakers": "讲者",
   "nav.committee": "委员会",
