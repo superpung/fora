@@ -8,7 +8,6 @@ import { useI18n } from "../lib/i18n-store";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Icon, { type IconName } from "../components/Icon";
 import TimeGrid from "../components/TimeGrid";
-import SyncControls from "../components/SyncControls";
 import type { Block, Forum, Talk, Break } from "../types";
 
 /** True when at least one talk in the day's forum block carries a start time —
@@ -221,19 +220,16 @@ export default function Schedule() {
           </span>
           <h2 className="section__title">{t("schedule.title")}</h2>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
-          <SyncControls />
-          <button
-            className={`filterchip ${onlyFollowed ? "is-on" : ""}`}
-            onClick={() => setOnlyFollowed((v) => !v)}
-            title={t("timeline.onlyFollowsTip")}
-            aria-pressed={onlyFollowed}
-          >
-            <Icon name="star" filled={onlyFollowed} size={14} />
-            <span className="filterchip__label">{t("timeline.onlyFollows")}</span>
-            {followCount ? <span className="filterchip__n">{followCount}</span> : null}
-          </button>
-        </div>
+        <button
+          className={`filterchip ${onlyFollowed ? "is-on" : ""}`}
+          onClick={() => setOnlyFollowed((v) => !v)}
+          title={t("timeline.onlyFollowsTip")}
+          aria-pressed={onlyFollowed}
+        >
+          <Icon name="star" filled={onlyFollowed} size={14} />
+          <span className="filterchip__label">{t("timeline.onlyFollows")}</span>
+          {followCount ? <span className="filterchip__n">{followCount}</span> : null}
+        </button>
       </div>
 
       {/* day tabs */}

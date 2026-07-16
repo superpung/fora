@@ -37,6 +37,8 @@ export type IconName =
   | "download"
   | "upload"
   | "file"
+  | "refresh"
+  | "log-out"
   | "dot";
 
 // Each entry is the inner markup of a 0 0 24 24 viewBox, stroked with currentColor.
@@ -212,6 +214,18 @@ const PATHS: Record<IconName, ReactElement> = {
     <>
       <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
       <path d="M14 3v5h5M8.5 13h7M8.5 17h7" />
+    </>
+  ),
+  refresh: (
+    <>
+      <path d="M21 12a9 9 0 0 1-9 9 9 9 0 0 1-6.7-3M3 12a9 9 0 0 1 9-9 9 9 0 0 1 6.7 3" />
+      <path d="M21 3v5h-5M3 21v-5h5" />
+    </>
+  ),
+  "log-out": (
+    <>
+      <path d="M9 21H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3" />
+      <path d="M16 17l5-5-5-5M21 12H9" />
     </>
   ),
   dot: <circle cx="12" cy="12" r="2.5" />,

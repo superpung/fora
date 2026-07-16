@@ -543,7 +543,20 @@ export default function Home() {
       <div className="dashhead">
         <div className="container dashhead__inner">
           <div className="dashhead__id">
-            <h1 className="dashhead__title">{conference.name.zh}</h1>
+            <div className="dashhead__titlerow">
+              <h1 className="dashhead__title">{conference.name.zh}</h1>
+              {conference.source_url && (
+                <a
+                  className="dashhead__official"
+                  href={conference.source_url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {t("common.official")}
+                  <Icon name="external" size={13} />
+                </a>
+              )}
+            </div>
             <div className="dashhead__venue">
               {startMd}–{endMd}
               {mainCity && ` · ${t("common.inChina", { city: mainCity })}`}
