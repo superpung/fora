@@ -1,8 +1,10 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useState } from "react";
 import ThemeToggle from "./ThemeToggle";
 import LangToggle from "./LangToggle";
+import AccountMenu from "./AccountMenu";
+import ForaMark from "./ForaMark";
 import ConferenceSwitcher from "./ConferenceSwitcher";
 import { useI18n } from "../lib/i18n-store";
 
@@ -29,6 +31,9 @@ export default function Nav({ confId }: { confId: string }) {
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="nav__inner container">
+        <Link to="/" className="nav__home" aria-label="Fora">
+          <ForaMark size={22} />
+        </Link>
         <ConferenceSwitcher confId={confId} />
         <nav className="nav__links">
           {LINKS.map((l) => (
@@ -43,6 +48,7 @@ export default function Nav({ confId }: { confId: string }) {
           ))}
         </nav>
         <div className="nav__tools">
+          <AccountMenu />
           <LangToggle />
           <ThemeToggle />
         </div>
