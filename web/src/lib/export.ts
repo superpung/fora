@@ -140,7 +140,7 @@ export function exportFilename(items: ExportItem[], ext: string, views: Conferen
 export function toFollowJSON(f: FollowSnapshot, stampISO: string, views: ConferenceViews): string {
   return JSON.stringify(
     {
-      app: "conf-scheduler",
+      app: "fora",
       kind: "follows",
       version: 1,
       conference: views.conference.id,
@@ -252,7 +252,7 @@ export function toICS(items: ExportItem[], stampISO: string, views: ConferenceVi
   const lines: string[] = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    `PRODID:-//conf-scheduler//${prodName}//ZH`,
+    `PRODID:-//Fora//${prodName}//ZH`,
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
   ];

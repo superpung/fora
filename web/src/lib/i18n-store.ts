@@ -31,7 +31,7 @@ const zh: Dict = {
 
   "common.all": "全部",
   "common.loading": "加载中",
-  "common.siteName": "会议日程",
+  "common.siteName": "Fora",
   "common.official": "官方网站",
   "common.followAdd": "关注 {name}",
   "common.followRemove": "取消关注 {name}",
@@ -196,7 +196,7 @@ const en: Dict = {
 
   "common.all": "All",
   "common.loading": "Loading",
-  "common.siteName": "Conference Agenda",
+  "common.siteName": "Fora",
   "common.official": "Official site",
   "common.followAdd": "Follow {name}",
   "common.followRemove": "Unfollow {name}",
