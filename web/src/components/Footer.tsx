@@ -4,8 +4,8 @@ import Icon from "./Icon";
 import { useI18n } from "../lib/i18n-store";
 import { conferenceMeta, hasConference, latestUpdatedAt } from "../lib/conferences";
 
-// Global site footer: Fora project info. Brand shows "Fora" on the hub and
-// "Fora / <conference>" inside a conference. "Updated" shows the most recent
+// Global site footer: Fora project info. Brand is the mark alone (→ hub); inside
+// a conference it reads "[mark] › <conference>". "Updated" shows the most recent
 // conference date on the hub, or the current conference's date on its pages.
 const REPO_URL = "https://github.com/superpung/fora";
 
@@ -16,6 +16,7 @@ export default function Footer() {
   const conf = hasConference(confId) ? conferenceMeta(confId) : undefined;
   const confName = conf ? (zh ? conf.name.zh : conf.name.en || conf.name.zh) : null;
   const updated = conf ? conf.updated_at : latestUpdatedAt;
+  const year = new Date().getFullYear();
 
   return (
     <footer className="footer">
@@ -24,21 +25,23 @@ export default function Footer() {
           <Link to="/" className="footer__mark" aria-label="Fora">
             <ForaMark size={20} />
           </Link>
-          <span className="footer__name">
-            Fora{confName && <span className="footer__conf"> / {confName}</span>}
-          </span>
+          {confName && (
+            <>
+              <Icon name="chevron-right" size={14} className="footer__brandsep" aria-hidden />
+              <span className="footer__conf">{confName}</span>
+            </>
+          )}
         </div>
 
         <div className="footer__meta">
-          <a className="footer__link" href={REPO_URL} target="_blank" rel="noreferrer">
-            GitHub
-            <Icon name="external" size={12} />
+          <a className="footer__link" href={REPO_URL} target="_blank" rel="noreferrer" aria-label="GitHub">
+            <Icon name="github" size={15} />
           </a>
-          <span className="footer__sep" aria-hidden>·</span>
+          <Icon name="divider" size={14} className="footer__sep" aria-hidden />
           <span className="footer__ver">v{__APP_VERSION__}</span>
           {updated && (
             <>
-              <span className="footer__sep" aria-hidden>·</span>
+              <Icon name="divider" size={14} className="footer__sep" aria-hidden />
               <span className="footer__upd">
                 {zh ? "更新于 " : "Updated "}
                 {updated}
@@ -47,6 +50,8 @@ export default function Footer() {
           )}
         </div>
       </div>
+
+      <div className="container footer__copy">© {year} Fora</div>
     </footer>
   );
 }
