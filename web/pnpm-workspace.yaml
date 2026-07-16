@@ -1,3 +1,7 @@
+# Keep the "minimum release age" supply-chain gate for third-party packages,
+# but don't block on our OWN freshly-published @repus/gist-sync releases (we own
+# and publish that package, so the age gate adds no safety for it). Under
+# --frozen-lockfile the exclude list is only honored when strict mode is off.
+minimumReleaseAgeStrict: false
 minimumReleaseAgeExclude:
-  - '@repus/gist-sync@0.1.3'
-  - '@repus/gist-sync@0.2.0'
+  - '@repus/gist-sync'
