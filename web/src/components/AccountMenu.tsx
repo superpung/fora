@@ -75,15 +75,17 @@ export default function AccountMenu() {
   // Nothing to offer here at all.
   if (!hasSync && !actions) return null;
 
-  // Signed out with no conference actions (e.g. the hub): a plain login button.
+  // Signed out with no conference actions (e.g. the hub): the same round icon
+  // trigger as everywhere else, logging in directly on click.
   if (hasSync && !loggedIn && !actions) {
     return (
       <button
-        className="acct-login"
+        className="acct-btn"
         onClick={gs.login}
+        aria-label={zh ? "登录" : "Sign in"}
         title={zh ? "用 GitHub 登录，在多设备间同步你的关注" : "Sign in with GitHub to sync your follows across devices"}
       >
-        {zh ? "登录" : "Sign in"}
+        <Icon name="user" size={16} />
       </button>
     );
   }
