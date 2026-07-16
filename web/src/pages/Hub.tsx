@@ -85,12 +85,9 @@ export default function Hub() {
     <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
       <header className="hubtop">
         <div className="container hubtop__inner">
-          <div className="hubtop__brand">
-            <span className="hubtop__logo" aria-hidden>
-              <ForaMark size={22} />
-            </span>
-            <span className="hubtop__name">{t("common.siteName")}</span>
-          </div>
+          <Link to="/" className="hubtop__logo" aria-label={t("common.siteName")}>
+            <ForaMark size={22} />
+          </Link>
           <div className="nav__tools">
             <AccountMenu />
             <LangToggle />

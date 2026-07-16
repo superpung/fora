@@ -39,6 +39,8 @@ export type IconName =
   | "file"
   | "refresh"
   | "log-out"
+  | "github"
+  | "divider"
   | "dot";
 
 // Each entry is the inner markup of a 0 0 24 24 viewBox, stroked with currentColor.
@@ -228,6 +230,11 @@ const PATHS: Record<IconName, ReactElement> = {
       <path d="M16 17l5-5-5-5M21 12H9" />
     </>
   ),
+  // GitHub mark — a filled shape (rendered with fill, no stroke; see below).
+  github: (
+    <path d="M12 1.3a10.7 10.7 0 0 0-3.38 20.85c.53.1.73-.23.73-.51l-.01-1.8c-2.98.65-3.6-1.44-3.6-1.44-.49-1.24-1.19-1.57-1.19-1.57-.97-.66.08-.65.08-.65 1.07.08 1.64 1.1 1.64 1.1.96 1.64 2.5 1.17 3.11.89.1-.7.37-1.17.68-1.44-2.38-.27-4.88-1.19-4.88-5.3 0-1.17.42-2.13 1.1-2.88-.11-.27-.48-1.36.1-2.84 0 0 .9-.29 2.95 1.1a10.2 10.2 0 0 1 5.36 0c2.05-1.39 2.94-1.1 2.94-1.1.59 1.48.22 2.57.11 2.84.69.75 1.1 1.71 1.1 2.88 0 4.12-2.5 5.03-4.89 5.29.38.33.72.98.72 1.98l-.01 2.93c0 .29.19.62.74.51A10.7 10.7 0 0 0 12 1.3z" />
+  ),
+  divider: <path d="M12 4v16" />,
   dot: <circle cx="12" cy="12" r="2.5" />,
 };
 
@@ -240,13 +247,15 @@ interface IconProps extends Omit<SVGProps<SVGSVGElement>, "name"> {
 
 export default function Icon({ name, size = 16, filled = false, ...rest }: IconProps) {
   const isStar = name === "star";
+  // `github` is a solid glyph: filled with currentColor and no stroke.
+  const isSolid = name === "github";
   return (
     <svg
       width={size}
       height={size}
       viewBox="0 0 24 24"
-      fill={isStar && filled ? "currentColor" : "none"}
-      stroke="currentColor"
+      fill={isSolid || (isStar && filled) ? "currentColor" : "none"}
+      stroke={isSolid ? "none" : "currentColor"}
       strokeWidth={1.5}
       strokeLinecap="round"
       strokeLinejoin="round"
