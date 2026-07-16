@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
-import { Ctx, KEY, detectLang, translate, type I18nCtx, type Lang } from "./i18n-store";
+import { Ctx, KEY, LEGACY_KEY, detectLang, translate, type I18nCtx, type Lang } from "./i18n-store";
 
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>(detectLang);
 
   useEffect(() => {
     localStorage.setItem(KEY, lang);
+    localStorage.removeItem(LEGACY_KEY);
     document.documentElement.setAttribute("lang", lang === "zh" ? "zh-CN" : "en");
   }, [lang]);
 

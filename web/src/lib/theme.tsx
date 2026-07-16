@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
-import { Ctx, KEY, systemDark, type ThemeCtx, type ThemeMode } from "./theme-store";
+import { Ctx, KEY, LEGACY_KEY, systemDark, type ThemeCtx, type ThemeMode } from "./theme-store";
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [mode, setMode] = useState<ThemeMode>(
-    () => (localStorage.getItem(KEY) as ThemeMode) || "system",
+    () => ((localStorage.getItem(KEY) ?? localStorage.getItem(LEGACY_KEY)) as ThemeMode) || "system",
   );
   const [sysDark, setSysDark] = useState(systemDark);
 
@@ -22,6 +22,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     if (mode === "system") root.removeAttribute("data-theme");
     else root.setAttribute("data-theme", mode);
     localStorage.setItem(KEY, mode);
+    localStorage.removeItem(LEGACY_KEY);
   }, [mode]);
 
   const value = useMemo<ThemeCtx>(
