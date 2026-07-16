@@ -94,13 +94,13 @@ function KeynotesBlock({ block }: { block: Block }) {
   );
 }
 
-function ForumsBlock({ block, filtered }: { block: Block; filtered: boolean }) {
+function ForumsBlock({ block, date, filtered }: { block: Block; date: string; filtered: boolean }) {
   const { id: confId, forumsByCode } = useConference();
   const { t } = useI18n();
   const { isForum, isTalk, isSpeaker } = useFollow();
   // When talks carry real times, show the time-vs-forum matrix; otherwise the
   // conference only has forum-level slots, so fall back to the card grid.
-  if (hasForumTimes(block, forumsByCode)) return <TimeGrid block={block} filtered={filtered} />;
+  if (hasForumTimes(block, forumsByCode)) return <TimeGrid block={block} date={date} filtered={filtered} />;
   const entries = (block.forum_entries ?? []).filter((e) => {
     if (!filtered) return true;
     const f = forumsByCode[e.forum_code];
@@ -197,6 +197,11 @@ export default function Schedule() {
     if (initial >= 0) setActive(initial);
   }, [initial]);
 
+  // Local calendar date (YYYY-MM-DD) for highlighting today's tab.
+  const now = new Date();
+  const p2 = (n: number) => String(n).padStart(2, "0");
+  const todayStr = `${now.getFullYear()}-${p2(now.getMonth() + 1)}-${p2(now.getDate())}`;
+
   const day = days[active];
   // In the follow view only the forum timeline is meaningful (that's where a
   // "room / forum" lives); non-forum blocks — keynotes, check-in, committee
@@ -236,13 +241,17 @@ export default function Schedule() {
       <div className="daytabs">
         {days.map((d, i) => {
           const { md, weekday } = formatDate(d.date, lang);
+          const isToday = d.date === todayStr;
           return (
             <button
               key={d.date}
-              className={`daytab ${i === active ? "is-active" : ""}`}
+              className={`daytab ${i === active ? "is-active" : ""} ${isToday ? "is-today" : ""}`}
               onClick={() => setActive(i)}
             >
-              <span className="daytab__md">{md}</span>
+              <span className="daytab__md">
+                {md}
+                {isToday && <span className="daytab__today" aria-hidden />}
+              </span>
               <span className="daytab__wd">{weekday}</span>
               {i === active && (
                 <motion.span
@@ -303,7 +312,7 @@ export default function Schedule() {
                 </div>
 
                 {block.kind === "keynotes" && <KeynotesBlock block={block} />}
-                {block.kind === "forums" && <ForumsBlock block={block} filtered={onlyFollowed} />}
+                {block.kind === "forums" && <ForumsBlock block={block} date={day.date} filtered={onlyFollowed} />}
                 {block.kind === "committee_meetings" && <MeetingsBlock block={block} />}
                 {block.note && <div className="simplerow">{block.note}</div>}
               </motion.section>
