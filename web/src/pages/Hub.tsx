@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import ThemeToggle from "../components/ThemeToggle";
 import LangToggle from "../components/LangToggle";
+import AccountMenu from "../components/AccountMenu";
+import ForaMark from "../components/ForaMark";
 import Icon from "../components/Icon";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import { conferenceList, type ConferenceMeta } from "../lib/conferences";
@@ -85,11 +87,12 @@ export default function Hub() {
         <div className="container hubtop__inner">
           <div className="hubtop__brand">
             <span className="hubtop__logo" aria-hidden>
-              <Icon name="calendar" size={18} />
+              <ForaMark size={22} />
             </span>
             <span className="hubtop__name">{t("common.siteName")}</span>
           </div>
           <div className="nav__tools">
+            <AccountMenu />
             <LangToggle />
             <ThemeToggle />
           </div>

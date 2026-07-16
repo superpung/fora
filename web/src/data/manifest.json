@@ -12,7 +12,8 @@
     "venue": "无锡国际会议中心",
     "forums": 48,
     "keynotes": 12,
-    "days": 4
+    "days": 4,
+    "updated_at": "2026-07-15"
   },
   {
     "id": "chinasoft2025",
@@ -27,6 +28,7 @@
     "venue": "武汉国际会议中心",
     "forums": 73,
     "keynotes": 9,
-    "days": 4
+    "days": 4,
+    "updated_at": "2026-07-16"
   }
 ]
