@@ -544,7 +544,7 @@ export default function Home() {
               <h1 className="dashhead__title">{conference.name.zh}</h1>
               {conference.source_url && (
                 <a
-                  className="iconbtn dashhead__official"
+                  className="squarebtn dashhead__official"
                   href={conference.source_url}
                   target="_blank"
                   rel="noreferrer"
