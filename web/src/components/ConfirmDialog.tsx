@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { easeOut } from "../lib/motion";
 
@@ -31,7 +32,9 @@ export default function ConfirmDialog({
     return () => document.removeEventListener("keydown", onEsc);
   }, [open, onCancel]);
 
-  return (
+  // Rendered through a portal to <body> so the fixed-position backdrop anchors to
+  // the viewport, not to any transformed ancestor (framer-motion nav/popover).
+  return createPortal(
     <AnimatePresence>
       {open && (
         <motion.div
@@ -70,6 +73,7 @@ export default function ConfirmDialog({
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 }

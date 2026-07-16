@@ -1,2 +1,3 @@
 minimumReleaseAgeExclude:
   - '@repus/gist-sync@0.1.3'
+  - '@repus/gist-sync@0.2.0'
