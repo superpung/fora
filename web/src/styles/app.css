@@ -47,7 +47,7 @@ svg { display: block; }
 .nav__link.is-active { color: var(--fg); }
 .nav__underline { display: none; }
 .theme-toggle {
-  width: 34px; height: 34px; margin-left: 4px; border-radius: var(--radius);
+  width: 34px; height: 34px; border-radius: var(--radius);
   border: 1px solid var(--border); background: var(--bg);
   color: var(--fg-secondary); font-size: 15px;
   display: grid; place-items: center; overflow: hidden;
@@ -895,10 +895,14 @@ svg { display: block; }
   transition: color 0.15s ease;
 }
 .footer__link:hover { color: var(--fg); }
+.footer__ver { color: var(--fg-muted); transition: color 0.15s ease; }
+.footer__ver:hover { color: var(--fg); }
 .footer__sep { color: var(--border-strong); flex: 0 0 auto; }
 .footer__copy {
   margin-top: 14px; color: var(--fg-muted); font-size: 12px; font-family: var(--font-mono);
 }
+.footer__copy a { color: var(--fg-secondary); transition: color 0.15s ease; }
+.footer__copy a:hover { color: var(--fg); }
 
 /* boxed square icon-only button matching the nav toggles (official-site link,
    …). NOTE: kept distinct from `.iconbtn` (a borderless 26px in-card button used
@@ -921,13 +925,6 @@ svg { display: block; }
 
 /* account menu (GitHub login + gist sync) */
 .acct { position: relative; display: inline-flex; }
-.acct-login {
-  height: 34px; padding: 0 12px; border-radius: var(--radius); cursor: pointer;
-  border: 1px solid var(--border-strong); background: var(--bg);
-  color: var(--fg-secondary); font-size: 13px; font-weight: 500;
-  transition: color 0.15s, border-color 0.15s, background 0.15s;
-}
-.acct-login:hover { color: var(--fg); border-color: var(--fg-muted); background: var(--bg-hover); }
 .acct-btn {
   width: 34px; height: 34px; padding: 0; border-radius: 50%; cursor: pointer;
   border: 1px solid var(--border); background: var(--bg);
