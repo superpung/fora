@@ -1,4 +1,4 @@
-# Netlify 部署配置。前端位于 web/ 子目录。
+# Netlify deploy config. The frontend lives in the web/ subdirectory.
 [build]
   base = "web"
   command = "pnpm build"
@@ -6,20 +6,21 @@
 
 [build.environment]
   NODE_VERSION = "22"
-  # 使用 pnpm（Netlify 依据 web/pnpm-lock.yaml 自动启用 corepack pnpm）
+  # pnpm is enabled automatically by Netlify (corepack) from web/pnpm-lock.yaml.
 
-# 无状态 OAuth broker：用 code 换取 gist-scoped token。
-# 在 Netlify 面板设置 GITHUB_CLIENT_ID 与 GITHUB_CLIENT_SECRET（函数不存储任何数据）。
+# Stateless OAuth broker: exchanges the code for a gist-scoped token.
+# Set GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET in the Netlify dashboard
+# (the function stores no data).
 [functions]
   directory = "netlify/functions"
 
-# SPA 路由：所有路径回退到 index.html（react-router 客户端路由）
+# SPA routing: fall every path back to index.html (react-router client routing).
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-# 基础安全/缓存头
+# Basic security / cache headers.
 [[headers]]
   for = "/assets/*"
   [headers.values]
