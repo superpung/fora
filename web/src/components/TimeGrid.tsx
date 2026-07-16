@@ -90,9 +90,12 @@ function splitByReset<T extends { s: number }>(items: T[]): T[][] {
 
 export default function TimeGrid({
   block,
+  date,
   filtered = false,
 }: {
   block: Block;
+  /** the day's date (YYYY-MM-DD) — drives the "now" indicator when it's today */
+  date?: string;
   filtered?: boolean;
 }) {
   const { id: confId, forumsByCode } = useConference();
@@ -100,6 +103,14 @@ export default function TimeGrid({
   const { isForum, isTalk, isSpeaker } = useFollow();
   const coarse = useCoarsePointer();
   const [openKey, setOpenKey] = useState<string | null>(null);
+
+  // A live clock for the "now" line — re-tick each minute so the indicator drifts
+  // down as time passes without a page reload.
+  const [nowMs, setNowMs] = useState(() => Date.now());
+  useEffect(() => {
+    const id = window.setInterval(() => setNowMs(Date.now()), 30_000);
+    return () => window.clearInterval(id);
+  }, []);
 
   // A talk is "followed-relevant" when its forum is followed (keep the whole
   // column), the talk itself is starred, or one of its speakers is followed —
@@ -177,6 +188,15 @@ export default function TimeGrid({
   hi = Math.ceil(hi / HOUR) * HOUR;
   const propH = (hi - lo) * PX_PER_MIN; // ideal (uncongested) body height
 
+  // "Now" indicator: a red time-pill + dot in the gutter and a line across the
+  // columns, shown only when the viewed day is today and the clock falls within
+  // this day's rendered span.
+  const nowD = new Date(nowMs);
+  const todayStr = `${nowD.getFullYear()}-${pad(nowD.getMonth() + 1)}-${pad(nowD.getDate())}`;
+  const nowMin = nowD.getHours() * 60 + nowD.getMinutes();
+  const showNow = !!date && date === todayStr && nowMin >= lo && nowMin <= hi;
+  const nowTop = (nowMin - lo) * PX_PER_MIN;
+
   // Second pass: lay each column out with push-down so cells never overlap.
   let bodyH = propH;
   const columns: Column[] = raw.map((c) => {
@@ -239,6 +259,12 @@ export default function TimeGrid({
                 <span className="tgrid__hlabel">{fmt(h)}</span>
               </div>
             ))}
+            {showNow && (
+              <div className="tgrid__now" style={{ top: nowTop }}>
+                <span className="tgrid__nowpill mono">{fmt(nowMin)}</span>
+                <span className="tgrid__nowdot" />
+              </div>
+            )}
           </div>
         </div>
 
@@ -259,6 +285,7 @@ export default function TimeGrid({
               {hours.map((h) => (
                 <div key={h} className="tgrid__line" style={{ top: (h - lo) * PX_PER_MIN }} />
               ))}
+              {showNow && <div className="tgrid__nowline" style={{ top: nowTop }} />}
               {c.cells.map(({ t, i, top, h }) => {
                 const sp = t.speakers?.[0];
                 const to = `/${confId}/forum/${c.code}#talk-${i + 1}`;
