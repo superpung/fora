@@ -12,7 +12,6 @@ export interface ThemeCtx {
 }
 
 export const KEY = "fora-theme";
-export const LEGACY_KEY = "cs-theme"; // pre-rebrand key, read once for migration
 
 export function systemDark() {
   return (
