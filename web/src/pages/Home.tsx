@@ -7,8 +7,6 @@ import { useFollow, talkId, keynoteId } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
 import { pageVariants } from "../lib/motion";
 import Icon from "../components/Icon";
-import ExportMenu from "../components/ExportMenu";
-import ImportButton from "../components/ImportButton";
 import type { Talk } from "../types";
 
 /* ---------------- small pieces ---------------- */
@@ -481,7 +479,6 @@ export default function Home() {
     talks: followedTalks,
     isSpeaker,
     isTalk,
-    clearAll,
   } = useFollow();
   const [dayFilter, setDayFilter] = useState<string>("all");
   const [query, setQuery] = useState("");
@@ -543,12 +540,8 @@ export default function Home() {
       <div className="dashhead">
         <div className="container dashhead__inner">
           <div className="dashhead__id">
-            <h1 className="dashhead__title">{conference.name.zh}</h1>
-            <div className="dashhead__venue">
-              <span className="dashhead__venuetext">
-                {startMd}–{endMd}
-                {mainCity && ` · ${t("common.inChina", { city: mainCity })}`}
-              </span>
+            <div className="dashhead__titlerow">
+              <h1 className="dashhead__title">{conference.name.zh}</h1>
               {conference.source_url && (
                 <a
                   className="iconbtn dashhead__official"
@@ -561,6 +554,10 @@ export default function Home() {
                   <Icon name="external" size={15} />
                 </a>
               )}
+            </div>
+            <div className="dashhead__venue">
+              {startMd}–{endMd}
+              {mainCity && ` · ${t("common.inChina", { city: mainCity })}`}
             </div>
           </div>
           <div className="dashhead__stats">
@@ -671,15 +668,6 @@ export default function Home() {
               </button>
             )}
           </span>
-          <div className="dash__actions">
-            <ImportButton />
-            {followedCount > 0 && <ExportMenu />}
-            {followedCount > 0 && (
-              <button className="linkbtn" onClick={clearAll}>
-                {t("home.clearMyFollows")}
-              </button>
-            )}
-          </div>
         </div>
 
         <AnimatePresence mode="wait">

@@ -5,6 +5,7 @@ import PageLoader from "./PageLoader";
 import DocumentTitle from "./DocumentTitle";
 import { ConferenceProvider } from "../lib/conference";
 import { FollowProvider } from "../lib/follow";
+import { FollowActionsBridge } from "../lib/follow-actions";
 import { hasConference } from "../lib/conferences";
 
 // Layout for a single conference (`/:conf/...`). It validates the id from the
@@ -24,6 +25,9 @@ export default function ConferenceLayout() {
           {/* Keyed by conference so switching remounts follows with that
               conference's own saved agenda. */}
           <FollowProvider key={conf} confId={conf}>
+            {/* Publishes this conference's import/export/clear actions up to the
+                nav account menu (the nav renders outside these providers). */}
+            <FollowActionsBridge />
             {/* Keyed by pathname so each page remounts and replays its enter
                 animation, while the nav / provider persist across navigation. */}
             <main key={location.pathname}>
