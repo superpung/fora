@@ -8,11 +8,10 @@ import { createContext, useContext } from "react";
 
 export type Lang = "zh" | "en";
 export const KEY = "fora-lang";
-export const LEGACY_KEY = "cs-lang"; // pre-rebrand key, read once for migration
 
 export function detectLang(): Lang {
   if (typeof localStorage !== "undefined") {
-    const saved = localStorage.getItem(KEY) ?? localStorage.getItem(LEGACY_KEY);
+    const saved = localStorage.getItem(KEY);
     if (saved === "zh" || saved === "en") return saved;
   }
   if (typeof navigator !== "undefined" && navigator.language.toLowerCase().startsWith("zh")) {
