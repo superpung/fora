@@ -267,27 +267,6 @@ svg { display: block; }
 }
 .filtertag:hover { background: var(--primary-hover); }
 .filtertag svg { opacity: 0.75; }
-.dash__actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-.importbtn { display: inline-flex; align-items: center; gap: 8px; }
-.importbtn .linkbtn { display: inline-flex; align-items: center; gap: 4px; }
-.importbtn__status { font-size: 12px; }
-.importbtn__status--ok { color: var(--accent); }
-.importbtn__status--err { color: var(--danger); }
-.exportmenu { position: relative; }
-.exportmenu__btn { display: inline-flex; align-items: center; gap: 4px; }
-.exportmenu__pop {
-  position: absolute; right: 0; top: calc(100% + 6px); z-index: 40; min-width: 178px;
-  display: flex; flex-direction: column; padding: 4px; transform-origin: top right;
-  background: var(--bg); border: 1px solid var(--border-strong); border-radius: var(--radius);
-  box-shadow: 0 10px 28px color-mix(in srgb, #000 16%, transparent);
-}
-.exportmenu__pop button {
-  display: flex; align-items: center; gap: 9px; padding: 8px 10px; border: none;
-  background: none; color: var(--fg); font-size: 13px; border-radius: var(--radius-sm); text-align: left;
-  transition: background 0.12s, color 0.12s;
-}
-.exportmenu__pop button:hover { background: var(--bg-hover); }
-.exportmenu__pop svg { color: var(--fg-muted); }
 .dash__empty { text-align: center; padding: 60px 20px; color: var(--fg-muted); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-top: 20px; }
 .dash__hint { margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--fg-muted); font-size: 13px; }
 
@@ -902,9 +881,9 @@ svg { display: block; }
 }
 .iconbtn:hover { color: var(--fg); border-color: var(--border-strong); background: var(--bg-hover); }
 
-/* dashboard: date/location line with the official-site button at its right */
-.dashhead__venue { display: flex; align-items: center; gap: 12px; }
-.dashhead__venuetext { color: var(--fg-secondary); font-size: 13.5px; }
+/* dashboard: official-site icon button beside the conference title */
+.dashhead__titlerow { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.dashhead__venue { color: var(--fg-secondary); font-size: 13.5px; }
 
 /* nav: Fora home mark — aligned tight to the conference switcher */
 .nav__home { display: inline-flex; margin-right: -6px; flex: 0 0 auto; transition: opacity 0.15s ease; }
@@ -935,8 +914,8 @@ svg { display: block; }
 .acct-pop {
   position: absolute; top: calc(100% + 8px); right: 0; z-index: 50; width: 234px;
   transform-origin: top right;
-  background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16); padding: 6px;
+  background: var(--bg); border: 1px solid var(--border-strong); border-radius: var(--radius-lg);
+  box-shadow: 0 12px 32px color-mix(in srgb, #000 18%, transparent); padding: 6px;
 }
 .acct-row { transition: background 0.15s, color 0.15s; text-decoration: none; }
 .acct-id { display: flex; align-items: center; gap: 10px; padding: 8px 10px 10px; }
@@ -962,6 +941,29 @@ svg { display: block; }
   font-size: 12px; white-space: nowrap;
 }
 .acct-conflict__b button:hover { color: var(--fg); background: var(--bg-hover); }
+.acct-btn { color: var(--fg-secondary); }
+.acct-btn:hover { color: var(--fg); }
+.acct-pop { max-height: min(78vh, 560px); overflow-y: auto; }
+.acct-divider { height: 1px; background: var(--border); margin: 5px 2px; }
+.acct-sectitle {
+  display: flex; align-items: center; gap: 6px; padding: 7px 10px 4px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.acct-sectitle__n {
+  min-width: 16px; height: 16px; padding: 0 5px; border-radius: 999px;
+  display: inline-grid; place-items: center; font-size: 10.5px; font-family: var(--font-mono);
+  background: var(--bg-active); color: var(--fg-secondary);
+}
+.acct-row .caret { margin-left: auto; color: var(--fg-muted); display: inline-flex; }
+.acct-sub { overflow: hidden; }
+.acct-row--sub { padding-left: 30px; color: var(--fg-muted); }
+.acct-status {
+  margin: 4px 6px 2px; padding: 6px 8px; border-radius: var(--radius-sm);
+  font-size: 12px; line-height: 1.45;
+}
+.acct-status--ok { background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); }
+.acct-status--err { background: color-mix(in srgb, var(--danger) 12%, transparent); color: var(--danger); }
 
 /* spinning sync icon */
 .spin { animation: fora-spin 0.9s linear infinite; }
