@@ -12,7 +12,7 @@
     "test": "node tests/permalink-scroll.mjs"
   },
   "dependencies": {
-    "@repus/gist-sync": "^0.2.1",
+    "@repus/gist-sync": "^0.2.2",
     "framer-motion": "^12.42.2",
     "qrcode-generator": "^2.0.4",
     "react": "^19.2.7",
