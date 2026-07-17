@@ -57,6 +57,15 @@ function keynotePeriods(talks: Talk[]): string[] {
   return [...set];
 }
 
+// Lowercased haystack for matching a keynote against the search box (title +
+// speaker names + affiliations) — keeps keynote day-visibility in step with the
+// forum search.
+function keynoteSearch(kt: Talk): string {
+  const parts = [kt.title?.zh ?? "", kt.title?.en ?? ""];
+  for (const s of kt.speakers ?? []) parts.push(s.name, s.affiliation_raw ?? "");
+  return parts.join(" ").toLowerCase();
+}
+
 /** A clickable author: person icon + name (hover underline) + affiliation.
     Shared by keynote rows and forum-talk rows so both read identically. */
 function PersonLine({
@@ -111,9 +120,9 @@ function segmentsOf(total: number, isShown: (i: number) => boolean): RunSeg[] {
   return segs;
 }
 
-// The GitHub-diff-style expander for a hidden run: a slim horizontal bar with a
-// count and a chevron. A run at the very top reveals "upward"; anything else
-// reveals downward. Re-clicking a revealed run collapses it again.
+// The GitHub-diff-style expander for a hidden run: a slim horizontal bar showing
+// just the count (the bar's own position tells you earlier vs later); the chevron
+// flips down→up when expanded. The full phrasing lives in the aria-label/tooltip.
 function ExpandBar({
   count,
   pos,
@@ -126,7 +135,6 @@ function ExpandBar({
   onClick: () => void;
 }) {
   const { t } = useI18n();
-  const up = expanded || (!expanded && pos === "start");
   const label = expanded
     ? t("home.collapseRun", { n: count })
     : pos === "start"
@@ -138,16 +146,19 @@ function ExpandBar({
     <button
       type="button"
       className={`expandbar ${expanded ? "is-open" : ""}`}
+      aria-label={label}
+      title={label}
+      aria-expanded={expanded}
       onClick={(e) => {
         e.stopPropagation();
         onClick();
       }}
     >
       <span className="expandbar__label">
-        <span className={`caret ${up ? "caret--up" : ""}`}>
+        <span className={`caret ${expanded ? "caret--up" : ""}`}>
           <Icon name="chevron-down" size={13} />
         </span>
-        {label}
+        {count}
       </span>
     </button>
   );
@@ -184,7 +195,8 @@ function CollapsibleRuns({
     }
     const key = seg.indices[0];
     const isExp = open.has(key);
-    if (isExp) for (const i of seg.indices) out.push(renderItem(i, false));
+    // Bar stays put; the revealed rows expand/collapse below it with the same
+    // height animation the row and keynote rail use.
     out.push(
       <ExpandBar
         key={`run-${key}`}
@@ -193,6 +205,21 @@ function CollapsibleRuns({
         expanded={isExp}
         onClick={() => toggle(key)}
       />,
+    );
+    out.push(
+      <AnimatePresence key={`wrap-${key}`} initial={false}>
+        {isExp && (
+          <motion.div
+            className="runwrap"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {seg.indices.map((i) => renderItem(i, false))}
+          </motion.div>
+        )}
+      </AnimatePresence>,
     );
   }
   return <>{out}</>;
@@ -498,7 +525,6 @@ function DaySection({
   const { isTalk, isSpeaker } = useFollow();
   const { t, lang } = useI18n();
   const [showKeynotes, setShowKeynotes] = useState(false);
-  if (slots.length === 0) return null;
   const { md, weekday } = formatDate(day.date, lang);
   // A keynote is followed-relevant when starred or one of its speakers is
   // followed — the same rule forum talks use.
@@ -510,6 +536,8 @@ function DaySection({
   // followed, so the highlighted keynote is actually visible.
   const anyKeyFollowed = filtered && day.keynotes.some((_t, i) => keyShown(i));
   const keyOpen = showKeynotes || anyKeyFollowed;
+  // A day with no matching forums still shows if a followed keynote keeps it here.
+  if (slots.length === 0 && !anyKeyFollowed) return null;
   return (
     <section className="dashday">
       <div className="dashday__head">
@@ -526,9 +554,11 @@ function DaySection({
               <Icon name="clock" size={12} /> {timeRange(day.forumBlock)}
             </span>
           )}
-          <span className="dashday__n">
-            <Icon name="forums" size={12} /> {t("home.parallel", { n: slots.length })}
-          </span>
+          {slots.length > 0 && (
+            <span className="dashday__n">
+              <Icon name="forums" size={12} /> {t("home.parallel", { n: slots.length })}
+            </span>
+          )}
         </div>
       </div>
 
@@ -648,9 +678,24 @@ export default function Home() {
           }
           return true;
         });
-        return { day: d, slots };
+        // A followed keynote also keeps its day (keynotes have no forum code, so
+        // the slot filter alone would drop a day whose only match is a keynote).
+        // Respect the other active filters — category never applies to keynotes.
+        const keynoteHit =
+          onlyFollowed &&
+          !categoryFilter &&
+          d.keynotes.some((kt, i) => {
+            if (speakerFilter && !(kt.speakers ?? []).some((s) => s.name === speakerFilter))
+              return false;
+            if (q && !keynoteSearch(kt).includes(q)) return false;
+            return (
+              isTalk(keynoteId(d.date, i)) ||
+              (kt.speakers ?? []).some((s) => isSpeaker(s.name))
+            );
+          });
+        return { day: d, slots, keynoteHit };
       })
-      .filter((x) => x.slots.length > 0);
+      .filter((x) => x.slots.length > 0 || x.keynoteHit);
     // isSpeaker / isTalk are re-created whenever the followed sets change, so
     // depending on them is enough — the raw sets are redundant here.
   }, [scheduleDays, dayFilter, q, onlyFollowed, categoryFilter, speakerFilter, followedForums, isSpeaker, isTalk]);
