@@ -21,6 +21,14 @@ const MONTH_EN = [
   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
 ];
 // Locale-aware short date. zh: "11月30日 / 周日"; en: "Nov 30 / Sun".
+/** Local calendar date as YYYY-MM-DD — used to match/highlight "today" against a
+    day's `date` (both day tabs and the dashboard day pills). */
+export function todayISO(): string {
+  const now = new Date();
+  const p2 = (n: number) => String(n).padStart(2, "0");
+  return `${now.getFullYear()}-${p2(now.getMonth() + 1)}-${p2(now.getDate())}`;
+}
+
 export function formatDate(iso: string, lang: Lang = "zh"): { md: string; weekday: string } {
   const d = new Date(iso + "T00:00:00");
   return lang === "en"
