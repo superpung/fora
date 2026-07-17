@@ -238,6 +238,11 @@ svg { display: block; }
 }
 .daypill:hover:not(.is-active) { color: var(--fg); background: var(--bg-hover); }
 .daypill.is-active { color: var(--fg); background: var(--bg-active); }
+/* "today" marker: the date reads on a red pill (same red as the timeline "now"
+   line), matching the timeline day tabs so the two read as one signal. */
+.daypill.is-today .daypill__md {
+  background: var(--tg-now); color: #fff; padding: 1px 7px; border-radius: 999px;
+}
 .daypill__md { font-weight: 500; font-size: 13.5px; }
 .daypill__wd { font-size: 11px; color: var(--fg-muted); }
 
