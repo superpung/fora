@@ -1,7 +1,7 @@
 import { useMemo, useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { formatDate, type ScheduleDay, type ForumSlot } from "../lib/data";
+import { formatDate, todayISO, type ScheduleDay, type ForumSlot } from "../lib/data";
 import { useConference } from "../lib/conference-store";
 import { useFollow, talkId, keynoteId } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
@@ -636,7 +636,12 @@ export default function Home() {
     isSpeaker,
     isTalk,
   } = useFollow();
-  const [dayFilter, setDayFilter] = useState<string>("all");
+  // When the conference is running today, open filtered to today; otherwise show
+  // every day ("all"). Matched against a real day so gaps fall back cleanly.
+  const todayStr = todayISO();
+  const [dayFilter, setDayFilter] = useState<string>(() =>
+    scheduleDays.some((d) => d.date === todayStr) ? todayStr : "all",
+  );
   const [query, setQuery] = useState("");
   const [onlyFollowed, setOnlyFollowed] = useState(false);
   // Clicking a speaker chip filters the board down to that person's forums/talks.
@@ -762,7 +767,9 @@ export default function Home() {
               return (
                 <button
                   key={d.date}
-                  className={`daypill ${dayFilter === d.date ? "is-active" : ""}`}
+                  className={`daypill ${dayFilter === d.date ? "is-active" : ""} ${
+                    d.date === todayStr ? "is-today" : ""
+                  }`}
                   onClick={() => setDayFilter(d.date)}
                 >
                   <span className="daypill__md">{md}</span>

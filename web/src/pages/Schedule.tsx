@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import { formatDate } from "../lib/data";
+import { formatDate, todayISO } from "../lib/data";
 import { useConference } from "../lib/conference-store";
 import { useFollow, talkId } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
@@ -189,18 +189,21 @@ export default function Schedule() {
   const { forums, speakers, talks } = useFollow();
   const followCount = forums.size + speakers.size + talks.size;
   const [onlyFollowed, setOnlyFollowed] = useState(false);
+  // Local calendar date (YYYY-MM-DD) for highlighting today's tab and, when the
+  // conference is running today, opening on it by default.
+  const todayStr = todayISO();
   const hash = useLocation().hash.replace("#", "");
   const initial = days.findIndex((d) => d.date === hash);
-  const [active, setActive] = useState(initial >= 0 ? initial : 0);
+  // A hash (deep link) wins; otherwise open on today if the conference runs
+  // today, else the first day.
+  const todayIdx = days.findIndex((d) => d.date === todayStr);
+  const [active, setActive] = useState(
+    initial >= 0 ? initial : todayIdx >= 0 ? todayIdx : 0,
+  );
 
   useEffect(() => {
     if (initial >= 0) setActive(initial);
   }, [initial]);
-
-  // Local calendar date (YYYY-MM-DD) for highlighting today's tab.
-  const now = new Date();
-  const p2 = (n: number) => String(n).padStart(2, "0");
-  const todayStr = `${now.getFullYear()}-${p2(now.getMonth() + 1)}-${p2(now.getDate())}`;
 
   const day = days[active];
   // In the follow view only the forum timeline is meaningful (that's where a
