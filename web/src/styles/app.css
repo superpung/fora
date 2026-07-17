@@ -401,8 +401,10 @@ svg { display: block; }
 }
 .expandbar:first-child { border-top: none; }
 .expandbar:hover { background: var(--bg-hover); color: var(--accent); }
-.expandbar__label { display: inline-flex; align-items: center; gap: 6px; }
+.expandbar__label { display: inline-flex; align-items: center; gap: 6px; font-variant-numeric: tabular-nums; }
 .expandbar .caret { display: inline-flex; }
+/* wrapper around a revealed run so its height animates (framer) */
+.runwrap { overflow: hidden; }
 
 /* Chair-only note: this forum surfaced because a followed person chairs it */
 .frow__note {
