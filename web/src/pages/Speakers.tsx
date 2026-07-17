@@ -89,21 +89,26 @@ function TalkLine({ t }: { t: SpeakerTalk }) {
     </button>
   );
 
-  // keynotes aren't a forum page; forum talks deep-link to their 1-based position
+  // Forum talks navigate via a full-row cover link (keynotes have no forum page).
+  // The star layers above the cover (z-index) so it stays clickable while sitting
+  // to the left of the chevron, and the whole row shares one hover highlight.
+  const isLink = !!t.forumCode;
   return (
-    <div className="sptalk">
-      {t.forumCode ? (
+    <div className={`sptalk ${isLink ? "sptalk--link" : ""}`}>
+      {body}
+      {star}
+      {isLink && (
+        <span className="sptalk__chev" aria-hidden>
+          <Icon name="chevron-right" size={16} />
+        </span>
+      )}
+      {isLink && (
         <Link
           to={`/${confId}/forum/${t.forumCode}#talk-${(t.talkIndex ?? 0) + 1}`}
-          className="sptalk__link"
-        >
-          {body}
-          <Icon name="chevron-right" size={16} />
-        </Link>
-      ) : (
-        <div className="sptalk__link sptalk__link--static">{body}</div>
+          className="sptalk__cover"
+          aria-label={t.talkTitle?.zh ?? tr("speakers.tbd")}
+        />
       )}
-      {star}
     </div>
   );
 }
