@@ -5,6 +5,7 @@ import { formatDate, todayISO, type ScheduleDay, type ForumSlot } from "../lib/d
 import { useConference } from "../lib/conference-store";
 import { useFollow, talkId, keynoteId } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
+import { useStickyState } from "../lib/sticky-state";
 import { pageVariants } from "../lib/motion";
 import Icon from "../components/Icon";
 import type { Talk } from "../types";
@@ -627,7 +628,7 @@ function DaySection({
 /* ---------------- dashboard ---------------- */
 
 export default function Home() {
-  const { conference, scheduleDays, stats, uniqueSpeakerCount } = useConference();
+  const { id: confId, conference, scheduleDays, stats, uniqueSpeakerCount } = useConference();
   const { t, lang } = useI18n();
   const {
     forums: followedForums,
@@ -636,17 +637,19 @@ export default function Home() {
     isSpeaker,
     isTalk,
   } = useFollow();
+  // Filters are sticky so a trip into a forum page and back restores the board
+  // (paired with scroll restoration), keyed by conference so a switch is fresh.
   // When the conference is running today, open filtered to today; otherwise show
   // every day ("all"). Matched against a real day so gaps fall back cleanly.
   const todayStr = todayISO();
-  const [dayFilter, setDayFilter] = useState<string>(() =>
+  const [dayFilter, setDayFilter] = useStickyState<string>(`${confId}:home.day`, () =>
     scheduleDays.some((d) => d.date === todayStr) ? todayStr : "all",
   );
-  const [query, setQuery] = useState("");
-  const [onlyFollowed, setOnlyFollowed] = useState(false);
+  const [query, setQuery] = useStickyState(`${confId}:home.query`, "");
+  const [onlyFollowed, setOnlyFollowed] = useStickyState(`${confId}:home.followed`, false);
   // Clicking a speaker chip filters the board down to that person's forums/talks.
-  const [speakerFilter, setSpeakerFilter] = useState<string | null>(null);
-  const [categoryFilter, setCategoryFilter] = useState<string | null>(null);
+  const [speakerFilter, setSpeakerFilter] = useStickyState<string | null>(`${confId}:home.speaker`, null);
+  const [categoryFilter, setCategoryFilter] = useStickyState<string | null>(`${confId}:home.cat`, null);
   const onSpeaker = (name: string) =>
     setSpeakerFilter((s) => (s === name ? null : name));
 

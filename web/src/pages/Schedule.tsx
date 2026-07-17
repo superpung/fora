@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import { formatDate, todayISO } from "../lib/data";
 import { useConference } from "../lib/conference-store";
 import { useFollow, talkId } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
+import { useStickyState } from "../lib/sticky-state";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Icon, { type IconName } from "../components/Icon";
 import TimeGrid from "../components/TimeGrid";
@@ -184,11 +185,13 @@ const KIND_ICON: Record<string, IconName> = {
 };
 
 export default function Schedule() {
-  const { days, venueName } = useConference();
+  const { id: confId, days, venueName } = useConference();
   const { t, lang } = useI18n();
   const { forums, speakers, talks } = useFollow();
   const followCount = forums.size + speakers.size + talks.size;
-  const [onlyFollowed, setOnlyFollowed] = useState(false);
+  // Sticky so returning from a forum page restores the day tab and follow filter
+  // (paired with scroll restoration), keyed by conference so a switch is fresh.
+  const [onlyFollowed, setOnlyFollowed] = useStickyState(`${confId}:sched.followed`, false);
   // Local calendar date (YYYY-MM-DD) for highlighting today's tab and, when the
   // conference is running today, opening on it by default.
   const todayStr = todayISO();
@@ -197,13 +200,13 @@ export default function Schedule() {
   // A hash (deep link) wins; otherwise open on today if the conference runs
   // today, else the first day.
   const todayIdx = days.findIndex((d) => d.date === todayStr);
-  const [active, setActive] = useState(
+  const [active, setActive] = useStickyState(`${confId}:sched.active`, () =>
     initial >= 0 ? initial : todayIdx >= 0 ? todayIdx : 0,
   );
 
   useEffect(() => {
     if (initial >= 0) setActive(initial);
-  }, [initial]);
+  }, [initial, setActive]);
 
   const day = days[active];
   // In the follow view only the forum timeline is meaningful (that's where a
