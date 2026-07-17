@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { formatDate, type ScheduleDay, type ForumSlot } from "../lib/data";
@@ -92,11 +92,118 @@ function PersonLine({
   );
 }
 
+// A run of consecutive indices that are shown (followed-relevant) or hidden.
+// `pos` places a hidden run so its expand bar can read "earlier / more / hidden".
+type RunSeg = { shown: boolean; indices: number[]; pos: "only" | "start" | "mid" | "end" };
+
+function segmentsOf(total: number, isShown: (i: number) => boolean): RunSeg[] {
+  const segs: RunSeg[] = [];
+  for (let i = 0; i < total; i++) {
+    const shown = isShown(i);
+    const last = segs[segs.length - 1];
+    if (last && last.shown === shown) last.indices.push(i);
+    else segs.push({ shown, indices: [i], pos: "mid" });
+  }
+  const n = segs.length;
+  segs.forEach((s, k) => {
+    s.pos = n === 1 ? "only" : k === 0 ? "start" : k === n - 1 ? "end" : "mid";
+  });
+  return segs;
+}
+
+// The GitHub-diff-style expander for a hidden run: a slim horizontal bar with a
+// count and a chevron. A run at the very top reveals "upward"; anything else
+// reveals downward. Re-clicking a revealed run collapses it again.
+function ExpandBar({
+  count,
+  pos,
+  expanded,
+  onClick,
+}: {
+  count: number;
+  pos: RunSeg["pos"];
+  expanded: boolean;
+  onClick: () => void;
+}) {
+  const { t } = useI18n();
+  const up = expanded || (!expanded && pos === "start");
+  const label = expanded
+    ? t("home.collapseRun", { n: count })
+    : pos === "start"
+      ? t("home.expandBefore", { n: count })
+      : pos === "end"
+        ? t("home.expandAfter", { n: count })
+        : t("home.expandMore", { n: count });
+  return (
+    <button
+      type="button"
+      className={`expandbar ${expanded ? "is-open" : ""}`}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick();
+      }}
+    >
+      <span className="expandbar__label">
+        <span className={`caret ${up ? "caret--up" : ""}`}>
+          <Icon name="chevron-down" size={13} />
+        </span>
+        {label}
+      </span>
+    </button>
+  );
+}
+
+// Renders a list where only followed-relevant items show by default; each hidden
+// run collapses behind an ExpandBar the user can open/close in place. Shared by
+// the forum-talk list and the keynote rail so both filter identically.
+function CollapsibleRuns({
+  total,
+  isShown,
+  renderItem,
+  note,
+}: {
+  total: number;
+  isShown: (i: number) => boolean;
+  renderItem: (i: number, shown: boolean) => ReactNode;
+  note?: ReactNode;
+}) {
+  const [open, setOpen] = useState<Set<number>>(() => new Set());
+  const toggle = (key: number) =>
+    setOpen((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+  const out: ReactNode[] = [];
+  if (note) out.push(<div key="note" className="frow__note">{note}</div>);
+  for (const seg of segmentsOf(total, isShown)) {
+    if (seg.shown) {
+      for (const i of seg.indices) out.push(renderItem(i, true));
+      continue;
+    }
+    const key = seg.indices[0];
+    const isExp = open.has(key);
+    if (isExp) for (const i of seg.indices) out.push(renderItem(i, false));
+    out.push(
+      <ExpandBar
+        key={`run-${key}`}
+        count={seg.indices.length}
+        pos={seg.pos}
+        expanded={isExp}
+        onClick={() => toggle(key)}
+      />,
+    );
+  }
+  return <>{out}</>;
+}
+
 function KeynoteRow({
   t,
   date,
   index,
   filtered,
+  shown = true,
   activeSpeaker,
   onSpeaker,
 }: {
@@ -104,6 +211,8 @@ function KeynoteRow({
   date: string;
   index: number;
   filtered: boolean;
+  /** false when revealed from a collapsed run — de-emphasised, never tinted */
+  shown?: boolean;
   activeSpeaker: string | null;
   onSpeaker: (name: string) => void;
 }) {
@@ -113,12 +222,15 @@ function KeynoteRow({
   const isOpening = t.type === "opening" || speakers.length === 0;
   const id = keynoteId(date, index);
   const followed = isTalk(id);
-  // In the "我的关注" view, highlight a keynote that is followed directly or via
-  // one of its speakers — same treatment as forum talks (star marks the explicit
-  // unit, tint marks "this resolves to a followed talk").
-  const followHit = filtered && (followed || speakers.some((s) => isSpeaker(s.name)));
+  // In the "我的关注" view a followed-relevant keynote is tinted; a keynote merely
+  // revealed from a collapsed run stays muted so the followed ones keep salience.
+  const followHit = filtered && shown;
   return (
-    <div className={`krow ${isOpening ? "krow--opening" : ""} ${followHit ? "krow--hit" : ""}`}>
+    <div
+      className={`krow ${isOpening ? "krow--opening" : ""} ${followHit ? "krow--hit" : ""} ${
+        filtered && !shown ? "krow--muted" : ""
+      }`}
+    >
       <div className="krow__time">
         {t.start}
         {t.end ? `–${t.end}` : ""}
@@ -178,23 +290,26 @@ function ForumRow({
   const talks = f?.talks ?? [];
   const hasTalks = !!f?.detail_extracted && talks.length > 0;
   const followedHere = slot.people.filter((n) => isSpeaker(n));
-  const followedTalks = talks
-    .map((t, i) => ({ t, i }))
-    .filter(({ i }) => isTalk(talkId(slot.code, i)));
 
-  // When filtering "我的关注", if this forum surfaced ONLY because of a starred
-  // talk (the forum / its speakers aren't followed), show just those talks.
-  const forumTracked = isForum(slot.code) || followedHere.length > 0;
-  const talkOnly = filtered && !forumTracked && followedTalks.length > 0;
+  // Whole-forum follow keeps every talk; otherwise, in the "我的关注" view a talk
+  // is kept only when it's starred or has a followed speaker — the same rule the
+  // timeline uses. A talk merely revealed from a collapsed run isn't "shown".
+  const showAll = isForum(slot.code);
+  const talkMatches = (t: Talk, i: number) =>
+    isTalk(talkId(slot.code, i)) || (t.speakers ?? []).some((s) => isSpeaker(s.name));
+  const isShown = (i: number) => showAll || !filtered || talkMatches(talks[i], i);
+  const matchCount = filtered && !showAll ? talks.filter(talkMatches).length : 0;
+  // Chair-only follow: the forum surfaced solely because a followed person chairs
+  // it (none of their talks) — show a note and keep talks collapsed behind a bar.
+  const chairOnly = filtered && !showAll && matchCount === 0 && followedHere.length > 0;
   const speakerHit = activeSpeaker != null && slot.people.includes(activeSpeaker);
 
-  // Rows auto-open when a filter needs them: the starred-talk-only view, a speaker
-  // filter that matched here, or the "我的关注" view (so every followed talk is
-  // visible and highlighted). Otherwise the user drives it by clicking the row.
-  const forcedOpen = talkOnly || speakerHit || (filtered && forumTracked && hasTalks);
+  // Rows auto-open when a filter needs them: the "我的关注" view (so followed talks
+  // are visible) or a speaker-chip filter that matched here. Otherwise the user
+  // drives it by clicking the row.
+  const forcedOpen = speakerHit || (filtered && hasTalks);
   const [userOpen, setUserOpen] = useState<boolean | null>(null);
   const open = hasTalks && (userOpen ?? forcedOpen);
-  const shownTalks = talkOnly ? followedTalks : talks.map((t, i) => ({ t, i }));
 
   return (
     <div
@@ -298,21 +413,26 @@ function ForumRow({
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
           >
-            {shownTalks.map(({ t, i }) => {
+            <CollapsibleRuns
+              total={talks.length}
+              isShown={isShown}
+              note={chairOnly ? tr("home.chairNote", { name: followedHere.join("、") }) : undefined}
+              renderItem={(i, shown) => {
+              const t = talks[i];
               const tFollowed = isTalk(talkId(slot.code, i));
               const spHit =
                 activeSpeaker != null &&
                 (t.speakers ?? []).some((s) => s.name === activeSpeaker);
-              // In the "我的关注" view, highlight every talk that is followed —
-              // directly, via its forum, or via one of its speakers — even though
-              // only the explicitly-followed unit carries a filled star.
-              const followHit =
-                filtered &&
-                (isForum(slot.code) ||
-                  tFollowed ||
-                  (t.speakers ?? []).some((s) => isSpeaker(s.name)));
+              // A shown talk is followed-relevant → tinted; one merely revealed
+              // from a collapsed run stays muted so the followed talks keep focus.
+              const followHit = filtered && shown;
               return (
-                <div className={`ftalk ${spHit || followHit ? "ftalk--hit" : ""}`} key={i}>
+                <div
+                  className={`ftalk ${spHit || followHit ? "ftalk--hit" : ""} ${
+                    filtered && !shown ? "ftalk--muted" : ""
+                  }`}
+                  key={i}
+                >
                   <Link to={`/${confId}/forum/${slot.code}#talk-${i + 1}`} className="ftalk__link">
                     <span className="ftalk__no">{String(i + 1).padStart(2, "0")}</span>
                     <span className="ftalk__main">
@@ -353,7 +473,8 @@ function ForumRow({
                   />
                 </div>
               );
-            })}
+              }}
+            />
           </motion.div>
         )}
       </AnimatePresence>
@@ -379,15 +500,15 @@ function DaySection({
   const [showKeynotes, setShowKeynotes] = useState(false);
   if (slots.length === 0) return null;
   const { md, weekday } = formatDate(day.date, lang);
+  // A keynote is followed-relevant when starred or one of its speakers is
+  // followed — the same rule forum talks use.
+  const keyShown = (i: number) =>
+    !filtered ||
+    isTalk(keynoteId(day.date, i)) ||
+    (day.keynotes[i].speakers ?? []).some((s) => isSpeaker(s.name));
   // In the follow view, auto-open the keynote rail if one of its keynotes is
-  // followed, so the highlighted talk is actually visible.
-  const anyKeyFollowed =
-    filtered &&
-    day.keynotes.some(
-      (t, i) =>
-        isTalk(keynoteId(day.date, i)) ||
-        (t.speakers ?? []).some((s) => isSpeaker(s.name)),
-    );
+  // followed, so the highlighted keynote is actually visible.
+  const anyKeyFollowed = filtered && day.keynotes.some((_t, i) => keyShown(i));
   const keyOpen = showKeynotes || anyKeyFollowed;
   return (
     <section className="dashday">
@@ -436,17 +557,22 @@ function DaySection({
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
               >
-                {day.keynotes.map((t, i) => (
-                  <KeynoteRow
-                    key={i}
-                    t={t}
-                    date={day.date}
-                    index={i}
-                    filtered={filtered}
-                    activeSpeaker={activeSpeaker}
-                    onSpeaker={onSpeaker}
-                  />
-                ))}
+                <CollapsibleRuns
+                  total={day.keynotes.length}
+                  isShown={keyShown}
+                  renderItem={(i, shown) => (
+                    <KeynoteRow
+                      key={i}
+                      t={day.keynotes[i]}
+                      date={day.date}
+                      index={i}
+                      filtered={filtered}
+                      shown={shown}
+                      activeSpeaker={activeSpeaker}
+                      onSpeaker={onSpeaker}
+                    />
+                  )}
+                />
               </motion.div>
             )}
           </AnimatePresence>

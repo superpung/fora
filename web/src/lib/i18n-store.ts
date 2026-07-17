@@ -72,6 +72,11 @@ const zh: Dict = {
   "timeline.onlyFollowsTip": "只看我关注的会议室与报告",
 
   "home.filterForums": "筛选包含 {name} 的论坛与报告",
+  "home.expandBefore": "展开前面 {n} 个报告",
+  "home.expandAfter": "展开其余 {n} 个报告",
+  "home.expandMore": "展开中间 {n} 个报告",
+  "home.collapseRun": "收起 {n} 个报告",
+  "home.chairNote": "你关注的 {name} 是本论坛主席",
   "home.keynoteFollowAdd": "收藏该主旨报告",
   "home.keynoteFollowRemove": "取消收藏该主旨报告",
   "home.enterForum": "进入论坛 {code}",
@@ -236,6 +241,11 @@ const en: Dict = {
   "timeline.onlyFollowsTip": "Show only rooms & talks I follow",
 
   "home.filterForums": "Filter forums & talks containing {name}",
+  "home.expandBefore": "Show {n} earlier",
+  "home.expandAfter": "Show {n} more",
+  "home.expandMore": "Show {n} hidden",
+  "home.collapseRun": "Hide {n}",
+  "home.chairNote": "{name}, whom you follow, chairs this forum",
   "home.keynoteFollowAdd": "Save this keynote",
   "home.keynoteFollowRemove": "Unsave this keynote",
   "home.enterForum": "Open forum {code}",

@@ -295,6 +295,7 @@ svg { display: block; }
 .krow__time { font-family: var(--font-mono); color: var(--accent); font-size: 12.5px; font-weight: 500; padding-top: 1px; }
 .krow--opening .krow__time { color: var(--fg-muted); }
 .krow--hit { background: color-mix(in srgb, var(--accent) 8%, transparent); }
+.krow--muted .krow__title, .krow--muted .krow__time, .krow--muted .pauthor { opacity: 0.6; }
 .krow__titlerow { display: flex; align-items: flex-start; gap: 8px; }
 .krow__title { flex: 1 1 auto; min-width: 0; font-size: 13.5px; font-weight: 500; line-height: 1.45; }
 .krow__speaker { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; margin-top: 5px; }
@@ -388,6 +389,27 @@ svg { display: block; }
 .ftalk__speakers { display: flex; flex-flow: row wrap; align-items: baseline; gap: 5px 18px; margin-top: 6px; }
 .ftalk__star.star { color: var(--fg-muted); }
 .ftalk__star.star.is-on { color: var(--accent); }
+/* Talk revealed from a collapsed run — de-emphasised so followed talks keep focus */
+.ftalk--muted .ftalk__title, .ftalk--muted .ftalk__no, .ftalk--muted .pauthor { opacity: 0.6; }
+
+/* GitHub-diff-style expander for a hidden run of talks/keynotes */
+.expandbar {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; padding: 7px 16px; border: none; border-top: 1px solid var(--border);
+  background: var(--bg-subtle); color: var(--fg-muted); cursor: pointer;
+  font: inherit; font-size: 12px; transition: background 0.12s, color 0.12s;
+}
+.expandbar:first-child { border-top: none; }
+.expandbar:hover { background: var(--bg-hover); color: var(--accent); }
+.expandbar__label { display: inline-flex; align-items: center; gap: 6px; }
+.expandbar .caret { display: inline-flex; }
+
+/* Chair-only note: this forum surfaced because a followed person chairs it */
+.frow__note {
+  padding: 9px 16px; border-top: 1px solid var(--border);
+  font-size: 12.5px; color: var(--fg-muted);
+}
+.frow__note:first-child { border-top: none; }
 
 /* ---- star buttons ---- */
 .star {
