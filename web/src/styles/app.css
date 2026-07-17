@@ -850,12 +850,18 @@ svg { display: block; }
 
 .spcard__talks { overflow: hidden; }
 .sptalk {
-  display: flex; align-items: center; justify-content: space-between; gap: 12px;
-  padding: 11px 16px 11px 72px; border-top: 1px solid var(--border);
+  display: flex; align-items: center; gap: 4px;
+  padding-right: 12px; border-top: 1px solid var(--border);
 }
-.sptalk--link { transition: background 0.12s; }
-.sptalk--link:hover { background: var(--bg-hover); }
-.sptalk--link svg { color: var(--fg-muted); flex: 0 0 auto; }
+.sptalk__link {
+  flex: 1 1 auto; min-width: 0;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 11px 4px 11px 72px; transition: background 0.12s;
+}
+a.sptalk__link:hover { background: var(--bg-hover); }
+.sptalk__link svg { color: var(--fg-muted); flex: 0 0 auto; }
+.sptalk__star.star { flex: 0 0 auto; color: var(--fg-muted); }
+.sptalk__star.star.is-on { color: var(--accent); }
 .sptalk__body { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
 .sptalk__title { font-size: 13.5px; font-weight: 500; line-height: 1.45; }
 .sptalk__no { font-family: var(--font-mono); color: var(--fg-muted); font-size: 12px; margin-right: 8px; }
@@ -866,7 +872,7 @@ svg { display: block; }
 .sptalk__time { color: var(--accent); }
 @media (max-width: 600px) {
   .spcard__head { grid-template-columns: auto 1fr auto; gap: 10px; padding: 12px 14px; }
-  .sptalk { padding-left: 16px; }
+  .sptalk__link { padding-left: 16px; }
   .spcard__cat { display: none; }
   .splayout { gap: 4px; }
   .spindex__l { width: 16px; }

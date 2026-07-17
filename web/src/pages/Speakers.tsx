@@ -8,8 +8,9 @@ import {
   type SpeakerCategory,
 } from "../lib/data";
 import { useConference } from "../lib/conference-store";
-import { useFollow } from "../lib/follow-store";
+import { useFollow, talkId, keynoteId } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
+import { useStickyState } from "../lib/sticky-state";
 import { pageVariants } from "../lib/motion";
 import Icon from "../components/Icon";
 import Avatar from "../components/Avatar";
@@ -22,8 +23,19 @@ const openCards = new Set<string>();
 function TalkLine({ t }: { t: SpeakerTalk }) {
   const { id: confId } = useConference();
   const { t: tr, lang } = useI18n();
+  const { isTalk, toggleTalk } = useFollow();
   const dateInfo = t.date ? formatDate(t.date, lang) : null;
   const no = t.talkIndex != null ? String(t.talkIndex + 1).padStart(2, "0") : null;
+  // Follow id: forum talks key by forum code + index; main-conference keynotes
+  // by date + keynote index — the same ids the dashboard and forum pages use, so
+  // a follow toggled here shows up there too.
+  const followId =
+    t.forumCode != null && t.talkIndex != null
+      ? talkId(t.forumCode, t.talkIndex)
+      : t.isKeynote && t.date != null && t.keynoteIndex != null
+        ? keynoteId(t.date, t.keynoteIndex)
+        : null;
+  const followed = followId != null && isTalk(followId);
   const body = (
     <span className="sptalk__body">
       <span className="sptalk__title">
@@ -61,17 +73,38 @@ function TalkLine({ t }: { t: SpeakerTalk }) {
     </span>
   );
 
-  // keynotes aren't a forum page; forum talks deep-link to their 1-based position
-  return t.forumCode ? (
-    <Link
-      to={`/${confId}/forum/${t.forumCode}#talk-${(t.talkIndex ?? 0) + 1}`}
-      className="sptalk sptalk--link"
+  const star = followId != null && (
+    <button
+      className={`star star--sm sptalk__star ${followed ? "is-on" : ""}`}
+      aria-pressed={followed}
+      aria-label={followed ? tr("common.talkFollowRemove") : tr("common.talkFollowAdd")}
+      title={followed ? tr("common.talkFollowRemove") : tr("common.talkFollowAdd")}
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleTalk(followId);
+      }}
     >
-      {body}
-      <Icon name="chevron-right" size={16} />
-    </Link>
-  ) : (
-    <div className="sptalk">{body}</div>
+      <Icon name="star" filled={followed} size={15} />
+    </button>
+  );
+
+  // keynotes aren't a forum page; forum talks deep-link to their 1-based position
+  return (
+    <div className="sptalk">
+      {t.forumCode ? (
+        <Link
+          to={`/${confId}/forum/${t.forumCode}#talk-${(t.talkIndex ?? 0) + 1}`}
+          className="sptalk__link"
+        >
+          {body}
+          <Icon name="chevron-right" size={16} />
+        </Link>
+      ) : (
+        <div className="sptalk__link sptalk__link--static">{body}</div>
+      )}
+      {star}
+    </div>
   );
 }
 
@@ -144,12 +177,14 @@ function SpeakerCard({ s }: { s: SpeakerAgg }) {
 const ALPHABET = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ", "#"];
 
 export default function Speakers() {
-  const { speakerList, speakerCategoryCounts } = useConference();
+  const { id: confId, speakerList, speakerCategoryCounts } = useConference();
   const { speakers: followedSpeakers, isSpeaker } = useFollow();
   const { t } = useI18n();
-  const [query, setQuery] = useState("");
-  const [onlyFollowed, setOnlyFollowed] = useState(false);
-  const [cat, setCat] = useState<SpeakerCategory | "all">("all");
+  // Sticky so a trip into a forum page and back restores the filters (paired
+  // with the scroll restoration), keyed by conference so a switch starts fresh.
+  const [query, setQuery] = useStickyState(`${confId}:sp.query`, "");
+  const [onlyFollowed, setOnlyFollowed] = useStickyState(`${confId}:sp.followed`, false);
+  const [cat, setCat] = useStickyState<SpeakerCategory | "all">(`${confId}:sp.cat`, "all");
   const q = query.trim().toLowerCase();
 
   // Only offer categories that actually have members (skip empty buckets, e.g. 其他).

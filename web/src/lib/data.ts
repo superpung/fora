@@ -117,6 +117,7 @@ export interface KeynoteEntry {
 export interface SpeakerTalk {
   forumCode?: string; // undefined for main-conference keynotes
   talkIndex?: number; // 0-based position within the forum's talk list
+  keynoteIndex?: number; // 0-based position within the day's keynotes (keynotes only)
   forumTitle: string; // forum name, or the keynote block label
   talkTitle?: I18n;
   titleStatus?: Status;
@@ -337,18 +338,24 @@ export function buildConferenceViews(raw: unknown): ConferenceViews {
     });
   });
 
-  // main-conference keynotes (day blocks)
+  // main-conference keynotes (day blocks). `ki` is the day-flattened talk index
+  // — counting every talk (opening included) across the day's keynote blocks —
+  // so it lines up with keynoteId()/keynoteEntries and a follow toggled here
+  // matches the same keynote on the dashboard and forum pages.
   days.forEach((d) => {
+    let ki = 0;
     d.blocks
       .filter((b) => b.kind === "keynotes")
       .forEach((b) => {
         (b.talks ?? []).forEach((t) => {
+          const index = ki++;
           if (t.type === "opening") return; // ceremony, no speaker
           (t.speakers ?? []).forEach((sp) =>
             addSpeakerTalk(sp, {
               forumTitle: b.title?.zh ?? "大会主旨报告",
               talkTitle: t.title,
               titleStatus: t.title_status,
+              keynoteIndex: index,
               room: b.location,
               date: d.date,
               period: "morning",
