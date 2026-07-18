@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { useGistSync } from "@repus/gist-sync/react";
 import { useI18n } from "../lib/i18n-store";
 import { syncConfig } from "../lib/sync";
+import { useReminders, LEAD_CHOICES } from "../lib/reminder-store";
 import { useFollowActions } from "../lib/follow-actions-store";
 import { bugReportUrl } from "../lib/repo";
 import { easeOut } from "../lib/motion";
@@ -42,6 +43,7 @@ function initialsOf(u: { name?: string; login?: string } | null): string {
 export default function AccountMenu() {
   const gs = useGistSync();
   const actions = useFollowActions();
+  const rem = useReminders();
   const { t, lang } = useI18n();
   const zh = lang !== "en";
   const loc = useLocation();
@@ -262,6 +264,63 @@ export default function AccountMenu() {
                   <div className={`acct-status acct-status--${importMsg.ok ? "ok" : "err"}`}>
                     {importMsg.text}
                   </div>
+                )}
+              </>
+            )}
+
+            {rem.supported && (
+              <>
+                <div className="acct-divider" />
+                <div className="acct-sectitle">{t("reminders.section")}</div>
+                {rem.permission === "denied" ? (
+                  <div className="acct-status acct-status--err">{t("reminders.blocked")}</div>
+                ) : !rem.prefs.enabled ? (
+                  <>
+                    <button className="acct-row" onClick={() => void rem.enable()}>
+                      <Icon name="bell" size={15} />
+                      <span className="acct-row__label">{t("reminders.enable")}</span>
+                    </button>
+                    <div className="acct-hint">{t("reminders.hint")}</div>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      className="acct-row"
+                      onClick={rem.disable}
+                      aria-label={t("reminders.disable")}
+                    >
+                      <Icon name="bell" size={15} />
+                      <span className="acct-row__label">{t("reminders.section")}</span>
+                      <span className="acct-row__meta">{t("reminders.on")}</span>
+                    </button>
+                    <div className="acct-seg">
+                      <span className="acct-seg__label">{t("reminders.lead")}</span>
+                      <div className="acct-seg__opts">
+                        {LEAD_CHOICES.map((m) => (
+                          <button
+                            key={m}
+                            className={`acct-seg__opt ${rem.prefs.leadMin === m ? "is-active" : ""}`}
+                            onClick={() => rem.setLead(m)}
+                            aria-pressed={rem.prefs.leadMin === m}
+                          >
+                            {t("reminders.min", { n: m })}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    <button
+                      className="acct-row"
+                      onClick={() => rem.setDayStart(!rem.prefs.dayStart)}
+                      aria-pressed={rem.prefs.dayStart}
+                    >
+                      <Icon name="clock" size={15} />
+                      <span className="acct-row__label">{t("reminders.dayStart")}</span>
+                      <span className={`acct-switch ${rem.prefs.dayStart ? "is-on" : ""}`} aria-hidden />
+                    </button>
+                    {rem.scheduledCount > 0 && (
+                      <div className="acct-hint">{t("reminders.upcoming", { n: rem.scheduledCount })}</div>
+                    )}
+                  </>
                 )}
               </>
             )}

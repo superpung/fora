@@ -18,6 +18,10 @@ const { count, size, warnings } = await generateSW({
   clientsClaim: true,
   skipWaiting: true,
   cleanupOutdatedCaches: true,
+  // Pull in our own notificationclick handler (public/reminder-sw.js → dist root)
+  // so pre-session reminders — including TimestampTrigger ones that fire while
+  // the app is closed — focus/open the app when tapped. See src/lib/reminder.tsx.
+  importScripts: ["/reminder-sw.js"],
   // SPA fallback: serve the app shell for in-app navigations. Never intercept the
   // Netlify OAuth broker (or any /api route) — login must always hit the network.
   navigateFallback: "/index.html",

@@ -14,6 +14,7 @@ import {
   parseFollowJSON,
   type ExportFormat,
 } from "./export";
+import { reminderItemsKey, REMINDER_ITEMS_UPDATED } from "./reminder-store";
 
 // Site-wide provider for the follow-actions slot (see follow-actions-store.ts).
 export function FollowActionsProvider({ children }: { children: React.ReactNode }) {
@@ -33,6 +34,26 @@ export function FollowActionsBridge() {
   const { forums, speakers, talks, clearAll, importFollows } = useFollow();
   const { t } = useI18n();
   const confId = views.id;
+
+  // Cache this conference's starred items (resolved title/date/start) so the
+  // site-wide reminder scheduler can plan notifications for every conference the
+  // user has opened — even from the hub — without reloading each dataset.
+  useEffect(() => {
+    const items = collectFollowedItems({ forums, speakers, talks }, views);
+    const payload = {
+      confId,
+      nameZh: views.conference.name.zh,
+      nameEn: views.conference.name.en || views.conference.name.zh,
+      // drop abstracts to keep the cache small; the scheduler only needs timing.
+      items: items.map(({ abstract: _abstract, ...rest }) => rest),
+    };
+    try {
+      localStorage.setItem(reminderItemsKey(confId), JSON.stringify(payload));
+      window.dispatchEvent(new CustomEvent(REMINDER_ITEMS_UPDATED));
+    } catch {
+      /* quota / privacy mode — reminders simply won't have this conference's items */
+    }
+  }, [confId, views, forums, speakers, talks]);
 
   useEffect(() => {
     const runExport = (fmt: ExportFormat) => {
