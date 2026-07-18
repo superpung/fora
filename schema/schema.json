@@ -286,6 +286,24 @@
         "abstract": { "type": ["string", "null"] },
         "abstract_status": { "$ref": "#/$defs/status" },
         "type": { "type": "string", "enum": ["keynote", "invited", "talk", "opening", "other"], "default": "talk" },
+        "summary": {
+          "description": "AI-generated, derived one-line summary of the talk (NOT source-verbatim). Distilled from the title/abstract to aid search and scanning. `zh` is authored; `en` is kept null (source text is never translated here). Presence is marked by `ai_generated`; the original `abstract` is left untouched. Optional.",
+          "type": "object",
+          "properties": {
+            "zh": { "type": ["string", "null"] },
+            "en": { "type": ["string", "null"] }
+          },
+          "additionalProperties": false
+        },
+        "topics": {
+          "description": "AI-assigned topic tags drawn from the controlled vocabulary in source/topics.json (derived, not source-verbatim). Marked by `ai_generated`. Optional.",
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "ai_generated": {
+          "description": "True when this talk carries AI-generated derived fields (`summary`/`topics`). Source fields (title/abstract) remain verbatim; downstream UI labels these fields as AI-generated and can honor an 'AI content' toggle. Optional; absent means no derived enrichment.",
+          "type": "boolean"
+        },
         "flags": {
           "type": "array",
           "items": { "type": "string" },

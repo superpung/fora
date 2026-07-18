@@ -55,6 +55,13 @@ export interface Talk {
   abstract_status?: Status;
   type?: "keynote" | "invited" | "talk" | "opening" | "other";
   flags?: string[];
+  /** AI-generated, derived one-line summary (not source-verbatim). `zh` is
+      authored; `en` is kept null. Marked by `ai_generated`. */
+  summary?: { zh?: string | null; en?: string | null };
+  /** AI-assigned topic tags from the controlled vocabulary (source/topics.json). */
+  topics?: string[];
+  /** True when this talk carries AI-generated derived fields (summary/topics). */
+  ai_generated?: boolean;
 }
 
 export interface ForumEntry {

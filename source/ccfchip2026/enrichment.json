@@ -1,0 +1,5 @@
+{
+  "_about": "AI-generated derived enrichment for ccfchip2026 forum talks. Committed source, merged by source/build_dataset.py via source/enrichment.py. Kept SEPARATE from the verbatim extraction; the source title/abstract are never edited here. Each entry adds a one-line Chinese `summary` (distilled from title/abstract, not a translation of the source) and `topics` from the controlled vocabulary (source/topics.json); the build also marks each enriched talk `ai_generated: true`.",
+  "_id_scheme": "Key = '<forum code>#<0-based index of the talk within that forum's talks[]>', exactly the id the web app uses (web/src/lib/follow-store.ts talkId(); ForumDetail.tsx #talk-N is the same index, 1-based). Example: 'CF37#0' is the first talk of forum CF37.",
+  "talks": {}
+}
