@@ -39,6 +39,51 @@ First public release.
 
 ---
 
+## 2026-07-18 — Untimed timeline, running-report highlight, feedback, Node 24 CI
+
+### Added
+- **Untimed forums on the timeline.** Forums with no per-talk times (e.g.
+  ccfchip2026) now render in the same parallel time-grid style instead of a
+  separate card list: their shared window is banded at the real breaks and each
+  forum's talks are distributed across the bands (no fabricated per-talk clock).
+  The old non-timeline card layout was removed.
+- **Tea breaks on the timeline.** Both break models are drawn on the grid — the
+  per-forum breaks (chinasoft, each at its own clock) and the block-level shared
+  break band (ccfchip) — styled as neutral gray so they read as breaks, not
+  alarms.
+- **Running-report highlight everywhere.** On the day the conference runs, the
+  report whose real time span contains "now" is marked: a solid red time pill on
+  the scrollable timeline, and a red text + breathing "live" dot in the
+  non-scrollable lists (dashboard keynote rail + forum-talk rows, schedule
+  keynote list). Honours `prefers-reduced-motion`.
+- **Touch tap-to-expand on the untimed board**, matching the timed grid: a tap
+  expands the card in place with an explicit enter button instead of navigating
+  away on the first tap.
+- **Report a bug.** The account (avatar) menu has a "Report a bug / 问题反馈"
+  action that opens the repo's new-issue form with the template pre-filled
+  (page / conference / version / browser auto-captured), plus a
+  `.github/ISSUE_TEMPLATE/bug_report.md` for issues opened directly on GitHub.
+
+### Changed
+- Shared `useNow()` / `isNowWithin()` helpers so every surface judges "running
+  now" identically; both timeline grids drop their duplicated clock code.
+
+### Fixed
+- **ChinaSoft tea breaks were silently dropped** by the parser (break rows were
+  discarded); they are now collected into `forum.breaks` / the keynote block's
+  `breaks` and shown on the timeline.
+
+### Data
+- **Three ccfchip2026 forum titles corrected** against the official PDF handbook
+  (full 48-forum cross-check): CF08 → “从芯片到系统：AI系统可靠性与容错技术”,
+  CF16 → “集成电路学院院长论坛”, CF21 dropped the sponsor suffix
+  “（湖北江城实验室冠名）” (kept as `sponsor`).
+
+### CI
+- Bumped every action to its Node-24 major (`actions/checkout@v5`,
+  `astral-sh/setup-uv@v7`, `actions/setup-node@v5`, `pnpm/action-setup@v6`) to
+  clear the Node-20 deprecation warning.
+
 ## 2026-07-17 — Public release polish, MIT license
 
 ### Added
