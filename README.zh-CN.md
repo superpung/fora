@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="web/public/icon-512.png" alt="Fora" width="96" height="96" />
+
 # Fora
 
 **简洁、快速的会议日程浏览器 —— 浏览每一场议程,标记你在意的内容,让日程在所有设备间同步。**

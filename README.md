@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="web/public/icon-512.png" alt="Fora" width="96" height="96" />
+
 # Fora
 
 **A fast, elegant viewer for conference programs — browse every session, star what matters, and carry your agenda across devices.**
