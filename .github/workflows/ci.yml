@@ -16,7 +16,7 @@ jobs:
         # file as added in HEAD (today), breaking the determinism check.
         with:
           fetch-depth: 0
-      - uses: astral-sh/setup-uv@v6
+      - uses: astral-sh/setup-uv@v7
         with:
           python-version: "3.10"
       - name: Install deps
@@ -45,11 +45,11 @@ jobs:
         working-directory: web
     steps:
       - uses: actions/checkout@v5
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
         with:
           # package.json lives in web/, not the repo root the action defaults to
           package_json_file: web/package.json
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: "22"
           cache: pnpm
