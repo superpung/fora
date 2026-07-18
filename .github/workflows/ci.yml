@@ -10,13 +10,13 @@ jobs:
     name: Dataset (schema + determinism)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         # Full history: build_manifest.py derives each dataset's `updated_at`
         # from `git log -1 -- <file>`. A shallow clone makes git report every
         # file as added in HEAD (today), breaking the determinism check.
         with:
           fetch-depth: 0
-      - uses: astral-sh/setup-uv@v5
+      - uses: astral-sh/setup-uv@v6
         with:
           python-version: "3.10"
       - name: Install deps
@@ -44,7 +44,7 @@ jobs:
       run:
         working-directory: web
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: pnpm/action-setup@v4
         with:
           # package.json lives in web/, not the repo root the action defaults to
