@@ -6,6 +6,7 @@ import { useConference } from "../lib/conference-store";
 import { useFollow, talkId, keynoteId } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
 import { useStickyState } from "../lib/sticky-state";
+import { useNow, isNowWithin, type Now } from "../lib/use-now";
 import { pageVariants } from "../lib/motion";
 import Icon from "../components/Icon";
 import type { Talk } from "../types";
@@ -229,6 +230,7 @@ function CollapsibleRuns({
 function KeynoteRow({
   t,
   date,
+  now,
   index,
   filtered,
   shown = true,
@@ -237,6 +239,7 @@ function KeynoteRow({
 }: {
   t: Talk;
   date: string;
+  now: Now;
   index: number;
   filtered: boolean;
   /** false when revealed from a collapsed run — de-emphasised, never tinted */
@@ -259,7 +262,7 @@ function KeynoteRow({
         filtered && !shown ? "krow--muted" : ""
       }`}
     >
-      <div className="krow__time">
+      <div className={`krow__time${isNowWithin(date, t.start, t.end, now) ? " is-now" : ""}`}>
         {t.start}
         {t.end ? `–${t.end}` : ""}
       </div>
@@ -302,11 +305,16 @@ function KeynoteRow({
 
 function ForumRow({
   slot,
+  date,
+  now,
   filtered,
   activeSpeaker,
   onSpeaker,
 }: {
   slot: ForumSlot;
+  /** the day this row belongs to — drives the running-report highlight */
+  date: string;
+  now: Now;
   filtered: boolean;
   activeSpeaker: string | null;
   onSpeaker: (name: string) => void;
@@ -465,7 +473,11 @@ function ForumRow({
                     <span className="ftalk__no">{String(i + 1).padStart(2, "0")}</span>
                     <span className="ftalk__main">
                       {t.start && (
-                        <span className="ftalk__time mono">
+                        <span
+                          className={`ftalk__time mono${
+                            isNowWithin(date, t.start, t.end, now) ? " is-now" : ""
+                          }`}
+                        >
                           {t.start}
                           {t.end ? `–${t.end}` : ""}
                         </span>
@@ -525,6 +537,7 @@ function DaySection({
 }) {
   const { isTalk, isSpeaker } = useFollow();
   const { t, lang } = useI18n();
+  const now = useNow();
   const [showKeynotes, setShowKeynotes] = useState(false);
   const { md, weekday } = formatDate(day.date, lang);
   // A keynote is followed-relevant when starred or one of its speakers is
@@ -596,6 +609,7 @@ function DaySection({
                       key={i}
                       t={day.keynotes[i]}
                       date={day.date}
+                      now={now}
                       index={i}
                       filtered={filtered}
                       shown={shown}
@@ -615,6 +629,8 @@ function DaySection({
           <ForumRow
             key={s.code}
             slot={s}
+            date={day.date}
+            now={now}
             filtered={filtered}
             activeSpeaker={activeSpeaker}
             onSpeaker={onSpeaker}
