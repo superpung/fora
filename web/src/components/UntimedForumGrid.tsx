@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useConference } from "../lib/conference-store";
 import { useFollow, talkId } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
+import { useCoarsePointer } from "../lib/use-coarse-pointer";
+import { useNow } from "../lib/use-now";
 import Icon from "../components/Icon";
 import type { Block, Forum, Talk } from "../types";
 
@@ -74,12 +76,9 @@ export default function UntimedForumGrid({
   const { id: confId, forumsByCode } = useConference();
   const { t: tr } = useI18n();
   const { isForum, isTalk, isSpeaker } = useFollow();
-
-  const [nowMs, setNowMs] = useState(() => Date.now());
-  useEffect(() => {
-    const id = window.setInterval(() => setNowMs(Date.now()), 30_000);
-    return () => window.clearInterval(id);
-  }, []);
+  const coarse = useCoarsePointer();
+  const [openKey, setOpenKey] = useState<string | null>(null);
+  const now = useNow();
 
   const relevant = (code: string, i: number, t: Talk): boolean =>
     isForum(code) ||
@@ -219,9 +218,7 @@ export default function UntimedForumGrid({
 
   // "Now" line — only on today's tab and inside the window; positioned within its
   // band by real time (bands are contiguous over the window).
-  const nowD = new Date(nowMs);
-  const todayStr = `${nowD.getFullYear()}-${pad(nowD.getMonth() + 1)}-${pad(nowD.getDate())}`;
-  const nowMin = nowD.getHours() * 60 + nowD.getMinutes();
+  const { todayStr, nowMin } = now;
   const showNow = !!date && date === todayStr && haveWindow && nowMin >= lo && nowMin <= hi;
   let nowY = 0;
   if (showNow) {
@@ -268,18 +265,61 @@ export default function UntimedForumGrid({
               {showNow && <div className="tgrid__nowline" style={{ top: nowY }} />}
               {c.cells.map((cell) => {
                 const sp = cell.t.speakers?.[0];
-                return (
-                  <Link
-                    key={cell.i}
-                    to={`/${confId}/forum/${c.code}#talk-${cell.i + 1}`}
-                    className="tgrid__talk tgrid__talk--u"
-                    style={{ top: cell.top, height: cell.h, minHeight: cell.h }}
-                  >
+                const to = `/${confId}/forum/${c.code}#talk-${cell.i + 1}`;
+                const key = `${c.key}#${cell.i}`;
+                const open = coarse && openKey === key;
+                const inner = (
+                  <>
                     <span className="ufg__no mono">{pad(cell.no)}</span>
                     <span className="tgrid__ttitle">
                       {cell.t.title_status === "tbd" ? tr("timeline.tbd") : cell.t.title?.zh}
                     </span>
                     {sp?.name && <span className="tgrid__tspk">{sp.name}</span>}
+                  </>
+                );
+                const style = { top: cell.top, height: cell.h, minHeight: cell.h };
+                // Coarse pointer (touch): tap expands the card in place, then an
+                // explicit enter button navigates — matching TimeGrid, so touch
+                // users don't lose the compressed content behind an instant jump.
+                if (coarse) {
+                  return (
+                    <div
+                      key={cell.i}
+                      className={`tgrid__talk tgrid__talk--u ${open ? "is-open" : ""}`}
+                      style={style}
+                      role="button"
+                      tabIndex={0}
+                      aria-expanded={open}
+                      onClick={() => setOpenKey(open ? null : key)}
+                      onKeyDown={(ev) => {
+                        if (ev.key === "Enter" || ev.key === " ") {
+                          ev.preventDefault();
+                          setOpenKey(open ? null : key);
+                        }
+                      }}
+                    >
+                      {inner}
+                      {open && (
+                        <Link
+                          to={to}
+                          className="tgrid__tenter"
+                          aria-label={tr("timeline.enterTalk")}
+                          onClick={(ev) => ev.stopPropagation()}
+                        >
+                          <Icon name="arrow-right" size={13} />
+                        </Link>
+                      )}
+                    </div>
+                  );
+                }
+                return (
+                  <Link
+                    key={cell.i}
+                    to={to}
+                    className="tgrid__talk tgrid__talk--u"
+                    style={style}
+                  >
+                    {inner}
                   </Link>
                 );
               })}

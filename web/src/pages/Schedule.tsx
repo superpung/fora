@@ -6,6 +6,7 @@ import { useConference } from "../lib/conference-store";
 import { useFollow } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
 import { useStickyState } from "../lib/sticky-state";
+import { useNow, isNowWithin } from "../lib/use-now";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Icon, { type IconName } from "../components/Icon";
 import TimeGrid from "../components/TimeGrid";
@@ -48,8 +49,9 @@ function chronoRows(block: Block): Row[] {
   return rows.sort((a, b) => (a.start ?? "").localeCompare(b.start ?? ""));
 }
 
-function KeynotesBlock({ block }: { block: Block }) {
+function KeynotesBlock({ block, date }: { block: Block; date: string }) {
   const { t } = useI18n();
+  const now = useNow();
   return (
     <div className="talklist">
       {chronoRows(block).map((row, i) =>
@@ -62,7 +64,11 @@ function KeynotesBlock({ block }: { block: Block }) {
           </div>
         ) : (
           <motion.div key={`t${i}`} variants={riseItem} className="talkrow">
-            <div className="talkrow__time">
+            <div
+              className={`talkrow__time${
+                isNowWithin(date, row.start, row.end, now) ? " is-now" : ""
+              }`}
+            >
               <TimeRange start={row.start} end={row.end} />
             </div>
             <div className="talkrow__body">
@@ -262,7 +268,7 @@ export default function Schedule() {
                   )}
                 </div>
 
-                {block.kind === "keynotes" && <KeynotesBlock block={block} />}
+                {block.kind === "keynotes" && <KeynotesBlock block={block} date={day.date} />}
                 {block.kind === "forums" && <ForumsBlock block={block} date={day.date} filtered={onlyFollowed} />}
                 {block.kind === "committee_meetings" && <MeetingsBlock block={block} />}
                 {block.note && <div className="simplerow">{block.note}</div>}

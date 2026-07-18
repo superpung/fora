@@ -1,27 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useConference } from "../lib/conference-store";
 import { useFollow, talkId } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
+import { useCoarsePointer } from "../lib/use-coarse-pointer";
+import { useNow, isNowWithin } from "../lib/use-now";
 import Icon from "../components/Icon";
 import type { Block, Forum, Talk } from "../types";
-
-// Touch devices have no hover, so the compressed cells can't reveal their full
-// content the way desktop does on hover. On a coarse pointer we switch to
-// tap-to-expand: the first tap opens the card in place (with an explicit enter
-// button to navigate); a second tap — or tapping another card — collapses it.
-function useCoarsePointer(): boolean {
-  const [coarse, setCoarse] = useState(false);
-  useEffect(() => {
-    if (typeof window === "undefined" || !window.matchMedia) return;
-    const mq = window.matchMedia("(hover: none)");
-    const sync = () => setCoarse(mq.matches);
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, []);
-  return coarse;
-}
 
 // A time-vs-forum matrix for one day's parallel forum sessions: the vertical
 // axis is wall-clock time, each forum is a column, and every talk sits near its
@@ -109,14 +94,9 @@ export default function TimeGrid({
   const { isForum, isTalk, isSpeaker } = useFollow();
   const coarse = useCoarsePointer();
   const [openKey, setOpenKey] = useState<string | null>(null);
-
-  // A live clock for the "now" line — re-tick each minute so the indicator drifts
-  // down as time passes without a page reload.
-  const [nowMs, setNowMs] = useState(() => Date.now());
-  useEffect(() => {
-    const id = window.setInterval(() => setNowMs(Date.now()), 30_000);
-    return () => window.clearInterval(id);
-  }, []);
+  // A live clock (re-ticks each 30s) for the "now" line and the running-report
+  // highlight, so both drift with real time without a page reload.
+  const now = useNow();
 
   // A talk is "followed-relevant" when its forum is followed (keep the whole
   // column), the talk itself is starred, or one of its speakers is followed —
@@ -218,10 +198,8 @@ export default function TimeGrid({
   // "Now" indicator: a red time-pill + dot in the gutter and a line across the
   // columns, shown only when the viewed day is today and the clock falls within
   // this day's rendered span.
-  const nowD = new Date(nowMs);
-  const todayStr = `${nowD.getFullYear()}-${pad(nowD.getMonth() + 1)}-${pad(nowD.getDate())}`;
-  const nowMin = nowD.getHours() * 60 + nowD.getMinutes();
-  const showNow = !!date && date === todayStr && nowMin >= lo && nowMin <= hi;
+  const { nowMin } = now;
+  const showNow = !!date && date === now.todayStr && nowMin >= lo && nowMin <= hi;
   const nowTop = (nowMin - lo) * PX_PER_MIN;
 
   // Second pass: lay each column out with push-down so cells never overlap.
@@ -350,9 +328,13 @@ export default function TimeGrid({
                 const to = `/${confId}/forum/${c.code}#talk-${i + 1}`;
                 const key = `${c.key}#${i}`;
                 const open = coarse && openKey === key;
+                // When the day is today and the live clock falls inside this
+                // talk's real span, mark its time as "now" — a red pill reusing
+                // the today-date highlight, so the running talk stands out.
+                const isNow = isNowWithin(date, t.start, t.end, now);
                 const inner = (
                   <>
-                    <span className="tgrid__ttime mono">
+                    <span className={`tgrid__ttime mono${isNow ? " is-now" : ""}`}>
                       {t.start}
                       {t.end ? `–${t.end}` : ""}
                     </span>
@@ -394,7 +376,7 @@ export default function TimeGrid({
                           aria-label={tr("timeline.enterTalk")}
                           onClick={(ev) => ev.stopPropagation()}
                         >
-                          <Icon name="arrow-right" size={14} />
+                          <Icon name="arrow-right" size={13} />
                         </Link>
                       )}
                     </div>
