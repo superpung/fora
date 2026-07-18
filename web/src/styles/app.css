@@ -1163,3 +1163,110 @@ svg { display: block; }
 @media (max-width: 600px) and (max-height: 620px) {
   .toolbar, .daytabs { position: static; }
 }
+
+/* ============================ NAV — live "Now" entry ============================ */
+.nav__link--live { display: inline-flex; align-items: center; gap: 5px; }
+.nav__livedot {
+  width: 6px; height: 6px; border-radius: 999px; background: var(--tg-now);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--tg-now) 60%, transparent);
+  animation: nowpulse 2s ease-out infinite;
+}
+@keyframes nowpulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--tg-now) 55%, transparent); }
+  70% { box-shadow: 0 0 0 5px color-mix(in srgb, var(--tg-now) 0%, transparent); }
+  100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--tg-now) 0%, transparent); }
+}
+
+/* ============================ NOW / NEXT (live view) ============================ */
+.nowview { padding-top: clamp(20px, 3vw, 32px); padding-bottom: clamp(24px, 4vw, 40px); }
+.nowhead {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  flex-wrap: wrap; margin-bottom: 22px;
+}
+.nowlive {
+  display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600;
+  letter-spacing: 0.04em; text-transform: uppercase; color: var(--tg-now);
+}
+.nowlive__dot {
+  width: 7px; height: 7px; border-radius: 999px; background: var(--tg-now);
+  animation: nowpulse 2s ease-out infinite;
+}
+.nowclock { text-align: right; display: flex; flex-direction: column; gap: 2px; }
+.nowclock__time { font-size: 26px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.nowclock__date { font-size: 12px; color: var(--fg-muted); }
+
+.nowgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.nowpanel {
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  background: var(--bg-subtle); padding: 16px; min-width: 0;
+}
+.nowpanel--now { grid-column: 1 / -1; background: var(--bg); }
+.nowpanel__label {
+  display: flex; align-items: center; gap: 7px; margin: 0 0 12px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--fg-secondary);
+}
+.nowpanel__label svg { color: var(--accent); }
+.nowpanel--now .nowpanel__label svg, .nowpanel--now .nowpanel__label { color: var(--tg-now); }
+.nowpanel__pulse {
+  width: 8px; height: 8px; border-radius: 999px; background: var(--tg-now);
+  animation: nowpulse 2s ease-out infinite;
+}
+.nowpanel__empty { color: var(--fg-muted); font-size: 13.5px; display: flex; flex-direction: column; gap: 4px; }
+.nowpanel__hint { color: var(--fg-muted); font-size: 12px; opacity: 0.85; }
+
+.nowrooms { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
+.nowcard {
+  display: block; border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--bg-subtle); padding: 11px 12px; min-width: 0;
+}
+.nowcard--link { transition: border-color 0.15s, background 0.15s; }
+.nowcard--link:hover { border-color: var(--border-strong); background: var(--bg-hover); }
+.nowcard__top { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+.nowcard__room { display: inline-flex; align-items: center; gap: 4px; font-family: var(--font-mono); font-size: 11.5px; color: var(--fg-secondary); }
+.nowcard__room svg { color: var(--fg-muted); }
+.nowcard__room--key { color: var(--tg-now); }
+.nowcard__room--key svg { color: var(--tg-now); }
+.nowcard__code { margin-left: auto; font-family: var(--font-mono); font-size: 10.5px; color: var(--fg-muted); background: var(--bg-active); padding: 1px 5px; border-radius: 999px; }
+.nowcard__title { font-size: 13.5px; font-weight: 600; line-height: 1.3; margin-bottom: 4px; }
+.nowcard__talk { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; font-size: 12.5px; color: var(--fg-secondary); }
+.nowcard__time { color: var(--accent); font-size: 11.5px; }
+.nowcard__talktitle { font-weight: 500; color: var(--fg); }
+.nowcard__spk { color: var(--fg-muted); }
+.nowcard__next {
+  display: flex; align-items: center; gap: 4px; margin-top: 6px; padding-top: 6px;
+  border-top: 1px dashed var(--border); font-size: 11.5px; color: var(--fg-muted);
+}
+.nowcard__next svg { color: var(--fg-muted); flex: none; }
+.nowcard__next .mono { color: var(--fg-secondary); }
+
+.nownext__when, .nowstar__when {
+  display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 600;
+  color: var(--fg); margin-bottom: 10px;
+}
+.nownext__when svg { color: var(--accent); }
+.nownext__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.nownext__item { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--fg-secondary); }
+.nownext__item svg { color: var(--fg-muted); flex: none; }
+.nownext__title { font-weight: 500; color: var(--fg); }
+.nownext__room { margin-left: auto; font-family: var(--font-mono); font-size: 11px; color: var(--fg-muted); }
+
+.nowstar { display: flex; flex-direction: column; gap: 6px; }
+.nowstar--live .nowstar__when { color: var(--tg-now); }
+.nowstar__title { font-size: 14.5px; font-weight: 600; line-height: 1.3; }
+.nowstar__meta { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12.5px; color: var(--fg-muted); }
+.nowstar__spk, .nowstar__loc { display: inline-flex; align-items: center; gap: 4px; }
+.nowstar__link { display: inline-flex; align-items: center; gap: 5px; margin-top: 4px; font-size: 13px; font-weight: 500; color: var(--accent); }
+.nowstar__link:hover { color: var(--accent-hover); }
+
+.nowempty {
+  display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center;
+  padding: clamp(40px, 8vw, 80px) 16px; color: var(--fg-secondary);
+}
+.nowempty svg { color: var(--fg-muted); }
+.nowempty p { margin: 0; font-size: 16px; font-weight: 500; color: var(--fg); }
+.nowempty__sub { font-family: var(--font-mono); font-size: 13px; color: var(--fg-muted); }
+.nowempty__link { margin-top: 8px; }
+
+@media (max-width: 640px) {
+  .nowgrid { grid-template-columns: 1fr; }
+}
