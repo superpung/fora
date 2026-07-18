@@ -324,6 +324,9 @@ def parse_forum(cat, tid, html):
 
     # talks from every forum-table that looks like a schedule
     talks = []
+    # Non-talk rows carrying a time (茶歇/午餐/…) are the forum's breaks — kept, not
+    # dropped, so the timeline can mark them at their real per-forum time.
+    breaks = []
     tables = soup.select(".forum-table")
     for tbl in tables:
         headers = [clean(th.get_text()) for th in tbl.select("thead th")]
@@ -350,6 +353,8 @@ def parse_forum(cat, tid, html):
             spk = col("speaker")
             abstract_cell = col("abstract")
             if any(w in title for w in BREAK_WORDS) and not any(w in title for w in PANEL_WORDS):
+                bs, be = parse_time(tcell)
+                breaks.append({"name": title, "start": bs, "end": be})
                 continue  # a break row, not a talk
             start, end = parse_time(tcell)
             speakers = parse_person_cell(col("members") or spk)
@@ -424,6 +429,8 @@ def parse_forum(cat, tid, html):
         "detail_extracted": bool(talks),
         "source_url": f"https://chinasoft.ccf.org.cn/2025/#agenda/{cat}/{tid}",
     }
+    if breaks:
+        forum["breaks"] = breaks
     if flags:
         forum["flags"] = flags
     return forum
@@ -447,6 +454,9 @@ def parse_keynotes():
                 title = tds[1]
                 spk = tds[2] if len(tds) > 2 else ""
                 if any(w in title for w in BREAK_WORDS) and not any(w in title for w in PANEL_WORDS):
+                    bs, be = parse_time(tds[0])
+                    days.setdefault(date, {"location": location, "talks": [], "breaks": []}) \
+                        .setdefault("breaks", []).append({"name": title, "start": bs, "end": be})
                     continue
                 start, end = parse_time(tds[0])
                 speakers = parse_person_cell(spk)
@@ -465,7 +475,7 @@ def parse_keynotes():
                         if info.get("abstract"):
                             t["abstract"] = info["abstract"]
                             t["abstract_status"] = "confirmed"
-                d = days.setdefault(date, {"location": location, "talks": []})
+                d = days.setdefault(date, {"location": location, "talks": [], "breaks": []})
                 d["talks"].append(t)
     return days
 
@@ -644,11 +654,14 @@ def build():
         blocks = []
         if d in keynote_days:
             kd = keynote_days[d]
-            blocks.append({
+            kblock = {
                 "kind": "keynotes", "title": i18n("大会特邀报告"),
                 "start": None, "end": None, "location": kd["location"],
                 "talks": kd["talks"],
-            })
+            }
+            if kd.get("breaks"):
+                kblock["breaks"] = kd["breaks"]
+            blocks.append(kblock)
         entries = [{"forum_code": f["code"], "room": f["room"]}
                    for f in forums if f["day_date"] == d]
         if entries:
