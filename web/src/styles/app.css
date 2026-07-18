@@ -621,23 +621,45 @@ svg { display: block; }
 }
 .postermodal__actions { display: flex; justify-content: flex-end; gap: 10px; flex: 0 0 auto; }
 .tgrid__ttime { font-size: 10.5px; line-height: 1.35; color: var(--fg-muted); white-space: nowrap; }
-/* the talk whose real span contains "now" (today only): its time reads on the
-   same red pill as the today-date tab, so the running talk stands out. */
+/* The report whose real span contains "now" (today only). Two treatments:
+
+   1) Timeline (.tgrid): keep the solid red capsule — its cells are wide enough
+      that the time never wraps, so the pill stays clean. A small left margin keeps
+      it off the cell's left edge / accent bar.
+   2) Dashboard keynote rail (.krow) + forum-talk rows (.ftalk) and the schedule
+      keynote list (.talkrow): red text + a small leading "live" dot instead of a
+      pill, because a long time range wrapped into an ugly red block in the narrow
+      time columns. No background → clean at any width. The dot pulses as a smooth
+      "breathing light" (opacity + red glow). */
 .tgrid__ttime.is-now {
-  align-self: flex-start; color: #fff; background: var(--tg-now);
+  align-self: flex-start; margin-left: 3px; color: #fff; background: var(--tg-now);
   padding: 0 5px; border-radius: 999px; font-weight: 600;
 }
-/* The same running-now red pill, shared by every surface that lists reports with
-   explicit times: the dashboard keynote rail (.krow) + forum-talk rows (.ftalk),
-   and the schedule page's keynote list (.talkrow). Grid-cell times hug their text
-   (justify-self:start); the inline .ftalk time becomes an inline-block pill. */
-.krow__time.is-now, .talkrow__time.is-now {
-  justify-self: start; color: #fff; background: var(--tg-now);
-  padding: 1px 7px; border-radius: 999px; font-weight: 600;
-}
+.krow__time.is-now,
+.talkrow__time.is-now,
 .ftalk__time.is-now {
-  display: inline-block; color: #fff; background: var(--tg-now);
-  padding: 0 6px; border-radius: 999px; font-weight: 600;
+  color: var(--tg-now); font-weight: 600;
+}
+.krow__time.is-now::before,
+.talkrow__time.is-now::before,
+.ftalk__time.is-now::before {
+  content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--tg-now); margin-right: 5px; vertical-align: middle;
+  /* nudge the dot onto the mono digits' optical centre */
+  position: relative; top: -1px;
+  animation: now-breathe 1.9s ease-in-out infinite;
+}
+/* Breathing light: fade the dot's opacity and expand/contract a soft red glow so
+   it reads as a living "now" indicator. */
+@keyframes now-breathe {
+  0%, 100% { opacity: 1; box-shadow: 0 0 5px 1px color-mix(in srgb, var(--tg-now) 60%, transparent); }
+  50% { opacity: 0.4; box-shadow: 0 0 2px 0 color-mix(in srgb, var(--tg-now) 10%, transparent); }
+}
+/* Honour reduced-motion: hold the dot steady (still visible, just not pulsing). */
+@media (prefers-reduced-motion: reduce) {
+  .krow__time.is-now::before,
+  .talkrow__time.is-now::before,
+  .ftalk__time.is-now::before { animation: none; }
 }
 .tgrid__ttitle { font-size: 12px; font-weight: 500; line-height: 1.3; color: var(--fg); }
 .tgrid__tspk { font-size: 11px; line-height: 1.3; color: var(--fg-secondary); }
