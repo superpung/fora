@@ -42,6 +42,7 @@ export type IconName =
   | "github"
   | "divider"
   | "trash"
+  | "bug"
   | "dot";
 
 // Each entry is the inner markup of a 0 0 24 24 viewBox, stroked with currentColor.
@@ -242,6 +243,15 @@ const PATHS: Record<IconName, ReactElement> = {
       <path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
       <path d="M6 7v12.5a1.5 1.5 0 0 0 1.5 1.5h9a1.5 1.5 0 0 0 1.5-1.5V7" />
       <path d="M10 11v5.5M14 11v5.5" />
+    </>
+  ),
+  bug: (
+    <>
+      <path d="M8 2l1.88 1.88M14.12 3.88 16 2" />
+      <path d="M9 7.13v-1a3 3 0 0 1 6 0v1" />
+      <path d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6zM12 20v-9" />
+      <path d="M6.53 9C4.6 8.8 3 7.1 3 5M6 13H2M3 21c0-2.1 1.7-3.9 3.8-4" />
+      <path d="M20.97 5c0 2.1-1.6 3.8-3.5 4M22 13h-4M17.2 17c2.1.1 3.8 1.9 3.8 4" />
     </>
   ),
   dot: <circle cx="12" cy="12" r="2.5" />,
