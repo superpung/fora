@@ -4,6 +4,28 @@ All notable changes to this project, newest first. The top entry is the current
 release; the dated log beneath it records development day by day. Written in
 English per the repository language rule (see AGENTS.md).
 
+## v0.2.0 — 2026-07-18
+
+### Added
+- **Untimed forums join the timeline** — sessions with no per-talk times now use
+  the same parallel time-grid, with tea breaks marked on the grid.
+- **Running-report highlight** — on the conference day, the report that's on right
+  now is highlighted across the timeline, dashboard, and schedule.
+- **Report a bug** — a feedback action in the account menu opens a pre-filled
+  GitHub issue, plus a repository issue template.
+
+### Changed
+- README rewritten as an abstract, user-facing overview, with the Fora brand mark.
+
+### Fixed
+- Recovered ChinaSoft tea breaks the parser had dropped, and corrected three
+  ccfchip2026 forum titles against the official handbook.
+
+### CI
+- Moved all GitHub Actions to their Node-24 majors.
+
+_Day-by-day detail for this release is in the 2026-07-18 log entry below._
+
 ## v0.1.0 — 2026-07-17
 
 First public release.
