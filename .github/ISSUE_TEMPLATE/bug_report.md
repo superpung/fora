@@ -29,8 +29,8 @@ labels: bug
 
 ## 环境信息 / Environment
 
-<!-- 从页脚的“问题反馈 / Report a bug”按钮进入时，以下信息会自动填好。
-     If you open this from the site's "Report a bug" button, these are auto-filled. -->
+<!-- 从头像菜单里的“问题反馈 / Report a bug”按钮进入时，以下信息会自动填好。
+     If you open this from the avatar menu's "Report a bug" button, these are auto-filled. -->
 
 - 页面 / Page:
 - 会议 / Conference:

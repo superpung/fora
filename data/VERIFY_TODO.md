@@ -4,9 +4,15 @@ Open data-quality items found by auditing `ccfchip2026.json`, to re-check agains
 the official site (https://ccf.org.cn/ccfchip2026). `CFxx#n` = the n-th talk in a
 forum, 0-indexed. Status legend: ✅ done · ⏭️ skipped (site unchanged) · ⏳ pending.
 
-Last audited: 2026-07-14.
+Last audited: 2026-07-18 (full cross-check of all 48 forums against the official
+PDF handbook).
 
 ## Resolved
+- ✅ **CF08 / CF16 / CF21 titles** — corrected against the official PDF handbook
+  during the full 48-forum cross-check (all other titles/chairs/talks/speakers
+  matched): CF08 → “从芯片到系统：AI系统可靠性与容错技术”, CF16 →
+  “集成电路学院院长论坛”, CF21 dropped the sponsor suffix “（湖北江城实验室冠名）”
+  (kept separately as `sponsor`).
 - ✅ **CF10** — forum poster was published late (general_1129). Fully parsed:
   6 talks, 2 chairs. Note: the poster titles it “抗量子密码应用论坛” while the
   agenda overview lists “后量子密码应用论坛”; we keep the overview name and record
