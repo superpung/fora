@@ -624,14 +624,20 @@ svg { display: block; }
 .tgrid__tspk { font-size: 11px; line-height: 1.3; color: var(--fg-secondary); }
 .tgrid__more { position: absolute; left: 3px; right: 3px; font-size: 11px; color: var(--fg-muted); padding: 4px 7px; }
 
-/* Per-forum break cell (chinasoft: each forum breaks at its own time). An amber
-   dashed strip inside a single column, distinct from the talk cards. */
+/* Per-forum break cell (chinasoft: each forum breaks at its own time). Styled
+   like a talk card — same box + left vertical bar — but with a neutral GRAY
+   highlight (bar, text) instead of the talk's accent, matching the muted keynote
+   break rows. It reads as a peer of the talk cards, not an alarming amber strip. */
 .tgrid__break {
   position: absolute; left: 3px; right: 3px; z-index: 1;
-  display: flex; align-items: center; gap: 6px; padding: 2px 8px; overflow: hidden;
-  background: color-mix(in srgb, var(--amber-fg) 13%, var(--bg));
-  border: 1px dashed color-mix(in srgb, var(--amber-fg) 42%, var(--border));
-  border-radius: var(--radius-sm); color: var(--amber-fg);
+  display: flex; align-items: center; gap: 6px; padding: 3px 7px 3px 11px; overflow: hidden;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm); color: var(--fg-muted);
+}
+.tgrid__break::before {
+  content: ""; position: absolute; left: 0; top: var(--radius-sm); bottom: var(--radius-sm);
+  width: 3px; border-radius: 3px; background: var(--fg-muted);
 }
 .tgrid__break svg { flex: none; }
 .tgrid__breaktime { font-size: 10.5px; }
@@ -646,13 +652,13 @@ svg { display: block; }
 .ufg__break {
   position: absolute; left: 50px; right: 0; z-index: 3; display: flex; align-items: center;
   pointer-events: none;
-  background: color-mix(in srgb, var(--amber-fg) 12%, var(--bg));
-  border-top: 1px dashed color-mix(in srgb, var(--amber-fg) 40%, var(--border));
-  border-bottom: 1px dashed color-mix(in srgb, var(--amber-fg) 40%, var(--border));
+  background: var(--bg-subtle);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 .ufg__break-label {
   position: sticky; left: 58px; display: inline-flex; align-items: center; gap: 6px;
-  padding: 2px 8px; font-size: 11.5px; font-weight: 500; color: var(--amber-fg); white-space: nowrap;
+  padding: 2px 8px; font-size: 11.5px; font-weight: 500; color: var(--fg-muted); white-space: nowrap;
 }
 .ufg__break-label svg { flex: none; }
 
