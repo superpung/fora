@@ -266,21 +266,7 @@ export default function AccountMenu() {
               </>
             )}
 
-            {hasSync && loggedIn && (
-              <>
-                <div className="acct-divider" />
-                <button
-                  className="acct-row acct-row--danger"
-                  onClick={() => { setOpen(false); setConfirmOut(true); }}
-                >
-                  <Icon name="log-out" size={15} />
-                  <span className="acct-row__label">{zh ? "退出登录" : "Sign out"}</span>
-                </button>
-              </>
-            )}
-
-            {/* Report a bug: opens the repo's new-issue form with the template
-                pre-filled (page/conference/version/browser auto-captured). */}
+            {/* Bottom utility group: report a bug, then sign out kept LAST. */}
             <div className="acct-divider" />
             <a
               className="acct-row"
@@ -293,6 +279,16 @@ export default function AccountMenu() {
               <span className="acct-row__label">{zh ? "问题反馈" : "Report a bug"}</span>
               <Icon name="external" size={13} className="acct-row__meta" aria-hidden />
             </a>
+
+            {hasSync && loggedIn && (
+              <button
+                className="acct-row acct-row--danger"
+                onClick={() => { setOpen(false); setConfirmOut(true); }}
+              >
+                <Icon name="log-out" size={15} />
+                <span className="acct-row__label">{zh ? "退出登录" : "Sign out"}</span>
+              </button>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
