@@ -991,8 +991,6 @@ svg { display: block; }
   transition: color 0.15s ease;
 }
 .footer__link:hover { color: var(--fg); }
-.footer__bug { gap: 5px; }
-.footer__bug:hover { color: var(--tg-now); }
 .footer__ver { color: var(--fg-muted); transition: color 0.15s ease; }
 .footer__ver:hover { color: var(--fg); }
 .footer__sep { color: var(--border-strong); flex: 0 0 auto; }
