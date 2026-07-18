@@ -5,8 +5,10 @@ import ThemeToggle from "./ThemeToggle";
 import LangToggle from "./LangToggle";
 import AccountMenu from "./AccountMenu";
 import ForaMark from "./ForaMark";
+import Icon from "./Icon";
 import ConferenceSwitcher from "./ConferenceSwitcher";
 import { useI18n } from "../lib/i18n-store";
+import { useSearchUI } from "../lib/search-store";
 
 // In-conference links, relative to the active conference (`/:conf/...`).
 const LINKS = [
@@ -19,6 +21,7 @@ const LINKS = [
 
 export default function Nav({ confId }: { confId: string }) {
   const { t } = useI18n();
+  const { setOpen: setSearchOpen } = useSearchUI();
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
   useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 12));
@@ -48,6 +51,15 @@ export default function Nav({ confId }: { confId: string }) {
           ))}
         </nav>
         <div className="nav__tools">
+          <button
+            className="nav__search"
+            onClick={() => setSearchOpen(true)}
+            aria-label={t("search.open")}
+            title={t("search.open")}
+          >
+            <Icon name="search" size={15} />
+            <span className="nav__searchhint mono" aria-hidden>⌘K</span>
+          </button>
           <AccountMenu />
           <LangToggle />
           <ThemeToggle />
