@@ -201,7 +201,9 @@ pnpm preview    # serve the production build
 - **Personal agenda (follows):** talks, forums, and speakers are starred and
   persisted to `localStorage` namespaced per conference (`<id>:followed.*`). The
   account menu exports the resolved agenda (`.ics` / `.csv` / `.md`) and a
-  re-importable `.json` backup, and clears follows. Cross-device sync (GitHub
+  re-importable `.json` backup, clears follows, and links to a pre-filled bug
+  report (`lib/repo.ts` builds a GitHub new-issue URL, auto-capturing the page /
+  conference / version / browser). Cross-device sync (GitHub
   login → one private Gist per user) is powered by `@repus/gist-sync`; the
   Netlify function under `web/netlify/functions/` is the stateless OAuth broker
   (set `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET` in the Netlify dashboard).

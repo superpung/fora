@@ -24,7 +24,9 @@ device you use — no app to install.
 - **The whole program in one place** — keynotes, parallel sessions, and speakers,
   all bilingual (中文 / English).
 - **Timeline** — every parallel session laid out side by side on a time grid,
-  with a live "now" line on the day the conference is running.
+  with tea breaks marked; on the day the conference is running, a live "now" line
+  tracks the time and the currently-running report is highlighted. Sessions with
+  no per-talk times get the same parallel time-grid treatment.
 - **Personal agenda** — star any talk, session, or speaker; your picks become a
   focused, filterable agenda you can jump back to.
 - **Sync across devices** — sign in with GitHub to back your agenda up to a
@@ -35,6 +37,8 @@ device you use — no app to install.
   (`.csv`), Markdown (`.md`), or a re-importable backup (`.json`).
 - **Speaker directory** — search speakers by name, affiliation, or talk, and
   jump through the list by initial.
+- **Committee & organizers** — browse each conference's full program committee
+  and its organizing and sponsoring bodies.
 - **Share posters** — generate a clean poster image for a whole session or a
   single talk.
 - **Light & dark** — follows your system, with a manual toggle. No tracking.
@@ -45,7 +49,8 @@ Starring is instant and local — no sign-in required to build an agenda on the
 device in front of you. When you want it on your phone as well as your laptop,
 sign in with GitHub: Fora stores your follows in a single private Gist under your
 own account and reconciles changes across devices. Nothing else leaves your
-browser, and you can export or wipe your data at any time from the account menu.
+browser, and you can export or wipe your data — or report a bug — at any time
+from the account menu.
 
 ## Development
 
