@@ -126,6 +126,16 @@ const zh: Dict = {
   "schedule.title": "完整日程",
   "schedule.talkTbd": "报告题目待定",
   "schedule.breakNote": "（各分论坛同时休息）",
+  "schedule.viewLabel": "切换视图",
+  "schedule.viewList": "列表",
+  "schedule.viewMyDay": "我的一天",
+
+  "myday.empty": "本日暂无收藏的议程",
+  "myday.emptyHint": "在日程中点击星标即可加入我的一天",
+  "myday.untimed": "时间待定",
+  "myday.now": "进行中",
+  "myday.gap": "空档 {n} 分钟",
+  "myday.moveTo": "换场至 {to}",
 
   "speakers.title": "讲者",
   "speakers.searchPlaceholder": "搜索讲者 / 单位 / 报告…",
@@ -315,6 +325,16 @@ const en: Dict = {
   "schedule.title": "Full schedule",
   "schedule.talkTbd": "Talk title TBD",
   "schedule.breakNote": " (all forums pause)",
+  "schedule.viewLabel": "Switch view",
+  "schedule.viewList": "List",
+  "schedule.viewMyDay": "My Day",
+
+  "myday.empty": "No starred items for this day",
+  "myday.emptyHint": "Star talks in the schedule to plan your day",
+  "myday.untimed": "Time TBD",
+  "myday.now": "On now",
+  "myday.gap": "{n} min gap",
+  "myday.moveTo": "Move to {to}",
 
   "speakers.title": "Speakers",
   "speakers.searchPlaceholder": "Search speakers / affiliations / talks…",
