@@ -479,26 +479,9 @@ svg { display: block; }
 .breakrow:first-child { border-top: none; }
 .breakrow .time { color: var(--fg-muted); }
 .breakrow__label { display: inline-flex; align-items: center; gap: 6px; }
-.breakrow--forums { border-bottom: 1px solid var(--border); }
 /* Tea breaks inside the keynotes list sit within .talklist's 16px padding; pull
    them back out so the band spans the full card width, flush with both borders. */
 .talklist .breakrow { margin-left: -16px; margin-right: -16px; }
-
-.forumgrid { }
-.forumcard {
-  display: grid; grid-template-columns: 58px 58px 1fr auto; align-items: center; gap: 4px 16px;
-  padding: 12px 16px; border-top: 1px solid var(--border); transition: background 0.12s;
-}
-.forumcard:first-child { border-top: none; }
-.forumcard:hover { background: var(--bg-hover); }
-.forumcard__room { display: inline-flex; align-items: center; gap: 3px; color: var(--fg-secondary); font-size: 13px; }
-.forumcard__room svg { color: var(--fg-muted); }
-.forumcard__code { color: var(--fg); font-weight: 500; font-size: 13px; }
-.forumcard__title { font-size: 14px; font-weight: 500; line-height: 1.4; }
-.forumcard__foot { display: flex; align-items: center; gap: 12px; justify-self: end; }
-.forumcard__count { font-family: var(--font-mono); color: var(--fg-secondary); font-size: 12px; display: inline-flex; align-items: center; gap: 3px; }
-.forumcard__count svg, .forumcard__pending svg { color: var(--fg-muted); }
-.forumcard__pending { color: var(--fg-muted); font-size: 12px; display: inline-flex; align-items: center; gap: 3px; }
 
 /* ---- time-vs-forum matrix (Schedule, when talks carry times) ---- */
 .tgrid {
@@ -640,6 +623,38 @@ svg { display: block; }
 .tgrid__ttitle { font-size: 12px; font-weight: 500; line-height: 1.3; color: var(--fg); }
 .tgrid__tspk { font-size: 11px; line-height: 1.3; color: var(--fg-secondary); }
 .tgrid__more { position: absolute; left: 3px; right: 3px; font-size: 11px; color: var(--fg-muted); padding: 4px 7px; }
+
+/* Per-forum break cell (chinasoft: each forum breaks at its own time). An amber
+   dashed strip inside a single column, distinct from the talk cards. */
+.tgrid__break {
+  position: absolute; left: 3px; right: 3px; z-index: 1;
+  display: flex; align-items: center; gap: 6px; padding: 2px 8px; overflow: hidden;
+  background: color-mix(in srgb, var(--amber-fg) 13%, var(--bg));
+  border: 1px dashed color-mix(in srgb, var(--amber-fg) 42%, var(--border));
+  border-radius: var(--radius-sm); color: var(--amber-fg);
+}
+.tgrid__break svg { flex: none; }
+.tgrid__breaktime { font-size: 10.5px; }
+.tgrid__breakname { font-size: 11px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ---- untimed parallel-forum board (Schedule, forums with no per-talk time) ---- */
+.ufg .tgrid__inner { position: relative; }
+/* order number replaces the clock on an untimed talk card */
+.ufg__no { font-family: var(--font-mono); font-size: 10px; color: var(--fg-muted); line-height: 1.3; }
+/* shared break — one full-width band spanning every column at its real time (the
+   parallel forums pause together). Sits under the sticky headers/gutter. */
+.ufg__break {
+  position: absolute; left: 50px; right: 0; z-index: 3; display: flex; align-items: center;
+  pointer-events: none;
+  background: color-mix(in srgb, var(--amber-fg) 12%, var(--bg));
+  border-top: 1px dashed color-mix(in srgb, var(--amber-fg) 40%, var(--border));
+  border-bottom: 1px dashed color-mix(in srgb, var(--amber-fg) 40%, var(--border));
+}
+.ufg__break-label {
+  position: sticky; left: 58px; display: inline-flex; align-items: center; gap: 6px;
+  padding: 2px 8px; font-size: 11.5px; font-weight: 500; color: var(--amber-fg); white-space: nowrap;
+}
+.ufg__break-label svg { flex: none; }
 
 .meetlist { padding: 4px 16px; }
 .meetrow { display: flex; align-items: center; gap: 14px; padding: 11px 0; font-size: 14px; border-top: 1px solid var(--border); }
@@ -1095,12 +1110,6 @@ svg { display: block; }
   .talk { grid-template-columns: 28px 1fr; gap: 12px; padding: 18px 14px; }
   .tlrow { grid-template-columns: 42px 18px minmax(0, 1fr); gap: 0 10px; }
   .talkrow { grid-template-columns: 88px 1fr; gap: 12px; }
-  /* single column so the (often long) room name gets a full-width line */
-  .forumcard { grid-template-columns: 1fr; gap: 3px 0; }
-  .forumcard__room { grid-row: auto; grid-column: 1; }
-  .forumcard__code { grid-row: auto; grid-column: 1; }
-  .forumcard__title { grid-row: auto; grid-column: 1; margin-top: 2px; }
-  .forumcard__foot { grid-row: auto; grid-column: 1; justify-self: start; margin-top: 4px; }
   .sponsorcard { flex-direction: column; gap: 3px; }
   .cmt__grid { grid-template-columns: 1fr; }
 }

@@ -1,14 +1,15 @@
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { formatDate, todayISO } from "../lib/data";
 import { useConference } from "../lib/conference-store";
-import { useFollow, talkId } from "../lib/follow-store";
+import { useFollow } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
 import { useStickyState } from "../lib/sticky-state";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Icon, { type IconName } from "../components/Icon";
 import TimeGrid from "../components/TimeGrid";
+import UntimedForumGrid from "../components/UntimedForumGrid";
 import type { Block, Forum, Talk, Break } from "../types";
 
 /** True when at least one talk in the day's forum block carries a start time —
@@ -96,67 +97,14 @@ function KeynotesBlock({ block }: { block: Block }) {
 }
 
 function ForumsBlock({ block, date, filtered }: { block: Block; date: string; filtered: boolean }) {
-  const { id: confId, forumsByCode } = useConference();
-  const { t } = useI18n();
-  const { isForum, isTalk, isSpeaker } = useFollow();
-  // When talks carry real times, show the time-vs-forum matrix; otherwise the
-  // conference only has forum-level slots, so fall back to the card grid.
-  if (hasForumTimes(block, forumsByCode)) return <TimeGrid block={block} date={date} filtered={filtered} />;
-  const entries = (block.forum_entries ?? []).filter((e) => {
-    if (!filtered) return true;
-    const f = forumsByCode[e.forum_code];
-    return (
-      isForum(e.forum_code) ||
-      (f?.talks ?? []).some((_t, i) => isTalk(talkId(e.forum_code, i))) ||
-      (f?.talks ?? []).some((t) => (t.speakers ?? []).some((s) => isSpeaker(s.name)))
-    );
-  });
-  return (
-    <>
-      {!filtered && (block.breaks ?? []).map((b, i) => (
-        <div key={`fbr${i}`} className="breakrow breakrow--forums">
-          <TimeRange start={b.start} end={b.end} />
-          <span className="breakrow__label">
-            <Icon name="coffee" size={14} /> {b.name}{t("schedule.breakNote")}
-          </span>
-        </div>
-      ))}
-      <motion.div
-        className="forumgrid"
-        variants={stagger(0, 0.035)}
-        initial="initial"
-        animate="animate"
-      >
-        {entries.map((e) => {
-          const f = forumsByCode[e.forum_code];
-          return (
-            <motion.div key={e.forum_code} variants={riseItem}>
-              <Link to={`/${confId}/forum/${e.forum_code}`} className="forumcard">
-                <span className="forumcard__room mono">
-                  <Icon name="pin" size={11} /> {e.room ?? f?.room}
-                </span>
-                <span className="forumcard__code mono">{e.forum_code}</span>
-                <div className="forumcard__title">{f?.title.zh ?? e.forum_code}</div>
-                <div className="forumcard__foot">
-                  {f?.sponsor && <span className="tag tag--sponsor">{f.sponsor}</span>}
-                  {f?.detail_extracted ? (
-                    <span className="forumcard__count">
-                      {t("common.reportsCount", { n: (f.talks ?? []).length })}
-                      <Icon name="chevron-right" size={13} />
-                    </span>
-                  ) : (
-                    <span className="forumcard__pending">
-                      {t("common.pending")}
-                      <Icon name="chevron-right" size={13} />
-                    </span>
-                  )}
-                </div>
-              </Link>
-            </motion.div>
-          );
-        })}
-      </motion.div>
-    </>
+  const { forumsByCode } = useConference();
+  // Both paths are time-axis boards showing the forums running in parallel: when
+  // talks carry real per-talk times, the proportional TimeGrid; otherwise the
+  // untimed board that bands the shared window at its real breaks.
+  return hasForumTimes(block, forumsByCode) ? (
+    <TimeGrid block={block} date={date} filtered={filtered} />
+  ) : (
+    <UntimedForumGrid block={block} date={date} filtered={filtered} />
   );
 }
 

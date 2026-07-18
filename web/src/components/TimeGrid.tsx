@@ -43,6 +43,7 @@ function useCoarsePointer(): boolean {
 const PX_PER_MIN = 3.4; // a 20-min talk (the median) ≈ 68px — fits time+title+speaker
 const HOUR = 60;
 const MIN_H = 30; // floor so even a 2-min talk stays legible & clickable
+const BRK_MIN_H = 22; // floor for a break band (short, single-line)
 const GAP = 4; // min vertical gap when talks are pushed apart
 
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -52,11 +53,16 @@ const toMin = (t: string): number => {
 };
 const fmt = (min: number): string => `${pad(Math.floor(min / 60))}:${pad(min % 60)}`;
 
-interface Cell {
-  t: Talk;
-  i: number;
-  top: number;
-  h: number;
+// A laid-out cell is either a talk or a break, positioned at its true time.
+type Cell =
+  | { kind: "talk"; t: Talk; i: number; top: number; h: number }
+  | { kind: "break"; name: string; start: string; end?: string | null; top: number; h: number };
+interface Brk {
+  s: number;
+  e: number;
+  name: string;
+  start: string;
+  end?: string | null;
 }
 interface Column {
   forum: Forum;
@@ -128,10 +134,20 @@ export default function TimeGrid({
     key: string;
     room: string;
     timed: { t: Talk; i: number; s: number; e: number }[];
+    breaks: Brk[];
     untimed: number;
   }[] = [];
   let lo = Infinity;
   let hi = -Infinity;
+  // Per-forum breaks (e.g. tea breaks): each column's break sits at its own real
+  // time — chinasoft's forums each break at a different clock. Assign a break to
+  // the room-segment whose talk span contains it (single-room: all breaks).
+  const brksInSpan = (segBreaks: Brk[], seg: { s: number; e: number }[]): Brk[] => {
+    if (!seg.length) return segBreaks;
+    const s0 = Math.min(...seg.map((x) => x.s));
+    const e0 = Math.max(...seg.map((x) => x.e));
+    return segBreaks.filter((b) => b.s >= s0 && b.s <= e0);
+  };
   for (const e of block.forum_entries ?? []) {
     const forum = forumsByCode[e.forum_code];
     if (!forum) continue;
@@ -148,6 +164,15 @@ export default function TimeGrid({
       lo = Math.min(lo, s);
       hi = Math.max(hi, e2);
     });
+    const fbreaks: Brk[] = (forum.breaks ?? [])
+      .filter((b) => b.start)
+      .map((b) => {
+        const s = toMin(b.start as string);
+        const e2 = b.end ? toMin(b.end) : s + 15;
+        lo = Math.min(lo, s);
+        hi = Math.max(hi, e2);
+        return { s, e: e2, name: b.name, start: b.start as string, end: b.end };
+      });
     if (timed.length === 0 && untimed === 0) continue;
     const roomStr = (e.room ?? forum.room ?? "").replace(/\s+/g, " ").trim();
     const roomParts = roomStr
@@ -166,6 +191,7 @@ export default function TimeGrid({
           key: `${e.forum_code}#${k}`,
           room: roomParts[k],
           timed: seg,
+          breaks: brksInSpan(fbreaks, seg),
           untimed: k === 0 ? untimed : 0,
         });
       });
@@ -177,6 +203,7 @@ export default function TimeGrid({
         key: e.forum_code,
         room: roomStr || "—",
         timed,
+        breaks: fbreaks,
         untimed,
       });
     }
@@ -201,12 +228,26 @@ export default function TimeGrid({
   let bodyH = propH;
   const columns: Column[] = raw.map((c) => {
     let cursor = 0;
-    const cells: Cell[] = c.timed.map(({ t, i, s, e }) => {
-      const desired = (s - lo) * PX_PER_MIN;
+    // Merge talks and breaks into one time-ordered stream so a break lands
+    // between the talks it falls between, then push down to avoid overlaps.
+    type Item =
+      | { s: number; e: number; talk: { t: Talk; i: number } }
+      | { s: number; e: number; brk: Brk };
+    const items: Item[] = [
+      ...c.timed.map((x) => ({ s: x.s, e: x.e, talk: { t: x.t, i: x.i } })),
+      ...c.breaks.map((b) => ({ s: b.s, e: b.e, brk: b })),
+    ].sort((a, b) => a.s - b.s || ("brk" in a ? 1 : -1));
+    const cells: Cell[] = items.map((it) => {
+      const desired = (it.s - lo) * PX_PER_MIN;
       const top = Math.max(desired, cursor);
-      const h = Math.max((e - s) * PX_PER_MIN, MIN_H);
+      const h =
+        "brk" in it
+          ? Math.max((it.e - it.s) * PX_PER_MIN, BRK_MIN_H)
+          : Math.max((it.e - it.s) * PX_PER_MIN, MIN_H);
       cursor = top + h + GAP;
-      return { t, i, top, h };
+      return "brk" in it
+        ? { kind: "break", name: it.brk.name, start: it.brk.start, end: it.brk.end, top, h }
+        : { kind: "talk", t: it.talk.t, i: it.talk.i, top, h };
     });
     const bottom = cursor + (c.untimed > 0 ? 26 : 0);
     bodyH = Math.max(bodyH, bottom);
@@ -234,7 +275,8 @@ export default function TimeGrid({
     ? columns
         .map((c) => ({
           ...c,
-          cells: c.cells.filter(({ t, i }) => relevant(c.code, i, t)),
+          // Breaks are context, not followable — drop them (and unfollowed talks).
+          cells: c.cells.filter((cell) => cell.kind === "talk" && relevant(c.code, cell.i, cell.t)),
           untimed: 0,
         }))
         .filter((c) => c.cells.length > 0)
@@ -286,7 +328,24 @@ export default function TimeGrid({
                 <div key={h} className="tgrid__line" style={{ top: (h - lo) * PX_PER_MIN }} />
               ))}
               {showNow && <div className="tgrid__nowline" style={{ top: nowTop }} />}
-              {c.cells.map(({ t, i, top, h }) => {
+              {c.cells.map((cell) => {
+                if (cell.kind === "break") {
+                  return (
+                    <div
+                      key={`br-${cell.start}-${cell.top}`}
+                      className="tgrid__break"
+                      style={{ top: cell.top, height: cell.h, minHeight: cell.h }}
+                    >
+                      <Icon name="coffee" size={12} />
+                      <span className="tgrid__breaktime mono">
+                        {cell.start}
+                        {cell.end ? `–${cell.end}` : ""}
+                      </span>
+                      <span className="tgrid__breakname">{cell.name}</span>
+                    </div>
+                  );
+                }
+                const { t, i, top, h } = cell;
                 const sp = t.speakers?.[0];
                 const to = `/${confId}/forum/${c.code}#talk-${i + 1}`;
                 const key = `${c.key}#${i}`;
