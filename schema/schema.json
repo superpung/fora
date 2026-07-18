@@ -247,6 +247,19 @@
           "items": { "$ref": "#/$defs/person" }
         },
         "talks": { "type": "array", "items": { "$ref": "#/$defs/talk" } },
+        "breaks": {
+          "description": "In-forum breaks (e.g. per-forum tea breaks) at their own time, when talks carry per-talk times. Distinct from a shared block-level break in the enclosing forums block.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "start": { "type": ["string", "null"] },
+              "end": { "type": ["string", "null"] }
+            },
+            "additionalProperties": false
+          }
+        },
         "poster": { "anyOf": [{ "$ref": "#/$defs/asset" }, { "type": "null" }] },
         "source_url": { "type": ["string", "null"], "description": "Official article-page URL for this forum (e.g. general_NNNN)" },
         "detail_extracted": { "type": "boolean", "description": "Whether the forum's details have been extracted" },

@@ -126,6 +126,9 @@ export interface Forum {
   description?: string | null;
   chairs?: Person[];
   talks?: Talk[];
+  /** Per-forum breaks (e.g. tea breaks) at their own time — used when talks carry
+      per-talk times. A shared break across parallel forums lives on the forums Block. */
+  breaks?: Break[];
   poster?: Asset | null;
   source_url?: string | null;
   detail_extracted?: boolean;

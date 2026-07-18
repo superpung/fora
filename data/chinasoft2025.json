@@ -1671,6 +1671,18 @@
               "abstract_status": "unknown",
               "type": "keynote"
             }
+          ],
+          "breaks": [
+            {
+              "name": "茶歇",
+              "start": "11:00",
+              "end": "11:15"
+            },
+            {
+              "name": "午餐",
+              "start": "12:05",
+              "end": "14:00"
+            }
           ]
         },
         {
@@ -2197,7 +2209,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/agent"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/agent",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:25",
+          "end": "10:45"
+        }
+      ]
     },
     {
       "code": "R10",
@@ -2382,7 +2401,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/ai-software-testing"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/ai-software-testing",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "16:30",
+          "end": "16:50"
+        }
+      ]
     },
     {
       "code": "R22",
@@ -2594,7 +2620,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/analysis-safety"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/analysis-safety",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:30",
+          "end": "10:50"
+        }
+      ]
     },
     {
       "code": "R23",
@@ -2799,7 +2832,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/architecture"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/architecture",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "15:30",
+          "end": "15:50"
+        }
+      ]
     },
     {
       "code": "R14",
@@ -2991,7 +3031,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/blockchain"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/blockchain",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:35",
+          "end": "10:50"
+        }
+      ]
     },
     {
       "code": "R18",
@@ -3180,7 +3227,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/cloud"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/cloud",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:40",
+          "end": "10:50"
+        }
+      ]
     },
     {
       "code": "R29",
@@ -3496,7 +3550,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/eda"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/eda",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "16:45",
+          "end": "17:00"
+        }
+      ]
     },
     {
       "code": "R3",
@@ -3806,7 +3867,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/embodied-intelligence"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/embodied-intelligence",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "16:20",
+          "end": "16:45"
+        }
+      ]
     },
     {
       "code": "R27",
@@ -3987,7 +4055,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/formal-llm"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/formal-llm",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:35",
+          "end": "10:55"
+        }
+      ]
     },
     {
       "code": "R6",
@@ -4159,7 +4234,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/intelligent-arch"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/intelligent-arch",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "15:20",
+          "end": "15:35"
+        }
+      ]
     },
     {
       "code": "R5",
@@ -4430,7 +4512,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/intelligent-dev"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/intelligent-dev",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:25",
+          "end": "10:50"
+        }
+      ]
     },
     {
       "code": "R25",
@@ -4653,7 +4742,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/language"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/language",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:29",
+          "end": "10:40"
+        }
+      ]
     },
     {
       "code": "R9",
@@ -4828,7 +4924,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/llm-data"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/llm-data",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:30",
+          "end": "11:00"
+        }
+      ]
     },
     {
       "code": "R11",
@@ -4997,7 +5100,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/llm-driven-testing"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/llm-driven-testing",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "16:35",
+          "end": "16:50"
+        }
+      ]
     },
     {
       "code": "R13",
@@ -5215,7 +5325,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/llm-reliability"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/llm-reliability",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "15:25",
+          "end": "15:40"
+        }
+      ]
     },
     {
       "code": "R4",
@@ -5432,7 +5549,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/mobile"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/mobile",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "16:30",
+          "end": "16:50"
+        }
+      ]
     },
     {
       "code": "R33",
@@ -5584,7 +5708,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/multimodal-ops-arch"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/multimodal-ops-arch",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:30",
+          "end": "10:50"
+        }
+      ]
     },
     {
       "code": "R28",
@@ -5760,7 +5891,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/neural-symbolic"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/neural-symbolic",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:30",
+          "end": "10:50"
+        }
+      ]
     },
     {
       "code": "R20",
@@ -5958,7 +6096,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/opensource"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/opensource",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:30",
+          "end": "10:45"
+        }
+      ]
     },
     {
       "code": "R32",
@@ -6103,7 +6248,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/quantum-software"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/quantum-software",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:30",
+          "end": "10:45"
+        }
+      ]
     },
     {
       "code": "R31",
@@ -6378,7 +6530,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/requirements-engineering"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/requirements-engineering",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:30",
+          "end": "10:50"
+        }
+      ]
     },
     {
       "code": "R34",
@@ -6725,7 +6884,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/rust-system"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/rust-system",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:15",
+          "end": "10:35"
+        }
+      ]
     },
     {
       "code": "R17",
@@ -6930,7 +7096,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/safety-software"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/safety-software",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:45",
+          "end": "11:00"
+        }
+      ]
     },
     {
       "code": "R8",
@@ -7095,7 +7268,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/service-computing"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/service-computing",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "16:45",
+          "end": "17:00"
+        }
+      ]
     },
     {
       "code": "R12",
@@ -7300,7 +7480,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/simulation"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/simulation",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:30",
+          "end": "10:50"
+        }
+      ]
     },
     {
       "code": "R35",
@@ -7438,7 +7625,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/software-data-space"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/software-data-space",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:30",
+          "end": "10:50"
+        }
+      ]
     },
     {
       "code": "R2",
@@ -7581,7 +7775,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/software-frontier"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/software-frontier",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:30",
+          "end": "10:50"
+        }
+      ]
     },
     {
       "code": "R7",
@@ -7740,7 +7941,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/space-software-os"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/space-software-os",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:30",
+          "end": "10:50"
+        }
+      ]
     },
     {
       "code": "R30",
@@ -8124,7 +8332,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/system-frontier-security"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/system-frontier-security",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "16:30",
+          "end": "16:50"
+        }
+      ]
     },
     {
       "code": "R16",
@@ -8296,7 +8511,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/system-model"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/system-model",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:35",
+          "end": "10:55"
+        }
+      ]
     },
     {
       "code": "R21",
@@ -8501,7 +8723,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/trusted-execution"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/trusted-execution",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "16:40",
+          "end": "17:00"
+        }
+      ]
     },
     {
       "code": "R1",
@@ -8746,7 +8975,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/youth"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/academic-forum/youth",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "16:30",
+          "end": "16:50"
+        }
+      ]
     },
     {
       "code": "I5",
@@ -8937,7 +9173,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/industry-forum/cloud-native"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/industry-forum/cloud-native",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:20",
+          "end": "10:50"
+        }
+      ]
     },
     {
       "code": "I12",
@@ -9099,7 +9342,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/industry-forum/domestic-os-future"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/industry-forum/domestic-os-future",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "16:25",
+          "end": "16:40"
+        }
+      ]
     },
     {
       "code": "I7",
@@ -9299,7 +9549,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/industry-forum/embedded-software"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/industry-forum/embedded-software",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:20",
+          "end": "10:35"
+        }
+      ]
     },
     {
       "code": "I10",
@@ -9519,7 +9776,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/industry-forum/heterogeneous-os"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/industry-forum/heterogeneous-os",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:30",
+          "end": "10:50"
+        }
+      ]
     },
     {
       "code": "I2",
@@ -9707,7 +9971,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/industry-forum/ide"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/industry-forum/ide",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "15:40",
+          "end": "15:50"
+        }
+      ]
     },
     {
       "code": "I1",
@@ -9892,7 +10163,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/industry-forum/key-software-ai"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/industry-forum/key-software-ai",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "15:30",
+          "end": "15:40"
+        }
+      ]
     },
     {
       "code": "I4",
@@ -10057,7 +10335,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/industry-forum/llm-software-dev"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/industry-forum/llm-software-dev",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:30",
+          "end": "10:50"
+        }
+      ]
     },
     {
       "code": "I9",
@@ -10252,7 +10537,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/industry-forum/os-security"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/industry-forum/os-security",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:20",
+          "end": "10:35"
+        }
+      ]
     },
     {
       "code": "I3",
@@ -10438,7 +10730,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/industry-forum/riscv"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/industry-forum/riscv",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:20",
+          "end": "10:40"
+        }
+      ]
     },
     {
       "code": "I8",
@@ -10630,7 +10929,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/industry-forum/smart-terminal"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/industry-forum/smart-terminal",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "16:30",
+          "end": "16:40"
+        }
+      ]
     },
     {
       "code": "I11",
@@ -10815,7 +11121,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/industry-forum/trusted-embedded"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/industry-forum/trusted-embedded",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "16:30",
+          "end": "16:50"
+        }
+      ]
     },
     {
       "code": "I6",
@@ -10993,7 +11306,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/industry-forum/vehicle-software"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/industry-forum/vehicle-software",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "16:30",
+          "end": "16:50"
+        }
+      ]
     },
     {
       "code": "E1",
@@ -11131,7 +11451,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/education-forum/basic-education"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/education-forum/basic-education",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:30",
+          "end": "10:50"
+        }
+      ]
     },
     {
       "code": "E4",
@@ -11289,7 +11616,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/education-forum/formal-methods"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/education-forum/formal-methods",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:30",
+          "end": "11:00"
+        }
+      ]
     },
     {
       "code": "E2",
@@ -11462,7 +11796,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/education-forum/software-engineering"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/education-forum/software-engineering",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "15:30",
+          "end": "15:40"
+        }
+      ]
     },
     {
       "code": "E5",
@@ -11667,7 +12008,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/education-forum/special-software-college"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/education-forum/special-software-college",
+      "breaks": [
+        {
+          "name": "茶歇与交流",
+          "start": "10:30",
+          "end": "10:40"
+        }
+      ]
     },
     {
       "code": "E3",
@@ -11884,7 +12232,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/education-forum/system-software"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/education-forum/system-software",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "15:30",
+          "end": "15:50"
+        }
+      ]
     },
     {
       "code": "S1",
@@ -12699,7 +13054,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/special-issue-forum/formal-methods"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/special-issue-forum/formal-methods",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "15:45",
+          "end": "16:00"
+        }
+      ]
     },
     {
       "code": "S8",
@@ -13164,7 +13526,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/special-issue-forum/foundation-models-engineering"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/special-issue-forum/foundation-models-engineering",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "15:30",
+          "end": "15:50"
+        }
+      ]
     },
     {
       "code": "S9",
@@ -13334,7 +13703,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/special-issue-forum/genai-software-systems"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/special-issue-forum/genai-software-systems",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:30",
+          "end": "10:50"
+        }
+      ]
     },
     {
       "code": "S5",
@@ -13569,7 +13945,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/special-issue-forum/high-reliability-hcps"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/special-issue-forum/high-reliability-hcps",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "15:30",
+          "end": "15:50"
+        }
+      ]
     },
     {
       "code": "S6",
@@ -13821,7 +14204,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/special-issue-forum/lightweight-llm"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/special-issue-forum/lightweight-llm",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "15:40",
+          "end": "15:50"
+        }
+      ]
     },
     {
       "code": "S7",
@@ -14158,7 +14548,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/special-issue-forum/llm-industrial-software"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/special-issue-forum/llm-industrial-software",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "15:30",
+          "end": "15:45"
+        }
+      ]
     },
     {
       "code": "S3",
@@ -14350,7 +14747,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/special-issue-forum/riscv-ai-systems"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/special-issue-forum/riscv-ai-systems",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "15:40",
+          "end": "16:10"
+        }
+      ]
     },
     {
       "code": "S2",
@@ -14669,7 +15073,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/special-issue-forum/software-construction-supply-chain"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/special-issue-forum/software-construction-supply-chain",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "15:30",
+          "end": "15:50"
+        }
+      ]
     },
     {
       "code": "P4",
@@ -14834,7 +15245,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/regular-forum/phd-award"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/regular-forum/phd-award",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:30",
+          "end": "10:50"
+        }
+      ]
     },
     {
       "code": "P3",
@@ -15172,7 +15590,24 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/regular-forum/top-venues"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/regular-forum/top-venues",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:30",
+          "end": "10:50"
+        },
+        {
+          "name": "午餐",
+          "start": null,
+          "end": null
+        },
+        {
+          "name": "茶歇",
+          "start": "15:20",
+          "end": "15:50"
+        }
+      ]
     },
     {
       "code": "P1",
@@ -15477,7 +15912,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/regular-forum/women-scholars"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/regular-forum/women-scholars",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:30",
+          "end": "10:50"
+        }
+      ]
     },
     {
       "code": "P2",
@@ -15715,7 +16157,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/regular-forum/young-scholars"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/regular-forum/young-scholars",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:25",
+          "end": "10:50"
+        }
+      ]
     },
     {
       "code": "C2",
@@ -16749,7 +17198,14 @@
         }
       ],
       "detail_extracted": true,
-      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/competition/prototype-competition"
+      "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/competition/prototype-competition",
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:28",
+          "end": "10:50"
+        }
+      ]
     },
     {
       "code": "C4",
