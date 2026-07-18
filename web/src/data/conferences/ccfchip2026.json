@@ -9549,17 +9549,15 @@
               "end": "09:50",
               "type": "keynote",
               "title": {
-                "zh": "报告题目待定",
+                "zh": "基于大失配外延的氮化物宽禁带半导体材料和芯片",
                 "en": null
               },
-              "title_status": "tbd",
+              "title_status": "confirmed",
               "speakers": [
                 {
-                  "name": "张荣",
-                  "affiliation_raw": "厦门大学教授",
-                  "honorifics": [
-                    "中国科学院院士"
-                  ]
+                  "name": "沈波",
+                  "affiliation_raw": "北京大学博雅特聘教授",
+                  "honorifics": []
                 }
               ],
               "abstract": null,
@@ -9860,6 +9858,6 @@
     "forums_total": 48,
     "forums_detail_extracted": 48,
     "notes": "总览级信息+结构化内容完整；48/48 论坛已视觉解析，仅 CF10 因源海报缺失留空。",
-    "content_sha256": "6c2e43419124cd33e40e1c26fd0ed2642b5c58cc1afa7c6e0e0af5f4a055c129"
+    "content_sha256": "3e01f631371ef6087d7bae75e1bb04d571aed13c3b7a51c5ce747d54698af016"
   }
 }

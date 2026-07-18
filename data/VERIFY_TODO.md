@@ -5,9 +5,20 @@ the official site (https://ccf.org.cn/ccfchip2026). `CFxx#n` = the n-th talk in 
 forum, 0-indexed. Status legend: ✅ done · ⏭️ skipped (site unchanged) · ⏳ pending.
 
 Last audited: 2026-07-18 (full cross-check of all 48 forums against the official
-PDF handbook).
+PDF handbook). Re-audited 2026-07-19 to also cross-check the **plenary keynote
+agenda spreads** (pp. 07-10 of the handbook), not just the 48 forums — this
+caught the 7/19 second-keynote change the earlier pass missed (see below).
 
 ## Resolved
+- ✅ **7/19 keynote #2 (09:10-09:50)** — the handbook (exported 2026-07-14, newer
+  than the website) replaced the placeholder **张荣 (厦门大学, 报告题目待定, TBD)**
+  with a confirmed talk: **沈波 (北京大学博雅特聘教授) — “基于大失配外延的氮化物宽
+  禁带半导体材料和芯片”**. Updated in `source/build_dataset.py`. NOTE: 张荣 remains
+  in the 大会指导委员会 (guidance committee) — that entry is unrelated and unchanged.
+  Why the first pass missed it: the earlier PDF cross-check focused on the 48
+  forum spreads and trusted the *website* for the keynote list (which still shows
+  张荣 TBD); the handbook's keynote agenda spread was not diffed. Keynote spreads
+  are now part of the audit.
 - ✅ **CF08 / CF16 / CF21 titles** — corrected against the official PDF handbook
   during the full 48-forum cross-check (all other titles/chairs/talks/speakers
   matched): CF08 → “从芯片到系统：AI系统可靠性与容错技术”, CF16 →
@@ -26,7 +37,6 @@ PDF handbook).
   “上杭州荷声科技有限公司” (stray “上”). Left as-is with its `flag`; revisit if the
   organizers fix it.
 - ⏭️ **P1 pending titles/abstracts** — not yet updated on the site, leave as-is:
-  - keynote **张荣** (厦门大学, 7/19 09:10) — title still TBD.
   - **CF01#0 (屈钢)** — title + abstract still “（待确认）”.
   - **CF43#3 (魏建强)** — abstract still “待后期补充”.
   - **CF24#2 (刘马良)** — abstract still missing (poster layout merged it into the
