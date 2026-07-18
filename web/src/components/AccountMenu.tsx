@@ -1,9 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocation } from "react-router-dom";
 import { useGistSync } from "@repus/gist-sync/react";
 import { useI18n } from "../lib/i18n-store";
 import { syncConfig } from "../lib/sync";
 import { useFollowActions } from "../lib/follow-actions-store";
+import { bugReportUrl } from "../lib/repo";
 import { easeOut } from "../lib/motion";
 import Icon, { type IconName } from "./Icon";
 import ConfirmDialog from "./ConfirmDialog";
@@ -42,6 +44,14 @@ export default function AccountMenu() {
   const actions = useFollowActions();
   const { t, lang } = useI18n();
   const zh = lang !== "en";
+  const loc = useLocation();
+  // "New issue" link with the bug template pre-filled; rebuilt per route + language
+  // so the auto-captured page URL stays current.
+  const bugUrl = useMemo(() => {
+    const confId = loc.pathname.split("/").filter(Boolean)[0];
+    const origin = typeof window !== "undefined" ? window.location.origin : "";
+    return bugReportUrl(zh, confId, `${origin}${loc.pathname}${loc.search}${loc.hash}`);
+  }, [zh, loc.pathname, loc.search, loc.hash]);
   const [open, setOpen] = useState(false);
   const [expExport, setExpExport] = useState(false);
   const [confirmOut, setConfirmOut] = useState(false);
@@ -268,6 +278,21 @@ export default function AccountMenu() {
                 </button>
               </>
             )}
+
+            {/* Report a bug: opens the repo's new-issue form with the template
+                pre-filled (page/conference/version/browser auto-captured). */}
+            <div className="acct-divider" />
+            <a
+              className="acct-row"
+              href={bugUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => setOpen(false)}
+            >
+              <Icon name="bug" size={15} />
+              <span className="acct-row__label">{zh ? "问题反馈" : "Report a bug"}</span>
+              <Icon name="external" size={13} className="acct-row__meta" aria-hidden />
+            </a>
           </motion.div>
         )}
       </AnimatePresence>
