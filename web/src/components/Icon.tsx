@@ -43,6 +43,7 @@ export type IconName =
   | "divider"
   | "trash"
   | "bug"
+  | "bell"
   | "dot";
 
 // Each entry is the inner markup of a 0 0 24 24 viewBox, stroked with currentColor.
@@ -61,6 +62,12 @@ const PATHS: Record<IconName, ReactElement> = {
     <>
       <circle cx="12" cy="12" r="8.5" />
       <path d="M12 7v5l3.5 2" />
+    </>
+  ),
+  bell: (
+    <>
+      <path d="M6 9a6 6 0 0 1 12 0c0 4 1.2 5.5 2 6.5H4c.8-1 2-2.5 2-6.5z" />
+      <path d="M10 20a2 2 0 0 0 4 0" />
     </>
   ),
   search: (
