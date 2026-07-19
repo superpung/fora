@@ -21848,7 +21848,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件供应链",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21861,7 +21870,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件供应链",
+            "开源软件"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21874,7 +21892,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "智能体",
+            "软件安全"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21887,7 +21914,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件维护",
+            "程序分析"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21900,7 +21936,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "程序分析",
+            "软件维护"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21913,7 +21958,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "缺陷检测",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21926,7 +21980,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件安全",
+            "程序分析"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21939,7 +22002,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21952,7 +22024,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "操作系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21965,7 +22046,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件测试"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21978,7 +22067,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "编译器"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21991,7 +22089,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "移动软件"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22004,7 +22111,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件安全",
+            "软件供应链"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22017,7 +22133,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件供应链"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22030,7 +22154,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "AI4SE",
+            "代码生成"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22043,7 +22176,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "代码生成",
+            "智能体"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22056,7 +22198,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "移动软件"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22069,7 +22220,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件测试"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22082,7 +22241,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "开源软件"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22095,7 +22262,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "移动软件"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22108,7 +22284,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22121,7 +22306,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "代码生成",
+            "智能体"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22134,7 +22328,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "AI4SE"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -22177,7 +22379,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "形式化方法"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22190,7 +22400,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "形式化方法"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22203,7 +22421,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "形式化方法"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -22278,7 +22504,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "产业生态"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22296,7 +22530,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "操作系统",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22314,7 +22557,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "存储",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22332,7 +22584,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "机器学习系统",
+            "分布式系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22350,7 +22611,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "操作系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22368,7 +22638,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件供应链",
+            "移动软件"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22386,7 +22665,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "移动软件"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22404,7 +22692,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "程序分析",
+            "移动软件"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22422,7 +22719,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "程序分析",
+            "软件安全"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22440,7 +22746,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件架构",
+            "软件维护"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22453,7 +22768,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "产业生态"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22466,7 +22789,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "产业生态"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22484,7 +22815,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "云计算",
+            "分布式系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22502,7 +22842,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "编译器",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22520,7 +22869,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "编译器",
+            "存储"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22538,7 +22896,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "云计算",
+            "编译器"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22556,7 +22923,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "硬件安全",
+            "存储"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22574,7 +22950,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "物联网",
+            "隐私计算"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22592,7 +22977,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件安全",
+            "程序分析"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22610,7 +23004,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "编译器"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22628,7 +23031,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "程序分析",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -22641,7 +23053,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "产业生态"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
