@@ -11,6 +11,7 @@
     { "key": "数据流计算", "zh": "数据流计算", "en": "Dataflow Computing", "category": "ic-design" },
     { "key": "近似计算", "zh": "近似计算", "en": "Approximate Computing", "category": "ic-design" },
     { "key": "先进封装", "zh": "先进封装 / Chiplet", "en": "Advanced Packaging / Chiplet", "category": "ic-process" },
+    { "key": "制造工艺", "zh": "制造工艺 / 光刻", "en": "Fabrication / Lithography", "category": "ic-process" },
     { "key": "互连", "zh": "互连", "en": "Interconnect", "category": "ic-process" },
     { "key": "光电子", "zh": "光电子 / 光互连", "en": "Photonics / Optical Interconnect", "category": "ic-process" },
     { "key": "射频毫米波", "zh": "射频 / 毫米波 / 太赫兹", "en": "RF / mmWave / Terahertz", "category": "ic-process" },
