@@ -19051,7 +19051,16 @@
           ],
           "abstract": "在大模型驱动的智能化开发时代，代码不仅是程序逻辑的载体，更是训练与推理的核心语料。随着 GPT‑4o 等生成式模型被广泛用于自动补全、代码生成和漏洞检测，模型对代码语义深度理解的需求空前高涨；同时，大规模自动化生成代码也放大了安全、合规与版权风险。要在提升生成质量的同时落实监管措施，亟须一种能够深入解析代码语义与功能意图、演化路径与依赖关系的系统化方法，为模型提供可追溯的知识底座，并为治理部门提供透明、可审计的视角。本次报告将系统介绍我们围绕“软件基因组”展开的整体方案。首先，通过指纹化切片与多维依赖网络，提取跨版本、跨项目的“基因片段”，构建软件族谱与迁移图，揭示功能模块在社区中的流动与变异；随后，建立层级化的软件分类学，为开源生态赋予“科—属—种”式的精准标签；在此基因组数据之上，进一步提出可信开源仓库的构建方法，实现代码来源可溯、风险可控、演化可追，为大模型训练与合规审计提供统一且可持续的基础设施。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "指纹化切片与依赖网络构建软件基因组与可信开源仓库",
+            "en": null
+          },
+          "topics": [
+            "软件供应链",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19071,7 +19080,16 @@
           ],
           "abstract": "移动生态的重要一员，移动应用中曾出现过的软件质量保障问题（比如安全问题、性能缺陷、兼容性等）在鸿蒙生态中同样存在。但是，鸿蒙所采用的技术栈（基于全新的ArkTS语言）与Android和iOS均不相同，针对当前移动生态构建的程序分析工具（比如针对Android世界的Soot）并不能直接用于鸿蒙应用分析。因此，面向鸿蒙生态软件质量保障需要单独构建一套程序分析工具链。本报告将介绍我们在该方向的一些初步探索，首先介绍面向鸿蒙生态构建的程序分析技术底座，包括静态分析框架ArkAnalyzer和动态分析框架HapTest。接着介绍基于这两个框架实现的面向鸿蒙软件质量保障的软件工程工具链及其应用实践。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向鸿蒙的ArkAnalyzer静态分析与HapTest动态分析工具链",
+            "en": null
+          },
+          "topics": [
+            "移动软件",
+            "程序分析"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19091,7 +19109,16 @@
           ],
           "abstract": "软件缺陷定位任务以程序表层的执行错误为入口，通过分析程序运行过程中异常的内部状态，定位到底层代码级的缺陷根因。目前主流的基于频谱和基于突变的缺陷定位，以及当前最先进的SmartFL技术分别采用覆盖信息、突变信息及以程序语义为代表的信息，作为观测程序内部状态的窗口，所用信息过于宽泛、针对性不足，且三类(项)技术分别受限于语句风险值捆绑、突变成本过高及信息规模庞大等瓶颈。为此，最近一项新的基于异常触发信息的缺陷定位技术EXPECT提出通过程序自带的异常处理语句(Try-catch块)对程序错误的执行状态进行监控，以更低的成本实现了超越上述主流技术的缺陷定位效果，该方法的运行前提是错误程序中必须含有足量的异常处理语句。然而，在真实的开源环境中，许多软件程序并没有设置良好的异常处理机制，导致其代码仅包含十分稀疏甚至不包含异常处理语句，这直接影响EXPECT技术赖以运行的基础。为此，提出基于异常检查点植入的软件缺陷定位方法INSPECT。通过为错误程序自动植入临时的异常处理语句作为对运行时内部状态的检查点、设计更加先进的程序语句风险值计算方法，将EXPECT方法的适用范围拓展到不包含异常处理语句的更普遍程序，有效将异常触发信息这一缺陷定位高效源数据的应用场景进行了拓展，实现了泛化性的提升。实验结果表明，INSPECT比现有最先进技术实现了更好的缺陷定位效果。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "基于异常检查点植入的软件缺陷定位方法INSPECT",
+            "en": null
+          },
+          "topics": [
+            "缺陷检测",
+            "程序分析"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19111,7 +19138,17 @@
           ],
           "abstract": "随着大语言模型(large language model， LLM)在代码生成领域的快速发展，其生成的代码在智能化基础软件供应链中的应用日益广泛.基础软件供应链中集成了大量基于LLM生成代码开发的第三方模块与组件.然而，由于LLM主要基于开源代码进行训练，训练代码中的缺陷与安全漏洞可能会导致生成代码存在潜在错误与供应链安全问题.为此，学术界有针对性地提出了EvalPlus等测试技术，但这些技术主要依赖基于概率的测试用例生成机制，难以实现对供应链关键路径的全面覆盖，导致深层次逻辑性缺陷难以被有效发现.为解决上述问题，本文提出一种融合符号执行的供应链LLM生成代码的缺陷检测方法，该方法通过符号执行挂载机制自动识别LLM生成代码的输入参数并进行适配和符号挂载，制导符号执行引擎对程序的关键路径进行精确的约束分析，生成高效的边界测试用例，从而发现现有方法难以检测到的深层逻辑性程序缺陷.本文在现有主流基准数据集上，对LMSYS Chatbot Arena中排名前11的主流LLM进行了实验评估.实验结果表明，本文方法能够更有效地检测出LLM生成代码中的逻辑性缺陷，使代码的平均测试通过率降低了3.99%至18.98%，平均测试覆盖率提高了3.31%至8.19%，有效提升了LLM生成代码的正确性和智能化基础软件供应链的安全性.",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "融合符号执行检测供应链中LLM生成代码的逻辑性缺陷",
+            "en": null
+          },
+          "topics": [
+            "软件供应链",
+            "代码生成",
+            "缺陷检测"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19131,7 +19168,16 @@
           ],
           "abstract": "第三方库（TPL）在软件开发中得到了广泛应用，但也带来了安全漏洞和许可证冲突等风险。为应对这些挑战，软件成分分析（SCA）技术应运而生，旨在通过识别和分析软件中使用的开源组件及其依赖关系，帮助开发者检测安全漏洞、过时补丁和许可证合规性问题， 确保软件供应链的安全。然而，现有SCA工具在C/C++领域存在三大局限:缺乏全面的TPL特征库、难以识别库粒度复用，以及对TPL依赖关系的分析能力不足。为此，本研究提出C/C++源代码软件成分分析技术—CAnalyzer，用于软件库粒度的复用检测场景。CAnalyzer通过整合15个平台的数据，构建了一个包含33,100个TPL和30,047,290个函数的特征库，并通过特征库预处理与多重阈值匹配策略，显著提升了TPL成分定位的准确性。此外，CAnalyzer还通过解析源码中的依赖指令，实现了TPL间依赖关系的自动化构建。实验结果表明，CAnalyzer在成分识别中准确率为90.63%，召回率为86.57%。其TPL识别准确性和全面性优于CENTRIS、TPLite和OSSFP。在TPL依赖关系检测中，CAnalyzer的召回率和准确率分别为94.79%和98.99%。 目前，CAnalyzer已被OpenHarmony社区采纳，成功帮助其识别了689个代码仓库中的166项外部组件，进一步彰显了工具在开源社区管理中的重要价值。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向C/C++源代码的软件成分分析技术CAnalyzer",
+            "en": null
+          },
+          "topics": [
+            "软件供应链",
+            "程序分析"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19151,7 +19197,16 @@
           ],
           "abstract": "针对跨项目软件缺陷预测中数据隐私与项目异构性的双重挑战，本文提出一个名为PRIDE-SDP的创新框架。该框架的核心贡献在于深度融合了三种关键技术：采用个性化联邦学习范式为每个异构项目定制专属预测模型，集成提供严格数学保障的(ϵ,δ)-差分隐私机制保护数据不出本地，并设计了一个专用的时间-上下文融合网络（TCFN）以高效捕捉软件度量特征。在覆盖27个开源项目和3个企业项目的6个数据集组上的实验验证了本框架的有效性：与先进的跨项目缺陷预测基线相比，PRIDE-SDP平均AUC提升10.7%，F1-score提升7.3%；在企业数据集上表现更加突出，相比先进的基线方法，MCC平均提升45.2%，Effort@20%平均提升29.5%，F1-Score平均提升35.4%。同时，框架在提供较强隐私保障时，其平均性能保持率仍能达到最佳性能的98%以上，并且在成员推理攻击实验中能将攻击者的攻击准确率平均降低超过36%。实验结果表明，PRIDE-SDP在保持高性能的同时，有效兼顾了隐私保护与个性化适应能力。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "个性化联邦学习与差分隐私的跨项目缺陷预测PRIDE-SDP",
+            "en": null
+          },
+          "topics": [
+            "缺陷检测",
+            "隐私计算"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19171,7 +19226,16 @@
           ],
           "abstract": "作为 Web应用安全漏洞检测的核心技术之一，静态应用安全测试（SAST）具备广泛的业界应用场景。然而，现有静态分析工具受限于底层污点分析算法设计，难以应对现代 Web应用中的异步请求模式和多源输入语义等复杂逻辑，直接影响其漏洞检测性能。对此，提出了一种面向 Web安全漏洞检测的多数据流静态分析方法，旨在对传统污点分析算法能力进行多维度扩展，以提升其检测能力与泛用性：在纵向维度上，引入多段数据流分析，通过关联与迭代算法综合考虑不同控制流路径上的数据依赖关系，有效支撑需要多次异步调用触发的深层漏洞检测需求；在横向维度上，引入多标签数据流分析，利用污染标签区分不同输入来源，获取更细致的程序上下文语义信息，提升与复杂语义相关的漏洞检测精确度。基于上述方法实现了面向 Java/JavaScript Web应用的漏洞检测原型系统 MultiFlow，实验评估结果表明，在包含 60 个真实 Web应用与第三方组件的数据集中，MultiFlow 的多数据流分析方法具备良好的有效性，在存储型、越权、原型链污染等复杂 Web 漏洞检测任务上分别取得了87.18%、75.00% 与 83.72% 的准确率，已获得 8 个 CVE 编号；与现有方法相比，MultiFlow以更少的分析开销实现了更高的漏洞检测准召率，验证了其实用价值。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向Web应用漏洞检测的多数据流静态分析MultiFlow",
+            "en": null
+          },
+          "topics": [
+            "程序分析",
+            "软件安全"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19191,7 +19255,16 @@
           ],
           "abstract": "软件包库的安全性是软件供应链分析的重要一环，但是现有研究和工具往往缺乏对软件包库中外部语言调用的有效分析. PyPI是Python语言的官方软件包库，其中存储海量不同应用领域的Python软件包.这些软件包除了包含Python语言编写的程序，还常常包含通过Python的外部接口Python/C API调用的C/C++外部语言程序.分析Python软件包库中外部语言调用的安全性对于保障软件供应链的安全可靠具有重要意义.通过分析互操作官方文档，以及互操作程序分析的相关方法和工具，构建Python-C/C++互操作程序的漏洞基准套件，其中包括9小类行为共计15种漏洞模式的基准测试程序，覆盖内存、类型、异常、并发和数值5大类语言特性，以及安装量最大的16个包含C/C++外部调用的Python软件包中的互操作程序漏洞.通过在漏洞基准套件上评估已有的先进Python-C/C++互操作漏洞检查工具，对比分析现有研究和工具的可靠性、完备性和可扩展性，分析总结Python-C/C++互操作安全分析的现状和不足.通过分析超过700个漏洞警告，确认在6个PyPI库中新发现3种共计21个实际漏洞.",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "Python软件包库中C/C++外部语言调用的安全性分析",
+            "en": null
+          },
+          "topics": [
+            "软件供应链",
+            "软件安全"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19211,7 +19284,16 @@
           ],
           "abstract": "随着基础软件规模的不断扩大和复杂度的持续提升，其可信性已成为保障国家信息基础设施与软件供应链安全的核心.C/C++等语言编写的基础软件中普遍存在的内存泄漏等缺陷，是其可信性的重大威胁.现有的过程间静态分析方法在应对大型基础软件时，普遍面临因上下文敏感性导致的\"组合爆炸\"和因路径不敏感性导致的“精度不足”主要挑战.为应对此挑战，本文提出一种可组合的路径敏感内存分析框架（Composable and Path-Sensitive Memory Analysis， CPSMA）.该框架的核心是一种高阶函数式摘要机制，它将函数的内存行为及其路径约束抽象为一个轻量级、可实例化的“高阶函数”.其“可组合(Composable)”特性通过将摘要的离线生成与调用点的在线实例化过程解耦，高效地将调用上下文融入摘要，从而避免了全局分析的组合爆炸问题，尤其适用于大规模软件供应链的成分分析场景.其“路径敏感(Path-Sensitive)”特性则通过与符号执行的深度融合，在摘要实例化过程中利用路径约束进行摘要化剪枝，在可控开销下实现了端到端的精确路径分析.在多个标准C/C++基准测试集上，与主流静态分析工具相比，该框架的基础工具(CPSMA-Base)在保持高精度的同时，分析效率提升了6%~60%;其完全路径敏感工具(CPSMA-PS)则进一步将内存泄漏检测的F1分数提升了40.8%，在精度和效率上均展现出显著优势，为基础软件的可信构造提供了一种有效的静态验证手段.",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向基础软件的组合式路径敏感内存泄漏分析CPSMA",
+            "en": null
+          },
+          "topics": [
+            "程序分析",
+            "软件安全"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19231,7 +19313,16 @@
           ],
           "abstract": "日志数据记录了系统的运行状态、用户行为及错误信息。基于日志的异常检测可快速识别潜在的安全风险或性能瓶颈，提升运维效率，助力故障诊断。然而， 现有的日志异常检测方法仍面临诸多挑战，如无法有效适应系统升级引起的日志模式变化， 缺乏高效反馈机制导致难以持续保持检测性能等。为此， 本文提出一种新型的日志异常检测框架 PCLog，采用强化学习方法中的近端策略优化算法（PPO）进行模型训练。本方案将检测模型视为智能体，日志对应的语义向量视为状态，事件视为动作，通过最大化正常序列的累计奖励来学习系统的正常行为模式从而实现异常检测。此外，当检测性能下降时，PCLog可通过收集错误预测的样本作为专家示范数据， 并结合模仿学习中的行为克隆方法，最大化专家数据的对数似然，从而使模型更有效地逼近专家行为， 实现模型的自适应修正，有效减少误报率，提升系统长期运行的可靠性。在 HDFS、BGL 与 OpenStack 三大公开日志数据集上的实验证明，PCLog相较于现有方法表现更优，具备较强的动态日志模式适应能力。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "基于近端策略优化与行为克隆的自适应日志异常检测PCLog",
+            "en": null
+          },
+          "topics": [
+            "智能运维",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19251,7 +19342,15 @@
           ],
           "abstract": "Discord 作为一种新兴的在线交流平台，近年来在开源软件开发过程中被广泛采用。现有研究针对Discord 平台提出特定方法与技术，以协助软件实践者在该平台高效检索信息、识别对话历史中的重复问题，并构建消息数据集以挖掘有价值的信息。然而，针对开源软件实践者在 Discord 平台上的沟通行为，尚缺乏系统性、全面性的实证研究。深入理解此类沟通行为，对于提升开源社区协作效率及开源软件开发过程中的问题解决具有重要意义。为填补该研究空白，本文围绕 Discord 平台上开源软件实践者的沟通开展了大规模实证研究，构建两个数据集：数据集 I 来源于七个开源软件社区，共包含 616 443 条消息；数据集 II 基于数据集 I 经人工筛选验证，包含 17 289 条高质量消息。基于上述数据集，从消息层面与对话层面两个维度，系统刻画了开源软件实践者的沟通特征，包括参与度、互动模式及讨论主题，并进一步分析其对对话响应时间与问题解决状态的影响。最后，结合研究发现，总结了对在线交流平台设计的启示，提出对开源社区管理的建议，并指出未来可深入探索的研究方向。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向Discord平台的开源软件实践者沟通实证研究",
+            "en": null
+          },
+          "topics": [
+            "开源软件"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19271,7 +19370,16 @@
           ],
           "abstract": "开源软件作为现代产业软件体系的核心支撑，凭借代码复用、社区活跃、技术响应迅速等优势，已广泛嵌入企业级产品与研发交付流程中，在提升研发效率、缩短产品研发周期及增强系统兼容性方面发挥关键作用。但近年来针对产业界的软件供应链攻击事件也呈现逐年上升态势.在市场价值交付目标的驱动下，不断压缩的研发周期和层出不穷的攻击事件，倒逼研发组织形成了以流程正义的隐性共识来被动应对开源软件供应链安全威胁。在此共识的制约下，开源软件与自动化技术一方面提升了研发效能；在另一方面，只要成为合法的流程赋能者，就能利用相同研发链路掩盖攻击渗透并造成系统性污染，这两者形成了一体两面无法破解的内生矛盾，已成为制约产业数字化发展的重大安全威胁。为全面刻画此类问题的演化路径，本文立足产业研发实践视角，为加深学术界与工程界对该类攻击从“源”到“用”基于产业研发流程的全过程理解，提出涵盖开源共建威胁产生、产业闭源研发攻击演化传播及成品使用攻击发作的三阶段分析框架.该全景化框架系统刻画了产业研发模式与工具演化下安全隐患的关键技术特征，为学术研究与工程实践提供理论支撑与方法参考。尽管当前产业界已在多个环节初步建立防护措施，但仍无法有效解决产业研发中的内生矛盾，本文以开源生态协同治理体系、产业研发持续合规与攻击面收敛及AI驱动的自适应防御体系实现隐性共识与内生矛盾之间的安全再平衡，并以“更靠前”、“更动态”、“更智能”的方法应对未来软件供应链攻击威胁，为新矛盾下软件供应链安全体系的重建提供思路。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "产业研发视角下的开源软件供应链攻击三阶段分析框架",
+            "en": null
+          },
+          "topics": [
+            "软件供应链",
+            "软件安全"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19291,7 +19399,16 @@
           ],
           "abstract": "Java编程语言自诞生以来，就始终处于不断发展和演变的过程中。随着新语言特性及编程范式的不断涌现，Java的表达能力和执行效率在不断提升，推动了整个软件生态的进步。为了确保Java生态的安全性和稳定性，研究人员设计了多种针对Java编译器及虚拟机的测试程序生成方法，以检测潜在的缺陷。然而，现有工作主要针对成熟的语法设计测试程序生成方法或变异策略，难以对语言新特性进行有效地测试。为此，本文提出一种基于大语言模型的Java新特性测试程序生成方法LumiX。首先，LumiX利用大模型对使用自然语言描述的新语言特性进行总结，概括得到新特性的使用描述；随后，LumiX以历史揭错测试程序作为种子程序，利用程序分析工具提取种子程序中可复用的程序元素，结合新特性的使用描述，利用大模型生成针对新特性的代码片段。新生成的代码片段将被插入至种子程序中，生成能够覆盖新特性的测试程序。最后，LumiX设计了双层的差分测试方法，分别利用不同的Java编译器（javac和ECJ）及Java虚拟机（Hotspot和OpenJ9）对新生成的测试程序进行编译和执行，通过对比不同编译器和虚拟机的执行结果来检测潜在的缺陷。实验结果表明，LumiX能够有效生成覆盖Java语言新特性的测试程序，并提升现有工具对Java语言新特性的测试能力。同时，本文将LumiX应用于最新发布的Java编译器以及虚拟机的测试中，累计发现16个未知缺陷，其中12个已被开发人员确认或修复。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "基于大模型的Java新特性差分测试程序生成LumiX",
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "大模型"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -19363,7 +19480,16 @@
           ],
           "abstract": "近年来人工智能领域在深度神经网络和以大语言模型为代表的基础模型技术方面产生重大突破，推动软件发展进入智能化时代。人工智能的技术突破一方面打开了软件解决问题的空间，确定的符号计算和非确定的概率计算相融合形成智能化软件新形态，支持软件系统从静态决策扩展到动态决策以解决开放、动态和不确定场景下的复杂应用问题；另一方面打开了解决软件问题的空间，大语言模型通过建立自然语言与程序语言之间的关联关系，拉近了软件需求与代码之间的距离，正在发展成为一种基于自然交互的人机协同软件开发与演化工具。本报告基于以上两方面对软件的发展趋势进行分析和阐述。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "智能化时代软件发展趋势的认识与思考",
+            "en": null
+          },
+          "topics": [
+            "AI4SE",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19383,7 +19509,16 @@
           ],
           "abstract": "过去的几年里，大模型已经深刻地改变了软件领域的学术研究，但大模型对博士生培养方式的影响仍未得到充分的讨论。本报告从报告人日常观察到的现象出发，试图总结出大模型对博士生同学们科研工作的一些共性影响，进而探讨能否总结出一些大模型时代博士生培养的有效方法。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "大模型时代博士生培养方式的影响与思考",
+            "en": null
+          },
+          "topics": [
+            "软件教育",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19403,7 +19538,16 @@
           ],
           "abstract": "随着软件系统规模与复杂度的不断提升，软件测试技术在测试覆盖率与缺陷检测能力方面面临新的挑战。近年来，前沿研究开始探索利用大型语言模型（LLMs）来提升软件测试的智能化水平，特别是多模态大语言模型因其在视觉与自然语言理解和生成方面的卓越能力，被认为是推动软件自动化测试的重要方向之一。本报告将介绍多模态大语言模型在自动化测试路径生成与非崩溃缺陷检测方面的最新研究进展。具体包括：基于多智能体协同机制实现的非崩溃缺陷检测技术、缺陷驱动的测试路径生成、测试智能体的记忆机制等。这些研究旨在提升自动化测试的充分性与覆盖性，从而为智能化软件测试提供新的技术支撑。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "多模态大模型驱动的软件自动化测试路径生成与缺陷检测",
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19423,7 +19567,16 @@
           ],
           "abstract": "随着多模态语言模型迈入“千亿参数、万亿数据”阶段，数据已成为驱动其能力跃迁的核心燃料。本报告围绕“数据 × 大模型”这一主题，系统介绍我们在数据密集型智能应用与数据管道构建方面的研究探索与工程实践。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "智融数据分析与VLM数据管道构建",
+            "en": null
+          },
+          "topics": [
+            "大模型",
+            "数据库"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19443,7 +19596,16 @@
           ],
           "abstract": "随着嵌入式系统的应用及需求越来越复杂，嵌入式软件的规模也日益繁杂，采用基于模型的嵌入式系统设计并进行自动地代码生成可以有效地减少系统错误的发生。然而，现有的基于模型的代码生成工具存在着协同开发难、测试不充分和生成的代码运行效率低等问题，难以适应日趋庞大的系统规模和日益增长的系统执行效率要求。该报告将从统一的建模框架出发，通过多用途代码生成的方式为上述问题提供较为可行的解决方案。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向嵌入式软件的统一建模与多用途代码生成",
+            "en": null
+          },
+          "topics": [
+            "代码生成",
+            "物联网"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19463,7 +19625,15 @@
           ],
           "abstract": "本报告致力于安全性质（Safety）与活性（Liveness）性质模型检查的算法与优化研究，旨在解决形式化验证中面临的性能挑战。针对安全性质检查，研究首先提出了i-good 引理的概念，即能够从当前帧传播到下一帧的引理，并基于此设计了 Branching 和 Refer-Skipping 两种简单且高效的启发式方法。这些策略通过引导 SAT 求解器和优化引理泛化过程，有效提高了 IC3/PDR 及其变体的收敛速度，实验结果证实了其显著的性能提升。同时，针对研究相对较少的活性性质检查，报告提出了一种新颖的算法 RLive (Recursive Liveness Checking)。RLive 算法通过一系列递归的安全检查来逐步搜索套索形反例，不仅避免了 Liveness-to-Safety 构造带来的状态空间爆炸，还利用安全检查生成的不变式来限制搜索空间，替代了传统方法中昂贵的回路检查。实验评估表明，RLive 在解决测试用例数量和运行时间方面均显著优于现有的活性检查算法。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "安全与活性性质模型检查的算法优化与RLive算法",
+            "en": null
+          },
+          "topics": [
+            "形式化方法"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -19528,7 +19698,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "AI4SE"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19548,7 +19726,16 @@
           ],
           "abstract": "形式化方法一直被视为保障软件可信性与安全性的基石，但其广泛应用长期受制于规约构建和证明过程的高复杂度。随着大语言模型（LLMs）的迅速发展，形式化验证正迎来了新的变革——从需求理解、规约生成到形式化证明，人工智能正以前所未有的方式重塑这一体系。本报告聚焦大模型与形式化方法的深度融合，系统探讨其在三个关键环节的突破：自然语言需求的语义分解与规约生成、多语言形式化推理模型的构建与评测，以及结合静态分析和验证反馈的自动化规约综合。通过研究这些形式化方法在应用时的关键环节，本报告旨在揭示大模型如何成为智能化软件形式化验证的重要支撑力量。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "大模型时代软件形式化方法在需求、规约与证明的突破",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19568,7 +19755,16 @@
           ],
           "abstract": "测试与调试是保障软件质量的关键手段，也是软件工程领域的重要研究方向。然而，特定软件系统因其独特的结构与行为特征，往往导致通用的测试与调试技术难以有效适用，编译器系统即是典型代表。本报告将从软件工程研究的视角出发，介绍我们如何以通用研究为基础，逐步深入针对编译器系统的专项研究。报告将系统阐述我们在编译器测试和调试方面的研究成果，并分享对编译器测试调试问题的深入思考。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "从通用研究到专项的编译器测试与调试研究",
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "编译器"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19588,7 +19784,16 @@
           ],
           "abstract": "大内存系统作为下一代存算架构体系中的重点和核心发展方向，注重将海量数据集完整存储在内存中以突破传统资源墙的限制，为实时智能决策、科学计算等关键负载提供内存级数据访问能力，能够提升数据处理效率与应用响应速度，其核心和关键问题在于如何保障跨节点数据访问的高性能和强一致性。研究工作通过硬件层的缓存一致性协议与软件层的事务内存模型进行深度协同，构建了软硬件协同的高效、可扩展的全局统一内存视图与事务保障机制。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "软硬件协同的大内存系统全局统一内存视图与事务保障",
+            "en": null
+          },
+          "topics": [
+            "存储",
+            "分布式系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19608,7 +19813,16 @@
           ],
           "abstract": "This paper presents our experience specifying and verifying the correctness of ZooKeeper, a complex and evolving distributed coordination system. We use TLA + to model fine-grained behaviors of ZooKeeper and use the TLC model checker to verify its correctness properties; we also check conformance between the model and code. The fundamental challenge is to balance the granularity of specifications and the scalability of model checking.",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "多粒度规约的分布式协调系统ZooKeeper模型检查验证",
+            "en": null
+          },
+          "topics": [
+            "分布式系统",
+            "形式化方法"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19628,7 +19842,16 @@
           ],
           "abstract": "此次报告将介绍基于 rIC3 的硬件模型检测器。rIC3 采用高效的实现方式，集成了多项近期提出的优化技术，包括专为硬件验证定制的 SAT 求解器以及支持动态调整的泛化策略。在位级和字级位向量处理方面，rIC3 均展现出显著的性能提升。目前，rIC3 已被集成到 SymbiYosys 中，作为其验证 RTL 设计的后端引擎之一。此外，rIC3 的源代码高度模块化，其 IC3 算法核心模块设计简洁，使其成为一个易于修改与扩展的工具平台。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "集成多项优化的高效硬件模型检测器rIC3",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "EDA"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19648,7 +19871,16 @@
           ],
           "abstract": "深度学习系统已在多种实时应用中得到广泛采用。然而，当这些系统部署在诸如移动设备和物联网设备等资源受限的环境中时，会面临关键的效率挑战。为了缓解计算开销，深度学习系统会动态地根据输入复杂度自适应地调整推理计算。尽管这种动态机制提升了效率，但也引入了新的攻击面——效率对抗攻击（efficiency adversarial attacks），这类攻击会有策略地利用动态机制来降低系统性能。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "揭示深度学习动态推理机制的效率对抗攻击",
+            "en": null
+          },
+          "topics": [
+            "机器学习系统",
+            "软件安全"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19668,7 +19900,16 @@
           ],
           "abstract": "本报告针对现有基于大语言模型的代码优化方法所面临的问题——即一步生成范式难以有效处理复杂优化任务，提出了一种基于搜索的大语言模型框架SBLLM。该框架将大语言模型与进化搜索相结合，通过包含三个关键环节的迭代优化过程（基于执行的样本选择、自适应优化模式检索、遗传算子启发的思维链提示），持续发现并改进优化方案，从而显著提升代码优化精度。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "结合大模型与进化搜索的代码优化框架SBLLM",
+            "en": null
+          },
+          "topics": [
+            "代码生成",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19688,7 +19929,16 @@
           ],
           "abstract": "在大模型赋能的代码生成研究中，准确评估其真实能力是推动技术落地的关键前提。然而，现有基准测试存在目标代码泄露、案例时效性差与依赖信息不真实等三大缺陷，导致评估结果难以反映模型在真实、陌生场景下的代码生成能力。本报告介绍一种基于代码混淆的可持续演进的代码生成评估框架，通过符号、结构与语义三个层面对代码与描述进行改写，系统评估大模型的代码生成能力，揭示了现有模型在陌生代码生成任务中的真实局限性。此外，研究还发现即使通过测试的代码仍存在资源管理、性能与鲁棒性等非功能性缺陷，为未来大模型在领域软件中的可靠代码生成与质量保障提供参考。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "基于代码混淆的可持续演进大模型代码生成能力评估框架",
+            "en": null
+          },
+          "topics": [
+            "代码生成",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19708,7 +19958,15 @@
           ],
           "abstract": "Programs evolve continuously throughout their life cycles. Verifying each version from scratch is usually impractical, especially for concurrent programs. Designing efficient incremental verification techniques for concurrent programs is highly desired. We focus on the abstraction refinement technique for concurrent program verification. When a program is modified, those refinement constraints generated in the verifications of previous versions are adapted to the new program to avoid redundant analysis. We propose a kernel source based refinement constraint adaptation approach for the scheduling constraint based abstraction refinement method, one of the most efficient abstraction refinement methods for concurrent program verification. Our method supports all kinds of program modifications, and generates adapted refinement constraints according to the modifications. Evaluation on the benchmarks from SV-COMP 2024 and Nidhugg benchmarks shows promising results of our method. Most of the refinement constraints generated in the verification of previous versions can be adapted to the modified program in our experiments. Compared with verifying the modified program from scratch, our incremental verification method can achieve two orders of magnitude speedup for those complex programs.",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "通过精化约束适配的并发程序增量验证",
+            "en": null
+          },
+          "topics": [
+            "形式化方法"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19728,7 +19986,16 @@
           ],
           "abstract": "As modern systems grow in scale and complexity, ensuring security is no longer just about reactive patching — it demands principled guarantees across the entire system lifecycle. In this talk, I will introduce how formal methods may help provide such guarantees by systematically reasoning about security properties from system design, code implementation to runtime. We begin by exploring how formal analysis help catch design flaws early before any code is written, especially in security protocols. We then discuss techniques for verifying security or detecting subtle vulnerabilities in the code, e.g., the OS kernel. Finally, we turn to runtime monitoring, where formal models enable the early detection of security breaches in dynamic and distributed environments. We aim to show that formal methods, when applied judiciously, may serve as a powerful complement to existing engineering workflows — enabling complex systems to be secure by design, by construction, and by observation.",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "从设计、实现到运行时监控的安全形式化方法",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "软件安全"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19748,7 +20015,16 @@
           ],
           "abstract": "Java 虚拟机（JVM）是现代软件生态的核心基础设施之一，其系统结构复杂、功能模块多样，任何潜在缺陷都可能影响整个软件生态的可靠性，因此对其进行系统化的测试至关重要。针对现有方法在测试程序多样性、特征引导及特定模块测试充分性等方面的不足，本报告提出程序特征驱动的JVM测试方法，从语义、结构与行为三层特征出发设计针对JVM的测试方法。研究通过对历史缺陷程序的控制流与数据流特征进行抽象与实例化，提炼可迁移的缺陷诱发模式以提升测试生成的多样性及揭错能力；结合程序特征设计种子程序选择方法，优化输入空间从而提升模糊测试效率；同时设计基于GC事件的测试生成方法与事件覆盖率指标，引导测试对关键模块进行更充分的探索。最终实现从语义抽象到行为感知的程序特征驱动测试方法，为JVM测试提供了新的理论基础与实践路径。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "程序特征驱动的JVM语义、结构与行为测试",
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "编译器"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19768,7 +20044,16 @@
           ],
           "abstract": "Recent advances in Large Language Models (LLMs) have shown promise in function-level code generation, yet repository-level software engineering tasks remain challenging. Current solutions predominantly rely on proprietary LLM agents, which introduce unpredictability and limit accessibility, raising concerns about data privacy and model customization. This paper investigates whether open-source LLMs can effectively address repository-level tasks without requiring agent-based approaches. We demonstrate this is possible by enabling LLMs to comprehend functions and files within codebases through their semantic information and structural dependencies. To this end, we introduce Code Graph Models (CGMs), which integrate repository code graph structures into the LLM's attention mechanism and map node attributes to the LLM's input space using a specialized adapter. When combined with an agentless graph RAG framework, our approach achieves a 43.00% resolution rate on the SWE-bench Lite benchmark using the open-source Qwen2.5-72B model. This performance ranks first among open weight models, second among methods with open-source systems, and eighth overall, surpassing the previous best open-source model-based method by 12.33%.",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "将代码图结构融入LLM的仓库级软件工程模型CGM",
+            "en": null
+          },
+          "topics": [
+            "代码生成",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19788,7 +20073,16 @@
           ],
           "abstract": "分布式解耦内存池在云原生数据库、AI 推理引擎等场景中变得越来越重要。然而，传统分布式内存架构的软硬件在时延、通信机制和多节点协同方面存在瓶颈。为解决这些挑战，本次报告提出基于 CXL 2.0 交换机 的分离内存系统 PolarCXLMem，并在此基础上设计了即时恢复机制 PolarRecv 与面向多主数据库的缓存一致性协议。该方案在 PolarDB 上完成评估，相较于基于 RDMA 的实现，性能得到显著提升，为 CXL 驱动的分布式解耦内存池在云原生数据库、AI 推理引擎加速等场景中提供了可行的工程路径。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "基于CXL的云原生数据库分布式解耦内存PolarCXLMem",
+            "en": null
+          },
+          "topics": [
+            "数据库",
+            "存储"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -19808,7 +20102,16 @@
           ],
           "abstract": "访问控制是信息系统防护的基本手段。然而，访问控制规则与业务逻辑高度耦合，导致传统漏洞检测技术失效。由于本次报告将围绕鉴权与授权两大访问控制核心机制，从设计与实现的角度剖析访问控制机制在真实系统中存在的安全隐患，包括鉴权绕过、弱口令、提权、越权等问题。特别地，本次报告将会分享如何利用程序分析、大模型等手段设计自动化的访问控制漏洞检测工具。这些工具在各类真实系统中发现了数百个访问控制漏洞。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "利用程序分析与大模型的访问控制漏洞自动化检测",
+            "en": null
+          },
+          "topics": [
+            "软件安全",
+            "缺陷检测"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
