@@ -15675,7 +15675,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "大模型",
+            "AI4SE"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -15707,7 +15716,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "缺陷检测",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -15742,7 +15760,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "代码生成",
+            "智能体"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -15774,7 +15801,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "智能运维",
+            "智能体"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -15803,7 +15839,17 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件架构",
+            "需求工程",
+            "智能体"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -15826,7 +15872,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -15852,7 +15907,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "操作系统",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -15878,7 +15942,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "程序分析",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -15891,7 +15964,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "大模型",
+            "AI4SE"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -15917,7 +15999,17 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "需求工程",
+            "缺陷检测",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -15946,7 +16038,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "代码生成",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -15969,7 +16070,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "需求工程",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -15986,7 +16096,17 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件维护",
+            "程序分析",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16003,7 +16123,17 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "代码生成",
+            "智能体",
+            "物联网"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16020,7 +16150,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "缺陷检测",
+            "智能体"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16037,7 +16176,17 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "数据库",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16050,7 +16199,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "大模型",
+            "AI4SE"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16067,7 +16225,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "多模态"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16096,7 +16263,17 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "缺陷检测",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16128,7 +16305,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "程序分析",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16160,7 +16346,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "AI4SE",
+            "大模型"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -16218,7 +16413,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "形式化方法"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16238,7 +16441,16 @@
           ],
           "abstract": "在 DevOps 持续集成实践中，Web 应用的高频代码迭代对传统静态分析工具提出了严峻挑战：全量扫 描模式导致计算资源浪费与分析延迟，而现有增量分析技术因对多样化漏洞检测能力的缺失以及精度、效率与 一致性的矛盾，难以满足实际需求。对此，本文提出一种面向 Web 应用漏洞检测的增量静态分析框架 AWTaint。 该框架具备域敏感，上下文敏感与流敏感能力，其利用函数摘要表征输入输出变量之间的映射关系，产出与各 类检测规则相关的污点传播信息。本框架采用了一种细粒度的增量计算方法，首先利用调用图估算保守的增量 变化范围，其次利用函数摘要变化感知具体影响范围。从而有效满足工业级 Web 应用漏洞检测对分析精度、计 算效率与结果一致性的三项核心要求。实验表明，在包含 10 个真实 Java Web 应用的测试集上，AWTaint 可以支持多种 Web 应用漏洞检测需求，其增量分析模式相较全量分析模式平均加速 3.63 倍，内存峰值控制在 8GB 以内，且漏洞检测完全一致性。该框架为安全左移实践提供了工程化解决方案，在保障检测精度的前提下，显 著优化了资源利用率与开发迭代效率。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向Web应用漏洞检测的增量静态分析框架AWTaint",
+            "en": null
+          },
+          "topics": [
+            "程序分析",
+            "软件安全"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16258,7 +16470,16 @@
           ],
           "abstract": "传统程序分析方法在处理大规模软件时,常需显式构建依赖图(如系统依赖图、程序依赖图),因程序实体与依赖关系数量随规模呈指数级增长而面临”构图困难”与冗余计算的性能瓶颈.为应对此挑战,本文提出一种基于按需切片计算的并行化程序分析框架.该框架融合了符号化切片与高阶函数摘要技术,其核心思想是：(1) 通过将函数调用的影响抽象为可复用的高阶函数式摘要,通过动态函数求值替代显式依赖图存储与遍历,从根本上规避了构图瓶颈;(2) 设计了一种针对高阶函数摘要的按需实例化机制,基于用户指定的切片准则(如关键变量),动态地、惰性地实例化摘要,仅计算与分析目标直接相关的依赖,从而大幅削减了计算冗余.该框架通过子分析摘要的独立性和惰性实例化特性,实现了任务的细粒度划分,展现出良好的并行潜力.实验结果表明,该框架下的按需切片计算较符号化切片工具(Sympas)在分析时间上减少了65.3%,内存峰值下降了68.2%；其并行化版本(6线程)时间进一步减少93.8%,并行效率接近90%.为验证该框架在大型程序分析中的实用性与有效性,将该框架应用于访问越界缺陷检测,成功识别了132个真阳性实例,为解决大规模软件分析的性能瓶颈提供了新的形式化解决思路.",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "基于按需切片与高阶函数摘要的并行化程序分析框架",
+            "en": null
+          },
+          "topics": [
+            "程序分析",
+            "形式化方法"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16278,7 +16499,16 @@
           ],
           "abstract": "随着航空航天、自动驾驶等安全攸关领域软件系统复杂性的日益增长，设计阶段与验证阶段的有效衔接已成为保障系统可靠性的关键。然而，异构设计工具与验证工具在建模语言、语义和数据结构上的差异，导致了模型转换语义不一致、工具链互操作性差与验证覆盖不充分三大核心挑战。针对上述挑战，本报告提出了一种基于统一中间表示（Unified Intermediate Representation, UIR）的分层转换与多重交叉验证机制。我们的方法以设计模型为起点，创新性地将系统理论过程分析（STPA）前置，用于识别危险与不安全控制行为，并自动化地提炼出形式化的安全约束。核心贡献包括：（1）构建了面向安全分析的UIR语义互操作性框架，将结构、行为、时序与安全约束在统一语法与语义域中进行形式化描述，从根本上抑制了语义丢失与歧义传播。（2）提出了分层模型转换与追溯机制，系统化地定义了从设计模型到UIR，再到多种验证模型（如时序、逻辑、概率模型）的转换规则，并嵌入追溯性元数据，确保了安全约束的端到端可映射与可审计。（3）建立了以安全约束为核心的多视角交叉验证方法，基于UIR派生互补的验证模型，将STPA安全约束转换为可验证属性，进行源-中间-目标模型的一致性检查、时序/逻辑验证、概率分析及安全约束可满足性验证，形成了多角度相互印证的验证闭环。我们以自动驾驶汽车控制系统（AVCS）等为案例进行了实验研究。结果表明，所提方法不仅在关键安全问题检出率、验证覆盖度与准确性等关键指标上显著优于UPPAAL、PRISM、SPIN等单一工具，更通过提升全过程的可追溯性，实现了安全驱动开发从设计到验证的闭环，最终确保了开发过程的一致性与可证明性。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "基于统一中间表示的异构模型转换与安全交叉验证",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "需求工程"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16298,7 +16528,16 @@
           ],
           "abstract": "深度强化学习虽已在多种复杂任务中取得卓越成果，但其策略在动态高维环境下仍缺乏实时安全保障，因而亟需在部署阶段引入能够实时评估并纠正智能体决策的安全监控机制。现有数据驱动的黑盒监控方法侧重离散或二元决策,难以直接迁移到连续动作空间。为了在连续动作空间构建基于数据驱动方式的黑盒监控器，我们引入了模糊信息度量，提出了一种基于模糊映射熵的闭环强化学习安全监控框架，旨在提升预训练强化学习的安全性。三个典型导航任务的实验表明，与 PPO‑Lag、TRPO‑Lag 和 CPPO‑PID 基线策略相比，在保持原有回报水平的前提下，应用本文监控方法进行动作干预后平均成本均有不同程度的下降，相较于无监控基线表现出更优的安全性能。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "基于模糊映射熵的强化学习系统闭环安全监控框架",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16318,7 +16557,15 @@
           ],
           "abstract": "时间自动机的主动学习是一个重要的研究话题。多时钟时间自动机的主动学习是其中一个重要的研究方向。然而，已有的多时钟时间自动机的学习算法的性能较差，学习速度较慢。在本报告中，将介绍基于时间观察树的改进的主动学习算法。在该算法中，采用名为时间观察树的数据结构来存储学习过程中获取的信息。基于时间观察树的特殊结构，可以利用二分搜索技术来分析反例。通过使用该反例分析技术，可以减少查询数量，从而提高算法的效率。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "基于时间观察树的确定性时间自动机主动学习算法",
+            "en": null
+          },
+          "topics": [
+            "形式化方法"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16338,7 +16585,16 @@
           ],
           "abstract": "软件形式化验证是通过数学方法和逻辑推理确保软件系统的正确性和可靠性，广泛应用于高安全性要求领域。然而，传统形式化验证技术面临自动化程度低、推理效率不足、规模化困难等挑战，难以满足复杂软件系统快速发展的需求。近年来，大语言模型（LLMs）的快速发展为自然语言处理、代码理解与生成等领域带来了革命性突破，也为形式化验证领域提供了新的自动化解决方案。为了全面梳理和分析大语言模型赋能软件形式化验证领域的研究现状与发展趋势，本文对相关研究成果进行综述。首先，概述软件形式化验证技术的核心流程与方法，以及大语言模型在该领域应用的关键技术。进一步，聚焦LLMs在两大核心场景中的应用：1）自然语言到形式化规约的转换：通过分析LLMs如何将模糊的自然语言形式的需求自动转化为形式规约，降低形式化验证中的模型构造与性质规约转换的门槛；2）在程序验证中辅助推理与证明：探讨LLMs在定理证明器技术中辅助生成证明过程，包括通过代码分析自动提取前/后置条件与不变量等用于辅助性规约的潜力，以及在模型检测中约简状态空间或优化验证策略的可能性。最后，本文总结了大语言模型技术在软件形式化验证中面临的共性挑战与未来可能的发展方向。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "大语言模型赋能软件形式化验证研究综述",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16358,7 +16614,16 @@
           ],
           "abstract": "近年来,基于大模型的代码生成被广泛应用于软件开发领域.然而,由于大模型生成结果具有一定的随机性,如何保证生成代码的正确性成为重中之重.形式化验证是保障软件正确性的一种有力手段,但验证前需要将代码及相应需求形式化为相关工具的规约语言.Dafny是一种可验证的编程语言,并有相应的自动化验证工具支持.本报告旨在探索大模型在将Python代码翻译为Dafny语言方面的能力.为此,我们提出了基于提示词的静态翻译和动态修复的翻译生成方法以及基于程序测试的翻译结果评估方法.静态翻译方法考虑三种渐进的提示词模板(基础模板, Dafny示例模板,对照示例模板),使用大模型一次性生成翻译;动态修复方法多次调用大模型对翻译进行修复,每次将上一轮代码测试的错误信息加入提示词.评估时,在没有现成测试用例集的情况下,利用大模型生成测试用例集;对翻译结果结合测试用例集应用Dafny测试工具进行测试以评估其正确性.我们在GPT-4o和DeepSeek-V3等大模型上使用HumanEval、MBPP和LeetCode等数据集进行了实验.结果表明,使用对照示例模板和动态修复方法能够有效提升大模型在Python到Dafny翻译任务上的表现.此外,我们还基于实验结果分析了影响翻译质量的因素,并对评估方法与标准进行讨论.",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "基于大模型的Python到Dafny可验证代码翻译与评估",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "代码生成"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16378,7 +16643,15 @@
           ],
           "abstract": "混成通信顺序进程(Hybrid Communicating Sequential Processes,简称 HCSP)是一种广泛应用于混成系统建模的形式化语言.它结合了由逻辑驱动的状态跳转(典型于数字计算)和由微分方程驱动的连续演化(用于刻画物理过程),从而统一刻画了离散与连续行为.这种双重特性使其尤其适用于建模通常具有安全关键性的信息物理系统(Cyber-Physical Systems,简称 CPS).然而,由于混成系统实现复杂、同步行为错综交织,其验证在实际中面临显著挑战.为此,本文提出了一种用于验证从抽象模型到具体实现之间精化关系的逻辑体系---混成精化逻辑(HybridRefinement Logic,简称 HRL).HRL 通过按照系统的结构进行分解,并基于精化构造分层的证明过程,从而提升了验证的可复用性和模块化程度.此外,HRL 还支持并行同步进程与顺序进程之间的精化验证,进一步降低了证明复杂性,有效减轻了验证负担.",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向信息物理系统精化验证的混成精化逻辑HRL",
+            "en": null
+          },
+          "topics": [
+            "形式化方法"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16398,7 +16671,15 @@
           ],
           "abstract": "形式化数学是一次数学革命，结合定理证明器的数学定理机器证明，不仅是对数学严谨性的一种新标准，更是发展数学的一种新方式。随着世界范围不断有数学难题在计算机辅助下的成功解决，以及各路专家学者对各种数学形式化项目或工程的发起，形式化数学的影响力与日俱增。国际数学家陶哲轩即于2025年5月发起了一个基于定理证明器Lean的数学分析形式化项目，在数学界与计算机界引起广泛影响。报告介绍一项基于定理证明工具Coq的数学分析形式化系统，该系统以华东师范大学数学系编著的《数学分析》为蓝本，在朴素集合论和初等数论及代数知识体系下进行开发。当前，已经实现其上册中一元微积分相关内容的形式化, 包括实数与函数、数列极限、函数极限、函数的连续性、导数和微分、不定积分、定积分等内容。系统严格对应教材内容，全部定理无例外地给出Coq的机器证明代码，所有形式化过程已被Coq验证，并在计算机上运行通过。项目代码已完全开源，读者可以跟随代码学习数学，也能够对照数学理解代码，充分体现了基于Coq的数学定理机器证明具有可读性、交互性和智能性的特点。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "基于Coq的一元微积分数学分析形式化系统",
+            "en": null
+          },
+          "topics": [
+            "形式化方法"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16418,7 +16699,16 @@
           ],
           "abstract": "相较于初代微内核,第二代微内核[4 在性能和灵活性方面显著提升,并在众多领域获得广泛应用.操作系统内核的正确性与可靠性对系统稳定运行起着决定性作用.本研究聚焦于 [4 微内核的关键机制--线程管理,对其展开形式规约与验证,本文首先构建安全规约以描述安全性质,复用标准的 [4 API 功能规约明确功能正确性,同时自动生成基于 CH+源代码的实现规约.为缓和功能规约与实现规约间的巨大差异,本文引入中间规约.其中,前两种规约采用 [sabelle/HOL 形式化语言编写,后两种则以 Python 语言表达,通过解释(Interpretation)、建立正向模拟Forward Simulation)等方法,精化证明各规约间的一致性,在证明过程中,将交互式验证与 auto-active 验证方法相结合,提升验证自动化能力的同时,减少人工证明工作量.最终发现源代码中存在三个违反正确性和安全性的问题,并针对这些问题提出解决方案.",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "auto-active与交互式集成的L4微内核线程管理形式化验证",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "操作系统"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -16497,7 +16787,16 @@
           ],
           "abstract": "在大数据和人工智能时代，我们的目标是实现智能化软件工程。在前期工作中，我们通过挖掘软件相关的数据构建基于机器学习模型，来自动化编程、测试、故障诊断和运行维护等任务，从而提高软件开发的生产效率，减少维护工作。近年来，大语言模型和Agent技术也被广泛应用于智能化软件工程，改变了软件开发与运维方式，推动了“AI原生”新模式新业态。然而，当前智能化软件的发展仍存短板。本次报告将回顾智能化软件工程的发展历程，介绍一些新的工作和面临的挑战，以及智能化软件应用的生态建设。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "智能化软件工程的进展、挑战与生态建设",
+            "en": null
+          },
+          "topics": [
+            "AI4SE",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16517,7 +16816,16 @@
           ],
           "abstract": "Cloud Intelligence, a.k.a. AIOps, leverages AI and machine learning to design, build, and operate complex cloud platforms and services at scale. The advent of Large Language Models (LLMs) offers unprecedented opportunities to accelerate and deepen AIOps capabilities. In this talk, I will present concrete, real-world examples of how LLMs are reshaping core AIOps tasks, including anomaly detection, incident triage, root-cause analysis, and outage summarization, by extracting and synthesizing knowledge from diverse data sources, producing clear, actionable narratives, and functioning as human–AI copilots that continually improve through feedback.",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "以大语言模型赋能云智能AIOps的进展与实践",
+            "en": null
+          },
+          "topics": [
+            "智能运维",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16546,7 +16854,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件供应链",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16587,7 +16904,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "代码生成",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16616,7 +16942,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件维护",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16645,7 +16980,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16674,7 +17018,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "AI4SE",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16712,7 +17065,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "程序分析",
+            "软件维护"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16744,7 +17106,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "缺陷检测",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16779,7 +17150,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "代码生成",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16814,7 +17194,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "代码生成",
+            "编译器"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16849,7 +17238,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "需求工程",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16890,7 +17288,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "代码生成",
+            "大模型"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -16962,7 +17369,16 @@
           ],
           "abstract": "2025年是AI Agent元年，AI应用场景，开发范式，最佳实践发生深刻变革。我们在阿里云上协助客户落地大量智能体同时沉淀一些经验，借着这个时间窗口跟大家系统分享一下AI原生应用场景，AI原生应用新范式，AI原生应用架构，AI原生应用落地实践。期望抛砖引玉，一起加速AI发生，加速行业标准制定。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "AI原生应用场景、开发新范式、架构与落地实践",
+            "en": null
+          },
+          "topics": [
+            "大模型",
+            "软件架构"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16982,7 +17398,16 @@
           ],
           "abstract": "大模型与Agentic AI带来的软件产业范式变革，驱动AI原生应用架构成为一种主流的智能系统架构及传统软件智能化转型实践。本讲座分享华为云在AI原生应用架构方面的系统设计、及软件工程实践方法。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "华为云AI原生应用架构与软件工程实践",
+            "en": null
+          },
+          "topics": [
+            "软件架构",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -16999,7 +17424,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件架构",
+            "AI4SE"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -17016,7 +17450,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -17033,7 +17476,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "AI4SE",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -17050,7 +17502,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "大模型",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -17067,7 +17528,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件架构",
+            "大模型"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
