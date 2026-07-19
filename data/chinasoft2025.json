@@ -17623,7 +17623,16 @@
           ],
           "abstract": "卫星计算作为一种以卫星为计算核心的新型计算模式，可以提高卫星的计算服务能力和智能化服务能力，为未来卫星互联网在多种前沿场景的应用提供重要支撑。星载控制软件在复杂多变的空间环境下面临着非预期任务变更、未知故障频发等威胁软件安全可信的严峻挑战。因此，为保障该类软件在深空探测等重大任务中的长久稳定运行，报告探讨了从人工制定规则、发展到数据驱动推理、最终形成知识自主决策的软件智能化运维方法，并结合真实航天任务，介绍了该方法辅助星载控制软件增量学习经验知识、实时感知环境变化、自主调整软件状态的工作机理，并展望了未来航天星载软件在轨安全可信保障的研究前景与重要研究方向。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "从规则到知识自主决策的星载控制软件智能化运维",
+            "en": null
+          },
+          "topics": [
+            "智能运维",
+            "天基计算"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -17643,7 +17652,16 @@
           ],
           "abstract": "当前轨道卫星爆发式增长，碰撞等安全威胁加剧，传统维护模式难以应对，AI技术推动其向“主动预判”与“自主应对”的智能化转型。面对核心碰撞预警、在轨维护等场景，关键技术呈现感知认知、自主决策等智能化趋势。可信软件作为核心保障，可满足功能可信、可解释、抗攻击等特殊需求，可通过可信开发流程、算法增强等路径实现。因此，虽面临算力约束等挑战，倡议关注可信软件的开发与应用，推动太空安全维护技术的提升。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "太空安全智能化发展趋势与可信软件需求",
+            "en": null
+          },
+          "topics": [
+            "天基计算",
+            "软件安全"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -17660,7 +17678,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "具身智能",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -17677,7 +17704,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -17694,7 +17730,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "需求工程",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -17711,7 +17756,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "缺陷检测",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -17728,7 +17782,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "需求工程",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -17745,7 +17808,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件安全",
+            "智能体"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -17762,7 +17834,15 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "形式化方法"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -17779,7 +17859,15 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "形式化方法"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -17858,7 +17946,16 @@
           ],
           "abstract": "随着人工智能技术的快速发展，大规模语言模型已迈入万亿参数时代，成为推动自然语言处理、多模态理解等领域突破的核心驱动力。然而，模型规模的指数级增长给底层系统架构带来了前所未有的挑战：单一设备的计算能力与显存容量难以满足大模型的训练与推理需求，推理过程中的延迟波动严重影响用户体验，而分布式训练/推理中频发的软硬件故障则威胁着系统的稳定性与可用性。我们从低延迟优化、算力聚合和高可靠性保障三个层面探讨轻量化大模型训练与推理中的关键技术：针对混合专家模型(MoE)中GPU预取失败导致的解码停顿问题，设计了基于伙伴专家的动态调度机制，显著降低尾延迟并提升推理吞吐性能；针对单GPU的计算与显存限制，将多个GPU资源透明聚合为统一的\"逻辑GPU\"，突破边缘端单设备容量瓶颈；为保障大规模分布式任务的持续可靠性，基于国产昇腾硬件环境提出了秒级Checkpoint/Restore技术，实现任务快速恢复。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向轻量化大模型的低延迟、算力聚合与高可靠系统软件栈",
+            "en": null
+          },
+          "topics": [
+            "大模型",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -17878,7 +17975,16 @@
           ],
           "abstract": "大数据蕴含的关联结构，已成为为网络空间安全、重大设施运维等行业领域的共性需求，关键要解决“数据看得懂、行为判得准、演化能预测”等智能计算难题。针对大数据关联的计算需求，构建了图高阶表征-关联异常发现-长序列计算范式，并建立异构融合计算资源池化框架，形成对多样化算力融合场景下内存管理技术，与华为共建生态。研发系统已应用于网信、公安领域的异常群体检测等，以及国网、航天的设备运维等业务。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "图高阶表征与关联异常发现的大数据关联结构计算系统",
+            "en": null
+          },
+          "topics": [
+            "机器学习系统",
+            "数据库"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -17898,7 +18004,16 @@
           ],
           "abstract": "以大语言模型（LLM）与视觉大模型（VLM）为代表的轻量化/压缩大模型广泛部署于智能汽车，在车载移动环境中需持续重训练以保证模型面对新数据的高推理精度。然而，现有重训技术往往更新参数量有限的轻量化大模型，受限于其学习能力面临可塑性（Edge-side Plasticity）降低的挑战，即在端侧有限资源下学习新数据知识能力下降，致使在多次重训后模型推理精度显著下降。与此同时，即便用最新的参数高效微调（Parameter-Efficient Fine-Tuning）技术，直接重训容量巨大的原始模型的资源开销也远远超过车载算力平台可用资源。例如，重训GLIP目标检测模型，其GPU算力和内存占用超出主流英伟达Xavier NX算力平台容量2.8倍。针对此问题，本文提出了Player（Plasticity Preserver，可塑性保障器），通过轻量化代理小模型低开销重训原始大模型，通过大小模型协同训练同时保障模型推理精度和面向新数据/任务的可塑性。具体来说，当检测到新数据时，Player实时提取原始模型中的精度最相关的少量神经元构建代理模型进行训练提升推理精度，并注入特定噪声保障其可塑性。同时，Player通过分析神经元权重差异，将代理模型所学新知识高效迁移至原始模型。Player基于智能汽车操作系统NVIDIA DriveOS实现，支持6种典型Transformer大模型架构。我们选取7个数据集和6种车载场景进行全面评估。实验结果表明，相比最先进重训练基线方法，Player将模型推理精度提高17.19%，并在相同精度下降低资源消耗4.76倍。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "代理小模型协同保障车载轻量化大模型可塑性的Player",
+            "en": null
+          },
+          "topics": [
+            "大模型",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -17918,7 +18033,16 @@
           ],
           "abstract": "随着机器学习逐渐从云端迁移至资源受限的端侧设备,如何在保证精度的前提下提升效率成为亟待解决的挑战.我们的关键观察是:现代SoC往往集成了CPU(FP32)、GPU(FP16)与NPU(INT8/INT4)等多类异构处理器,提供了算力与精度的多样化权衡.基于这一洞见,本文提出HSMLsys,其核心思想是精度自适应调度:针对算子的精度敏感性动态分配计算,使大多数计算能够在低精度高效的NPU上完成,而仅将少量精度敏感部分调度至CPU/GPU执行,从而在保证精度的前提下最大化NPU利用率.具体而言,在推理任务中,HSMLsys通过离群值分布感知分析检测不足0.1%但主导精度下降的激活离群值,仅将其调度至CPU/GPU,而将大多数正常值保持在NPU上以低精度执行;在训练任务中,HSMLsys通过基于余弦相似度的梯度敏感性分析与样本感知调度减少跨处理器数据搬移,并能与CPU上的FP32梯度更新并行执行.我们在MNN、TFLite与mllm上实现了超过4万行代码的原型系统.实验结果显示,HSMLsys在大语言模型推理中相较FP16基线最高实现75.4倍加速且精度损失低于0.2%;在训练任务中最高实现6.9倍加速与9.7倍能耗降低,精度损失不超过0.5百分比.",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "精度自适应调度的端侧异构计算机器学习系统HSMLsys",
+            "en": null
+          },
+          "topics": [
+            "机器学习系统",
+            "物联网"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -17938,7 +18062,16 @@
           ],
           "abstract": "大语言模型（LLM）正逐渐成为边缘设备中的基础技术。然而，边缘设备以硬件资源高度异构、计算能力有限而著称。这些硬件限制给LLM推理应用的部署带来了严峻挑战。现有研究虽已提出在资源受限设备上部署LLM的可行方案，但往往忽视了底层硬件的异构性。即使在除独立GPU（dGPU）之外还存在其他异构加速器（如CPU和集成GPU）的情况下，当突发请求发生时，系统仍可能无法满足其服务等级目标（SLO）。为解决资源利用率不足的问题并提升整体LLM服务性能，本文提出了一种创新的端侧大模型推理框架——SplitLLM，其支持在边缘设备上对LLM推理进行自适应的Prefill-Decode阶段拆分。SplitLLM的核心思想在于，每个推理请求可划分为Prefill和Decode两个阶段，可调度至异构设备上并行执行。一系列实验证明，在端到端延迟的SLO达成率上，SplitLLM的这一指标超过90%（比vLLM高出2倍）。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "基于动态Prefill-Decode切分的高效端侧大模型推理SplitLLM",
+            "en": null
+          },
+          "topics": [
+            "大模型",
+            "物联网"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -17958,7 +18091,16 @@
           ],
           "abstract": "混合专家模型（Mixture-of-Experts, MoE）凭借稀疏激活机制，在扩展模型容量的同时控制计算开销，已成为大规模语言模型的主流架构。然而，MoE模型参数规模庞大，在资源受限的边缘设备上部署面临挑战。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向资源受限场景的轻量化MoE推理",
+            "en": null
+          },
+          "topics": [
+            "大模型",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -17978,7 +18120,16 @@
           ],
           "abstract": "可通行区域识别任务是自动驾驶环境感知的基础与关键环节。相较于城市道路的规律性，越野场景（如草地、沙地、雪地等）因边界模糊、地形复杂且受天气与光照影响显著，对识别算法提出了更高挑战。基于大模型的可通行区域识别算法虽然具备强大的特征提取能力和泛化性，但其参数量通常高达十亿级别，导致实车部署困难。本文针对越野可通行区域识别模型ROD的轻量化技术展开研究。首先，本文设计基于特征相似度的贪心层剪枝方法。通过对模型中间特征的可视化与数值分析，表明层间存在显著特征冗余，从而在实现高剪枝率的同时，有效保留模型的精度。接着，提出基于动态异构高效注意力的轻量化方法。通过时间占比分析移除相对位置编码的计算，结合“动态内核模式选择”和“异构硬件适配”策略，借助分块计算思想将注意力空间复杂度降至O(n)，实现了一种新型的高效注意力机制。最后，提出基于层剪枝与高效注意力的融合优化方案，并基于TensorRT实现FP16量化部署。实验结果表明，在自动驾驶平台NVIDIA Jetson AGX Orin上，优化后模型峰值显存占用减少约77%，推理速度达到原有水平的约6.7倍，且识别精度与可视化效果损失较小。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "越野可通行区域识别模型ROD的剪枝与高效注意力轻量化",
+            "en": null
+          },
+          "topics": [
+            "机器学习系统",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -17998,7 +18149,16 @@
           ],
           "abstract": "近年来，大语言模型的参数规模迅速膨胀，虽推动了人工智能的广泛应用，却带来了算力与存储的双重压 力。混合专家模型（MoE）以稀疏计算降低推理开销，但在推理阶段呈现“计算稀疏而存储密集”的结构矛盾，尤其 在 Ascend NPU 等边缘设备部署时，因显存受限、带宽不足、软件栈尚不完善，该矛盾进一步放大，表现为低频专 家频繁调度、推理延迟上升、吞吐率下降等问题。本文提出了一种面向 Ascend NPU 的显存超分机制，用于优化混 合专家模型的参数管理：通过分级管理减少低频专家的常驻存储；利用设备间带宽实现专家加载的均衡调度；结合 专家重要性裁剪在精度与性能之间实现动态平衡。实验结果表明，该机制在典型推理任务中显著降低了显存占用与 推理延迟，相较于以层为粒度的策略获取了 2.9x 到 23.4x 的性能提升，验证了其有效性与通用性，为混合专家模型 在资源受限环境下的大规模落地提供了具有实际可部署价值的策略。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向Ascend NPU的MoE显存超分参数卸载机制",
+            "en": null
+          },
+          "topics": [
+            "大模型",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -18018,7 +18178,16 @@
           ],
           "abstract": "当前大规模语言模型的参数高效微调方法虽能降低训练开销，但普遍受限于表达能力不足与参数适配性欠佳。本文提出一种基于哈达玛分解的权重适配框架，在不增加参数量的条件下，通过结构化逐元素分解增强模型的表示能力与任务适配性。该方法使权重在微调中能够捕获更丰富的特征交互与非线性关系，从而显著提升下游性能。与此同时，哈达玛分解支持跨层参数共享与重组，降低推理显存占用，并与权重量化技术天然兼容，实现计算与存储的协同优化。实验结果表明，所提方法在多个推理任务中优于现有参数高效微调方案，在性能、效率与资源占用之间取得了更优平衡。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "基于哈达玛分解的参数高效微调表达增强方法",
+            "en": null
+          },
+          "topics": [
+            "大模型",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -18038,7 +18207,16 @@
           ],
           "abstract": "端侧部署是大模型走向产业落地的关键环节。然而，其庞大的计算与存储需求，使其难以直接运行在资源受限的边端上。为此，研究者提出了多种轻量化技术路径。本文简要综述三类主流方法：一是模型压缩，如量化、剪枝和蒸馏，通过降低参数精度或移除冗余结构减少开销；二是原生轻量架构设计，从训练阶段即面向端侧约束优化模型结构与计算效率；三是协同部署，通过端云协同、多端协作等方式实现分布式推理。文章梳理了各类方法的核心思想与代表性工作，并简要展望了未来趋势，可以为端侧大模型的实践部署与后续研究提供结构化参考。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "端侧大模型部署的模型压缩、轻量架构与协同部署综述",
+            "en": null
+          },
+          "topics": [
+            "大模型",
+            "物联网"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -18124,7 +18302,16 @@
           ],
           "abstract": "低代码技术以可视化拖拉拽的无代码化能力，重构了企业应用交付的效率基准，但其在工业场景复杂业务逻辑建模、多源异构数据融合、高实时性体验适配等领域仍面临天然局限。人工智能（AI）的技术破壁为低代码突破工业场景天花板提供了革命性路径。本报告基于零赛云在低代码 + AI 领域的深度产研实践，独创性提出“低代码基座 + AI 智能引擎” 双轮驱动的工业应用开发体系。该体系通过大语言模型的自然语言理解能力，将工业业务专家的经验转化为可执行的低代码规则（如自然语言生成设备巡检逻辑）；通过多模态 AI 的代码生成与符号执行能力，自动构建高复用、高可靠的工业级组件（如智能生成 PLC 数据解析模块）；通过场景化 AI 的自适应能力，实现工业应用从 “功能交付” 到 “智能决策” 的体验升维（如设备异常的 AI 根因分析与流程自动化）。实证数据表明，该体系使工业应用交付效率提升 60% 以上，技术门槛降低至业务人员可直接参与创新，为工业数字化转型提供了 “效率与智能双优” 的落地范式。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "低代码基座与AI智能引擎双轮驱动的工业应用开发新范式",
+            "en": null
+          },
+          "topics": [
+            "代码生成",
+            "产业生态"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -18144,7 +18331,16 @@
           ],
           "abstract": "工业软件研发在当前面临的挑战（如研发效率、质量安全、合规性等）以及AI技术在软件工程中的应用现状与局限。AI Agent正推动软件工程进入3.0时代，实现从“人编码”到“人指挥AI”的范式转变，通过多Agent协作（如需求、设计、编码、测试Agent）重构研发流程，提升自动化与智能化水平，并分享了近两年的部分实践案例。未来，AI Agent将逐步从辅助工具演进为研发主导者，推动软件工程向高效、标准化、智能化的“软件工厂”模式发展。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "AI Agent重塑工业软件研发生命周期迈向软件工厂",
+            "en": null
+          },
+          "topics": [
+            "智能体",
+            "产业生态"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -18161,7 +18357,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "智能体",
+            "数字孪生"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -18178,7 +18383,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "需求工程",
+            "智能体"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -18195,7 +18409,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "数据库",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -18212,7 +18435,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "大模型",
+            "代码生成"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -18229,7 +18461,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -18246,7 +18487,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "智能体",
+            "数字孪生"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -18263,7 +18513,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "数字孪生",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -18280,7 +18539,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "智能运维",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -18297,7 +18565,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "大模型",
+            "数字孪生"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -18314,7 +18591,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -18331,7 +18617,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件供应链",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -18348,7 +18643,15 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -18365,7 +18668,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "移动软件"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -18382,7 +18694,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "大模型",
+            "产业生态"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -18461,7 +18782,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "RISC-V"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -18481,7 +18810,16 @@
           ],
           "abstract": "开源的RISC-V标准在催生丰富芯片架构的同时，也凸显了传统编译优化方法的不足：其静态、固化的启发式规则高度依赖与专家的调优经验，难以实现跨架构的性能泛化。本报告将系统介绍一系列针对RISC-V新特性的编译优化技术，并重点探索如何利用AI技术，实现从“人工调优”到“智能泛化”的转变。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "从人工优化到AI驱动的RISC-V编译优化进化",
+            "en": null
+          },
+          "topics": [
+            "编译器",
+            "RISC-V"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -18501,7 +18839,16 @@
           ],
           "abstract": "反编译是软件逆向工程中的基础技术, 其目标是从面向硬件的二进制代码中恢复出高级语言代码, 以支持人工阅读、分析或重工程任务. 尽管该技术已得到广泛研究, 但传统基于规则的反编译器所生成的反编译代码往往可读性较差, 且难以复用. 此外, 由于传统反编译器的开发周期较长, 其对RISC-V等新兴指令集架构的支持通常较为滞后. 在当前大语言模型(large language model, LLM)技术广泛应用于自动化软件工程任务并取得显著成效的背景下, 面向RISC-V架构的反编译需求, 提出了一种结合LLM与符号执行的反编译方法BinDec. 该方法通过LLM生成与符号执行验证的交替迭代, 充分利用LLM的代码理解与生成能力, 以产生更易于理解与重用的反编译代码; 同时借助符号执行的代码分析与验证能力, 确保生成结果的可靠性. 通过一系列实验对BinDec的有效性进行了评估, 实验结果表明, 该方法在达到与传统反编译器相近的语义准确性的同时显著提升了代码的可读性.",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "LLM与符号执行协同的RISC-V二进制反编译BinDec",
+            "en": null
+          },
+          "topics": [
+            "RISC-V",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -18521,7 +18868,16 @@
           ],
           "abstract": "RISC-V指令集架构凭借其开放性与模块化设计，推动了芯片架构实现创新与定制化，但与此同时也引发了严重的软件生态碎片化问题。本文提出了一种面向RISC-V平台的兼容性感知多层级编译方法——RuyiBuild工具链，以LLVM IR为中间表示，结合非侵入式编译流程拦截机制，实现了对现有软件构建系统的透明适配，使构建生成的操作系统软件包既具备面向不同RISC-V扩展指令集的兼容性，又可以面向最终运行平台进行基于扩展指令集的自适应优化，有效解决了RISC-V指令集多样性背景下，多指令扩展组合与平台差异下二进制高性能优化与广泛兼容性的双目标统筹实现问题。RuyiBuild工具链围绕LLVM IR的提取与部署、转换与优化设计了一套完整的跨平台软件分发与精细化优化框架，主要包含四个核心机制:透明化双路径编译与LLVM IR提取机制，动态链接与LLVM IR链接转换机制， LLVM IR 驱动的软件包封装与集成机制，以及客户端与云端协同的LLVM IR到目标平台二进制程序转换机制。实验结果表明，RuyiBuild能够面向多种RISC-V指令集扩展与微架构组合实现对目标程序的部署，有效应对硬件兼容性与硬件性能充分发挥之间的矛盾。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向RISC-V指令集多样性的兼容性感知多层级构建RuyiBuild",
+            "en": null
+          },
+          "topics": [
+            "RISC-V",
+            "编译器"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -18541,7 +18897,16 @@
           ],
           "abstract": "RISC-V的“基础指令集 + 可选扩展指令集”ISAX（ISA+eXtension）异构计算范式逐渐走向主流。如何在异构处理器间无缝复用既有软件生态、同时兼顾高性能与正确性，是当前RISC-V异构计算的关键挑战。为此，我们提出一套基于轻量级二进制重写的RISC-V异构计算系统：当程序在异构RISC-V处理器间调度迁移时，系统透明翻译不兼容指令，并以系统级机制确保指令行为语义的正确性。利用RISC-V指令集编码特性，我们突破了传统二进制重写方法在性能与正确性之间的取舍。基于矩阵计算、数值库等通用基准及真实应用的评测表明，系统在保持语义等价的前提下大幅缩小了与理论最优之间的性能差距，性能显著优于现有二进制重写方案。总体而言，本工作通过软硬件协同设计，为RISC-V异构计算提供了可扩展、可落地的新思路和新方法，并首次在系统软件层面尝试解决了RISC-V的生态碎片化难题。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "基于轻量二进制重写的用户透明高性能RISC-V异构计算系统",
+            "en": null
+          },
+          "topics": [
+            "RISC-V",
+            "编译器"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -18561,7 +18926,17 @@
           ],
           "abstract": "随着开源RISC-V架构的迅猛发展,其开放与模块化的特性在催生繁荣硬件生态的同时，也给硬件电路的安全性保障带来巨大挑战.在硬件设计流程的前期进行安全缺陷早期检测，能够以最低成本在缺陷固化于物理芯片前将其消除.尽管静态分析已用于硬件安全缺陷早期检测，但由于规约知识未充分利用以及代码上下文语义理解不足，现有检测方法存在高漏报率和高误报率的问题。针对这些问题，本文提出MARC，一种基于大语言模型多智能体协同的硬件安全缺陷早期检测方法。该方法通过构建设计依赖分析、文档分析、安全缺陷检测、安全缺陷确认四类智能体及协同工作框架，从补充跨模块上下文、结构化模块文档知识、快速初筛安全缺陷、深度推理安全缺陷风险分析等多维度协同作用，有效降低硬件电路设计阶段早期安全缺陷检测的误报率，提升检测准确性。实验表明，MARC 有效缓解了硬件安全缺陷早期检测中的误报问题，提升了安全缺陷检测的准确性与效率，为硬件安全提供了更可靠的技术支撑。实验表明，MARC框架在工业级数据集上将早期缺陷检测的MARC的漏报率降低至0.3829，相较于基准方法降低了约18.2%，误报率达到了0.3695，相较于基准方法降低了约19.1%。另外,本文方法还支撑作者团队夺得HACK@DATE 2025硬件漏洞挖掘竞赛全球冠军，成功挖掘了1个获CVE编号的硬件漏洞，在真实世界中验证了其有效性。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "多智能体协同的RISC-V硬件安全缺陷早期检测MARC",
+            "en": null
+          },
+          "topics": [
+            "RISC-V",
+            "硬件安全",
+            "智能体"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -18581,7 +18956,16 @@
           ],
           "abstract": "随着端侧智能软件的发展，RISC-V 架构因其开源、模块化及低成本优势在学术界和产业界受到广泛关注。然而，将智能软件部署到RISC-V架构上面临诸多挑战。智能软件的运行依赖于执行卷积、归一化等基本张量运算的深度学习算子，而算子在不同硬件架构上的实现质量直接决定了软件性能。一旦算子在RISC-V架构上出现问题，将直接影响上层大量智能软件的执行效率、准确性和可靠性，因此针对RISC-V架构的算子质量评估至关重要。本文提出 RIVdoo，一种面向 RISC-V 架构的深度学习算子质量评估方法，该方法基于输入空间复杂度在不同计算负载的情况下系统性地开展了多维度深度学习算子测试，有效地识别算子中的性能异常及架构适配问题。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向RISC-V架构的深度学习算子质量评估RIVdoo",
+            "en": null
+          },
+          "topics": [
+            "RISC-V",
+            "软件测试"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
