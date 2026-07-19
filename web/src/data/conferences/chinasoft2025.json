@@ -20193,7 +20193,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件教育"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20213,7 +20221,15 @@
           ],
           "abstract": "兴趣是最好的老师，但枯燥和坚持是必然的科研历程。本报告介绍开源生态如何对本研究者展开了其波澜壮阔的面貌，从探索现象开始到推动产业应用和实践产学研融合，领略多学科交叉和全球化开源社区的魅力。最后探讨AI带来的机会和挑战。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "分享开源生态研究的历程与AI带来的机遇挑战",
+            "en": null
+          },
+          "topics": [
+            "开源软件"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20233,7 +20249,15 @@
           ],
           "abstract": "女性科研者需怀揣自信，打破“能力质疑”枷锁。女性在社会、生活的各个层面从未缺席。我们以女性特有的柔性和智慧去平衡工作与生活的压力；以细腻的洞察与包容展现协作和领导力，在科研中绽放独特光芒，既要勇攀学术高峰，也能守护生活温度，为科研界注入多元、坚韧、且更富活力的独特力量。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "女性科技工作者的自信、骄傲与努力",
+            "en": null
+          },
+          "topics": [
+            "软件教育"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20253,7 +20277,16 @@
           ],
           "abstract": "我的研究始于基于定理证明（程序逻辑）的并发程序验证，最近几年我的兴趣转向了语言设计与类型系统。这一转型意味着研究范式的根本转变：从对程序正确性的后验验证，前移至对程序表达能力与内在安全性的本源设计。这不是一次轻松的转身，而是一场从“证明者”到“设计者”的身份转换，是从“如何验证”到“如何表达”的思维跨越。在此过程中，面对尚未产生显著成果的“静默期”，我深切体会到，持续而深入的思考是维系科研生命力的核心。本次报告将分享我的心路历程，探讨在转型阵痛中的坚持与沉淀，也希望能与所有同行共勉：在快节奏的学术洪流中，保持思考，本身就是一种前进。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "从并发程序验证到语言设计与类型系统的转型思考",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "编译器"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20273,7 +20306,16 @@
           ],
           "abstract": "本报告将分享我过去十年在软件工程领域的探索。我将阐述“原生-衍生软件架构”的概念及其应用。我的研究致力于从架构视角，理解、建模并解决复杂软件维护与演化中的难题。基于对开源软件生态的剖析，我将下游软件随上游软件版本同步的过程，定义为“原生-衍生”架构的协同演化。我与合作者将这一方法论应用于安卓与开源鸿蒙生态，深切体会到科研与实践如何相互促进。我始终坚信“你若盛开，蝴蝶自来”。愿将这段旅程中的心得，分享给软件领域的青年同行，特别是各位女性同仁。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "十年原生-衍生软件架构的诞生与协同演化研究",
+            "en": null
+          },
+          "topics": [
+            "软件架构",
+            "软件维护"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20293,7 +20335,15 @@
           ],
           "abstract": "我的科研旅程，仿佛依次穿过三重不同的门：首先是被指导的学生，然后是独立探索的学者，最后是指导他人的导师。在这个报告里，我将分享我穿过这三重门的见闻与体验，遇到的挑战和困惑，以及从中的收获，与大家一同探讨如何在每个角色中找到自己的节奏，实现平滑而坚定的成长。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "穿过学生、学者、导师三重门的科研成长体会",
+            "en": null
+          },
+          "topics": [
+            "软件教育"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20313,7 +20363,16 @@
           ],
           "abstract": "博士的学术生涯，往往不是一条笔直的康庄大道，而更像是在迷雾中探索前行，这让我学会了如何与不确定性共处，并在一次次的挑战中锤炼出愈发坚定的学术信念。本次报告我将首先介绍近期的智能化软件开发研究工作，接着分享我的科研经历和心路历程。希望我的分享能为同样在科研道路上感到困惑或面临挑战的同学们带来一些共鸣与力量，相信每一次的转折，都是通往独特风景的序章，相信每一次“绕路”都不会白费，它们终将塑造一个更强大、更独特的你。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "分享智能化软件开发研究与蜿蜒坚定的科研心路",
+            "en": null
+          },
+          "topics": [
+            "软件教育",
+            "AI4SE"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20333,7 +20392,15 @@
           ],
           "abstract": "女性科研工作者在学术生涯中普遍面临的自我怀疑、信心不足等内在挑战。本报告以个体心理学创始人阿尔弗雷德·阿德勒的“自卑与超越”理论为框架，结合报告人自身的科研成长经历，首先剖析科研旅程中常见的“自卑”时刻——例如，面对学术竞争时的无力感、论文写作与发表过程中的挫败感，以及“冒名顶替综合征”的困扰。然后，通过分享个人真实的“超越”故事，阐述如何将自卑感转化为深度自我探索的契机和追求创新的内在驱动力。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "以自卑与超越理论审视科研旅程中的自我发现",
+            "en": null
+          },
+          "topics": [
+            "软件教育"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20353,7 +20420,15 @@
           ],
           "abstract": "都说读博是一场性格的重塑。有人在这个过程中被焦虑裹挟，也有人淬炼出强大的内核。于我而言，这段旅程赋予我最宝贵的礼物，是一份平和的心态——它让我学会戒骄戒躁，逐渐找到了属于自己的科研节奏。本次报告，我将分享我的求学与科研故事：从一个迷茫的科研小白，到一名坚定博士生的成长之路。这其中，包括我如何选择研究方向，又在探索中“重选”与“扩宽”的过程。科研终究是一件长期主义的事情。我们不必因他人的成果而焦虑，不必为自己的进度而慌张，更不必在暂时的停滞中否定自己的价值。真正的成长，在于学会与漫长的时间做朋友，用“绵绵用力，久久为功”的从容，走好属于自己的每一程。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "绵绵用力找到属于自己的科研节奏的成长体会",
+            "en": null
+          },
+          "topics": [
+            "软件教育"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20373,7 +20448,15 @@
           ],
           "abstract": "在直博阶段的两年时间里，我经历了从学术“新手”到能够在顶级会议上发表论文的成长过程。科研之路并非一帆风顺，在学术上，我需要不断攻克难题。同时在心理上，我也时常面临压力与内耗，尤其是当室友在一年内发表三篇论文，而我的研究工作仍未见成果时，我也曾反思自己：是能力不足，还是投入不够？由于 Program Synthesis 领域对理论基础要求较高，需要投入更多的时间打好基础，才能展开课题研究。本科毕业开始读博时的我，以为发论文是做科研的最终目标，发的论文越多，成就越好。在博士一年级时，我过于急切地希望快速推进科研进度并投稿。然而，随着逐渐积累经验，我认识到科研需要“快”与“慢”的平衡：当有了可行的想法时，应当积极推动研究、及时验证；但当暂时没有想法，或发现设想不可行时，更需要沉下心来夯实基础，深入思考问题，而不是急于求成。这段经历让我不仅在学术能力上逐步成熟，也在心态上学会了如何面对科研中的起伏与挑战。如今的我非常认同导师的一句话：做科研不是和别人比快慢、比多少，而是是否真正理解问题的本质、实际解决问题。在未来，我也不再执着于发论文的速度与数量，而是踏实地研究课题，不再内耗、不再质疑，但行好事，莫问前程。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "直博生从新手到顶会发表的科研心路历程",
+            "en": null
+          },
+          "topics": [
+            "软件教育"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20393,7 +20476,15 @@
           ],
           "abstract": "回首六年的博士之路，这是我从“程序媛”到“研究媛”的一段自我蜕变旅程。最初，我沉浸于代码的世界，享受解决问题的成就感，却逐渐意识到，仅仅实现功能并不足以解答更深层次的问题。于是，我选择走向科研，从单纯的编程技巧转向问题探索与思维训练。在不断的试错与积累中，我学会了如何提出有价值的问题，如何在学术研究中寻找答案。蜕变的意义，不仅在于身份的转变，更在于视野的拓展与责任的承担。很荣幸能够与大家分享这段既属于“程序媛”，也属于“研究媛”的独特旅程。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "从程序媛到研究媛的自我蜕变旅程",
+            "en": null
+          },
+          "topics": [
+            "软件教育"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20413,7 +20504,16 @@
           ],
           "abstract": "科研之路，是在未知领域中循序渐进地绘制知识版图的过程，每一次探索既在填补空白，也可能重塑边界。这条道路不仅考验我们的学识与创造力，也锤炼我们面对困难时的定力与韧性。我的博士研究始于可信网络管理，并在此领域中逐步建立起我对科研的认知与实践。本次报告，我将重点介绍我在该方向上的三项核心工作，涵盖网络配置共享中的隐私保护、网络管理外包中的风险评估和管控，以及广域网流量工程的可靠仿真系统。我将分享每个项目的问题由来、研究过程中所遭遇的挑战，以及解决方案从雏形到成熟的演进历程。这些工作不仅是技术上的深入探索，也见证了我从最初参与具体任务，到逐渐学会独立定义问题、推进创新的成长轨迹。我期待通过这次分享，与各位交流在系统与网络研究中的思考与体悟，也希望能与不同背景的学者相互启发，在探索之路上共同前行。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "可信网络管理的隐私保护、风险管控与流量工程仿真研究",
+            "en": null
+          },
+          "topics": [
+            "隐私计算",
+            "分布式系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20433,7 +20533,15 @@
           ],
           "abstract": "科研问题并非凭空而来，而是深植于实践之中。在项目经历中，我常常追问：“为什么要这样做？” 正是这些追问，引领我从具体的工程实践走向科研探索，并逐渐确立了自己的研究方向。然而，这条道路从来不平坦。面对难题，我学会在反复试错中寻找突破；在论文投稿受挫时，我也学会平和地汲取反馈，把一次次挫折化为继续前行的动力。作为一名女性科研工作者，我深知科研不仅需要理性的思考，更需要韧性与勇气。正是在这样的坚持中，我逐渐理解了科研与实践之间的紧密联系。本次分享，我将结合自身经历，讲述如何在实践项目中孕育科研问题，又如何在挫折与挑战中积蓄力量、调整方向。愿这些片段能为同行，尤其是科研路上的女性学者，带来一丝启发与鼓励。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "在实践中孕育科研问题与坚持成长的体会",
+            "en": null
+          },
+          "topics": [
+            "软件教育"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -20498,7 +20606,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "AI4SE"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20518,7 +20634,16 @@
           ],
           "abstract": "由于在算力和带宽两方面的明显优势，传统大模型推理架构往往以 GPU 为中心进行设计。然而，随着 GPU 利用率逐渐逼近瓶颈，进一步降低推理成本需要开拓新的优化路径。结合不同 GPU 设备乃至 CPU/DRAM 设备在带宽或容量成本上的优势，并充分利用模型本身的前序依赖性与稀疏性特征，设计适配的计算架构成为未来算法、系统与硬件协同创新的重要方向。本次报告将介绍两种具体优化思路：一是以存换算的 Mooncake 架构，它通过 以KVCache 为中心的大模型推理架构大幅提升了 Kimi 线上业务的承载能力；在此基础上，我们进一步探讨了更多的异构分离可能性。例如，在 P/D 分离的基础上，我们发现 Decode 环节中的 MLP 和 Attention 算子具有进一步分离的潜力。为此，我们优化了相关的网络传输链路以降低延迟，并在字节跳动的环境中进行了测试。二是以存强算的 KTransformers 系统，它针对 DeepSeek V3/R1 类稀疏大模型进行 CPU/GPU 异构推理优化，显著降低了本地部署门槛。相关项目均已开源，并获得社区广泛关注。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "以存换算的Mooncake与以存强算的KTransformers异构推理",
+            "en": null
+          },
+          "topics": [
+            "大模型",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20538,7 +20663,16 @@
           ],
           "abstract": "尽管Arm可信执行环境（Trusted Execution Environment，TEE）能隔离IO硬件，但缺乏对于现代多元IO设备的驱动支持，无法在TEE内端到端访问IO设备，实现安全IO。为解决该问题，我们提出了一种全新的TEE设备驱动设计思想—最小可用设备驱动，即微驱动。有别于设备驱动移植这一传统软件复用手段，微驱动将设备驱动按照不同的IO功能垂直划分，通过记录重放的方式复用其IO功能对应的软硬件交互事件；该方式隐式地复用了设备内部状态机的状态转换路径，从而达到实现相同IO功能的效果。微驱动首次在Arm TEE中实现了对MMC、CSI摄像头以及多个USB设备类总计共10个不同设备的完整访问，填补了Arm TEE在安全IO上的关键空白。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "记录重放复用IO功能的Arm TEE最小可用设备驱动微驱动",
+            "en": null
+          },
+          "topics": [
+            "硬件安全",
+            "操作系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20558,7 +20692,16 @@
           ],
           "abstract": "“微秒杀手”问题在2017前后年被提出：软件机制能够很好地掩盖毫秒级延迟开销，硬件手段则能有效应对纳秒级延迟开销；然而，随着新型存储与网络器件进入微秒级延迟时代，现有系统层面并没有很好的掩盖手段。针对这一挑战，本报告将从操作系统抽象、线程模型以及存算调度等角度，介绍本人在过去几年的探索与思考，并分享一些破解思路，包括：1）通过纯用户态进程抽象大幅降低核心调度引发的切换开销；2）通过翻新传统SEDA线程模型使其表现优于当今流行的运行至完成模型；3）通过用户态存算协同调度证实异步IO引擎在内存层的可行性等。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "以调度为中心破解存储系统微秒级延迟的微秒杀手问题",
+            "en": null
+          },
+          "topics": [
+            "存储",
+            "操作系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20578,7 +20721,16 @@
           ],
           "abstract": "近年来，大模型展现出了强大的智能涌现能力，在自然语言处理等任务中表现出了出色的自主学习和推理能力。在软件工程领域，使用大模型提升软件开发效率，保障软件质量成为当前研究热点，例如 Copilot 集成了最新的大模型 GPT-4 并用于代码生成，许多研究工作利用大模型来检测软件缺陷等保障软件安全。本次报告聚焦大模型驱动的智能化软件工程，包括最新研究进展，并对未来的一些研究进行展望。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "大模型驱动的智能化软件工程实践与挑战",
+            "en": null
+          },
+          "topics": [
+            "AI4SE",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20598,7 +20750,15 @@
           ],
           "abstract": "模型检验作为形式化验证的关键技术，广泛用于安全攸关系统的正确性保障。然而，随着系统规模与复杂性不断提升，状态空间爆炸问题日益突出。如何在复杂系统上提升模型检验的验证效率与可扩展性，已成为当前形式化验证领域的关键挑战。围绕该问题，本报告聚焦实时系统的中断驱动场景与异步电路的通信场景，介绍我们在模型检验加速方法方面的研究进展。我们的核心思路是面向待验证性质，对相关系统行为进行抽象，并将复杂验证问题予以分解，从而约减验证问题规模，提高验证方法的效率与可扩展性。理论分析与真实案例实验均验证了所提方法的有效性。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "基于抽象与分解的复杂系统模型检验加速方法",
+            "en": null
+          },
+          "topics": [
+            "形式化方法"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20618,7 +20778,16 @@
           ],
           "abstract": "大语言模型在数学推理中潜力巨大，但我们发现主流的结果导向训练范式为其可靠性带来新的挑战，催生了一些依赖记忆的系统性失败。本研究从过程奖励的新视角出发，探讨如何保障模型推理的可靠性。我们设计了评分细则奖励模型（RRM），对推理步骤的逻辑严谨性进行监督，旨在倡导一种超越最终答案、更注重过程质量的训练范式，从而更全面地保障大模型推理的可靠性。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "从过程奖励视角以评分细则RRM保障大模型推理可靠性",
+            "en": null
+          },
+          "topics": [
+            "大模型",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20638,7 +20807,16 @@
           ],
           "abstract": "随着 DeepSeek-R1 的流行与 AI4Math 研究的深入，大模型在辅助形式化证明写作方面的需求日益增长。作为数学推理最直接的应用场景，形式化推理与验证也获得持续关注。然而，近期的形式化推理大模型大多只针对单一形式化语言模型，缺乏对多形式化语言、多形式化任务场景的深度探索。 为了探索这个问题，我们首先对形式化验证任务进行了分层拆解，从非形式化的自然语言输入到可验证的形式化证明或可检测的模型；将传统的端到端形式化验证流程细化为六个子任务，包括验证需求分解、形式化规约片段生成、规约补全、填空，以及代码到形式化规约的自动生成。此外，我们进一步探索了形式化数据微调对大模型数学、推理和编程等任务上的迁移能力。通过对比微调前后在上述任务上的表现差异，以验证大模型能否通过形式化验证能力训练中习得推理、数学等元能力。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "分层拆解形式化验证任务与形式化数据微调的能力迁移",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20658,7 +20836,16 @@
           ],
           "abstract": "可满足性问题(SAT)是形式化方法的核心问题之一，在EDA及密码分析等应用领域也发挥着关键作用。随着问题规模及复杂性的提升，对SAT算法的求解能力提出了更高的要求。在高性能计算算力规模持续发展的背景下，基于CPU的并行及分布式SAT求解技术近年来取得了显著的进展。然而，如何有效利用GPU等异构资源进一步提升SAT求解器性能，并将其应用于解决实际问题，仍是领域面临的重要挑战。本次报告首先将介绍本课题组于并行及分布式SAT求解方向的探索成果；进一步，以数据通路的等价性验证问题（CEC）为例，阐述SAT混合并行及相关GPU异构并行求解技术；最后，探讨课题组近期在异构SAT并行求解的研究工作和未来构想，并验证了其在一类密码学问题上的有效性。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "异构并行SAT求解及组合等价性验证",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "EDA"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20678,7 +20865,16 @@
           ],
           "abstract": "最优化模理论(Optimization Modulo Theory,OMT)是可满足模理论(Satisfiability Modulo Theory,SMT)的扩展:给定约束条件P 和目标函数 f,寻找 P 的可满足解，使得 f的值最大或最小化OMT 在程序分析与验证中具有重要应用，例如最优抽象解释WCET 分析等。目前OMT 求解主要包括两类方法:一是将 OMT 转化为其他自动推理问题(如最大可满足性、量词实例化等);二是基于 SMT 的迭代优化算法(如线性搜索、二分搜索等)。OptiMathSAT 和 Z3 等求解器均支持 OMT约束求解，但在处理复杂约束时，现有方法仍面临性能瓶颈。本报告主要分享针对位向量约束的OMT问题，我们近期的相关串行和并行算法，及其在二进制静态分析、混合模糊测试等场景的应用。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "位向量约束的最优化模理论OMT及其程序分析应用",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "程序分析"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -20752,7 +20948,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "缺陷检测",
+            "智能运维"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20770,7 +20975,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "缺陷检测",
+            "AI4SE"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20802,7 +21016,15 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "缺陷检测"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20846,7 +21068,15 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "缺陷检测"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20887,7 +21117,15 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "缺陷检测"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20917,7 +21155,15 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "缺陷检测"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20949,7 +21195,15 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "缺陷检测"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -20984,7 +21238,15 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "缺陷检测"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21014,7 +21276,15 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "缺陷检测"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -21091,7 +21361,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "编译器",
+            "软件教育"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21104,7 +21383,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "编译器",
+            "软件教育"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21117,7 +21405,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "编译器",
+            "软件教育"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21130,7 +21427,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "编译器",
+            "软件教育"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21143,7 +21449,16 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "编译器",
+            "软件教育"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21160,7 +21475,16 @@
           ],
           "abstract": "介绍仓颉语言的基础知识和相关工具，帮助开发者上手仓颉。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "介绍仓颉语言基础知识与工具，帮助开发者上手",
+            "en": null
+          },
+          "topics": [
+            "编译器",
+            "软件教育"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21177,7 +21501,16 @@
           ],
           "abstract": "介绍仓颉语言的基础知识和相关工具，帮助开发者上手仓颉。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "介绍仓颉语言基础知识与相关工具的使用",
+            "en": null
+          },
+          "topics": [
+            "编译器",
+            "软件教育"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21194,7 +21527,16 @@
           ],
           "abstract": "介绍使用仓颉语言的一些算法题目介绍。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "使用仓颉语言的算法题目解析",
+            "en": null
+          },
+          "topics": [
+            "编译器",
+            "软件教育"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21211,7 +21553,16 @@
           ],
           "abstract": "继续介绍使用仓颉语言的一些算法，以及leetcode竞赛操作注意事项。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "仓颉语言算法解析及LeetCode竞赛注意事项",
+            "en": null
+          },
+          "topics": [
+            "编译器",
+            "软件教育"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -21281,7 +21632,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21294,7 +21653,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21307,7 +21674,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21320,7 +21695,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21333,7 +21716,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21346,7 +21737,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21359,7 +21758,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -21372,7 +21779,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "机器学习系统"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
