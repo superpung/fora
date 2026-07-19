@@ -7280,7 +7280,16 @@
           ],
           "abstract": "随着大模型技术的不断发展，其对算力的需求也在持续增大。然而，中国在获取最先进的芯片方面面临巨大的挑战。如何充分发挥国产算力硬件性能，让国产算力易用好用，满足大模型对算力的需求具有重要意义。针对此挑战，我们在国产智能算力上开发了一系列核心基础软件。其中，在新一代国产超级计算机上，从编译器、算子库、并行系统和负载均衡等方面对大模型进行了深入优化，开发了面向大模型训练的“八卦炉”系统，采用“八卦炉”训练的大模型性能达到EFLOPS。同时，针对国产算力研制了“赤兔”大模型推理引擎，有效提升国产智能算力上大模型的推理效率。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "八卦炉训练系统与赤兔推理引擎释放国产算力性能",
+            "en": null
+          },
+          "topics": [
+            "机器学习系统",
+            "编译器"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -7300,7 +7309,16 @@
           ],
           "abstract": "真正生态需要来自不同组织的开发者，如何吸引激励这些开发者是生态成功最关键的因素。本议题结合华为内部的开源管理实践分享演讲者对于开发者关系的体会及思考，包括常见开发者诉求及挑战。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "华为内部开源开发者关系与激励机制建设历程",
+            "en": null
+          },
+          "topics": [
+            "开源软件",
+            "产业生态"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -7320,7 +7338,16 @@
           ],
           "abstract": "人工智能（AI）大模型的迅猛发展正深刻重塑全球科技竞争格局，已成为国家间战略博弈与全球秩序重构的关键领域。在此背景下，开源与闭源路径的选择，不仅关乎技术发展模式，更直接牵涉全球技术生态主导权与国际治理话语权的分配。然而，面对以开源大模型为代表的新型协作范式，相应的生态度量理论与治理策略仍存在显著规则滞后与治理空白。为应对这一挑战，本报告将阐释人工智能发展对开源生态内涵与外延的深刻重塑，论证开源已超越单纯的技术创新加速器，正演进为AI价值体系构建与治理机制形成的重要基石。进而，报告将聚焦于模型、数据与算法全面开放的新趋势，重点探讨如何通过多元主体的协同治理，在开放生态中有效实现价值对齐，最终引导全球AI开源生态迈向普惠、包容、可持续与可信的未来。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "AI大模型时代开源生态的治理逻辑与价值对齐路径",
+            "en": null
+          },
+          "topics": [
+            "开源软件",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -7340,7 +7367,16 @@
           ],
           "abstract": "企业参与开源的模式正经历深刻的演进。首先，企业开源“角色多元化”已成常态：企业不再是简单的“使用者”，而是扮演着“竞合者”(Co-opetitor)与“生态主导者”等多重角色。在本次分享中，我们将结合对 PyTorch、TensorFlow 和 Transformers等项目的具体研究，深入探讨这种“竞合”新常态所带来的战略风险。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "构建企业开源竞合关系的风险治理免疫系统",
+            "en": null
+          },
+          "topics": [
+            "开源软件",
+            "软件供应链"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -7360,7 +7396,15 @@
           ],
           "abstract": "随着软件开发技术的发展，软件开发理念和方法经历了从个体创作到规模化生产的工程范式变革，以及从规模化生产到大规模创作的开源范式变革，现已进入从大规模创作到群智开发的群智范式变革阶段。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "从群智范式视角看开源软件开发的群智度量",
+            "en": null
+          },
+          "topics": [
+            "开源软件"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -7378,7 +7422,15 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "开源软件"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -7450,7 +7502,16 @@
           ],
           "abstract": "量子计算作为一种全新的计算模型，充分利用了量子叠加和量子纠缠等量子力学特性来进行计算，Shor算法等的提出展现出了量子计算在特定问题上超越经典计算的潜力。当前量子计算装置的研制面临着比特数少、退相干时间短、噪声干扰大等诸多挑战，在此背景下，量子门线路编译优化成为促进量子计算在当前NISQ系统上有效实现的关键瓶颈之一。在这一报告中将汇报我们最近在量子线路优化方面取得的一些科研进展，以及从中引出的新的计算问题。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向NISQ系统的量子门线路编译优化研究进展",
+            "en": null
+          },
+          "topics": [
+            "量子计算",
+            "编译器"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -7470,7 +7531,16 @@
           ],
           "abstract": "在程序形式化验证中，用于描述状态性质的断言语言对推理系统的完备性至关重要。它确保程序语义能够转化为逻辑公式，从而将程序正确性问题归约为逻辑公式的可验证性问题。现有量子 Hoare 逻辑虽已建立完备的推理系统，但其断言均基于语义定义，缺乏具备内涵完备性的形式化系统。我们提出了一种新的量子断言语言，能够表达以往研究中涉及的的各类量子谓词，并证明对任意确定性顺序量子程序，其最弱前置条件语义均可在该语言中精确刻画。此结果不仅解决了量子 Hoare 逻辑的内涵完备性这一基础问题，也为后续量子程序验证工具的开发提供了坚实的理论基础。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "具备内涵完备性的量子断言语言与量子Hoare逻辑",
+            "en": null
+          },
+          "topics": [
+            "量子计算",
+            "形式化方法"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -7490,7 +7560,15 @@
           ],
           "abstract": "量子计算的有用性有赖于量子算法。然而，相比于经典算法领域，量子算法设计缺少方法论，没有太多成熟的“套路”可以遵循。幸运的是，过去20余年里，量子游走已经发展成为量子算法设计的一种重要模型，很多具有加速优势的量子算法都是基于量子游走设计的。本报告在回顾相关历史发展过程之后，重点汇报研究团队近年在这方面的初步研究成果，主要聚焦于图及几何空间中的各类搜索问题基于量子游走进行算法设计以及去随机化研究。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "基于量子游走的图与几何空间搜索问题量子算法设计",
+            "en": null
+          },
+          "topics": [
+            "量子计算"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -7510,7 +7588,16 @@
           ],
           "abstract": "Quantum neural networks (QNNs) combine quantum dynamics with classical optimization for complex tasks in physics and beyond, but face fundamental trainability limits. We introduce the Quantum Recurrent Embedding Neural Network (QRENN), inspired by ResNet-like skip pathways and general quantum circuit frameworks. Using dynamical Lie algebras, we prove QRENNs remain trainable—avoiding barren plateaus even as depth increases. We also propose the Linear Combination of Quantum Neural Networks (LCQNN), which leverages linear combinations of unitaries to tune expressivity and mitigate vanishing gradients without inducing excessive classical simulability. Structural choices—such as k-local control unitaries or group-theoretic subspace constraints—prevent gradient collapse while preserving expressivity. We also introduce a scalable, training-free QAS framework that efficiently explores and evaluates quantum circuits via landscape fluctuation analysis.",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "可训练量子神经网络QRENN/LCQNN与免训练架构搜索",
+            "en": null
+          },
+          "topics": [
+            "量子计算",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -7530,7 +7617,16 @@
           ],
           "abstract": "量子测控软件是将量子物理系统变成量子计算系统的关键环节，既承担了标定量子比特的工作环境和量子操作的工作参数等任务，又负责了将高层次抽象的量子操作转化为底层控制信号的任务。本报告将与大家分享我们在量子测控软件方面的相关工作，包括一套新的开源量子测控软件 QuantaCS和一种新的低层次量子软件指令集SISQ。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "超导量子测控软件QuantaCS与低层指令集SISQ",
+            "en": null
+          },
+          "topics": [
+            "量子计算",
+            "编译器"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -7607,7 +7703,15 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "需求工程"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -7625,7 +7729,15 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "需求工程"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -7645,7 +7757,16 @@
           ],
           "abstract": "尽管大语言模型拥有广泛的知识与强大的语言生成能力，能否使其在复杂软件项目中成为一名值得信赖的“合格需求分析师”，仍是一个开放性问题。本报告认为，实现该目标的关键障碍并非LLM能力不足，而在于其缺乏系统性的需求工程思维与规范约束。为此，提出将结构化的需求模型（如用例模型、E-R图与CRUD矩阵）作为LLM需求生成过程的核心制导框架。构建了一套模型驱动的执行机制，将上述模型转化为机器可解析的语义约束与生成蓝图。该机制不再将LLM视为被动应答的黑盒，而是将其重新定位为一个在严格架构下运行的“语义执行单元”，从而使其输出被牢牢锚定于预设的模型边界与逻辑关系之内。对比实验表明，与直接调用LLM相比，本方法在需求补全、场景生成与规约推导等任务中，其产出物的功能覆盖度与结构完整度均有显著提升。本研究为在大规模关键系统中可靠地运用LLM进行需求工程，提供了一条切实可行的路径。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "以结构化需求模型制导大模型成为合格需求分析师",
+            "en": null
+          },
+          "topics": [
+            "需求工程",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -7665,7 +7786,16 @@
           ],
           "abstract": "软件需求规格说明（SRS）是界定软件功能性需求及关键质量属性的核心文档。当前需求工程实践面临显著挑战：首先，需求文本仍高度依赖人工撰写，受限于分析人员经验差异，导致文档质量参差不齐且维护成本居高不下；其次，在安全性等关键质量属性的分析过程中，由于缺乏标准化方法，需求完整性难以系统化保障。尽管ChatGPT等大语言模型（LLM）为需求自动化带来新机遇，但其在需求生成任务中存在边界模糊、输出泛化等固有局限，生成结果往往难以直接满足工程实践要求。针对上述问题，研究团队在智能化需求工程领域取得一系列进展：1）开发了基于领域知识注入的即时需求文本补全技术；2）实现了从抽象特征到具体需求文本的自动生成框架；3）提出基于行业安全标准的缺失安全需求的自动生成方法。相关成果已发表在软件工程领域权威期刊和会议，包括需求工程顶级会议RE（获Distinguished Paper Award）、CCF-A类期刊TOSEM及会议FSE，为提升需求工程效率与质量提供了系统化解决方案。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "大模型赋能领域知识注入的软件需求加速生成",
+            "en": null
+          },
+          "topics": [
+            "需求工程",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -7685,7 +7815,16 @@
           ],
           "abstract": "随着大语言模型和智能体技术的快速发展，软件工程正逐步进入智能化新时代。在这一背景下，如何高效、可信地生成与恢复软件需求成为智能化软件开发的核心挑战之一。一方面，需求生成（Requirements Generation）旨在利用大模型与知识驱动的多智能体协作，自动化地从业务目标与用户描述中提炼系统需求，支持端到端的软件开发流程。另一方面，需求恢复（Requirements Recovery）则面向现实中的不完整或缺失文档场景，通过逆向工程方法从现有代码、架构与测试中自动推导和重建需求，为项目维护和演化提供有力支撑。当前，尽管已有部分研究探索了需求建模与需求分析的自动化，但缺乏系统化的智能化方法来同时支持正向生成与逆向恢复，从而难以满足复杂应用对完整性与可信性的要求。本报告将围绕“智能化需求生成与恢复”的新兴方向展开，介绍我们提出的知识驱动多智能体框架，阐述正向与逆向双路径需求工程的思路，并讨论其中的关键挑战、潜在应用及未来发展方向。我们期望通过该研究推动需求工程迈向智能化与可信化，为智能化软件开发奠定基础。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "知识驱动多智能体的正向需求生成与逆向恢复",
+            "en": null
+          },
+          "topics": [
+            "需求工程",
+            "智能体"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -7705,7 +7844,16 @@
           ],
           "abstract": "需求跟踪作为需求工程的核心环节，是解决软件制品碎片化关联难题、提升开发效率的关键支撑。本报告梳理了需求跟踪技术的智能演进脉络：早期依托静态词向量实现基于信息检索的特征匹配，虽直观可扩展却受限于语义鸿沟与单词失配问题；深度学习阶段通过上下文建模突破孤立特征局限，强化语义关联理解，但存在可解释性弱等瓶颈；生成式大模型的崛起带来范式革新，结合 RAG 等技术实现需求与代码等制品的动态关联生成，有效应对需求变更与复杂系统追踪挑战。实践表明，该演进路径显著降低人工成本，为软件开发数据资产化与智能协作提供技术基石。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "需求跟踪从词向量到上下文建模再到生成式大模型",
+            "en": null
+          },
+          "topics": [
+            "需求工程",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -7723,7 +7871,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "需求工程",
+            "软件安全"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -7741,7 +7898,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "需求工程",
+            "物联网"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -7759,7 +7925,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "需求工程",
+            "软件测试"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -7779,7 +7954,16 @@
           ],
           "abstract": "在商用飞机研制中，机载软件需求质量关乎产品安全性、可信性与适航合规性，对飞机安全意义重大。当下，机载软件需求多以自然语言表达，在开发、传递、分解时，存在需求捕获的完整性与正确性不足、语义解析精准性欠佳等问题，将会给后续的软件测试、试验试飞带来挑战，成为我国机载软件研发面临的重大难题。本报告依托大型客机机载软件研制实践，深入探讨机载软件需求定义、分类与分级，衍生需求识别确认、安全性需求标识评估等内容，研究基于形式化表达的需求开发方法论，并探索新型机载软件需求开发解决方案。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "商用飞机高安全机载软件需求开发实践与挑战",
+            "en": null
+          },
+          "topics": [
+            "需求工程",
+            "形式化方法"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -7799,7 +7983,16 @@
           ],
           "abstract": "报告聚焦智能需求工程领域的系统性研究与落地实践，旨在通过大模型、知识图谱、检索增强等智能技术，解决传统需求工程中需求获取分散、分析维护低效、下游制品生成依赖人工等核心痛点。报告内容围绕三大核心模块展开：其一，智能需求获取，针对用户评论、社交媒体等非结构化数据，提出负面反馈挖掘、用户意图识别技术，并构建基于多轮迭代的 Web 原型快速生成方案，实现自然语言需求到可执行页面操作与 API 调用的高效转化；其二，需求智能生成、分析与维护，研发大模型驱动的 UML 活动图自动生成技术、基于法规逻辑建模的需求合规性检测系统、多维度需求质量评价体系，以及代码到需求文档的逆向更新框架；其三，需求驱动的下游制品自动生成，创新功能点导向的软件成本智能估算技术，并设计基于语义抽取与业务规则约束的测试大纲自动生成工具，解决人工拆解需求慢、大模型生成偏离场景的问题。当前探索旨在推动需求工程从 “人工主导” 向 “智能驱动” 的转型，为软件研发全流程效率提升与质量保障提供关键支撑。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "大模型与知识图谱驱动的智能需求工程关键技术",
+            "en": null
+          },
+          "topics": [
+            "需求工程",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -7812,7 +8005,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "需求工程"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -7884,7 +8085,16 @@
           ],
           "abstract": "在万物智联、生态依存的新时代，社会、经济与应用系统发展的韧性需求日益迫切。软件作为国家关键基础设施的核心载体，其韧性特质——尤其是应对“未知”的能力——正面临前所未有的挑战。发展面向未知的韧性软件新范式，成为解决这一挑战的关键路径。本报告将系统阐述韧性软件的基本内涵、核心理念与典型应用，梳理国内外在相关领域的战略布局与研究前沿，并以浙江大学自主研发的榫卯生成式操作系统（TenonOS）为例，深入探讨韧性软件的免疫内生机理与成长演化机制，分享其在构建航空航天、轨道交通等韧性攸关领域软件技术共性基础底座方面的探索与实践。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "韧性软件新范式与榫卯生成式操作系统TenonOS",
+            "en": null
+          },
+          "topics": [
+            "软件架构",
+            "操作系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -7904,7 +8114,16 @@
           ],
           "abstract": "随着现代软件系统规模与复杂度的提升，构建高可靠快恢复的韧性软件面临严峻挑战。本报告阐述覆盖运维核心链路的智能韧性体系，通过故障预测、评估与消除的协同，应对系统风险。首先，韧性能力的基石在于对系统状态的精准感知。针对现有方法成本高、依赖数据质量的落地难题，我们提出的日志异常检测方法，在保持精度的同时显著提升效率与稳定性，为大规模系统提供高效可靠的“健康监测仪”。其次，韧性体系的屏障在于对高风险告警的智能识别与排序。为此，我们提出基于多元数据融合的网络侧告警排序方法，有效解决“警报疲劳”问题，实现从被动响应到主动聚焦的升级。最后，韧性闭环的核心在于对恢复过程的量化预测与掌控。我们提出的动态预测模型能够为运维团队持续、精准预测故障缓解时间，进而提供资源调度与应急响应的决策依据。本报告将形成从问题感知到决策支持的完整运维闭环，为推进韧性软件工程实践、构建高可靠自适应系统提供可行技术路径与实践基础。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "AI赋能故障预测、评估与消除的软件韧性体系",
+            "en": null
+          },
+          "topics": [
+            "智能运维",
+            "可靠性容错"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -7924,7 +8143,16 @@
           ],
           "abstract": "用户体验是决定消费类软件产品成败的关键因素，例如终端操作系统、移动应用软件等，如何建立以用户为中心、以设计为导向、以技术为支撑的软件开发过程，是保障软件体验的核心。本讲座将探讨用户体验计算、软件设计评估、场景驱动测试等新型软件工程方法。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向用户体验的软件工程方法与场景驱动测试",
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "移动软件"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -7944,7 +8172,16 @@
           ],
           "abstract": "如今，许多软件系统都以在线服务的形式提供。尽管企业在服务质量保证方面做了大量努力，但在实际运行中在线服务系统仍会遭遇诸多软硬件故障。在线服务系统的韧性至关重要，因为系统必须能够快速从故障中恢复，并将服务中断时间降至最低。随着系统规模与复杂度的提升，人工故障诊断既耗时又困难。基于简单规则或阈值的模型同样无法有效检测和定位故障。在我们的前期工作中，我们提出了一些数据驱动的、AI赋能的方法，以实现有效的故障识别、故障定位和故障修复，提升在线服务系统的韧性。本报告将简要介绍提供高韧性的在线服务所面临的挑战，以及我们的一些相关工作。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "数据驱动AI赋能的在线服务系统故障识别、定位与修复",
+            "en": null
+          },
+          "topics": [
+            "智能运维",
+            "云计算"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -7964,7 +8201,16 @@
           ],
           "abstract": "分布式系统面临消息乱序、网络异常、节点故障等多重不确定性因素，其设计与实现缺陷可能引发系统崩溃、数据不一致等严重后果。模型检查技术（如TLA+及其模型检查器TLC）已被广泛用于验证分布式系统设计规约的正确性；然而，由于设计规约与系统实现之间存在割裂，该方法难以确保最终实现的正确性。针对这一挑战，本报告聚焦模型检查引导的分布式系统韧性测试，探索如何建立TLA+设计规约与系统实现之间的关联，并基于此指导测试用例与测试预言的高效生成，从而确保系统实现符合已验证过的设计规约，提升分布式系统的可靠性与韧性。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "模型检查引导的分布式系统韧性测试",
+            "en": null
+          },
+          "topics": [
+            "分布式系统",
+            "形式化方法"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -7984,7 +8230,16 @@
           ],
           "abstract": "在智能化开发浪潮下，Vibe Coding 作为一种新兴的编程方式，正迅速成为开发者的重要助手。它通过智能生成与人机协同，极大提升了开发生产力——包括编码速度与快速迭代能力，同时降低了入门门槛，赋能非专业开发者。然而，这种高效的开发模式也带来了新的挑战：过度只关注软件结果，使得代码质量与可维护性被忽视，软件系统逐渐呈现出“黑盒化”趋势。我们进入了“高效但脆弱”的开发时代。软件越来越快，软件迭代更快，却愈发难以解释与演化。为实现软件的可持续发展，亟需健全的 DevOps 工具体系 来保障系统的可维护性与可追溯性。DevOps 将成为 Vibe Coding 时代的软件“守护层”，在高速迭代的同时维系系统的长期生命力与工程韧性。展望未来，随着可视化与智能化技术的进步，将会出现更多软件可视化工具，它们将帮助开发者理解复杂系统的结构与行为，提升软件的透明度与可演化性，为构建可理解、可维护、可持续的软件提供重要保障。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "Vibe Coding时代以DevOps守护软件可持续发展",
+            "en": null
+          },
+          "topics": [
+            "代码生成",
+            "智能运维"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -8004,7 +8259,17 @@
           ],
           "abstract": "本报告聚焦于使用形式化方法保障基础软件的原生安全性。随着信息系统复杂性增加，操作系统内核及关键系统库的安全漏洞可能导致严重风险，传统测试手段已难以充分保障安全。报告介绍形式化方法在安全验证中的核心技术，如模型检验、定理证明及安全策略建模，并探讨其在基础软件全生命周期中的应用，实现软件自身固有的安全能力。通过抽象建模、符号分析与自动化证明，对内核、系统调用和关键库函数进行形式化验证，可在早期发现潜在缺陷，确保安全策略严格执行。案例分析显示，形式化方法在提升安全性、降低漏洞风险及支持高可信基础软件构建方面具有显著效果。本报告旨在提供理论与实践参考，推动基础软件原生安全能力的建设。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "以形式化方法构建操作系统内核等基础软件原生安全",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "操作系统",
+            "软件安全"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -8069,7 +8334,16 @@
           ],
           "abstract": "编译器是关键性的系统软件，任何编译器中存在的漏洞都可能导致源程序端花费大量努力得到的安全保障失效。形式化验证可以在逻辑层面保证编译器不存在任何漏洞，因此备受关注。虽然现有编译器验证方法已在传统命令式和函数式编程语言上得到应用，但如何有效支持Rust语言的新特性仍是一个开放问题。为解决该问题，我们提出了针对Rust核心语言的形式化语义、编译算法、以及编译器验证框架。通过与将Rust程序编译为C程序，并与CompCert编译器连接，我们验证了从Rust核心语言到汇编代码的完整编译过程。此外，借助该框架支持开放模块的特性，我们实现了Safe Rust代码和Unsafe 代码单独编译、验证、组合的分离编译流程。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "Rust核心语言编译器验证与安全/不安全代码分离编译",
+            "en": null
+          },
+          "topics": [
+            "编译器",
+            "形式化方法"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -8089,7 +8363,16 @@
           ],
           "abstract": "Rust语言通过其独特的所有权系统，在编译期即可消除大部分内存安全风险，显著提升了软件的安全基线。然而，Rust Unsafe的存在使得开发者能够绕过这些安全保证，从而引入了潜在的内存安全隐患。为提升Rust Unsafe的安全性，形式化验证成为了不可或缺的关键环节。本报告将系统性地介绍如何利用有界模型检验（BMC）来验证Rust程序的内存安全属性。首先，介绍我们使用BMC的方法在蚂蚁具体Rust项目（TECC）中的验证实践，展示如何在实际工业场景中应用该技术以发现深层缺陷（FM ’24发表)。其次，我们将探讨如何利用LLM赋能形式化验证流程中的关键步骤，以期克服传统验证方法的瓶颈，显著提升验证效率（ICSE ’26接收)。最后，我们将基于现有实践，对融合形式化方法与LLM的未来研究方向进行展望。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "以BMC与LLM赋能验证Rust Unsafe内存安全",
+            "en": null
+          },
+          "topics": [
+            "软件安全",
+            "形式化方法"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -8109,7 +8392,16 @@
           ],
           "abstract": "Rust和C++在软件生态链中的定位重合度较高，无论是用Rust新开发功能还是重构已有系统，都可能涉及到和已有C++软件的相互调用。但目前这种互调用实现非常困难，无论是谷歌还是微软，在他们推广应用Rust的总结中，都将此列为关键挑战，至今也没有特别有效的解决方案。在华为公司内推广应用Rust也遇到同样的困难，在最近一年的实战中，我们终于找到了一种解决方案，约一行Rust代码可调用任何C++ API，并且还支持实现C++的继承行为和模板类，支持几乎任何函数和任意变量。从此Rust调用C++ API，天堑变通途。",
           "abstract_status": "confirmed",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": "一行Rust代码调用任意C++ API的混合编程方案hicc",
+            "en": null
+          },
+          "topics": [
+            "编译器",
+            "软件维护"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -8129,7 +8421,16 @@
           ],
           "abstract": "操作系统70%的严重安全漏洞都和内存使用不当相关，Rust语言以其所有权系统在编译阶段保障内存安全，可以发现大部分内存安全风险。vivo在2019年开始探索基于Rust语言自研蓝河操作系统，经过了7年实践，蓝河操作系统已经有了比较完备的技术能力储备。在Rust语言开发操作系统软件领域积累了丰富的经验。为了加快推进Rust语言软硬件生态发展和人才培养，过去几年vivo也一直与学术界和产业界携手，在2023年发起了蓝河系统创新赛C2Rust转译赛题、在2025年将Rust语言自研的BlueKernel内核项目正式开源。本报告分享基于Rust语言开发蓝河操作系统的技术实践，以及BlueKernel内核开源项目的最新进展和后续的规划，促进产学研Rust语言技术交流和发展。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "vivo基于Rust自研蓝河操作系统与BlueKernel开源实践",
+            "en": null
+          },
+          "topics": [
+            "操作系统",
+            "开源软件"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -8149,7 +8450,16 @@
           ],
           "abstract": "形式化验证是通过数学方法来证明软件正确性的手段，它要求开发者用形式化语言写出软件系统需要满足的属性，再写出形式化的证明，用自动定理求解器去证明软件满足这些属性。高昂的人工成本使得开发者对使用这类方法望而却步，这也导致形式化证明的代码很少，即便是大语言模型，也由于缺乏训练数据难以生成这样的证明代码。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "自我进化实现Rust自动形式化证明",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -8166,7 +8476,15 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件安全"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -8231,7 +8549,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "形式化方法"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -8248,7 +8574,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "物联网"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -8268,7 +8603,16 @@
           ],
           "abstract": "伴随着汽车数字化、智能化、软件定义趋势的演进，汽车电子电气架构逐步走向中央计算+区域接入的CCA架构，结合OTA、智能体验、智能维护等诉求，对汽车软件架构和开发方式提出了全新的要求。采用服务化架构，模型化、数字化开发手段，结合DevOps和敏捷开发的方式是实现智能汽车软件高效开发持续更新的必要手段。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "模型驱动的软件定义智能汽车开发技术与实践",
+            "en": null
+          },
+          "topics": [
+            "软件架构",
+            "智能运维"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -8288,7 +8632,15 @@
           ],
           "abstract": "本报告以民机工程软件的研发落地为背景，借鉴国外企业合作经验；以适航标准及技术为切入点，介绍基于模型的嵌入式系统软件开发技术与形式化技术的关联关系；以航空民机应用案例为背景，针对基于模型的嵌入式系统软件中的多种形式化技术落地的多项问题和解决方案进行阐述。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "形式化方法在航空GNC嵌入式软件中的探索与实践",
+            "en": null
+          },
+          "topics": [
+            "形式化方法"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -8308,7 +8660,17 @@
           ],
           "abstract": "近年来，大模型在软件工程领域展现出强大的知识理解与推理能力，为航天软件智能化研制提供了新的契机。报告面向航天控制软件研制场景，介绍团队在需求理解、分类复用与代码生成等方面的研究与实践进展，涵盖了面向异构需求的智能问答评测基准构建、基于领域分类体系的多标签需求推理方法以及引入检索增强与分层反馈机制的高可信代码自动生成技术。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "大模型赋能航天控制软件需求理解、复用与代码生成",
+            "en": null
+          },
+          "topics": [
+            "代码生成",
+            "需求工程",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -8328,7 +8690,16 @@
           ],
           "abstract": "在“软件定义一切”的时代，随着人工智能迅速发展，如何更加高效、智能化地开发安全关键软件，成为一个备受关注的问题。本报告基于我们近来一些工作，探讨如何基于软件工程、形式化方法、人工智能等不同领域的成功实践，将模型驱动、形式综合与形式验证、大模型辅助等方法相结合，使安全关键软件代码生成的智能化和可信性共同得到提升。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "融合模型驱动、形式综合与大模型的安全关键软件代码生成与验证",
+            "en": null
+          },
+          "topics": [
+            "代码生成",
+            "形式化方法"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -8348,7 +8719,16 @@
           ],
           "abstract": "形式化验证采用数理逻辑方法进行系统规约、开发和验证，已经在航空航天等安全攸关领域得到成熟应用，近年来也逐步应用到互联网领域，包括Amazon、Google、Microsoft等都在规模化地使用该方法。但是形式化验证技术在面对大规模软件时，面临建模工作量大、形式化验证状态空间爆炸或证明规模巨大的难题，因此在大规模工业应用方面仍然面临诸多技术和工程挑战。近年来AI/LLM技术为形式化验证应用带来了令人欣喜的机遇，本报告主要介绍AI赋能的形式化验证的基本思路，以及我们在这方面的一些研究成果，最后探讨AI赋能的形式化验证技术面临的问题与挑战。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "AI/LLM赋能形式化验证应对建模与状态爆炸难题",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -8365,7 +8745,15 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "形式化方法"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -8378,7 +8766,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "形式化方法"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
