@@ -95,6 +95,28 @@ either.
    lists it, its dashboard/timeline/speakers/forum pages render, and the existing
    conferences still work. Report parse anomalies (the `flags`) honestly.
 
+7. **Enrich (AI-generated derived fields).** Author, per forum talk, a one-line
+   Chinese `summary` and 1–4 `topics`, stored as **committed source** in
+   `source/<id>/enrichment.json` and merged by the build via `source/enrichment.py`
+   (see `apply_enrichment`). These are **derived, clearly-marked** fields — the
+   build stamps every enriched talk `ai_generated: true` so the UI labels them and
+   can honor an "AI content" toggle. They are **separate from and never replace**
+   the verbatim source; do not touch the extracted `title`/`abstract`.
+   - **Id scheme.** Key each entry `"<forum code>#<0-based index within that
+     forum's talks[]>"` — the same id the app uses (`web/src/lib/follow-store.ts`
+     `talkId()`; `ForumDetail.tsx` `#talk-N`). E.g. `"CF37#0"` is CF37's first talk.
+   - **`summary.zh`** distills the talk's core contribution in ≤ ~40 Chinese chars,
+     no marketing fluff — a faithful paraphrase of the source, **not** a translation
+     and **not** invented content. Keep `en` null (source is never translated here).
+     No abstract → leave `summary.zh` null (a minimal title-only summary only when
+     clearly safe); **never fabricate** to fill a gap — the faithful-extraction rule
+     applies to derived fields too.
+   - **`topics`** come only from the controlled vocabulary in `source/topics.json`;
+     the build **fails** on an off-list tag. If a real recurring theme has no tag,
+     add it to `source/topics.json` (additive) rather than inventing an inline one.
+   - Rebuild (`build.py` merges it), re-run `validate.py`, and confirm a second
+     rebuild is byte-identical — enrichment must not break build determinism.
+
 ## Schema evolution (when the core doesn't fit)
 Expect the first few structurally-different conferences to stretch the schema —
 that's the hardening, not failure. When a concept recurs and deserves first-class
