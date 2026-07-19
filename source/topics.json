@@ -43,6 +43,7 @@
     { "key": "软件架构", "zh": "软件架构", "en": "Software Architecture", "category": "se" },
     { "key": "需求工程", "zh": "需求工程", "en": "Requirements Engineering", "category": "se" },
     { "key": "软件维护", "zh": "软件维护 / 演化", "en": "Software Maintenance / Evolution", "category": "se" },
+    { "key": "移动软件", "zh": "移动软件", "en": "Mobile Software", "category": "se" },
     { "key": "开源软件", "zh": "开源软件", "en": "Open Source Software", "category": "se" },
     { "key": "软件供应链", "zh": "软件供应链", "en": "Software Supply Chain", "category": "se" },
     { "key": "编译器", "zh": "编译器 / 编程语言", "en": "Compilers / Programming Languages", "category": "systems" },
