@@ -2086,7 +2086,15 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "AI4SE"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2106,7 +2114,17 @@
           ],
           "abstract": "随着大语言模型（LLM）在软件开发中的广泛应用，其生成代码的质量已不再仅依赖模型规模或训练数据，而更取决于模型对需求的准确理解。需求描述是代码生成的起点，LLM对需求的语义把握、意图识别与细节理解，直接影响生成代码的正确性。然而，当前模型常因需求表述的歧义、上下文缺失或语义偏差而产生偏离预期的代码结果。为此，本报告系统探讨了从需求对齐提升代码生成效果的思路，包括需求解析、语义映射与对齐反馈机制。通过建立模型理解与人类需求的一致性，可显著增强代码生成的可控性与可靠性。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "从需求对齐提升大模型代码生成的正确性与可控性",
+            "en": null
+          },
+          "topics": [
+            "代码生成",
+            "需求工程",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2126,7 +2144,17 @@
           ],
           "abstract": "当前，以大语言模型为核心的智能化技术正被广泛应用于软件工程的多个环节，如代码生成、测试用例生成与缺陷检测等。然而，现有方法主要依赖自然语言作为输入与交互媒介，其固有的模糊性与程序语义所要求的精确性之间存在显著差距。这一矛盾导致智能化工具在实际应用中面临严峻挑战：其输出结果虽在形式上可能正确，但往往难以保证逻辑完备性与语义正确性。当前，模型未能充分利用程序代码本身所蕴含的、可作为精确引导的结构化语义“属性”。这些属性—包括严格的数据类型定义、函数接口规约、程序不变式、程序语义相似性等—是精确定义程序行为的核心要素，也是连接高层设计意图与底层具体实现的关键桥梁。本报告旨在阐述“代码属性驱动的智能化软件研发”。我们将代码属性作为核心线索系统性地引入模型的推理与生成过程，有助于提升模型对程序的语义理解，并进一步提升智能化软件研发能力。报告将重点介绍我们在三个关键任务上的探索：基于属性检索增强的测试用例生成、基于属性检索的漏洞检测和属性驱动的代码生成。通过深度利用代码中的属性信息，我们致力于推动智能化研发工具向更高可靠性、更强泛化能力的新阶段演进。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "以代码结构化属性引导测试生成、漏洞检测与代码生成",
+            "en": null
+          },
+          "topics": [
+            "AI4SE",
+            "代码生成",
+            "缺陷检测"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2146,7 +2174,17 @@
           ],
           "abstract": "本报告聚焦与智能体时代软件工程领域中代码相关的关键应用，深入探讨仓库级代码生成、翻译与问题解决的前沿研究与实践工作。在代码生成方面，分析智能体如何依据需求精准、高效地生成高质量代码。对于代码翻译，讨论仓库级代码翻译的挑战、整仓库评测集构建、以及基于智能体的仓库级代码翻译。针对问题解决，提出多语言、多模态评测集，研究智能体在错误定位、理解、解决等方面的能力。最后，对智能体在软工尤其是工程级代码任务中的应用进行总结和展望。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "智能体驱动的仓库级代码生成、翻译与问题解决",
+            "en": null
+          },
+          "topics": [
+            "代码生成",
+            "智能体",
+            "AI4SE"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2166,7 +2204,16 @@
           ],
           "abstract": "随着大语言模型在代码生成领域的广泛应用，提示词的设计直接影响模型的代码生成质量。传统的手工提示工程不仅耗时，而且效果不稳定。针对这一问题，本报告介绍了一种全新的自动提示优化方法——Prochemy。Prochemy能根据模型的实际表现自动迭代优化提示词，从而提升生成代码的正确性和可靠性。通过在多种主流代码生成和翻译任务中的实验证明，Prochemy能在zero-shot、思考链等不同方法下，持续带来性能提升，并在多个数据集上实现了最新的最佳结果。Prochemy无需额外的人为干预，能与现有方法无缝兼容，为代码自动生成和翻译提供了一种可扩展的解决方案。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "自动迭代优化提示词的Prochemy提升代码生成效果",
+            "en": null
+          },
+          "topics": [
+            "代码生成",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2186,7 +2233,16 @@
           ],
           "abstract": "随着大语言模型（LLM）驱动的智能体技术跨越临界点，AI在软件研发中的角色正由“辅助”走向“自主”。本报告聚焦项目级智能化软件研发智能体的研究与实践，探讨其在特性开发、问题发现与修复、库升级及应用移植等复杂任务中的应用能力。报告将深入分析意图精化、代码仓理解、代码定位、经验复用、测试验证及安全防护等项目级研发智能体的关键技术环节，并分享我们的实践成果。最后，展望智能体在未来自主化、协同化软件研发中的发展趋势与可能的研究方向。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "项目级智能化软件研发智能体的关键技术与实践",
+            "en": null
+          },
+          "topics": [
+            "智能体",
+            "AI4SE"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2205,7 +2261,15 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "AI4SE"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -2277,7 +2341,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "软件测试"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2297,7 +2369,17 @@
           ],
           "abstract": "软件形式化验证通过数学方法精确定义软件行为，并严格分析实现与逻辑的差异，从而发现实现类与逻辑类缺陷。近年来，该技术在安全关键系统、智能合约、航天与工业控制等领域得到广泛应用，有效提升了系统的可靠性与安全性。然而，其在工业界的推广仍受限制，根本原因在于高质量形式化规约难以编写——这既要求开发者精通验证语言，又需深刻理解软件业务，而兼具两者能力的人才极为稀缺，制约了形式化验证的普及。本报告以验证运行在以太网上的智能合约是否符合ERC（Ethereum Request for Comments）系列标准为具体应用场景，探讨如何利用大模型生成形式化规约，实现端到端的全自动软件形式化验证。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "基于大模型的智能合约端到端全自动形式化验证",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "大模型",
+            "区块链"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2317,7 +2399,17 @@
           ],
           "abstract": "人工智能应用的开发与部署高度依赖于深度学习框架（如PyTorch）。框架中潜在的缺陷可能造成严重的安全事故。本报告将介绍两项大模型驱动的深度学习框架测试技术：YanHui与CrossProbe。YanHui可以根据框架中已有的缺陷触发代码，举一反三，生成新的测试用例，实现自动化的缺陷检测。CrossProbe可以从给定框架中学习已有的缺陷模式与测试逻辑，并将相关知识迁移至其他类似的框架，自动生成适配的测试代码，实现跨框架的缺陷检测。实验结果表明，YanHui和CrossProbe能够有效地辅助深度学习框架测试，相关工具已在PyTorch和TensorFlow中成功检测出数十个未知缺陷。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "YanHui与CrossProbe大模型驱动的深度学习框架测试",
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "机器学习系统",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2337,7 +2429,16 @@
           ],
           "abstract": "数字化时代下，软件地位日益凸显，功能也愈发复杂。然而，特定用户往往只会频繁使用软件中的少量功能，导致大量功能变为冗余，引发了代码膨胀（code bloat）。代码膨胀在当今软件中普遍存在，不仅严重影响软件的安全和性能，还造成资源浪费和维护成本的增加。软件功能消胀（feature-based debloating）旨在识别并消除软件的冗余功能，从而缓解代码膨胀带来的负面影响。其中，基于优化的功能消胀，通过建模代码删减量、软件通用性等多方面因素，以优化手段去除冗余功能，实现多因素间的平衡。本次报告中，报告人将给出代码膨胀及消胀的背景知识，重点阐述基于优化的软件功能消胀的动机和核心思想，并介绍两项具体工作：基于输入样例和输入子域的功能消胀。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "基于优化的软件功能消胀去除代码膨胀",
+            "en": null
+          },
+          "topics": [
+            "程序分析",
+            "软件维护"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2357,7 +2458,16 @@
           ],
           "abstract": "随着人工智能技术的快速发展，越来越多的神经网络模型被集成到软件系统中，用于感知、决策和控制等关键环节。然而，神经网络的输出具有概率性和不确定性，而传统软件的逻辑模块则基于确定性的规则与控制流，两者在系统中的交互带来了新的可靠性挑战。本报告以自动驾驶系统（如Apollo）为研究对象，系统分析了神经网络模块与逻辑代码模块的交互实践，重点探讨了从感知数据到逻辑符号的转换过程及其潜在问题，以及相应错误的检测方法。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "分析自动驾驶中神经网络与逻辑代码交互的错误",
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2377,7 +2487,16 @@
           ],
           "abstract": "为满足大规模程序对高性能的需求，各类主流编程语言的编译器不断演进，其复杂性显著提升。然而，这也带来了编译优化过程中潜在的缺陷与漏洞问题。编译器缺陷不仅影响程序的正确性与稳定性，甚至可能导致严重的安全风险。近年来，此类问题日益突出，亟需系统、智能、且完备的检测方法。本次报告将介绍我们近期针对即时编译器测试的最新研究工作与实践，主要包括融合编译选项的测试空间优化、基于编译优化交互探索的高效测试方法、面向OOP特征的编译器测试、以及融合大模型及智能体的测试种子生成等。同时，本报告也将介绍相关技术在公司的实践以及对未来相关工作的思考与展望。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向即时编译器的智能测试技术研究与实践",
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "编译器"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2397,7 +2516,16 @@
           ],
           "abstract": "软件缺陷定位是软件质量保障的关键环节，但传统定位技术仍面临多方面的局限，包括输入侧的缺陷信息单一、过程中的推理能力受限及输出侧的验证机制缺乏等。为应对这些问题，本报告将系统介绍一套大模型赋能的智能化缺陷定位技术体系：SoapFL通过测试行为建模与文档增强，自适应挖掘多维度缺陷上下文；CosFL从语义代码搜索角度切入，绕过冗长的缺陷链路直达缺陷根因；PingFL则首创具备打印调试能力的大模型智能体，通过分析运行时行为实现闭环验证。该体系探索了大模型时代下的缺陷定位理论和技术路径，为提升定位的准确率与自动化水平提供了系统性的解决思路。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "大模型赋能的SoapFL/CosFL/PingFL软件缺陷定位全链路",
+            "en": null
+          },
+          "topics": [
+            "缺陷检测",
+            "大模型"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -2476,7 +2604,17 @@
           ],
           "abstract": "使用大语言模型（LLM）修复程序代码中的静态分析警报正日益普及且成效显著。然而，这类模型常存在“幻觉”问题，对于复杂和罕见警报的处理效果较差，限制了其应用效果。检索增强生成（RAG）技术试图通过为模型提供相关示例来解决该问题，但示例质量参差不齐的现状对现有方法的有效性提出了挑战。针对这一难题，本报告介绍如何利用分析规则中的谓词构建桥梁，将警报与代码库中的相关代码片段（称为关键示例）进行关联。基于此思路，我们提出了一种自动为警报检索关键示例的算法，并构建了名为PredicateFix的RAG流程，用于修复静态代码扫描工具的警报。本方法在CodeQL上实现，使用多种大语言模型的评估结果表明，PredicateFix可将正确修复数量提升27.1%∼72.5%，显著优于其他基线RAG方法。本方法也成功应用于中兴公司的Go语言静态检查工具，已经支撑16个实际项目的开发，相比之前的内部工具提升达72.5%。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "利用桥接谓词检索关键示例修复静态分析警报PredicateFix",
+            "en": null
+          },
+          "topics": [
+            "程序分析",
+            "大模型",
+            "缺陷检测"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2496,7 +2634,17 @@
           ],
           "abstract": "在开源软件供应链安全治理的实践中，漏洞修复的自动化生成与后向迁移已成为关键支撑技术；而大型语言模型（LLM）的快速演进，为该技术的突破提供了核心驱动力。然而，现有工具仍存在明显局限：一方面，因缺乏有效的故障定位能力与自动化补丁验证机制，难以适配现实世界中端到端的应用需求；另一方面，人工执行后向迁移任务不仅强度高、效率低，现有自动化方法也因过度依赖预定义的语法或语义规则，普遍缺乏处理复杂补丁的灵活性。​为此，本文将介绍两款基于 LLM 的自动化工具 ——PatchAgent 与 PortGPT。它们可通过大模型智能体模拟安全专家的决策逻辑与操作流程，高效完成安全领域的复杂任务，为开源软件供应链的漏洞修复与后向迁移提供新的解决方案。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "PatchAgent与PortGPT的智能漏洞修复与补丁后向迁移",
+            "en": null
+          },
+          "topics": [
+            "软件安全",
+            "软件供应链",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2516,7 +2664,16 @@
           ],
           "abstract": "JavaScript engines are a fundamental part of modern browsers, and many efforts have been invested in testing them to enhance their security. However, the incorporation of WebAssembly into JavaScript engines introduces new attack surfaces that have not received sufficient attention. Existing fuzzers for JavaScript engines primarily focus on JavaScript, neglecting WebAssembly code and its interactions with JavaScript. We introduce MAD-EYE, the first fuzzer that can test the JavaScript-WebAssembly interaction using a novel cross-language code fusion technique. Evaluations of MAD-EYE on V8, SpiderMonkey, and JavaScriptCore detected 21 previously unknown vulnerabilities, with 20 confirmed and 18 fixed and merged into mainstream browsers by the developers, who acknowledged our reports with vulnerability bounties.",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "融合JS与WebAssembly的JavaScript引擎模糊测试MAD-EYE",
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "软件安全"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2536,7 +2693,16 @@
           ],
           "abstract": "Symbolic execution is an essential program analysis technique to formally reason program behaviors and detect software vulnerabilities. Despite its effectiveness, symbolic execution has an inherent limitation: path explosion. Path explosion occurs when symbolic execution encounters an overwhelming number (exponential to the program size) of paths. Traditional approaches rank the vast number of paths with heuristic-based weights. However, they often fail to be generalized to diverse programs. In this talk, I will introduce our recent work, Empc (IEEE S&P’25, Distinguished Paper Award), a novel path prioritization technique for symbolic execution. We compute a path cover, i.e., a minimal subset of paths that can cover all code blocks, then only search and schedule within the minimal path cover instead of the vast number of all possible paths. By reducing the path search space, Empc can significantly boost symbolic execution performance.",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "基于路径覆盖的符号执行路径优先级方法Empc",
+            "en": null
+          },
+          "topics": [
+            "程序分析",
+            "软件安全"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2556,7 +2722,17 @@
           ],
           "abstract": "软件漏洞治理涉及漏洞挖掘、修复等环节，其核心在于高质量的漏洞数据和高效能的程序分析技术。本次报告将从漏洞数据增强、零天漏洞检测、已知漏洞修复三个方面介绍如何利用大模型技术赋能软件漏洞治理，具体包括：利用大模型对海量漏洞数据库进行关联挖掘及信息补全，构建大规模高质量漏洞数据库；建立大模型代码语义理解与传统程序分析的协同机制，形成高效能的智能化代码分析技术，赋能零天漏洞检测；结合代码上下文与语法约束建模，实现大模型赋能的漏洞补丁自动化部署，构建全生命周期的漏洞治理能力。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "大模型赋能漏洞数据增强、零天检测与自动修复",
+            "en": null
+          },
+          "topics": [
+            "软件安全",
+            "缺陷检测",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2576,7 +2752,16 @@
           ],
           "abstract": "随着神经网络在智能系统中的广泛应用，AI 软件供应链的安全与可信问题日益凸显。开源社区中神经网络项目的快速增长带来了依赖复杂、演化迅速等特征，使传统 SBOM 框架难以适用。为此，本研究提出 NNBOM（Neural Network Bill of Materials），构建覆盖 55,997 个 PyTorch 仓库的神经网络材料清单数据库，系统刻画了开源 AI 软件在组件规模、复用模式与跨域依赖方面的演化规律，并开发了多仓库演化分析与单仓库组件评估原型系统，为 AI 供应链的依赖透明化与可信治理提供基础支撑。在此基础上，研究进一步提出 NNReuse 框架，针对 20,000 个开源项目识别三类神经网络结构代码复用模式，发现 55.6% 的项目存在结构级重用且 64.3% 可能涉及许可证冲突，揭示了开源生态中的合规风险。综合来看，本报告从 NNBOM 与 NNReuse 两个视角出发，探讨了 AI 供应链在依赖追踪与代码合规方面的安全挑战，为构建可追溯、可监管的可信 AI 供应链提供了实证依据与方法框架。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "NNBOM与NNReuse分析开源神经网络演化与复用安全",
+            "en": null
+          },
+          "topics": [
+            "软件供应链",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2596,7 +2781,16 @@
           ],
           "abstract": "本报告以“应用到设备（App-to-Thing）”为视角，探讨移动端如何揭示物联网设备中的安全缺陷。随着物联网设备的大规模部署，其安全性问题日益受到关注。现代智能物联网设备通常配套移动应用程序（IoT Companion App），以提供远程控制和管理功能。而这些配套应用也为安全分析提供了新的切入点，使研究者在无需获取固件镜像的情况下，能够对设备行为进行安全分析。报告将结合实际研究工作，介绍相关探索与进展，包括利用配套应用对物联网设备进行模糊测试、揭示设备蓝牙协议实现中的配置错误，以及分析设备固件更新流程中的信息泄露问题等。通过这些示例，展示移动端视角在物联网安全研究中的可行性与实践价值。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "从移动配套应用视角揭示物联网设备安全缺陷",
+            "en": null
+          },
+          "topics": [
+            "物联网",
+            "软件安全"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2616,7 +2810,16 @@
           ],
           "abstract": "自动驾驶系统作为典型的安全攸关系统，其可靠性验证是实际部署的关键前提。然而，实际道路测试面临场景覆盖不足、成本高昂等瓶颈问题，基于场景的仿真测试已成为系统性评估自动驾驶安全性能的核心手段。当前测试面临的主要挑战在于：开放道路环境的高维复杂性---天气条件、交通流和车辆行为等多重因素相互耦合，导致场景空间呈现指数级增长，如何高效生成多样化的失效场景成为亟待解决的难题。本报告将系统介绍我们在自动驾驶安全测试领域的系列研究成果，主要包括四个方面：第一，提出了一种面向自动驾驶系统的安全测试描述语言，实现场景与测试规约的高效形式化定义；第二，设计了基于地图拓扑结构的测试生成技术，系统性评估自动驾驶系统在不同道路几何结构下的性能表现；第三，构建了基于多维度场景度量体系的测试方法，实现多样化失效场景的高效生成；第四，面向决策模块鲁棒性验证，开发针对性的测试技术。上述研究为自动驾驶系统的全面安全验证提供了理论基础与技术支撑。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "基于场景的自动驾驶系统安全测试系列技术",
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -2688,7 +2891,16 @@
           ],
           "abstract": "人工智能的迅猛发展推动了国产芯片性能的持续突破，峰值算力已逐步逼近国际领先水平。然而，基础软件与生态体系的不足依然制约着其大规模应用。“九源”智能计算平台提出统一智能计算架构，围绕算子库、通信库、运行时和编程语言进行一体化设计，提供跨芯片一致的编程抽象，支持训练和推理框架的高效优化，实现“一套代码、全平台运行”。目前，“九源”平台已完成十余款云侧与端侧CPU及智能芯片的适配，并通过持续的开源社区建设和活动，推动国产智能计算生态的可持续发展。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "九源统一智能计算架构实现一套代码全平台运行",
+            "en": null
+          },
+          "topics": [
+            "机器学习系统",
+            "编译器"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2708,7 +2920,16 @@
           ],
           "abstract": "高性能计算硬件体系结构复杂和软件计算行为多样，程序性能调优需要依靠性能分析工具协助程序员定位性能瓶颈并指导性能优化。本报告针对现有性能分析工具低效根因定位能力差、忽略资源浪费、异构分析能力有限、大规模分析开销高等不足，介绍了针对细粒度软件低效行为检测、大规模程序性能异常检测等性能分析与诊断工具，通过上述工具可以实现程序低效行为和性能异常的高效分析与诊断，准确定位性能波动根因，指导程序性能优化。最后，报告还对面向高性能计算的性能分析与诊断工具未来研究方向进行了展望。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向高性能计算的低效行为与性能异常分析诊断工具",
+            "en": null
+          },
+          "topics": [
+            "机器学习系统",
+            "智能运维"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2728,7 +2949,16 @@
           ],
           "abstract": "本次演讲将聚焦于摩尔线程GPU及其MUSA系统软件栈，重点阐述如何构建以全功能GPU为核心的人工智能统一计算基座，并分享在关键技术创新与生态建设方面的实践成果。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "摩尔线程全功能GPU与MUSA系统软件栈实践",
+            "en": null
+          },
+          "topics": [
+            "机器学习系统",
+            "产业生态"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2748,7 +2978,16 @@
           ],
           "abstract": "随着人工智能计算体系的快速演进，异构芯片架构的多样化为国内智能计算生态带来了新的挑战。作为国内通用GPU的代表企业，天数智芯积极参与“九源”统一智能计算架构的共建工作，在其系列GPU产品中完成了九源智能计算平台的导入与验证。本报告将结合天数智芯在研发与适配过程中的工程实践，分享统一智能计算架构在GPU端的落地路径与关键经验，并探讨软硬件协同创新在推动国产AI生态融合发展中的价值与前景。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "天数智芯GPU导入九源统一计算平台的工程实践",
+            "en": null
+          },
+          "topics": [
+            "机器学习系统",
+            "产业生态"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2768,7 +3007,16 @@
           ],
           "abstract": "充分的发挥芯片的性能是编译器长久以来的追求，并在国产芯片和AI双爆发的时代显得更加重要，如何让不同国产芯片的软件生态形成合力、以及能否构建CUDA生态到国产芯片的迁移机制，是学术届和产业界共同关注的焦点。本报告将汇报一系列结合AI编译和传统编译的优化技术，探索如何利用跨越多个层次的编译优化技术构建高效的针对AI应用的基础设施，以及在国产芯片上的优化实践。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "编译驱动的国产芯片AI应用生态建设与优化实践",
+            "en": null
+          },
+          "topics": [
+            "编译器",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2788,7 +3036,16 @@
           ],
           "abstract": "围绕“九源智能数据”核心建设成果，系统介绍智能数据软件体系与数据产品服务的整体布局与最新进展。重点阐述九源大数据处理系统、九源图库、九源向量库、九源缓存存储系统等基础软件的技术架构与性能优势，展示在数据清洗、智能检索、知识抽取等应用场景中的系统化解决方案。同时，还将介绍九源数据集平台及数据集服务建设情况，探讨面向智能模型时代的数据基础设施与高质量数据供给能力建设路径。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "九源智能数据软件与数据集服务体系",
+            "en": null
+          },
+          "topics": [
+            "数据库",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2808,7 +3065,16 @@
           ],
           "abstract": "本报告聚焦中国 AI 开源生态的现状分析，并重点介绍沐曦在 GPU 开源生态建设方面的战略布局，旨在揭示未来 AI 开源领域的关键动向。在开源生态方面，通过CCF ODTC AI Infra中立组织在开源项目、开源高校行、开源竞赛等多个方面实践，让更多学生在校可参与业界主流的技术生态。同时，报告也为如何积极拥抱并参与开源浪潮提供了建议，助力各界投身这场开源 AI 革命。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "沐曦GPU开源生态建设与AI人才培养实践",
+            "en": null
+          },
+          "topics": [
+            "开源软件",
+            "软件教育"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2828,7 +3094,16 @@
           ],
           "abstract": "大模型飞速发展，对算力需求也在快速提升。围绕开放计算架构，分享曙光在人工智能大背景下，构建高效算力及生态的新思路。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "曙光开放计算架构构建高效算力与普惠生态",
+            "en": null
+          },
+          "topics": [
+            "机器学习系统",
+            "产业生态"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -2907,7 +3182,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "区块链"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2927,7 +3210,16 @@
           ],
           "abstract": "随着现代信息技术广泛渗透实体经济，数字服务已成为现代服务业新业态的重要支撑。然而，数字服务及各类平台的自由生长因为监管缺失造成了一系列问题，如互联网金融欺诈、电商假冒伪劣产品、非法内容传播等，因此，对数字服务的有效监管与治理迫在眉睫。 现有服务监管系统多针对单一垂直领域，难以快速迁移到多个新兴领域的服务治理。为此，我们构建了一套跨领域服务监管共性理论与体系，实现了融合多模态数据的智能服务监管系统，通过分析和处理多源异构的多模态数据（文本、图像、音频和视频），构建智能分析模型，自动识别服务违规情况、服务质量、潜在风险等，以提升监管效率和准确性。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "融合多模态数据的跨领域智能服务监管系统",
+            "en": null
+          },
+          "topics": [
+            "多模态",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2947,7 +3239,16 @@
           ],
           "abstract": "智能合约作为区块链的核心基础设施，因其可编程性与不可篡改性而得到广泛应用。然而，其安全问题依然突出，漏洞攻击频发，带来严重的经济损失与信任危机。本次报告以“智能合约安全技术漫谈”为主题，围绕三大前沿方向展开探讨：漏洞检测、漏洞注入与代码混淆。在漏洞检测方面，将介绍基于深度学习的检测框架、依托大模型的检测方法，以及跨链场景下的新型威胁探索；在漏洞注入方面，将比较传统规则驱动与基于学习的自动化方法，强调其在测试数据生成与检测评估中的价值；在代码混淆方面，将讨论字节码与源代码级策略，分析其在逆向工程中合约保护的作用。本报告揭示检测、注入与混淆的联系与互补性，并展望在跨链安全等方面的潜在问题。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "智能合约漏洞检测、注入与代码混淆前沿漫谈",
+            "en": null
+          },
+          "topics": [
+            "区块链",
+            "软件安全"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2967,7 +3268,17 @@
           ],
           "abstract": "智能合约作为运行于以太坊等区块链平台上的程序，其安全性与执行效率直接影响去中心化应用的可靠性与成本。然而，随着智能合约的广泛应用，安全漏洞频发，同时高昂的 Gas 消耗也制约了其可扩展性。针对上述挑战，本报告介绍两项近期研究成果：（1）面向智能合约典型的漏洞类型——访问控制漏洞，提出一种融合静态分析与多智能体协同推理的检测方法，显著提升漏洞识别的准确性与覆盖范围；（2）在 Gas 优化方面，设计了一种结合程序静态分析与大语言模型的混合优化框架，通过语义理解与代码重构实现高效、安全的 Gas 节约。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "大模型融合静态分析的智能合约访问控制漏洞检测与Gas优化",
+            "en": null
+          },
+          "topics": [
+            "区块链",
+            "缺陷检测",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -2987,7 +3298,15 @@
           ],
           "abstract": "近年来，区块链技术的快速发展不仅推动了Web 3.0的用户共建共治理念，也对治理实践的可靠性提出了更高要求。去中心化的治理模式虽在技术与组织方式上实现了重要突破，但在运行过程中也暴露出共识脆弱性、投票操纵、参与失衡等问题，对系统的稳定性与可信性带来挑战。本报告将结合当前链上与链下两类典型治理模式的实践经验，探讨如何理清“谁来治理、如何治理、怎样实现可靠治理”这一关键问题，从而为构建可持续、创新驱动且高度可信的区块链治理体系提供思路与启示。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "区块链去中心化治理实践中的可靠性挑战",
+            "en": null
+          },
+          "topics": [
+            "区块链"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3007,7 +3326,16 @@
           ],
           "abstract": "本报告聚焦以太坊生态系统中的一个关键但往往被忽视的安全问题：以太坊节点实现不一致性导致的系统脆弱性。本报告将介绍两项近期研究成果来揭示这一隐患：（1）基于大语言模型辅助的EVM操作码级差分测试工具，通过静态分析与LLM结合的方法生成语义有效且多样化的测试输入，在9个EVM实现中发现了26个真实问题；（2）针对以太坊节点API的规范驱动的差分测试框架，在所有主流执行层和共识层客户端中识别出58个真实问题，并进一步指出不一致性问题甚至延伸至协议规范层面。研究结果表明这是一个需要整个生态系统协调解决的系统性问题。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "LLM辅助差分测试揭示以太坊客户端实现不一致性",
+            "en": null
+          },
+          "topics": [
+            "区块链",
+            "软件测试"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3027,7 +3355,16 @@
           ],
           "abstract": "黄华威研究组自研 BrokerChain 区块链已经为国内区块链企业（华为云区块链、鹏城实验室与中保科联公司）提供了分片区块链技术解决方案。经过5年的研发，研究组数月前已经上线了 BrokerChain公链学术版本的测试网。本次报告主要介绍BrokerChain 从科研到赋能去中心化金融的尝试，还将展示BrokerChain 测试网在系统稳定性与可靠性方面的迭代改进过程。后续，研究组计划将 BrokerChain 广泛赋能海内外区块链金融应用场景。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "分片区块链BrokerChain公链测试网稳定性与可靠性",
+            "en": null
+          },
+          "topics": [
+            "区块链",
+            "分布式系统"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -3106,7 +3443,16 @@
           ],
           "abstract": "无服务器计算（serverless）因为无需自建服务器、按请求付费，具有极致的计算效用，成为云原生系统的重要计算模式。另一方面，随着以ChatGPT、DeepSeek为代表的大模型的兴起，越来越多的基于大模型的系统开始出现。为了降低成本、提升计算效用，这类软件系统以serverless的方式运行。但是受到运行环境、软件bug的影响，基于serverless的云原生系统也存在诸多性能问题。本次报告围绕基于serverless的云原生系统的性能诊断与优化问题，介绍基于事件图模型的性能诊断方法、基于多智能体强化学习的配置优化方法以及面向大模型系统的性能优化方法。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向serverless云原生系统的性能诊断与优化方法",
+            "en": null
+          },
+          "topics": [
+            "云计算",
+            "智能运维"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3126,7 +3472,17 @@
           ],
           "abstract": "面对云原生系统复杂性的持续攀升，我们在运维生命周期的关键阶段创新性地运用了不同形态的智能Agent技术。在运行保障阶段，ServiceOdyssey通过自学习Agent实现微服务自治管理，无需服务配置先验知识即可自主适应复杂环境，降低人为操作错误风险。在监控响应阶段，Triangle采用多Agent协作机制，通过语义蒸馏和多角色协商技术，在真实生产环境的数据实验中，达到高事件分类准确率并大大缩短了响应时间。而在资源配置阶段，ProtoRAIL风险感知主动模仿学习Agent，通过从历史数据中学习资源使用模式的原型，实现云环境vCPU资源的自适应超售分配，在保障服务质量的前提下，显著提升资源利用率并大幅降低运营风险。这三项成果系统性地覆盖了云原生运维的核心阶段，从运行期自治管理到故障期快速响应，再到配置期资源优化，形成了完整的智能运维技术体系。通过智能Agent技术的深度应用，我们不仅显著提升了运维效率和系统可靠性，更为云原生运维的智能化转型提供了可复制的最佳实践路径，对推动整个行业的技术演进具有重要参考价值。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "智能Agent贯穿云原生运维的保障、响应与资源优化",
+            "en": null
+          },
+          "topics": [
+            "智能运维",
+            "智能体",
+            "云计算"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3146,7 +3502,16 @@
           ],
           "abstract": "AI Agent 从原型搭建完成到实现生产级可用，需跨越效果验证、风险管控与持续迭代的多重挑战，而 AgentOps 正是应对这一过程的核心实践框架 —— 通过系统化检测、量化评估与动态优化，推动 Agent 效果持续进阶。本文提出一套覆盖 Agent 全生命周期的 AgentOps 解决方案，以 “数据驱动” 为核心支柱，构建 “评测 - 观测 - 优化” 闭环：其一，打造基于 LLM as Judge 的智能化评测体系，实现对 Agent 能力的精准量化与多维度评估；其二，搭建面向 Agent 特性的下一代可观测体系，实时捕捉运行状态、异常风险与用户交互反馈；其三，落地数据驱动的迭代机制，融合 Prompt 工程优化与模型微调能力，形成 Agent 效果提升的增长飞轮，最终确保 Agent 从实验室原型平稳过渡至高可靠、高可用的生产环境。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "数据驱动的AgentOps构建Agent评测-观测-优化闭环",
+            "en": null
+          },
+          "topics": [
+            "智能运维",
+            "智能体"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3166,7 +3531,16 @@
           ],
           "abstract": "Agentic AI系统因灵活性强、搭建门槛低等优势，在科研与产业领域备受关注。然而，当前智能体系统普遍面临稳定性不足、安全性存疑等问题，成为制约其规模化应用的核心瓶颈。在此背景下，一套全面、系统的智能体系统运维方案已成为行业迫切需求，本报告讲重点涵盖AgentOps（Agent System Operations），并对其四大核心阶段（监控、异常检测、根因分析、故障消除）进行定义与可用方法介绍，系统的综述现有多智能体系统可能存在的异常和故障类型，并探讨可落地的技术方向。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "多智能体系统运维AgentOps的四大阶段与方法",
+            "en": null
+          },
+          "topics": [
+            "智能运维",
+            "智能体"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3186,7 +3560,16 @@
           ],
           "abstract": "在智能应用快速发展的今天，大语言模型在专业领域的解答置信度仍然是较大的挑战，通过模型微调（无论是sft还是lora）引入领域知识代价仍然昂贵，且效果不稳定；RAG虽有一定帮助，但更像拿着小抄来考试：针对题库中未直接包含的问题，效果并不理想。本主题介绍一种新的路径：借助PLT领域的类型系统建模实现对LLM进行校验、反馈迭代的思路。这种思路使得未微调的通用模型在领域专有问题域上的回答正确率提升近3倍。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "以类型系统形式化验证提升智能体领域回答置信度",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "智能体"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3206,7 +3589,16 @@
           ],
           "abstract": "记忆能力是智能体从被动响应迈向主动进化的核心，其分层架构（瞬时→短期→长期）虽受人类认知机制启发，却长期受限于碎片化、不可控、低效迭代等瓶颈。本报告将分享操作系统级记忆框架MemOS如何重构这一范式：通过将记忆升维为可调度的「一级资源」，以MemCube原子单元统一封装明文记忆（结构化知识）、激活记忆（瞬时状态）、参数记忆（固化常识），实现动态协同；突破传统上下文工程局限，依托异步预加载机制实现跨场景记忆预测（首Token响应加速94.2%），在LoCoMo评测中开放域任务准确率提升19.4%，验证记忆工程在金融风控、个性化学习等Knowhow沉淀场景的进化潜力。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "操作系统级记忆框架MemOS重构智能体记忆工程",
+            "en": null
+          },
+          "topics": [
+            "智能体",
+            "操作系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3223,7 +3615,15 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "智能运维"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -3288,7 +3688,15 @@
           ],
           "abstract": "The MIP/LP solvers are primarily developed by the operations research community while SAT/SMT solvers are primarily developed by the computer science community. However, these problems are closely related with each other. In recent years, there have been many attempts to combine the algorithmic techniques of both sides to develop better solvers. In this talk, I will discuss about these and our attempts and try to provide a unified perspective and framework.",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "融合CS与OR算法思想构建更优MIP/SAT/SMT求解器",
+            "en": null
+          },
+          "topics": [
+            "形式化方法"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3308,7 +3716,16 @@
           ],
           "abstract": "符号执行是基于约束求解的程序分析技术，在软硬件开发中多个场景存在很多应用，约束求解也是符号执行面临的主要挑战之一。本报告将探讨在符号执行场景下对约束求解的需求，同时汇报课题组近期在面向符号执行的约束求解方面的工作，希望从两个方面提升符号执行的分析效率。一方面我们希望符号执行为约束求解提供更多的信息来提升约束求解效率；另一方面我们希望把约束求解过程打开，为符号执行提供更多的帮助。最后将展望符号执行场景下约束求解的下一步发展。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向符号执行需求的约束求解效率提升",
+            "en": null
+          },
+          "topics": [
+            "程序分析",
+            "形式化方法"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3328,7 +3745,16 @@
           ],
           "abstract": "约束优化问题旨在从所有满足给定约束条件的决策方案中，找到使目标函数最优方案，其广泛存在于科学研究和现实应用场景。优化模理论（Optimization Modulo Theories）为约束优化问题提供了通用框架。对于非线性实数算术优化模理论问题，现有算法是不完备的。我们提出了一种基于冲突驱动子句学习（CDCL）框架的完备算法——优化柱形代数覆盖，证明了该算法的正确性与终止性，首次实现了针对NRA的完备OMT求解器。对于一般的优化模理论问题，我们提出了将其转化为一阶逻辑公式进行求解的方法，适用于有限、离散和连续等不同变量类型，在多个理论上的求解效率显著优于现有OMT求解器。我们还探索了如何基于大语言模型将自然语言描述的约束优化问题转化为严格的形式语言，从而实现对约束优化问题的自动建模。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "优化模理论完备算法与大模型自动建模约束优化",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3348,7 +3774,16 @@
           ],
           "abstract": "敏迭优化求解器(MindOpt)，是阿里巴巴达摩院决策智能实验室历时多年精心研发的一款国产高性能商用优化求解器，包含领先的线性规划、混合整数线性规划、非线性规划、混合整数非线性规划、无导数优化等核心求解功能，2020年MindOpt首次发布即在线性规划测试集上取得排名世界第一的成绩，后续也多次在国内外相关赛事上获得冠军。至今，敏迭优化求解器(MindOpt)已被应用于电力调度、能源管理、云资源调度、资产管理、制造调度、港口调度、航空调度等丰富的场景。本次演讲将介绍敏迭优化求解器(MindOpt)及其行业应用进展。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "阿里达摩院MindOpt高性能优化求解器及行业应用",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "产业生态"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3368,7 +3803,15 @@
           ],
           "abstract": "本报告围绕非线性实数算术的可满足性问题（SMT-NRA），介绍我们在多项式公式求解与局部搜索方法方面的最新研究进展。我们首先提出了一种面向仅包含严格不等式的 SMT-NRA 子类的局部搜索算法。该算法基于实根隔离，设计了一种名为 Cell-Jump 的新型跳跃操作，可沿指定方向跨越由多项式集合在实数空间中划分的胞腔（cell），从而实现原生支持非线性实数算术的局部搜索策略。在此基础上，我们进一步提出了 二维 Cell-Jump（2D Cell-Jump） 操作，增强搜索的空间跳跃能力，并据此构建了局部搜索框架 2d-LS。为提升求解效率，我们将该框架与模型构造型可满足性演算（MCSAT）相结合，并引入 Sample-Cell 投影算子，用于在实数域中引导搜索避开冲突状态。最终，我们设计了一个融合 2d-LS、MCSAT 与 OpenCAD 的混合求解框架，通过信息交互进一步提升整体性能。实验结果表明，该方法在搜索效率和求解能力方面均取得了显著提升。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "结合局部搜索、MCSAT与OpenCAD的SMT-NRA高效求解",
+            "en": null
+          },
+          "topics": [
+            "形式化方法"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3381,7 +3824,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "形式化方法"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -3446,7 +3897,16 @@
           ],
           "abstract": "形式验证和仿真验证是数字电路设计验证的两大方法学，后者目前仍然是主流，而前者正得到越来越多的发展和应用。形式验证在国产芯片中的应用稍晚于国外。随着芯片规模，复杂度和安全要求的不断提升，设计周期缩短，和流片成本的剧增，形式验证正在国产芯片设计中扮演日益重要的角色。报告从国产EDA供应商阿卡思微电科技的角度，对多款验证工具的研发和推广进行一个介绍，并提出一些观察。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "形式验证在国产芯片设计验证中的应用与观察",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "EDA"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3466,7 +3926,15 @@
           ],
           "abstract": "大型工业软件研发规模大，分工复杂，产品需要兼具创新性和可靠性，对基础架构和研发环境的要求很高。具体体现在以下几个方面：1.基础数据结构的创新：数据模型的既面向目标而又高效的优化表达。2.核心算法的鲁棒性与高效性：基础算法的复用3.系统级的优化：产品共性和特异性的兼容。工业级的软件稳定性：海量测例和数据的高效利用",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "大型工业软件研发的基础架构与支撑系统",
+            "en": null
+          },
+          "topics": [
+            "软件架构"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3486,7 +3954,17 @@
           ],
           "abstract": "随着半导体设计的复杂度持续攀升，亟需能够匹配技术快速演进节奏的敏捷设计方法论。面向新兴应用的领域专用架构进一步加剧了设计与验证的工作负担，使传统芯片开发流程在效率与灵活性上面临前所未有的挑战。近年来，GPT-4、Claude、DeepSeek-R1 等大型语言模型在硬件设计自动化领域崭露头角，展现出强大的变革潜力。它们在 RTL 代码生成、调试、优化等多项任务中发挥重要作用，显著提升了设计流程的自动化程度与整体开发效率。本报告将重点介绍基于 LLM 的新兴方法论，分享我们在芯片设计与验证自动化方向的最新研究与实践进展，并探讨未来将 LLM 深度融入 EDA工作流所面临的机遇与挑战。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "基于大语言模型的芯片敏捷开发机遇与展望",
+            "en": null
+          },
+          "topics": [
+            "EDA",
+            "大模型",
+            "代码生成"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3506,7 +3984,16 @@
           ],
           "abstract": "在聚焦AI芯片、GPU、CPU等场景的数据通路验证，GalaxEC-HEC作为特定领域形式化验证工具，支持C/C++算法模型与RTL实现的事务级等价性比对，可完备验证定点/浮点运算单元以及脉动阵列等复杂计算设计。在某XPU项目中，该工具对所有算子实现全证明，较传统方案节省9倍人力。其中64位浮点乘法证明耗时200秒，32位除法通过拆分为200+子公式实现10分钟内完备验证。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "GalaxEC-HEC形式化验证实现数据通路完备验证",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "EDA"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3526,7 +4013,16 @@
           ],
           "abstract": "工业软件是数字化、智能化转型升级的灵魂。长期以来，工业软件开发面临两个关键难点：知识获取难、软件编程难。工业知识缺乏持续积累优化、工业知识向工业软件转化不畅。打通“数据-知识-软件”的高效演进通道，是工业制造过程数字化转型升级的关键需求。团队通过构建知识自动化关键技术体系，突破知识基座关键技术，实现数据到信息到知识的自动流转，支撑智能制造由当前数据服务、信息服务向知识服务演进提升。研发了组件化工业软件关键技术与支撑环境，将工业制造领域知识服务封装为标准软件组件，并按照制造过程工艺流程逻辑对软件组件进行装配集成，从而实现灵活敏捷的组件化工业软件开发。通过知识自动化与组件化工业软件技术，实现工业知识自主学习与自主演进、工业软件组件自动装配、软件自主生成，从而创新工业软件智能化研发模式，支撑工业制造转型升级与高质量发展。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "知识自动化与组件化实现工业软件自动生成",
+            "en": null
+          },
+          "topics": [
+            "软件架构",
+            "产业生态"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3546,7 +4042,16 @@
           ],
           "abstract": "形式化验证在EDA领域中至关重要，是确保芯片设计正确性的重要手段。随着集成电路规模的持续增长，串行形式化验证算法在性能与可扩展性方面已难以满足现代设计的验证需求，并行验证引擎将逐渐成为提升验证效率的关键方向。本报告将围绕组合等价性验证（Combinational Equivalence Checking）与模型检查（Model Checking）两个问题展开介绍。两者均为EDA形式化验证领域的关键技术，且底层均以SAT求解器为底座。报告将重点阐述课题组在形式验证并行算法的若干尝试，为大规模设计验证提供新的思路与技术支撑。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "组合等价性验证与模型检查的EDA并行算法",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "EDA"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -3611,7 +4116,16 @@
           ],
           "abstract": "随着5G、人工智能等技术的迅速发展和加快应用，面向万物互联的智能终端已经无处不在，据统计，2020年全球物联网设备总量已达240亿。在如此庞大的设备终端构建的复杂网络中，智能应用在数据处理时，由于任务分工的固有限制以及传统体系架构存在的“内存墙”、“存储墙”等问题，正面临计算效率、通信延迟、扩展性、实时性、能耗等各方面的严峻挑战。报告首先介绍国内外存算融合技术的相关工作，然后简介本团队围绕边缘场景的存算融合研究，最后介绍一些典型场景下的相关应用案例。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向边缘智能应用的存算融合系统与技术",
+            "en": null
+          },
+          "topics": [
+            "物联网",
+            "存算一体"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3631,7 +4145,16 @@
           ],
           "abstract": "随着大模型开始逐渐进入到各个行业，如何保障不同场景下大模型推理的服务水平目标（SLO）的同时提高吞吐量是大模型服务系统构造的核心关键问题。本报告将从大模型推理服务的特点出发，介绍高效能的大模型推理服务系统--泛睿及其关键技术，包括：（1）面向多LoRA大模型的动态编排技术，通过动态编排请求和LoRA适配器，提升LoRA大模型推断服务的效率；（2）预填充与解码计算解耦分离技术，旨在通过为两个阶段动态调整资源分配与并行策略，优化LLM推断服务的性能；（3）可变长度窗口弹性序列并行技术，以弹性适应不同对话窗口长度请求和阶段之间的变化性。实验结果表明，泛睿系统可以有效地提升GPU资源利用率，降低推理服务延迟，相对vLLM等基线系统吞吐量提升1个数量级。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "高效能大模型推理服务系统泛睿及其关键技术",
+            "en": null
+          },
+          "topics": [
+            "大模型",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3651,7 +4174,16 @@
           ],
           "abstract": "人工智能的快速发展与广泛应用已成为经济社会发展的强大引擎。大小模型端云协同进化作为人工智能关键前沿技术，可有效克服云侧集中式学习范式在可扩展性、实时性、个性化、负载成本、隐私安全等方面的不足，已成为产学研的焦点，并被Gartner和阿里巴巴达摩院等国内外知名机构预测为革新智能计算范式的科技趋势。本报告将会追寻端云协同智能技术的发展脉络，分享我们团队在端侧智能推理、大规模联合学习以及端云协同分布式智能支撑系统等方面的研究进展。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "大小模型端云协同智能计算研究进展",
+            "en": null
+          },
+          "topics": [
+            "机器学习系统",
+            "物联网"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3671,7 +4203,16 @@
           ],
           "abstract": "报告首先对数据隐私保护计算的概念定义、标准制定、学术与产业发展现状展开介绍，随后分析云边端融合架构下，隐私保护计算在终端数据传输、边端数据存储、云端数据计算三阶段面临的安全威胁与核心挑战，接着阐述当前研究存在的不足及对应的技术突破方向，最后给出了团队在该方向上所做的工作。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "云边端融合架构下的隐私保护计算体系与关键技术",
+            "en": null
+          },
+          "topics": [
+            "隐私计算",
+            "物联网"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3691,7 +4232,16 @@
           ],
           "abstract": "随着大模型等人工智能技术的发展，一方面智能应用日新月异，不断突破人们对人工智能能力的上限，另一方面如何在资源受限的端侧设备实现同样的稳定的人工智能推理却十分挑战。端侧稳定推理，尤其是终端在移动过程中面对跨场景数据做出符合预期的稳定推理，不仅对增强人机交互体验意义重大，对于推理质量十分苛刻的自动驾驶、具身智能等场景更是至关重要。本次报告面向资源受限的移动终端，探讨跨场景在线移动智能推理关键理论与技术，并介绍在车辆视觉等典型移动智能应用的成效。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向移动终端的跨场景在线智能推理关键技术",
+            "en": null
+          },
+          "topics": [
+            "物联网",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -3763,7 +4313,16 @@
           ],
           "abstract": "人工智能的范式正经历从感知智能、生成智能到具身智能的深刻演进，其核心特征是实现智能体与物理环境的主动、协同交互。将具身智能技术应用于航空航天等高端装备制造，拟通过构建多模态感知、智能决策、柔顺控制一体化的技术体系，旨在解决传统高端装备制造业的深层痛点，并逐步实现从“工具自动化”到“系统自主化”的制造范式变迁。为实现“智造中国”的国家战略提供关键技术支撑。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向高端装备制造的工业具身智能技术",
+            "en": null
+          },
+          "topics": [
+            "具身智能",
+            "数字孪生"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3783,7 +4342,16 @@
           ],
           "abstract": "柔性制造是未来制造业的核心发展方向，也是推动智能制造落地的关键驱动力。针对柔性制造产线开发门槛高、工艺更新慢、动态排产难等挑战，本报告重点探讨生成式AI驱动的智能制造产线设计与开发新路径，并介绍我们全栈自研的智能产线开发平台——坤吾。坤吾平台构建了生产设备的软硬件全栈虚拟镜像，支持在虚拟环境中实现“所见即所得”的产线布局规划，以及“虚实无差别”的工艺编排调试，实现了产线控制软件的低代码开发和高柔性定制。为进一步提升智能化水平，研发了两大生成式AI大模型：一是基于Transformer架构的产线自动生成模型LineGen，能够从2D CAD图纸快速生成精细的3D产线场景；二是低代码生成大模型LoCoGen，依托大语言模型理解布局与工艺需求，自动生成可执行低代码程序，并支持仿真反馈迭代与自我纠错，中等复杂度的产线代码可直接部署使用。结合数字孪生与强化学习动态排产优化等技术，坤吾平台显著提升了产线设计、软件开发与系统迭代的效率与智能化程度。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "生成式AI驱动的智能制造产线设计开发平台坤吾",
+            "en": null
+          },
+          "topics": [
+            "数字孪生",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3803,7 +4371,16 @@
           ],
           "abstract": "当前具身智能领域的相关研究聚焦于VLA模型，以实现对复杂环境的高效感知与精准动作生成。然而，VLA模型存在显著技术瓶颈：其庞大的参数量与计算需求导致推理过程难以满足实时性要求，必须依赖专用的推理优化技术才能进一步适配实际场景。与之相对，传统运动控制方法虽具备响应速度快、实时性强的优势，但受限于对环境语义的理解能力薄弱，在复杂或动态变化的场景中泛化性较差。因此，探索如何将二者有机结合，同时发挥VLA模型的感知优势和传统运动控制的速度优势成为解决当前具身智能困境的核心问题。本次报告将围绕具身智能与传统运动控制的结合展开，介绍我们在具身模型编解码优化、融入传统运动控制的模型推理、具身模型异构部署等方面的研究进展。我们通过软硬件协同优化与系统级优化，力求突破现有具身模型的性能瓶颈，为下一代高能效具身应用提供计算支撑。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "融合传统运动控制的具身智能VLA推理加速",
+            "en": null
+          },
+          "topics": [
+            "具身智能",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3823,7 +4400,16 @@
           ],
           "abstract": "生物智能是生命起源以来产生的思维和实体的综合，其进化过程不仅体现在思维方式的演进，还包括体型和四肢等实体结构的转变。人工智能是一门致力于模拟与扩展生物智能的前沿技术，数据驱动的思维认知离不开实体物理条件，同时也会促进硬件实体发展。本报告聚焦软硬协同的具身智能大模型前沿研究，重点介绍大模型驱动的人形机器人、机械臂、无人机等异构智能体，探讨面向不同智能体的“感知-决策-行动”多模态模型框架，致力于推动具身智能技术发展与应用落地。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向异构智能体的软硬协同具身智能大模型",
+            "en": null
+          },
+          "topics": [
+            "具身智能",
+            "多模态"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3843,7 +4429,15 @@
           ],
           "abstract": "大模型的发展给机器人智能化带来了新的热潮。尤其是近几年自动驾驶技术的快速落地，更是增加了大家具身智能落地的信心。多种形式的数据采集纷纷涌现，以VLA为代表的具身智能大模型的训练与研发如火如荼，并取得了诸多进展。然而，虽然人形机器人跳舞或打拳已经不再稀奇，但稳定的抓取与操作却仍然面临着诸多挑战。相比于跳舞，机器人操作究竟难在哪里？相比于自动驾驶，机器人操作又有哪些不同的需求，面临什么不同的挑战？有哪些是我们可以尝试的方向？本次报告将针对这些问题，结合前期研究基础，探讨这些问题。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "探讨大模型时代机器人稳定抓取与操作的挑战",
+            "en": null
+          },
+          "topics": [
+            "具身智能"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3863,7 +4457,16 @@
           ],
           "abstract": "近年来，神经网络的迅速发展显著推动了具身智能的进步，尤其在人形机器人领域，智能体已能够完成多样且复杂的任务。然而，距离大规模实际应用仍存在显著鸿沟，其中一个关键原因在于缺乏类似互联网规模的多样化训练数据。相比之下，符号推理具备抽象概括、知识迁移与可解释性等优势，而神经网络擅长从感知中学习复杂模式。在此背景下，神经符号融合被视为推动具身智能走向成熟应用的关键路径。本报告将介绍我们在该方向上的探索性研究，包括程序化强化学习与神经符号融合的程序合成等工作，并探讨其在提升具身智能泛化性与实用性方面的潜力。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "具身智能中神经符号融合与程序合成的初步探索",
+            "en": null
+          },
+          "topics": [
+            "具身智能",
+            "形式化方法"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -3921,7 +4524,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "形式化方法"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3938,7 +4549,16 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3958,7 +4578,16 @@
           ],
           "abstract": "AI agents are rapidly being deployed across a wide range of domains, including safety-critical applications. Unlike static LLMs, these agents can directly interact with and modify the real world—making AI safety not just a theoretical concern but an immediate and tangible one. However, unlike traditional software systems, AI agents operate through dynamically generated workflows, rendering conventional formal methods based on fixed execution paths insufficient. This raises a pressing question: if safety must be assured, how can we achieve it? In this talk, I will present our recent efforts toward ensuring the safety of AI agents and discuss several fundamental challenges that lie ahead.",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向AI智能体安全的形式化方法与根本挑战",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "智能体"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3978,7 +4607,16 @@
           ],
           "abstract": "本报告将介绍形式化方法在软件可信保障中的研究进展，包括可信验证理论体系、嵌入式中断与并发程序验证、EDA 工具链验证、智能软件与神经网络的安全性和鲁棒性分析，以及AI赋能形式化验证的最新研究进展。报告将重点探讨这些方法在航空航天、控制、任务调度和自主决策等关键环节中的应用潜力。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "形式化方法在软件可信保障与AI赋能验证的进展",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -3998,7 +4636,16 @@
           ],
           "abstract": "This talk focuses on bridging symbolic reasoning and neural computing — two core paradigms in AI — via abstraction. It first notes their inherent trade-offs: symbolic reasoning excels at interpretable logical deduction but struggles with noisy real-world data, while neural computing handles complex data well yet lacks transparency and abstract reasoning. The key challenge of integrating them is then highlighted, with abstraction introduced as the critical solution. The talk explains abstraction’s dual roles: it enhances symbolic reasoning by simplifying knowledge representation for flexible deduction, and enables neural computing to learn high-level abstract features beyond raw data patterns. Specific integration mechanisms (e.g., neuro-symbolic machines) are outlined, where abstraction converts symbolic rules into neural-processable vectors and translates neural-learned patterns into interpretable symbols.",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "通过抽象连接符号推理与神经计算两大范式",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -4018,7 +4665,16 @@
           ],
           "abstract": "Large language models (LLMs) are increasingly tasked with generating structured outputs. While structured generation methods ensure validity, they often lack output diversity, a critical limitation that we confirm in our preliminary study. We propose a novel method to enhance diversity in automaton-based structured generation. Our approach utilizes automata traversal history to steer LLMs towards novel structural patterns. Evaluations show our method significantly improves structural and content diversity while maintaining comparable generation efficiency. Furthermore, we conduct a case study showcasing the effectiveness of our method in generating diverse test cases for testing open-source libraries.",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "基于自动机引导大模型进行多样化结构化生成",
+            "en": null
+          },
+          "topics": [
+            "大模型",
+            "形式化方法"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -4038,7 +4694,16 @@
           ],
           "abstract": "在形式化方法的发展中，如何实现大规模程序的自动化验证始终是关键挑战。传统演绎验证依赖人工编写的形式规约，这不仅是工业级应用中的主要成本来源，也成为限制验证规模扩展的核心瓶颈。近年来，大语言模型（LLM）为规约自动生成带来了新的契机，但仍受到上下文长度限制与跨过程语义推理困难等问题的制约。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "潜在错误引导的规约生成框架实现大规模代码自动验证",
+            "en": null
+          },
+          "topics": [
+            "形式化方法",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -4051,7 +4716,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "形式化方法"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -4130,7 +4803,16 @@
           ],
           "abstract": "软件是行业数字化的基石，软件定义是行业数字化的方法论。软件工程本质上是一门描述性学科，构建软件定义方法论的两个重要挑战，一是根据非形式化物理世界特征和人类对行业数字化的意图，抽象出形式化且可实现的软件行为规约，二是根据可实现的软件行为规约塑造满足现实约束的数字化解决方案。解决这两个挑战是软件工程赋予需求和设计阶段的重要职责，也是决定行业数字化取得实效的关键中的关键。本报告通过领域软件需求开发和架构设计，分析软件工程如何通过多维度描述来应对现实世界问题的复杂性。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "从非形式化到形式化塑造软件系统的需求与设计",
+            "en": null
+          },
+          "topics": [
+            "需求工程",
+            "软件架构"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -4150,7 +4832,16 @@
           ],
           "abstract": "本报告将深入解读面向人机物融合系统（Human-Cyber-Physical Systems， HCPS）的泛在智能架构的演进脉络与未来蓝图。首先追溯其“前世”，阐释其如何从普适计算、物联网及Cyber-Physical Systems等理念中汲取精髓，奠定HCPS三元融合的理论基石。进而聚焦“今生”，系统剖析当前支持海量异构人、机、物资源深度感知、智能协作与可信互操作的核心架构、关键挑战（如资源约束、安全性）与典型实践。最后，将前瞻“来世”，大胆展望以内生智能、群体智能和自我演进为特征的新一代架构，探讨其如何最终实现智能服务无缝、透明地融入物理世界，推动社会向真正的人机物和谐共生范式演进。本报告旨在为学界与产业界同仁提供一个清晰、系统的认知框架与发展指引。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向人机物融合HCPS的泛在智能架构演进与展望",
+            "en": null
+          },
+          "topics": [
+            "软件架构",
+            "物联网"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -4170,7 +4861,16 @@
           ],
           "abstract": "本报告探讨软件工程和人工智能融合的一些思考，包括如何基于知识驱动的方法促进软件工程的智能化发展，同时引入提示（Prompt）软件工程化的理念，以系统化方式提升LLMs/Agents在智能软件工程中的应用效能，从而推动软件开发流程的变革。知识驱动智能化软件工程旨在利用人工智能技术提升软件需求工程、架构设计、代码生成等核心环节的智能化水平。通过构建知识驱动的软件开发范式，减少人工参与的复杂度，提高软件工程任务的自动化程度。在此背景下，提示软件工程化（Promptware Engineering）作为智能化软件工程的重要支撑，提供了一种面向LLMs的系统化开发方法。当前，LLMs已成为软件开发的新型计算平台，而提示（Prompt）则是其主要的交互与控制手段。然而，由于提示开发依赖自然语言表达，具有高度的不确定性、非结构化和上下文依赖性，导致开发过程缺乏系统性，形成Promptware危机。本报告提出将传统软件工程方法论应用于提示开发，以提高LLMs/Agents在智能化软件工程中的可控性、稳定性和可靠性。通过结合知识驱动的智能化软件工程范式与提示软件工程化方法论，本报告旨在探讨如何更有效地利用LLMsh和Agents技术，实现软件工程流程的智能化升级。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "知识驱动与提示软件工程化推动智能化软件工程",
+            "en": null
+          },
+          "topics": [
+            "AI4SE",
+            "需求工程"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -4190,7 +4890,16 @@
           ],
           "abstract": "大模型技术的迅猛发展带来了智能化软件开发的质变，打破了我们对软件自动化的想象边界。在智能化软件工程范式下，程序员作为“用户”，不断将自己脑海中的“需求”表述成指令，传递给智能化开发技术，从而实现高效的软件构造。然而，开发者需求存在两种固有的不确定性，第一种是“开发者知道但没有表达”，第二种是“开发者不知道但可挖掘”，传统的需求获取技术以分析师能力和调研技术为核心，无法解决当前挑战。为了满足人机物融合时代对需求获取的新要求，报告人提出了若干新一代需求理解技术。包括（1）新一代需求理解技术：面向代码生成的开发者用户需求自动优化技术和交互式需求主动澄清，以解决“开发者知道但没有表达”的挑战。（2）新一代需求挖掘技术：基于IDE开发者行为轨迹的潜在用户需求挖掘技术，以解决“开发者不知道但可挖掘”的挑战。本次报告将分享上述新一代需求获取技术，旨在为未来人机物融合时代下的高度人机智能高效协作提供支撑。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向代码智能的开发者需求理解与挖掘技术",
+            "en": null
+          },
+          "topics": [
+            "需求工程",
+            "代码生成"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -4210,7 +4919,16 @@
           ],
           "abstract": "软件体系结构设计是软件开发中至关重要但又高度复杂且知识密集的活动。传统软件体系结构设计方法主要依靠架构师的经验和专业知识，成本较高，且在敏捷开发的限制下往往只能产生有限的设计方案。随着大语言模型（LLM）及其智能体的快速发展，为其在体系结构设计中的应用提供了机遇，能够应对多样化领域知识和复杂决策等挑战问题。为此，我们提出了多智能体体系结构设计框架，通过协调四类专门化智能体—分析者、建模者、设计者和评估者—协同完成需求规格的解读，生成包含质量属性评估的体系结构蓝图。通过案例研究与对比实验对该框架进行了评估，并与多智能体基线系统MetaGPT进行了比较，以及来自产业界架构师的应用反馈，结果表明该框架在生成全面的体系结构组件和提供结构化、深度的体系结构评估报告方面具有优势和实用性。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "多智能体框架实现知识驱动的软件体系结构设计",
+            "en": null
+          },
+          "topics": [
+            "软件架构",
+            "智能体"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -4230,7 +4948,16 @@
           ],
           "abstract": "关键领域软件（如航空航天、军事指挥等）常在资源受限、环境复杂多变的条件下运行，普遍面临有效数据匮乏、未知故障频发、非预期任务扩展等多重挑战，严重威胁系统的安全可信运行。为确保此类关键系统能够稳定、高效地持续工作，软件需具备在运行过程中动态调整与持续演化的能力。本次报告聚焦于关键领域软件的演化问题，首先介绍团队通过引入多智能体技术与微服务架构等方法，构建了一种敏捷适变、柔性可调的软件体系结构和系统构建机制，以支持系统实现在线演化与升级。在此基础上，进一步探讨如何在系统运行过程中精准识别各类演化需求，并在深入分析后对软件架构进行针对性调整的系统化方法。最后，结合航空、航天、国防等领域的实际案例，展望关键软件在未来演化过程中所面临的技术需求与研究挑战。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "关键领域软件的演化需求分析与敏捷架构设计",
+            "en": null
+          },
+          "topics": [
+            "需求工程",
+            "软件架构"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
@@ -4295,7 +5022,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "AI4SE"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -4315,7 +5050,16 @@
           ],
           "abstract": "历经十年发展，AIOps技术仍未摆脱系统复杂性、专家资源匮乏与海量告警交织的“救火”困境。尽管通用大模型展现了潜力，但其有限的深度推理能力难以直击风险诊断本质。真正的突破源于新一代推理AI的崛起。蚂蚁集团结合前沿技术，将强推理模型、实时全景知识图谱与多维度自动化工具深度整合，成功构建起全天候在线的Derisk 智能风险运维平台。该系统能够像资深SRE般主动分析，通过实时监控洞察异常，提前精准定位根本原因，将技术风险管控从“事件驱动”推向“风险预判”的新阶段，实现从被动应对到主动防控的颠覆性变革。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "蚂蚁Derisk智能风险运维平台从事件驱动到风险预判",
+            "en": null
+          },
+          "topics": [
+            "智能运维",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -4335,7 +5079,16 @@
           ],
           "abstract": "本报告将介绍大模型智能体记忆机制在软件测试和缺陷修复中的使用，包括情景记忆、语义记忆、程序性记忆等的组织存储，各类记忆的检索与使用等。主要介绍我们在移动应用测试中如何采用记忆机制提升路径覆盖率和缺陷发现效率，以及在程序修复中如何采用双重记忆机制更好的指导大模型生成修复方案。相关工作发表在ASE 2025、ICSE 2026, 程序修复技术当前位列SWE-bench Lite排行榜榜首。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "大模型智能体记忆机制在软件测试与程序修复中的应用",
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "智能体"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -4355,7 +5108,16 @@
           ],
           "abstract": "大模型在复杂软件生成任务中仍面临需求理解不充分、代码逻辑推理薄弱等挑战。本报告聚焦推理增强的高质量软件生成技术路径，通过融合需求语义解析、多步推理规划的迭代优化机制，提升模型在需求分析与实现逻辑上的深度理解与决策能力，有效提升生成代码的正确性、可维护性与整体质量。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "融合需求解析与多步推理的高质量软件生成",
+            "en": null
+          },
+          "topics": [
+            "代码生成",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -4375,7 +5137,17 @@
           ],
           "abstract": "开源软件供应链安全的形势日益严峻。大模型技术的发展为保障开源软件供应链安全带来了机遇与挑战。本报告将首先介绍团队针对开源软件供应链安全所提出的治理平台“伏羲”，然后介绍团队在大模型赋能开源软件供应链安全的一些初步尝试。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "大模型赋能开源软件供应链安全治理平台伏羲",
+            "en": null
+          },
+          "topics": [
+            "软件供应链",
+            "软件安全",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -4395,7 +5167,16 @@
           ],
           "abstract": "测试是一种可执行的需求。在本次报告中将介绍我们课题组在将多模态需求翻译为测试的一系列尝试。首先，我们将符合需求描述中场景用例的文本翻译成可运行的仓库级测试代码。为此，我们将测试代码生成问题转化成了一个测试代码编辑问题，来解决特定于项目的mock生成、资源释放、和测试预言生成等问题。其次，需求文档也可能是多模态的（同时包含图片和对应的文字说明）。为此，我们进一步设计了面向多模态需求稿的GUI测试用例生成，旨在自动将需求稿中的内容转化成在GUI界面上的一系列操作动作，并检验需求与实现之间的界面/操作语义上的不一致性。最后，本次报告展望本方案对未来基于需求编程场景的未来方向。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "将多模态需求翻译为仓库级与GUI测试用例",
+            "en": null
+          },
+          "topics": [
+            "软件测试",
+            "需求工程"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -4415,7 +5196,17 @@
           ],
           "abstract": "近年来，随着大语言模型的快速发展，利用其进行代码仓理解和自动修复已成为热门研究方向。然而，复杂代码仓库的理解要求模型具备跨文件的代码推理、领域知识融合及系统级依赖分析等深层能力，这对通用大语言模型构成了显著挑战。本报告将介绍我们在此方向上的系列工作。我们通过精确的上下文筛选、仓库问答智能体的构建、智能体经验管理以及多智能体辩论框架等一系列创新技术，实现了对代码仓库的深度理解与协同推理，显著提升了代码生成与修复的准确性与系统化水平。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "多智能体协同实现复杂代码仓库理解、生成与修复",
+            "en": null
+          },
+          "topics": [
+            "代码生成",
+            "智能体",
+            "软件维护"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -4435,7 +5226,17 @@
           ],
           "abstract": "随着Rust的广泛应用，将传统C代码迁移至Rust的需求日益迫切。然而，现有自动化翻译工具（如C2Rust）生成的代码冗长且不符合Rust规范，保留了大量不安全结构，严重影响代码可维护性和实际应用。为此，本文提出C2RustXW——一种结合程序静态分析与大语言模型（LLM）的程序结构感知翻译方法。该方法通过维护符号表和调用图保留程序结构，利用依赖图解析文件关系，并融合LLM驱动重构与符号验证，有效解决接口不一致和所有权问题，生成符合惯例的Rust代码。实验评估显示，C2RustXW在基准测试中达到97.78%-100%的语法正确率，代码规模减少43.70%，不安全代码比例降至5.75%。在全项目翻译中实现完全语法正确，平均语义正确率达78.87%，显著提升了生成代码的安全性与可维护性，为工程级代码迁移提供了有效方案。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "结合静态分析与大模型的可信C到Rust自动化转译C2RustXW",
+            "en": null
+          },
+          "topics": [
+            "代码生成",
+            "编译器",
+            "软件安全"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -4455,7 +5256,17 @@
           ],
           "abstract": "在国产操作系统与应用--鸿蒙的生态崛起中，AI大模型成为关键“助推器”。面对数据稀缺与技术空白，通过低资源冷启动、多阶段微调等多项技术和方法，打造性能业界领先的鸿蒙大模型。模型落地后，支持代码续写、生成、转化和理解等多项核心任务，应用于医疗、金融、工具等多个领域的鸿蒙应用开发，大大提升了鸿蒙开发效率并降低了开发者门槛，持续赋能鸿蒙生态。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "鸿蒙大模型的构造、优化与落地实践",
+            "en": null
+          },
+          "topics": [
+            "代码生成",
+            "操作系统",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -4475,7 +5286,16 @@
           ],
           "abstract": "大语言模型（LLM）正在推动软件工程领域的重大进步。当前研究主要集中在代码生成等早期开发阶段，忽视了对用户体验至关重要的部署后阶段。为探索LLM在此方向的潜力，我们提出了OpenRCA，一个用于评估LLM定位软件故障根因能力的基准数据集与评估框架。OpenRCA包含来自三大软件系统的335个故障案例，以及超过68GB的数据 (log, metric, trace)。该任务要求LLM在给定故障案例及相关数据后，识别触发故障的根本原因，此举需模型理解软件依赖关系并能对异构的长上下文数据进行推理。我们的实验结果表明现有模型仍有巨大提升空间：当前模型仅能处理最简单的案例。即使采用专门设计的RCA智能体，表现最佳的Claude 3.5模型也仅成功解决11.34%的故障案例。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "OpenRCA基准评估大模型软件故障根因分析能力",
+            "en": null
+          },
+          "topics": [
+            "智能运维",
+            "大模型"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -4495,7 +5315,16 @@
           ],
           "abstract": "数据是驱动现代软件工程技术创新与验证的基石，也是提升大模型能力的核心资源。然而，如何系统性地构建软件工程评测或训练数据，仍是当前领域面临的核心挑战之一。本报告分享我们在这一方向上的系列实践与思考，面向代码生成、代码翻译、代码搜索、问题解决、智能问答、代码搜索等软件工程任务，探讨如何构建高质量、自动化、多元化、大规模、高复杂度、反映真实软件开发场景的数据，并探讨软件工程数据构建的挑战与未来方向，以期共同推动软件工程智能化的扎实发展。",
           "abstract_status": "confirmed",
-          "type": "talk"
+          "type": "talk",
+          "summary": {
+            "zh": "面向软件工程任务的高质量评测与训练数据构建",
+            "en": null
+          },
+          "topics": [
+            "AI4SE",
+            "机器学习系统"
+          ],
+          "ai_generated": true
         },
         {
           "title": {
@@ -4508,7 +5337,15 @@
           "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "summary": {
+            "zh": null,
+            "en": null
+          },
+          "topics": [
+            "AI4SE"
+          ],
+          "ai_generated": true
         }
       ],
       "detail_extracted": true,
