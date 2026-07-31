@@ -99,9 +99,11 @@ either.
    Chinese `summary` and 1–4 `topics`, stored as **committed source** in
    `source/<id>/enrichment.json` and merged by the build via `source/enrichment.py`
    (see `apply_enrichment`). These are **derived, clearly-marked** fields — the
-   build stamps every enriched talk `ai_generated: true` so the UI labels them and
-   can honor an "AI content" toggle. They are **separate from and never replace**
-   the verbatim source; do not touch the extracted `title`/`abstract`.
+   build attaches all of a talk's derived output under a single separate
+   `enrichment` container (`{generated_by: "ai", summary, topics}`), kept apart
+   from the verbatim source fields so AI content and extracted content are never
+   commingled; the UI labels the container and can honor an "AI content" toggle.
+   They **never replace** the source; do not touch the extracted `title`/`abstract`.
    - **Id scheme.** Key each entry `"<forum code>#<0-based index within that
      forum's talks[]>"` — the same id the app uses (`web/src/lib/follow-store.ts`
      `talkId()`; `ForumDetail.tsx` `#talk-N`). E.g. `"CF37#0"` is CF37's first talk.

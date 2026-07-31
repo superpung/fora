@@ -55,13 +55,17 @@ export interface Talk {
   abstract_status?: Status;
   type?: "keynote" | "invited" | "talk" | "opening" | "other";
   flags?: string[];
-  /** AI-generated, derived one-line summary (not source-verbatim). `zh` is
-      authored; `en` is kept null. Marked by `ai_generated`. */
-  summary?: { zh?: string | null; en?: string | null };
-  /** AI-assigned topic tags from the controlled vocabulary (source/topics.json). */
-  topics?: string[];
-  /** True when this talk carries AI-generated derived fields (summary/topics). */
-  ai_generated?: boolean;
+  /** AI-generated derived content, kept in its own container so it is never
+      commingled with the verbatim source fields (title/abstract). Absent when the
+      talk has no enrichment. `generated_by` marks the whole container as AI output
+      so the UI can label it and honor an "AI content" toggle. */
+  enrichment?: {
+    generated_by: "ai";
+    /** One-line summary distilled from title/abstract. `zh` authored; `en` null. */
+    summary?: { zh?: string | null; en?: string | null };
+    /** Topic tags from the controlled vocabulary (source/topics.json). */
+    topics?: string[];
+  };
 }
 
 export interface ForumEntry {

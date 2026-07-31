@@ -13,10 +13,12 @@ a map from a STABLE talk id to ``{summary: {zh}, topics: [...]}``. The talk id i
 which is exactly the id the web app already uses for a talk
 (see web/src/lib/follow-store.ts `talkId()` and ForumDetail.tsx `#talk-N`).
 
-The build reads this file (if present) and merges, onto each matching talk:
-  - ``summary``      -> {"zh": <authored>, "en": <null unless provided>}
-  - ``topics``       -> list of controlled-vocabulary keys (see source/topics.json)
-  - ``ai_generated`` -> True (provenance marker so the UI can label + toggle it)
+The build reads this file (if present) and attaches ALL derived output onto a
+single ``enrichment`` container on each matching talk, kept strictly separate
+from the verbatim source fields (title/abstract are never touched):
+  - ``enrichment.generated_by`` -> "ai" (provenance for the whole container)
+  - ``enrichment.summary``      -> {"zh": <authored>, "en": <null unless provided>}
+  - ``enrichment.topics``       -> list of controlled-vocabulary keys (source/topics.json)
 
 Topics are validated against the controlled vocabulary so a typo fails the build
 rather than silently minting an off-list tag. Both adapters call apply_enrichment.
@@ -44,7 +46,7 @@ def load_enrichment(path):
 
 
 def apply_enrichment(forums, path):
-    """Merge derived summary/topics/ai_generated onto forum talks, in place.
+    """Attach a derived ``enrichment`` container onto forum talks, in place.
 
     Keyed by "<forum code>#<0-based talk index>". Source fields are untouched.
     Returns (applied, summaries) counts. Raises on an unknown topic or an
@@ -73,9 +75,11 @@ def apply_enrichment(forums, path):
                     f"{path}: talk {key} has off-vocabulary topics {bad}; "
                     f"add them to source/topics.json or fix the tag"
                 )
-            t["summary"] = {"zh": zh, "en": summary.get("en")}
-            t["topics"] = list(entry.get("topics", []))
-            t["ai_generated"] = True
+            t["enrichment"] = {
+                "generated_by": "ai",
+                "summary": {"zh": zh, "en": summary.get("en")},
+                "topics": list(entry.get("topics", [])),
+            }
             applied += 1
             if zh:
                 summaries += 1
