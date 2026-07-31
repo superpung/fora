@@ -116,6 +116,14 @@ const zh: Dict = {
   "reminders.dayStartTitle": "{conf} 今日日程即将开始",
   "reminders.dayStartBody": "你收藏的第一场报告即将开始。",
 
+  "ai.section": "AI 内容",
+  "ai.badge": "AI",
+  "ai.show": "显示 AI 生成内容",
+  "ai.on": "已开启",
+  "ai.off": "已关闭",
+  "ai.disclaimer": "由 AI 生成，可能存在错误，请以原文为准",
+  "ai.hint": "一句话摘要、语义搜索、日程规划、主题地图与相似报告等由 AI 生成或推导的内容。关闭后只显示会议官方原文。",
+
   "timeline.aria": "按时间排列的论坛并行日程",
   "timeline.tbd": "题目待定",
   "timeline.moreUntimed": "另有 {n} 场未标注时间",
@@ -347,6 +355,14 @@ const en: Dict = {
   "reminders.notifBody": "Starts in {min} min · {session}",
   "reminders.dayStartTitle": "{conf} starts soon today",
   "reminders.dayStartBody": "Your first starred talk is about to begin.",
+
+  "ai.section": "AI content",
+  "ai.badge": "AI",
+  "ai.show": "Show AI-generated content",
+  "ai.on": "On",
+  "ai.off": "Off",
+  "ai.disclaimer": "AI-generated — may contain errors; refer to the original",
+  "ai.hint": "One-line summaries, semantic search, agenda planning, the topic map and similar-talk suggestions are AI-generated or AI-derived. Turn this off to see only the conference's own text.",
 
   "timeline.aria": "Parallel forum schedule by time",
   "timeline.tbd": "TBD",

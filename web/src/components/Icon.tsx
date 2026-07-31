@@ -44,6 +44,7 @@ export type IconName =
   | "trash"
   | "bug"
   | "bell"
+  | "sparkle"
   | "dot";
 
 // Each entry is the inner markup of a 0 0 24 24 viewBox, stroked with currentColor.
@@ -259,6 +260,13 @@ const PATHS: Record<IconName, ReactElement> = {
       <path d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6zM12 20v-9" />
       <path d="M6.53 9C4.6 8.8 3 7.1 3 5M6 13H2M3 21c0-2.1 1.7-3.9 3.8-4" />
       <path d="M20.97 5c0 2.1-1.6 3.8-3.5 4M22 13h-4M17.2 17c2.1.1 3.8 1.9 3.8 4" />
+    </>
+  ),
+  // Four-point star + a small companion: the conventional "AI-generated" mark.
+  sparkle: (
+    <>
+      <path d="M10 3l1.6 4.4L16 9l-4.4 1.6L10 15l-1.6-4.4L4 9l4.4-1.6z" />
+      <path d="M17.5 14l.75 2.05L20.3 16.8l-2.05.75L17.5 19.6l-.75-2.05L14.7 16.8l2.05-.75z" />
     </>
   ),
   dot: <circle cx="12" cy="12" r="2.5" />,
