@@ -46,11 +46,17 @@ export default function SearchPalette() {
   const [selected, setSelected] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // The index is pure and only depends on the dataset + language; rebuild it
-  // when the conference or UI language changes, not on every keystroke.
-  // `t` is memoised per language (useCallback in the i18n provider), so this
-  // only rebuilds when the dataset or language actually changes.
-  const index = useMemo(() => buildSearchIndex(views, views.id, lang, t), [views, lang, t]);
+  // The index is pure and only depends on the dataset, the language, and
+  // whether AI-derived text may be indexed; rebuild it when one of those
+  // changes, not on every keystroke. `t` is memoised per language (useCallback
+  // in the i18n provider), so this only rebuilds when something actually moves.
+  // Ranking itself (BM25 + keyword signals) is plain arithmetic over the
+  // conference's text, so results are never AI content — the toggle only
+  // decides whether each talk's `enrichment` counts as searchable text.
+  const index = useMemo(
+    () => buildSearchIndex(views, views.id, lang, t, aiEnabled),
+    [views, lang, t, aiEnabled],
+  );
 
   const groups = useMemo(() => searchIndex(index, query), [index, query]);
 
