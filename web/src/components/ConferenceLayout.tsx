@@ -1,11 +1,13 @@
-import { Suspense } from "react";
+import { Suspense, useMemo, useState } from "react";
 import { Outlet, Navigate, useParams, useLocation } from "react-router-dom";
 import Nav from "./Nav";
 import PageLoader from "./PageLoader";
 import DocumentTitle from "./DocumentTitle";
+import SearchPalette from "./SearchPalette";
 import { ConferenceProvider } from "../lib/conference";
 import { FollowProvider } from "../lib/follow";
 import { FollowActionsBridge } from "../lib/follow-actions";
+import { SearchCtx } from "../lib/search-store";
 import { hasConference } from "../lib/conferences";
 
 // Layout for a single conference (`/:conf/...`). It validates the id from the
@@ -15,9 +17,14 @@ import { hasConference } from "../lib/conferences";
 export default function ConferenceLayout() {
   const { conf } = useParams();
   const location = useLocation();
+  // Search-palette open state lives here so the nav's search button (outside the
+  // conference providers) and the palette (inside them, where the dataset is
+  // available) share it.
+  const [searchOpen, setSearchOpen] = useState(false);
+  const searchUI = useMemo(() => ({ open: searchOpen, setOpen: setSearchOpen }), [searchOpen]);
   if (!hasConference(conf)) return <Navigate to="/" replace />;
   return (
-    <>
+    <SearchCtx.Provider value={searchUI}>
       <Nav confId={conf} />
       <Suspense fallback={<PageLoader />}>
         <ConferenceProvider id={conf}>
@@ -28,6 +35,9 @@ export default function ConferenceLayout() {
             {/* Publishes this conference's import/export/clear actions up to the
                 nav account menu (the nav renders outside these providers). */}
             <FollowActionsBridge />
+            {/* Global search over the loaded conference; mounted here so it can
+                read the dataset via useConference. */}
+            <SearchPalette />
             {/* Keyed by pathname so each page remounts and replays its enter
                 animation, while the nav / provider persist across navigation. */}
             <main key={location.pathname}>
@@ -36,6 +46,6 @@ export default function ConferenceLayout() {
           </FollowProvider>
         </ConferenceProvider>
       </Suspense>
-    </>
+    </SearchCtx.Provider>
   );
 }

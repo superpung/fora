@@ -1,6 +1,6 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import {
   formatDate,
   type SpeakerAgg,
@@ -191,6 +191,15 @@ export default function Speakers() {
   const [onlyFollowed, setOnlyFollowed] = useStickyState(`${confId}:sp.followed`, false);
   const [cat, setCat] = useStickyState<SpeakerCategory | "all">(`${confId}:sp.cat`, "all");
   const q = query.trim().toLowerCase();
+
+  // Deep-link support: arriving with `?q=<name>` (e.g. from a global-search
+  // "Speakers" hit) seeds the filter to that speaker. Runs whenever the param
+  // changes, since the route stays on this page across repeat navigations.
+  const [params] = useSearchParams();
+  const urlQ = params.get("q");
+  useEffect(() => {
+    if (urlQ != null) setQuery(urlQ);
+  }, [urlQ, setQuery]);
 
   // Only offer categories that actually have members (skip empty buckets, e.g. 其他).
   const CATS: (SpeakerCategory | "all")[] = [
