@@ -1,4 +1,5 @@
 import { createContext, useContext } from "react";
+import type { Talk } from "../types";
 
 // Site-wide governance switch for AI-GENERATED content.
 //
@@ -47,6 +48,18 @@ export function saveAiEnabled(v: boolean): void {
   } catch {
     /* quota / privacy mode — ignore */
   }
+}
+
+/** A talk's AI-generated one-line summary, or null when the dataset has none
+    (coverage is partial by design — a talk without one simply shows nothing).
+    Only `summary.zh` is authored — `en` is null by design — so both UI languages
+    show the same Chinese line, like every other dataset string.
+
+    Pure accessor, so non-React code (the search index) reads the field the same
+    way the UI does; rendering it is TalkSummary.tsx's job. */
+export function talkSummaryText(talk: Talk): string | null {
+  const s = talk.enrichment?.summary?.zh;
+  return s && s.trim() ? s.trim() : null;
 }
 
 export interface AiCtxValue {
