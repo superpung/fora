@@ -10,6 +10,7 @@ import { FollowActionsProvider } from "./lib/follow-actions";
 // download is just the shell (nav/footer/router), not every page at once.
 const Hub = lazy(() => import("./pages/Hub"));
 const Home = lazy(() => import("./pages/Home"));
+const Now = lazy(() => import("./pages/Now"));
 const Schedule = lazy(() => import("./pages/Schedule"));
 const Speakers = lazy(() => import("./pages/Speakers"));
 const ForumDetail = lazy(() => import("./pages/ForumDetail"));
@@ -38,6 +39,7 @@ export default function App() {
             />
             <Route path="/:conf" element={<ConferenceLayout />}>
               <Route index element={<Home />} />
+              <Route path="now" element={<Now />} />
               <Route path="schedule" element={<Schedule />} />
               <Route path="speakers" element={<Speakers />} />
               <Route path="committee" element={<Committee />} />
