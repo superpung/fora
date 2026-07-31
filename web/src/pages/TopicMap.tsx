@@ -88,7 +88,10 @@ function TopicBubble({
       role="button"
       tabIndex={0}
       aria-pressed={state === "selected"}
-      aria-label={t("topics.bubbleAria", { topic: node.key, n: node.count })}
+      aria-label={t(node.count === 1 ? "topics.bubbleAriaOne" : "topics.bubbleAria", {
+        topic: node.key,
+        n: node.count,
+      })}
       onClick={() => onSelect(node.key)}
       onKeyDown={onKeyDown}
     >
@@ -167,7 +170,10 @@ export default function TopicMap() {
           topics: map.nodes.length,
         })}
         {map.coverage.pendingForums > 0 &&
-          ` · ${t("topics.pendingForums", { n: map.coverage.pendingForums })}`}
+          ` · ${t(
+            map.coverage.pendingForums === 1 ? "topics.pendingForum" : "topics.pendingForums",
+            { n: map.coverage.pendingForums },
+          )}`}
       </p>
       <AiNote className="tmap__note" />
 
