@@ -10,12 +10,17 @@ Faithful extraction: anomalies (unparseable tables, missing schedules, unknown
 speaker cells) are recorded as `flags`, never guessed or dropped. Run fetch.py
 first; this step is deterministic and offline.
 """
-import json, re, pathlib, datetime
+import json, re, sys, pathlib, datetime
 from bs4 import BeautifulSoup
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
 RAW = pathlib.Path(__file__).resolve().parent / "raw"
 YEAR = 2025
+
+# The shared enrichment merger lives in source/; make it importable when this
+# adapter is run directly (python source/chinasoft2025/build.py).
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
+from enrichment import apply_enrichment  # noqa: E402
 
 # category slug -> (zh display name, en display name). keynote-speech is handled
 # separately (it feeds the keynotes block, not the forum list).
@@ -638,6 +643,12 @@ def build():
             n += 1
         diag[cat] = n
 
+    # Merge AI-generated derived enrichment (summary/topics) onto forum talks, if
+    # authored. Committed source, kept separate from the verbatim extraction; the
+    # source abstracts are untouched. Keyed by "<forum code>#<0-based talk index>".
+    enrich_path = pathlib.Path(__file__).resolve().parent / "enrichment.json"
+    n_enriched, n_summaries = apply_enrichment(forums, enrich_path)
+
     keynote_days = parse_keynotes()
     overview_days = parse_overview()
 
@@ -719,6 +730,7 @@ def build():
     print(f"\nforums: {len(forums)}  |  per category: {diag}")
     print(f"keynote talks: {n_keynotes}  |  dates: {dates}")
     print(f"talks total: {sum(len(f['talks']) for f in forums)}")
+    print(f"enriched talks: {n_enriched}  |  with zh summary: {n_summaries}")
     print(f"flagged forums: {len(flagged)}")
     for f in flagged:
         print(f"  ! {f['code']} ({f['title']['zh']}): {f['flags']}")

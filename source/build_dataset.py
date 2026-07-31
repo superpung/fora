@@ -15,6 +15,7 @@ Data sources:
   - Forum details: data/forums_detail/CF*.json (visually parsed forums)
 """
 import json, pathlib, datetime, glob, os, hashlib
+from enrichment import apply_enrichment
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SRC = ROOT / "source"
@@ -236,6 +237,11 @@ for code, title, room, day, period, sponsor, series in FORUM_META:
     })
 conf["forums"] = forums
 
+# Merge AI-generated derived enrichment (summary/topics), if authored. Committed
+# source, kept separate from the verbatim extraction; applied before the content
+# fingerprint so a rerun stays byte-identical. Source abstracts are untouched.
+_enriched, _summaries = apply_enrichment(forums, SRC / "ccfchip2026" / "enrichment.json")
+
 # ---------------- schedule (day -> block) ----------------
 def forum_entries(day, period):
     return [{"forum_code": c, "room": r}
@@ -340,3 +346,4 @@ print("organizations:", len(conf["organizations"]))
 print("forums:", len(conf["forums"]),
       "| detail_extracted:", conf["extraction"]["forums_detail_extracted"])
 print("days:", len(conf["days"]))
+print("enriched talks:", _enriched, "| with zh summary:", _summaries)
