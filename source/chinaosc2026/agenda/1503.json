@@ -1,0 +1,13 @@
+{
+  "_about": "Programme parsed from the forum's published timetable image. Verbatim transcription of the image — no inference.",
+  "doc": "1503",
+  "images": [],
+  "rows": [],
+  "room": null,
+  "notes": [
+    "This document is NOT a forum. It is the registration how-to (团体报名/团报 guide) for the CCF conference system — all seven images are annotated screenshots of the registration UI, not a timetable. Confirmed and skipped: no forum programme content.",
+    "Image inventory: b7e4ec219502957c4a4494a8b950215c_20260726120847A556.png — browser screenshot of ccf.org.cn/2026COSC, 团体报名 section, with a scrolled-past fragment of the 简易日程 table visible at the top; 092558080102d90969cf8b190120aa70_20260726120919A557.png — Consys 团体报名 form; image_20260726121151A558.png — 团体导入 dialog (下载模板); 5d48300059eee3236ed3b1e45a1d0553_20260726121221A559.png — same dialog with 浏览/导入参会人信息 steps; 73a404099c283cc775ef59889f5c5ed5_20260726121252A560.png — 团报 form with 添加参会者 highlighted; 914e9c464dc3f2194adf1d719d886a42_20260726121330A561.png — 选择团报负责人 member-search dialog (personal data redacted in the screenshot); 1b4b4a57eb8d56af8f2b76ef43f72777_20260731142921A658.png — the fee/checkout table (会议注册费（含晚餐）: CCF专业会员 2000元, 非会员学生 1800元, 非会员专业人员 2500元, price window 6.23~7.31).",
+    "Incidental programme fragment in image A556 — a partially scrolled 简易日程 table, only the tail of 8月16日（周日） is legible: '中午 / 午餐 / 12:00-13:30', '下午 / 领域分论坛（多场同步进行） / 13:30-17:00', '（下午） / 大会闭幕式 / 17:00-18:00'. The rest of the table is cut off above the viewport, so no full day programme can be read here. Recorded as a note, not as rows, because it is a truncated view of the day-level schedule already published in the 议程详情 documents.",
+    "Venue stated in images A557 and A560: 会议地点：重庆市 沙坪坝区 山城国际会议中心. That is the conference venue, not a per-forum room. No room / hall assignment appears anywhere in this document."
+  ]
+}
