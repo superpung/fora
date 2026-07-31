@@ -5,8 +5,10 @@ import ThemeToggle from "./ThemeToggle";
 import LangToggle from "./LangToggle";
 import AccountMenu from "./AccountMenu";
 import ForaMark from "./ForaMark";
+import Icon from "./Icon";
 import ConferenceSwitcher from "./ConferenceSwitcher";
 import { useI18n } from "../lib/i18n-store";
+import { useSearchUI } from "../lib/search-store";
 import { conferenceMeta } from "../lib/conferences";
 import { todayISO } from "../lib/data";
 
@@ -27,6 +29,7 @@ const LINKS: NavLinkDef[] = [
 
 export default function Nav({ confId }: { confId: string }) {
   const { t } = useI18n();
+  const { setOpen: setSearchOpen } = useSearchUI();
   // The live "Now" view is only meaningful while the conference is running, so
   // its nav entry appears solely between the conference's start and end dates
   // (read from the lightweight manifest — no dataset load needed).
@@ -68,6 +71,15 @@ export default function Nav({ confId }: { confId: string }) {
           ))}
         </nav>
         <div className="nav__tools">
+          <button
+            className="nav__search"
+            onClick={() => setSearchOpen(true)}
+            aria-label={t("search.open")}
+            title={t("search.open")}
+          >
+            <Icon name="search" size={15} />
+            <span className="nav__searchhint mono" aria-hidden>⌘K</span>
+          </button>
           <AccountMenu />
           <LangToggle />
           <ThemeToggle />
