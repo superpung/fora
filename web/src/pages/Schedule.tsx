@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import { formatDate, todayISO } from "../lib/data";
@@ -8,9 +8,11 @@ import { useI18n } from "../lib/i18n-store";
 import { useStickyState } from "../lib/sticky-state";
 import { useNow, isNowWithin } from "../lib/use-now";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
+import { collectFollowedItems } from "../lib/export";
 import Icon, { type IconName } from "../components/Icon";
 import TimeGrid from "../components/TimeGrid";
 import UntimedForumGrid from "../components/UntimedForumGrid";
+import MyDay from "../components/MyDay";
 import type { Block, Forum, Talk, Break } from "../types";
 
 /** True when at least one talk in the day's forum block carries a start time —
@@ -139,13 +141,30 @@ const KIND_ICON: Record<string, IconName> = {
 };
 
 export default function Schedule() {
-  const { id: confId, days, venueName } = useConference();
+  const views = useConference();
+  const { id: confId, days, venueName } = views;
   const { t, lang } = useI18n();
   const { forums, speakers, talks } = useFollow();
   const followCount = forums.size + speakers.size + talks.size;
   // Sticky so returning from a forum page restores the day tab and follow filter
   // (paired with scroll restoration), keyed by conference so a switch is fresh.
   const [onlyFollowed, setOnlyFollowed] = useStickyState(`${confId}:sched.followed`, false);
+  // Two ways to read the schedule: the full "list" board, or "My Day" — the
+  // user's starred items for the active day as an ordered vertical timeline.
+  const [view, setView] = useStickyState<"list" | "myday">(`${confId}:sched.view`, "list");
+
+  // Every starred item, resolved to a talk with time/room, grouped by day. Reused
+  // by My Day (the day tabs pick which day). Recomputed only when follows change.
+  const myDayByDate = useMemo(() => {
+    const items = collectFollowedItems({ forums, speakers, talks }, views);
+    const map = new Map<string, typeof items>();
+    for (const it of items) {
+      const arr = map.get(it.date);
+      if (arr) arr.push(it);
+      else map.set(it.date, [it]);
+    }
+    return map;
+  }, [forums, speakers, talks, views]);
   // Local calendar date (YYYY-MM-DD) for highlighting today's tab and, when the
   // conference is running today, opening on it by default.
   const todayStr = todayISO();
@@ -185,16 +204,43 @@ export default function Schedule() {
           </span>
           <h2 className="section__title">{t("schedule.title")}</h2>
         </div>
-        <button
-          className={`filterchip ${onlyFollowed ? "is-on" : ""}`}
-          onClick={() => setOnlyFollowed((v) => !v)}
-          title={t("timeline.onlyFollowsTip")}
-          aria-pressed={onlyFollowed}
-        >
-          <Icon name="star" filled={onlyFollowed} size={14} />
-          <span className="filterchip__label">{t("timeline.onlyFollows")}</span>
-          {followCount ? <span className="filterchip__n">{followCount}</span> : null}
-        </button>
+        <div className="section__controls">
+          {/* List ↔ My Day: My Day reshapes the same starred set into a per-day
+              timeline, so the follow filter is redundant there and is hidden. */}
+          {view === "list" && (
+            <button
+              className={`filterchip ${onlyFollowed ? "is-on" : ""}`}
+              onClick={() => setOnlyFollowed((v) => !v)}
+              title={t("timeline.onlyFollowsTip")}
+              aria-pressed={onlyFollowed}
+            >
+              <Icon name="star" filled={onlyFollowed} size={14} />
+              <span className="filterchip__label">{t("timeline.onlyFollows")}</span>
+              {followCount ? <span className="filterchip__n">{followCount}</span> : null}
+            </button>
+          )}
+          <div className="segtoggle" role="tablist" aria-label={t("schedule.viewLabel")}>
+            <button
+              role="tab"
+              aria-selected={view === "list"}
+              className={`segtoggle__opt ${view === "list" ? "is-on" : ""}`}
+              onClick={() => setView("list")}
+            >
+              <Icon name="calendar" size={13} />
+              <span className="segtoggle__label">{t("schedule.viewList")}</span>
+            </button>
+            <button
+              role="tab"
+              aria-selected={view === "myday"}
+              className={`segtoggle__opt ${view === "myday" ? "is-on" : ""}`}
+              onClick={() => setView("myday")}
+            >
+              <Icon name="star" filled={view === "myday"} size={13} />
+              <span className="segtoggle__label">{t("schedule.viewMyDay")}</span>
+              {followCount ? <span className="filterchip__n">{followCount}</span> : null}
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* day tabs */}
@@ -236,6 +282,9 @@ export default function Schedule() {
             </span>
           </div>
 
+          {view === "myday" ? (
+            <MyDay date={day.date} items={myDayByDate.get(day.date) ?? []} />
+          ) : (
           <div className="blocks">
             {onlyFollowed && blocks.length === 0 && (
               <div className="tgrid__empty">{t("timeline.noFollows")}</div>
@@ -275,6 +324,7 @@ export default function Schedule() {
               </motion.section>
             ))}
           </div>
+          )}
         </motion.div>
       </AnimatePresence>
     </motion.div>
