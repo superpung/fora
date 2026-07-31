@@ -5,6 +5,7 @@ import { useGistSync } from "@repus/gist-sync/react";
 import { useI18n } from "../lib/i18n-store";
 import { syncConfig } from "../lib/sync";
 import { useReminders, LEAD_CHOICES } from "../lib/reminder-store";
+import { useAi } from "../lib/ai-store";
 import { useFollowActions } from "../lib/follow-actions-store";
 import { bugReportUrl } from "../lib/repo";
 import { easeOut } from "../lib/motion";
@@ -44,6 +45,7 @@ export default function AccountMenu() {
   const gs = useGistSync();
   const actions = useFollowActions();
   const rem = useReminders();
+  const ai = useAi();
   const { t, lang } = useI18n();
   const zh = lang !== "en";
   const loc = useLocation();
@@ -324,6 +326,23 @@ export default function AccountMenu() {
                 )}
               </>
             )}
+
+            {/* AI-content governance: one site-wide switch for every AI-generated
+                or AI-derived surface (summaries, semantic search, planner, topic
+                map, similar talks). Off => source text only. */}
+            <div className="acct-divider" />
+            <div className="acct-sectitle">{t("ai.section")}</div>
+            <button
+              className="acct-row"
+              onClick={ai.toggle}
+              aria-pressed={ai.enabled}
+              aria-label={t("ai.show")}
+            >
+              <Icon name="sparkle" size={15} />
+              <span className="acct-row__label">{t("ai.show")}</span>
+              <span className={`acct-switch ${ai.enabled ? "is-on" : ""}`} aria-hidden />
+            </button>
+            <div className="acct-hint">{ai.enabled ? t("ai.disclaimer") : t("ai.hint")}</div>
 
             {/* Bottom utility group: report a bug, then sign out kept LAST. */}
             <div className="acct-divider" />
