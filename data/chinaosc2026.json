@@ -2903,7 +2903,19 @@
             "zh": "智能体时代的代码质量保障与开源挑战",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "探讨智能体时代代码质量保障挑战与大模型多样性同开源生态稳定性的平衡",
+              "en": null
+            },
+            "topics": [
+              "AI4SE",
+              "软件测试",
+              "智能体"
+            ]
+          }
         },
         {
           "order": 2,
@@ -2926,7 +2938,18 @@
             "zh": "人机物融合智能化软件的多维建模与协同机制",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "人机物融合智能化软件的面向决策闭环建模与LEHR-C人机协同规则演化框架",
+              "en": null
+            },
+            "topics": [
+              "软件架构",
+              "物联网"
+            ]
+          }
         },
         {
           "order": 3,
@@ -2949,7 +2972,19 @@
             "zh": "基于大模型的缺陷检测与修复",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "以多视角语义建模与神经符号融合提升软件缺陷的定位与自动修复",
+              "en": null
+            },
+            "topics": [
+              "缺陷检测",
+              "程序分析",
+              "大模型"
+            ]
+          }
         },
         {
           "order": 4,
@@ -2972,7 +3007,19 @@
             "zh": "浅谈LLM Agent从代码生成、仓库定位到设计技术债治理的能力与边界",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "从代码生成、仓库定位到设计技术债治理剖析LLM智能体的能力与边界",
+              "en": null
+            },
+            "topics": [
+              "代码生成",
+              "智能体",
+              "软件维护"
+            ]
+          }
         },
         {
           "order": 5,
@@ -2995,7 +3042,17 @@
             "zh": "智能化测试生成",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "利用测试反馈引导测试输入生成并学习筛选用例提升测试套件质量",
+              "en": null
+            },
+            "topics": [
+              "软件测试"
+            ]
+          }
         }
       ],
       "poster": {
@@ -3072,7 +3129,19 @@
             "zh": "开源供应链合规性管理：从开源软件到开放模型",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "从开源软件到开放模型供应链探讨许可兼容等合规性挑战与应对方法",
+              "en": null
+            },
+            "topics": [
+              "软件供应链",
+              "开源治理",
+              "大模型"
+            ]
+          }
         },
         {
           "order": 2,
@@ -3095,7 +3164,19 @@
             "zh": "大模型软件供应链安全：现状、机遇与挑战",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "分析大模型软件供应链从基础设施到上层应用全链条的安全现状与挑战",
+              "en": null
+            },
+            "topics": [
+              "软件供应链",
+              "软件安全",
+              "大模型"
+            ]
+          }
         },
         {
           "order": 3,
@@ -3118,7 +3199,19 @@
             "zh": "软件与大模型供应链安全治理",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "大模型赋能软件供应链安全治理并探索模型溯源与MCP生态投毒检测",
+              "en": null
+            },
+            "topics": [
+              "软件供应链",
+              "软件安全",
+              "大模型"
+            ]
+          }
         },
         {
           "order": 4,
@@ -3141,7 +3234,19 @@
             "zh": "智能体安全攻防：挑战与实践",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "开源智能体框架与应用的漏洞挖掘及面向智能体应用的零信任防护",
+              "en": null
+            },
+            "topics": [
+              "智能体",
+              "软件安全",
+              "缺陷检测"
+            ]
+          }
         },
         {
           "order": 5,
@@ -3164,7 +3269,18 @@
             "zh": "大模型供应链可追溯性研究：从模型依赖恢复到训练代码溯源",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "以模型依赖恢复与训练代码溯源提升大模型供应链的可分析与可追溯性",
+              "en": null
+            },
+            "topics": [
+              "软件供应链",
+              "大模型"
+            ]
+          }
         },
         {
           "order": 6,
@@ -3187,7 +3303,19 @@
             "zh": "智能体狂飙时代：Agentic AI 供应链安全的变局与防御重构",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "面向由三方Skill与Tool构成的动态智能体供应链重构主动防御体系",
+              "en": null
+            },
+            "topics": [
+              "软件供应链",
+              "智能体",
+              "软件安全"
+            ]
+          }
         }
       ],
       "poster": {
@@ -3255,7 +3383,18 @@
             "zh": "开源人才教育与地方开源体系建设",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "解读开源人才构成与各地生态建设路径并为地方开源人才教育体系建言",
+              "en": null
+            },
+            "topics": [
+              "软件教育",
+              "产业生态"
+            ]
+          }
         },
         {
           "order": 2,
@@ -3278,7 +3417,17 @@
             "zh": "基于AI+开源混态教育的复合型创新性人才培养模式研究与实践",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "依托开源专区与社区平台构建AI+开源混态教育的复合型人才培养模式",
+              "en": null
+            },
+            "topics": [
+              "软件教育"
+            ]
+          }
         },
         {
           "order": 3,
@@ -3301,7 +3450,18 @@
             "zh": "探索以实践为核心的阶梯式开源人才培养方法",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "以项目制课程为载体、从本科低年级起步的阶梯式开源人才培养方法",
+              "en": null
+            },
+            "topics": [
+              "软件教育",
+              "开源软件"
+            ]
+          }
         },
         {
           "order": 4,
@@ -3324,7 +3484,19 @@
             "zh": "判断力，开源人才的新稀缺——Agent 接管编码之后，如何评估它仍是开放命题",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "Agent承担大量代码贡献后开源人才评价从产出转向难以度量的判断力",
+              "en": null
+            },
+            "topics": [
+              "软件教育",
+              "开源治理",
+              "智能体"
+            ]
+          }
         },
         {
           "order": 5,
@@ -3347,7 +3519,18 @@
             "zh": "真实问题驱动的人才培养：从开源悬榜到AI时代的创造力成长",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "太乙平台以“悬榜”机制连接企业需求与社区Issue驱动真实问题育人",
+              "en": null
+            },
+            "topics": [
+              "软件教育",
+              "产业生态"
+            ]
+          }
         }
       ],
       "poster": {
@@ -3415,7 +3598,19 @@
             "zh": "面向协同驾驶的智能车辆运动行为建模与仿真测试关键技术",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "面向协同驾驶的智能车辆行为建模、仿真可信度与规模化智能测试技术",
+              "en": null
+            },
+            "topics": [
+              "数字孪生",
+              "软件测试",
+              "物联网"
+            ]
+          }
         },
         {
           "order": 2,
@@ -3438,7 +3633,17 @@
             "zh": "移动具身智能",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "OVA-Fields、MoMa-Pos与BestMan推进移动抓取机器人的感知与站位优化",
+              "en": null
+            },
+            "topics": [
+              "具身智能"
+            ]
+          }
         },
         {
           "order": 3,
@@ -3461,7 +3666,19 @@
             "zh": "智能体驱动的车联网安全攻防与数据集构建",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "从攻防双向视角介绍智能体驱动的车联网安全实践与数据集构建",
+              "en": null
+            },
+            "topics": [
+              "软件安全",
+              "智能体",
+              "物联网"
+            ]
+          }
         },
         {
           "order": 4,
@@ -3484,7 +3701,18 @@
             "zh": "面向自动驾驶开放数据集的后量子安全体系构建",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "构建覆盖自动驾驶开放数据集全生命周期的后量子安全体系与部署路线",
+              "en": null
+            },
+            "topics": [
+              "后量子密码",
+              "开放数据"
+            ]
+          }
         }
       ],
       "poster": {
@@ -3552,7 +3780,19 @@
             "zh": "面向可信AI供应链的开源神经网络演化与复用安全分析",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "以NNBOM与NNReuse刻画开源神经网络的依赖演化与结构复用合规风险",
+              "en": null
+            },
+            "topics": [
+              "软件供应链",
+              "开源治理",
+              "机器学习系统"
+            ]
+          }
         },
         {
           "order": 2,
@@ -3575,7 +3815,19 @@
             "zh": "算力网开源开放试验场",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "结合中国算力网实践介绍云际计算软件栈思想与开源开放发展路线",
+              "en": null
+            },
+            "topics": [
+              "云计算",
+              "分布式系统",
+              "产业生态"
+            ]
+          }
         },
         {
           "order": 3,
@@ -3598,7 +3850,19 @@
             "zh": "开源供应链风险数据基座的脆弱性剖析与可信重构",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "剖析漏洞补丁等开源供应链风险数据的质量脆弱性并探索可信重构",
+              "en": null
+            },
+            "topics": [
+              "软件供应链",
+              "开放数据",
+              "软件安全"
+            ]
+          }
         },
         {
           "order": 4,
@@ -3621,7 +3885,19 @@
             "zh": "面向依赖版本更新任务的大规模数据集挖掘",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "从大规模仓库自动挖掘API映射与更新实例支撑依赖版本更新与评测",
+              "en": null
+            },
+            "topics": [
+              "软件维护",
+              "软件供应链",
+              "开放数据"
+            ]
+          }
         },
         {
           "order": 5,
@@ -3644,7 +3920,19 @@
             "zh": "从开源代码到开放权重：AI模型协作开发的新演进与挑战",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "基于超280万仓库分析开源软件与开放权重模型在协作开发范式上的分歧",
+              "en": null
+            },
+            "topics": [
+              "开源软件",
+              "开源治理",
+              "大模型"
+            ]
+          }
         },
         {
           "order": 6,
@@ -3658,7 +3946,19 @@
           "speakers": [],
           "abstract": "议题1：AI Coding Agent时代，开源平台将如何演进？\n\n随着AI Coding Agent逐渐成为软件开发的重要参与者，GitHub、Gitee等开源平台是否需要向支持人机协同和Agent协作的新形态演进？未来开源平台应具备哪些新的能力，以支撑代码、数据、模型的协同开放？\n\n议题2：AI将如何重塑开源社区的协作模式、贡献机制与激励体系？\n\nAI正在降低软件开发门槛，也正在改变开发者参与开源的方式。未来开源社区中，人类开发者、AI Agent和自动化工具将如何协同？社区应如何重新定义贡献价值、激励机制以及Maintainer的角色，以促进开源生态的持续繁荣？\n\n议题3：面向大模型时代，开源生态应如何支持模型、数据与代码的协同开放？\n\n开源正从代码共享迈向代码、数据与模型协同开放。如何构建适应大模型时代的新型开源生态，促进多要素开放协作与持续创新？",
           "abstract_status": "confirmed",
-          "type": "other"
+          "type": "other",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "圆桌探讨AI Agent时代开源平台演进、贡献机制与代码数据模型协同开放",
+              "en": null
+            },
+            "topics": [
+              "开源治理",
+              "智能体",
+              "产业生态"
+            ]
+          }
         }
       ],
       "poster": {
@@ -3726,7 +4026,18 @@
             "zh": "大模型智能体轨迹分析：从失效定位到驾驭工程",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "综述大模型智能体轨迹分析的失效定位与驾驭工程并介绍相关基准方法",
+              "en": null
+            },
+            "topics": [
+              "智能体",
+              "AI4SE"
+            ]
+          }
         },
         {
           "order": 2,
@@ -3749,7 +4060,18 @@
             "zh": "大模型驱动的智能软件测试技术",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "大模型驱动的测试代码生成、用例优先级排序与测试预言生成验证技术",
+              "en": null
+            },
+            "topics": [
+              "软件测试",
+              "大模型"
+            ]
+          }
         },
         {
           "order": 3,
@@ -3772,7 +4094,19 @@
             "zh": "开源软件供应链安全风险治理的创新与实践",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": null,
+              "en": null
+            },
+            "topics": [
+              "软件供应链",
+              "软件安全",
+              "开源治理"
+            ]
+          }
         },
         {
           "order": 4,
@@ -3795,7 +4129,19 @@
             "zh": "AI生态0-Day软件工程演进之路",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "借鉴主流AI社区的0-Day工程闭环建设昇腾NPU上游社区兼容能力",
+              "en": null
+            },
+            "topics": [
+              "智能运维",
+              "机器学习系统",
+              "AI芯片"
+            ]
+          }
         },
         {
           "order": 5,
@@ -3818,7 +4164,19 @@
             "zh": "计算开源社区Agentic Workflow-- \"一切皆代码、一切皆 CLI + AI Agent Loop\"",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "以“一切皆代码、CLI+Agent Loop”构建AI友好的开源社区工程规范",
+              "en": null
+            },
+            "topics": [
+              "智能运维",
+              "智能体",
+              "AI4SE"
+            ]
+          }
         },
         {
           "order": 6,
@@ -3832,7 +4190,19 @@
           "speakers": [],
           "abstract": "本圆桌汇聚高校科研学者、开源社区维护者、产业 DevOps 技术专家，围绕开源 Agent 生态建设与 0-Day 智能软件工程演进展开深度对话。包括以下议题：\n\nAI 生成代码缺乏可信保障、频繁架构腐化、重构成本居高不下，依托 CI/CD 与 AI 质量预审的长效治理机制该如何搭建？\n\nAI Agent 适合承接开源社区哪些重复性工作（Issue 评审、PR 提交、测试定位、编译优化），人与 AI 在开发流程中如何合理分工？\n\n0-Day 智能软件工程的落地前提是夯实传统软件工程底座，产学研该如何共建统一、可复用的开源 AI 软件工程标准范式？",
           "abstract_status": "confirmed",
-          "type": "other"
+          "type": "other",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "圆桌探讨AI生成代码的质量治理、人机分工与0-Day软件工程范式共建",
+              "en": null
+            },
+            "topics": [
+              "智能运维",
+              "智能体",
+              "AI4SE"
+            ]
+          }
         }
       ],
       "poster": {
@@ -3900,7 +4270,18 @@
             "zh": "从启悟学习社区建设到高校AI自主开源生态发展",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "介绍启悟学习社区以校企协同推动高校AI自主开源生态与人才培养",
+              "en": null
+            },
+            "topics": [
+              "软件教育",
+              "产业生态"
+            ]
+          }
         },
         {
           "order": 2,
@@ -3923,7 +4304,19 @@
             "zh": "HUATUO 华佗：面向 Agent 沙箱的低损耗内核全景观测实践",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "开源项目华佗基于eBPF实现面向Agent沙箱的低损耗内核全景观测",
+              "en": null
+            },
+            "topics": [
+              "智能运维",
+              "操作系统",
+              "智能体"
+            ]
+          }
         },
         {
           "order": 3,
@@ -3946,7 +4339,19 @@
             "zh": "从统一编程到异构推理：国产开源智能计算系统的探索与实践",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "九源统一智能计算系统以九齿编程语言与异构推理实现一套代码全平台运行",
+              "en": null
+            },
+            "topics": [
+              "机器学习系统",
+              "编译器",
+              "AI芯片"
+            ]
+          }
         },
         {
           "order": 4,
@@ -3969,7 +4374,19 @@
             "zh": "GPU为中心的KV Cache存储",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "以GPU为中心的KV缓存存储Tutti削减CPU开销降低首Token时延",
+              "en": null
+            },
+            "topics": [
+              "机器学习系统",
+              "存储",
+              "大模型"
+            ]
+          }
         },
         {
           "order": 5,
@@ -3992,7 +4409,18 @@
             "zh": "大模型时代云原生InfraServices的机会",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "探讨以云原生架构设计大模型时代的数据基础设施与AI服务基础设施",
+              "en": null
+            },
+            "topics": [
+              "云计算",
+              "机器学习系统"
+            ]
+          }
         },
         {
           "order": 6,
@@ -4015,7 +4443,19 @@
             "zh": "智能体原生GPU架构设计与实现",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "面向智能体负载提出SEQ与RAND两种中间KV存储层承载超长上下文",
+              "en": null
+            },
+            "topics": [
+              "体系结构",
+              "存储",
+              "机器学习系统"
+            ]
+          }
         },
         {
           "order": 7,
@@ -4029,7 +4469,19 @@
           "speakers": [],
           "abstract": "章文嵩：CCF会士、常务理事、开源发展技术委员会副主任，开源项目LVS创始人；\n\n章津楠：沐曦股份开源生态总监\\CCF开源发展委员会执委；\n\n李兆石：沐曦AI研究院院长，清华大学博士；\n\n姜开达：上海交通大学信息化推进办公室副主任、网络信息中心副主任；\n\n王豪杰：九源智能计算系统生态联合体副秘书长；\n\n仇实：腾讯高级工程师；\n\n张同浩：滴滴出行系统软件负责人；\n\n葛佳烨：上海人工智能实验室大模型中心产品运营负责人。负责司南OpenCompass 评测体系产品建设和生态影响力建设，负责书生系列大模型（InternVL, InternLM等）及工具链开源生态建设。\n\n主题：每个token背后都是一次开源协作\n\n从Transformer架构的发表，到海量开放数据集的构建，再到无数开发者对训练框架的迭代优化——Token中承载的不仅是语义，更是协作的契约、共享的精神与数字时代的“公地”治理智慧。\n\n圆桌将直面以下三个维度的真实断点：\n\n稳定层 ：当推理集群遭遇突发流量，Linux内核参数调优、Kubernetes弹性调度、GPU虚拟化与存储IO如何联动，将故障恢复时间压缩至秒级？\n\n效率层 ：PyTorch 2.0编译优化、vLLM的PagedAttention、DeepSpeed ZeRO-offload，近一年有哪些开源贡献真正让Token边际成本腰斩？下一个性能拐点又在何处？\n\n治理层 ：从许可证兼容性到模型偏见审计，从CVE漏洞披露到跨境数据合规，开源社区如何建立可落地的协同机制，让合规从“成本项”变为“信任标签”？",
           "abstract_status": "confirmed",
-          "type": "other"
+          "type": "other",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "圆桌从稳定、效率与治理三层探讨支撑Token经济的开源协作断点",
+              "en": null
+            },
+            "topics": [
+              "机器学习系统",
+              "开源治理",
+              "产业生态"
+            ]
+          }
         }
       ],
       "poster": {
@@ -4088,7 +4540,18 @@
             "zh": "科技向善，开源赋能 AI 全栈生态繁荣发展",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "围绕基础软硬件到行业应用探讨以开源推动AI全栈生态协同与安全治理",
+              "en": null
+            },
+            "topics": [
+              "产业生态",
+              "开源治理"
+            ]
+          }
         },
         {
           "order": 2,
@@ -4111,7 +4574,19 @@
             "zh": "ORCA开源物理AI仿真平台：基于合成数据构建具身智能 Sim-to-Real训练闭环",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "开源物理AI平台ORCA Lab以合成数据构建具身智能Sim-to-Real训练闭环",
+              "en": null
+            },
+            "topics": [
+              "具身智能",
+              "数字孪生",
+              "开放数据"
+            ]
+          }
         },
         {
           "order": 3,
@@ -4134,7 +4609,19 @@
             "zh": "国产GPU算力站支撑具身智能实时仿真与大规模世界模型应用",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "国产GPU算力站以异构调度与软硬协同支撑具身智能实时仿真与世界模型",
+              "en": null
+            },
+            "topics": [
+              "具身智能",
+              "数字孪生",
+              "AI芯片"
+            ]
+          }
         },
         {
           "order": 4,
@@ -4157,7 +4644,18 @@
             "zh": "工业AI的挑战",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "工业AI瓶颈已转向数据底座并以TDengine演进构建可信工业数据框架",
+              "en": null
+            },
+            "topics": [
+              "工业软件",
+              "数据库"
+            ]
+          }
         },
         {
           "order": 5,
@@ -4180,7 +4678,18 @@
             "zh": "国家级工业软件开源生态平台创新路径探索",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "以国家级平台构建工业软件共性技术共享、标准接口与产学研协同生态",
+              "en": null
+            },
+            "topics": [
+              "工业软件",
+              "产业生态"
+            ]
+          }
         },
         {
           "order": 6,
@@ -4203,7 +4712,17 @@
             "zh": "探索统一的图像到图像分布变换框架-残差去噪扩散模型",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "残差去噪扩散模型RDDM解耦残差与噪声统一图像生成与图像恢复",
+              "en": null
+            },
+            "topics": [
+              "多模态"
+            ]
+          }
         },
         {
           "order": 7,
@@ -4226,7 +4745,18 @@
             "zh": "RoboChallenge真机测评年度报告：洞察具身智能趋势，推动开放测评生态共建",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "RoboChallenge真机评测榜单显示具身模型精细操作成功率仍不足15%",
+              "en": null
+            },
+            "topics": [
+              "具身智能",
+              "多模态"
+            ]
+          }
         },
         {
           "order": 8,
@@ -4240,7 +4770,18 @@
           "speakers": [],
           "abstract": "主持人：天工开物开源基金会副秘书长庄表伟；\n\n唐滨：工业软件开源平台、生态组织与成果转化；\n\n聂凯旋：物理仿真与合成数据；\n\n黄树福：国产GPU与算力基础设施；\n\n刘佳伟：生成模型与机器人视觉；\n\n陈阳：真机测评与开放评测。\n\n从仿真到真机：具身智能开源全栈如何形成可验证、可复用的产业闭环？\n\n第一轮：具身智能从仿真走向真机，当前最大的断点在哪里？\n\n第二轮：哪些环节适合开源，哪些环节需要建立商业和知识产权边界？\n\n第三轮：如何建立可验证的Sim-to-Real协作闭环？",
           "abstract_status": "confirmed",
-          "type": "other"
+          "type": "other",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "圆桌讨论具身智能从仿真到真机的断点、开源边界与可验证协作闭环",
+              "en": null
+            },
+            "topics": [
+              "具身智能",
+              "开源治理"
+            ]
+          }
         }
       ],
       "poster": {
@@ -4311,7 +4852,18 @@
             "zh": "以开源为基，以协同为翼——工业软件创新生态的协同发展路径",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "以国家级工业软件开源生态平台推动多创新主体协同共生的发展路径",
+              "en": null
+            },
+            "topics": [
+              "工业软件",
+              "产业生态"
+            ]
+          }
         },
         {
           "order": 2,
@@ -4334,7 +4886,18 @@
             "zh": "风雷流体工业软件开源进展",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "以风雷流体软件为例分析开源工业软件的属性、瓶颈与最新进展",
+              "en": null
+            },
+            "topics": [
+              "工业软件",
+              "开源软件"
+            ]
+          }
         },
         {
           "order": 3,
@@ -4357,7 +4920,18 @@
             "zh": "从根社区到行业实践——openKylin筑牢工业软件数字底座",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "openKylin从根社区建设到轨道交通、能源矿山等工业场景的落地实践",
+              "en": null
+            },
+            "topics": [
+              "操作系统",
+              "工业软件"
+            ]
+          }
         },
         {
           "order": 4,
@@ -4380,7 +4954,18 @@
             "zh": "信创背景下，开源工业软件的国产化替代机遇与挑战",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "剖析信创背景下开源工业软件国产化替代的机遇与技术生态挑战",
+              "en": null
+            },
+            "topics": [
+              "工业软件",
+              "产业生态"
+            ]
+          }
         },
         {
           "order": 5,
@@ -4403,7 +4988,18 @@
             "zh": "开源协作驱动工业软件生态发展新机遇",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "探讨开源协作降低工业软件研发门槛及共建共享共治的生态新机遇",
+              "en": null
+            },
+            "topics": [
+              "工业软件",
+              "开源治理"
+            ]
+          }
         },
         {
           "order": 6,
@@ -4417,7 +5013,18 @@
           "speakers": [],
           "abstract": "唐滨 哈尔滨工程大学教授，现任北京开元工业软件研究院（筹）院长\n\n赵钟：中国空气动力研究与发展中心，高级工程师；\n\n马发俊：麒麟软件有限公司正高级工程师、openKylin社区合作负责人；\n\n杨程：国防科技大学计算机学院副研究员、中国软件行业协会副秘书长；\n\n黄宝锟：重庆开源共创科技有限公司解决方案总监。",
           "abstract_status": "confirmed",
-          "type": "other"
+          "type": "other",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": null,
+              "en": null
+            },
+            "topics": [
+              "工业软件",
+              "产业生态"
+            ]
+          }
         }
       ],
       "poster": {
