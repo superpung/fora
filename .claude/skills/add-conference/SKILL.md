@@ -85,10 +85,12 @@ either.
 4. **Validate (regression gate).** `python source/validate.py` must pass for
    **every** conference — a schema change may not break an existing one.
 
-5. **Wire in.** `python source/build_manifest.py` refreshes the hub/switcher index.
-   Add the build step to `.github/workflows/ci.yml`'s rebuild-and-assert-no-drift
-   check. `id` becomes the route (`/<id>/...`) and the storage namespace
-   automatically.
+5. **Wire in.** Nothing to wire. `source/build_all.py` discovers every
+   `source/<id>/build.py` by convention, so your adapter joins the build — and
+   CI's rebuild-and-assert-no-drift check — automatically; **do not edit
+   `.github/workflows/ci.yml`**. Run `python source/build_all.py` to rebuild
+   everything and refresh the hub/switcher index. `id` becomes the route
+   (`/<id>/...`) and the storage namespace automatically.
 
 6. **Verify end-to-end.** `pnpm -C web build && pnpm -C web lint`, then drive the
    app (the `run`/`verify` skills or Playwright against `pnpm preview`): the hub

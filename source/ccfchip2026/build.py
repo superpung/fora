@@ -14,13 +14,19 @@ Data sources:
   - Structured content: source/extracted/{people,sponsors,texts,forum_images}.json
   - Forum details: data/forums_detail/CF*.json (visually parsed forums)
 """
-import json, pathlib, datetime, glob, os, hashlib
-from enrichment import apply_enrichment
+import json, pathlib, datetime, glob, os, hashlib, sys
 
-ROOT = pathlib.Path(__file__).resolve().parent.parent
+ROOT = pathlib.Path(__file__).resolve().parents[2]
 SRC = ROOT / "source"
+
+# The shared enrichment merger and manifest builder live in source/; make them
+# importable when this adapter is run directly (python source/ccfchip2026/build.py).
+sys.path.insert(0, str(SRC))
+from enrichment import apply_enrichment  # noqa: E402
+
 EXT = SRC / "extracted"
 DETAIL = ROOT / "data" / "forums_detail"
+
 
 
 def load(p):
