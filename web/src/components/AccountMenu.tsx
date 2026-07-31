@@ -86,23 +86,10 @@ export default function AccountMenu() {
   const hasSync = !!syncConfig.clientId;
   const loggedIn = gs.isLoggedIn;
 
-  // Nothing to offer here at all.
-  if (!hasSync && !actions) return null;
-
-  // Signed out with no conference actions (e.g. the hub): the same round icon
-  // trigger as everywhere else, logging in directly on click.
-  if (hasSync && !loggedIn && !actions) {
-    return (
-      <button
-        className="acct-btn"
-        onClick={gs.login}
-        aria-label={zh ? "登录" : "Sign in"}
-        title={zh ? "用 GitHub 登录，在多设备间同步你的关注" : "Sign in with GitHub to sync your follows across devices"}
-      >
-        <Icon name="user" size={16} />
-      </button>
-    );
-  }
+  // The trigger ALWAYS opens the menu, signed in or out. This menu is not just
+  // "account": it also holds site-wide settings (reminders, AI content), and
+  // hiding those behind authentication would make them unreachable from the hub.
+  // Signed out, signing in is simply the first row inside.
 
   const u = gs.user;
   const avatar = (cls: string, px: number) =>
@@ -135,12 +122,21 @@ export default function AccountMenu() {
 
   const count = actions?.followedCount ?? 0;
 
+  // Permission was denied at the OS/browser level — the switch cannot do
+  // anything until the user changes it there, so it reads as a state, not a
+  // paragraph of instructions.
+  const remBlocked = rem.permission === "denied";
+  const cycleLead = () => {
+    const i = LEAD_CHOICES.indexOf(rem.prefs.leadMin);
+    rem.setLead(LEAD_CHOICES[(i + 1) % LEAD_CHOICES.length]);
+  };
+
   return (
     <div className="acct" ref={ref}>
       <button
         className="acct-btn"
         onClick={() => setOpen((o) => !o)}
-        aria-label={zh ? "账户与关注" : "Account & follows"}
+        aria-label={zh ? "账户与设置" : "Account & settings"}
         aria-expanded={open}
       >
         {loggedIn ? avatar("acct-av", 26) : <Icon name="user" size={16} />}
@@ -270,79 +266,72 @@ export default function AccountMenu() {
               </>
             )}
 
+            {/* Site-wide settings. One line per setting: label on the left, its
+                state on the right (a switch, or the current value). No hint
+                paragraphs — a menu row that needs a sentence to be understood is
+                the wrong control (AGENTS.md, "UI copy / layout rules"). */}
+            <div className="acct-divider" />
+            <div className="acct-sectitle">{t("settings.section")}</div>
+
             {rem.supported && (
               <>
-                <div className="acct-divider" />
-                <div className="acct-sectitle">{t("reminders.section")}</div>
-                {rem.permission === "denied" ? (
-                  <div className="acct-status acct-status--err">{t("reminders.blocked")}</div>
-                ) : !rem.prefs.enabled ? (
+                <button
+                  className="acct-row"
+                  onClick={() => (rem.prefs.enabled ? rem.disable() : void rem.enable())}
+                  aria-pressed={rem.prefs.enabled}
+                  disabled={remBlocked}
+                >
+                  <Icon name="bell" size={15} />
+                  <span className="acct-row__label">{t("reminders.section")}</span>
+                  {remBlocked ? (
+                    <span className="acct-row__meta">{t("reminders.blocked")}</span>
+                  ) : (
+                    <>
+                      {rem.prefs.enabled && rem.scheduledCount > 0 && (
+                        <span className="acct-row__meta">{rem.scheduledCount}</span>
+                      )}
+                      <span className={`acct-switch ${rem.prefs.enabled ? "is-on" : ""}`} aria-hidden />
+                    </>
+                  )}
+                </button>
+
+                {rem.prefs.enabled && !remBlocked && (
                   <>
-                    <button className="acct-row" onClick={() => void rem.enable()}>
-                      <Icon name="bell" size={15} />
-                      <span className="acct-row__label">{t("reminders.enable")}</span>
+                    {/* Lead time cycles in place (5 → 10 → 15 → 30). Laying all
+                        four out as chips overflowed the popover's width. */}
+                    <button className="acct-row" onClick={cycleLead}>
+                      <Icon name="clock" size={15} />
+                      <span className="acct-row__label">{t("reminders.lead")}</span>
+                      {/* Rendered as a pill, not plain text, so it reads as
+                          something you can press — the value changing on click
+                          is the whole explanation the row gets. */}
+                      <span className="acct-row__value">
+                        {t("reminders.min", { n: rem.prefs.leadMin })}
+                      </span>
                     </button>
-                    <div className="acct-hint">{t("reminders.hint")}</div>
-                  </>
-                ) : (
-                  <>
-                    <button
-                      className="acct-row"
-                      onClick={rem.disable}
-                      aria-label={t("reminders.disable")}
-                    >
-                      <Icon name="bell" size={15} />
-                      <span className="acct-row__label">{t("reminders.section")}</span>
-                      <span className="acct-row__meta">{t("reminders.on")}</span>
-                    </button>
-                    <div className="acct-seg">
-                      <span className="acct-seg__label">{t("reminders.lead")}</span>
-                      <div className="acct-seg__opts">
-                        {LEAD_CHOICES.map((m) => (
-                          <button
-                            key={m}
-                            className={`acct-seg__opt ${rem.prefs.leadMin === m ? "is-active" : ""}`}
-                            onClick={() => rem.setLead(m)}
-                            aria-pressed={rem.prefs.leadMin === m}
-                          >
-                            {t("reminders.min", { n: m })}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
                     <button
                       className="acct-row"
                       onClick={() => rem.setDayStart(!rem.prefs.dayStart)}
                       aria-pressed={rem.prefs.dayStart}
                     >
-                      <Icon name="clock" size={15} />
+                      <Icon name="calendar" size={15} />
                       <span className="acct-row__label">{t("reminders.dayStart")}</span>
                       <span className={`acct-switch ${rem.prefs.dayStart ? "is-on" : ""}`} aria-hidden />
                     </button>
-                    {rem.scheduledCount > 0 && (
-                      <div className="acct-hint">{t("reminders.upcoming", { n: rem.scheduledCount })}</div>
-                    )}
                   </>
                 )}
               </>
             )}
 
-            {/* AI-content governance: one site-wide switch for every AI-generated
-                or AI-derived surface (summaries, semantic search, planner, topic
-                map, similar talks). Off => source text only. */}
-            <div className="acct-divider" />
-            <div className="acct-sectitle">{t("ai.section")}</div>
-            <button
-              className="acct-row"
-              onClick={ai.toggle}
-              aria-pressed={ai.enabled}
-              aria-label={t("ai.show")}
-            >
+            {/* One site-wide switch for every AI-generated or AI-derived surface
+                (summaries, semantic search, planner, topic map, similar talks).
+                Off => source text only. The "may contain errors" disclaimer lives
+                next to the generated content itself (AiMark), not here. */}
+            <button className="acct-row" onClick={ai.toggle} aria-pressed={ai.enabled}>
               <Icon name="sparkle" size={15} />
               <span className="acct-row__label">{t("ai.show")}</span>
               <span className={`acct-switch ${ai.enabled ? "is-on" : ""}`} aria-hidden />
             </button>
-            <div className="acct-hint">{ai.enabled ? t("ai.disclaimer") : t("ai.hint")}</div>
 
             {/* Bottom utility group: report a bug, then sign out kept LAST. */}
             <div className="acct-divider" />

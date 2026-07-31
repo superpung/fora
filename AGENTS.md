@@ -78,6 +78,27 @@ restrained, and detailed. Match it; do not drift toward other looks.
 - **No prose-as-UI.** Do not explain an action in a sentence when an icon (or
   icon + short label) button conveys it. E.g. never write
   "需要按时间线逐场浏览？前往完整日程。" — ship a button instead.
+- **Explanatory copy is an admission that the design failed.** If a control needs
+  a sentence to tell the user what it does or how to use it, the *control* is
+  wrong — fix the control, never caption it. A label, an icon, the current value
+  shown inline, and a state that visibly changes on interaction have to be enough
+  to work it out at a glance. Reaching for a helper sentence means stop and
+  redesign.
+  - In **menus, popovers and dropdowns this is absolute**: no hint paragraphs, no
+    caveats, no "how it works" blurbs, no platform footnotes. One line per
+    setting: label on the left, state (switch / current value) on the right.
+    Anything that cannot be understood without prose does not belong in a menu.
+  - Error/blocked states are a state, not an essay: put a short value on the row
+    ("已被浏览器阻止"), not a sentence under it.
+- **A popover must never scroll sideways.** Its contents fit its width — no
+  fixed-width option rows, no `white-space: nowrap` chip strips that overflow.
+  A control that cannot fit the width is the wrong control: cycle a single value
+  in place instead of laying every option out. Vertical scrolling is fine;
+  horizontal is always a bug.
+- **Settings live behind a trigger that always opens.** A menu that hosts
+  anything beyond account actions must open in every state, including signed
+  out — sign-in is then just the first row inside it. Never make an unrelated
+  setting unreachable by putting the whole menu behind authentication.
 - **Never stack small text above any heading.** Supporting metadata (code, room,
   dates, location, counts) goes *below* the heading or *beside* it on the same
   line — never on a line above it. This applies to every title/heading (page
