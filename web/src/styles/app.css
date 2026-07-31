@@ -1528,6 +1528,8 @@ svg { display: block; }
 }
 @media (max-width: 600px) {
   .talksum { font-size: 12.5px; }
+}
+
 /* ============================ AGENDA PLANNER ============================
    /:conf/plan — the AI "Plan for me" page: an interest box + one-tap topic
    chips, then the proposed agenda grouped by day. Mobile-first: the pick rows
@@ -1629,6 +1631,8 @@ svg { display: block; }
 @media (max-width: 560px) {
   .planpick { padding: 11px 12px; }
   .planform { padding: 12px; }
+}
+
 /* ====================== topic map (#8) + similar talks (#9) ==================
    Both surfaces render AI-derived content and only exist while the AI switch is
    on. Structure is neutral greys; the violet --ai-fg appears only on the
