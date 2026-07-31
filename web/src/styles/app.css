@@ -1528,4 +1528,99 @@ svg { display: block; }
 }
 @media (max-width: 600px) {
   .talksum { font-size: 12.5px; }
+/* ============================ AGENDA PLANNER ============================
+   /:conf/plan — the AI "Plan for me" page: an interest box + one-tap topic
+   chips, then the proposed agenda grouped by day. Mobile-first: the pick rows
+   are a checkbox + a single flowing column, and the star-all bar sticks to the
+   bottom of the viewport so it stays reachable in a long plan. */
+.planform {
+  display: flex; flex-direction: column; gap: 12px;
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  background: var(--bg-subtle); padding: 14px;
+}
+.planform__input {
+  width: 100%; resize: vertical; min-height: 76px;
+  border: 1px solid var(--border-strong); border-radius: var(--radius);
+  background: var(--bg); color: var(--fg); padding: 10px 12px;
+  font: inherit; font-size: 14px; line-height: 1.55;
+}
+.planform__input::placeholder { color: var(--fg-muted); }
+.planform__input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.planform__actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.planform__note { flex: 1 1 220px; }
+
+.planchips { display: flex; flex-wrap: wrap; gap: 6px; }
+.plantag {
+  display: inline-flex; align-items: center; border-radius: 999px;
+  padding: 3px 9px; font-size: 12px; line-height: 1.5;
+  border: 1px solid var(--border-strong); background: var(--bg); color: var(--fg-secondary);
+}
+.plantag--btn { cursor: pointer; transition: background 0.15s, border-color 0.15s, color 0.15s; }
+.plantag--btn:hover { background: var(--bg-hover); border-color: var(--fg-muted); color: var(--fg); }
+.plantag--btn.is-on {
+  background: var(--primary-bg); color: var(--primary-fg); border-color: var(--primary-bg);
+}
+
+.plandays { margin-top: 28px; display: flex; flex-direction: column; gap: 26px; }
+.planday__head {
+  display: flex; align-items: baseline; gap: 8px; margin: 0 0 10px;
+  font-size: 14px; font-weight: 600;
+}
+.planday__md { font-family: var(--font-mono); letter-spacing: -0.01em; }
+.planday__wd { font-size: 12px; font-weight: 500; color: var(--fg-muted); }
+
+.planpick {
+  display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start;
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  background: var(--bg); padding: 12px 14px; margin-bottom: 8px;
+  transition: border-color 0.15s, background 0.15s;
+}
+.planpick:hover { border-color: var(--border-strong); }
+.planpick--clash { background: var(--bg-subtle); }
+.planpick__check { width: 16px; height: 16px; margin-top: 3px; accent-color: var(--accent); cursor: pointer; }
+.planpick__meta {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px;
+  font-size: 12px; color: var(--fg-muted); margin-bottom: 4px;
+}
+.planpick__time { font-family: var(--font-mono); color: var(--accent); font-variant-numeric: tabular-nums; }
+.planpick__time--tbd { font-family: inherit; color: var(--fg-muted); }
+.planpick__room { display: inline-flex; align-items: center; gap: 4px; }
+.planpick__session { color: var(--fg-secondary); }
+.planpick__title { font-size: 14.5px; font-weight: 600; line-height: 1.4; }
+.planpick__title a { color: inherit; }
+.planpick__title a:hover { color: var(--accent); }
+.planpick__spk { display: flex; align-items: center; gap: 5px; margin-top: 5px; font-size: 12.5px; color: var(--fg-secondary); }
+.planpick__spk svg { color: var(--fg-muted); }
+.planpick__sum {
+  display: flex; align-items: baseline; gap: 6px; margin: 7px 0 0;
+  font-size: 13px; line-height: 1.55; color: var(--fg-secondary);
+}
+.planpick__topics { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.planpick__clash {
+  display: flex; align-items: center; gap: 5px; margin-top: 8px;
+  font-size: 12px; color: var(--amber-fg);
+}
+.planpick__clash svg { flex: none; }
+
+.planbar {
+  position: sticky; bottom: 0; z-index: 2;
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  margin-top: 20px; padding: 12px 0;
+  background: linear-gradient(to top, var(--bg) 60%, transparent);
+}
+.planbar__done { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--fg-secondary); }
+.planbar__done svg { color: var(--teal-fg); }
+
+.planempty, .planoff {
+  display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center;
+  padding: clamp(36px, 7vw, 64px) 16px; color: var(--fg-secondary);
+}
+.planempty { padding: clamp(28px, 5vw, 44px) 16px; }
+.planoff svg { color: var(--ai-fg); }
+.planoff p { margin: 0; font-size: 15px; font-weight: 500; color: var(--fg); max-width: 46ch; }
+.planoff__hint { font-size: 12.5px; color: var(--fg-muted); }
+
+@media (max-width: 560px) {
+  .planpick { padding: 11px 12px; }
+  .planform { padding: 12px; }
 }
