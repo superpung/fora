@@ -286,6 +286,33 @@
         "abstract": { "type": ["string", "null"] },
         "abstract_status": { "$ref": "#/$defs/status" },
         "type": { "type": "string", "enum": ["keynote", "invited", "talk", "opening", "other"], "default": "talk" },
+        "enrichment": {
+          "description": "AI-generated derived content, kept in its OWN container so it is never commingled with the verbatim source fields (title/abstract are never touched). Everything the AI produced for this talk lives here; absence means no enrichment. Optional.",
+          "type": "object",
+          "properties": {
+            "generated_by": {
+              "description": "Provenance marker. The entire container is AI-generated, so downstream UI can label it and honor an 'AI content' toggle.",
+              "type": "string",
+              "enum": ["ai"]
+            },
+            "summary": {
+              "description": "Derived one-line summary distilled from the title/abstract to aid search and scanning. `zh` is authored; `en` is kept null (source text is never translated here).",
+              "type": "object",
+              "properties": {
+                "zh": { "type": ["string", "null"] },
+                "en": { "type": ["string", "null"] }
+              },
+              "additionalProperties": false
+            },
+            "topics": {
+              "description": "Topic tags drawn from the controlled vocabulary in source/topics.json.",
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          },
+          "required": ["generated_by"],
+          "additionalProperties": false
+        },
         "flags": {
           "type": "array",
           "items": { "type": "string" },
