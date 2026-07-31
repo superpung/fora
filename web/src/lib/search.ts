@@ -1,5 +1,5 @@
 import { buildBm25, bm25Scores, maxScore, tokenize, type Bm25Model } from "./bm25";
-import { topicSearchText } from "./topics";
+import { topicSearchText } from "./topic-labels";
 import type { ConferenceViews } from "./data";
 import type { Lang } from "./i18n-store";
 import { talkSummaryText } from "./ai-store";

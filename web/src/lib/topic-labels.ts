@@ -89,3 +89,12 @@ export function topicSearchText(key: string): string {
   const l = TOPIC_LABELS[key];
   return (l ? `${key} ${l.zh} ${l.en}` : key).toLowerCase();
 }
+
+/** The names this topic goes by, lowercased — the key and each label, with
+    "A / B" labels split into their alternatives (存算一体 / CIM). Used to spot a
+    topic the user named in prose. */
+export function topicAliases(key: string): string[] {
+  const l = TOPIC_LABELS[key];
+  const parts = l ? [key, ...l.zh.split("/"), ...l.en.split("/")] : [key];
+  return [...new Set(parts.map((p) => p.trim().toLowerCase()).filter((p) => p.length > 1))];
+}
