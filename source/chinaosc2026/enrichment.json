@@ -1,0 +1,60 @@
+{
+  "_about": "AI-generated derived enrichment for chinaosc2026 forum talks. Committed source, merged by source/chinaosc2026/build.py via source/enrichment.py. Kept SEPARATE from the verbatim extraction; the source title/abstract are never edited here. Each entry adds a one-line Chinese `summary` (distilled from the talk's own title/abstract, not a translation of the source) and `topics` from the controlled vocabulary (source/topics.json); the build attaches them under a talk's own `enrichment` container marked `generated_by: \"ai\"`.",
+  "_id_scheme": "Key = '<forum code>#<0-based index of the talk within that forum's talks[]>', exactly the id the web app uses (web/src/lib/follow-store.ts talkId(); ForumDetail.tsx #talk-N is the same index, 1-based). Example: 'F1490#0' is the first talk of forum F1490.",
+  "talks": {
+    "F1490#1": { "summary": { "zh": "基于Xenomai实时操作系统构建具身智能从决策到执行的确定性控制链路" }, "topics": ["实时系统", "操作系统", "具身智能"] },
+    "F1490#2": { "summary": { "zh": "从天算星座在轨实践出发介绍Rust重写的RROS双内核卫星操作系统与太空算力架构" }, "topics": ["天基计算", "操作系统", "实时系统"] },
+    "F1490#3": { "summary": { "zh": "搭载MetaOS的工智机以算控一体架构支撑具身智能与边缘AI的实时控制" }, "topics": ["实时系统", "具身智能", "物联网"] },
+    "F1490#4": { "summary": { "zh": null }, "topics": ["实时系统", "具身智能"] },
+
+    "F1493#0": { "summary": { "zh": "面向算力与AI的智能卫星设计与天地一体超级智能体“太湖鲲鹏”系统构建" }, "topics": ["天基计算", "智能体"] },
+    "F1493#1": { "summary": { "zh": "分析AI时代开源生态的安全治理新问题与可信开源供应链基础设施实践" }, "topics": ["软件供应链", "开源治理", "软件安全"] },
+    "F1493#2": { "summary": { "zh": "面向多域融合的RROS双内核卫星操作系统兼顾硬实时性能与Linux生态兼容" }, "topics": ["操作系统", "实时系统", "天基计算"] },
+    "F1493#3": { "summary": { "zh": "带宽感知量化与丢包感知调度提升星地协同学习的训练效率与鲁棒性" }, "topics": ["天基计算", "机器学习系统", "分布式系统"] },
+    "F1493#4": { "summary": { "zh": "挖掘两万余个卫星相关项目刻画开源卫星软件生态与开发实践特征" }, "topics": ["开源软件", "天基计算"] },
+
+    "F1497#0": { "summary": { "zh": "梳理科学教育发展现状与挑战并提出以开源政策赋能科学教育生态的建议" }, "topics": ["软件教育", "产业生态"] },
+    "F1497#1": { "summary": { "zh": "TDengine从时序数据库演进为AI原生工业数据底座及其智能数据消费能力" }, "topics": ["数据库", "工业软件", "大模型"] },
+    "F1497#2": { "summary": { "zh": "AI4Science下科学数据社区在流通模式、功能与评价体系上的变化与建设需求" }, "topics": ["开放数据", "产业生态"] },
+    "F1497#3": { "summary": { "zh": "基于OpenDigger跨平台采集构建开源生态高质量数据集OSIDX支撑研究与治理" }, "topics": ["开放数据", "开源治理", "开源软件"] },
+    "F1497#4": { "summary": { "zh": "开源作为许可与协作实践规则在法律适用与协作实务中面临的不确定性" }, "topics": ["开源治理"] },
+    "F1497#5": { "summary": { "zh": "以IAD框架识别社区治理规则演化并用智能体诊断改进仓库治理文档" }, "topics": ["开源治理", "智能体"] },
+    "F1497#6": { "summary": { "zh": null }, "topics": ["开源治理", "开放数据"] },
+
+    "F1499#0": { "summary": { "zh": "探讨支撑智能体的大模型能力边界及智能体技术对软件开发的意义" }, "topics": ["AI4SE", "大模型", "智能体"] },
+    "F1499#1": { "summary": { "zh": "构建三场景覆盖与自进化闭环的大模型智能体驱动软件测试架构" }, "topics": ["软件测试", "智能体", "大模型"] },
+    "F1499#2": { "summary": { "zh": "面向适配集成难题的大模型驱动代码片段适配与软件复用研究实践" }, "topics": ["AI4SE", "软件维护", "大模型"] },
+    "F1499#3": { "summary": { "zh": "鸿蒙AI辅助研发工具链及其支撑安卓应用鸿蒙化快速迁移的实践" }, "topics": ["代码生成", "移动软件", "AI4SE"] },
+    "F1499#4": { "summary": { "zh": "以效率与定位为主线研究大模型生成代码的效率优化与软件缺陷定位" }, "topics": ["代码生成", "缺陷检测", "大模型"] },
+    "F1499#5": { "summary": { "zh": "从数据投毒、水印与隐私泄露视角增强代码模型生态的可信性" }, "topics": ["代码生成", "软件安全", "隐私计算"] },
+
+    "F1511#0": { "summary": { "zh": "智能体框架共性基础设施以协议引擎、统一记忆与可信沙箱破解落地难题" }, "topics": ["智能体", "操作系统"] },
+    "F1511#1": { "summary": { "zh": "面向主动认知型智能系统的群智计算关键技术体系与开源社区实践" }, "topics": ["分布式系统", "物联网"] },
+    "F1511#2": { "summary": { "zh": "基于开源鸿蒙的KaihongOS向分布式AIOS演进并推动机器人走向群体智能" }, "topics": ["操作系统", "分布式系统", "具身智能"] },
+    "F1511#3": { "summary": { "zh": "将编码规范按五种评审角色重组实现内核代码的智能体自动评审" }, "topics": ["操作系统", "智能体", "AI4SE"] },
+    "F1511#4": { "summary": { "zh": "结合KylinX双体系内核为Klink-U软总线构建可信边界与互联安全增强" }, "topics": ["操作系统", "软件安全", "物联网"] },
+    "F1511#5": { "summary": { "zh": "圆桌探讨大模型内生下的操作系统架构重构、标准化协同与开发者生态" }, "topics": ["操作系统", "开源治理", "产业生态"] },
+
+    "F1512#0": { "summary": { "zh": "AI重塑开源后开发者红利从会写代码转向会调度、会判断的高阶认知能力" }, "topics": ["产业生态", "AI4SE"] },
+    "F1512#1": { "summary": { "zh": "阐述国家级工业软件开源生态平台的定位规划与AI赋能的协同创新路径" }, "topics": ["工业软件", "产业生态"] },
+    "F1512#2": { "summary": { "zh": "华为从硬件开放、软件开源、使能伙伴与人才发展打造AI根技术自主生态" }, "topics": ["产业生态", "AI芯片"] },
+    "F1512#3": { "summary": { "zh": "依托开源社区与分层管控推进特定场景智能体系的开源化建设路径" }, "topics": ["产业生态", "开源治理"] },
+    "F1512#4": { "summary": { "zh": "圆桌研讨产学研协同的自主智能软件开发规范与开源生态共建路径" }, "topics": ["产业生态", "开源治理"] },
+
+    "F1519#0": { "summary": { "zh": "具身智能操作系统Robonix以操作系统式抽象统一管理硬件原语、技能与任务" }, "topics": ["具身智能", "操作系统"] },
+    "F1519#1": { "summary": { "zh": "轻量高性能的机器人运行系统RoboHarness以六大能力支撑产线长期稳定执行" }, "topics": ["具身智能", "操作系统"] },
+    "F1519#2": { "summary": { "zh": "砻盘操作系统融合开源robonix打通采集训练与真机迭代闭环" }, "topics": ["具身智能", "操作系统", "产业生态"] },
+    "F1519#3": { "summary": { "zh": "从关节模组、运控小脑到大模型智慧大脑的腿足与人形机器人技术演进" }, "topics": ["具身智能"] },
+    "F1519#4": { "summary": { "zh": "面向开放世界的具身多智能体感知、决策、协同与适应学习问题" }, "topics": ["具身智能", "智能体"] },
+    "F1519#5": { "summary": { "zh": "视控一体与工业具身智能构建柔性制造所需的感联知控自主闭环" }, "topics": ["具身智能"] },
+    "F1519#6": { "summary": { "zh": "矽璓操作系统以高频电流环与抢占式调度实现机器人关节高实时精准控制" }, "topics": ["实时系统", "操作系统", "具身智能"] },
+
+    "F1491#0": { "summary": { "zh": "提出AI时代openSCS技术框架推动科学计算与系统建模走向智能工程生态" }, "topics": ["数字孪生", "工业软件", "智能体"] },
+    "F1491#1": { "summary": { "zh": "SIG6基于Julia开源工具链推进综合能源系统仿真优化与数字孪生平台" }, "topics": ["数字孪生", "工业软件"] },
+    "F1491#2": { "summary": { "zh": "Sysplorer MCP Server通过MCP协议将建模仿真能力开放给AI智能体" }, "topics": ["数字孪生", "智能体", "工业软件"] },
+    "F1491#3": { "summary": { "zh": "openSCS开源模型库与Modelica中文生态借助MCP实现建模仿真智能化" }, "topics": ["数字孪生", "智能体", "开源软件"] },
+    "F1491#4": { "summary": { "zh": "以具身空间建模融合大模型、MCP智能体与系统建模构建EICPS架构" }, "topics": ["数字孪生", "具身智能", "智能体"] },
+    "F1491#5": { "summary": { "zh": "基于鸿蒙物联网操作系统建鸿构建综合能源统一物联底座与全域数字孪生" }, "topics": ["数字孪生", "物联网", "操作系统"] },
+    "F1491#6": { "summary": { "zh": "介绍openSCS 2026“校源行”计划的重点任务与高校参与共建路径" }, "topics": ["软件教育", "产业生态"] }
+  }
+}

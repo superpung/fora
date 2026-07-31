@@ -762,7 +762,19 @@
             "zh": "从展厅到工厂：Xenomai支撑具身智能的确定性控制与工业落地",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "基于Xenomai实时操作系统构建具身智能从决策到执行的确定性控制链路",
+              "en": null
+            },
+            "topics": [
+              "实时系统",
+              "操作系统",
+              "具身智能"
+            ]
+          }
         },
         {
           "order": 3,
@@ -785,7 +797,19 @@
             "zh": "从“天算星座”到太空操作系统：构建星座时代的太空算力基础设施",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "从天算星座在轨实践出发介绍Rust重写的RROS双内核卫星操作系统与太空算力架构",
+              "en": null
+            },
+            "topics": [
+              "天基计算",
+              "操作系统",
+              "实时系统"
+            ]
+          }
         },
         {
           "order": 4,
@@ -808,7 +832,19 @@
             "zh": "搭载MetaOS(基于Xenomai)的工智机在具身智能、AI基建领域的应用",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "搭载MetaOS的工智机以算控一体架构支撑具身智能与边缘AI的实时控制",
+              "en": null
+            },
+            "topics": [
+              "实时系统",
+              "具身智能",
+              "物联网"
+            ]
+          }
         },
         {
           "order": 5,
@@ -839,7 +875,18 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": null,
+              "en": null
+            },
+            "topics": [
+              "实时系统",
+              "具身智能"
+            ]
+          }
         }
       ],
       "poster": {
@@ -910,7 +957,18 @@
             "zh": "天地一体的超级智能体系统与开源实践",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "面向算力与AI的智能卫星设计与天地一体超级智能体“太湖鲲鹏”系统构建",
+              "en": null
+            },
+            "topics": [
+              "天基计算",
+              "智能体"
+            ]
+          }
         },
         {
           "order": 2,
@@ -933,7 +991,19 @@
             "zh": "开源生态安全的新问题与新实践",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "分析AI时代开源生态的安全治理新问题与可信开源供应链基础设施实践",
+              "en": null
+            },
+            "topics": [
+              "软件供应链",
+              "开源治理",
+              "软件安全"
+            ]
+          }
         },
         {
           "order": 3,
@@ -956,7 +1026,19 @@
             "zh": "面向多域融合的开源卫星操作系统",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "面向多域融合的RROS双内核卫星操作系统兼顾硬实时性能与Linux生态兼容",
+              "en": null
+            },
+            "topics": [
+              "操作系统",
+              "实时系统",
+              "天基计算"
+            ]
+          }
         },
         {
           "order": 4,
@@ -979,7 +1061,19 @@
             "zh": "通信高效的星地协同学习方法研究",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "带宽感知量化与丢包感知调度提升星地协同学习的训练效率与鲁棒性",
+              "en": null
+            },
+            "topics": [
+              "天基计算",
+              "机器学习系统",
+              "分布式系统"
+            ]
+          }
         },
         {
           "order": 5,
@@ -1002,7 +1096,18 @@
             "zh": "开源卫星软件生态的现状与特征",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "挖掘两万余个卫星相关项目刻画开源卫星软件生态与开发实践特征",
+              "en": null
+            },
+            "topics": [
+              "开源软件",
+              "天基计算"
+            ]
+          }
         }
       ],
       "poster": {
@@ -1079,7 +1184,18 @@
             "zh": "开放·共享·创新：开源政策赋能科学教育新生态",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "梳理科学教育发展现状与挑战并提出以开源政策赋能科学教育生态的建议",
+              "en": null
+            },
+            "topics": [
+              "软件教育",
+              "产业生态"
+            ]
+          }
         },
         {
           "order": 2,
@@ -1102,7 +1218,19 @@
             "zh": "从时序数据库到 AI 原生的工业数据底座",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "TDengine从时序数据库演进为AI原生工业数据底座及其智能数据消费能力",
+              "en": null
+            },
+            "topics": [
+              "数据库",
+              "工业软件",
+              "大模型"
+            ]
+          }
         },
         {
           "order": 3,
@@ -1125,7 +1253,18 @@
             "zh": "AI4Science范式下科学数据生态社区的建设和变化",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "AI4Science下科学数据社区在流通模式、功能与评价体系上的变化与建设需求",
+              "en": null
+            },
+            "topics": [
+              "开放数据",
+              "产业生态"
+            ]
+          }
         },
         {
           "order": 4,
@@ -1148,7 +1287,19 @@
             "zh": "构筑开源生态的“数据基石”：OSIDX 全球开源生态高质量数据集建设之路",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "基于OpenDigger跨平台采集构建开源生态高质量数据集OSIDX支撑研究与治理",
+              "en": null
+            },
+            "topics": [
+              "开放数据",
+              "开源治理",
+              "开源软件"
+            ]
+          }
         },
         {
           "order": 5,
@@ -1171,7 +1322,17 @@
             "zh": "社区共识的重构——演进中的开源规则",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "开源作为许可与协作实践规则在法律适用与协作实务中面临的不确定性",
+              "en": null
+            },
+            "topics": [
+              "开源治理"
+            ]
+          }
         },
         {
           "order": 6,
@@ -1194,7 +1355,18 @@
             "zh": "“开源社区治理：从文档规则到智能体协同”",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "以IAD框架识别社区治理规则演化并用智能体诊断改进仓库治理文档",
+              "en": null
+            },
+            "topics": [
+              "开源治理",
+              "智能体"
+            ]
+          }
         },
         {
           "order": 7,
@@ -1249,7 +1421,18 @@
           ],
           "abstract": null,
           "abstract_status": "unknown",
-          "type": "other"
+          "type": "other",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": null,
+              "en": null
+            },
+            "topics": [
+              "开源治理",
+              "开放数据"
+            ]
+          }
         }
       ],
       "poster": {
@@ -1320,7 +1503,19 @@
             "zh": "基于大模型的软件自动化 —— Where Do We Stand？",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "探讨支撑智能体的大模型能力边界及智能体技术对软件开发的意义",
+              "en": null
+            },
+            "topics": [
+              "AI4SE",
+              "大模型",
+              "智能体"
+            ]
+          }
         },
         {
           "order": 2,
@@ -1343,7 +1538,19 @@
             "zh": "大模型智能体驱动的软件测试",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "构建三场景覆盖与自进化闭环的大模型智能体驱动软件测试架构",
+              "en": null
+            },
+            "topics": [
+              "软件测试",
+              "智能体",
+              "大模型"
+            ]
+          }
         },
         {
           "order": 3,
@@ -1366,7 +1573,19 @@
             "zh": "智能时代的软件复用",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "面向适配集成难题的大模型驱动代码片段适配与软件复用研究实践",
+              "en": null
+            },
+            "topics": [
+              "AI4SE",
+              "软件维护",
+              "大模型"
+            ]
+          }
         },
         {
           "order": 4,
@@ -1389,7 +1608,19 @@
             "zh": "鸿蒙AI Coding实践",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "鸿蒙AI辅助研发工具链及其支撑安卓应用鸿蒙化快速迁移的实践",
+              "en": null
+            },
+            "topics": [
+              "代码生成",
+              "移动软件",
+              "AI4SE"
+            ]
+          }
         },
         {
           "order": 5,
@@ -1412,7 +1643,19 @@
             "zh": "大模型驱动的代码效率优化与缺陷定位研究",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "以效率与定位为主线研究大模型生成代码的效率优化与软件缺陷定位",
+              "en": null
+            },
+            "topics": [
+              "代码生成",
+              "缺陷检测",
+              "大模型"
+            ]
+          }
         },
         {
           "order": 6,
@@ -1435,7 +1678,19 @@
             "zh": "数据与隐私保护视角下的代码模型可信生态",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "从数据投毒、水印与隐私泄露视角增强代码模型生态的可信性",
+              "en": null
+            },
+            "topics": [
+              "代码生成",
+              "软件安全",
+              "隐私计算"
+            ]
+          }
         }
       ],
       "poster": {
@@ -1527,7 +1782,18 @@
             "zh": "灵玑OS:智能体框架共性基础设施",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "智能体框架共性基础设施以协议引擎、统一记忆与可信沙箱破解落地难题",
+              "en": null
+            },
+            "topics": [
+              "智能体",
+              "操作系统"
+            ]
+          }
         },
         {
           "order": 2,
@@ -1550,7 +1816,18 @@
             "zh": "泛在群智计算系统——主动认知型智能系统的创新探索与开源实践",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "面向主动认知型智能系统的群智计算关键技术体系与开源社区实践",
+              "en": null
+            },
+            "topics": [
+              "分布式系统",
+              "物联网"
+            ]
+          }
         },
         {
           "order": 3,
@@ -1573,7 +1850,19 @@
             "zh": "从开源鸿蒙到分布式智能体群：构建开放协同的产业AI底座",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "基于开源鸿蒙的KaihongOS向分布式AIOS演进并推动机器人走向群体智能",
+              "en": null
+            },
+            "topics": [
+              "操作系统",
+              "分布式系统",
+              "具身智能"
+            ]
+          }
         },
         {
           "order": 4,
@@ -1596,7 +1885,19 @@
             "zh": "教会Agent像专家一样评审内核代码——以星绽为例",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "将编码规范按五种评审角色重组实现内核代码的智能体自动评审",
+              "en": null
+            },
+            "topics": [
+              "操作系统",
+              "智能体",
+              "AI4SE"
+            ]
+          }
         },
         {
           "order": 5,
@@ -1619,7 +1920,19 @@
             "zh": "基于双体系内核架构的Klink-U软总线安全探索",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "结合KylinX双体系内核为Klink-U软总线构建可信边界与互联安全增强",
+              "en": null
+            },
+            "topics": [
+              "操作系统",
+              "软件安全",
+              "物联网"
+            ]
+          }
         },
         {
           "order": 6,
@@ -1642,7 +1955,19 @@
           ],
           "abstract": "1.操作系统架构如何重构？ 当大模型从“外部应用”变为操作系统的“内生能力”，传统操作系统的进程管理、内存管理、设备驱动等经典模块将发生怎样的根本性变化？\n\n2.开源创新与标准化如何协同？ 开源社区的分散创新与统一标准之间如何平衡？标准化应在产业发展中扮演什么角色——是提前布局、同步推进还是滞后响应？\n\n3.开发者生态如何破局？ 面向具身智能、工业物联等碎片化严重的垂直场景，泛在操作系统如何吸引第一批开发者，实现社区从“冷启动”到“自繁荣”的跨越？",
           "abstract_status": "confirmed",
-          "type": "other"
+          "type": "other",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "圆桌探讨大模型内生下的操作系统架构重构、标准化协同与开发者生态",
+              "en": null
+            },
+            "topics": [
+              "操作系统",
+              "开源治理",
+              "产业生态"
+            ]
+          }
         }
       ],
       "poster": {
@@ -1701,7 +2026,18 @@
             "zh": "硅基时间下的开源开发者红利",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "AI重塑开源后开发者红利从会写代码转向会调度、会判断的高阶认知能力",
+              "en": null
+            },
+            "topics": [
+              "产业生态",
+              "AI4SE"
+            ]
+          }
         },
         {
           "order": 2,
@@ -1724,7 +2060,18 @@
             "zh": "AI智能研发范式下开源工业软件协同创新生态构建",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "阐述国家级工业软件开源生态平台的定位规划与AI赋能的协同创新路径",
+              "en": null
+            },
+            "topics": [
+              "工业软件",
+              "产业生态"
+            ]
+          }
         },
         {
           "order": 3,
@@ -1747,7 +2094,18 @@
             "zh": "开源共筑，生态共赢-打造人工智能根技术助力自主可控生态体系",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "华为从硬件开放、软件开源、使能伙伴与人才发展打造AI根技术自主生态",
+              "en": null
+            },
+            "topics": [
+              "产业生态",
+              "AI芯片"
+            ]
+          }
         },
         {
           "order": 4,
@@ -1770,7 +2128,18 @@
             "zh": "特定场景下的智能体系开源化建设路径与演进研究",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "依托开源社区与分层管控推进特定场景智能体系的开源化建设路径",
+              "en": null
+            },
+            "topics": [
+              "产业生态",
+              "开源治理"
+            ]
+          }
         },
         {
           "order": 5,
@@ -1784,7 +2153,18 @@
           "speakers": [],
           "abstract": "产学研协同共建：自主智能软件与开源生态发展路径\n\n立足产学研协同发展，以智能软件开发与开源生态建设为核心主题，围绕国内自主智能软件体系迭代完善、开源生态多方协同共建开展深度研讨。邀请嘉宾结合科研机构与企业实践探索，重点探讨智能软件协同开发建设规范、跨主体创新资源共享平台搭建落地路径，交流产学研长效联动合作机制、智能开发创新资源互通渠道建设等实操问题。通过跨界融合联动汇聚产业创新动能，共建安全自主、多方协同、覆盖智能开发全链条的开源发展生态。",
           "abstract_status": "confirmed",
-          "type": "other"
+          "type": "other",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "圆桌研讨产学研协同的自主智能软件开发规范与开源生态共建路径",
+              "en": null
+            },
+            "topics": [
+              "产业生态",
+              "开源治理"
+            ]
+          }
         }
       ],
       "poster": {
@@ -1952,7 +2332,18 @@
             "zh": "具身智能操作系统Robonix：原理与架构",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "具身智能操作系统Robonix以操作系统式抽象统一管理硬件原语、技能与任务",
+              "en": null
+            },
+            "topics": [
+              "具身智能",
+              "操作系统"
+            ]
+          }
         },
         {
           "order": 2,
@@ -1975,7 +2366,18 @@
             "zh": "RoboHarness：让机器人从实验室走向产线",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "轻量高性能的机器人运行系统RoboHarness以六大能力支撑产线长期稳定执行",
+              "en": null
+            },
+            "topics": [
+              "具身智能",
+              "操作系统"
+            ]
+          }
         },
         {
           "order": 3,
@@ -1998,7 +2400,19 @@
             "zh": "砻盘筑基 · 开源赋能——提速具身智能规模化应用进程",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "砻盘操作系统融合开源robonix打通采集训练与真机迭代闭环",
+              "en": null
+            },
+            "topics": [
+              "具身智能",
+              "操作系统",
+              "产业生态"
+            ]
+          }
         },
         {
           "order": 4,
@@ -2021,7 +2435,17 @@
             "zh": "从四足到人形机器人，底层技术与产品演进",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "从关节模组、运控小脑到大模型智慧大脑的腿足与人形机器人技术演进",
+              "en": null
+            },
+            "topics": [
+              "具身智能"
+            ]
+          }
         },
         {
           "order": 5,
@@ -2044,7 +2468,18 @@
             "zh": "面向开放世界的具身多智能体决策",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "面向开放世界的具身多智能体感知、决策、协同与适应学习问题",
+              "en": null
+            },
+            "topics": [
+              "具身智能",
+              "智能体"
+            ]
+          }
         },
         {
           "order": 6,
@@ -2067,7 +2502,17 @@
             "zh": "从视控一体到具身智能:工业智能机器人的技术与应用",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "视控一体与工业具身智能构建柔性制造所需的感联知控自主闭环",
+              "en": null
+            },
+            "topics": [
+              "具身智能"
+            ]
+          }
         },
         {
           "order": 7,
@@ -2090,7 +2535,19 @@
             "zh": "基于矽璓操作系统的关节控制与管理",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "矽璓操作系统以高频电流环与抢占式调度实现机器人关节高实时精准控制",
+              "en": null
+            },
+            "topics": [
+              "实时系统",
+              "操作系统",
+              "具身智能"
+            ]
+          }
         }
       ],
       "poster": {
@@ -2158,7 +2615,19 @@
             "zh": "AI时代的科学计算与系统建模——从开源工具链走向智能工程生态",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "提出AI时代openSCS技术框架推动科学计算与系统建模走向智能工程生态",
+              "en": null
+            },
+            "topics": [
+              "数字孪生",
+              "工业软件",
+              "智能体"
+            ]
+          }
         },
         {
           "order": 2,
@@ -2181,7 +2650,18 @@
             "zh": "AI时代下能源系统工程发展的机遇与挑战",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "SIG6基于Julia开源工具链推进综合能源系统仿真优化与数字孪生平台",
+              "en": null
+            },
+            "topics": [
+              "数字孪生",
+              "工业软件"
+            ]
+          }
         },
         {
           "order": 3,
@@ -2204,7 +2684,19 @@
             "zh": "Sysplorer MCP Server+智能体重塑系统建模仿真工作流",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "Sysplorer MCP Server通过MCP协议将建模仿真能力开放给AI智能体",
+              "en": null
+            },
+            "topics": [
+              "数字孪生",
+              "智能体",
+              "工业软件"
+            ]
+          }
         },
         {
           "order": 4,
@@ -2227,7 +2719,19 @@
             "zh": "开源系统建模模型库与 Modelica 中文生态建设——面向智能应用的 MCP 赋能实践",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "openSCS开源模型库与Modelica中文生态借助MCP实现建模仿真智能化",
+              "en": null
+            },
+            "topics": [
+              "数字孪生",
+              "智能体",
+              "开源软件"
+            ]
+          }
         },
         {
           "order": 5,
@@ -2250,7 +2754,19 @@
             "zh": "具身智能场景下的系统建模、控制与仿真新需求",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "以具身空间建模融合大模型、MCP智能体与系统建模构建EICPS架构",
+              "en": null
+            },
+            "topics": [
+              "数字孪生",
+              "具身智能",
+              "智能体"
+            ]
+          }
         },
         {
           "order": 6,
@@ -2273,7 +2789,19 @@
             "zh": "综合能源数字孪生系统管理发展探索",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "基于鸿蒙物联网操作系统建鸿构建综合能源统一物联底座与全域数字孪生",
+              "en": null
+            },
+            "topics": [
+              "数字孪生",
+              "物联网",
+              "操作系统"
+            ]
+          }
         },
         {
           "order": 7,
@@ -2296,7 +2824,18 @@
             "zh": "2026“校源行”计划与高校参与路径",
             "en": null
           },
-          "title_status": "confirmed"
+          "title_status": "confirmed",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "介绍openSCS 2026“校源行”计划的重点任务与高校参与共建路径",
+              "en": null
+            },
+            "topics": [
+              "软件教育",
+              "产业生态"
+            ]
+          }
         }
       ],
       "poster": {
