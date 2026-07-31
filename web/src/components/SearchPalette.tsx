@@ -4,9 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { useConference } from "../lib/conference-store";
 import { useI18n } from "../lib/i18n-store";
 import { useSearchUI } from "../lib/search-store";
+import { useAi } from "../lib/ai-store";
 import { buildSearchIndex, searchIndex, type SearchType, type ScoredRecord } from "../lib/search";
 import { easeOut } from "../lib/motion";
 import Icon, { type IconName } from "./Icon";
+import { AiNote } from "./AiMark";
+import TalkSummary from "./TalkSummary";
 
 const TYPE_ICON: Record<SearchType, IconName> = {
   talk: "keynotes",
@@ -37,6 +40,7 @@ export default function SearchPalette() {
   const views = useConference();
   const { open, setOpen } = useSearchUI();
   const { t, lang } = useI18n();
+  const { enabled: aiEnabled } = useAi();
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState(0);
@@ -53,6 +57,11 @@ export default function SearchPalette() {
   // Flatten the (already grouped) results into one ordered list so ↑/↓ move
   // across group boundaries and ↵ opens whatever is highlighted.
   const flat = useMemo<ScoredRecord[]>(() => groups.flatMap((g) => g.items), [groups]);
+
+  // The disclaimer belongs to the results list as a whole, so it appears once,
+  // and only while a TL;DR is actually on screen. Summaries never influence
+  // matching or ranking (see SearchRecord.summary) — only what a row shows.
+  const showAiNote = aiEnabled && flat.some((r) => r.summary);
 
   // Global open shortcuts: ⌘K / Ctrl-K anywhere, or "/" when not already typing.
   useEffect(() => {
@@ -207,6 +216,9 @@ export default function SearchPalette() {
                               {rec.subtitle && (
                                 <span className="cmdk__optsub">{rec.subtitle}</span>
                               )}
+                              {/* One clipped line: a hit's title alone rarely
+                                  says whether it is the talk you meant. */}
+                              <TalkSummary text={rec.summary ?? null} oneline />
                             </span>
                             <span className="cmdk__optchev" aria-hidden>
                               <Icon name="chevron-right" size={15} />
@@ -224,6 +236,8 @@ export default function SearchPalette() {
                 })()
               )}
             </div>
+
+            {showAiNote && <AiNote className="cmdk__ainote" />}
 
             <div className="cmdk__footer">
               <span><kbd>↑</kbd><kbd>↓</kbd> {t("search.footNav")}</span>

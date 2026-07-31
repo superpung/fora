@@ -5,9 +5,12 @@ import { formatDate } from "../lib/data";
 import { useConference } from "../lib/conference-store";
 import { useFollow, talkId } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
+import { useAi, talkSummaryText } from "../lib/ai-store";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Icon from "../components/Icon";
 import Avatar from "../components/Avatar";
+import { AiNote } from "../components/AiMark";
+import TalkSummary from "../components/TalkSummary";
 import PosterModal from "../components/PosterModal";
 import type { PosterSpec, PosterMeta } from "../lib/poster";
 import type { Person, Talk } from "../types";
@@ -214,6 +217,7 @@ export default function ForumDetail() {
   const forum = code ? getForum(code) : undefined;
   const { isForum, toggleForum, isTalk, toggleTalk } = useFollow();
   const { t: tr, lang } = useI18n();
+  const { enabled: aiEnabled } = useAi();
   const forumFollowed = code ? isForum(code) : false;
   const [copied, setCopied] = useState<number | null>(null);
   const [poster, setPoster] = useState<{ spec: PosterSpec; filename: string } | null>(null);
@@ -299,6 +303,10 @@ export default function ForumDetail() {
     .map((s) => s.trim())
     .filter(Boolean);
   const tracks = timed ? splitParallelTracks(forum.talks ?? [], roomParts) : null;
+  // The disclaimer belongs to the list as a whole, so it is rendered once above
+  // it — and only when a TL;DR will actually appear somewhere in this forum
+  // (coverage is partial, and the switch may be off).
+  const showAiNote = aiEnabled && (forum.talks ?? []).some((t) => talkSummaryText(t));
 
   // "Now" on the rail: only on the day this forum runs, find the currently-live
   // talk in each track (start ≤ now < end, end inferred from the next talk when
@@ -465,6 +473,9 @@ export default function ForumDetail() {
             <Icon name="star" filled={followed} size={16} />
           </button>
         </div>
+        {/* TL;DR sits directly under the title: it is what the eye hits while
+            scanning the list. The abstract below is untouched. */}
+        <TalkSummary text={talkSummaryText(t)} />
         {t.flags?.length ? (
           <div className="talk__flag" title={t.flags.join("\n")}>
             <Icon name="alert" size={13} /> {tr("forum.sourceAnnotated")}
@@ -621,6 +632,7 @@ export default function ForumDetail() {
           <h2 className="fd__sectitle">
             {tr("forum.talks")} <span className="fd__seccount">{forum.talks.length}</span>
           </h2>
+          {showAiNote && <AiNote className="fd__ainote" />}
           {tracks ? (
             tracks.map((track, k) => (
               <div className="fd__track" key={k}>
