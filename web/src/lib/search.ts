@@ -1,5 +1,6 @@
 import type { ConferenceViews } from "./data";
 import type { Lang } from "./i18n-store";
+import { talkSummaryText } from "./ai-store";
 import type { I18n } from "../types";
 
 // Client-side global search over ALL program content of the active conference:
@@ -33,6 +34,10 @@ export interface SearchRecord {
   title: string;
   /** Optional secondary line (forum name, affiliation, role, room…). */
   subtitle?: string;
+  /** A talk's AI-generated TL;DR, carried for DISPLAY ONLY — deliberately kept
+      out of `haystack` so matching, ranking and result order are identical
+      whether or not the reader has AI content switched on. */
+  summary?: string;
   /** Lowercased text used for matching — always spans BOTH languages so a query
       in either matches regardless of the current UI language. */
   haystack: string;
@@ -125,6 +130,7 @@ export function buildSearchIndex(
         type: "talk",
         title,
         subtitle: [forumTitle, speakerNames.join("、")].filter(Boolean).join(" · "),
+        summary: talkSummaryText(talk) ?? undefined,
         haystack: hay,
         to: `/${confId}/forum/${f.code}#talk-${i + 1}`,
       });
