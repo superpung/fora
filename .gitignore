@@ -20,6 +20,9 @@ source/raw/images/
 source/raw/files/
 source/tiles/
 
+# Scratch git worktrees used by background agents
+.claude/worktrees/
+
 # OS
 .DS_Store
 Thumbs.db
