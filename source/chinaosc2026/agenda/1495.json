@@ -1,0 +1,52 @@
+{
+  "_about": "Programme parsed from the forum's published timetable image. Verbatim transcription of the image — no inference.",
+  "doc": "1495",
+  "images": ["image_20260724190702A452.png"],
+  "rows": [
+    {
+      "start": "13:30",
+      "end": "14:00",
+      "title": "开源人才教育与地方开源体系建设",
+      "speakers": [{ "name": "郭雪", "affiliation_raw": "中国信通院云大所" }]
+    },
+    {
+      "start": "14:05",
+      "end": "14:35",
+      "title": "基于AI+开源混态教育的复合型创新性人才培养模式研究与实践",
+      "speakers": [{ "name": "张燕", "affiliation_raw": "金陵科技学院" }]
+    },
+    {
+      "start": "14:40",
+      "end": "15:10",
+      "title": "探索以实践为核心的阶梯式开源人才培养方法",
+      "speakers": [{ "name": "汪亮", "affiliation_raw": "南京大学" }]
+    },
+    {
+      "start": "15:40",
+      "end": "16:10",
+      "title": "判断力，开源人才的新稀缺 -- Agent 接管编码之后，如何评估它仍是开放命题",
+      "speakers": [{ "name": "王晔晖", "affiliation_raw": "华为" }]
+    },
+    {
+      "start": "16:15",
+      "end": "16:45",
+      "title": "真实问题驱动的人才培养：从开源悬榜到AI时代的创造力成长",
+      "speakers": [{ "name": "倪超", "affiliation_raw": "浙江大学" }]
+    },
+    {
+      "start": "16:50",
+      "end": "17:50",
+      "title": "圆桌：当AI会写代码，开源教育如何培养“会创造的人”？",
+      "kind": "other",
+      "speakers": [{ "name": "报告嘉宾", "affiliation_raw": null }]
+    }
+  ],
+  "room": null,
+  "notes": [
+    "Images in this document: conference banner (1080x464), 8 speaker/chair headshots, 1 WeChat/registration QR code, and the one timetable image listed above.",
+    "Timetable columns: 时间 / 报告题目 / 讲者 / 单位. Times are present for every row; affiliations are present for every talk row; no room/venue and no date are printed on the image.",
+    "The 15:40 talk's title uses two half-width hyphens with spaces around them ('新稀缺 -- Agent 接管编码'), not an em dash; kept exactly as printed.",
+    "No break row is printed, but the times leave unlabelled gaps: 14:00-14:05, 14:35-14:40, 15:10-15:40 (the long one is likely a 茶歇, but the image does not say so), 16:10-16:15 and 16:45-16:50. No rows are invented for them.",
+    "The closing 圆桌 row's 讲者 cell prints the collective '报告嘉宾' rather than names, and its 单位 cell is empty; transcribed verbatim as the single speaker entry with a null affiliation."
+  ]
+}
