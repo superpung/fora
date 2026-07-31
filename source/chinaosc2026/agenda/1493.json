@@ -1,0 +1,52 @@
+{
+  "_about": "Programme parsed from the forum's published timetable image. Verbatim transcription of the image — no inference.",
+  "doc": "1493",
+  "images": ["image_20260724180449A434.png"],
+  "rows": [
+    {
+      "start": "14:10",
+      "end": "14:40",
+      "title": "天地一体的超级智能体系统与开源实践",
+      "speakers": [{ "name": "吴刚", "affiliation_raw": "太湖星云科技有限公司/上海交通大学" }]
+    },
+    {
+      "start": "14:40",
+      "end": "15:10",
+      "title": "开源生态安全的新问题与新实践",
+      "speakers": [{ "name": "吴敬征", "affiliation_raw": "中国科学院软件研究所" }]
+    },
+    {
+      "start": "15:20",
+      "end": "15:40",
+      "title": "茶歇",
+      "kind": "break",
+      "speakers": []
+    },
+    {
+      "start": "15:40",
+      "end": "16:10",
+      "title": "面向多域融合的开源卫星操作系统",
+      "speakers": [{ "name": "李弘宇", "affiliation_raw": "一苇宇航科技有限公司" }]
+    },
+    {
+      "start": "16:10",
+      "end": "16:40",
+      "title": "通信高效的星地协同学习方法研究",
+      "speakers": [{ "name": "杨晨", "affiliation_raw": "西南交通大学" }]
+    },
+    {
+      "start": "16:40",
+      "end": "17:10",
+      "title": "开源卫星软件生态的现状与特征",
+      "speakers": [{ "name": "温金凤", "affiliation_raw": "北京邮电大学" }]
+    }
+  ],
+  "room": null,
+  "notes": [
+    "Images in this document: conference banner (1080x460), 8 speaker/chair headshots, 1 WeChat/registration QR code, and the one timetable image listed above.",
+    "Timetable columns: 时间 / 报告题目 / 讲者 / 单位. Times and affiliations are present for every talk row; no room/venue and no date are printed on the image.",
+    "The 茶歇 row is printed on the image (15:20-15:40) and its 报告题目 cell spans the title/讲者/单位 columns; recorded as kind=break.",
+    "The table starts at 14:10 — no opening row is printed for the 13:30-14:10 part of the afternoon forum window, and none is invented.",
+    "There is an unlabelled 10-minute gap 15:10-15:20 immediately before the printed 茶歇; the image gives it no label, so no row is recorded for it."
+  ]
+}
