@@ -1,0 +1,14 @@
+{
+  "_about": "Programme parsed from the forum's published timetable image. Verbatim transcription of the image — no inference.",
+  "doc": "1476",
+  "images": [],
+  "rows": [],
+  "room": null,
+  "notes": [
+    "This document is NOT a forum. It is the conference-wide 参会指南 (attending guide) under 会议通知 — overview, organisation, day-level schedule, travel, accommodation, sponsorship/exhibition rules and contacts. All three of its images were examined and none is a timetable.",
+    "Image inventory: 695335fba973f813889843f6bbdb5a23_20260724071629A381.jpg and e965c5781ee8d9d88859770f843cfe70_20260724071912A382.jpg are WeChat booking posters for the two partner hotels (重庆永乐半山酒店 370 元/间, 重庆施柏阁酒店 480 元/间, booking cut-off 2026 年 8 月 15 日, each with a mini-programme QR code and a hotel-sales contact); e8d03c653c32d2ee852b93a955479fc7_20260724072027A383.jpg is an annotated aerial site map.",
+    "The site map (A383) labels the buildings on the site: 山城国际会议中心, 重庆永乐半山酒店, 重庆施柏阁酒店, 重庆山前宋品酒店, plus the two access bridges 一号桥 and 二号桥, with red site boundaries and a yellow walking route. It is a campus map — it names no hall, room or forum, so it yields no room assignment.",
+    "No main-conference (keynote / 高峰论坛) programme is published here. The document's 完整日程安排 table is day-level only: 8 月 14 日 报到; 8 月 15 日 上午 大会开幕式、特邀主旨报告、高峰论坛 / 午间 午餐 / 下午 多场平行领域分论坛 / 晚间 大会自助晚餐、CCF 开源执委年会（定向参会）; 8 月 16 日 上午 特邀报告、高峰论坛 / 午间 午餐 / 下午 多场平行领域分论坛、大会闭幕式 + 年度开源成果发布. No invited-speaker names, talk titles or clock times are given, so no rows can be written without inventing them.",
+    "Venue stated in the text: 重庆山城国际会议中心（重庆施柏阁酒店群）, 重庆市沙坪坝区文广大道18号附2号. That is the conference venue, not a per-session room."
+  ]
+}
