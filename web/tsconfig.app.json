@@ -6,6 +6,9 @@
     "module": "esnext",
     "types": ["vite/client"],
     "allowArbitraryExtensions": true,
+    // lib/topic-labels.ts imports source/topics.json directly, so the pipeline's
+    // topic vocabulary has exactly one definition instead of a copy that drifts.
+    "resolveJsonModule": true,
     "skipLibCheck": true,
 
     /* Bundler mode */

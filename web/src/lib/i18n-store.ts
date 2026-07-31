@@ -251,6 +251,23 @@ const zh: Dict = {
   "cat.other": "其他",
 
   "lang.toggle": "切换语言",
+
+  "nav.plan": "规划",
+  "plan.title": "为我规划",
+  "plan.inputLabel": "描述你的研究方向或兴趣",
+  "plan.placeholder": "我是做 EDA 的博士生，关注智能体与形式化验证",
+  "plan.topicsLabel": "常见主题",
+  "plan.submit": "生成日程",
+  "plan.empty": "没有匹配的报告",
+  "plan.timeTbd": "时间待定",
+  "plan.approxTime": "该报告未单独标注时间，此处显示所属论坛的时段",
+  "plan.include": "选中「{title}」",
+  "plan.clash": "与「{title}」时间重叠，已优先保留匹配度更高的一场",
+  "plan.starAll": "收藏选中的 {n} 场",
+  "plan.starred": "已加入关注 {n} 场",
+  "plan.viewStarred": "查看",
+  "plan.aiOff": "「为我规划」由 AI 推导生成，当前已关闭 AI 内容。",
+  "plan.aiTurnOn": "开启 AI 内容",
 };
 
 const en: Dict = {
@@ -482,6 +499,23 @@ const en: Dict = {
   "cat.other": "Other",
 
   "lang.toggle": "Switch language",
+
+  "nav.plan": "Plan",
+  "plan.title": "Plan for me",
+  "plan.inputLabel": "Describe your field or interests",
+  "plan.placeholder": "I'm a PhD student working on EDA, interested in agents and formal verification",
+  "plan.topicsLabel": "Common topics",
+  "plan.submit": "Build my agenda",
+  "plan.empty": "No matching talks",
+  "plan.timeTbd": "Time TBD",
+  "plan.approxTime": "This talk carries no time of its own — showing its forum's session window",
+  "plan.include": "Include {title}",
+  "plan.clash": "Overlaps “{title}” — the stronger match was kept",
+  "plan.starAll": "Star {n} selected",
+  "plan.starred": "{n} added to your follows",
+  "plan.viewStarred": "View",
+  "plan.aiOff": "Plan for me is AI-derived, and AI content is currently off.",
+  "plan.aiTurnOn": "Turn on AI content",
 };
 
 const DICTS: Record<Lang, Dict> = { zh, en };

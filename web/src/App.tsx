@@ -12,6 +12,7 @@ const Hub = lazy(() => import("./pages/Hub"));
 const Home = lazy(() => import("./pages/Home"));
 const Now = lazy(() => import("./pages/Now"));
 const Schedule = lazy(() => import("./pages/Schedule"));
+const Plan = lazy(() => import("./pages/Plan"));
 const Speakers = lazy(() => import("./pages/Speakers"));
 const ForumDetail = lazy(() => import("./pages/ForumDetail"));
 const Committee = lazy(() => import("./pages/Committee"));
@@ -41,6 +42,7 @@ export default function App() {
               <Route index element={<Home />} />
               <Route path="now" element={<Now />} />
               <Route path="schedule" element={<Schedule />} />
+              <Route path="plan" element={<Plan />} />
               <Route path="speakers" element={<Speakers />} />
               <Route path="committee" element={<Committee />} />
               <Route path="organizations" element={<Organizations />} />

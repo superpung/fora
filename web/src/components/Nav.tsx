@@ -9,6 +9,7 @@ import Icon from "./Icon";
 import ConferenceSwitcher from "./ConferenceSwitcher";
 import { useI18n } from "../lib/i18n-store";
 import { useSearchUI } from "../lib/search-store";
+import { useAi } from "../lib/ai-store";
 import { conferenceMeta } from "../lib/conferences";
 import { todayISO } from "../lib/data";
 
@@ -30,15 +31,23 @@ const LINKS: NavLinkDef[] = [
 export default function Nav({ confId }: { confId: string }) {
   const { t } = useI18n();
   const { setOpen: setSearchOpen } = useSearchUI();
+  // The agenda planner is an AI recommender, so it only exists while AI content
+  // is switched on (its route explains itself if reached directly).
+  const { enabled: aiEnabled } = useAi();
   // The live "Now" view is only meaningful while the conference is running, so
   // its nav entry appears solely between the conference's start and end dates
   // (read from the lightweight manifest — no dataset load needed).
   const meta = conferenceMeta(confId);
   const today = todayISO();
   const showNow = !!meta && today >= meta.start_date && today <= meta.end_date;
-  const links: NavLinkDef[] = showNow
+  const base: NavLinkDef[] = showNow
     ? [LINKS[0], { to: "/now", key: "nav.now", live: true }, ...LINKS.slice(1)]
     : LINKS;
+  const links: NavLinkDef[] = aiEnabled
+    ? base.flatMap((l) =>
+        l.to === "/schedule" ? [l, { to: "/plan", key: "nav.plan" }] : [l],
+      )
+    : base;
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
   useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 12));
