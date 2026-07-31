@@ -7,6 +7,7 @@ import { GistSyncProvider } from "@repus/gist-sync/react";
 import { ThemeProvider } from "./lib/theme";
 import { I18nProvider } from "./lib/i18n";
 import { ReminderProvider } from "./lib/reminder";
+import { AiProvider } from "./lib/ai";
 import { syncConfig, syncSchema, serialize, apply } from "./lib/sync";
 import App from "./App";
 
@@ -22,7 +23,11 @@ createRoot(document.getElementById("root")!).render(
             {/* Reminder prefs live here (site-wide) and sync via the same gist;
                 inside GistSyncProvider so pref changes can markLocalChange(). */}
             <ReminderProvider>
-              <App />
+              {/* Site-wide "show AI-generated content" switch — also synced via
+                  the same gist, so the choice follows the user across devices. */}
+              <AiProvider>
+                <App />
+              </AiProvider>
             </ReminderProvider>
           </GistSyncProvider>
         </I18nProvider>
