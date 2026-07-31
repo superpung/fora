@@ -6,9 +6,14 @@
 // `["${confId}","${type}","${value}"]` — so the engine's `stringSet` three-way
 // merge reconciles adds/removes across devices without knowing our shape.
 import type { Bundle, GistSyncConfig, Schema } from "@repus/gist-sync";
+import { PREF_KEYS, REMINDER_PREFS_UPDATED } from "./reminder-store";
 
 const FOLLOW_KEY = /^(.+):followed\.(forums|speakers|talks)$/;
 type FollowType = "forums" | "speakers" | "talks";
+
+// Site-wide preference keys (currently the reminder prefs) synced as a scalarMap.
+// Follows are per-conference and merge as a stringSet; prefs are simple scalars.
+const PREF_KEY_LIST: readonly string[] = Object.values(PREF_KEYS);
 
 export const syncConfig: GistSyncConfig = {
   clientId: (import.meta.env.VITE_GH_CLIENT_ID as string | undefined) ?? "",
@@ -19,6 +24,10 @@ export const syncConfig: GistSyncConfig = {
 
 export const syncSchema: Schema = {
   follows: { kind: "stringSet" },
+  // Site-wide preferences (reminder enabled/lead/day-start). scalarMap: a
+  // per-key three-way merge; empty values are dropped, so booleans are stored as
+  // "1"/"0" (never "") to keep an explicit "off" syncable.
+  prefs: { kind: "scalarMap" },
 };
 
 /** Event fired after a pull writes follows back to localStorage, so a mounted
@@ -44,7 +53,20 @@ function readArray(key: string): string[] {
   }
 }
 
-/** Snapshot every conference's follows into one flat, sorted string set. */
+/** Snapshot the site-wide preference keys into a scalarMap (only present,
+    non-empty values; missing keys fall back to defaults on the other device). */
+function readPrefs(): Record<string, string> {
+  const out: Record<string, string> = {};
+  if (typeof localStorage === "undefined") return out;
+  for (const key of PREF_KEY_LIST) {
+    const v = localStorage.getItem(key);
+    if (v != null && v !== "") out[key] = v;
+  }
+  return out;
+}
+
+/** Snapshot every conference's follows into one flat, sorted string set, plus
+    the site-wide preferences. */
 export function serialize(): Bundle {
   const out: string[] = [];
   for (const key of allFollowKeys()) {
@@ -53,7 +75,38 @@ export function serialize(): Bundle {
     const [, confId, type] = m;
     for (const v of readArray(key)) out.push(JSON.stringify([confId, type, v]));
   }
-  return { app: "fora", version: 1, follows: out.sort() };
+  return { app: "fora", version: 1, follows: out.sort(), prefs: readPrefs() };
+}
+
+/** Write the preference scalarMap back into localStorage. In replace mode a key
+    the bundle omits is cleared (reset to default). Fires REMINDER_PREFS_UPDATED
+    when anything changed so a mounted ReminderProvider reloads. */
+function applyPrefs(bundle: Bundle, merge: boolean): void {
+  if (typeof localStorage === "undefined") return;
+  const raw = bundle.prefs;
+  const prefs =
+    raw && typeof raw === "object" && !Array.isArray(raw) ? (raw as Record<string, unknown>) : {};
+  let changed = false;
+  for (const key of PREF_KEY_LIST) {
+    const incoming = prefs[key];
+    const before = localStorage.getItem(key);
+    if (typeof incoming === "string" && incoming !== "") {
+      if (before !== incoming) {
+        try {
+          localStorage.setItem(key, incoming);
+          changed = true;
+        } catch {
+          /* quota / privacy mode */
+        }
+      }
+    } else if (!merge && before != null) {
+      localStorage.removeItem(key);
+      changed = true;
+    }
+  }
+  if (changed && typeof window !== "undefined") {
+    window.dispatchEvent(new CustomEvent(REMINDER_PREFS_UPDATED));
+  }
 }
 
 /** Write a (possibly partial) bundle back into per-conference localStorage keys.
@@ -61,6 +114,7 @@ export function serialize(): Bundle {
 export function apply(bundle: Bundle, opts?: { merge?: boolean }): void {
   if (typeof localStorage === "undefined") return;
   const merge = opts?.merge ?? false;
+  applyPrefs(bundle, merge);
   const follows = Array.isArray(bundle.follows) ? (bundle.follows as string[]) : [];
 
   // Group parsed entries by their localStorage key.
