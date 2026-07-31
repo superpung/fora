@@ -132,7 +132,8 @@ source/
   extract_structured.py       ccfchip2026: extract structured content -> extracted/
   slice_poster.py             Slice a tall forum poster for chunked reading
   batch_slice.py              Batch-slice multiple forum posters
-  build_dataset.py            ccfchip2026: assemble data/<id>.json + the web copy
+  build_all.py              ★ Rebuild every conference + the manifest (one entry
+                              point; discovers source/<id>/build.py by convention)
   build_manifest.py           Regenerate web/src/data/manifest.json across all confs
   validate.py                 Validate every conference against the schema
   <id>/                       Per-conference adapter (e.g. chinasoft2025/):
@@ -150,16 +151,22 @@ web/
 Datasets are built offline and committed; the web app never fetches at runtime.
 
 ```bash
-# ccfchip2026 (crawl-based)
+uv run python source/build_all.py   # rebuild EVERY conference + the manifest
+uv run python source/validate.py    # validate every conference against the schema
+
+# ccfchip2026's crawl steps (already done; artifacts committed in source/raw/)
 cd source
-python3 fetch_all.py            # crawl (done; artifacts committed in raw/)
-python3 extract_structured.py   # extract structured content
-python3 build_dataset.py        # write data/<id>.json + web/src/data/conferences/<id>.json
-python3 build_manifest.py       # rebuild web/src/data/manifest.json from all confs
-python3 validate.py             # validate every conference (needs: uv add jsonschema)
+python3 fetch_all.py                # crawl channels + assets -> raw/
+python3 extract_structured.py       # extract structured content -> extracted/
 ```
 
-`build_dataset.py` writes the dataset to **both** `data/` and
+`build_all.py` is the one entry point CI and humans use. It has no
+per-conference knowledge: it runs every `source/<id>/build.py` it finds, then
+`build_manifest.py`. A new conference is picked up by dropping in its directory —
+**CI is never edited for a conference**, because a forgotten line there would
+still go green while leaving that conference's data unchecked.
+
+Each `build.py` writes its dataset to **both** `data/` and
 `web/src/data/conferences/`, so the two copies stay identical with no manual sync.
 Output is **deterministic**: with unchanged source data a rerun is byte-for-byte
 identical (`extraction.content_sha256` is a content fingerprint; a real
@@ -173,10 +180,12 @@ Every conference is an independent **adapter** producing a schema-conforming
 `data/<id>.json` — there is no universal parser, because every source site
 differs. The pattern (see `source/chinasoft2025/`): `fetch.py` saves the source
 to a committed `raw/`; `build.py` parses that `raw/` into the schema
-deterministically and offline. Then run `python source/build_manifest.py` to
-refresh the hub/switcher index and `python source/validate.py` to check every
-conference. On the web side this is a **data-only** change: the hub, switcher, and
-routing pick up the new `<id>.json` with no code change.
+deterministically and offline. The `source/<id>/build.py` name is the contract —
+`build_all.py` discovers adapters by it, so there is nothing to register and **no
+CI change to make**. Then run `python source/build_all.py` to rebuild everything
+and refresh the hub/switcher index, and `python source/validate.py` to check
+every conference. On the web side this is a **data-only** change: the hub,
+switcher, and routing pick up the new `<id>.json` with no code change.
 
 ## Web app
 
