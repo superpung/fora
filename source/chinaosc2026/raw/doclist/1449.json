@@ -1,0 +1,29 @@
+{
+ "code": 200,
+ "msg": "查询成功",
+ "rows": [
+  {
+   "auditStatus": "1",
+   "auditType": null,
+   "createBy": "leoxie807",
+   "deptId": 386,
+   "docDetailUrl": null,
+   "editable": null,
+   "editorType": "markdown_editor",
+   "headImg": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/18/介绍图_20260618114757A137.png",
+   "id": 1454,
+   "isHomepage": "0",
+   "keywords": null,
+   "name": "2026 CCF中国开源大会分论坛申报火热进行中｜首批分论坛发布",
+   "publishTime": "2026/06/18",
+   "publishUser": "leoxie807",
+   "publishUserImage": "https://www.gitlink.org.cn/system/lets/letter_avatars/2/L/61_162_123/120.png",
+   "publishUserNickname": "leoxie807",
+   "publishUserUrl": "https://www.gitlink.org.cn/leoxie807",
+   "remark": null,
+   "summary": "2026 CCF中国开源大会分论坛征集工作正在进行中。大会诚邀来自学术界、产业界、教育界和开源社区的单位积极申报分论坛，共同构建覆盖学术研究、技术实践与人才培养的交流体系。征集的分论坛将由组委会与各申报单位深入沟通，并经过严格筛选来确定。",
+   "visits": 164
+  }
+ ],
+ "total": 1
+}
