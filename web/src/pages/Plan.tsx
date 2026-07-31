@@ -170,7 +170,10 @@ export default function Plan() {
         <div className="planoff">
           <Icon name="sparkle" size={22} />
           <p>{t("plan.aiOff")}</p>
-          <span className="planoff__hint">{t("plan.aiOffHow")}</span>
+          {/* The action itself, not directions to go and find it elsewhere. */}
+          <button className="planoff__on" onClick={() => ai.setEnabled(true)}>
+            {t("plan.aiTurnOn")}
+          </button>
         </div>
       ) : (
         <>

@@ -267,7 +267,7 @@ const zh: Dict = {
   "plan.starred": "已加入关注 {n} 场",
   "plan.viewStarred": "查看",
   "plan.aiOff": "「为我规划」由 AI 推导生成，当前已关闭 AI 内容。",
-  "plan.aiOffHow": "在右上角账户菜单中开启「显示 AI 生成内容」。",
+  "plan.aiTurnOn": "开启 AI 内容",
 };
 
 const en: Dict = {
@@ -515,7 +515,7 @@ const en: Dict = {
   "plan.starred": "{n} added to your follows",
   "plan.viewStarred": "View",
   "plan.aiOff": "Plan for me is AI-derived, and AI content is currently off.",
-  "plan.aiOffHow": "Turn on “Show AI-generated content” in the account menu.",
+  "plan.aiTurnOn": "Turn on AI content",
 };
 
 const DICTS: Record<Lang, Dict> = { zh, en };

@@ -1618,7 +1618,13 @@ svg { display: block; }
 .planempty { padding: clamp(28px, 5vw, 44px) 16px; }
 .planoff svg { color: var(--ai-fg); }
 .planoff p { margin: 0; font-size: 15px; font-weight: 500; color: var(--fg); max-width: 46ch; }
-.planoff__hint { font-size: 12.5px; color: var(--fg-muted); }
+.planoff__on {
+  margin-top: 2px; padding: 7px 14px; border-radius: var(--radius); cursor: pointer;
+  font-size: 13px; font-weight: 500;
+  color: var(--primary-fg); background: var(--primary-bg); border: 1px solid var(--primary-bg);
+  transition: background 0.15s, border-color 0.15s;
+}
+.planoff__on:hover { background: var(--primary-hover); border-color: var(--primary-hover); }
 
 @media (max-width: 560px) {
   .planpick { padding: 11px 12px; }
