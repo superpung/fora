@@ -6,6 +6,7 @@ import { useConference } from "../lib/conference-store";
 import { useI18n } from "../lib/i18n-store";
 import { formatDate } from "../lib/data";
 import { similarTalks, type SimilarTalk } from "../lib/similar";
+import { topicLabel } from "../lib/topic-labels";
 import { AiNote, AiBadge } from "../components/AiMark";
 import Icon from "./Icon";
 
@@ -47,7 +48,7 @@ function SimilarRow({ item }: { item: SimilarTalk }) {
         <span className="simrow__topics">
           {item.sharedTopics.map((x) => (
             <span key={x} className="tag">
-              {x}
+              {topicLabel(x, lang)}
             </span>
           ))}
         </span>

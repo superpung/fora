@@ -1,9 +1,17 @@
 import type { Conference } from "../types";
+import type { Lang } from "./i18n-store";
+import { topicLabel } from "./topic-labels";
 
 // "Conference at a glance": the topic landscape of one program, built from the
 // AI-derived `talk.enrichment.topics` tags (a controlled vocabulary — see
 // source/topics.json). AI-DERIVED, so every surface built on this module is
 // gated on useAi().enabled and carries a provenance mark.
+//
+// A topic travels as its vocabulary KEY and is only ever shown through
+// `topicLabel()`, so an English reader reads "Compute-in-Memory" where a Chinese
+// one reads 存算一体. The label is baked into the node because it decides the
+// bubble's text layout, which makes the map language-dependent — hence the
+// per-language memo below.
 //
 // Everything here is a pure function of the conference JSON. In particular the
 // LAYOUT IS DETERMINISTIC: no randomness, no seeding, no physics simulation and
@@ -30,6 +38,8 @@ export interface TopicTalk {
 
 export interface TopicNode {
   key: string;
+  /** The key as shown to this reader — what `lines` is a wrapping of. */
+  label: string;
   count: number;
   /** Layout, in the map's own coordinate space (see `width`/`height`). */
   x: number;
@@ -82,7 +92,15 @@ const R_MAX = 62;
 // co-occurrence line would disappear under its own endpoints.
 const GAP = 18;
 const LABEL_FONT = 11.5;
-const LABEL_FONT_MIN = 8.5;
+const LABEL_FONT_MIN = 8;
+const LABEL_FONT_STEP = 0.5;
+/** Baseline-to-baseline, as a multiple of the font size. Shared with the page,
+    which stacks the tspans on the same rhythm. */
+export const LINE_HEIGHT = 1.15;
+/** Past three lines a bubble reads as a paragraph, not a label. */
+const LABEL_LINES_MAX = 3;
+/** Breathing room between the longest line and the bubble's rim. */
+const LABEL_INSET = 6;
 /** Golden-angle sunflower: an even, gap-free candidate scan around a point. */
 const GOLDEN_ANGLE = Math.PI * (3 - Math.sqrt(5));
 const SCAN_STEP = 9;
@@ -101,31 +119,105 @@ const isCjk = (ch: string): boolean => /[㐀-鿿豈-﫿]/.test(ch);
 const textUnits = (s: string): number =>
   [...s].reduce((w, ch) => w + (isCjk(ch) ? 1 : 0.58), 0);
 
-/** Fit a topic label inside its bubble: one line if it fits, otherwise split
-    into two, shrinking the font (down to a floor) when even that overflows.
-    Uses the inscribed square of the circle as the usable box. */
+/** What a bubble is lettered with: the label trimmed to its first alternative,
+    so 存算一体 / CIM and "AI Chip / Accelerator" stay legible at bubble size.
+    The panel heading and the accessible name still carry the label in full. */
+const bubbleText = (label: string): string => label.split("/")[0].trim();
+
+/** A piece of a label that must not be broken, and whether a space preceded it.
+    English breaks between words and after hyphens; CJK, which has neither,
+    breaks between any two characters. */
+interface Chunk {
+  text: string;
+  space: boolean;
+}
+
+function chunks(label: string): Chunk[] {
+  const out: Chunk[] = [];
+  let cur = "";
+  let pendingSpace = false;
+  const flush = () => {
+    if (!cur) return;
+    out.push({ text: cur, space: pendingSpace });
+    cur = "";
+    pendingSpace = false;
+  };
+  for (const ch of [...label]) {
+    if (ch === " ") {
+      flush();
+      pendingSpace = true;
+      continue;
+    }
+    if (isCjk(ch)) {
+      flush();
+      cur = ch;
+      flush();
+      continue;
+    }
+    cur += ch;
+    if (ch === "-") flush();
+  }
+  flush();
+  return out;
+}
+
+/** Usable width of the text line sitting `y` above or below the bubble's
+    centre: the circle's chord there, inset so the letters clear the rim. A
+    bubble is round, so its middle line has far more room than its outer ones —
+    measuring the chord is what lets "Superconducting" sit inside one. */
+const chordAt = (r: number, y: number): number =>
+  2 * Math.sqrt(Math.max(0, r * r - y * y)) - LABEL_INSET;
+
+/** Greedy word wrap into lines of the given widths. Null if the chunks do not
+    all fit within them. */
+function wrapTo(cs: Chunk[], widths: number[], fontSize: number): string[] | null {
+  const lines: string[] = [];
+  let i = 0;
+  for (const w of widths) {
+    let line = "";
+    while (i < cs.length) {
+      const next = line && cs[i].space ? ` ${cs[i].text}` : cs[i].text;
+      // The first chunk goes on unconditionally — an over-long word is caught
+      // by the caller's fit check, not by producing an empty line.
+      if (line && textUnits(line + next) * fontSize > w) break;
+      line += next;
+      i += 1;
+    }
+    if (!line) return null;
+    lines.push(line);
+    if (i >= cs.length) return lines;
+  }
+  return null;
+}
+
+/** Fit a topic label inside its bubble: the largest size, on the fewest lines,
+    that keeps every line inside the circle. Falls back to the tightest attempt
+    when a single long word cannot be made to fit at all. */
 function fitLabel(label: string, r: number): { lines: string[]; fontSize: number } {
-  const maxWidth = r * 1.42; // side of the inscribed square
-  const chars = [...label];
-  const oneLine = textUnits(label) * LABEL_FONT;
-  if (oneLine <= maxWidth) return { lines: [label], fontSize: LABEL_FONT };
-  // Two lines, split as evenly as possible (mid-word for CJK, which has no
-  // spaces; a spaced label breaks at the space nearest the middle instead).
-  const spaceAt = label.indexOf(" ");
-  const cut =
-    spaceAt > 0 && spaceAt < chars.length - 1
-      ? spaceAt + 1
-      : Math.ceil(chars.length / 2);
-  const lines = [chars.slice(0, cut).join("").trim(), chars.slice(cut).join("").trim()];
-  const widest = Math.max(...lines.map(textUnits));
-  const fontSize = Math.max(LABEL_FONT_MIN, Math.min(LABEL_FONT, maxWidth / widest));
-  return { lines, fontSize };
+  const cs = chunks(label);
+  let fallback: { lines: string[]; fontSize: number } = {
+    lines: [label],
+    fontSize: LABEL_FONT_MIN,
+  };
+  for (let fontSize = LABEL_FONT; fontSize >= LABEL_FONT_MIN; fontSize -= LABEL_FONT_STEP) {
+    const lineH = fontSize * LINE_HEIGHT;
+    for (let n = 1; n <= LABEL_LINES_MAX; n++) {
+      const top = -((n - 1) * lineH) / 2;
+      const widths = Array.from({ length: n }, (_, i) => chordAt(r, top + i * lineH));
+      const lines = wrapTo(cs, widths, fontSize);
+      if (!lines) continue;
+      if (lines.every((l, i) => textUnits(l) * fontSize <= widths[i])) return { lines, fontSize };
+      fallback = { lines, fontSize };
+    }
+  }
+  return fallback;
 }
 
 /* ================================= builder ================================ */
 
-/** Build the whole topic map for one conference. Pure; the page memoises it. */
-export function buildTopicMap(conference: Conference): TopicMapData {
+/** Build the whole topic map for one conference, lettered in `lang`. Pure; the
+    page memoises it. */
+export function buildTopicMap(conference: Conference, lang: Lang): TopicMapData {
   // ---- 1. counts, co-occurrence, and the talks behind each topic ----
   const counts = new Map<string, number>();
   const talksByTopic = new Map<string, TopicTalk[]>();
@@ -317,6 +409,7 @@ export function buildTopicMap(conference: Conference): TopicMapData {
   const nodes: TopicNode[] = keys.map((key) => {
     const p = pos.get(key)!;
     const r = radius.get(key)!;
+    const label = topicLabel(key, lang);
     const talks = (talksByTopic.get(key) ?? []).slice().sort(
       (x, y) =>
         (x.date ?? "").localeCompare(y.date ?? "") ||
@@ -326,11 +419,12 @@ export function buildTopicMap(conference: Conference): TopicMapData {
     );
     return {
       key,
+      label,
       count: counts.get(key) ?? 0,
       x: p.x - minX + MARGIN,
       y: p.y - minY + MARGIN,
       r,
-      ...fitLabel(key, r),
+      ...fitLabel(bubbleText(label), r),
       talks,
     };
   });
@@ -376,12 +470,14 @@ export const otherEnd = (e: TopicEdge, key: string): string => (e.a === key ? e.
 
 const cache = new Map<string, TopicMapData>();
 
-/** Memoised per conference id — the map is built on first open of the topics
-    page and reused for the rest of the session. */
-export function topicMapFor(confId: string, conference: Conference): TopicMapData {
-  const hit = cache.get(confId);
+/** Memoised per conference id and language — the map is built on first open of
+    the topics page and reused for the rest of the session. Language is part of
+    the key because the labels decide how the bubbles are lettered. */
+export function topicMapFor(confId: string, conference: Conference, lang: Lang): TopicMapData {
+  const cacheKey = `${confId}:${lang}`;
+  const hit = cache.get(cacheKey);
   if (hit) return hit;
-  const built = buildTopicMap(conference);
-  cache.set(confId, built);
+  const built = buildTopicMap(conference, lang);
+  cache.set(cacheKey, built);
   return built;
 }

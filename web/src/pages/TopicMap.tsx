@@ -6,7 +6,14 @@ import { useI18n } from "../lib/i18n-store";
 import { useStickyState } from "../lib/sticky-state";
 import { pageVariants } from "../lib/motion";
 import { formatDate } from "../lib/data";
-import { topicMapFor, otherEnd, type TopicNode, type TopicTalk } from "../lib/topics";
+import {
+  topicMapFor,
+  otherEnd,
+  LINE_HEIGHT,
+  type TopicNode,
+  type TopicTalk,
+} from "../lib/topics";
+import { topicLabel } from "../lib/topic-labels";
 import { AiNote, AiBadge } from "../components/AiMark";
 import Icon from "../components/Icon";
 
@@ -78,8 +85,9 @@ function TopicBubble({
     e.preventDefault();
     onSelect(node.key);
   };
-  // Two-line labels straddle the centre; one-line labels sit on it.
-  const lineH = node.fontSize * 1.15;
+  // Multi-line labels straddle the centre; one-line labels sit on it. The
+  // rhythm is the fitter's, so what was measured is what gets drawn.
+  const lineH = node.fontSize * LINE_HEIGHT;
   const top = -((node.lines.length - 1) * lineH) / 2;
   return (
     <g
@@ -89,7 +97,7 @@ function TopicBubble({
       tabIndex={0}
       aria-pressed={state === "selected"}
       aria-label={t(node.count === 1 ? "topics.bubbleAriaOne" : "topics.bubbleAria", {
-        topic: node.key,
+        topic: node.label,
         n: node.count,
       })}
       onClick={() => onSelect(node.key)}
@@ -109,10 +117,10 @@ function TopicBubble({
 
 export default function TopicMap() {
   const { id: confId, conference } = useConference();
-  const { t } = useI18n();
-  // Built lazily on first open and memoised per conference (see lib/topics.ts),
-  // so returning to the page costs nothing.
-  const map = useMemo(() => topicMapFor(confId, conference), [confId, conference]);
+  const { t, lang } = useI18n();
+  // Built lazily on first open and memoised per conference and language (see
+  // lib/topics.ts), so returning to the page costs nothing.
+  const map = useMemo(() => topicMapFor(confId, conference, lang), [confId, conference, lang]);
   // Sticky so a trip into a forum page and browser Back restores the selection,
   // matching the speakers/schedule filters.
   const [selected, setSelected] = useStickyState<string | null>(`${confId}:tmap.sel`, null);
@@ -238,7 +246,7 @@ export default function TopicMap() {
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
             <header className="tmapsel__head">
-              <h3 className="tmapsel__title">{node.key}</h3>
+              <h3 className="tmapsel__title">{node.label}</h3>
               <span className="tmapsel__count mono">
                 {t("common.reportsCount", { n: node.count })}
               </span>
@@ -259,7 +267,7 @@ export default function TopicMap() {
                   const key = otherEnd(e, node.key);
                   return (
                     <button key={key} className="tmapsel__chip" onClick={() => select(key)}>
-                      {key}
+                      {topicLabel(key, lang)}
                       <span className="tmapsel__chipn mono">{e.n}</span>
                     </button>
                   );
