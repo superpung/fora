@@ -7,13 +7,20 @@
 // merge reconciles adds/removes across devices without knowing our shape.
 import type { Bundle, GistSyncConfig, Schema } from "@repus/gist-sync";
 import { PREF_KEYS, REMINDER_PREFS_UPDATED } from "./reminder-store";
+import { AI_PREF_KEY, AI_PREFS_UPDATED } from "./ai-store";
 
 const FOLLOW_KEY = /^(.+):followed\.(forums|speakers|talks)$/;
 type FollowType = "forums" | "speakers" | "talks";
 
-// Site-wide preference keys (currently the reminder prefs) synced as a scalarMap.
-// Follows are per-conference and merge as a stringSet; prefs are simple scalars.
-const PREF_KEY_LIST: readonly string[] = Object.values(PREF_KEYS);
+// Site-wide preference keys (reminder prefs + the AI-content switch) synced as a
+// scalarMap. Follows are per-conference and merge as a stringSet; prefs are
+// simple scalars. Each key is paired with the event to fire when a pull changes
+// it, so only the affected provider reloads.
+const PREF_EVENTS: Readonly<Record<string, string>> = {
+  ...Object.fromEntries(Object.values(PREF_KEYS).map((k) => [k, REMINDER_PREFS_UPDATED])),
+  [AI_PREF_KEY]: AI_PREFS_UPDATED,
+};
+const PREF_KEY_LIST: readonly string[] = Object.keys(PREF_EVENTS);
 
 export const syncConfig: GistSyncConfig = {
   clientId: (import.meta.env.VITE_GH_CLIENT_ID as string | undefined) ?? "",
@@ -79,14 +86,15 @@ export function serialize(): Bundle {
 }
 
 /** Write the preference scalarMap back into localStorage. In replace mode a key
-    the bundle omits is cleared (reset to default). Fires REMINDER_PREFS_UPDATED
-    when anything changed so a mounted ReminderProvider reloads. */
+    the bundle omits is cleared (reset to default). Fires each changed key's
+    event (PREF_EVENTS) so the owning provider — ReminderProvider, AiProvider —
+    reloads its state. */
 function applyPrefs(bundle: Bundle, merge: boolean): void {
   if (typeof localStorage === "undefined") return;
   const raw = bundle.prefs;
   const prefs =
     raw && typeof raw === "object" && !Array.isArray(raw) ? (raw as Record<string, unknown>) : {};
-  let changed = false;
+  const events = new Set<string>();
   for (const key of PREF_KEY_LIST) {
     const incoming = prefs[key];
     const before = localStorage.getItem(key);
@@ -94,18 +102,18 @@ function applyPrefs(bundle: Bundle, merge: boolean): void {
       if (before !== incoming) {
         try {
           localStorage.setItem(key, incoming);
-          changed = true;
+          events.add(PREF_EVENTS[key]);
         } catch {
           /* quota / privacy mode */
         }
       }
     } else if (!merge && before != null) {
       localStorage.removeItem(key);
-      changed = true;
+      events.add(PREF_EVENTS[key]);
     }
   }
-  if (changed && typeof window !== "undefined") {
-    window.dispatchEvent(new CustomEvent(REMINDER_PREFS_UPDATED));
+  if (typeof window !== "undefined") {
+    for (const name of events) window.dispatchEvent(new CustomEvent(name));
   }
 }
 
