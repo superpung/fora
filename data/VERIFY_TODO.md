@@ -13,7 +13,7 @@ caught the 7/19 second-keynote change the earlier pass missed (see below).
 - ✅ **7/19 keynote #2 (09:10-09:50)** — the handbook (exported 2026-07-14, newer
   than the website) replaced the placeholder **张荣 (厦门大学, 报告题目待定, TBD)**
   with a confirmed talk: **沈波 (北京大学博雅特聘教授) — “基于大失配外延的氮化物宽
-  禁带半导体材料和芯片”**. Updated in `source/build_dataset.py`. NOTE: 张荣 remains
+  禁带半导体材料和芯片”**. Updated in `source/ccfchip2026/build.py`. NOTE: 张荣 remains
   in the 大会指导委员会 (guidance committee) — that entry is unrelated and unchanged.
   Why the first pass missed it: the earlier PDF cross-check focused on the 48
   forum spreads and trusted the *website* for the keynote list (which still shows
