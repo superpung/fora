@@ -339,7 +339,9 @@ export default function TimeGrid({
                       {t.end ? `–${t.end}` : ""}
                     </span>
                     <span className="tgrid__ttitle">
-                      {t.title_status === "tbd" ? tr("timeline.tbd") : t.title?.zh}
+                      {t.title_status === "tbd" || !t.title?.zh
+                        ? tr("timeline.tbd")
+                        : t.title.zh}
                     </span>
                     {sp?.name && <span className="tgrid__tspk">{sp.name}</span>}
                   </>

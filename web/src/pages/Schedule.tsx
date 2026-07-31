@@ -79,7 +79,7 @@ function KeynotesBlock({ block, date }: { block: Block; date: string }) {
               ) : (
                 <>
                   <div className="talkrow__title">
-                    {row.talk.title_status === "tbd" ? (
+                    {row.talk.title_status === "tbd" || !row.talk.title?.zh ? (
                       <span className="tag tag--tbd">{t("schedule.talkTbd")}</span>
                     ) : (
                       row.talk.title?.zh
