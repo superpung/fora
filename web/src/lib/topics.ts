@@ -1,6 +1,6 @@
 import type { Conference } from "../types";
 import type { Lang } from "./i18n-store";
-import { topicLabel } from "./topic-labels";
+import { topicLabel, topicCategory } from "./topic-labels";
 
 // "Conference at a glance": the topic landscape of one program, built from the
 // AI-derived `talk.enrichment.topics` tags (a controlled vocabulary — see
@@ -9,27 +9,25 @@ import { topicLabel } from "./topic-labels";
 //
 // A topic travels as its vocabulary KEY and is only ever shown through
 // `topicLabel()`, so an English reader reads "Compute-in-Memory" where a Chinese
-// one reads 存算一体. The label is baked into the node because it decides the
-// type size its tile can carry, which makes the map language-dependent — hence
-// the per-language memo below.
+// one reads 存算一体.
 //
-// The map is a MOSAIC: one rounded tile per topic, laid out in rank order and
-// sized so that AREA IS THE TALK COUNT. That is the whole legend — no colour
-// scale to decode, no floating circles to compare by eye, no crossing lines. It
-// is the same shape a treemap has in any analytics dashboard, for the same
-// reason: it is the densest honest way to show "how much of the program is X",
-// and every label sits inside its own rectangle where it stays readable.
+// The map is a KNOWLEDGE GRAPH: a node per topic, sized by how many talks carry
+// it, joined to the topics it shares talks with, and placed by those links —
+// themes that travel together end up together. Two decisions make that readable
+// where the earlier drafts were not:
 //
-// Which topics travel together is still in the data — it drives the
-// co-occurrence chips and the highlight on the selected topic's relatives — but
-// it is no longer drawn as lines across the map, where thirty of them read as
-// spaghetti rather than as structure.
+//   * The label sits UNDER its node, not inside it. A circle is the worst
+//     possible box for text, and fitting 存算一体 inside one is what forced the
+//     nodes to be huge, which in turn buried the links they exist to show. With
+//     the label outside, a node can be a small disc and the graph can breathe.
+//   * The layout reserves the label's own box. Placement separates node+label
+//     boxes, not circles, so labels do not land on top of each other.
 //
 // Everything here is a pure function of the conference JSON and the box it is
-// laid out for. In particular the LAYOUT IS DETERMINISTIC: no randomness, no
-// physics, no measurement of the DOM, so the same dataset always produces the
-// same mosaic, on every load and on every device. Ties break on the topic key,
-// which is unique, so no comparison can end in an arbitrary result.
+// laid out for. The layout is DETERMINISTIC: positions start on a fixed spiral
+// and are relaxed for a fixed number of passes, with no randomness anywhere, so
+// the same dataset always produces the same graph, on every load and on every
+// device. Ties break on the topic key, which is unique.
 
 /** One talk carrying a topic, flattened with everything a link needs. */
 export interface TopicTalk {
@@ -51,22 +49,20 @@ export interface TopicNode {
   key: string;
   /** The key as shown to this reader. */
   label: string;
-  /** The label as lettered on the tile — trimmed to its first alternative. */
+  /** The label as lettered on the graph — trimmed to its first alternative. */
   short: string;
   count: number;
-  /** The tile, in `cqw` units: hundredths of the mosaic's own width, for both
-      axes. The page is a container query, so one set of numbers scales from a
-      phone to a wide screen without re-laying anything out. */
+  /** Centre of the disc, in the pixels of the box this map was built for. */
   x: number;
   y: number;
-  w: number;
-  h: number;
-  /** Type size for the tile, in the same units. */
-  fontSize: number;
-  /** Whether the tile has the room to also carry its talk count. */
-  showCount: boolean;
-  /** 0…1 by talk count — how far up the tile's ink ramp its surface sits. */
+  /** Disc radius, in the same pixels. */
+  r: number;
+  /** 0…1 by talk count — how deep the disc's colour sits. */
   weight: number;
+  /** Hue of the topic's family in the vocabulary (see CATEGORY_HUE), or null
+      for a topic whose family the vocabulary does not name — that one stays
+      grey rather than being given a colour it has not earned. */
+  hue: number | null;
   talks: TopicTalk[];
 }
 
@@ -81,7 +77,7 @@ export interface TopicEdge {
 }
 
 export interface TopicCoverage {
-  /** Talks the tiles actually stand for: forum talks carrying at least one
+  /** Talks the nodes actually stand for: forum talks carrying at least one
       topic. Main-stage keynotes are not on the map (they have no `#talk-N`
       anchor to link at), so they are not counted here either — the page states
       this number as "N talks", and it has to be the same N. */
@@ -89,61 +85,94 @@ export interface TopicCoverage {
 }
 
 export interface TopicMapData {
-  /** Ranked by count desc, then key — also the mosaic's reading order and the
-      DOM/tab order. */
+  /** Ranked by count desc, then key — also the DOM/tab order. */
   nodes: TopicNode[];
   byKey: Map<string, TopicNode>;
   /** Co-occurring topics of a topic, strongest first. */
   neighbors: Map<string, TopicEdge[]>;
-  /** Width ÷ height of the box the tiles were laid out for. */
-  aspect: number;
+  /** The links actually drawn: every topic's strongest ties, plus the strongest
+      ties overall, up to a cap. All of them are still in `neighbors`. */
+  links: TopicEdge[];
+  width: number;
+  height: number;
+  /** Type size the labels were laid out at — the page sets it on the canvas, so
+      what is measured here is exactly what is rendered. */
+  labelFont: number;
   coverage: TopicCoverage;
 }
 
 /* ============================== layout tuning ============================== */
 
-/** The mosaic's width in layout units — `cqw`, i.e. hundredths of its own
-    rendered width. Its height follows from the aspect it is built for. */
-const BOX_W = 100;
-/** How a talk count becomes an area: `count ** AREA_GAMMA + WEIGHT_FLOOR`.
-    Straight proportion does not survive a real program — ChinaSoft's biggest
-    topic carries 145 talks and its smallest one, so at 1:1 the tail would come
-    out around 30px square, too small to letter in either language. Damping the
-    ratio (and lifting the floor) keeps every topic readable while preserving the
-    order and the sense of scale exactly: bigger tile, more talks, always. The
-    exact number is printed on the tile whenever it fits, and is always in the
-    tile's accessible name. */
-const AREA_GAMMA = 0.65;
-const WEIGHT_FLOOR = 0.8;
-/** No row may come out shorter than this fraction of the box — see the pull
-    pass in `stripLayout`. */
-const MIN_ROW_FRAC = 0.09;
-/** Space between two tiles, in layout units. */
-const GAP = 0.55;
-/** Type size bounds and the step the fitter walks between them. */
-const FS_MAX = 2.6;
-const FS_MIN = 1.0;
-const FS_STEP = 0.05;
-/** Type size a tile asks for before its label is considered: a constant plus a
-    share of the tile's linear size, so the mosaic is set in a handful of sizes
-    that track how big the topic is. */
-const FS_BASE = 0.55;
-const FS_SCALE = 0.09;
-/** Padding inside a tile, and the leading its label is set on. */
-const PAD_X = 0.85;
-const PAD_Y = 0.7;
-const LINE_HEIGHT = 1.3;
-/** Past four lines a tile reads as a paragraph, not a label. Only the
-    smallest tiles ever get there: the fitter takes the largest type that fits,
-    so a big tile is set on one or two lines long before this matters. */
-const LINES_MAX = 4;
-/** Room a tile needs, under the label, before it also shows its talk count. */
-const COUNT_ROOM = 1.9;
-/** Aspect ratios worth laying out for. The page picks one per breakpoint and
-    the mosaic is rebuilt for it — a layout squarified for a wide screen turns
-    into a stack of slivers when it is poured into a phone-shaped box. */
-export const MAP_ASPECTS = { wide: 2.05, mid: 1.35, narrow: 0.82 };
+/** Disc radius bounds, for a box of REF_AREA; smaller boxes scale down. */
+const R_MIN = 6;
+const R_MAX = 27;
+const REF_AREA = 1000 * 520;
+/** Label metrics, in px. The graph letters every topic at one size — a label is
+    a name, not a quantity, and the disc beside it already carries the count.
+    A phone-sized box gets the smaller of the two: forty labelled nodes have to
+    find room in a third of the width. */
+const LABEL_FONT = 11.5;
+const LABEL_FONT_SMALL = 10.5;
+const SMALL_BOX = 520;
+const LABEL_LEADING = 1.18;
+const LABEL_GAP = 5;
+/** Longest label line before it wraps, in characters-worth of the label font. */
+const LABEL_WRAP = 7.2;
+const LABEL_LINES_MAX = 2;
+/** Clear space kept around every node+label box. */
+const PAD = 8;
+/** How far the relaxed graph may be stretched to fill the box. The relaxation
+    settles into whatever area its forces balance at, which is usually smaller
+    than the canvas; scaling the positions (never the discs) spreads it back
+    out, and the cap stops a four-topic conference from being blown apart. */
+const FIT_MAX = 2.4;
+/** How much of the box the relaxed graph is stretched to. */
+const FIT_SLACK = 0.94;
+/** Relaxation passes and how far a node may move on the first one (px). */
+const PASSES = 320;
+const HEAT = 26;
+/** Pull along a link, and how much the ideal length shortens as the two topics
+    share more talks. */
+const PULL = 0.075;
+const LINK_LEN = 1.55;
+const LINK_LEN_MIN = 0.6;
+/** Push between every pair of nodes, as a multiple of the layout's own scale. */
+const PUSH = 0.85;
+/** Pull toward the centre. */
+const GRAVITY = 0.0055;
+/** Hard separation passes after the relaxation, where boxes are simply pushed
+    out of each other until they stop overlapping. */
+const SEPARATE_PASSES = 220;
+/** How many links to draw: each topic's strongest few, then the strongest
+    remaining ones until the cap. Enough to read the shape of the program, few
+    enough not to become a hairball. */
+const LINKS_PER_NODE = 3;
+const LINKS_MAX_PER_NODE = 2.2;
+/** Filling up to the cap stops here: a link this weak says nothing — two
+    topics that met once by accident. A topic's own strongest ties are exempt. */
+const LINK_MIN_W = 0.12;
 
+/** One hue per family in the topic vocabulary (source/topics.json `category`).
+    Colour here is not decoration and not a scale: it says which topics are the
+    same KIND of thing, which is the one grouping the reader cannot work out
+    from the graph alone. It is kept low-chroma and at one lightness so no
+    family shouts over another, and it stays off the violet axis, which in this
+    app means "AI-generated" and nothing else. An unknown family falls back to
+    neutral, so a vocabulary that grows never invents a colour. */
+const CATEGORY_HUE: Record<string, number> = {
+  se: 212,          // software engineering — blue
+  systems: 168,     // systems — teal
+  "ic-system": 140, // chip systems — green
+  emerging: 96,     // emerging — olive
+  "ic-design": 42,  // chip design — amber
+  "ic-process": 20, // process & packaging — orange
+  security: 352,    // security — rose
+  ai: 322,          // AI/ML — magenta
+  // `meta` (industry, governance, education, open data) is deliberately absent:
+  // it is not a technical family but the things that cut across all of them, so
+  // it stays neutral rather than being given a colour of its own. Nothing here
+  // sits between 225° and 290°, the blue-violet the AI mark owns.
+};
 /** Separator for the co-occurrence pair key — no topic key contains a NUL. */
 const PAIR_SEP = "\u0000";
 
@@ -154,216 +183,204 @@ const isCjk = (ch: string): boolean => /[㐀-鿿豈-﫿]/.test(ch);
 const textUnits = (s: string): number =>
   [...s].reduce((w, ch) => w + (isCjk(ch) ? 1 : 0.58), 0);
 
-/** What a tile is lettered with: the label trimmed to its first alternative, so
-    存算一体 / CIM and "AI Chip / Accelerator" stay legible at tile size. The
+/** What a node is lettered with: the label trimmed to its first alternative, so
+    存算一体 / CIM and "AI Chip / Accelerator" stay short under the disc. The
     panel heading and the accessible name still carry the label in full. */
-const tileText = (label: string): string => label.split("/")[0].trim();
+const nodeText = (label: string): string => label.split("/")[0].trim();
 
-/** A piece of a label that must not be broken, and whether a space preceded it.
-    English breaks between words and after hyphens; CJK, which has neither,
-    breaks between any two characters. This is what the browser will do inside
-    the tile, so it is what the fitter has to measure. */
-interface Chunk {
-  text: string;
-  space: boolean;
-}
-
-function chunks(label: string): Chunk[] {
-  const out: Chunk[] = [];
-  let cur = "";
-  let pendingSpace = false;
-  const flush = () => {
-    if (!cur) return;
-    out.push({ text: cur, space: pendingSpace });
-    cur = "";
-    pendingSpace = false;
-  };
-  for (const ch of [...label]) {
-    if (ch === " ") {
-      flush();
-      pendingSpace = true;
-      continue;
-    }
-    if (isCjk(ch)) {
-      flush();
-      cur = ch;
-      flush();
-      continue;
-    }
-    cur += ch;
-    if (ch === "-") flush();
-  }
-  flush();
-  return out;
-}
-
-/** Greedy wrap of `cs` into lines `perLine` units wide, exactly as the tile
-    will wrap it. Null when a single unbreakable chunk is wider than the line —
-    that size does not fit, and the caller steps down rather than letting the
-    browser hyphenate "Reliability" into "Reliabilit / y". */
-function wrapCount(cs: Chunk[], perLine: number): number | null {
-  let lines = 1;
-  let line = 0;
-  for (const c of cs) {
-    const own = textUnits(c.text);
-    if (own > perLine) return null;
-    const withSpace = line > 0 && c.space ? own + textUnits(" ") : own;
-    if (line > 0 && line + withSpace > perLine) {
-      lines += 1;
-      line = own;
-    } else {
-      line += withSpace;
-    }
-  }
-  return lines;
-}
-
-/** The largest type the label fits in at, and whether the count fits under it.
-    A rectangle wraps text by itself, so this only has to decide the size — but
-    it has to decide it on the same budget the browser will use, or a word ends
-    up split down the middle. */
-function fitLabel(text: string, w: number, h: number): { fontSize: number; showCount: boolean } {
-  const availW = Math.max(1, w - PAD_X * 2);
-  const availH = Math.max(1, h - PAD_Y * 2);
-  const cs = chunks(text);
-  // Type is sized by the TILE first and only then trimmed to the label, so two
-  // tiles of the same size are lettered the same size — a big tile set small
-  // because its topic has a long name reads as a mistake. Rounded onto the step
-  // grid so near-identical tiles land on exactly the same size.
-  const start = Math.min(
-    FS_MAX,
-    Math.max(FS_MIN, Math.round((FS_BASE + FS_SCALE * Math.sqrt(w * h)) / FS_STEP) * FS_STEP),
-  );
-  for (let fs = start; fs >= FS_MIN; fs -= FS_STEP) {
-    const lines = wrapCount(cs, availW / fs);
-    if (lines === null || lines > LINES_MAX) continue;
-    const needed = lines * fs * LINE_HEIGHT;
-    if (needed > availH) continue;
-    return { fontSize: fs, showCount: availH - needed >= COUNT_ROOM && fs >= 1.15 };
-  }
-  return { fontSize: FS_MIN, showCount: false };
+/** The label's own box under the disc: how wide it runs and how many lines it
+    takes, at the one size every label is set in. The page wraps it with the
+    same budget (`max-width` in cqw-free px), so this is what is on screen. */
+function labelBox(text: string, font: number): { w: number; h: number } {
+  const units = textUnits(text);
+  const lines = Math.min(LABEL_LINES_MAX, Math.max(1, Math.ceil(units / LABEL_WRAP)));
+  const perLine = lines === 1 ? units : Math.min(LABEL_WRAP, units / lines + 0.5);
+  return { w: perLine * font, h: lines * font * LABEL_LEADING };
 }
 
 /* ================================= layout ================================= */
 
-export interface Cell {
+interface Placed {
+  key: string;
   x: number;
   y: number;
-  w: number;
-  h: number;
+  r: number;
+  /** Half-width and the extents above/below the disc centre, label included. */
+  hw: number;
+  up: number;
+  down: number;
 }
 
-/** Strip treemap (Bederson/Shneiderman): fill the box with left-to-right rows,
-    keeping the items in the order they were given, and close a row as soon as
-    adding one more would make its tiles worse-shaped on average. Ordered, so the
-    biggest topics stay at the top-left where reading starts, and squarish, so no
-    topic is reduced to a sliver.
-    `weights` must sum to the box's area; the rows then fill it exactly. */
-function stripLayout(weights: number[], boxW: number, boxH: number): Cell[] {
-  /** Mean of each tile's longer-side ÷ shorter-side, i.e. how square a row is —
-      1 is a row of perfect squares, and lower is always better. */
-  const badness = (ws: number[], rowH: number): number => {
-    let sum = 0;
-    for (const w of ws) {
-      const tileW = w / rowH;
-      sum += Math.max(tileW / rowH, rowH / tileW);
-    }
-    return sum / ws.length;
-  };
+/** Relax the graph into the box: nodes pull along their links, push away from
+    each other, and drift toward the centre, cooling over a fixed number of
+    passes from a fixed starting spiral. A force layout with the randomness
+    taken out — same input, same picture, every time. */
+function relax(
+  nodes: Placed[],
+  edges: TopicEdge[],
+  index: Map<string, number>,
+  boxW: number,
+  boxH: number,
+  /** How much more it costs to be off-centre vertically than horizontally —
+      the box's own proportions, so the cloud comes out the shape of the space
+      it has to live in. A landscape canvas gets a wide graph; a phone gets a
+      tall one, instead of a wide one squeezed into a column. */
+  vBias: number,
+): void {
+  const n = nodes.length;
+  if (n < 2) return;
+  const scale = Math.sqrt((boxW * boxH) / n);
+  const cx = boxW / 2;
+  const cy = boxH / 2;
+  const dx = new Float64Array(n);
+  const dy = new Float64Array(n);
 
-  // ---- rows ----
-  const rows: number[][] = [];
-  let i = 0;
-  while (i < weights.length) {
-    const row: number[] = [];
-    let rowSum = 0;
-    let best = Infinity;
-    while (i < weights.length) {
-      const trySum = rowSum + weights[i];
-      const score = badness([...row, weights[i]], trySum / boxW);
-      // The first tile always joins — a row cannot be empty.
-      if (row.length > 0 && score > best) break;
-      best = score;
-      row.push(weights[i]);
-      rowSum = trySum;
-      i += 1;
+  for (let pass = 0; pass < PASSES; pass++) {
+    const heat = HEAT * (1 - pass / PASSES) ** 1.4 + 0.4;
+    dx.fill(0);
+    dy.fill(0);
+
+    // push: every pair, falling off with distance
+    for (let i = 0; i < n; i++) {
+      for (let j = i + 1; j < n; j++) {
+        let ux = nodes[i].x - nodes[j].x;
+        let uy = (nodes[i].y - nodes[j].y) * vBias;
+        let d2 = ux * ux + uy * uy;
+        if (d2 < 1e-6) {
+          // Exactly coincident (only possible on pass 0 of a degenerate input):
+          // nudge along the index difference, which is deterministic.
+          ux = (i - j) * 0.01;
+          uy = 0.01;
+          d2 = ux * ux + uy * uy;
+        }
+        const d = Math.sqrt(d2);
+        const want = nodes[i].hw + nodes[j].hw + PAD;
+        const force = (PUSH * scale * scale) / d2 + (d < want ? (want - d) * 0.35 : 0);
+        const fx = (ux / d) * force;
+        const fy = (uy / d) * force;
+        dx[i] += fx;
+        dy[i] += fy;
+        dx[j] -= fx;
+        dy[j] -= fy;
+      }
     }
-    rows.push(row);
+
+    // pull: along the links, harder for topics that share more talks
+    for (const e of edges) {
+      const i = index.get(e.a);
+      const j = index.get(e.b);
+      if (i === undefined || j === undefined) continue;
+      const ux = nodes[i].x - nodes[j].x;
+      const uy = (nodes[i].y - nodes[j].y) * vBias;
+      const d = Math.sqrt(ux * ux + uy * uy) || 1e-3;
+      const want = scale * Math.max(LINK_LEN_MIN, LINK_LEN - e.w);
+      const force = PULL * (d - want) * (0.35 + e.w);
+      const fx = (ux / d) * force;
+      const fy = (uy / d) * force;
+      dx[i] -= fx;
+      dy[i] -= fy;
+      dx[j] += fx;
+      dy[j] += fy;
+    }
+
+    for (let i = 0; i < n; i++) {
+      // gravity, so a loosely-tied topic drifts back instead of flying off
+      dx[i] += (cx - nodes[i].x) * GRAVITY * scale * 0.1;
+      dy[i] += (cy - nodes[i].y) * GRAVITY * scale * 0.1 * vBias;
+      const len = Math.hypot(dx[i], dy[i]);
+      const step = Math.min(len, heat);
+      if (len > 1e-9) {
+        nodes[i].x += (dx[i] / len) * step;
+        nodes[i].y += (dy[i] / len) * step;
+      }
+    }
   }
+}
 
-  // The tail of a long vocabulary is a run of one-talk topics, and the greedy
-  // pass can leave them alone in a row of their own — a band a few pixels tall
-  // running the whole width. Any row that comes out shorter than MIN_ROW_H
-  // borrows tiles from the row above until it is tall enough. Borrowing moves
-  // weight between two adjacent rows and never changes the total, so the mosaic
-  // still fills the box exactly.
-  const MIN_ROW_H = boxH * MIN_ROW_FRAC;
-  const heightOf = (row: number[]) => row.reduce((s, w) => s + w, 0) / boxW;
-  for (let guard = 0; guard < weights.length * 4; guard++) {
+/** Push node+label boxes out of each other until nothing overlaps, keeping
+    every one of them inside the canvas as it goes. The wall has to be part of
+    the same loop: clamping afterwards would shove a node that was pushed off
+    the edge straight back into its neighbour, which is exactly the collision
+    the pass had just resolved. Moves along the shallower axis, so the shape the
+    relaxation found survives. */
+function separate(nodes: Placed[], boxW: number, boxH: number): void {
+  const n = nodes.length;
+  const clamp = (p: Placed) => {
+    p.x = Math.min(boxW - p.hw - PAD, Math.max(p.hw + PAD, p.x));
+    p.y = Math.min(boxH - p.down - PAD, Math.max(p.up + PAD, p.y));
+  };
+  for (let pass = 0; pass < SEPARATE_PASSES; pass++) {
+    for (const p of nodes) clamp(p);
     let moved = false;
-    for (let r = 0; r < rows.length; r++) {
-      if (rows.length < 2 || heightOf(rows[r]) >= MIN_ROW_H) continue;
-      // The row above gives up its last (smallest) tile; the first row, which
-      // has no row above, takes from the one below instead.
-      const from = r > 0 ? r - 1 : 1;
-      if (rows[from].length <= 1) continue;
-      if (from < r) rows[r].unshift(rows[from].pop()!);
-      else rows[r].push(rows[from].shift()!);
-      moved = true;
+    for (let i = 0; i < n; i++) {
+      for (let j = i + 1; j < n; j++) {
+        const a = nodes[i];
+        const b = nodes[j];
+        const ox = a.hw + b.hw + PAD - Math.abs(a.x - b.x);
+        if (ox <= 0) continue;
+        const centreA = (a.down - a.up) / 2;
+        const centreB = (b.down - b.up) / 2;
+        const halfA = (a.up + a.down) / 2;
+        const halfB = (b.up + b.down) / 2;
+        const oy = halfA + halfB + PAD - Math.abs(a.y + centreA - (b.y + centreB));
+        if (oy <= 0) continue;
+        moved = true;
+        if (ox < oy) {
+          const push = (ox / 2) * (a.x <= b.x ? 1 : -1);
+          a.x -= push;
+          b.x += push;
+        } else {
+          const push = (oy / 2) * (a.y + centreA <= b.y + centreB ? 1 : -1);
+          a.y -= push;
+          b.y += push;
+        }
+      }
     }
     if (!moved) break;
   }
-
-  // ---- cells ----
-  const cells: Cell[] = [];
-  let y = 0;
-  for (const row of rows) {
-    const rowH = heightOf(row);
-    let x = 0;
-    for (const w of row) {
-      const tileW = w / rowH;
-      cells.push({ x, y, w: tileW, h: rowH });
-      x += tileW;
-    }
-    y += rowH;
-  }
-  // Floating-point drift over ~40 divisions leaves the last row a hair short of
-  // the box; stretch it back so the mosaic has a straight bottom edge.
-  if (cells.length > 0) {
-    const last = cells[cells.length - 1];
-    const drift = boxH - (last.y + last.h);
-    if (Math.abs(drift) > 1e-9) for (const c of cells) if (c.y + c.h > boxH - 1e-9) c.h += drift;
-  }
-  return cells;
+  for (const p of nodes) clamp(p);
 }
 
-/** Counts a mid-sized conference tends to produce — used only to shape the
-    loading state, so the wait has the same rhythm as the mosaic that replaces
-    it instead of being a grid of equal boxes. */
-const SKELETON_WEIGHTS = [9, 7, 6, 5, 4, 4, 3, 3, 2, 2, 2, 1, 1, 1];
-
-/** The loading state's tiles, laid out by the same algorithm as the real ones. */
-export function skeletonMosaic(aspect: number): Cell[] {
-  const boxH = BOX_W / aspect;
-  const total = SKELETON_WEIGHTS.reduce((s, w) => s + w, 0);
-  const area = BOX_W * boxH;
-  return stripLayout(
-    SKELETON_WEIGHTS.map((w) => (w / total) * area),
-    BOX_W,
-    boxH,
-  ).map((c) => ({
-    x: c.x + GAP / 2,
-    y: c.y + GAP / 2,
-    w: Math.max(0.5, c.w - GAP),
-    h: Math.max(0.5, c.h - GAP),
-  }));
+/** Scale and shift the laid-out graph so it fills the box, labels and all.
+    Positions are scaled; radii are not — a disc means a talk count, not a
+    fraction of the viewport, so spreading the graph out must not inflate it.
+    Runs BEFORE the separation pass: scaling afterwards would squeeze the boxes
+    back into each other. */
+function fitToBox(nodes: Placed[], boxW: number, boxH: number): void {
+  let minX = Infinity;
+  let maxX = -Infinity;
+  let minY = Infinity;
+  let maxY = -Infinity;
+  for (const p of nodes) {
+    minX = Math.min(minX, p.x - p.hw);
+    maxX = Math.max(maxX, p.x + p.hw);
+    minY = Math.min(minY, p.y - p.up);
+    maxY = Math.max(maxY, p.y + p.down);
+  }
+  const w = Math.max(1, maxX - minX);
+  const h = Math.max(1, maxY - minY);
+  // Aim a little under the box: filling it to the millimetre leaves every
+  // outer node pinned against a wall, with nowhere to go when the separation
+  // pass needs to move it.
+  const k = Math.min(FIT_MAX, (boxW * FIT_SLACK) / w, (boxH * FIT_SLACK) / h);
+  const cx = (minX + maxX) / 2;
+  const cy = (minY + maxY) / 2;
+  for (const p of nodes) {
+    p.x = boxW / 2 + (p.x - cx) * k;
+    p.y = boxH / 2 + (p.y - cy) * k;
+  }
 }
 
 /* ================================= builder ================================ */
 
-/** Build the whole topic map for one conference, lettered in `lang` and laid out
-    for a box of the given width ÷ height. Pure; the page memoises it. */
-export function buildTopicMap(conference: Conference, lang: Lang, aspect: number): TopicMapData {
+/** Build the whole topic map for one conference, lettered in `lang` and laid
+    out for a box of `boxW` × `boxH` pixels. Pure; the page memoises it. */
+export function buildTopicMap(
+  conference: Conference,
+  lang: Lang,
+  boxW: number,
+  boxH: number,
+): TopicMapData {
   // ---- 1. counts, co-occurrence, and the talks behind each topic ----
   const counts = new Map<string, number>();
   const talksByTopic = new Map<string, TopicTalk[]>();
@@ -413,56 +430,20 @@ export function buildTopicMap(conference: Conference, lang: Lang, aspect: number
   const keys = [...counts.keys()].sort(
     (a, b) => (counts.get(b) ?? 0) - (counts.get(a) ?? 0) || (a < b ? -1 : 1),
   );
-  if (keys.length === 0) {
-    return { nodes: [], byKey: new Map(), neighbors: new Map(), aspect, coverage };
+  if (keys.length === 0 || boxW <= 0 || boxH <= 0) {
+    return {
+      nodes: [],
+      byKey: new Map(),
+      neighbors: new Map(),
+      links: [],
+      width: boxW,
+      height: boxH,
+      labelFont: LABEL_FONT,
+      coverage,
+    };
   }
 
-  // ---- 2. the mosaic ----
-  const boxH = BOX_W / aspect;
-  const raw = keys.map((k) => (counts.get(k) ?? 0) ** AREA_GAMMA + WEIGHT_FLOOR);
-  const total = raw.reduce((s, w) => s + w, 0);
-  const area = BOX_W * boxH;
-  const cells = stripLayout(
-    raw.map((w) => (w / total) * area),
-    BOX_W,
-    boxH,
-  );
-  const maxCount = counts.get(keys[0]) ?? 1;
-
-  const nodes: TopicNode[] = keys.map((key, i) => {
-    const cell = cells[i];
-    const label = topicLabel(key, lang);
-    const short = tileText(label);
-    const talks = (talksByTopic.get(key) ?? []).slice().sort(
-      (x, y) =>
-        (x.date ?? "").localeCompare(y.date ?? "") ||
-        (x.start ?? "").localeCompare(y.start ?? "") ||
-        x.forumCode.localeCompare(y.forumCode) ||
-        x.index - y.index,
-    );
-    // The gap is taken out of the cell, so the tile a reader sees is exactly
-    // the box that was laid out minus its share of the grout.
-    const x = cell.x + GAP / 2;
-    const y = cell.y + GAP / 2;
-    const w = Math.max(0.5, cell.w - GAP);
-    const h = Math.max(0.5, cell.h - GAP);
-    const count = counts.get(key) ?? 0;
-    return {
-      key,
-      label,
-      short,
-      count,
-      x,
-      y,
-      w,
-      h,
-      ...fitLabel(short, w, h),
-      weight: maxCount > 1 ? (count - 1) / (maxCount - 1) : 1,
-      talks,
-    };
-  });
-
-  // ---- 3. co-occurrence ----
+  // ---- 2. links ----
   const edges: TopicEdge[] = [];
   for (const [k, n] of pairs) {
     const [a, b] = k.split(PAIR_SEP);
@@ -485,11 +466,106 @@ export function buildTopicMap(conference: Conference, lang: Lang, aspect: number
     addNeighbor(e.b, e);
   }
 
+  // Drawn links: every topic's strongest ties first, so no node is left
+  // stranded, then the strongest remaining ones up to the cap.
+  const drawn = new Map<string, TopicEdge>();
+  const idOf = (e: TopicEdge) => `${e.a}${PAIR_SEP}${e.b}`;
+  // A phone-sized canvas gets fewer of them: the same eighty lines that read as
+  // structure across a desktop are a thicket in a column.
+  const perNode = boxW < SMALL_BOX ? LINKS_PER_NODE - 1 : LINKS_PER_NODE;
+  for (const key of keys) {
+    // A topic's own strongest ties go in whatever their absolute strength is:
+    // the strength is cosine-normalised, so two topics that each carry a
+    // hundred talks and share ten score LOW — and dropping those would leave
+    // the biggest themes in the program floating unconnected.
+    for (const e of (neighbors.get(key) ?? []).slice(0, perNode)) {
+      if (e.n >= 2) drawn.set(idOf(e), e);
+    }
+  }
+  const cap = Math.round(keys.length * (boxW < SMALL_BOX ? 1.2 : LINKS_MAX_PER_NODE));
+  for (const e of edges) {
+    if (drawn.size >= cap) break;
+    if (e.w >= LINK_MIN_W) drawn.set(idOf(e), e);
+  }
+  const links = [...drawn.values()].sort(
+    (x, y) => y.w - x.w || (x.a + x.b < y.a + y.b ? -1 : 1),
+  );
+
+  // ---- 3. placement ----
+  const maxCount = counts.get(keys[0]) ?? 1;
+  // Radius on a sqrt scale, so the DISC AREA tracks the talk count, with a
+  // floor that keeps the rarest topic visible and tappable. The whole scale
+  // shrinks with the box, so a phone gets a graph and not a pile.
+  const zoom = Math.min(1, Math.max(0.62, Math.sqrt((boxW * boxH) / REF_AREA)));
+  const radiusOf = (count: number) =>
+    (R_MIN + (R_MAX - R_MIN) * Math.sqrt(count / maxCount)) * zoom;
+
+  const vBias = boxW / boxH;
+  const labelFont = boxW < SMALL_BOX ? LABEL_FONT_SMALL : LABEL_FONT;
+  const placed: Placed[] = keys.map((key, i) => {
+    const r = radiusOf(counts.get(key) ?? 0);
+    const box = labelBox(nodeText(topicLabel(key, lang)), labelFont);
+    // Start on a spiral, biggest at the middle: a fixed, spread-out opening
+    // position, so the relaxation has somewhere sensible to start and nothing
+    // it does depends on chance.
+    const angle = i * 2.399963;
+    const rad = Math.sqrt(i / keys.length) * Math.min(boxW, boxH * vBias) * 0.42;
+    return {
+      key,
+      x: boxW / 2 + Math.cos(angle) * rad,
+      y: boxH / 2 + (Math.sin(angle) * rad) / vBias,
+      r,
+      hw: Math.max(r, box.w / 2),
+      up: r,
+      down: r + LABEL_GAP + box.h,
+    };
+  });
+  const index = new Map(placed.map((p, i) => [p.key, i]));
+  // The layout pulls along the links the reader can SEE, not along every
+  // co-occurrence there is: in a program where almost every topic meets almost
+  // every other one at least once, attracting on all of them drags the whole
+  // vocabulary into one undifferentiated blob. Strong ties only, and the
+  // picture matches the lines drawn over it.
+  relax(placed, links, index, boxW, boxH, vBias);
+  // Spread to the box first, then pull the last collisions apart, then make
+  // sure nothing ended up hanging over an edge — and settle once more, since
+  // clamping can push two boxes back together.
+  fitToBox(placed, boxW, boxH);
+  separate(placed, boxW, boxH);
+
+  const nodes: TopicNode[] = placed.map((p) => {
+    const key = p.key;
+    const label = topicLabel(key, lang);
+    const count = counts.get(key) ?? 0;
+    const talks = (talksByTopic.get(key) ?? []).slice().sort(
+      (x, y) =>
+        (x.date ?? "").localeCompare(y.date ?? "") ||
+        (x.start ?? "").localeCompare(y.start ?? "") ||
+        x.forumCode.localeCompare(y.forumCode) ||
+        x.index - y.index,
+    );
+    return {
+      key,
+      label,
+      short: nodeText(label),
+      count,
+      x: p.x,
+      y: p.y,
+      r: p.r,
+      weight: maxCount > 1 ? (count - 1) / (maxCount - 1) : 1,
+      hue: CATEGORY_HUE[topicCategory(key) ?? ""] ?? null,
+      talks,
+    };
+  });
+
   return {
     nodes,
     byKey: new Map(nodes.map((n) => [n.key, n])),
     neighbors,
-    aspect,
+    links,
+    width: boxW,
+    height: boxH,
+    labelFont,
     coverage,
   };
 }
@@ -501,28 +577,29 @@ export const otherEnd = (e: TopicEdge, key: string): string => (e.a === key ? e.
 
 const cache = new Map<string, TopicMapData>();
 
-const cacheKeyFor = (confId: string, lang: Lang, aspect: number) =>
-  `${confId}:${lang}:${aspect}`;
+const cacheKeyFor = (confId: string, lang: Lang, boxW: number, boxH: number) =>
+  `${confId}:${lang}:${boxW}x${boxH}`;
 
 /** Has this map already been built? The page shows its loading state only when
     there is real work to do — the first open of a conference — and renders
     straight away on every visit after that. */
-export function hasTopicMap(confId: string, lang: Lang, aspect: number): boolean {
-  return cache.has(cacheKeyFor(confId, lang, aspect));
+export function hasTopicMap(confId: string, lang: Lang, boxW: number, boxH: number): boolean {
+  return cache.has(cacheKeyFor(confId, lang, boxW, boxH));
 }
 
-/** Memoised per conference id, language and box shape — the map is built on
+/** Memoised per conference id, language and box size — the map is built on
     first open of the topics page and reused for the rest of the session. */
 export function topicMapFor(
   confId: string,
   conference: Conference,
   lang: Lang,
-  aspect: number,
+  boxW: number,
+  boxH: number,
 ): TopicMapData {
-  const key = cacheKeyFor(confId, lang, aspect);
+  const key = cacheKeyFor(confId, lang, boxW, boxH);
   const hit = cache.get(key);
   if (hit) return hit;
-  const built = buildTopicMap(conference, lang, aspect);
+  const built = buildTopicMap(conference, lang, boxW, boxH);
   cache.set(key, built);
   return built;
 }

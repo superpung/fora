@@ -37,6 +37,13 @@ export function topicLabel(key: string, lang: Lang): string {
   return lang === "en" ? l.en : l.zh;
 }
 
+/** The family a topic belongs to in the vocabulary (`se`, `systems`, `ai`, …),
+    or undefined for a key the vocabulary does not carry. The topic graph groups
+    by it — see `CATEGORY_HUE` in lib/topics.ts. */
+export function topicCategory(key: string): string | undefined {
+  return TOPIC_LABELS.get(key)?.category;
+}
+
 /** Both labels plus the key, lowercased — the text a topic contributes to a
     search/ranking document, so either language reaches the same talks. */
 export function topicSearchText(key: string): string {

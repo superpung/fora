@@ -9,9 +9,7 @@ import { formatDate } from "../lib/data";
 import {
   topicMapFor,
   hasTopicMap,
-  skeletonMosaic,
   otherEnd,
-  MAP_ASPECTS,
   type TopicMapData,
   type TopicNode,
   type TopicTalk,
@@ -24,27 +22,36 @@ import Icon from "../components/Icon";
 // AI-derived topic tags. The whole page is AI-derived content, so App.tsx only
 // mounts the route (and Nav only shows the entry) while useAi().enabled is on.
 //
-// The map is a mosaic — one tile per topic, its AREA the number of talks that
-// carry it, laid out biggest-first so the shape of the program is readable in
-// the first second. Picking a tile lists its talks below and marks the topics
-// it travels with. See lib/topics.ts for the layout: a pure function of the
-// dataset and the box, so the mosaic is identical on every load.
+// The map is a knowledge graph: a disc per topic, its area the number of talks
+// carrying it, joined to the topics it shares talks with and placed by those
+// ties. See lib/topics.ts for the layout — a deterministic relaxation, so the
+// graph is identical on every load.
 //
-// The tiles are positioned in `cqw` — hundredths of the mosaic's own width —
-// and the mosaic is a container query, so one layout scales from a phone to a
-// wide screen with nothing to recompute. Only the box's proportions change, at
-// the two breakpoints below, and those do rebuild it: a layout squarified for a
-// wide screen becomes a stack of slivers in a phone-shaped box.
+// Two layers: an SVG of the links, and the nodes as real <button>s on top. The
+// nodes are HTML because they are controls — focus ring, hover, aria-pressed
+// and a label that wraps like text all come for free, and none of them do in
+// SVG. The graph is laid out for the width it is actually rendered at (the
+// observer below), so nothing is scaled up or down after the fact: a disc is
+// the same size on a phone as the count deserves.
 
 /** How the talks under the selected topic are grouped. */
 type GroupMode = "forum" | "day" | "none";
 const GROUP_MODES: GroupMode[] = ["forum", "day", "none"];
 
-/** The floor on how long the loading state stays up. Building the mosaic is the
-    one piece of real work this page does (every talk, every tag, every pair)
-    and it only happens on the first open; without a floor the result can land
-    inside a single frame and the page just blinks. */
+/** The floor on how long the loading state stays up. Laying out the graph is
+    the one piece of real work this page does (every talk, every tag, every
+    pair, then the relaxation) and it only happens on the first open; without a
+    floor the result can land inside a single frame and the page just blinks. */
 const MIN_BUILD_MS = 480;
+
+/** The box the graph is laid out for, from the width it has to live in. Wide
+    screens get a letterbox; a phone gets something closer to a portrait, where
+    forty labelled nodes still have somewhere to go. */
+function boxFor(width: number): { w: number; h: number } {
+  if (width <= 0) return { w: 0, h: 0 };
+  const ratio = width >= 900 ? 0.52 : width >= 620 ? 0.85 : 2.45;
+  return { w: width, h: Math.round(width * ratio) };
+}
 
 interface TalkGroup {
   key: string;
@@ -54,31 +61,24 @@ interface TalkGroup {
   talks: TopicTalk[];
 }
 
-/** The proportions of the box the mosaic is laid out for. A wide screen gets a
-    letterbox; a phone gets something closer to a square, where forty tiles can
-    still be lettered. */
-function pickAspect(): number {
-  if (typeof window === "undefined" || !window.matchMedia) return MAP_ASPECTS.wide;
-  if (window.matchMedia("(min-width: 900px)").matches) return MAP_ASPECTS.wide;
-  if (window.matchMedia("(min-width: 620px)").matches) return MAP_ASPECTS.mid;
-  return MAP_ASPECTS.narrow;
-}
-
-function useMapAspect(): number {
-  const [aspect, setAspect] = useState(pickAspect);
+/** The rendered width of the graph, rounded to a step so a drag of the window
+    edge does not rebuild the layout on every pixel. */
+function useBoxWidth(): [number, (el: HTMLDivElement | null) => void] {
+  const [width, setWidth] = useState(0);
+  const [node, setNode] = useState<HTMLDivElement | null>(null);
   useEffect(() => {
-    if (typeof window === "undefined" || !window.matchMedia) return;
-    const queries = [
-      window.matchMedia("(min-width: 900px)"),
-      window.matchMedia("(min-width: 620px)"),
-    ];
-    const sync = () => setAspect(pickAspect());
-    for (const q of queries) q.addEventListener("change", sync);
-    return () => {
-      for (const q of queries) q.removeEventListener("change", sync);
-    };
-  }, []);
-  return aspect;
+    if (!node) return;
+    if (typeof ResizeObserver === "undefined") {
+      setWidth(Math.round(node.clientWidth / 40) * 40);
+      return;
+    }
+    const ro = new ResizeObserver(([entry]) => {
+      setWidth(Math.round(entry.contentRect.width / 40) * 40);
+    });
+    ro.observe(node);
+    return () => ro.disconnect();
+  }, [node]);
+  return [width, setNode];
 }
 
 /** One talk under the selected topic, linking into the forum page's anchor. */
@@ -122,64 +122,69 @@ function TopicTalkRow({ talk }: { talk: TopicTalk }) {
   );
 }
 
-/** One tile: a real button filling its cell of the mosaic. Everything about it
-    — where it sits, how big it is, what size its label is set in — arrives in
-    the same unit, so the whole map is one CSS variable away from any width. */
-function TopicTile({
+/** One node: the disc, and its label under it. The whole thing is the control,
+    so the label is part of the target — a 12px disc on its own is not. */
+function TopicDot({
   node,
   rank,
   state,
   onSelect,
+  onHover,
 }: {
   node: TopicNode;
   rank: number;
-  state: "idle" | "selected" | "related" | "dimmed";
+  state: "idle" | "selected" | "near" | "far";
   onSelect: (key: string) => void;
+  onHover: (key: string | null) => void;
 }) {
   const { t } = useI18n();
-  // Each click mounts a fresh ripple, so it replays even on a tile that is
-  // already selected. The ripple removes itself when its animation ends.
+  // Each click mounts a fresh ring, so the ripple restarts even on a node that
+  // is already selected. The ring removes itself when its animation ends.
   const [pulses, setPulses] = useState<number[]>([]);
 
   return (
     <button
       type="button"
-      className={`tmap__tile is-${state}`}
+      className={`tmap__node is-${state}`}
       style={
         {
-          left: `${node.x}cqw`,
-          top: `${node.y}cqw`,
-          width: `${node.w}cqw`,
-          height: `${node.h}cqw`,
-          "--fs": node.fontSize,
+          left: `${node.x}px`,
+          top: `${node.y - node.r}px`,
+          "--r": `${node.r}px`,
           "--w": node.weight,
-          // Tiles arrive in rank order, biggest first, capped so a large
+          // A topic whose family the vocabulary does not name keeps the hue
+          // slot empty and is drawn at zero saturation — grey, not guessed.
+          "--h": node.hue ?? 0,
+          "--s": node.hue == null ? "0%" : undefined,
+          // Nodes arrive in rank order, biggest first, capped so a large
           // vocabulary still finishes arriving in half a second.
-          "--in": `${Math.min(rank * 0.014, 0.5)}s`,
+          "--in": `${Math.min(rank * 0.012, 0.42)}s`,
         } as CSSProperties
       }
       aria-pressed={state === "selected"}
-      aria-label={t(node.count === 1 ? "topics.tileAriaOne" : "topics.tileAria", {
+      aria-label={t(node.count === 1 ? "topics.nodeAriaOne" : "topics.nodeAria", {
         topic: node.label,
         n: node.count,
       })}
+      onPointerEnter={() => onHover(node.key)}
+      onPointerLeave={() => onHover(null)}
+      onFocus={() => onHover(node.key)}
+      onBlur={() => onHover(null)}
       onClick={() => {
         setPulses((p) => [...p, (p[p.length - 1] ?? 0) + 1]);
         onSelect(node.key);
       }}
     >
-      {pulses.map((id) => (
-        <span
-          key={id}
-          className="tmap__pulse"
-          aria-hidden
-          onAnimationEnd={() => setPulses((p) => p.filter((x) => x !== id))}
-        />
-      ))}
-      <span className="tmap__tiletext">
-        <span className="tmap__tilelabel">{node.short}</span>
-        {node.showCount && <span className="tmap__tilen mono">{node.count}</span>}
+      <span className="tmap__disc" aria-hidden>
+        {pulses.map((id) => (
+          <span
+            key={id}
+            className="tmap__pulse"
+            onAnimationEnd={() => setPulses((p) => p.filter((x) => x !== id))}
+          />
+        ))}
       </span>
+      <span className="tmap__name">{node.short}</span>
     </button>
   );
 }
@@ -187,23 +192,24 @@ function TopicTile({
 export default function TopicMap() {
   const { id: confId, conference } = useConference();
   const { t, lang } = useI18n();
-  const aspect = useMapAspect();
-  // Built on first open, memoised per conference / language / box shape (see
-  // lib/topics.ts). Cold, it is computed off the click's frame and the mosaic
-  // shows its skeleton meanwhile; warm, it is simply there.
-  const [map, setMap] = useState<TopicMapData | null>(() =>
-    hasTopicMap(confId, lang, aspect) ? topicMapFor(confId, conference, lang, aspect) : null,
-  );
+  const [width, attachBox] = useBoxWidth();
+  const box = useMemo(() => boxFor(width), [width]);
+
+  // Built on first open, memoised per conference / language / box (see
+  // lib/topics.ts). Cold, it is computed off the frame that paints the page and
+  // the graph shows its loading state meanwhile; warm, it is simply there.
+  const [map, setMap] = useState<TopicMapData | null>(null);
   useEffect(() => {
-    if (hasTopicMap(confId, lang, aspect)) {
-      setMap(topicMapFor(confId, conference, lang, aspect));
+    if (box.w <= 0) return;
+    if (hasTopicMap(confId, lang, box.w, box.h)) {
+      setMap(topicMapFor(confId, conference, lang, box.w, box.h));
       return;
     }
     setMap(null);
     const started = Date.now();
     let hold = 0;
     const id = window.setTimeout(() => {
-      const built = topicMapFor(confId, conference, lang, aspect);
+      const built = topicMapFor(confId, conference, lang, box.w, box.h);
       hold = window.setTimeout(
         () => setMap(built),
         Math.max(0, MIN_BUILD_MS - (Date.now() - started)),
@@ -213,18 +219,24 @@ export default function TopicMap() {
       window.clearTimeout(id);
       window.clearTimeout(hold);
     };
-  }, [confId, conference, lang, aspect]);
+  }, [confId, conference, lang, box.w, box.h]);
 
   // Sticky so a trip into a forum page and browser Back restores the selection,
   // matching the speakers/schedule filters.
   const [selected, setSelected] = useStickyState<string | null>(`${confId}:tmap.sel`, null);
   const [group, setGroup] = useStickyState<GroupMode>(`${confId}:tmap.group`, "forum");
+  // Hovering a node lights its own corner of the graph. Not sticky: it is a
+  // pointer state, and it must not survive the pointer.
+  const [hover, setHover] = useState<string | null>(null);
 
   const node = selected ? map?.byKey.get(selected) : undefined;
-  const relatedKeys = useMemo(() => {
-    if (!node || !map) return null;
-    return new Set((map.neighbors.get(node.key) ?? []).map((e) => otherEnd(e, node.key)));
-  }, [node, map]);
+  // What the graph is currently lit around: the selection if there is one,
+  // otherwise whatever the pointer is on.
+  const focusKey = selected ?? hover;
+  const nearKeys = useMemo(() => {
+    if (!focusKey || !map) return null;
+    return new Set((map.neighbors.get(focusKey) ?? []).map((e) => otherEnd(e, focusKey)));
+  }, [focusKey, map]);
 
   // The talks of the selected topic, in the requested grouping. Talks arrive
   // already ordered by date/start/forum, so grouping only has to bucket them:
@@ -256,10 +268,24 @@ export default function TopicMap() {
     return out;
   }, [node, group, lang, t]);
 
-  const skeleton = useMemo(() => skeletonMosaic(aspect), [aspect]);
   const select = (key: string) => setSelected((cur) => (cur === key ? null : key));
 
-  if (map && map.nodes.length === 0) {
+  // Escape clears the selection from anywhere on the page — by the time a
+  // reader wants out, the focus is usually down in the talk list, not on the
+  // node they picked. Skipped while a dialog owns the key (search palette,
+  // confirm), which closes itself with it.
+  useEffect(() => {
+    if (!selected) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      if (document.querySelector('[role="dialog"]')) return;
+      setSelected(null);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [selected, setSelected]);
+
+  if (map && map.nodes.length === 0 && width > 0) {
     return (
       <motion.div
         className="container section"
@@ -301,60 +327,114 @@ export default function TopicMap() {
         <AiNote className="tmap__note" />
       </div>
 
-      {map ? (
-        <div
-          className={`tmap__mosaic ${node ? "is-selecting" : ""}`}
-          style={{ aspectRatio: `${map.aspect}` } as CSSProperties}
-          role="group"
-          aria-label={t("topics.mapAria")}
-          onKeyDown={(e) => {
-            if (e.key === "Escape") setSelected(null);
-          }}
-        >
-          {map.nodes.map((n, i) => (
-            <TopicTile
-              key={n.key}
-              node={n}
-              rank={i}
-              state={
-                !relatedKeys
-                  ? "idle"
-                  : n.key === selected
-                    ? "selected"
-                    : relatedKeys.has(n.key)
-                      ? "related"
-                      : "dimmed"
-              }
-              onSelect={select}
-            />
-          ))}
-        </div>
-      ) : (
-        // The wait wears the shape of the answer: the same mosaic, in the same
-        // rhythm, with the light sweeping across it.
-        <div
-          className="tmap__mosaic tmap__mosaic--wait"
-          style={{ aspectRatio: `${aspect}` } as CSSProperties}
-          aria-live="polite"
-          aria-label={t("common.loading")}
-        >
-          {skeleton.map((c, i) => (
-            <span
-              key={i}
-              className="tmap__skel"
-              style={
-                {
-                  left: `${c.x}cqw`,
-                  top: `${c.y}cqw`,
-                  width: `${c.w}cqw`,
-                  height: `${c.h}cqw`,
-                  "--i": i,
-                } as CSSProperties
-              }
-            />
-          ))}
-        </div>
-      )}
+      <div
+        className={`tmap__canvas ${focusKey ? "is-lit" : ""} ${map ? "" : "is-waiting"}`}
+        ref={attachBox}
+        style={
+          {
+            height: box.h ? `${box.h}px` : undefined,
+            "--lfs": `${map?.labelFont ?? 11.5}px`,
+          } as CSSProperties
+        }
+        role="group"
+        aria-label={t("topics.mapAria")}
+        onPointerLeave={() => setHover(null)}
+      >
+        {map && (
+          <>
+            {/* Layer 1: the links. They draw themselves in — `pathLength=1`
+                makes one dash the whole line whatever its real length, so a
+                single offset animation fits every link. */}
+            <svg
+              className="tmap__links"
+              width={map.width}
+              height={map.height}
+              viewBox={`0 0 ${map.width} ${map.height}`}
+              aria-hidden
+            >
+              {map.links.map((e) => {
+                const a = map.byKey.get(e.a);
+                const b = map.byKey.get(e.b);
+                if (!a || !b) return null;
+                const lit = focusKey === e.a || focusKey === e.b;
+                return (
+                  <line
+                    key={`${e.a}|${e.b}`}
+                    className={lit ? "is-lit" : ""}
+                    x1={a.x}
+                    y1={a.y}
+                    x2={b.x}
+                    y2={b.y}
+                    pathLength={1}
+                    strokeWidth={0.8 + 1.9 * e.w}
+                  />
+                );
+              })}
+              {/* The selected topic's own ties, including the ones too weak to
+                  be part of the drawn backbone: picking a topic is exactly the
+                  moment to show everything it touches. */}
+              {focusKey &&
+                (map.neighbors.get(focusKey) ?? []).map((e) => {
+                  const a = map.byKey.get(e.a);
+                  const b = map.byKey.get(e.b);
+                  if (!a || !b) return null;
+                  return (
+                    <line
+                      key={`lit:${e.a}|${e.b}`}
+                      className="tmap__link--focus"
+                      x1={a.x}
+                      y1={a.y}
+                      x2={b.x}
+                      y2={b.y}
+                      pathLength={1}
+                      strokeWidth={0.8 + 1.9 * e.w}
+                    />
+                  );
+                })}
+            </svg>
+
+            {/* Layer 2: the nodes. */}
+            {map.nodes.map((n, i) => (
+              <TopicDot
+                key={n.key}
+                node={n}
+                rank={i}
+                state={
+                  !nearKeys
+                    ? "idle"
+                    : n.key === focusKey
+                      ? "selected"
+                      : nearKeys.has(n.key)
+                        ? "near"
+                        : "far"
+                }
+                onSelect={select}
+                onHover={setHover}
+              />
+            ))}
+          </>
+        )}
+        {!map && width > 0 && (
+          // The wait says what is being built: a handful of nodes finding their
+          // places, on the same canvas, breathing.
+          <div className="tmap__wait" aria-live="polite" aria-label={t("common.loading")}>
+            {WAIT_DOTS.map((d, i) => (
+              <span
+                key={i}
+                className="tmap__waitdot"
+                style={
+                  {
+                    left: `${d[0] * 100}%`,
+                    top: `${d[1] * 100}%`,
+                    "--r": `${d[2]}px`,
+                    "--i": i,
+                  } as CSSProperties
+                }
+              />
+            ))}
+          </div>
+        )}
+      </div>
 
       <AnimatePresence initial={false}>
         {node && map && (
@@ -380,7 +460,7 @@ export default function TopicMap() {
               </button>
             </header>
 
-            {relatedKeys && relatedKeys.size > 0 && (
+            {(map.neighbors.get(node.key) ?? []).length > 0 && (
               <div className="tmapsel__related">
                 <span className="tmapsel__rellabel">{t("topics.related")}</span>
                 {(map.neighbors.get(node.key) ?? []).slice(0, 8).map((e) => {
@@ -442,3 +522,19 @@ export default function TopicMap() {
     </motion.div>
   );
 }
+
+/** Where the loading state's nodes sit, as fractions of the canvas, and how big
+    they are. A fixed constellation — it stands for a graph being placed, so it
+    is laid out like one. */
+const WAIT_DOTS: [number, number, number][] = [
+  [0.5, 0.46, 26],
+  [0.31, 0.3, 18],
+  [0.68, 0.28, 20],
+  [0.72, 0.66, 16],
+  [0.28, 0.68, 14],
+  [0.15, 0.48, 11],
+  [0.86, 0.46, 12],
+  [0.45, 0.16, 10],
+  [0.56, 0.82, 10],
+  [0.38, 0.86, 8],
+];
