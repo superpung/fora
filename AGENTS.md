@@ -154,6 +154,14 @@ and how to add a conference.
   - Bilingual and TBD states are supported throughout.
 - Dirty data is recorded faithfully and marked with `flags` — never silently
   corrected (see `data/VERIFY_TODO.md` for the running data-quality tracker).
+- **Faithful does not mean literal into the wrong field.** A `person.name` is a
+  person's name; a role ("主持人：执行主席"), a group ("全体嘉宾"), a placeholder
+  ("京东（人员待定）"), an organization or a list's numbering goes in `flags`, not
+  in the field the app reads as a human being. `source/people.py` is the single
+  place that decides what a person is and repairs the typography that hides one
+  (李 智 广西师范大学 → 李智 of 广西师范大学); `source/validate.py` enforces it over
+  every built dataset, because the schema can say there is a name but not what a
+  name is.
 - Structure the core schema doesn't model goes into the open `extra` field
   (never forced or faked); recurring concepts get promoted to first-class fields
   by **additive** schema evolution that must keep all existing conferences valid.
@@ -192,7 +200,7 @@ Datasets are built offline and committed; the web app never fetches at runtime.
 
 ```bash
 uv run python source/build_all.py   # rebuild EVERY conference + the manifest
-uv run python source/validate.py    # validate every conference against the schema
+uv run python source/validate.py    # schema + "every name is a person" gate
 
 # ccfchip2026's crawl steps (already done; artifacts committed in source/raw/)
 cd source
