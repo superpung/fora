@@ -58,7 +58,8 @@ SITE = "https://chinaosc.ccf.org.cn"
 # The shared enrichment merger lives in source/; make it importable when this
 # adapter is run directly (python source/chinaosc2026/build.py).
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
-from enrichment import apply_enrichment  # noqa: E402
+from enrichment import apply_enrichment
+from people import read_person  # noqa: E402
 
 # CMS directory names (see raw/dirs.json).
 DIR_FORUMS = "专题议程"
@@ -439,15 +440,21 @@ def merge_timetable(rows, cards, flags):
 
         speakers = []
         for printed in row.get("speakers", []):
-            person = {"name": printed["name"]}
-            affiliation = printed.get("affiliation_raw") or printed_affiliation.get(printed["name"])
-            if affiliation:
-                person["affiliation_raw"] = affiliation
+            # The timetable is a picture of a table, and its speaker column also
+            # carries roles ("主持人：执行主席"), groups ("参与者：报告嘉宾及论坛主席")
+            # and placeholders ("京东（人员待定）"). What is a person is decided in
+            # one place (source/people.py); what is not is recorded as a flag,
+            # not dropped in silence.
             known = detail.get(printed["name"], {})
-            if known.get("bio"):
-                person["bio"] = known["bio"]
-            if (known.get("photo") or {}).get("source_url"):
-                person["photo"] = known["photo"]
+            person, problem = read_person(
+                printed["name"],
+                printed.get("affiliation_raw") or printed_affiliation.get(printed["name"]),
+                bio=known.get("bio"),
+                photo=known["photo"] if (known.get("photo") or {}).get("source_url") else None,
+            )
+            if problem:
+                flags.append(f"timetable row '{row['title']}': {problem}")
+                continue
             speakers.append(person)
 
         card = bound.get(i)
@@ -473,12 +480,9 @@ def merge_timetable(rows, cards, flags):
             )
         talks.append(talk)
 
+    # A 讲者 cell that is a label rather than a name is now reported where it is
+    # read (see the timetable loop above), with the reason it is not a person.
     on_timetable = {s["name"] for r in rows for s in r.get("speakers", [])}
-    for name in sorted(n for n in on_timetable if PLACEHOLDER_SPEAKER.search(n)):
-        flags.append(
-            f"the timetable's 讲者 column prints a label rather than a bare "
-            f"name: '{name}'; kept as printed"
-        )
     for card in cards:
         if card in bound.values() or not card.get("title"):
             continue
@@ -498,12 +502,6 @@ def merge_timetable(rows, cards, flags):
 
 # A timetable row that is the panel the Panel section describes.
 PANEL_ROW = re.compile(r"panel|圆桌|对话", re.I)
-
-# A 讲者 cell that names a group instead of a person — "演讲嘉宾", "报告嘉宾及论坛
-# 主席", "京东（人员待定）". Printed that way by the site, so recorded that way,
-# but worth saying out loud: these are not people.
-PLACEHOLDER_SPEAKER = re.compile(r"嘉宾|主持人|参与者|待定|报告人|所有")
-
 
 def attach_panel_prose(talks, panel, flags):
     """Give the Panel section's free-form lines to the panel row of the day.
@@ -589,12 +587,18 @@ def parse_forum(row):
             person["chair_role"] = SEC_CHAIRS
             chairs.append(person)
     for c in kw_chairs:
-        if c["name"] not in chair_names:
-            chair_names.add(c["name"])
-            chairs.append({"name": c["name"], "bio": None, "chair_role": c["chair_role"]})
-            if ORG_NAME.search(c["name"]):
-                # e.g. 鲲鹏昇腾 names "华为公司" as its chair; kept as published.
-                flags.append(f"the keywords name an organization as chair: '{c['name']}'")
+        if c["name"] in chair_names:
+            continue
+        person, problem = read_person(c["name"], chair_role=c["chair_role"])
+        if problem:
+            # e.g. 鲲鹏昇腾 names "华为公司" as its chair. Recorded as published —
+            # as a fact about the forum, not as a person the app can offer a
+            # speaker page for.
+            flags.append(f"the keywords name a chair that is not a person — {problem}")
+            continue
+        chair_names.add(person["name"])
+        person.setdefault("bio", None)
+        chairs.append(person)
     if not chairs:
         flags.append("no forum chair named on the page or in the keywords")
 
@@ -704,6 +708,11 @@ def parse_forum(row):
         "poster": poster,
         "source_url": f"{SITE}/information/detail/{doc['id']}",
         "detail_extracted": bool(talks),
+        # A forum with no talks is not the same thing as a forum we failed to
+        # read: these pages publish no timetable image and no guest section at
+        # all yet. Saying which it is lets the app tell the reader the agenda is
+        # still to come, instead of implying the fault is ours.
+        **({"agenda_status": "not_published"} if not talks else {}),
         "extra": {
             "cms_doc_id": doc["id"],
             "cms_doc_name": doc.get("name"),

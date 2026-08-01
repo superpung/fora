@@ -22,6 +22,9 @@ interface TopicEntry {
   key: string;
   zh: string;
   en: string;
+  /** Optional name for places with no room for the full one — see topicMapLabel. */
+  short_zh?: string;
+  short_en?: string;
   /** Grouping in source/topics.json, for readability there only. */
   category?: string;
 }
@@ -35,6 +38,18 @@ export function topicLabel(key: string, lang: Lang): string {
   const l = TOPIC_LABELS.get(key);
   if (!l) return key;
   return lang === "en" ? l.en : l.zh;
+}
+
+/** The name to letter a topic with where there is no room for the full one —
+    the topic map draws it under a dot a few pixels wide. Falls back to the full
+    label, trimmed to its first alternative (存算一体 / CIM), which is what fits
+    for all but a handful of the longest English names. Every list, chip and
+    heading still shows the label in full. */
+export function topicMapLabel(key: string, lang: Lang): string {
+  const l = TOPIC_LABELS.get(key);
+  if (!l) return key;
+  const short = lang === "en" ? l.short_en : l.short_zh;
+  return (short ?? (lang === "en" ? l.en : l.zh).split("/")[0]).trim();
 }
 
 /** The family a topic belongs to in the vocabulary (`se`, `systems`, `ai`, …),

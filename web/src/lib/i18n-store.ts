@@ -65,6 +65,7 @@ const zh: Dict = {
   "common.reportsCount": "{n} 报告",
   "common.sessionsCount": "{n} 场",
   "common.pending": "详情待补",
+  "common.agendaPending": "日程待公布",
   "common.inChina": "中国·{city}",
 
   "confsw.switch": "切换会议",
@@ -224,6 +225,9 @@ const zh: Dict = {
   "forum.pendingTitle": "论坛详情整理中",
   "forum.pendingText":
     "该论坛的报告与讲者信息尚未提供结构化内容。当前可见其编号、名称、会议室与时段等总览信息。",
+  "forum.agendaPendingTitle": "日程待公布",
+  "forum.agendaPendingText":
+    "主办方尚未公布该论坛的报告与讲者。上方是目前已公布的信息：编号、名称、会议室与时段。",
 
   "hub.title": "会议",
   "hub.ongoing": "进行中",
@@ -339,6 +343,7 @@ const en: Dict = {
   "common.reportsCount": "{n} talks",
   "common.sessionsCount": "{n}",
   "common.pending": "Details pending",
+  "common.agendaPending": "Agenda to come",
   "common.inChina": "{city}, China",
 
   "confsw.switch": "Switch conference",
@@ -498,6 +503,9 @@ const en: Dict = {
   "forum.pendingTitle": "Forum details in preparation",
   "forum.pendingText":
     "This forum's talks and speakers are not available in structured form yet. Its code, name, room, and time slot are shown for now.",
+  "forum.agendaPendingTitle": "Agenda not published yet",
+  "forum.agendaPendingText":
+    "The organisers have not published this forum's talks and speakers. What is above is what has been announced: its code, name, room and time slot.",
 
   "hub.title": "Conferences",
   "hub.ongoing": "Ongoing",
