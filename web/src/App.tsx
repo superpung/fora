@@ -5,6 +5,7 @@ import ConferenceLayout from "./components/ConferenceLayout";
 import Footer from "./components/Footer";
 import PageLoader from "./components/PageLoader";
 import { FollowActionsProvider } from "./lib/follow-actions";
+import { useAi } from "./lib/ai-store";
 
 // Route-level code splitting: each page ships as its own chunk so the initial
 // download is just the shell (nav/footer/router), not every page at once.
@@ -17,8 +18,12 @@ const Speakers = lazy(() => import("./pages/Speakers"));
 const ForumDetail = lazy(() => import("./pages/ForumDetail"));
 const Committee = lazy(() => import("./pages/Committee"));
 const Organizations = lazy(() => import("./pages/Organizations"));
+const TopicMap = lazy(() => import("./pages/TopicMap"));
 
 export default function App() {
+  // The topic map is built entirely from AI-derived tags, so the route only
+  // exists while AI content is switched on (Nav hides its entry to match).
+  const { enabled: aiEnabled } = useAi();
   return (
     <FollowActionsProvider>
       {/* A min-height flex column so the footer sits at the bottom of the viewport
@@ -43,6 +48,7 @@ export default function App() {
               <Route path="now" element={<Now />} />
               <Route path="schedule" element={<Schedule />} />
               <Route path="plan" element={<Plan />} />
+              {aiEnabled && <Route path="topics" element={<TopicMap />} />}
               <Route path="speakers" element={<Speakers />} />
               <Route path="committee" element={<Committee />} />
               <Route path="organizations" element={<Organizations />} />
