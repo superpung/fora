@@ -1,4 +1,4 @@
-import { useMemo, useState, type CSSProperties, type KeyboardEvent } from "react";
+import { useMemo, useState, type CSSProperties } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useConference } from "../lib/conference-store";
@@ -6,13 +6,7 @@ import { useI18n } from "../lib/i18n-store";
 import { useStickyState } from "../lib/sticky-state";
 import { pageVariants } from "../lib/motion";
 import { formatDate } from "../lib/data";
-import {
-  topicMapFor,
-  otherEnd,
-  LINE_HEIGHT,
-  type TopicNode,
-  type TopicTalk,
-} from "../lib/topics";
+import { topicMapFor, otherEnd, type TopicNode, type TopicTalk } from "../lib/topics";
 import { topicLabel } from "../lib/topic-labels";
 import { AiNote, AiBadge } from "../components/AiMark";
 import Icon from "../components/Icon";
@@ -22,11 +16,19 @@ import Icon from "../components/Icon";
 // mounts the route (and Nav only shows the entry) while useAi().enabled is on.
 //
 // The visualization is a bubble constellation: area = how many talks carry the
-// topic, colour and position = which topics travel together (each topic is
-// dropped beside the ones it co-occurs with, then the cluster settles inward).
-// Selecting a topic lights up its links, dims the rest, and lists its talks
-// below. See lib/topics.ts for the layout — it is a pure function of the
-// dataset, so the map is identical on every load.
+// topic, position = which topics travel together (each topic is dropped beside
+// the ones it co-occurs with, then the cluster settles inward). Selecting a
+// topic lights up its links, dims the rest, and lists its talks below. See
+// lib/topics.ts for the layout — it is a pure function of the dataset, so the
+// map is identical on every load.
+//
+// It is drawn as three stacked layers rather than one SVG, because the bubbles
+// are frosted glass and glass needs something to be in front of:
+//   1. a wash of wide, blurred colour, anchored on the biggest topics;
+//   2. an SVG of the co-occurrence links;
+//   3. the bubbles — real <button>s, blurring layers 1-2 through themselves.
+// Only `backdrop-filter` can do that, and only on an HTML element, which is why
+// the positions computed in lib/topics.ts are applied as CSS here.
 
 /** How the talks under the selected topic are grouped. */
 type GroupMode = "forum" | "day" | "none";
@@ -81,23 +83,18 @@ function TopicTalkRow({ talk }: { talk: TopicTalk }) {
   );
 }
 
-/** A bubble. Rendered as an SVG group that behaves like a toggle button: it is
-    tabbable and driven by Enter/Space, so the map is never hover-only.
-
-    The outer group holds the position and the inner one the entrance pop,
-    because a CSS animation and a CSS transition cannot share a property. Hover
-    and selection then grow the circle's `r` rather than scaling a group, which
-    keeps the label at exactly the size the fitter measured it into. */
+/** A bubble: a real button, positioned and sized from the layout, frosted so
+    the wash and the links show through it. Hover and selection change its
+    scale, which is safe here because the label is inside the same box and
+    scales with it — the fitter's measurement stays proportionally true. */
 function TopicBubble({
   node,
   rank,
-  gradient,
   state,
   onSelect,
 }: {
   node: TopicNode;
   rank: number;
-  gradient: string;
   state: "idle" | "selected" | "related" | "dimmed";
   onSelect: (key: string) => void;
 }) {
@@ -106,62 +103,47 @@ function TopicBubble({
   // that is already selected. The ring removes itself when its animation ends.
   const [pulses, setPulses] = useState<number[]>([]);
 
-  const fire = () => {
-    setPulses((p) => [...p, (p[p.length - 1] ?? 0) + 1]);
-    onSelect(node.key);
-  };
-  const onKeyDown = (e: KeyboardEvent<SVGGElement>) => {
-    if (e.key !== "Enter" && e.key !== " ") return;
-    e.preventDefault();
-    fire();
-  };
-  // Multi-line labels straddle the centre; one-line labels sit on it. The
-  // rhythm is the fitter's, so what was measured is what gets drawn.
-  const lineH = node.fontSize * LINE_HEIGHT;
-  const top = -((node.lines.length - 1) * lineH) / 2;
   return (
-    <g
+    <button
+      type="button"
       className={`tmap__node is-${state}`}
-      transform={`translate(${node.x} ${node.y})`}
       style={
         {
-          "--h": node.hue,
-          "--r": node.r,
+          left: `${node.x - node.r}px`,
+          top: `${node.y - node.r}px`,
+          width: `${node.r * 2}px`,
+          height: `${node.r * 2}px`,
           // Bubbles arrive in rank order, biggest first, capped so a large
           // vocabulary still finishes arriving in under a second.
           "--in": `${Math.min(rank * 0.022, 0.9)}s`,
         } as CSSProperties
       }
-      role="button"
-      tabIndex={0}
       aria-pressed={state === "selected"}
       aria-label={t(node.count === 1 ? "topics.bubbleAriaOne" : "topics.bubbleAria", {
         topic: node.label,
         n: node.count,
       })}
-      onClick={fire}
-      onKeyDown={onKeyDown}
+      onClick={() => {
+        setPulses((p) => [...p, (p[p.length - 1] ?? 0) + 1]);
+        onSelect(node.key);
+      }}
     >
-      <g className="tmap__in">
-        {pulses.map((id) => (
-          <circle
-            key={id}
-            className="tmap__pulse"
-            r={node.r}
-            onAnimationEnd={() => setPulses((p) => p.filter((x) => x !== id))}
-          />
+      {pulses.map((id) => (
+        <span
+          key={id}
+          className="tmap__pulse"
+          aria-hidden
+          onAnimationEnd={() => setPulses((p) => p.filter((x) => x !== id))}
+        />
+      ))}
+      <span className="tmap__label" style={{ fontSize: `${node.fontSize}px` }}>
+        {node.lines.map((line, i) => (
+          <span className="tmap__line" key={i}>
+            {line}
+          </span>
         ))}
-        <circle className="tmap__halo" r={node.r} />
-        <circle className="tmap__bubble" r={node.r} fill={`url(#${gradient})`} />
-        <text className="tmap__label" fontSize={node.fontSize} textAnchor="middle">
-          {node.lines.map((line, i) => (
-            <tspan key={i} x={0} y={top + i * lineH} dominantBaseline="central">
-              {line}
-            </tspan>
-          ))}
-        </text>
-      </g>
-    </g>
+      </span>
+    </button>
   );
 }
 
@@ -261,43 +243,49 @@ export default function TopicMap() {
       </div>
 
       <div className="tmap__canvas">
-        <svg
-          className={`tmap__svg ${node ? "is-selecting" : ""}`}
-          width={map.width}
-          height={map.height}
-          viewBox={`0 0 ${map.width} ${map.height}`}
+        {/* The stage spans the full canvas so the wash can reach its edges; the
+            plot inside it is the map's own coordinate space, centred. */}
+        <div
+          className={`tmap__stage ${node ? "is-selecting" : ""}`}
+          style={{ minWidth: `${map.width}px`, height: `${map.height}px` }}
           role="group"
           aria-label={t("topics.mapAria")}
           onKeyDown={(e) => {
             if (e.key === "Escape") setSelected(null);
           }}
         >
-          <defs>
-            {/* One light source for the whole map: every bubble is lit from the
-                same upper-left, which is what makes a flat circle read as a
-                sphere. The stops take their hue from the node. */}
-            {map.nodes.map((n, i) => (
-              <radialGradient
-                key={n.key}
-                id={`tmapg-${i}`}
-                cx="36%"
-                cy="28%"
-                r="82%"
-                style={{ "--h": n.hue } as CSSProperties}
-              >
-                <stop className="tmap__stop0" offset="0%" />
-                <stop className="tmap__stop1" offset="100%" />
-              </radialGradient>
+          <div className="tmap__plot" style={{ width: `${map.width}px` }}>
+          {/* Layer 1: the only colour in the map. Four wide washes under the
+              four biggest topics, blurred far past their own edges, so a region
+              is tinted by what is in it. */}
+          <div className="tmap__wash" aria-hidden>
+            {map.blobs.map((b, i) => (
+              <span
+                key={i}
+                className="tmap__blob"
+                style={
+                  {
+                    left: `${b.x - b.r}px`,
+                    top: `${b.y - b.r}px`,
+                    width: `${b.r * 2}px`,
+                    height: `${b.r * 2}px`,
+                    "--h": b.hue,
+                  } as CSSProperties
+                }
+              />
             ))}
-          </defs>
-          {/* Links sit under the bubbles: the strongest co-occurrences overall
-              by default, the selected topic's own links when one is picked.
-              They draw themselves in — a new selection mounts new lines, so the
+          </div>
+
+          {/* Layer 2: the strongest co-occurrences overall by default, the
+              selected topic's own links when one is picked. They draw
+              themselves in — a new selection mounts new lines, so the
               stroke-dash animation replays every time. */}
-          <g
+          <svg
             className="tmap__links"
+            width={map.width}
+            height={map.height}
+            viewBox={`0 0 ${map.width} ${map.height}`}
             aria-hidden
-            style={node ? ({ "--h": node.hue } as CSSProperties) : undefined}
           >
             {links.map((e) => {
               const a = map.byKey.get(e.a);
@@ -311,18 +299,19 @@ export default function TopicMap() {
                   x2={b.x}
                   y2={b.y}
                   pathLength={1}
-                  strokeWidth={1 + 2.6 * (e.w / maxLinkWeight)}
-                  strokeOpacity={0.2 + 0.55 * (e.w / maxLinkWeight)}
+                  strokeWidth={1 + 2.2 * (e.w / maxLinkWeight)}
+                  strokeOpacity={0.25 + 0.55 * (e.w / maxLinkWeight)}
                 />
               );
             })}
-          </g>
+          </svg>
+
+          {/* Layer 3: the glass. */}
           {map.nodes.map((n, i) => (
             <TopicBubble
               key={n.key}
               node={n}
               rank={i}
-              gradient={`tmapg-${i}`}
               state={
                 !relatedKeys
                   ? "idle"
@@ -335,21 +324,20 @@ export default function TopicMap() {
               onSelect={select}
             />
           ))}
-        </svg>
+          </div>
+        </div>
       </div>
 
       <AnimatePresence initial={false}>
         {node && (
           <motion.section
             className="tmapsel"
-            style={{ "--h": node.hue } as CSSProperties}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 6 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
             <header className="tmapsel__head">
-              <span className="tmapsel__dot" aria-hidden />
               <h3 className="tmapsel__title">{node.label}</h3>
               <span className="tmapsel__count mono">
                 {t("common.reportsCount", { n: node.count })}

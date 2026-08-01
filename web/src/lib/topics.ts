@@ -18,8 +18,8 @@ import { topicLabel } from "./topic-labels";
 // no measurement of the DOM, so the same dataset always produces the same map,
 // on every load and on every device. The four ordering decisions that drive it
 // (rank, seriation, candidate scan, settling) all break ties on the topic key,
-// which is unique, so no comparison can ever end in an arbitrary result. Colour
-// follows rank, for the same reason.
+// which is unique, so no comparison can ever end in an arbitrary result. The
+// backdrop wash follows the same ranking, for the same reason.
 
 /** One talk carrying a topic, flattened with everything a link needs. */
 export interface TopicTalk {
@@ -49,10 +49,6 @@ export interface TopicNode {
   /** Label split into at most two lines, plus the font size that makes it fit. */
   lines: string[];
   fontSize: number;
-  /** Bubble hue in degrees. Derived from rank alone (see `hueFor`), so the
-      palette is as deterministic as the layout — a topic keeps its colour
-      across reloads, devices and both languages. */
-  hue: number;
   talks: TopicTalk[];
 }
 
@@ -64,6 +60,18 @@ export interface TopicEdge {
   /** Cosine-normalised strength in (0,1] — how much the two topics travel
       together, independent of how big either one is. */
   w: number;
+}
+
+/** One soft light behind the map. The bubbles are colourless glass, so all the
+    colour in the visualization comes from these — a handful of wide, heavily
+    blurred washes sitting under the biggest topics. Regions of the map are
+    therefore tinted by what is IN them, and no reader has to decode forty
+    separate hues. */
+export interface TopicBlob {
+  x: number;
+  y: number;
+  r: number;
+  hue: number;
 }
 
 export interface TopicCoverage {
@@ -82,6 +90,8 @@ export interface TopicMapData {
   neighbors: Map<string, TopicEdge[]>;
   /** The strongest links overall, drawn faintly as the map's backbone. */
   backbone: TopicEdge[];
+  /** Backdrop washes, largest topic first. */
+  blobs: TopicBlob[];
   width: number;
   height: number;
   coverage: TopicCoverage;
@@ -120,6 +130,14 @@ const COMPACT_TURNS = [0, 0.35, -0.35, 0.7, -0.7, 1.05, -1.05];
     settles into a wide band instead of a circle. A page is wider than it is
     tall; a topic map that scrolls sideways is a topic map nobody finishes. */
 const COMPACT_ASPECT = 2.2;
+/** How many backdrop washes to lay down, and the hues they use in order.
+    Warm-to-cool and deliberately off the blue-violet axis the AI marks own, so
+    the wash reads as light in the room rather than as a category legend. */
+const BLOB_COUNT = 4;
+const BLOB_HUES = [162, 34, 194, 348];
+/** Wash radius, as a fraction of the map's longer side. Wide enough that any
+    two of them overlap into a gradient instead of reading as four spots. */
+const BLOB_SPREAD = 0.62;
 /** How many links to draw before any topic is selected. Enough to read the
     shape of the program, few enough not to become a hairball. */
 const BACKBONE_MAX = 22;
@@ -138,22 +156,6 @@ const textUnits = (s: string): number =>
     so 存算一体 / CIM and "AI Chip / Accelerator" stay legible at bubble size.
     The panel heading and the accessible name still carry the label in full. */
 const bubbleText = (label: string): string => label.split("/")[0].trim();
-
-/* ================================= colour ================================= */
-
-/** Bubble hues live in the cool half of the wheel — teal through blue to the
-    violet the AI marks already use — so a coloured map still reads as part of
-    this app rather than as a chart pasted into it. */
-const HUE_START = 172;
-const HUE_SPAN = 128;
-/** Golden-ratio stepping: consecutive ranks land far apart on the wheel, and no
-    two of the first few dozen topics get a confusingly similar colour. */
-const HUE_STEP = 0.618033988749895;
-
-/** The hue of the topic ranked `i`th. Rank, not key, so the biggest topics get
-    the most separated colours. */
-const hueFor = (i: number): number =>
-  Math.round((HUE_START + ((i * HUE_STEP) % 1) * HUE_SPAN) * 10) / 10;
 
 /** A piece of a label that must not be broken, and whether a space preceded it.
     English breaks between words and after hyphens; CJK, which has neither,
@@ -304,6 +306,7 @@ export function buildTopicMap(conference: Conference, lang: Lang): TopicMapData 
       byKey: new Map(),
       neighbors: new Map(),
       backbone: [],
+      blobs: [],
       width: 0,
       height: 0,
       coverage,
@@ -480,7 +483,7 @@ export function buildTopicMap(conference: Conference, lang: Lang): TopicMapData 
     maxY = Math.max(maxY, p.y + r);
   }
 
-  const nodes: TopicNode[] = keys.map((key, rank) => {
+  const nodes: TopicNode[] = keys.map((key) => {
     const p = pos.get(key)!;
     const r = radius.get(key)!;
     const label = topicLabel(key, lang);
@@ -499,7 +502,6 @@ export function buildTopicMap(conference: Conference, lang: Lang): TopicMapData 
       y: p.y - minY + MARGIN,
       r,
       ...fitLabel(bubbleText(label), r),
-      hue: hueFor(rank),
       talks,
     };
   });
@@ -527,13 +529,23 @@ export function buildTopicMap(conference: Conference, lang: Lang): TopicMapData 
     addNeighbor(e.b, e);
   }
 
+  const width = maxX - minX + MARGIN * 2;
+  const height = maxY - minY + MARGIN * 2;
+  const spread = Math.max(width, height) * BLOB_SPREAD;
+
   return {
     nodes,
     byKey: new Map(nodes.map((n) => [n.key, n])),
     neighbors,
     backbone: edges.filter((e) => e.n >= 2).slice(0, BACKBONE_MAX),
-    width: maxX - minX + MARGIN * 2,
-    height: maxY - minY + MARGIN * 2,
+    blobs: nodes.slice(0, BLOB_COUNT).map((n, i) => ({
+      x: n.x,
+      y: n.y,
+      r: spread,
+      hue: BLOB_HUES[i % BLOB_HUES.length],
+    })),
+    width,
+    height,
     coverage,
   };
 }

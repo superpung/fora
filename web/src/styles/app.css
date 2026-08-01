@@ -1692,11 +1692,14 @@ svg { display: block; }
 
 /* ====================== topic map (#8) + similar talks (#9) ==================
    Both surfaces render AI-derived content and only exist while the AI switch is
-   on. The page chrome stays neutral grey; colour belongs to the bubbles alone,
-   and every bubble hue is a rotation of ONE recipe (--h from lib/topics.ts fed
-   into a shared saturation/lightness pair), so a 40-topic map reads as one
-   palette rather than as forty decisions. The hues stay in the cool arc the
-   app's own accent and AI violet already occupy. */
+   on.
+
+   The map is glass. Bubbles are colourless — translucent, frosted, lit from one
+   direction — and every colour in the visualization comes from four wide washes
+   BEHIND them (lib/topics.ts places one under each of the four biggest topics).
+   That is the whole palette: a region of the map is tinted by what is in it,
+   nobody has to decode forty separate hues, and selection can stay monochrome
+   like the rest of this design system. */
 
 .tmap__lede {
   display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-top: 18px;
@@ -1704,33 +1707,42 @@ svg { display: block; }
 .tmap__coverage { font-size: 13px; color: var(--fg-secondary); }
 .tmap__note { margin: 0; }
 
-/* Bubble colour recipe. Light: pale tinted fill, mid-tone rim, dark ink.
-   Dark: deep tinted fill, brighter rim, pale ink. Nothing else in the map is
-   coloured, so these six numbers are the whole palette. */
+/* Glass recipe, one set of numbers per theme. Light glass is white and lit from
+   above; dark glass is a thin white film over near-black, which is what keeps
+   it from turning into a grey disc. */
 .tmap {
-  --bub-s: 68%;
-  --bub-l0: 97%;   /* lit side of the fill */
-  --bub-l1: 87%;   /* shaded side */
-  --bub-rim: 68%;
-  --bub-ink: 32%;
-  --bub-glow: 22%; /* halo strength when selected */
+  --glass: rgb(255 255 255 / 0.34);
+  --glass-lit: rgb(255 255 255 / 0.62);
+  --glass-rim: rgb(255 255 255 / 0.75);
+  --glass-edge: rgb(15 18 26 / 0.10);
+  --glass-shadow: 0 10px 26px -8px rgb(15 18 26 / 0.28);
+  --glass-ink: #1c2430;
+  --wash-a: 0.5;
+  --wash-l: 66%;
+  --wash-s: 88%;
 }
 :root[data-theme="dark"] .tmap, html.dark .tmap {
-  --bub-s: 46%;
-  --bub-l0: 24%;
-  --bub-l1: 15%;
-  --bub-rim: 40%;
-  --bub-ink: 86%;
-  --bub-glow: 34%;
+  --glass: rgb(255 255 255 / 0.07);
+  --glass-lit: rgb(255 255 255 / 0.16);
+  --glass-rim: rgb(255 255 255 / 0.20);
+  --glass-edge: rgb(0 0 0 / 0.5);
+  --glass-shadow: 0 12px 30px -10px rgb(0 0 0 / 0.75);
+  --glass-ink: #eef1f6;
+  --wash-a: 0.34;
+  --wash-l: 54%;
+  --wash-s: 60%;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .tmap {
-    --bub-s: 46%;
-    --bub-l0: 24%;
-    --bub-l1: 15%;
-    --bub-rim: 40%;
-    --bub-ink: 86%;
-    --bub-glow: 34%;
+    --glass: rgb(255 255 255 / 0.07);
+    --glass-lit: rgb(255 255 255 / 0.16);
+    --glass-rim: rgb(255 255 255 / 0.20);
+    --glass-edge: rgb(0 0 0 / 0.5);
+    --glass-shadow: 0 12px 30px -10px rgb(0 0 0 / 0.75);
+    --glass-ink: #eef1f6;
+    --wash-a: 0.42;
+    --wash-l: 52%;
+    --wash-s: 74%;
   }
 }
 
@@ -1741,89 +1753,113 @@ svg { display: block; }
 .tmap__canvas {
   margin-top: 16px; overflow: auto; overscroll-behavior-x: contain;
   border: 1px solid var(--border); border-radius: var(--radius-lg);
-  background: var(--bg-subtle); padding: 8px;
+  background: var(--bg-subtle);
+  /* `isolation` keeps the bubbles' backdrop-filter reading THIS stack and not
+     the page behind it. */
+  isolation: isolate;
 }
-.tmap__svg { display: block; margin: 0 auto; }
+/* Full canvas width, so the wash runs to the edges however narrow the map is;
+   the blur is clipped here rather than at the map's own box. */
+.tmap__stage { position: relative; width: 100%; overflow: hidden; }
+.tmap__plot { position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%); }
 
-/* Links draw themselves in rather than appearing: `pathLength=1` makes one
-   dash the whole line, whatever its real length, so a single offset animation
-   works for every link. A new selection mounts new <line> elements, so the
-   draw replays on each pick. */
+.tmap__wash { position: absolute; inset: 0; pointer-events: none; }
+.tmap__blob {
+  position: absolute; border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    hsl(var(--h) var(--wash-s) var(--wash-l) / var(--wash-a)) 0%,
+    hsl(var(--h) var(--wash-s) var(--wash-l) / 0) 68%
+  );
+  /* Blurred far past its own edge: four spots become one gradient. */
+  filter: blur(56px);
+}
+
+.tmap__links { position: absolute; inset: 0; pointer-events: none; }
+/* Links draw themselves in: `pathLength=1` makes one dash the whole line,
+   whatever its real length, so a single offset animation works for every link.
+   A new selection mounts new <line> elements, so the draw replays on each
+   pick. */
 .tmap__links line {
-  stroke: var(--border-strong);
+  stroke: color-mix(in srgb, var(--fg) 30%, transparent);
   stroke-dasharray: 1; stroke-linecap: round;
   animation: tmap-draw 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
   transition: stroke 0.2s;
 }
-/* While a topic is selected its links take its own hue, so the connection
-   between the panel below and the map above is a colour, not a label. */
-.tmap__svg.is-selecting .tmap__links line { stroke: hsl(var(--h) 62% 55%); }
+.tmap__stage.is-selecting .tmap__links line {
+  stroke: color-mix(in srgb, var(--fg) 62%, transparent);
+}
 @keyframes tmap-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 
-.tmap__node { cursor: pointer; }
-/* The entrance lives on its own group because a CSS animation always beats a
-   transition on the same element. `backwards` holds the from-state through the
-   stagger delay and leaves no transform behind once it has run, so hover and
-   selection are free to use transitions afterwards.
-
-   There is deliberately NO idle animation. A bubble that never stops moving is
-   a click target you have to chase — and one browsers, screen readers and
-   Playwright alike consider permanently unstable. The map animates when it
-   arrives, when it is pointed at, and when it is used. */
-.tmap__in { animation: tmap-pop 0.62s cubic-bezier(0.34, 1.42, 0.5, 1) var(--in) backwards; }
+/* ---- the glass itself ---- */
+.tmap__node {
+  position: absolute; display: grid; place-items: center; padding: 0;
+  border-radius: 50%; cursor: pointer; color: var(--glass-ink);
+  background:
+    /* the specular highlight, then the body of the glass */
+    radial-gradient(120% 90% at 32% 22%, var(--glass-lit) 0%, transparent 58%),
+    var(--glass);
+  border: 1px solid var(--glass-rim);
+  box-shadow: var(--glass-shadow), inset 0 -10px 20px -12px var(--glass-edge);
+  backdrop-filter: blur(9px) saturate(1.9);
+  -webkit-backdrop-filter: blur(9px) saturate(1.9);
+  transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.26s,
+    opacity 0.26s, border-color 0.2s, background 0.2s;
+  animation: tmap-pop 0.62s cubic-bezier(0.34, 1.42, 0.5, 1) var(--in) backwards;
+}
+/* Without backdrop-filter the glass would be a pale film over nothing, so it
+   falls back to a more opaque surface that still reads as a bubble. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .tmap__node { background: color-mix(in srgb, var(--bg) 76%, transparent); }
+}
 @keyframes tmap-pop {
   from { opacity: 0; transform: scale(0.3); }
   to { opacity: 1; transform: scale(1); }
 }
 
-.tmap__bubble {
-  stroke: hsl(var(--h) var(--bub-s) var(--bub-rim)); stroke-width: 1.25;
-  r: calc(var(--r) * 1px);
-  transition: r 0.24s cubic-bezier(0.22, 1, 0.36, 1), stroke-width 0.2s, opacity 0.22s;
-}
-.tmap__stop0 { stop-color: hsl(var(--h) var(--bub-s) var(--bub-l0)); }
-.tmap__stop1 { stop-color: hsl(var(--h) var(--bub-s) var(--bub-l1)); }
-/* Sits behind the bubble and only shows when the topic is picked. */
-.tmap__halo {
-  fill: none; stroke: hsl(var(--h) var(--bub-s) 55%); stroke-width: 0;
-  opacity: 0; r: calc(var(--r) * 1px);
-  transition: r 0.3s, stroke-width 0.3s, opacity 0.3s;
-}
 .tmap__label {
-  fill: hsl(var(--h) 30% var(--bub-ink)); font-weight: 500; pointer-events: none;
-  transition: fill 0.18s, opacity 0.22s;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  line-height: 1.15; font-weight: 500; letter-spacing: -0.01em; pointer-events: none;
+  text-align: center; max-width: 88%;
 }
+.tmap__line { white-space: nowrap; }
 
-.tmap__node:hover .tmap__bubble { r: calc(var(--r) * 1px + 4px); stroke-width: 2; }
-.tmap__node:hover .tmap__label { font-weight: 600; }
-/* Focus ring drawn on the circle itself — an `outline` on an SVG group is not
-   reliable across browsers. */
-.tmap__node:focus { outline: none; }
-.tmap__node:focus-visible .tmap__bubble { stroke: var(--accent); stroke-width: 2.5; }
+.tmap__node:hover {
+  transform: scale(1.07);
+  box-shadow: 0 16px 34px -10px rgb(15 18 26 / 0.32), inset 0 -10px 20px -12px var(--glass-edge);
+}
+.tmap__node:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-.tmap__node.is-selected .tmap__bubble { r: calc(var(--r) * 1px + 5px); stroke-width: 2.5; }
-.tmap__node.is-selected .tmap__halo {
-  stroke-width: 10px; opacity: var(--bub-glow); r: calc(var(--r) * 1px + 9px);
+/* Selection is monochrome — the colour in this map means "where", not "which
+   one". A picked bubble simply comes forward: brighter glass, a solid rim, a
+   deeper shadow. */
+.tmap__node.is-selected {
+  transform: scale(1.09); z-index: 3;
+  border-color: color-mix(in srgb, var(--fg) 55%, transparent);
+  box-shadow: 0 18px 38px -12px rgb(15 18 26 / 0.4),
+    0 0 0 4px color-mix(in srgb, var(--fg) 8%, transparent),
+    inset 0 -10px 20px -12px var(--glass-edge);
 }
 .tmap__node.is-selected .tmap__label { font-weight: 700; }
-.tmap__node.is-related .tmap__bubble { stroke-width: 2; }
-.tmap__node.is-dimmed .tmap__bubble { opacity: 0.26; }
-.tmap__node.is-dimmed .tmap__label { opacity: 0.3; }
+.tmap__node.is-related { border-color: color-mix(in srgb, var(--fg) 26%, transparent); }
+.tmap__node.is-related .tmap__label { font-weight: 600; }
+.tmap__node.is-dimmed { opacity: 0.34; }
 
 /* The click itself: a ring that leaves the bubble and fades. Mounted per click
    (TopicMap.tsx) so it replays even on an already-selected topic. */
 .tmap__pulse {
-  fill: none; stroke: hsl(var(--h) 62% 55%); stroke-width: 2.5; pointer-events: none;
-  transform-box: fill-box; transform-origin: center;
+  position: absolute; inset: -1px; border-radius: 50%; pointer-events: none;
+  border: 2px solid color-mix(in srgb, var(--fg) 40%, transparent);
   animation: tmap-pulse 0.62s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 @keyframes tmap-pulse {
-  from { transform: scale(1); opacity: 0.7; }
+  from { transform: scale(1); opacity: 0.75; }
   to { transform: scale(1.85); opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tmap__in, .tmap__links line { animation: none; }
+  .tmap__node, .tmap__links line { animation: none; }
+  .tmap__node:hover, .tmap__node.is-selected { transform: none; }
   /* Kept as an animation, not removed: the ring unmounts itself on
      `animationend`, so it still has to end — just invisibly and at once. */
   .tmap__pulse { animation: tmap-pulse 0.01s linear forwards; opacity: 0; }
@@ -1837,13 +1873,6 @@ svg { display: block; }
 .tmapsel__head {
   display: flex; align-items: center; gap: 10px; padding: 12px 16px;
   border-bottom: 1px solid var(--border);
-}
-/* Carries the selected bubble's own hue down into the panel heading, so the
-   list is visibly the bubble that was clicked. */
-.tmapsel__dot {
-  width: 10px; height: 10px; border-radius: 50%; flex: none;
-  background: hsl(var(--h) 58% 62%);
-  box-shadow: 0 0 0 3px hsl(var(--h) 58% 62% / 0.18);
 }
 .tmapsel__title { margin: 0; font-size: 17px; letter-spacing: -0.01em; }
 .tmapsel__count { font-size: 12.5px; color: var(--fg-muted); }
