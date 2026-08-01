@@ -14,11 +14,12 @@ import { topicLabel } from "./topic-labels";
 // per-language memo below.
 //
 // Everything here is a pure function of the conference JSON. In particular the
-// LAYOUT IS DETERMINISTIC: no randomness, no seeding, no physics simulation and
+// LAYOUT IS DETERMINISTIC: no randomness, no seeding, no force simulation and
 // no measurement of the DOM, so the same dataset always produces the same map,
-// on every load and on every device. The three ordering decisions that drive it
-// (rank, seriation, candidate scan) all break ties on the topic key, which is
-// unique, so no comparison can ever end in an arbitrary result.
+// on every load and on every device. The four ordering decisions that drive it
+// (rank, seriation, candidate scan, settling) all break ties on the topic key,
+// which is unique, so no comparison can ever end in an arbitrary result. Colour
+// follows rank, for the same reason.
 
 /** One talk carrying a topic, flattened with everything a link needs. */
 export interface TopicTalk {
@@ -48,6 +49,10 @@ export interface TopicNode {
   /** Label split into at most two lines, plus the font size that makes it fit. */
   lines: string[];
   fontSize: number;
+  /** Bubble hue in degrees. Derived from rank alone (see `hueFor`), so the
+      palette is as deterministic as the layout — a topic keeps its colour
+      across reloads, devices and both languages. */
+  hue: number;
   talks: TopicTalk[];
 }
 
@@ -62,13 +67,11 @@ export interface TopicEdge {
 }
 
 export interface TopicCoverage {
-  /** Talks carrying at least one topic. */
+  /** Talks the bubbles actually stand for: forum talks carrying at least one
+      topic. Main-stage keynotes are not on the map (they have no `#talk-N`
+      anchor to link at), so they are not counted here either — the page states
+      this number as "N talks", and it has to be the same N. */
   tagged: number;
-  /** Talks in the dataset (forum talks + main-conference keynotes). */
-  total: number;
-  /** Forums whose agenda has not been extracted yet, so their talks are absent
-      from `total` entirely — the map cannot speak for them. */
-  pendingForums: number;
 }
 
 export interface TopicMapData {
@@ -105,6 +108,18 @@ const LABEL_INSET = 6;
 const GOLDEN_ANGLE = Math.PI * (3 - Math.sqrt(5));
 const SCAN_STEP = 9;
 const SCAN_LIMIT = 4000;
+/** Settling passes after placement — see step 3b. */
+const COMPACT_ROUNDS = 60;
+/** Move lengths a bubble tries per pass, longest first, in px. */
+const COMPACT_STEPS = [12, 6, 3, 1.5];
+/** Directions tried, as offsets from "straight at the centre" in radians. A
+    bubble that cannot move inward directly slides around whatever is in the
+    way instead of giving up — without this the cluster jams almost at once. */
+const COMPACT_TURNS = [0, 0.35, -0.35, 0.7, -0.7, 1.05, -1.05];
+/** Vertical distance counts this much more than horizontal, so the cluster
+    settles into a wide band instead of a circle. A page is wider than it is
+    tall; a topic map that scrolls sideways is a topic map nobody finishes. */
+const COMPACT_ASPECT = 2.2;
 /** How many links to draw before any topic is selected. Enough to read the
     shape of the program, few enough not to become a hairball. */
 const BACKBONE_MAX = 22;
@@ -123,6 +138,22 @@ const textUnits = (s: string): number =>
     so 存算一体 / CIM and "AI Chip / Accelerator" stay legible at bubble size.
     The panel heading and the accessible name still carry the label in full. */
 const bubbleText = (label: string): string => label.split("/")[0].trim();
+
+/* ================================= colour ================================= */
+
+/** Bubble hues live in the cool half of the wheel — teal through blue to the
+    violet the AI marks already use — so a coloured map still reads as part of
+    this app rather than as a chart pasted into it. */
+const HUE_START = 172;
+const HUE_SPAN = 128;
+/** Golden-ratio stepping: consecutive ranks land far apart on the wheel, and no
+    two of the first few dozen topics get a confusingly similar colour. */
+const HUE_STEP = 0.618033988749895;
+
+/** The hue of the topic ranked `i`th. Rank, not key, so the biggest topics get
+    the most separated colours. */
+const hueFor = (i: number): number =>
+  Math.round((HUE_START + ((i * HUE_STEP) % 1) * HUE_SPAN) * 10) / 10;
 
 /** A piece of a label that must not be broken, and whether a space preceded it.
     English breaks between words and after hyphens; CJK, which has neither,
@@ -225,21 +256,14 @@ export function buildTopicMap(conference: Conference, lang: Lang): TopicMapData 
   // that cannot occur inside a key.
   const pairs = new Map<string, number>();
   let tagged = 0;
-  let total = 0;
-  let pendingForums = 0;
 
   const pairKey = (a: string, b: string) =>
     a < b ? `${a}${PAIR_SEP}${b}` : `${b}${PAIR_SEP}${a}`;
 
   for (const f of conference.forums ?? []) {
-    // A forum whose agenda has not been parsed contributes no talks at all —
-    // count it so the page can say the map does not cover the whole program.
-    if (!f.detail_extracted) {
-      pendingForums += 1;
-      continue;
-    }
+    // A forum whose agenda has not been parsed contributes no talks at all.
+    if (!f.detail_extracted) continue;
     (f.talks ?? []).forEach((talk, index) => {
-      total += 1;
       const topics = [...new Set(talk.enrichment?.topics ?? [])].sort();
       if (topics.length === 0) return;
       tagged += 1;
@@ -270,18 +294,7 @@ export function buildTopicMap(conference: Conference, lang: Lang): TopicMapData 
       }
     });
   }
-  // Main-conference keynotes live on day blocks, not forums. They are part of
-  // the program the coverage line speaks about even when they carry no tags.
-  for (const day of conference.days ?? []) {
-    for (const block of day.blocks) {
-      for (const talk of block.talks ?? []) {
-        total += 1;
-        if ((talk.enrichment?.topics ?? []).length > 0) tagged += 1;
-      }
-    }
-  }
-
-  const coverage: TopicCoverage = { tagged, total, pendingForums };
+  const coverage: TopicCoverage = { tagged };
   const keys = [...counts.keys()].sort(
     (a, b) => (counts.get(b) ?? 0) - (counts.get(a) ?? 0) || (a < b ? -1 : 1),
   );
@@ -390,6 +403,67 @@ export function buildTopicMap(conference: Conference, lang: Lang): TopicMapData 
     if (!placed) pos.set(k, { x: ax + SCAN_STEP * Math.sqrt(SCAN_LIMIT), y: ay });
   }
 
+  // ---- 3b. settling ----
+  // Placement is greedy and one-shot: a topic dropped early can leave the ones
+  // that follow stranded in a spur, so the raw scan produces a ragged, sprawling
+  // outline with holes in it. Pull every bubble back toward the cluster's centre
+  // — the largest move that still clears every other bubble wins, halving until
+  // one fits — until nothing can move any further. Vertical pull is stronger, so
+  // the result is a wide band rather than a tall blob.
+  //
+  // Still no randomness and no physics: bubbles are visited in the seriation
+  // order, so the outcome is fully determined by the data.
+  const clears = (k: string, x: number, y: number): boolean => {
+    const rk = radius.get(k)!;
+    for (const [p, pp] of pos) {
+      if (p === k) continue;
+      const need = rk + radius.get(p)! + GAP;
+      if ((x - pp.x) ** 2 + (y - pp.y) ** 2 < need * need) return false;
+    }
+    return true;
+  };
+  for (let round = 0; round < COMPACT_ROUNDS; round++) {
+    let cx = 0;
+    let cy = 0;
+    for (const p of pos.values()) {
+      cx += p.x;
+      cy += p.y;
+    }
+    cx /= pos.size;
+    cy /= pos.size;
+    // Distance to the centre, counting vertical distance as the more expensive
+    // one — this is the only thing the pass tries to reduce.
+    const cost = (x: number, y: number): number =>
+      (x - cx) ** 2 + ((y - cy) * COMPACT_ASPECT) ** 2;
+    let moved = false;
+    for (const k of order) {
+      const p = pos.get(k)!;
+      const here = cost(p.x, p.y);
+      const straight = Math.atan2((cy - p.y) * COMPACT_ASPECT, cx - p.x);
+      let best: { x: number; y: number } | null = null;
+      let bestCost = here;
+      for (const step of COMPACT_STEPS) {
+        for (const turn of COMPACT_TURNS) {
+          const th = straight + turn;
+          const nx = p.x + Math.cos(th) * step;
+          const ny = p.y + Math.sin(th) * step;
+          const c = cost(nx, ny);
+          if (c >= bestCost || !clears(k, nx, ny)) continue;
+          bestCost = c;
+          best = { x: nx, y: ny };
+        }
+        // Take the longest step that gets anywhere; only fall back to shorter
+        // ones when the bubble is boxed in.
+        if (best) break;
+      }
+      if (best) {
+        pos.set(k, best);
+        moved = true;
+      }
+    }
+    if (!moved) break;
+  }
+
   // Normalise to a (0,0)-anchored box with a small margin, so the SVG viewBox
   // is exactly the content.
   const MARGIN = 6;
@@ -406,7 +480,7 @@ export function buildTopicMap(conference: Conference, lang: Lang): TopicMapData 
     maxY = Math.max(maxY, p.y + r);
   }
 
-  const nodes: TopicNode[] = keys.map((key) => {
+  const nodes: TopicNode[] = keys.map((key, rank) => {
     const p = pos.get(key)!;
     const r = radius.get(key)!;
     const label = topicLabel(key, lang);
@@ -425,6 +499,7 @@ export function buildTopicMap(conference: Conference, lang: Lang): TopicMapData 
       y: p.y - minY + MARGIN,
       r,
       ...fitLabel(bubbleText(label), r),
+      hue: hueFor(rank),
       talks,
     };
   });

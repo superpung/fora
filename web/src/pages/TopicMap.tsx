@@ -1,4 +1,4 @@
-import { useMemo, type KeyboardEvent } from "react";
+import { useMemo, useState, type CSSProperties, type KeyboardEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useConference } from "../lib/conference-store";
@@ -22,10 +22,23 @@ import Icon from "../components/Icon";
 // mounts the route (and Nav only shows the entry) while useAi().enabled is on.
 //
 // The visualization is a bubble constellation: area = how many talks carry the
-// topic, position = which topics travel together (each topic is dropped beside
-// the ones it co-occurs with). Selecting a topic lights up its links, dims the
-// rest, and lists its talks below. See lib/topics.ts for the layout — it is a
-// pure function of the dataset, so the map is identical on every load.
+// topic, colour and position = which topics travel together (each topic is
+// dropped beside the ones it co-occurs with, then the cluster settles inward).
+// Selecting a topic lights up its links, dims the rest, and lists its talks
+// below. See lib/topics.ts for the layout — it is a pure function of the
+// dataset, so the map is identical on every load.
+
+/** How the talks under the selected topic are grouped. */
+type GroupMode = "forum" | "day" | "none";
+const GROUP_MODES: GroupMode[] = ["forum", "day", "none"];
+
+interface TalkGroup {
+  key: string;
+  /** Null in "none" mode — the list is then rendered without headings. */
+  label: string | null;
+  sub?: string;
+  talks: TopicTalk[];
+}
 
 /** One talk under the selected topic, linking into the forum page's anchor. */
 function TopicTalkRow({ talk }: { talk: TopicTalk }) {
@@ -69,21 +82,38 @@ function TopicTalkRow({ talk }: { talk: TopicTalk }) {
 }
 
 /** A bubble. Rendered as an SVG group that behaves like a toggle button: it is
-    tabbable and driven by Enter/Space, so the map is never hover-only. */
+    tabbable and driven by Enter/Space, so the map is never hover-only.
+
+    The outer group holds the position and the inner one the entrance pop,
+    because a CSS animation and a CSS transition cannot share a property. Hover
+    and selection then grow the circle's `r` rather than scaling a group, which
+    keeps the label at exactly the size the fitter measured it into. */
 function TopicBubble({
   node,
+  rank,
+  gradient,
   state,
   onSelect,
 }: {
   node: TopicNode;
+  rank: number;
+  gradient: string;
   state: "idle" | "selected" | "related" | "dimmed";
   onSelect: (key: string) => void;
 }) {
   const { t } = useI18n();
+  // Each click mounts a fresh ring, so the ripple restarts even on a bubble
+  // that is already selected. The ring removes itself when its animation ends.
+  const [pulses, setPulses] = useState<number[]>([]);
+
+  const fire = () => {
+    setPulses((p) => [...p, (p[p.length - 1] ?? 0) + 1]);
+    onSelect(node.key);
+  };
   const onKeyDown = (e: KeyboardEvent<SVGGElement>) => {
     if (e.key !== "Enter" && e.key !== " ") return;
     e.preventDefault();
-    onSelect(node.key);
+    fire();
   };
   // Multi-line labels straddle the centre; one-line labels sit on it. The
   // rhythm is the fitter's, so what was measured is what gets drawn.
@@ -93,6 +123,15 @@ function TopicBubble({
     <g
       className={`tmap__node is-${state}`}
       transform={`translate(${node.x} ${node.y})`}
+      style={
+        {
+          "--h": node.hue,
+          "--r": node.r,
+          // Bubbles arrive in rank order, biggest first, capped so a large
+          // vocabulary still finishes arriving in under a second.
+          "--in": `${Math.min(rank * 0.022, 0.9)}s`,
+        } as CSSProperties
+      }
       role="button"
       tabIndex={0}
       aria-pressed={state === "selected"}
@@ -100,17 +139,28 @@ function TopicBubble({
         topic: node.label,
         n: node.count,
       })}
-      onClick={() => onSelect(node.key)}
+      onClick={fire}
       onKeyDown={onKeyDown}
     >
-      <circle className="tmap__bubble" r={node.r} />
-      <text className="tmap__label" fontSize={node.fontSize} textAnchor="middle">
-        {node.lines.map((line, i) => (
-          <tspan key={i} x={0} y={top + i * lineH} dominantBaseline="central">
-            {line}
-          </tspan>
+      <g className="tmap__in">
+        {pulses.map((id) => (
+          <circle
+            key={id}
+            className="tmap__pulse"
+            r={node.r}
+            onAnimationEnd={() => setPulses((p) => p.filter((x) => x !== id))}
+          />
         ))}
-      </text>
+        <circle className="tmap__halo" r={node.r} />
+        <circle className="tmap__bubble" r={node.r} fill={`url(#${gradient})`} />
+        <text className="tmap__label" fontSize={node.fontSize} textAnchor="middle">
+          {node.lines.map((line, i) => (
+            <tspan key={i} x={0} y={top + i * lineH} dominantBaseline="central">
+              {line}
+            </tspan>
+          ))}
+        </text>
+      </g>
     </g>
   );
 }
@@ -124,6 +174,7 @@ export default function TopicMap() {
   // Sticky so a trip into a forum page and browser Back restores the selection,
   // matching the speakers/schedule filters.
   const [selected, setSelected] = useStickyState<string | null>(`${confId}:tmap.sel`, null);
+  const [group, setGroup] = useStickyState<GroupMode>(`${confId}:tmap.group`, "forum");
 
   const node = selected ? map.byKey.get(selected) : undefined;
   const links = useMemo(() => {
@@ -134,6 +185,36 @@ export default function TopicMap() {
     if (!node) return null;
     return new Set((map.neighbors.get(node.key) ?? []).map((e) => otherEnd(e, node.key)));
   }, [node, map]);
+
+  // The talks of the selected topic, in the requested grouping. Talks arrive
+  // already ordered by date/start/forum, so grouping only has to bucket them:
+  // first appearance decides a group's position, which keeps both groupings in
+  // the program's own order.
+  const groups = useMemo<TalkGroup[]>(() => {
+    if (!node) return [];
+    if (group === "none") return [{ key: "all", label: null, talks: node.talks }];
+    const out: TalkGroup[] = [];
+    const byKey = new Map<string, TalkGroup>();
+    for (const talk of node.talks) {
+      const key = group === "forum" ? talk.forumCode : (talk.date ?? "");
+      let g = byKey.get(key);
+      if (!g) {
+        const date = talk.date ? formatDate(talk.date, lang) : null;
+        g =
+          group === "forum"
+            ? { key, label: talk.forumTitle, sub: talk.forumCode, talks: [] }
+            : {
+                key,
+                label: date ? `${date.md} ${date.weekday}` : t("topics.groupNoDate"),
+                talks: [],
+              };
+        byKey.set(key, g);
+        out.push(g);
+      }
+      g.talks.push(talk);
+    }
+    return out;
+  }, [node, group, lang, t]);
 
   const select = (key: string) => setSelected((cur) => (cur === key ? null : key));
 
@@ -169,21 +250,15 @@ export default function TopicMap() {
         </div>
       </div>
 
-      {/* Honesty about scope: the map only speaks for the talks that carry a
-          tag, and not at all for forums whose agenda is still unparsed. */}
-      <p className="tmap__coverage">
-        {t("topics.coverage", {
-          tagged: map.coverage.tagged,
-          total: map.coverage.total,
-          topics: map.nodes.length,
-        })}
-        {map.coverage.pendingForums > 0 &&
-          ` · ${t(
-            map.coverage.pendingForums === 1 ? "topics.pendingForum" : "topics.pendingForums",
-            { n: map.coverage.pendingForums },
-          )}`}
-      </p>
-      <AiNote className="tmap__note" />
+      {/* One line: the size of what is being looked at, and where it came from.
+          The map speaks for the tagged talks and the disclaimer says who wrote
+          the tags — anything more belongs in the legend of the map itself. */}
+      <div className="tmap__lede">
+        <span className="tmap__coverage">
+          {t("topics.coverage", { tagged: map.coverage.tagged, topics: map.nodes.length })}
+        </span>
+        <AiNote className="tmap__note" />
+      </div>
 
       <div className="tmap__canvas">
         <svg
@@ -197,9 +272,33 @@ export default function TopicMap() {
             if (e.key === "Escape") setSelected(null);
           }}
         >
+          <defs>
+            {/* One light source for the whole map: every bubble is lit from the
+                same upper-left, which is what makes a flat circle read as a
+                sphere. The stops take their hue from the node. */}
+            {map.nodes.map((n, i) => (
+              <radialGradient
+                key={n.key}
+                id={`tmapg-${i}`}
+                cx="36%"
+                cy="28%"
+                r="82%"
+                style={{ "--h": n.hue } as CSSProperties}
+              >
+                <stop className="tmap__stop0" offset="0%" />
+                <stop className="tmap__stop1" offset="100%" />
+              </radialGradient>
+            ))}
+          </defs>
           {/* Links sit under the bubbles: the strongest co-occurrences overall
-              by default, the selected topic's own links when one is picked. */}
-          <g className="tmap__links" aria-hidden>
+              by default, the selected topic's own links when one is picked.
+              They draw themselves in — a new selection mounts new lines, so the
+              stroke-dash animation replays every time. */}
+          <g
+            className="tmap__links"
+            aria-hidden
+            style={node ? ({ "--h": node.hue } as CSSProperties) : undefined}
+          >
             {links.map((e) => {
               const a = map.byKey.get(e.a);
               const b = map.byKey.get(e.b);
@@ -211,16 +310,19 @@ export default function TopicMap() {
                   y1={a.y}
                   x2={b.x}
                   y2={b.y}
+                  pathLength={1}
                   strokeWidth={1 + 2.6 * (e.w / maxLinkWeight)}
                   strokeOpacity={0.2 + 0.55 * (e.w / maxLinkWeight)}
                 />
               );
             })}
           </g>
-          {map.nodes.map((n) => (
+          {map.nodes.map((n, i) => (
             <TopicBubble
               key={n.key}
               node={n}
+              rank={i}
+              gradient={`tmapg-${i}`}
               state={
                 !relatedKeys
                   ? "idle"
@@ -240,12 +342,14 @@ export default function TopicMap() {
         {node && (
           <motion.section
             className="tmapsel"
+            style={{ "--h": node.hue } as CSSProperties}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 6 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
             <header className="tmapsel__head">
+              <span className="tmapsel__dot" aria-hidden />
               <h3 className="tmapsel__title">{node.label}</h3>
               <span className="tmapsel__count mono">
                 {t("common.reportsCount", { n: node.count })}
@@ -275,9 +379,45 @@ export default function TopicMap() {
               </div>
             )}
 
+            {/* A topic's talks are scattered across the program — which forum
+                they sit in, and which day they run, are the two things a reader
+                actually navigates by. Both, or neither, on request. */}
+            <div className="tmapsel__groupbar">
+              <span className="tmapsel__rellabel">{t("topics.groupBy")}</span>
+              <div className="seg" role="group" aria-label={t("topics.groupBy")}>
+                {GROUP_MODES.map((m) => (
+                  <button
+                    key={m}
+                    className={`seg__btn ${group === m ? "is-on" : ""}`}
+                    aria-pressed={group === m}
+                    onClick={() => setGroup(m)}
+                  >
+                    {t(`topics.group.${m}`)}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             <div className="tmapsel__talks">
-              {node.talks.map((talk) => (
-                <TopicTalkRow key={`${talk.forumCode}:${talk.index}`} talk={talk} />
+              {groups.map((g) => (
+                <motion.div
+                  className="tmapgrp"
+                  key={`${group}:${g.key}`}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {g.label && (
+                    <div className="tmapgrp__head">
+                      {g.sub && <span className="tmapgrp__code mono">{g.sub}</span>}
+                      <span className="tmapgrp__label">{g.label}</span>
+                      <span className="tmapgrp__n mono">{g.talks.length}</span>
+                    </div>
+                  )}
+                  {g.talks.map((talk) => (
+                    <TopicTalkRow key={`${talk.forumCode}:${talk.index}`} talk={talk} />
+                  ))}
+                </motion.div>
               ))}
             </div>
           </motion.section>

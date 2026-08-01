@@ -1692,12 +1692,47 @@ svg { display: block; }
 
 /* ====================== topic map (#8) + similar talks (#9) ==================
    Both surfaces render AI-derived content and only exist while the AI switch is
-   on. Structure is neutral greys; the violet --ai-fg appears only on the
-   provenance marks, so the map reads as part of the program, not as a separate
-   "AI" skin. */
+   on. The page chrome stays neutral grey; colour belongs to the bubbles alone,
+   and every bubble hue is a rotation of ONE recipe (--h from lib/topics.ts fed
+   into a shared saturation/lightness pair), so a 40-topic map reads as one
+   palette rather than as forty decisions. The hues stay in the cool arc the
+   app's own accent and AI violet already occupy. */
 
-.tmap__coverage { margin: 18px 0 0; font-size: 13px; color: var(--fg-secondary); }
-.tmap__note { margin-top: 6px; }
+.tmap__lede {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-top: 18px;
+}
+.tmap__coverage { font-size: 13px; color: var(--fg-secondary); }
+.tmap__note { margin: 0; }
+
+/* Bubble colour recipe. Light: pale tinted fill, mid-tone rim, dark ink.
+   Dark: deep tinted fill, brighter rim, pale ink. Nothing else in the map is
+   coloured, so these six numbers are the whole palette. */
+.tmap {
+  --bub-s: 68%;
+  --bub-l0: 97%;   /* lit side of the fill */
+  --bub-l1: 87%;   /* shaded side */
+  --bub-rim: 68%;
+  --bub-ink: 32%;
+  --bub-glow: 22%; /* halo strength when selected */
+}
+:root[data-theme="dark"] .tmap, html.dark .tmap {
+  --bub-s: 46%;
+  --bub-l0: 24%;
+  --bub-l1: 15%;
+  --bub-rim: 40%;
+  --bub-ink: 86%;
+  --bub-glow: 34%;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .tmap {
+    --bub-s: 46%;
+    --bub-l0: 24%;
+    --bub-l1: 15%;
+    --bub-rim: 40%;
+    --bub-ink: 86%;
+    --bub-glow: 34%;
+  }
+}
 
 /* The map keeps its natural pixel size rather than scaling to the viewport:
    squeezed to phone width the Chinese labels become unreadable and the bubbles
@@ -1710,34 +1745,89 @@ svg { display: block; }
 }
 .tmap__svg { display: block; margin: 0 auto; }
 
-.tmap__links line { stroke: var(--border-strong); transition: stroke 0.2s; }
-.tmap__svg.is-selecting .tmap__links line { stroke: var(--accent); }
+/* Links draw themselves in rather than appearing: `pathLength=1` makes one
+   dash the whole line, whatever its real length, so a single offset animation
+   works for every link. A new selection mounts new <line> elements, so the
+   draw replays on each pick. */
+.tmap__links line {
+  stroke: var(--border-strong);
+  stroke-dasharray: 1; stroke-linecap: round;
+  animation: tmap-draw 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: stroke 0.2s;
+}
+/* While a topic is selected its links take its own hue, so the connection
+   between the panel below and the map above is a colour, not a label. */
+.tmap__svg.is-selecting .tmap__links line { stroke: hsl(var(--h) 62% 55%); }
+@keyframes tmap-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 
 .tmap__node { cursor: pointer; }
+/* The entrance lives on its own group because a CSS animation always beats a
+   transition on the same element. `backwards` holds the from-state through the
+   stagger delay and leaves no transform behind once it has run, so hover and
+   selection are free to use transitions afterwards.
+
+   There is deliberately NO idle animation. A bubble that never stops moving is
+   a click target you have to chase — and one browsers, screen readers and
+   Playwright alike consider permanently unstable. The map animates when it
+   arrives, when it is pointed at, and when it is used. */
+.tmap__in { animation: tmap-pop 0.62s cubic-bezier(0.34, 1.42, 0.5, 1) var(--in) backwards; }
+@keyframes tmap-pop {
+  from { opacity: 0; transform: scale(0.3); }
+  to { opacity: 1; transform: scale(1); }
+}
+
 .tmap__bubble {
-  fill: var(--bg); stroke: var(--border-strong); stroke-width: 1;
-  transition: fill 0.18s, stroke 0.18s, opacity 0.18s;
+  stroke: hsl(var(--h) var(--bub-s) var(--bub-rim)); stroke-width: 1.25;
+  r: calc(var(--r) * 1px);
+  transition: r 0.24s cubic-bezier(0.22, 1, 0.36, 1), stroke-width 0.2s, opacity 0.22s;
+}
+.tmap__stop0 { stop-color: hsl(var(--h) var(--bub-s) var(--bub-l0)); }
+.tmap__stop1 { stop-color: hsl(var(--h) var(--bub-s) var(--bub-l1)); }
+/* Sits behind the bubble and only shows when the topic is picked. */
+.tmap__halo {
+  fill: none; stroke: hsl(var(--h) var(--bub-s) 55%); stroke-width: 0;
+  opacity: 0; r: calc(var(--r) * 1px);
+  transition: r 0.3s, stroke-width 0.3s, opacity 0.3s;
 }
 .tmap__label {
-  fill: var(--fg-secondary); font-weight: 500; pointer-events: none;
-  transition: fill 0.18s, opacity 0.18s;
+  fill: hsl(var(--h) 30% var(--bub-ink)); font-weight: 500; pointer-events: none;
+  transition: fill 0.18s, opacity 0.22s;
 }
-.tmap__node:hover .tmap__bubble { fill: var(--bg-hover); stroke: var(--fg-muted); }
-.tmap__node:hover .tmap__label { fill: var(--fg); }
+
+.tmap__node:hover .tmap__bubble { r: calc(var(--r) * 1px + 4px); stroke-width: 2; }
+.tmap__node:hover .tmap__label { font-weight: 600; }
 /* Focus ring drawn on the circle itself — an `outline` on an SVG group is not
    reliable across browsers. */
 .tmap__node:focus { outline: none; }
 .tmap__node:focus-visible .tmap__bubble { stroke: var(--accent); stroke-width: 2.5; }
 
-.tmap__node.is-selected .tmap__bubble {
-  fill: color-mix(in srgb, var(--accent) 16%, var(--bg));
-  stroke: var(--accent); stroke-width: 2;
+.tmap__node.is-selected .tmap__bubble { r: calc(var(--r) * 1px + 5px); stroke-width: 2.5; }
+.tmap__node.is-selected .tmap__halo {
+  stroke-width: 10px; opacity: var(--bub-glow); r: calc(var(--r) * 1px + 9px);
 }
-.tmap__node.is-selected .tmap__label { fill: var(--fg); font-weight: 600; }
-.tmap__node.is-related .tmap__bubble { stroke: var(--fg-muted); }
-.tmap__node.is-related .tmap__label { fill: var(--fg); }
-.tmap__node.is-dimmed .tmap__bubble { opacity: 0.3; }
-.tmap__node.is-dimmed .tmap__label { opacity: 0.35; }
+.tmap__node.is-selected .tmap__label { font-weight: 700; }
+.tmap__node.is-related .tmap__bubble { stroke-width: 2; }
+.tmap__node.is-dimmed .tmap__bubble { opacity: 0.26; }
+.tmap__node.is-dimmed .tmap__label { opacity: 0.3; }
+
+/* The click itself: a ring that leaves the bubble and fades. Mounted per click
+   (TopicMap.tsx) so it replays even on an already-selected topic. */
+.tmap__pulse {
+  fill: none; stroke: hsl(var(--h) 62% 55%); stroke-width: 2.5; pointer-events: none;
+  transform-box: fill-box; transform-origin: center;
+  animation: tmap-pulse 0.62s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes tmap-pulse {
+  from { transform: scale(1); opacity: 0.7; }
+  to { transform: scale(1.85); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tmap__in, .tmap__links line { animation: none; }
+  /* Kept as an animation, not removed: the ring unmounts itself on
+     `animationend`, so it still has to end — just invisibly and at once. */
+  .tmap__pulse { animation: tmap-pulse 0.01s linear forwards; opacity: 0; }
+}
 
 /* selected-topic panel */
 .tmapsel {
@@ -1747,6 +1837,13 @@ svg { display: block; }
 .tmapsel__head {
   display: flex; align-items: center; gap: 10px; padding: 12px 16px;
   border-bottom: 1px solid var(--border);
+}
+/* Carries the selected bubble's own hue down into the panel heading, so the
+   list is visibly the bubble that was clicked. */
+.tmapsel__dot {
+  width: 10px; height: 10px; border-radius: 50%; flex: none;
+  background: hsl(var(--h) 58% 62%);
+  box-shadow: 0 0 0 3px hsl(var(--h) 58% 62% / 0.18);
 }
 .tmapsel__title { margin: 0; font-size: 17px; letter-spacing: -0.01em; }
 .tmapsel__count { font-size: 12.5px; color: var(--fg-muted); }
@@ -1765,6 +1862,35 @@ svg { display: block; }
 }
 .tmapsel__chip:hover { background: var(--bg-hover); color: var(--fg); }
 .tmapsel__chipn { font-size: 11px; color: var(--fg-muted); }
+
+/* ---- grouping of the selected topic's talks ---- */
+.tmapsel__groupbar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  padding: 9px 16px; border-bottom: 1px solid var(--border);
+}
+.seg {
+  display: inline-flex; padding: 2px; gap: 2px;
+  border: 1px solid var(--border); border-radius: 999px; background: var(--bg-subtle);
+}
+.seg__btn {
+  padding: 3px 11px; border: none; border-radius: 999px; cursor: pointer;
+  background: none; color: var(--fg-secondary); font-size: 12.5px; font-weight: 500;
+  transition: background 0.15s, color 0.15s;
+}
+.seg__btn:hover { color: var(--fg); }
+.seg__btn.is-on { background: var(--bg); color: var(--fg); box-shadow: 0 1px 2px rgb(0 0 0 / 0.08); }
+
+.tmapgrp__head {
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 9px 16px 7px; border-top: 1px solid var(--border);
+  background: var(--bg-subtle);
+}
+.tmapsel__talks > .tmapgrp:first-child .tmapgrp__head { border-top: none; }
+.tmapgrp__code { font-size: 11.5px; color: var(--fg-muted); }
+.tmapgrp__label { font-size: 12.5px; font-weight: 600; color: var(--fg-secondary); }
+.tmapgrp__n { margin-left: auto; font-size: 11.5px; color: var(--fg-muted); }
+/* A group's first row already has the heading above it as a separator. */
+.tmapgrp__head + .tmaptalk { border-top: none; }
 
 .tmaptalk {
   position: relative; display: flex; flex-direction: column; gap: 4px;
