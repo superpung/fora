@@ -143,6 +143,10 @@ export interface Forum {
   poster?: Asset | null;
   source_url?: string | null;
   detail_extracted?: boolean;
+  /** Why a forum carries no talks, when it carries none: "not_published" — the
+      conference has not published its programme yet; "unknown" — the build read
+      no programme but one may exist. Absent when there are talks. */
+  agenda_status?: "not_published" | "unknown";
   flags?: string[];
 }
 

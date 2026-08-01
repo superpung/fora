@@ -382,7 +382,10 @@ function ForumRow({
                 <Icon name="keynotes" size={12} /> {tr("common.reportsCount", { n: talks.length })}
               </span>
             ) : (
-              <span className="frow__pending">{tr("common.pending")}</span>
+              <span className="frow__pending">
+                {tr(f?.agenda_status === "not_published"
+                  ? "common.agendaPending" : "common.pending")}
+              </span>
             )}
           </span>
           {slot.people.length > 0 && (
