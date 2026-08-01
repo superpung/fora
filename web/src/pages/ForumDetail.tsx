@@ -474,9 +474,6 @@ export default function ForumDetail() {
             <Icon name="star" filled={followed} size={16} />
           </button>
         </div>
-        {/* TL;DR sits directly under the title: it is what the eye hits while
-            scanning the list. The abstract below is untouched. */}
-        <TalkSummary text={talkSummaryText(t)} />
         {t.flags?.length ? (
           <div className="talk__flag" title={t.flags.join("\n")}>
             <Icon name="alert" size={13} /> {tr("forum.sourceAnnotated")}
@@ -501,6 +498,11 @@ export default function ForumDetail() {
             </>
           );
         })()}
+        {/* TL;DR sits below the speakers, not under the title: title and
+            speaker are the talk's own identity and belong together, so the
+            generated line starts where the source's own header ends and the
+            abstract it summarises begins. */}
+        <TalkSummary text={talkSummaryText(t)} />
         {t.abstract ? (
           <Abstract text={t.abstract} />
         ) : t.abstract_status === "tbd" ? (
