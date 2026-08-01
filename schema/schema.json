@@ -263,6 +263,7 @@
         "poster": { "anyOf": [{ "$ref": "#/$defs/asset" }, { "type": "null" }] },
         "source_url": { "type": ["string", "null"], "description": "Official article-page URL for this forum (e.g. general_NNNN)" },
         "detail_extracted": { "type": "boolean", "description": "Whether the forum's details have been extracted" },
+        "agenda_status": { "type": "string", "enum": ["not_published", "unknown"], "description": "Why a forum carries no talks, when it carries none. 'not_published': the source itself publishes no programme for it yet (no timetable, no guest list) — the app can then say the agenda is still to come instead of blaming its own extraction. 'unknown': a programme may exist but this build did not read one. Absent when the forum has talks." },
         "flags": {
           "type": "array",
           "items": { "type": "string" },
