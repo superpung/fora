@@ -246,7 +246,8 @@ export default function Plan() {
           <Icon name="sparkle" size={22} />
           <p>{t("plan.aiOff")}</p>
           {/* The action itself, not directions to go and find it elsewhere. */}
-          <button className="planoff__on" onClick={() => ai.setEnabled(true)}>
+          <button className="planoff__on ai-hover" onClick={() => ai.setEnabled(true)}>
+            <Icon name="sparkle" size={13} />
             {t("plan.aiTurnOn")}
           </button>
         </div>
@@ -291,11 +292,11 @@ export default function Plan() {
             )}
             <div className="planform__actions">
               <button
-                className={`btn btn--primary planform__go ${thinking ? "is-busy" : ""}`}
+                className={`btn btn--primary planform__go ai-hover ${thinking ? "is-busy" : ""}`}
                 onClick={makePlan}
                 disabled={!canPlan || !!thinking}
               >
-                <Icon name="sparkle" size={14} />
+                <Icon name="sparkle" size={14} className={thinking ? "ai-spark" : undefined} />
                 {thinking ? t("plan.thinking") : t("plan.submit")}
               </button>
               <AiNote className="planform__note" />
@@ -316,7 +317,7 @@ export default function Plan() {
                 transition={{ duration: 0.25 }}
               >
                 <div className="planthink__head">
-                  <span className="planthink__orb" aria-hidden>
+                  <span className="ai-orb" aria-hidden>
                     <Icon name="sparkle" size={14} />
                   </span>
                   {t("plan.thinking")}
@@ -324,9 +325,9 @@ export default function Plan() {
                 <div className="planthink__rows" aria-hidden>
                   {[0, 1, 2].map((i) => (
                     <div className="planthink__row" key={i} style={{ "--i": i } as CSSProperties}>
-                      <span className="planthink__bar planthink__bar--meta" />
-                      <span className="planthink__bar planthink__bar--title" />
-                      <span className="planthink__bar planthink__bar--sub" />
+                      <span className="ai-skel planthink__bar--meta" />
+                      <span className="ai-skel planthink__bar--title" />
+                      <span className="ai-skel planthink__bar--sub" />
                     </div>
                   ))}
                 </div>
