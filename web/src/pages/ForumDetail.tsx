@@ -12,6 +12,7 @@ import Avatar from "../components/Avatar";
 import { AiNote } from "../components/AiMark";
 import TalkSummary from "../components/TalkSummary";
 import PosterModal from "../components/PosterModal";
+import SimilarTalks from "../components/SimilarTalks";
 import type { PosterSpec, PosterMeta } from "../lib/poster";
 import type { Person, Talk } from "../types";
 
@@ -505,6 +506,9 @@ export default function ForumDetail() {
         ) : t.abstract_status === "tbd" ? (
           <p className="talk__abstract muted-i">{tr("forum.abstractTbd")}</p>
         ) : null}
+        {/* Related talks elsewhere in the program — AI-derived, so the block
+            hides itself when AI content is switched off. */}
+        <SimilarTalks forumCode={forum!.code} talkIndex={i} />
       </>
     );
 
