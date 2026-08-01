@@ -6,6 +6,7 @@ import { useConference } from "../lib/conference-store";
 import { useFollow } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
 import { useStickyState } from "../lib/sticky-state";
+import { useHScroll } from "../lib/hscroll";
 import { useNow, isNowWithin } from "../lib/use-now";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import { collectFollowedItems } from "../lib/export";
@@ -182,6 +183,9 @@ export default function Schedule() {
   }, [initial, setActive]);
 
   const day = days[active];
+  // A long conference has more day tabs than a phone can show. Keep the
+  // selected day in sight and fade the side that continues.
+  const dayTabsRef = useHScroll<HTMLDivElement>([active, lang, days.length]);
   // In the follow view only the forum timeline is meaningful (that's where a
   // "room / forum" lives); non-forum blocks — keynotes, check-in, committee
   // meetings, breaks — aren't followable, so hide them while filtering.
@@ -243,29 +247,33 @@ export default function Schedule() {
         </div>
       </div>
 
-      {/* day tabs */}
+      {/* Day tabs. The bar keeps the sticky backdrop and the rule; the track
+          inside it is what scrolls, so the fade at a scrollable edge dims the
+          tabs without punching a hole in the backdrop they sit on. */}
       <div className="daytabs">
-        {days.map((d, i) => {
-          const { md, weekday } = formatDate(d.date, lang);
-          const isToday = d.date === todayStr;
-          return (
-            <button
-              key={d.date}
-              className={`daytab ${i === active ? "is-active" : ""} ${isToday ? "is-today" : ""}`}
-              onClick={() => setActive(i)}
-            >
-              <span className="daytab__md">{md}</span>
-              <span className="daytab__wd">{weekday}</span>
-              {i === active && (
-                <motion.span
-                  layoutId="daytab-bg"
-                  className="daytab__bg"
-                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                />
-              )}
-            </button>
-          );
-        })}
+        <div className="daytabs__track hstrip" ref={dayTabsRef}>
+          {days.map((d, i) => {
+            const { md, weekday } = formatDate(d.date, lang);
+            const isToday = d.date === todayStr;
+            return (
+              <button
+                key={d.date}
+                className={`daytab ${i === active ? "is-active" : ""} ${isToday ? "is-today" : ""}`}
+                onClick={() => setActive(i)}
+              >
+                <span className="daytab__md">{md}</span>
+                <span className="daytab__wd">{weekday}</span>
+                {i === active && (
+                  <motion.span
+                    layoutId="daytab-bg"
+                    className="daytab__bg"
+                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  />
+                )}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       <AnimatePresence mode="wait">
