@@ -1,6 +1,6 @@
 import type { Conference } from "../types";
 import type { Lang } from "./i18n-store";
-import { topicLabel, topicCategory } from "./topic-labels";
+import { topicLabel, topicMapLabel, topicCategory } from "./topic-labels";
 
 // "Conference at a glance": the topic landscape of one program, built from the
 // AI-derived `talk.enrichment.topics` tags (a controlled vocabulary — see
@@ -63,6 +63,9 @@ export interface TopicNode {
   /** Dot radius, in the same pixels. */
   r: number;
   side: LabelSide;
+  /** Width the label was laid out at, in px — the page sets it as the label's
+      own max-width, so what was measured is what is rendered. */
+  labelW: number;
   /** 0…1 by talk count — how solid the dot is drawn. */
   weight: number;
   talks: TopicTalk[];
@@ -137,8 +140,10 @@ const LABEL_FONT_SMALL = 10.5;
 const SMALL_BOX = 520;
 const LABEL_LEADING = 1.2;
 const LABEL_LINES_MAX = 3;
-/** Longest label line before it wraps, in characters-worth of the label font. */
+/** Longest label line before it wraps, in characters-worth of the label font,
+    and how far that stretches for a single word that does not fit in it. */
 const LABEL_WRAP = 5;
+const LABEL_WRAP_MAX = 8.5;
 /** Gap between a dot and its label. */
 const LABEL_GAP = 6;
 /** Room kept outside the outermost ring for the labels that read outward from
@@ -155,6 +160,11 @@ const FAM_EDGE = 14;
 const FAM_FONT = 11;
 const FAM_TRACK = 1.1;
 const FAM_BOX_H = 16;
+/** How far a family name may slide along its edge to clear a topic, and in what
+    steps. It marks a whole sector, so a few pixels along the rim change nothing
+    about what it points at. */
+const FAM_SLIDE_STEP = 8;
+const FAM_SLIDE_MAX = 80;
 /** The innermost ring, as a fraction of the outer one: the hole in the middle
     that the chords are bundled through. */
 const RING_MIN = 0.42;
@@ -168,14 +178,14 @@ const RINGS_MAX = 6;
     this and the layout keeps that much room clear. */
 const HIT_MIN = 11;
 /** Gap between two sectors, in radians. */
-const SECTOR_GAP = 0.08;
+const SECTOR_GAP = 0.13;
 /** Padding inside a sector, as a fraction of its width, so a family's outermost
     topics do not sit on the divider. */
 const SECTOR_INSET = 0.13;
 /** Arc actually usable for placement, as a fraction of the arc there is: the
     labels are measured at their widest, and a ring filled to the last pixel has
     nowhere to go when the separation pass needs to move something. */
-const ARC_SAFETY = 0.78;
+const ARC_SAFETY = 0.66;
 /** How many topics a ring will take, innermost first. A ring's arc says how
     many labels fit side by side, but the inner rings are short AND every label
     on them reads outward across the ring gap, where the next ring's topics are
@@ -185,7 +195,7 @@ const RING_CAP_BASE = 2;
 const RING_CAP_STEP = 4;
 /** Tangential separation passes after placement, and how much of the radius one
     pass may add to a topic's drift off its ring. */
-const SEPARATE_PASSES = 700;
+const SEPARATE_PASSES = 900;
 const RAD_STEP = 0.004;
 /** The share of one ring gap a topic may drift, when rotating cannot separate
     it from its neighbour. */
@@ -220,22 +230,45 @@ const PAIR_SEP = "\u0000";
 /* ================================= labels ================================= */
 
 const isCjk = (ch: string): boolean => /[㐀-鿿豈-﫿]/.test(ch);
-/** Rough advance width of a label in font-size units (CJK is full-width). */
-const textUnits = (s: string): number =>
-  [...s].reduce((w, ch) => w + (isCjk(ch) ? 1 : 0.58), 0);
+/** Rough advance width of a label in font-size units. CJK is full-width; Latin
+    is not one width but three, and treating it as one is what left "LLM" and
+    "EDA" measured narrower than they render — a label whose box is too small
+    for it is broken across lines by the browser, mid-word. */
+const charUnits = (ch: string): number => {
+  if (isCjk(ch)) return 1;
+  if (/[A-Z0-9]/.test(ch)) return 0.72;
+  if (/[a-z]/.test(ch)) return 0.56;
+  if (/[iIljt.,'’\-\s]/.test(ch)) return 0.32;
+  return 0.5;
+};
+const textUnits = (s: string): number => [...s].reduce((w, ch) => w + charUnits(ch), 0);
 
-/** What a dot is lettered with: the label trimmed to its first alternative, so
-    存算一体 / CIM and "AI Chip / Accelerator" stay short. The panel heading and
-    the accessible name still carry the label in full. */
-const nodeText = (label: string): string => label.split("/")[0].trim();
+/** What a dot is lettered with — see topicMapLabel: the label trimmed to its
+    first alternative (存算一体 / CIM), or the vocabulary's own short name where
+    even that does not fit ("AI for Software Engineering" → AI4SE). The panel
+    heading and the accessible name still carry the label in full. */
 
 /** The label's own box: how wide it runs and how tall, at the one size every
     label is set in. The page wraps it on the same budget. */
 function labelBox(text: string, font: number): { w: number; h: number } {
   const units = textUnits(text);
-  const lines = Math.min(LABEL_LINES_MAX, Math.max(1, Math.ceil(units / LABEL_WRAP)));
-  const perLine = lines === 1 ? units : Math.min(LABEL_WRAP, units / lines + 0.5);
-  return { w: perLine * font, h: lines * font * LABEL_LEADING };
+  // A word longer than the measure would be snapped in half at whatever letter
+  // the line ends on ("Supercond|ucting"), so the measure widens to hold the
+  // longest word instead — up to a limit, past which breaking is the lesser
+  // evil. Hyphenation is not an answer: it needs dictionaries the browser may
+  // not have.
+  const longest = Math.min(LABEL_WRAP_MAX, Math.max(...text.split(/\s+/).map(textUnits), 0));
+  const measure = Math.max(LABEL_WRAP, longest);
+  const lines = Math.min(LABEL_LINES_MAX, Math.max(1, Math.ceil(units / measure)));
+  // A label that wraps fills its measure — the browser puts as much on each line
+  // as fits, and hyphenates rather than leaving the line short. Averaging the
+  // characters over the lines instead would under-measure every wrapped English
+  // name by the better part of a centimetre, which is exactly where the last
+  // overlaps came from.
+  const perLine = lines === 1 ? Math.max(units, longest) : measure;
+  // A hair of slack: the estimate is an estimate, and being a pixel short is
+  // what breaks a word in half.
+  return { w: perLine * font + 3, h: lines * font * LABEL_LEADING };
 }
 
 /* ================================= layout ================================= */
@@ -294,7 +327,7 @@ function separate(
   rx: number,
   ry: number,
   frac: (k: number) => number,
-  fixed: { x: number; y: number; w: number }[],
+  fixed: { x: number; y: number; w: number; side: LabelSide }[],
   /** How far off its ring a topic may drift, as a fraction of the radius. */
   drift: number,
 ): void {
@@ -312,9 +345,13 @@ function separate(
     for (const p of nodes) {
       const e = extents(p);
       for (const f of fixed) {
-        const ox = e.hx + f.w / 2 + PAD - Math.abs(p.x - f.x);
+        // The name hangs off its anchor in the direction it reads, so its box
+        // sits to one side of the point, not around it.
+        const fx = f.side === "right" ? f.x + f.w / 2 : f.side === "left" ? f.x - f.w / 2 : f.x;
+        const ox = e.hx + f.w / 2 + PAD - Math.abs(p.x - fx);
         if (ox <= 0) continue;
-        const oy = e.hy + FAM_BOX_H / 2 + PAD - Math.abs(p.y - f.y);
+        const fy = f.side === "bottom" ? f.y + FAM_BOX_H / 2 : f.side === "top" ? f.y - FAM_BOX_H / 2 : f.y;
+        const oy = e.hy + FAM_BOX_H / 2 + PAD - Math.abs(p.y - fy);
         if (oy <= 0) continue;
         p.angle += (p.y <= f.y ? -1 : 1) * 0.016;
         project(p);
@@ -548,7 +585,7 @@ export function buildTopicMap(
     let i = 0;
     let ring = 0;
     while (i < members.length) {
-      const rest = members.slice(i).map((k) => labelBox(nodeText(topicLabel(k, lang)), labelFont));
+      const rest = members.slice(i).map((k) => labelBox(topicMapLabel(k, lang), labelFont));
       const wide = Math.max(...rest.map((b) => b.w)) + PAD * 2;
       const tall = Math.max(...rest.map((b) => b.h)) + PAD * 2;
       // Assume the ring will end up spread over the whole radius: what matters
@@ -575,7 +612,7 @@ export function buildTopicMap(
         const key = members[i + j];
         const t = take === 1 ? 0.5 : j / (take - 1);
         const a = lo + (hi - lo) * t;
-        const box = labelBox(nodeText(topicLabel(key, lang)), labelFont);
+        const box = labelBox(topicMapLabel(key, lang), labelFont);
         placed.push({
           key,
           family: fam,
@@ -692,9 +729,53 @@ export function buildTopicMap(
     rx,
     ry,
     frac,
-    families.map((f) => ({ x: f.x, y: f.y, w: famBoxW(f.key) })),
+    families.map((f) => ({ x: f.x, y: f.y, w: famBoxW(f.key), side: f.side })),
     ((1 - RING_MIN) / Math.max(1, maxRing)) * RAD_DRIFT,
   );
+
+  // Last, the family names get out of the topics' way. They are the only labels
+  // on the figure that mean nothing positionally — sliding one along the edge it
+  // is pinned to costs nothing, where moving a topic would move information.
+  for (const fam of families) {
+    const vertical = fam.side === "left" || fam.side === "right";
+    const famBox = () => {
+      const w = famBoxW(fam.key);
+      const cxx = fam.side === "right" ? fam.x + w / 2 : fam.side === "left" ? fam.x - w / 2 : fam.x;
+      const cyy =
+        fam.side === "bottom" ? fam.y + FAM_BOX_H / 2
+          : fam.side === "top" ? fam.y - FAM_BOX_H / 2
+            : fam.y;
+      return { x: cxx, y: cyy, hx: w / 2, hy: FAM_BOX_H / 2 };
+    };
+    const clashes = () => {
+      const f = famBox();
+      return placed.some((p) => {
+        const e = extents(p);
+        return (
+          Math.abs(p.x - f.x) < e.hx + f.hx + PAD && Math.abs(p.y - f.y) < e.hy + f.hy + PAD
+        );
+      });
+    };
+    if (!clashes()) continue;
+    const home = vertical ? fam.y : fam.x;
+    for (let step = FAM_SLIDE_STEP; step <= FAM_SLIDE_MAX; step += FAM_SLIDE_STEP) {
+      let clear = false;
+      for (const dir of [-1, 1]) {
+        if (vertical) fam.y = home + dir * step;
+        else fam.x = home + dir * step;
+        if (!clashes()) {
+          clear = true;
+          break;
+        }
+      }
+      if (clear) break;
+      if (vertical) fam.y = home;
+      else fam.x = home;
+    }
+    // Whatever happened, it stays on the canvas.
+    fam.x = Math.min(Math.max(fam.x, FAM_EDGE), boxW - FAM_EDGE);
+    fam.y = Math.min(Math.max(fam.y, FAM_EDGE + FAM_BOX_H), boxH - FAM_EDGE - FAM_BOX_H);
+  }
 
   const rings: [number, number][] = [...new Set(placed.map((p) => p.ring))]
     .sort((a, b) => a - b)
@@ -715,13 +796,14 @@ export function buildTopicMap(
     return {
       key,
       label,
-      short: nodeText(label),
+      short: topicMapLabel(key, lang),
       count,
       family: p.family,
       x: p.x,
       y: p.y,
       r: p.r,
       side: p.side,
+      labelW: p.lw,
       weight: maxCount > 1 ? (count - 1) / (maxCount - 1) : 1,
       talks,
     };
