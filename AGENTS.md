@@ -11,6 +11,25 @@ work around it, or pick a "default that works."**
 - Confirm before any consequential or outward-facing action.
 - In one line: **if there's a problem, say so — don't improvise a fallback.**
 
+## Never run two agents on one branch (hard rule)
+`git commit` snapshots the **committing worktree's own index**, not the union of
+what everyone has done. Two agents with the same branch checked out in two
+worktrees therefore *alternately delete each other's files*: each commit writes a
+tree that lacks whatever the other added, and the last commit wins. It fails
+silently — both agents report success, `git log` shows every commit, and the
+files are simply gone from the tip.
+
+This happened here: six transcribed forums (1492–1497) were committed and pushed,
+then vanished from the branch. They were recovered from history, but only because
+someone compared the file list against what the agents said they wrote.
+
+- Give each parallel agent **its own branch**, and merge them yourself.
+- If parallel agents must share a branch, have them **hand work back** and commit
+  it from one place.
+- After any parallel run, **verify the tip contains every file** each agent
+  claimed — `git ls-tree` the directory and compare against their reports. Do not
+  take "committed and pushed" as evidence that the file is on the branch.
+
 ## Language rule (hard)
 - **Chinese only when talking to the user** (chat replies).
 - **Everything else in English**: code, code comments, documentation prose
