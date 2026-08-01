@@ -1871,10 +1871,10 @@ svg { display: block; }
   /* The dot is only a few pixels wide, and an absolutely-positioned child sizes
      itself against that box — without `max-content` the label wraps one
      character per line. */
-  /* 5 characters-worth, the same budget the layout wraps and measures on
-     (lib/topics.ts, LABEL_WRAP) — a label wider here than there is a label the
-     figure has not left room for. */
-  width: max-content; max-width: calc(var(--lfs, 11.5px) * 5.1);
+  /* The width the layout measured this very label at (lib/topics.ts,
+     labelBox) — a label wider here than there is a label the figure has not
+     left room for. */
+  width: max-content; max-width: var(--lw, calc(var(--lfs, 11.5px) * 5.1));
   /* An English topic can be one word longer than the budget; hyphenate it
      rather than snapping it in half at an arbitrary letter. */
   hyphens: auto; -webkit-hyphens: auto;
