@@ -19,6 +19,9 @@ import Icon from "./Icon";
 // actually reading. The corpus is built on the first open of the session and
 // then reused by every other talk (memoised in lib/similar.ts).
 
+/** How long the skeleton stays up at minimum — see the effect below. */
+const MIN_WAIT_MS = 520;
+
 function SimilarRow({ item }: { item: SimilarTalk }) {
   const { id: confId } = useConference();
   const { t, lang } = useI18n();
@@ -72,16 +75,33 @@ export default function SimilarTalks({
   const { t } = useI18n();
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState<SimilarTalk[] | null>(null);
+  const working = open && items === null;
 
   // Compute after the click has painted, so opening the panel never blocks the
   // frame that animates it (the first call also builds the corpus).
+  //
+  // The result is held back until the skeleton has been on screen for
+  // MIN_WAIT_MS. Only the first open of a conference does real work (building
+  // the corpus); after that the ranking lands within a frame, and swapping
+  // straight to it makes the panel snap open with no sign that anything was
+  // computed. A floor of a few hundred ms is what makes the wait state legible
+  // — and it is the same floor the planner uses, so both AI surfaces answer at
+  // the same pace.
   useEffect(() => {
     if (!open || items) return;
-    const id = window.setTimeout(
-      () => setItems(similarTalks(confId, conference, forumCode, talkIndex)),
-      0,
-    );
-    return () => window.clearTimeout(id);
+    const started = Date.now();
+    let hold = 0;
+    const id = window.setTimeout(() => {
+      const found = similarTalks(confId, conference, forumCode, talkIndex);
+      hold = window.setTimeout(
+        () => setItems(found),
+        Math.max(0, MIN_WAIT_MS - (Date.now() - started)),
+      );
+    }, 0);
+    return () => {
+      window.clearTimeout(id);
+      window.clearTimeout(hold);
+    };
   }, [open, items, confId, conference, forumCode, talkIndex]);
 
   if (!enabled) return null;
@@ -93,7 +113,7 @@ export default function SimilarTalks({
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
       >
-        <Icon name="sparkle" size={13} />
+        <Icon name="sparkle" size={13} className={working ? "ai-spark" : undefined} />
         {t("similar.title")}
         <span className={`caret ${open ? "caret--up" : ""}`}>
           <Icon name="chevron-down" size={13} />
@@ -109,10 +129,10 @@ export default function SimilarTalks({
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
             {items === null ? (
-              // The same skeleton language the planner uses: two rows in the
-              // shape of the answer, lit by the shared AI sweep.
+              // The same skeleton language the planner uses: rows in the shape
+              // of the answer, lit by the shared AI sweep.
               <div className="simblock__wait" aria-live="polite" aria-label={t("common.loading")}>
-                {[0, 1].map((i) => (
+                {[0, 1, 2].map((i) => (
                   <div className="simblock__waitrow" key={i} style={{ "--i": i } as CSSProperties}>
                     <span className="ai-skel simblock__waitbar--title" />
                     <span className="ai-skel simblock__waitbar--meta" />
