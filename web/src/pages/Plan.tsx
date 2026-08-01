@@ -260,6 +260,11 @@ export default function Plan() {
               rows={1}
               value={text}
               aria-label={t("plan.inputLabel")}
+              // A hint about the SHAPE of a useful answer — a field, a problem,
+              // a goal — deliberately naming no topic and no conference. A
+              // worked example would read as the thing to type, and would be
+              // wrong for every program that does not happen to cover it.
+              placeholder={t("plan.inputHint")}
               onChange={(e) => setText(e.target.value)}
               onKeyDown={(e) => {
                 // ⌘/Ctrl+↵ submits; a bare ↵ stays a newline in a textarea.
