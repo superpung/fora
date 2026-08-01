@@ -327,8 +327,16 @@ export default function AccountMenu() {
                 (summaries, semantic search, planner, topic map, similar talks).
                 Off => source text only. The "may contain errors" disclaimer lives
                 next to the generated content itself (AiMark), not here. */}
-            <button className="acct-row" onClick={ai.toggle} aria-pressed={ai.enabled}>
-              <Icon name="sparkle" size={15} />
+            <button className="acct-row ai-hover" onClick={ai.toggle} aria-pressed={ai.enabled}>
+              {/* Keyed on the state so React remounts it on every flip and the
+                  burst replays — the switch is the moment AI content appears,
+                  so it is the one place the mark should be felt. */}
+              <Icon
+                key={ai.enabled ? "on" : "off"}
+                name="sparkle"
+                size={15}
+                className={ai.enabled ? "ai-burst" : undefined}
+              />
               <span className="acct-row__label">{t("ai.show")}</span>
               <span className={`acct-switch ${ai.enabled ? "is-on" : ""}`} aria-hidden />
             </button>

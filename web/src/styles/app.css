@@ -1501,6 +1501,72 @@ svg { display: block; }
 }
 .ai-note svg { flex: none; color: var(--ai-fg); }
 
+/* ---- shared AI motion ----
+   Everything the AI switch turns on uses the same three gestures, so a
+   generated surface feels like one feature wherever it appears:
+     .ai-spark  the sparkle twinkles — on hover for a control, continuously
+                while that control is actually working;
+     .ai-orb    the "at work" badge, breathing;
+     .ai-skel   a skeleton bar with a sweep of light travelling across it,
+                for output that is being assembled (see .planthink, .simblock).
+   All three are decoration on top of a state that is already visible without
+   them, so `prefers-reduced-motion` can drop them outright. */
+.ai-spark { animation: ai-spark 1.1s ease-in-out infinite; }
+.ai-orb {
+  display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%;
+  color: var(--ai-fg); background: color-mix(in srgb, var(--ai-fg) 12%, transparent);
+  animation: ai-orb 1.6s ease-in-out infinite;
+}
+.ai-skel {
+  display: block; height: 10px; border-radius: 999px;
+  /* The sweep is a gradient wider than the bar, slid across it. */
+  background: linear-gradient(
+    90deg,
+    var(--bg-hover) 0%, var(--bg-hover) 35%,
+    color-mix(in srgb, var(--ai-fg) 22%, var(--bg-hover)) 50%,
+    var(--bg-hover) 65%, var(--bg-hover) 100%
+  );
+  background-size: 260% 100%;
+  animation: ai-sweep 1.5s linear infinite;
+  /* Rows start their sweep in sequence, so the light reads as travelling down
+     the list rather than blinking everywhere at once. */
+  animation-delay: calc(var(--i, 0) * 0.14s);
+}
+/* An AI control answers the pointer with the same twinkle it uses while it is
+   thinking — the gesture means "this is the generated stuff" throughout. The
+   burst is excluded: it fires on a click, so the pointer is by definition on
+   the control and the hover rule would otherwise always beat it. */
+.ai-hover:hover > svg:first-child:not(.ai-burst),
+.ai-hover:focus-visible > svg:first-child:not(.ai-burst) {
+  animation: ai-spark 1.1s ease-in-out infinite;
+}
+/* The site-wide switch shows its state in colour as well as in the pill. */
+.acct-row[aria-pressed="true"] > svg:first-child { color: var(--ai-fg); }
+
+@keyframes ai-sweep { from { background-position: 130% 0; } to { background-position: -130% 0; } }
+@keyframes ai-orb {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.14); opacity: 1; }
+}
+@keyframes ai-spark {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.7; }
+  50% { transform: scale(1.2) rotate(18deg); opacity: 1; }
+}
+/* One-shot burst when the site-wide switch is turned on: the icon is remounted
+   on toggle (AccountMenu), so the animation replays each time. */
+.ai-burst { animation: ai-burst 0.6s cubic-bezier(0.34, 1.42, 0.5, 1); }
+@keyframes ai-burst {
+  0% { transform: scale(0.4) rotate(-35deg); opacity: 0; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-spark, .ai-orb, .ai-skel, .ai-burst,
+  .ai-hover:hover > svg:first-child:not(.ai-burst) { animation: none; }
+  .simblock__wait { animation: none; }
+  .ai-skel { background: var(--bg-hover); }
+}
+
 /* ======================== AI one-line summary (TL;DR) ========================
    A scanning aid under a talk title (TalkSummary.tsx). Kept a step below the
    title in size and weight — the source title stays the record, this only
@@ -1555,11 +1621,10 @@ svg { display: block; }
 /* While a plan is being built the button stops looking clickable, and its
    sparkle keeps time with the skeleton below. */
 .planform__go.is-busy { opacity: 0.75; cursor: progress; }
-.planform__go.is-busy svg { animation: plan-spark 1.1s ease-in-out infinite; }
 
 /* ---- the "thinking" state ----
-   A skeleton of the answer (three timed rows), not a spinner: a sweep of light
-   travels down the rows while the ranking runs. */
+   A skeleton of the answer (three timed rows), not a spinner. The bars, the
+   sweep and the orb are the shared AI-motion primitives — see .ai-skel. */
 .planthink {
   margin-top: 22px; border: 1px solid var(--border); border-radius: var(--radius-lg);
   background: var(--bg); padding: 14px 16px 16px;
@@ -1568,45 +1633,12 @@ svg { display: block; }
   display: flex; align-items: center; gap: 8px;
   font-size: 13.5px; font-weight: 500; color: var(--fg-secondary);
 }
-.planthink__orb {
-  display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%;
-  color: var(--ai-fg); background: color-mix(in srgb, var(--ai-fg) 12%, transparent);
-  animation: plan-orb 1.6s ease-in-out infinite;
-}
 .planthink__rows { display: flex; flex-direction: column; gap: 14px; margin-top: 14px; }
 .planthink__row { display: flex; flex-direction: column; gap: 7px; }
-.planthink__bar {
-  display: block; height: 10px; border-radius: 999px;
-  /* The sweep is a gradient wider than the bar, slid across it. */
-  background: linear-gradient(
-    90deg,
-    var(--bg-hover) 0%, var(--bg-hover) 35%,
-    color-mix(in srgb, var(--ai-fg) 22%, var(--bg-hover)) 50%,
-    var(--bg-hover) 65%, var(--bg-hover) 100%
-  );
-  background-size: 260% 100%;
-  animation: plan-sweep 1.5s linear infinite;
-  /* Rows start their sweep in sequence, so the light reads as travelling down
-     the list rather than blinking everywhere at once. */
-  animation-delay: calc(var(--i) * 0.14s);
-}
 .planthink__bar--meta { width: 46%; height: 8px; }
 .planthink__bar--title { width: 82%; height: 13px; }
 .planthink__bar--sub { width: 62%; }
 
-@keyframes plan-sweep { from { background-position: 130% 0; } to { background-position: -130% 0; } }
-@keyframes plan-orb {
-  0%, 100% { transform: scale(1); opacity: 0.85; }
-  50% { transform: scale(1.14); opacity: 1; }
-}
-@keyframes plan-spark {
-  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.7; }
-  50% { transform: scale(1.2) rotate(18deg); opacity: 1; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .planthink__bar, .planthink__orb, .planform__go.is-busy svg { animation: none; }
-  .planthink__bar { background: var(--bg-hover); }
-}
 
 .planchips { display: flex; flex-wrap: wrap; gap: 6px; }
 .plantag {
@@ -1678,6 +1710,7 @@ svg { display: block; }
 .planoff svg { color: var(--ai-fg); }
 .planoff p { margin: 0; font-size: 15px; font-weight: 500; color: var(--fg); max-width: 46ch; }
 .planoff__on {
+  display: inline-flex; align-items: center; gap: 6px;
   margin-top: 2px; padding: 7px 14px; border-radius: var(--radius); cursor: pointer;
   font-size: 13px; font-weight: 500;
   color: var(--primary-fg); background: var(--primary-bg); border: 1px solid var(--primary-bg);
@@ -1795,6 +1828,19 @@ svg { display: block; }
 .simblock__toggle:hover { color: var(--fg); }
 .simblock__body { overflow: hidden; }
 .simblock__state { margin: 8px 0 0; font-size: 12.5px; color: var(--fg-muted); }
+.simblock__wait {
+  display: flex; flex-direction: column; gap: 12px; margin-top: 10px;
+  padding: 12px; border: 1px solid var(--border); border-radius: var(--radius);
+  /* Held invisible for the first moment: on most talks the ranking resolves in
+     a frame or two, and a skeleton that flashes is worse than no skeleton. It
+     only appears when the wait is real — the first open of a conference, which
+     builds the whole similarity corpus. */
+  animation: ai-appear 0.22s ease 0.12s both;
+}
+@keyframes ai-appear { from { opacity: 0; } to { opacity: 1; } }
+.simblock__waitrow { display: flex; flex-direction: column; gap: 6px; }
+.simblock__waitbar--title { width: 74%; height: 11px; }
+.simblock__waitbar--meta { width: 44%; height: 8px; }
 .simblock__list {
   margin-top: 8px; border: 1px solid var(--border); border-radius: var(--radius);
   background: var(--bg); overflow: hidden;

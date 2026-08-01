@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useAi } from "../lib/ai-store";
@@ -89,7 +89,7 @@ export default function SimilarTalks({
   return (
     <div className="simblock">
       <button
-        className="simblock__toggle"
+        className="simblock__toggle ai-hover"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
       >
@@ -109,7 +109,16 @@ export default function SimilarTalks({
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
             {items === null ? (
-              <p className="simblock__state">{t("common.loading")}</p>
+              // The same skeleton language the planner uses: two rows in the
+              // shape of the answer, lit by the shared AI sweep.
+              <div className="simblock__wait" aria-live="polite" aria-label={t("common.loading")}>
+                {[0, 1].map((i) => (
+                  <div className="simblock__waitrow" key={i} style={{ "--i": i } as CSSProperties}>
+                    <span className="ai-skel simblock__waitbar--title" />
+                    <span className="ai-skel simblock__waitbar--meta" />
+                  </div>
+                ))}
+              </div>
             ) : items.length === 0 ? (
               <p className="simblock__state">{t("similar.none")}</p>
             ) : (
