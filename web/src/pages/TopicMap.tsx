@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type CSSProperties } from "react";
+import { useCallback, useEffect, useMemo, useState, type CSSProperties } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useConference } from "../lib/conference-store";
@@ -10,6 +10,7 @@ import {
   topicMapFor,
   hasTopicMap,
   otherEnd,
+  chordPath,
   type TopicMapData,
   type TopicNode,
   type TopicTalk,
@@ -22,17 +23,18 @@ import Icon from "../components/Icon";
 // AI-derived topic tags. The whole page is AI-derived content, so App.tsx only
 // mounts the route (and Nav only shows the entry) while useAi().enabled is on.
 //
-// The map is a knowledge graph: a disc per topic, its area the number of talks
-// carrying it, joined to the topics it shares talks with and placed by those
-// ties. See lib/topics.ts for the layout — a deterministic relaxation, so the
-// graph is identical on every load.
+// The map is a radial sector graph: one sector per family in the topic
+// vocabulary, a topic's dot on a ring inside its sector (the biggest nearest
+// the centre, area = talks), and a chord through the middle wherever two topics
+// share talks. See lib/topics.ts for the geometry — deterministic, so the
+// figure is identical on every load.
 //
-// Two layers: an SVG of the links, and the nodes as real <button>s on top. The
-// nodes are HTML because they are controls — focus ring, hover, aria-pressed
-// and a label that wraps like text all come for free, and none of them do in
-// SVG. The graph is laid out for the width it is actually rendered at (the
-// observer below), so nothing is scaled up or down after the fact: a disc is
-// the same size on a phone as the count deserves.
+// Two layers: an SVG of the rings, sector dividers and chords, and the topics
+// as real <button>s on top. The dots are HTML because they are controls — focus
+// ring, hover, aria-pressed and a label that wraps like text all come for free,
+// and none of them do in SVG. The figure is laid out for the width it is
+// actually rendered at (the observer below), so nothing is scaled after the
+// fact: a dot is the size its talk count deserves at any width.
 
 /** How the talks under the selected topic are grouped. */
 type GroupMode = "forum" | "day" | "none";
@@ -47,9 +49,15 @@ const MIN_BUILD_MS = 480;
 /** The box the graph is laid out for, from the width it has to live in. Wide
     screens get a letterbox; a phone gets something closer to a portrait, where
     forty labelled nodes still have somewhere to go. */
+const NARROW = 620;
+/** The figure a phone gets: too small to draw forty labelled topics in, so it
+    keeps a workable size and the canvas pans instead. It is a map. */
+const NARROW_BOX = { w: 680, h: 740 };
+
 function boxFor(width: number): { w: number; h: number } {
   if (width <= 0) return { w: 0, h: 0 };
-  const ratio = width >= 900 ? 0.52 : width >= 620 ? 0.85 : 2.45;
+  if (width < NARROW) return NARROW_BOX;
+  const ratio = width >= 900 ? 0.62 : 0.78;
   return { w: width, h: Math.round(width * ratio) };
 }
 
@@ -69,11 +77,11 @@ function useBoxWidth(): [number, (el: HTMLDivElement | null) => void] {
   useEffect(() => {
     if (!node) return;
     if (typeof ResizeObserver === "undefined") {
-      setWidth(Math.round(node.clientWidth / 40) * 40);
+      setWidth(Math.floor(node.clientWidth / 40) * 40);
       return;
     }
     const ro = new ResizeObserver(([entry]) => {
-      setWidth(Math.round(entry.contentRect.width / 40) * 40);
+      setWidth(Math.floor(entry.contentRect.width / 40) * 40);
     });
     ro.observe(node);
     return () => ro.disconnect();
@@ -122,8 +130,9 @@ function TopicTalkRow({ talk }: { talk: TopicTalk }) {
   );
 }
 
-/** One node: the disc, and its label under it. The whole thing is the control,
-    so the label is part of the target — a 12px disc on its own is not. */
+/** One topic: its dot, and its label set on whichever side reads outward from
+    the centre. The whole thing is the control — a 9px dot on its own is not a
+    target anybody can hit. */
 function TopicDot({
   node,
   rank,
@@ -138,26 +147,22 @@ function TopicDot({
   onHover: (key: string | null) => void;
 }) {
   const { t } = useI18n();
-  // Each click mounts a fresh ring, so the ripple restarts even on a node that
+  // Each click mounts a fresh ring, so the ripple restarts even on a topic that
   // is already selected. The ring removes itself when its animation ends.
   const [pulses, setPulses] = useState<number[]>([]);
 
   return (
     <button
       type="button"
-      className={`tmap__node is-${state}`}
+      className={`tmap__node is-${state} is-${node.side}`}
       style={
         {
           left: `${node.x}px`,
-          top: `${node.y - node.r}px`,
+          top: `${node.y}px`,
           "--r": `${node.r}px`,
           "--w": node.weight,
-          // A topic whose family the vocabulary does not name keeps the hue
-          // slot empty and is drawn at zero saturation — grey, not guessed.
-          "--h": node.hue ?? 0,
-          "--s": node.hue == null ? "0%" : undefined,
-          // Nodes arrive in rank order, biggest first, capped so a large
-          // vocabulary still finishes arriving in half a second.
+          // Dots arrive biggest-first, capped so a large vocabulary still
+          // finishes arriving in half a second.
           "--in": `${Math.min(rank * 0.012, 0.42)}s`,
         } as CSSProperties
       }
@@ -199,17 +204,18 @@ export default function TopicMap() {
   // lib/topics.ts). Cold, it is computed off the frame that paints the page and
   // the graph shows its loading state meanwhile; warm, it is simply there.
   const [map, setMap] = useState<TopicMapData | null>(null);
+  const famName = useCallback((key: string) => t(`topics.family.${key}`), [t]);
   useEffect(() => {
     if (box.w <= 0) return;
     if (hasTopicMap(confId, lang, box.w, box.h)) {
-      setMap(topicMapFor(confId, conference, lang, box.w, box.h));
+      setMap(topicMapFor(confId, conference, lang, box.w, box.h, famName));
       return;
     }
     setMap(null);
     const started = Date.now();
     let hold = 0;
     const id = window.setTimeout(() => {
-      const built = topicMapFor(confId, conference, lang, box.w, box.h);
+      const built = topicMapFor(confId, conference, lang, box.w, box.h, famName);
       hold = window.setTimeout(
         () => setMap(built),
         Math.max(0, MIN_BUILD_MS - (Date.now() - started)),
@@ -219,7 +225,7 @@ export default function TopicMap() {
       window.clearTimeout(id);
       window.clearTimeout(hold);
     };
-  }, [confId, conference, lang, box.w, box.h]);
+  }, [confId, conference, lang, box.w, box.h, famName]);
 
   // Sticky so a trip into a forum page and browser Back restores the selection,
   // matching the speakers/schedule filters.
@@ -331,69 +337,88 @@ export default function TopicMap() {
         className={`tmap__canvas ${focusKey ? "is-lit" : ""} ${map ? "" : "is-waiting"}`}
         ref={attachBox}
         style={
-          {
-            height: box.h ? `${box.h}px` : undefined,
-            "--lfs": `${map?.labelFont ?? 11.5}px`,
-          } as CSSProperties
+          { "--lfs": `${map?.labelFont ?? 11.5}px` } as CSSProperties
         }
         role="group"
         aria-label={t("topics.mapAria")}
         onPointerLeave={() => setHover(null)}
       >
+        <div
+          className="tmap__figure"
+          style={{ width: box.w ? `${box.w}px` : undefined, height: box.h ? `${box.h}px` : undefined }}
+        >
         {map && (
           <>
-            {/* Layer 1: the links. They draw themselves in — `pathLength=1`
-                makes one dash the whole line whatever its real length, so a
-                single offset animation fits every link. */}
+            {/* Layer 1: the figure — ring guides, sector dividers and the
+                chords, all of it hairlines. The chords draw themselves in:
+                `pathLength=1` makes one dash the whole curve whatever its real
+                length, so a single offset animation fits every one of them. */}
             <svg
-              className="tmap__links"
+              className="tmap__plot"
               width={map.width}
               height={map.height}
               viewBox={`0 0 ${map.width} ${map.height}`}
               aria-hidden
             >
-              {map.links.map((e) => {
-                const a = map.byKey.get(e.a);
-                const b = map.byKey.get(e.b);
-                if (!a || !b) return null;
-                const lit = focusKey === e.a || focusKey === e.b;
-                return (
-                  <line
-                    key={`${e.a}|${e.b}`}
-                    className={lit ? "is-lit" : ""}
-                    x1={a.x}
-                    y1={a.y}
-                    x2={b.x}
-                    y2={b.y}
-                    pathLength={1}
-                    strokeWidth={0.8 + 1.9 * e.w}
-                  />
-                );
-              })}
-              {/* The selected topic's own ties, including the ones too weak to
-                  be part of the drawn backbone: picking a topic is exactly the
-                  moment to show everything it touches. */}
-              {focusKey &&
-                (map.neighbors.get(focusKey) ?? []).map((e) => {
+              <g className="tmap__grid">
+                {map.rings.map(([rx, ry], i) => (
+                  <ellipse key={i} cx={map.cx} cy={map.cy} rx={rx} ry={ry} />
+                ))}
+                {map.families.map((f) => (
+                  <line key={f.key} x1={f.x1} y1={f.y1} x2={f.x2} y2={f.y2} />
+                ))}
+              </g>
+              <g className="tmap__chords">
+                {map.links.map((e) => {
                   const a = map.byKey.get(e.a);
                   const b = map.byKey.get(e.b);
                   if (!a || !b) return null;
+                  const lit = focusKey === e.a || focusKey === e.b;
                   return (
-                    <line
-                      key={`lit:${e.a}|${e.b}`}
-                      className="tmap__link--focus"
-                      x1={a.x}
-                      y1={a.y}
-                      x2={b.x}
-                      y2={b.y}
+                    <path
+                      key={`${e.a}|${e.b}`}
+                      className={lit ? "is-lit" : ""}
+                      d={chordPath(a, b, map.cx, map.cy)}
                       pathLength={1}
-                      strokeWidth={0.8 + 1.9 * e.w}
+                      strokeWidth={0.7 + 1.6 * e.w}
                     />
                   );
                 })}
+                {/* The lit topic's own ties, including the ones too weak to be
+                    part of the drawn set: picking a topic is exactly the moment
+                    to show everything it touches. */}
+                {focusKey &&
+                  (map.neighbors.get(focusKey) ?? []).map((e) => {
+                    const a = map.byKey.get(e.a);
+                    const b = map.byKey.get(e.b);
+                    if (!a || !b) return null;
+                    return (
+                      <path
+                        key={`lit:${e.a}|${e.b}`}
+                        className="tmap__chord--focus"
+                        d={chordPath(a, b, map.cx, map.cy)}
+                        pathLength={1}
+                        strokeWidth={0.7 + 1.6 * e.w}
+                      />
+                    );
+                  })}
+              </g>
             </svg>
 
-            {/* Layer 2: the nodes. */}
+            {/* Layer 2: the family each sector stands for, set at its outer
+                edge — the only text on the figure that is not a topic. */}
+            {map.families.map((f) => (
+              <span
+                key={f.key}
+                className={`tmap__fam is-${f.side}`}
+                style={{ left: `${f.x}px`, top: `${f.y}px` }}
+              >
+                {t(`topics.family.${f.key}`)}
+                <span className="tmap__famn mono">{f.size}</span>
+              </span>
+            ))}
+
+            {/* Layer 3: the topics. */}
             {map.nodes.map((n, i) => (
               <TopicDot
                 key={n.key}
@@ -434,6 +459,7 @@ export default function TopicMap() {
             ))}
           </div>
         )}
+        </div>
       </div>
 
       <AnimatePresence initial={false}>
@@ -523,18 +549,27 @@ export default function TopicMap() {
   );
 }
 
-/** Where the loading state's nodes sit, as fractions of the canvas, and how big
-    they are. A fixed constellation — it stands for a graph being placed, so it
-    is laid out like one. */
+/** Where the loading state's dots sit, as fractions of the canvas, and how
+    big they are: two rings, because that is the figure being built. */
 const WAIT_DOTS: [number, number, number][] = [
-  [0.5, 0.46, 26],
-  [0.31, 0.3, 18],
-  [0.68, 0.28, 20],
-  [0.72, 0.66, 16],
-  [0.28, 0.68, 14],
-  [0.15, 0.48, 11],
-  [0.86, 0.46, 12],
-  [0.45, 0.16, 10],
-  [0.56, 0.82, 10],
-  [0.38, 0.86, 8],
+  [0.5, 0.279, 9],
+  [0.601, 0.343, 9],
+  [0.643, 0.5, 9],
+  [0.601, 0.657, 9],
+  [0.5, 0.721, 9],
+  [0.399, 0.657, 9],
+  [0.357, 0.5, 9],
+  [0.399, 0.343, 9],
+  [0.5, 0.044, 7],
+  [0.647, 0.105, 7],
+  [0.755, 0.272, 7],
+  [0.794, 0.5, 7],
+  [0.755, 0.728, 7],
+  [0.647, 0.895, 7],
+  [0.5, 0.956, 7],
+  [0.353, 0.895, 7],
+  [0.245, 0.728, 7],
+  [0.206, 0.5, 7],
+  [0.245, 0.272, 7],
+  [0.353, 0.105, 7],
 ];

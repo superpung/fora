@@ -11,23 +11,23 @@ import { topicLabel, topicCategory } from "./topic-labels";
 // `topicLabel()`, so an English reader reads "Compute-in-Memory" where a Chinese
 // one reads 存算一体.
 //
-// The map is a KNOWLEDGE GRAPH: a node per topic, sized by how many talks carry
-// it, joined to the topics it shares talks with, and placed by those links —
-// themes that travel together end up together. Two decisions make that readable
-// where the earlier drafts were not:
+// The map is a RADIAL SECTOR GRAPH. The figure is divided into one sector per
+// FAMILY in the vocabulary (software engineering, systems, AI, security, the
+// chip families…); inside a sector a topic sits on a ring, the biggest nearest
+// the centre, and its dot's area is the number of talks carrying it. Topics
+// that share talks are joined by a chord bowing through the middle.
 //
-//   * The label sits UNDER its node, not inside it. A circle is the worst
-//     possible box for text, and fitting 存算一体 inside one is what forced the
-//     nodes to be huge, which in turn buried the links they exist to show. With
-//     the label outside, a node can be a small disc and the graph can breathe.
-//   * The layout reserves the label's own box. Placement separates node+label
-//     boxes, not circles, so labels do not land on top of each other.
+// That geometry is the whole legend, and it is why this shape and not a free
+// force-directed cloud: position now MEANS something a reader can state — which
+// family, how central — instead of being wherever the forces happened to
+// settle. Sectors keep related topics together without needing forty hues,
+// rings give the eye a grid to read against, and bundling every chord through
+// the centre turns what was a mess of crossing hairlines into one woven shape.
 //
 // Everything here is a pure function of the conference JSON and the box it is
-// laid out for. The layout is DETERMINISTIC: positions start on a fixed spiral
-// and are relaxed for a fixed number of passes, with no randomness anywhere, so
-// the same dataset always produces the same graph, on every load and on every
-// device. Ties break on the topic key, which is unique.
+// laid out for: no randomness, no physics, no measurement of the DOM, so the
+// same dataset always produces the same figure. Ties break on the topic key,
+// which is unique.
 
 /** One talk carrying a topic, flattened with everything a link needs. */
 export interface TopicTalk {
@@ -45,24 +45,26 @@ export interface TopicTalk {
   topics: string[];
 }
 
+/** Which side of its dot a label is set on, so it always reads outward. */
+export type LabelSide = "left" | "right" | "top" | "bottom";
+
 export interface TopicNode {
   key: string;
   /** The key as shown to this reader. */
   label: string;
-  /** The label as lettered on the graph — trimmed to its first alternative. */
+  /** The label as lettered on the map — trimmed to its first alternative. */
   short: string;
   count: number;
-  /** Centre of the disc, in the pixels of the box this map was built for. */
+  /** The family whose sector the topic sits in (`se`, `systems`, …). */
+  family: string;
+  /** Centre of the dot, in the pixels of the box this map was built for. */
   x: number;
   y: number;
-  /** Disc radius, in the same pixels. */
+  /** Dot radius, in the same pixels. */
   r: number;
-  /** 0…1 by talk count — how deep the disc's colour sits. */
+  side: LabelSide;
+  /** 0…1 by talk count — how solid the dot is drawn. */
   weight: number;
-  /** Hue of the topic's family in the vocabulary (see CATEGORY_HUE), or null
-      for a topic whose family the vocabulary does not name — that one stays
-      grey rather than being given a colour it has not earned. */
-  hue: number | null;
   talks: TopicTalk[];
 }
 
@@ -76,8 +78,24 @@ export interface TopicEdge {
   w: number;
 }
 
+/** One family's slice of the figure, and where its name is set. */
+export interface TopicFamily {
+  key: string;
+  /** Number of topics in the sector — its share of the circle. */
+  size: number;
+  /** Where the family's name sits, just outside the outermost ring. */
+  x: number;
+  y: number;
+  side: LabelSide;
+  /** The divider drawn at the sector's leading edge. */
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+}
+
 export interface TopicCoverage {
-  /** Talks the nodes actually stand for: forum talks carrying at least one
+  /** Talks the dots actually stand for: forum talks carrying at least one
       topic. Main-stage keynotes are not on the map (they have no `#talk-N`
       anchor to link at), so they are not counted here either — the page states
       this number as "N talks", and it has to be the same N. */
@@ -90,9 +108,15 @@ export interface TopicMapData {
   byKey: Map<string, TopicNode>;
   /** Co-occurring topics of a topic, strongest first. */
   neighbors: Map<string, TopicEdge[]>;
-  /** The links actually drawn: every topic's strongest ties, plus the strongest
-      ties overall, up to a cap. All of them are still in `neighbors`. */
+  /** The chords actually drawn: every topic's strongest ties, plus the
+      strongest ties overall, up to a cap. All of them are still in
+      `neighbors`. */
   links: TopicEdge[];
+  families: TopicFamily[];
+  /** Ring guides, as [rx, ry] pairs — the figure is an ellipse on a wide box. */
+  rings: [number, number][];
+  cx: number;
+  cy: number;
   width: number;
   height: number;
   /** Type size the labels were laid out at — the page sets it on the canvas, so
@@ -103,76 +127,93 @@ export interface TopicMapData {
 
 /* ============================== layout tuning ============================== */
 
-/** Disc radius bounds, for a box of REF_AREA; smaller boxes scale down. */
-const R_MIN = 6;
-const R_MAX = 27;
-const REF_AREA = 1000 * 520;
-/** Label metrics, in px. The graph letters every topic at one size — a label is
-    a name, not a quantity, and the disc beside it already carries the count.
-    A phone-sized box gets the smaller of the two: forty labelled nodes have to
-    find room in a third of the width. */
+/** Dot radius bounds, for a box of REF_AREA; smaller boxes scale down. */
+const R_MIN = 4.5;
+const R_MAX = 19;
+const REF_AREA = 1000 * 620;
+/** Label metrics, in px. A phone-sized box gets the smaller of the two. */
 const LABEL_FONT = 11.5;
 const LABEL_FONT_SMALL = 10.5;
 const SMALL_BOX = 520;
-const LABEL_LEADING = 1.18;
-const LABEL_GAP = 5;
+const LABEL_LEADING = 1.2;
+const LABEL_LINES_MAX = 3;
 /** Longest label line before it wraps, in characters-worth of the label font. */
-const LABEL_WRAP = 7.2;
-const LABEL_LINES_MAX = 2;
-/** Clear space kept around every node+label box. */
-const PAD = 8;
-/** How far the relaxed graph may be stretched to fill the box. The relaxation
-    settles into whatever area its forces balance at, which is usually smaller
-    than the canvas; scaling the positions (never the discs) spreads it back
-    out, and the cap stops a four-topic conference from being blown apart. */
-const FIT_MAX = 2.4;
-/** How much of the box the relaxed graph is stretched to. */
-const FIT_SLACK = 0.94;
-/** Relaxation passes and how far a node may move on the first one (px). */
-const PASSES = 320;
-const HEAT = 26;
-/** Pull along a link, and how much the ideal length shortens as the two topics
-    share more talks. */
-const PULL = 0.075;
-const LINK_LEN = 1.55;
-const LINK_LEN_MIN = 0.6;
-/** Push between every pair of nodes, as a multiple of the layout's own scale. */
-const PUSH = 0.85;
-/** Pull toward the centre. */
-const GRAVITY = 0.0055;
-/** Hard separation passes after the relaxation, where boxes are simply pushed
-    out of each other until they stop overlapping. */
-const SEPARATE_PASSES = 220;
-/** How many links to draw: each topic's strongest few, then the strongest
-    remaining ones until the cap. Enough to read the shape of the program, few
-    enough not to become a hairball. */
-const LINKS_PER_NODE = 3;
-const LINKS_MAX_PER_NODE = 2.2;
-/** Filling up to the cap stops here: a link this weak says nothing — two
-    topics that met once by accident. A topic's own strongest ties are exempt. */
+const LABEL_WRAP = 5;
+/** Gap between a dot and its label. */
+const LABEL_GAP = 6;
+/** Room kept outside the outermost ring for the labels that read outward from
+    it. The family names do not need a band of their own — they are set out at
+    the canvas edge, and the separation pass keeps topics clear of them. */
+const OUTER_ROOM = 10;
+/** Clear space kept around every dot+label box. */
+const PAD = 6;
+/** How far in from the canvas edge a family's name is set, the type it is set
+    in, and the box the topics keep clear of. Its width is measured from the
+    name itself — an eleven-character family in English is not the same object
+    as a two-character one in Chinese. */
+const FAM_EDGE = 14;
+const FAM_FONT = 11;
+const FAM_TRACK = 1.1;
+const FAM_BOX_H = 16;
+/** The innermost ring, as a fraction of the outer one: the hole in the middle
+    that the chords are bundled through. */
+const RING_MIN = 0.42;
+/** Most rings a sector will use before it starts crowding the outer one. The
+    real cap is worked out from the figure's size — see `ringsFor` — because two
+    rings closer together than a label is wide would put every label from the
+    inner one straight through the dots of the outer one. */
+const RINGS_MAX = 6;
+/** The smallest hit area a topic gets, whatever its dot's radius: a 9px dot is
+    not something anybody can point at, so the button around it is padded out to
+    this and the layout keeps that much room clear. */
+const HIT_MIN = 11;
+/** Gap between two sectors, in radians. */
+const SECTOR_GAP = 0.08;
+/** Padding inside a sector, as a fraction of its width, so a family's outermost
+    topics do not sit on the divider. */
+const SECTOR_INSET = 0.13;
+/** Arc actually usable for placement, as a fraction of the arc there is: the
+    labels are measured at their widest, and a ring filled to the last pixel has
+    nowhere to go when the separation pass needs to move something. */
+const ARC_SAFETY = 0.78;
+/** How many topics a ring will take, innermost first. A ring's arc says how
+    many labels fit side by side, but the inner rings are short AND every label
+    on them reads outward across the ring gap, where the next ring's topics are
+    — so the inside is kept deliberately sparse and the crowd goes outward,
+    which is also where a sector has the room. */
+const RING_CAP_BASE = 2;
+const RING_CAP_STEP = 4;
+/** Tangential separation passes after placement, and how much of the radius one
+    pass may add to a topic's drift off its ring. */
+const SEPARATE_PASSES = 700;
+const RAD_STEP = 0.004;
+/** The share of one ring gap a topic may drift, when rotating cannot separate
+    it from its neighbour. */
+const RAD_DRIFT = 0.55;
+/** How many chords to draw: each topic's strongest few, then the strongest
+    remaining ones until the cap. */
+const LINKS_PER_NODE = 2;
+const LINKS_MAX_PER_NODE = 1.6;
+/** Filling up to the cap stops here: a link this weak says nothing — two topics
+    that met once by accident. A topic's own strongest ties are exempt. */
 const LINK_MIN_W = 0.12;
 
-/** One hue per family in the topic vocabulary (source/topics.json `category`).
-    Colour here is not decoration and not a scale: it says which topics are the
-    same KIND of thing, which is the one grouping the reader cannot work out
-    from the graph alone. It is kept low-chroma and at one lightness so no
-    family shouts over another, and it stays off the violet axis, which in this
-    app means "AI-generated" and nothing else. An unknown family falls back to
-    neutral, so a vocabulary that grows never invents a colour. */
-const CATEGORY_HUE: Record<string, number> = {
-  se: 212,          // software engineering — blue
-  systems: 168,     // systems — teal
-  "ic-system": 140, // chip systems — green
-  emerging: 96,     // emerging — olive
-  "ic-design": 42,  // chip design — amber
-  "ic-process": 20, // process & packaging — orange
-  security: 352,    // security — rose
-  ai: 322,          // AI/ML — magenta
-  // `meta` (industry, governance, education, open data) is deliberately absent:
-  // it is not a technical family but the things that cut across all of them, so
-  // it stays neutral rather than being given a colour of its own. Nothing here
-  // sits between 225° and 290°, the blue-violet the AI mark owns.
-};
+/** Order the sectors are laid out in, clockwise from the top. Fixed rather than
+    derived, so the same family sits in the same place in every conference and
+    two programs can be compared at a glance; a family the vocabulary adds later
+    falls in after these, alphabetically. */
+const FAMILY_ORDER = [
+  "ai",
+  "se",
+  "systems",
+  "ic-design",
+  "ic-process",
+  "ic-system",
+  "security",
+  "emerging",
+  "meta",
+];
+
 /** Separator for the co-occurrence pair key — no topic key contains a NUL. */
 const PAIR_SEP = "\u0000";
 
@@ -183,14 +224,13 @@ const isCjk = (ch: string): boolean => /[㐀-鿿豈-﫿]/.test(ch);
 const textUnits = (s: string): number =>
   [...s].reduce((w, ch) => w + (isCjk(ch) ? 1 : 0.58), 0);
 
-/** What a node is lettered with: the label trimmed to its first alternative, so
-    存算一体 / CIM and "AI Chip / Accelerator" stay short under the disc. The
-    panel heading and the accessible name still carry the label in full. */
+/** What a dot is lettered with: the label trimmed to its first alternative, so
+    存算一体 / CIM and "AI Chip / Accelerator" stay short. The panel heading and
+    the accessible name still carry the label in full. */
 const nodeText = (label: string): string => label.split("/")[0].trim();
 
-/** The label's own box under the disc: how wide it runs and how many lines it
-    takes, at the one size every label is set in. The page wraps it with the
-    same budget (`max-width` in cqw-free px), so this is what is on screen. */
+/** The label's own box: how wide it runs and how tall, at the one size every
+    label is set in. The page wraps it on the same budget. */
 function labelBox(text: string, font: number): { w: number; h: number } {
   const units = textUnits(text);
   const lines = Math.min(LABEL_LINES_MAX, Math.max(1, Math.ceil(units / LABEL_WRAP)));
@@ -202,172 +242,115 @@ function labelBox(text: string, font: number): { w: number; h: number } {
 
 interface Placed {
   key: string;
+  family: string;
+  angle: number;
+  ring: number;
+  /** Where the topic actually sits, as a fraction of the outer radius. It
+      starts on its ring and the separation pass may lift it a little off it —
+      see `separate`. */
+  rad: number;
+  r: number;
+  lw: number;
+  lh: number;
+  side: LabelSide;
   x: number;
   y: number;
-  r: number;
-  /** Half-width and the extents above/below the disc centre, label included. */
-  hw: number;
-  up: number;
-  down: number;
 }
 
-/** Relax the graph into the box: nodes pull along their links, push away from
-    each other, and drift toward the centre, cooling over a fixed number of
-    passes from a fixed starting spiral. A force layout with the randomness
-    taken out — same input, same picture, every time. */
-function relax(
+/** Ring k as a fraction of the outer radius, stretched so that however many
+    rings this particular conference needed, the outermost one lands on the edge
+    of the figure. Otherwise a program with four rings of topics would draw a
+    small disc adrift in the middle of the canvas. */
+function ringScale(maxRing: number): (k: number) => number {
+  const span = Math.max(1, maxRing);
+  return (k) => RING_MIN + (1 - RING_MIN) * (Math.min(k, span) / span);
+}
+
+/** Which way a label leans at this angle: sideways wherever there is room to
+    the left or right, above or below at the top and bottom of the figure —
+    where a sideways label would run straight into its neighbour. */
+function sideAt(angle: number): LabelSide {
+  const c = Math.cos(angle);
+  return Math.abs(c) >= 0.4 ? (c > 0 ? "right" : "left") : Math.sin(angle) > 0 ? "bottom" : "top";
+}
+
+/** Half-extents of a dot+label box. A label reads outward, so the box is not
+    centred on the dot; treating it as symmetric costs a few pixels of clearance
+    and saves a great deal of arithmetic. */
+function extents(p: Placed): { hx: number; hy: number } {
+  const r = Math.max(p.r, HIT_MIN);
+  if (p.side === "left" || p.side === "right") {
+    return { hx: r + LABEL_GAP + p.lw, hy: Math.max(r, p.lh / 2) };
+  }
+  return { hx: Math.max(r, p.lw / 2), hy: r + LABEL_GAP + p.lh };
+}
+
+/** Push overlapping dots apart AROUND the figure, never in or out: the ring a
+    topic sits on is what says how big it is, so its radius may not drift. */
+function separate(
   nodes: Placed[],
-  edges: TopicEdge[],
-  index: Map<string, number>,
-  boxW: number,
-  boxH: number,
-  /** How much more it costs to be off-centre vertically than horizontally —
-      the box's own proportions, so the cloud comes out the shape of the space
-      it has to live in. A landscape canvas gets a wide graph; a phone gets a
-      tall one, instead of a wide one squeezed into a column. */
-  vBias: number,
+  cx: number,
+  cy: number,
+  rx: number,
+  ry: number,
+  frac: (k: number) => number,
+  fixed: { x: number; y: number; w: number }[],
+  /** How far off its ring a topic may drift, as a fraction of the radius. */
+  drift: number,
 ): void {
   const n = nodes.length;
-  if (n < 2) return;
-  const scale = Math.sqrt((boxW * boxH) / n);
-  const cx = boxW / 2;
-  const cy = boxH / 2;
-  const dx = new Float64Array(n);
-  const dy = new Float64Array(n);
-
-  for (let pass = 0; pass < PASSES; pass++) {
-    const heat = HEAT * (1 - pass / PASSES) ** 1.4 + 0.4;
-    dx.fill(0);
-    dy.fill(0);
-
-    // push: every pair, falling off with distance
-    for (let i = 0; i < n; i++) {
-      for (let j = i + 1; j < n; j++) {
-        let ux = nodes[i].x - nodes[j].x;
-        let uy = (nodes[i].y - nodes[j].y) * vBias;
-        let d2 = ux * ux + uy * uy;
-        if (d2 < 1e-6) {
-          // Exactly coincident (only possible on pass 0 of a degenerate input):
-          // nudge along the index difference, which is deterministic.
-          ux = (i - j) * 0.01;
-          uy = 0.01;
-          d2 = ux * ux + uy * uy;
-        }
-        const d = Math.sqrt(d2);
-        const want = nodes[i].hw + nodes[j].hw + PAD;
-        const force = (PUSH * scale * scale) / d2 + (d < want ? (want - d) * 0.35 : 0);
-        const fx = (ux / d) * force;
-        const fy = (uy / d) * force;
-        dx[i] += fx;
-        dy[i] += fy;
-        dx[j] -= fx;
-        dy[j] -= fy;
-      }
-    }
-
-    // pull: along the links, harder for topics that share more talks
-    for (const e of edges) {
-      const i = index.get(e.a);
-      const j = index.get(e.b);
-      if (i === undefined || j === undefined) continue;
-      const ux = nodes[i].x - nodes[j].x;
-      const uy = (nodes[i].y - nodes[j].y) * vBias;
-      const d = Math.sqrt(ux * ux + uy * uy) || 1e-3;
-      const want = scale * Math.max(LINK_LEN_MIN, LINK_LEN - e.w);
-      const force = PULL * (d - want) * (0.35 + e.w);
-      const fx = (ux / d) * force;
-      const fy = (uy / d) * force;
-      dx[i] -= fx;
-      dy[i] -= fy;
-      dx[j] += fx;
-      dy[j] += fy;
-    }
-
-    for (let i = 0; i < n; i++) {
-      // gravity, so a loosely-tied topic drifts back instead of flying off
-      dx[i] += (cx - nodes[i].x) * GRAVITY * scale * 0.1;
-      dy[i] += (cy - nodes[i].y) * GRAVITY * scale * 0.1 * vBias;
-      const len = Math.hypot(dx[i], dy[i]);
-      const step = Math.min(len, heat);
-      if (len > 1e-9) {
-        nodes[i].x += (dx[i] / len) * step;
-        nodes[i].y += (dy[i] / len) * step;
-      }
-    }
-  }
-}
-
-/** Push node+label boxes out of each other until nothing overlaps, keeping
-    every one of them inside the canvas as it goes. The wall has to be part of
-    the same loop: clamping afterwards would shove a node that was pushed off
-    the edge straight back into its neighbour, which is exactly the collision
-    the pass had just resolved. Moves along the shallower axis, so the shape the
-    relaxation found survives. */
-function separate(nodes: Placed[], boxW: number, boxH: number): void {
-  const n = nodes.length;
-  const clamp = (p: Placed) => {
-    p.x = Math.min(boxW - p.hw - PAD, Math.max(p.hw + PAD, p.x));
-    p.y = Math.min(boxH - p.down - PAD, Math.max(p.up + PAD, p.y));
+  const project = (p: Placed) => {
+    const f = p.rad;
+    p.x = cx + rx * f * Math.cos(p.angle);
+    p.y = cy + ry * f * Math.sin(p.angle);
+    // Only a topic that already letters outward may change which way it leans.
+    if (p.side === "left" || p.side === "right") p.side = sideAt(p.angle);
   };
   for (let pass = 0; pass < SEPARATE_PASSES; pass++) {
-    for (const p of nodes) clamp(p);
     let moved = false;
+    // The family names are set in stone; a topic that lands on one rotates away.
+    for (const p of nodes) {
+      const e = extents(p);
+      for (const f of fixed) {
+        const ox = e.hx + f.w / 2 + PAD - Math.abs(p.x - f.x);
+        if (ox <= 0) continue;
+        const oy = e.hy + FAM_BOX_H / 2 + PAD - Math.abs(p.y - f.y);
+        if (oy <= 0) continue;
+        p.angle += (p.y <= f.y ? -1 : 1) * 0.016;
+        project(p);
+        moved = true;
+      }
+    }
     for (let i = 0; i < n; i++) {
       for (let j = i + 1; j < n; j++) {
         const a = nodes[i];
         const b = nodes[j];
-        const ox = a.hw + b.hw + PAD - Math.abs(a.x - b.x);
+        const ea = extents(a);
+        const eb = extents(b);
+        const ox = ea.hx + eb.hx + PAD - Math.abs(a.x - b.x);
         if (ox <= 0) continue;
-        const centreA = (a.down - a.up) / 2;
-        const centreB = (b.down - b.up) / 2;
-        const halfA = (a.up + a.down) / 2;
-        const halfB = (b.up + b.down) / 2;
-        const oy = halfA + halfB + PAD - Math.abs(a.y + centreA - (b.y + centreB));
+        const oy = ea.hy + eb.hy + PAD - Math.abs(a.y - b.y);
         if (oy <= 0) continue;
+        // Overlapping in both axes: rotate them apart, and — when rotating is
+        // not enough, which is exactly what a full ring means — let one drift a
+        // little off its ring. The drift is capped at a fraction of the ring
+        // gap, so a topic still reads as belonging to the ring it was given.
+        const step = 0.014 * (1 + Math.min(ox, oy) / 40);
+        const dir = a.angle <= b.angle ? 1 : -1;
+        a.angle -= step * dir;
+        b.angle += step * dir;
+        const inner = a.rad <= b.rad ? a : b;
+        const outer = inner === a ? b : a;
+        // Never past the outermost ring or inside the hole: the figure's own
+        // bounds are what the canvas was sized for.
+        inner.rad = Math.max(RING_MIN * 0.94, Math.max(frac(inner.ring) - drift, inner.rad - RAD_STEP));
+        outer.rad = Math.min(1, Math.min(frac(outer.ring) + drift, outer.rad + RAD_STEP));
+        project(a);
+        project(b);
         moved = true;
-        if (ox < oy) {
-          const push = (ox / 2) * (a.x <= b.x ? 1 : -1);
-          a.x -= push;
-          b.x += push;
-        } else {
-          const push = (oy / 2) * (a.y + centreA <= b.y + centreB ? 1 : -1);
-          a.y -= push;
-          b.y += push;
-        }
       }
     }
     if (!moved) break;
-  }
-  for (const p of nodes) clamp(p);
-}
-
-/** Scale and shift the laid-out graph so it fills the box, labels and all.
-    Positions are scaled; radii are not — a disc means a talk count, not a
-    fraction of the viewport, so spreading the graph out must not inflate it.
-    Runs BEFORE the separation pass: scaling afterwards would squeeze the boxes
-    back into each other. */
-function fitToBox(nodes: Placed[], boxW: number, boxH: number): void {
-  let minX = Infinity;
-  let maxX = -Infinity;
-  let minY = Infinity;
-  let maxY = -Infinity;
-  for (const p of nodes) {
-    minX = Math.min(minX, p.x - p.hw);
-    maxX = Math.max(maxX, p.x + p.hw);
-    minY = Math.min(minY, p.y - p.up);
-    maxY = Math.max(maxY, p.y + p.down);
-  }
-  const w = Math.max(1, maxX - minX);
-  const h = Math.max(1, maxY - minY);
-  // Aim a little under the box: filling it to the millimetre leaves every
-  // outer node pinned against a wall, with nowhere to go when the separation
-  // pass needs to move it.
-  const k = Math.min(FIT_MAX, (boxW * FIT_SLACK) / w, (boxH * FIT_SLACK) / h);
-  const cx = (minX + maxX) / 2;
-  const cy = (minY + maxY) / 2;
-  for (const p of nodes) {
-    p.x = boxW / 2 + (p.x - cx) * k;
-    p.y = boxH / 2 + (p.y - cy) * k;
   }
 }
 
@@ -380,6 +363,10 @@ export function buildTopicMap(
   lang: Lang,
   boxW: number,
   boxH: number,
+  /** The reader's name for a vocabulary family — the page's translation, passed
+      in rather than looked up here, so this module still knows nothing about
+      the UI's strings. */
+  famName: (key: string) => string,
 ): TopicMapData {
   // ---- 1. counts, co-occurrence, and the talks behind each topic ----
   const counts = new Map<string, number>();
@@ -436,6 +423,10 @@ export function buildTopicMap(
       byKey: new Map(),
       neighbors: new Map(),
       links: [],
+      families: [],
+      rings: [],
+      cx: boxW / 2,
+      cy: boxH / 2,
       width: boxW,
       height: boxH,
       labelFont: LABEL_FONT,
@@ -443,7 +434,7 @@ export function buildTopicMap(
     };
   }
 
-  // ---- 2. links ----
+  // ---- 2. chords ----
   const edges: TopicEdge[] = [];
   for (const [k, n] of pairs) {
     const [a, b] = k.split(PAIR_SEP);
@@ -466,23 +457,20 @@ export function buildTopicMap(
     addNeighbor(e.b, e);
   }
 
-  // Drawn links: every topic's strongest ties first, so no node is left
-  // stranded, then the strongest remaining ones up to the cap.
+  const small = boxW < SMALL_BOX;
   const drawn = new Map<string, TopicEdge>();
   const idOf = (e: TopicEdge) => `${e.a}${PAIR_SEP}${e.b}`;
-  // A phone-sized canvas gets fewer of them: the same eighty lines that read as
-  // structure across a desktop are a thicket in a column.
-  const perNode = boxW < SMALL_BOX ? LINKS_PER_NODE - 1 : LINKS_PER_NODE;
+  const perNode = small ? LINKS_PER_NODE - 1 : LINKS_PER_NODE;
   for (const key of keys) {
     // A topic's own strongest ties go in whatever their absolute strength is:
     // the strength is cosine-normalised, so two topics that each carry a
     // hundred talks and share ten score LOW — and dropping those would leave
-    // the biggest themes in the program floating unconnected.
+    // the biggest themes in the program unconnected.
     for (const e of (neighbors.get(key) ?? []).slice(0, perNode)) {
       if (e.n >= 2) drawn.set(idOf(e), e);
     }
   }
-  const cap = Math.round(keys.length * (boxW < SMALL_BOX ? 1.2 : LINKS_MAX_PER_NODE));
+  const cap = Math.round(keys.length * (small ? 1.1 : LINKS_MAX_PER_NODE));
   for (const e of edges) {
     if (drawn.size >= cap) break;
     if (e.w >= LINK_MIN_W) drawn.set(idOf(e), e);
@@ -491,50 +479,230 @@ export function buildTopicMap(
     (x, y) => y.w - x.w || (x.a + x.b < y.a + y.b ? -1 : 1),
   );
 
-  // ---- 3. placement ----
+  // ---- 3. sectors ----
+  const byFamily = new Map<string, string[]>();
+  for (const key of keys) {
+    const fam = topicCategory(key) ?? "meta";
+    const arr = byFamily.get(fam);
+    if (arr) arr.push(key);
+    else byFamily.set(fam, [key]);
+  }
+  const famKeys = [...byFamily.keys()].sort((a, b) => {
+    const ia = FAMILY_ORDER.indexOf(a);
+    const ib = FAMILY_ORDER.indexOf(b);
+    const ra = ia < 0 ? FAMILY_ORDER.length : ia;
+    const rb = ib < 0 ? FAMILY_ORDER.length : ib;
+    return ra !== rb ? ra - rb : a < b ? -1 : 1;
+  });
+
+  const labelFont = small ? LABEL_FONT_SMALL : LABEL_FONT;
+  const zoom = Math.min(1, Math.max(0.6, Math.sqrt((boxW * boxH) / REF_AREA)));
   const maxCount = counts.get(keys[0]) ?? 1;
-  // Radius on a sqrt scale, so the DISC AREA tracks the talk count, with a
-  // floor that keeps the rarest topic visible and tappable. The whole scale
-  // shrinks with the box, so a phone gets a graph and not a pile.
-  const zoom = Math.min(1, Math.max(0.62, Math.sqrt((boxW * boxH) / REF_AREA)));
   const radiusOf = (count: number) =>
     (R_MIN + (R_MAX - R_MIN) * Math.sqrt(count / maxCount)) * zoom;
 
-  const vBias = boxW / boxH;
-  const labelFont = boxW < SMALL_BOX ? LABEL_FONT_SMALL : LABEL_FONT;
-  const placed: Placed[] = keys.map((key, i) => {
-    const r = radiusOf(counts.get(key) ?? 0);
-    const box = labelBox(nodeText(topicLabel(key, lang)), labelFont);
-    // Start on a spiral, biggest at the middle: a fixed, spread-out opening
-    // position, so the relaxation has somewhere sensible to start and nothing
-    // it does depends on chance.
-    const angle = i * 2.399963;
-    const rad = Math.sqrt(i / keys.length) * Math.min(boxW, boxH * vBias) * 0.42;
-    return {
-      key,
-      x: boxW / 2 + Math.cos(angle) * rad,
-      y: boxH / 2 + (Math.sin(angle) * rad) / vBias,
-      r,
-      hw: Math.max(r, box.w / 2),
-      up: r,
-      down: r + LABEL_GAP + box.h,
-    };
-  });
-  const index = new Map(placed.map((p, i) => [p.key, i]));
-  // The layout pulls along the links the reader can SEE, not along every
-  // co-occurrence there is: in a program where almost every topic meets almost
-  // every other one at least once, attracting on all of them drags the whole
-  // vocabulary into one undifferentiated blob. Strong ties only, and the
-  // picture matches the lines drawn over it.
-  relax(placed, links, index, boxW, boxH, vBias);
-  // Spread to the box first, then pull the last collisions apart, then make
-  // sure nothing ended up hanging over an edge — and settle once more, since
-  // clamping can push two boxes back together.
-  fitToBox(placed, boxW, boxH);
-  separate(placed, boxW, boxH);
+  // The figure is an ellipse: a page is far wider than it is tall, and a circle
+  // in a letterbox wastes both ends. Room is kept at the sides for the labels
+  // that read outward there, and above and below for the ones that read up and
+  // down.
+  const maxLabelW = LABEL_WRAP * labelFont;
+  const cx = boxW / 2;
+  const cy = boxH / 2;
+  // Three things have to fit outside the outermost ring: a topic's dot, the
+  // label reading outward from it, and beyond that the family's own name.
+  const outerX = maxLabelW + R_MAX * zoom + LABEL_GAP + OUTER_ROOM;
+  const outerY = labelFont * LABEL_LEADING * 2 + R_MAX * zoom + LABEL_GAP + OUTER_ROOM;
+  const rx = Math.max(40, boxW / 2 - outerX);
+  const ry = Math.max(40, boxH / 2 - outerY);
 
-  const nodes: TopicNode[] = placed.map((p) => {
-    const key = p.key;
+  // How many rings the figure can hold with the labels it has to letter: two
+  // rings closer together than a label is wide, in the regions where labels
+  // read sideways, would drive every inner label through the outer ring's dots.
+  const ringGap = labelFont * LABEL_LEADING * 2 + R_MAX * zoom + LABEL_GAP + 10;
+  const ringsAllowed = Math.max(
+    1,
+    Math.min(RINGS_MAX, Math.floor((rx * (1 - RING_MIN)) / ringGap)),
+  );
+
+  const total = keys.length;
+  const placed: Placed[] = [];
+  const sectors: { key: string; size: number; mid: number; divider: number }[] = [];
+  let cursor = -Math.PI / 2; // twelve o'clock
+  for (const fam of famKeys) {
+    const members = byFamily.get(fam)!;
+    const span = (Math.PI * 2 * members.length) / total;
+    const a0 = cursor + SECTOR_GAP / 2;
+    const a1 = cursor + span - SECTOR_GAP / 2;
+    const divider = cursor;
+    cursor += span;
+    const inset = (a1 - a0) * SECTOR_INSET;
+    const lo = a0 + inset;
+    const hi = a1 - inset;
+    const mid = (a0 + a1) / 2;
+
+    // Fill the sector ring by ring from the inside out, taking as many topics
+    // per ring as the arc there can letter without labels touching. How much
+    // room one topic needs ALONG the ring is a different measurement at the top
+    // of the figure (labels stack sideways) than at its sides (they stack
+    // vertically), so it is measured per ring.
+    let i = 0;
+    let ring = 0;
+    while (i < members.length) {
+      const rest = members.slice(i).map((k) => labelBox(nodeText(topicLabel(k, lang)), labelFont));
+      const wide = Math.max(...rest.map((b) => b.w)) + PAD * 2;
+      const tall = Math.max(...rest.map((b) => b.h)) + PAD * 2;
+      // Assume the ring will end up spread over the whole radius: what matters
+      // is only how many fit side by side, and the exact radius is settled once
+      // every sector has been laid out.
+      const guess = RING_MIN + (1 - RING_MIN) * (ring / Math.max(1, ringsAllowed - 1));
+      // Arc measured where the sector actually is: on an ellipse the distance
+      // one radian buys at the top of the figure is ry, and at the side rx.
+      // Averaging the two overfills every sector that is not on a diagonal.
+      const localR = Math.hypot(rx * Math.sin(mid), ry * Math.cos(mid));
+      const arc = (hi - lo) * localR * guess * ARC_SAFETY;
+      const outerSide = sideAt(mid);
+      // An inner ring stacks its labels above and below its dots, so it needs a
+      // label's WIDTH of arc each; the outermost one letters outward, and there
+      // a label's height is what has to fit — see the projection below.
+      const room = (need: number) =>
+        Math.max(1, Math.min(Math.floor(arc / need) + 1, RING_CAP_BASE + RING_CAP_STEP * ring));
+      const capInner = room(wide);
+      const capOuter = room(outerSide === "left" || outerSide === "right" ? tall : wide);
+      const remaining = members.length - i;
+      const last = ring >= ringsAllowed - 1 || remaining <= capOuter;
+      const take = last ? remaining : Math.min(capInner, remaining);
+      for (let j = 0; j < take; j++) {
+        const key = members[i + j];
+        const t = take === 1 ? 0.5 : j / (take - 1);
+        const a = lo + (hi - lo) * t;
+        const box = labelBox(nodeText(topicLabel(key, lang)), labelFont);
+        placed.push({
+          key,
+          family: fam,
+          angle: a,
+          ring,
+          r: radiusOf(counts.get(key) ?? 0),
+          lw: box.w,
+          lh: box.h,
+          side: sideAt(a),
+          rad: 0,
+          x: 0,
+          y: 0,
+        });
+      }
+      i += take;
+      ring += 1;
+    }
+    sectors.push({ key: fam, size: members.length, mid, divider });
+  }
+
+  // Now that every sector has claimed its rings, stretch them across the whole
+  // figure and put every topic where it actually goes.
+  //
+  // Only the OUTERMOST ring of a sector letters outward. An inner label reading
+  // sideways has to cross the gap to the next ring, and that gap is the width of
+  // a label — which is what limited the whole figure to one or two rings. Set
+  // above or below its dot instead, an inner label needs a fraction of that, so
+  // the figure can carry the rings it actually needs.
+  const maxRing = placed.reduce((m, p) => Math.max(m, p.ring), 0);
+  const outerRingOf = new Map<string, number>();
+  for (const p of placed) {
+    outerRingOf.set(p.family, Math.max(outerRingOf.get(p.family) ?? 0, p.ring));
+  }
+  const frac = ringScale(maxRing);
+  for (const p of placed) {
+    const f = frac(p.ring);
+    p.rad = f;
+    p.x = cx + rx * f * Math.cos(p.angle);
+    p.y = cy + ry * f * Math.sin(p.angle);
+    p.side =
+      p.ring === outerRingOf.get(p.family)
+        ? sideAt(p.angle)
+        : Math.sin(p.angle) >= 0
+          ? "bottom"
+          : "top";
+  }
+
+  // A family's name goes where its sector points, out at the edge of the
+  // canvas — the corners a round figure cannot use anyway. The separation pass
+  // then keeps the topics clear of it.
+  const famBoxW = (key: string) =>
+    textUnits(famName(key)) * FAM_FONT * FAM_TRACK + 20;
+  const famAt = (mid: number, boxWidth: number) => {
+    const c = Math.cos(mid);
+    const sn = Math.sin(mid);
+    const tx = Math.abs(c) < 1e-6 ? Infinity : (boxW / 2 - FAM_EDGE) / Math.abs(c);
+    const ty = Math.abs(sn) < 1e-6 ? Infinity : (boxH / 2 - FAM_EDGE) / Math.abs(sn);
+    const t = Math.min(tx, ty);
+    // The anchor is where the name is hung from, and it reads outward from
+    // there — so it has to be pulled back far enough for its own box to stay
+    // inside the canvas.
+    const side = sideAt(mid);
+    let x = cx + c * t;
+    let y = cy + sn * t;
+    if (side === "right") x = Math.min(x, boxW - FAM_EDGE - boxWidth);
+    if (side === "left") x = Math.max(x, FAM_EDGE + boxWidth);
+    if (side === "top") y = Math.max(y, FAM_EDGE + FAM_BOX_H);
+    if (side === "bottom") y = Math.min(y, boxH - FAM_EDGE - FAM_BOX_H);
+    y = Math.min(Math.max(y, FAM_EDGE + FAM_BOX_H / 2), boxH - FAM_EDGE - FAM_BOX_H / 2);
+    x = Math.min(Math.max(x, FAM_EDGE), boxW - FAM_EDGE);
+    return { x, y };
+  };
+  const families: TopicFamily[] = sectors.map((sec) => ({
+    key: sec.key,
+    size: sec.size,
+    ...famAt(sec.mid, famBoxW(sec.key)),
+    side: sideAt(sec.mid),
+    x1: cx + rx * (RING_MIN * 0.5) * Math.cos(sec.divider),
+    y1: cy + ry * (RING_MIN * 0.5) * Math.sin(sec.divider),
+    x2: cx + rx * 1.02 * Math.cos(sec.divider),
+    y2: cy + ry * 1.02 * Math.sin(sec.divider),
+  }));
+
+  // Two small sectors next to each other point in nearly the same direction, so
+  // their names land on top of one another. Slide them apart along the edge
+  // they share.
+  for (const side of ["top", "bottom", "left", "right"] as LabelSide[]) {
+    const row = families.filter((f) => f.side === side);
+    if (row.length < 2) continue;
+    const horizontal = side === "top" || side === "bottom";
+    row.sort((a, b) => (horizontal ? a.x - b.x : a.y - b.y));
+    for (let i = 1; i < row.length; i++) {
+      const prev = row[i - 1];
+      const cur = row[i];
+      const need = horizontal ? (famBoxW(prev.key) + famBoxW(cur.key)) / 2 + 10 : FAM_BOX_H + 6;
+      if (horizontal) {
+        if (cur.x - prev.x < need) cur.x = prev.x + need;
+      } else if (cur.y - prev.y < need) {
+        cur.y = prev.y + need;
+      }
+    }
+    // Anything pushed past the far edge comes back, taking its neighbours with
+    // it, so a crowded edge stays inside the canvas.
+    const last = row[row.length - 1];
+    const limit = horizontal ? boxW - FAM_EDGE - famBoxW(last.key) / 2 : boxH - FAM_EDGE - FAM_BOX_H;
+    const over = (horizontal ? last.x : last.y) - limit;
+    if (over > 0) for (const f of row) if (horizontal) f.x -= over; else f.y -= over;
+  }
+
+  separate(
+    placed,
+    cx,
+    cy,
+    rx,
+    ry,
+    frac,
+    families.map((f) => ({ x: f.x, y: f.y, w: famBoxW(f.key) })),
+    ((1 - RING_MIN) / Math.max(1, maxRing)) * RAD_DRIFT,
+  );
+
+  const rings: [number, number][] = [...new Set(placed.map((p) => p.ring))]
+    .sort((a, b) => a - b)
+    .map((k) => [rx * frac(k), ry * frac(k)] as [number, number]);
+
+  const byPlacedKey = new Map(placed.map((p) => [p.key, p]));
+  const nodes: TopicNode[] = keys.map((key) => {
+    const p = byPlacedKey.get(key)!;
     const label = topicLabel(key, lang);
     const count = counts.get(key) ?? 0;
     const talks = (talksByTopic.get(key) ?? []).slice().sort(
@@ -549,11 +717,12 @@ export function buildTopicMap(
       label,
       short: nodeText(label),
       count,
+      family: p.family,
       x: p.x,
       y: p.y,
       r: p.r,
+      side: p.side,
       weight: maxCount > 1 ? (count - 1) / (maxCount - 1) : 1,
-      hue: CATEGORY_HUE[topicCategory(key) ?? ""] ?? null,
       talks,
     };
   });
@@ -563,6 +732,10 @@ export function buildTopicMap(
     byKey: new Map(nodes.map((n) => [n.key, n])),
     neighbors,
     links,
+    families,
+    rings,
+    cx,
+    cy,
     width: boxW,
     height: boxH,
     labelFont,
@@ -572,6 +745,20 @@ export function buildTopicMap(
 
 /** The other end of a link, from one topic's point of view. */
 export const otherEnd = (e: TopicEdge, key: string): string => (e.a === key ? e.b : e.a);
+
+/** The chord between two nodes: a quadratic curve bent toward the centre, so
+    every link is bundled through the middle of the figure instead of cutting
+    straight across whatever lies between its ends. */
+export function chordPath(
+  a: { x: number; y: number },
+  b: { x: number; y: number },
+  cx: number,
+  cy: number,
+): string {
+  const qx = cx + ((a.x + b.x) / 2 - cx) * 0.12;
+  const qy = cy + ((a.y + b.y) / 2 - cy) * 0.12;
+  return `M${a.x.toFixed(1)},${a.y.toFixed(1)} Q${qx.toFixed(1)},${qy.toFixed(1)} ${b.x.toFixed(1)},${b.y.toFixed(1)}`;
+}
 
 /* ================================ memoisation ============================== */
 
@@ -595,11 +782,12 @@ export function topicMapFor(
   lang: Lang,
   boxW: number,
   boxH: number,
+  famName: (key: string) => string,
 ): TopicMapData {
   const key = cacheKeyFor(confId, lang, boxW, boxH);
   const hit = cache.get(key);
   if (hit) return hit;
-  const built = buildTopicMap(conference, lang, boxW, boxH);
+  const built = buildTopicMap(conference, lang, boxW, boxH, famName);
   cache.set(key, built);
   return built;
 }

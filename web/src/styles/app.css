@@ -513,7 +513,7 @@ svg { display: block; }
 .tgrid__chead:hover { background: var(--bg-hover); }
 .tgrid__croom { display: inline-flex; align-items: center; gap: 3px; font-family: var(--font-mono); font-size: 11px; color: var(--fg-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .tgrid__croom svg { flex: none; color: var(--fg-muted); }
-.tgrid__ctitle { font-size: 12px; font-weight: 600; line-height: 1.25; color: var(--fg); display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.tgrid__ctitle { font-size: 12px; font-weight: 600; line-height: 1.25; color: var(--fg); display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .tgrid__ccode { display: none; }
 .tgrid__cbody { position: relative; }
 .tgrid__line { position: absolute; left: 0; right: 0; height: 1px; background: var(--border); opacity: 0.55; }
@@ -1694,12 +1694,11 @@ svg { display: block; }
    Both surfaces render AI-derived content and only exist while the AI switch is
    on.
 
-   The map is a knowledge graph on a plotting canvas: faint dot grid, ink discs,
-   hairline links. Colour is deliberately not part of the encoding — forty hues
-   is a legend nobody reads, and the violet in this app already means "AI". What
-   colour there is marks STATE: what you are pointing at or have picked, what it
-   is tied to, and what has stepped back. Everything else is ink weight, which
-   reads the same in both themes and never competes with the page. */
+   The map is a radial sector graph, drawn the way the rest of this app is
+   drawn: paper, ink, hairlines. Colour is NOT part of the encoding — the
+   geometry already says everything (which sector, how near the centre, how big
+   the dot), and forty hues would be a legend nobody reads. What varies is ink
+   weight and one step of contrast for the topic you are pointing at. */
 
 .tmap__lede {
   display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-top: 18px;
@@ -1708,118 +1707,132 @@ svg { display: block; }
 .tmap__note { margin: 0; }
 
 .tmap__canvas {
-  position: relative; margin-top: 16px; overflow: hidden;
+  position: relative; margin-top: 16px;
   border: 1px solid var(--border); border-radius: var(--radius-lg);
-  background-color: var(--bg-subtle);
-  /* The canvas a graph is drawn on, not a decoration: a faint plotting grid,
-     which is also what tells the eye the whitespace is deliberate. */
-  background-image: radial-gradient(
-    circle at 1px 1px,
-    color-mix(in srgb, var(--fg) 10%, transparent) 1px,
-    transparent 0
-  );
-  background-size: 22px 22px;
-  touch-action: manipulation;
+  background: var(--bg-subtle);
+  /* Below the narrow breakpoint the figure keeps a workable size and the canvas
+     pans — forty labelled topics cannot be drawn in 360px, and shrinking them
+     until they fit is how the earlier drafts became unreadable. */
+  overflow: auto hidden; overscroll-behavior-x: contain; scrollbar-width: none;
 }
+.tmap__canvas::-webkit-scrollbar { display: none; }
+.tmap__figure { position: relative; margin: 0 auto; }
 
-/* ---- links ---- */
-.tmap__links { position: absolute; inset: 0; pointer-events: none; }
-.tmap__links line {
-  stroke: color-mix(in srgb, var(--fg) 28%, transparent);
+/* ---- the figure ---- */
+.tmap__plot { position: absolute; inset: 0; pointer-events: none; }
+/* Rings and sector dividers: the graph paper the topics are plotted on. Just
+   visible enough to read a position against, never enough to look at. */
+.tmap__grid ellipse {
+  fill: none; stroke: color-mix(in srgb, var(--fg) 8%, transparent); stroke-width: 1;
+}
+.tmap__grid line {
+  stroke: color-mix(in srgb, var(--fg) 9%, transparent); stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+.tmap__chords path {
+  fill: none; stroke: color-mix(in srgb, var(--fg) 20%, transparent);
   stroke-linecap: round; stroke-dasharray: 1;
-  animation: tmap-draw 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: tmap-draw 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
   transition: stroke 0.2s, opacity 0.2s;
 }
 /* While one topic is lit, its own ties are the only ones at full strength. */
-.tmap__canvas.is-lit .tmap__links line { opacity: 0.3; }
-.tmap__canvas.is-lit .tmap__links line.is-lit { opacity: 1; }
-.tmap__links line.tmap__link--focus {
-  stroke: color-mix(in srgb, var(--fg) 68%, transparent); opacity: 1;
+.tmap__canvas.is-lit .tmap__chords path { opacity: 0.28; }
+.tmap__canvas.is-lit .tmap__chords path.is-lit { opacity: 1; }
+.tmap__chords path.tmap__chord--focus {
+  stroke: color-mix(in srgb, var(--fg) 62%, transparent); opacity: 1;
   /* Signal travelling out from the topic you picked, along everything it
-     touches. Safe to run continuously: a line is not a target, so nothing a
+     touches. Safe to run continuously: a chord is not a target, so nothing a
      pointer has to hit ever moves. */
-  stroke-dasharray: 0.045 0.03; stroke-dashoffset: 0;
-  animation: tmap-travel 1.6s linear infinite;
+  stroke-dasharray: 0.04 0.028;
+  animation: tmap-travel 1.8s linear infinite;
 }
-@keyframes tmap-travel { from { stroke-dashoffset: 0.15; } to { stroke-dashoffset: 0; } }
 @keyframes tmap-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes tmap-travel { from { stroke-dashoffset: 0.136; } to { stroke-dashoffset: 0; } }
 
-/* ---- nodes ---- */
+/* ---- the family a sector stands for ---- */
+.tmap__fam {
+  position: absolute; white-space: nowrap; pointer-events: none;
+  display: inline-flex; align-items: baseline; gap: 5px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+  color: var(--fg-muted); text-transform: uppercase;
+}
+.tmap__fam.is-right { transform: translate(4px, -50%); }
+.tmap__fam.is-left { transform: translate(-100%, -50%); margin-left: -4px; }
+.tmap__fam.is-top { transform: translate(-50%, -100%); margin-top: -4px; }
+.tmap__fam.is-bottom { transform: translate(-50%, 4px); }
+.tmap__famn { font-size: 10px; font-weight: 500; letter-spacing: 0; opacity: 0.75; }
+
+/* ---- a topic ---- */
 .tmap__node {
-  position: absolute; transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 5px;
-  padding: 0; border: none; background: none; cursor: pointer;
-  /* 7.2 characters of label, the same budget the layout wraps on. */
-  max-width: calc(var(--lfs, 11.5px) * 7.4); color: var(--fg-secondary);
-}
-/* A disc says two things at once: WHAT KIND of topic it is (hue, from the
-   vocabulary's own families — lib/topics.ts CATEGORY_HUE) and HOW MUCH of the
-   program it is (area, and a deeper shade with it). One lightness and one
-   modest saturation across all families, so the graph reads as one picture
-   instead of a bag of highlighters. */
-.tmap {
-  --disc-s: 34%;
-  --disc-l: 62%;
-  --disc-l-step: -14%;
-}
-:root[data-theme="dark"] .tmap, html.dark .tmap { --disc-s: 42%; --disc-l: 52%; --disc-l-step: 16%; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .tmap { --disc-s: 42%; --disc-l: 52%; --disc-l-step: 16%; }
+  position: absolute; padding: 0; border: none; background: none; cursor: pointer;
+  color: var(--fg-secondary); transform: translate(-50%, -50%);
+  /* The button is the hit area, not the dot: the smallest topics draw a 9px
+     disc, which nobody can point at. */
+  width: max(22px, calc(var(--r) * 2)); height: max(22px, calc(var(--r) * 2));
+  display: grid; place-items: center;
 }
 .tmap__disc {
-  position: relative; display: block; flex: none;
-  width: calc(var(--r) * 2); height: calc(var(--r) * 2); border-radius: 50%;
-  background: hsl(
-    var(--h, 0) var(--s, var(--disc-s))
-    calc(var(--disc-l) + var(--w, 0) * var(--disc-l-step))
-  );
-  box-shadow: 0 1px 2px color-mix(in srgb, #000 12%, transparent);
-  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), background 0.22s,
+  position: absolute; left: 50%; top: 50%; border-radius: 50%;
+  width: calc(var(--r) * 2); height: calc(var(--r) * 2);
+  translate: -50% -50%;
+  /* Ink weight, not hue: the more talks a topic carries, the more solid it is. */
+  background: color-mix(in srgb, var(--fg) calc(var(--w, 0) * 55% + 30%), var(--bg-subtle));
+  transition: scale 0.22s cubic-bezier(0.22, 1, 0.36, 1), background 0.22s,
     box-shadow 0.22s;
   animation: tmap-pop 0.5s cubic-bezier(0.34, 1.4, 0.5, 1) var(--in, 0s) backwards;
 }
 .tmap__name {
-  /* Set by the page from the layout, so the label measured during placement is
-     the label on screen (lib/topics.ts, LABEL_FONT / LABEL_FONT_SMALL). */
-  font-size: var(--lfs, 11.5px); line-height: 1.18; text-align: center;
+  position: absolute; font-size: var(--lfs, 11.5px); line-height: 1.2;
   letter-spacing: -0.01em;
+  /* The dot is only a few pixels wide, and an absolutely-positioned child sizes
+     itself against that box — without `max-content` the label wraps one
+     character per line. */
+  /* 5 characters-worth, the same budget the layout wraps and measures on
+     (lib/topics.ts, LABEL_WRAP) — a label wider here than there is a label the
+     figure has not left room for. */
+  width: max-content; max-width: calc(var(--lfs, 11.5px) * 5.1);
+  /* An English topic can be one word longer than the budget; hyphenate it
+     rather than snapping it in half at an arbitrary letter. */
+  hyphens: auto; -webkit-hyphens: auto;
   overflow-wrap: break-word;
-  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
-  /* A halo, so a label crossing a link stays readable without a plate behind it. */
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;
+  /* A halo, so a label crossing a chord stays readable without a plate. */
   text-shadow:
     0 1px 0 var(--bg-subtle), 0 -1px 0 var(--bg-subtle),
-    1px 0 0 var(--bg-subtle), -1px 0 0 var(--bg-subtle),
-    0 0 3px var(--bg-subtle);
+    1px 0 0 var(--bg-subtle), -1px 0 0 var(--bg-subtle), 0 0 3px var(--bg-subtle);
   transition: color 0.2s, opacity 0.22s;
   animation: tmap-fade 0.4s ease calc(var(--in, 0s) + 0.1s) backwards;
 }
+/* The label reads outward from the centre, so which side it sits on is decided
+   by where on the figure the topic is (lib/topics.ts, sideAt). */
+.tmap__node.is-right .tmap__name { left: 100%; margin-left: 6px; top: 50%; transform: translateY(-50%); text-align: left; }
+.tmap__node.is-left .tmap__name { right: 100%; margin-right: 6px; top: 50%; transform: translateY(-50%); text-align: right; }
+.tmap__node.is-top .tmap__name { bottom: 100%; margin-bottom: 5px; left: 50%; transform: translateX(-50%); text-align: center; }
+.tmap__node.is-bottom .tmap__name { top: 100%; margin-top: 5px; left: 50%; transform: translateX(-50%); text-align: center; }
+
 @keyframes tmap-pop { from { opacity: 0; transform: scale(0.3); } to { opacity: 1; transform: scale(1); } }
 @keyframes tmap-fade { from { opacity: 0; } to { opacity: 1; } }
 
-.tmap__node:hover .tmap__disc { transform: scale(1.16); }
+.tmap__node:hover .tmap__disc { scale: 1.25; }
 .tmap__node:hover .tmap__name { color: var(--fg); }
 .tmap__node:focus-visible { outline: none; }
-.tmap__node:focus-visible .tmap__disc {
-  outline: 2px solid var(--accent); outline-offset: 3px;
-}
+.tmap__node:focus-visible .tmap__disc { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 /* Three states, one step apart: the topic you picked, the ones it shares talks
    with, and the rest of the program. */
 .tmap__node.is-selected { z-index: 3; }
 .tmap__node.is-selected .tmap__disc {
-  transform: scale(1.16);
-  /* Not a colour change — the ring is what says "picked", so the topic keeps
-     the hue that says what it is. */
-  box-shadow: 0 0 0 3px var(--bg-subtle), 0 0 0 5px var(--fg);
+  background: var(--fg); scale: 1.25;
+  box-shadow: 0 0 0 3px var(--bg-subtle), 0 0 0 4px color-mix(in srgb, var(--fg) 45%, transparent);
 }
 .tmap__node.is-selected .tmap__name { color: var(--fg); font-weight: 600; }
 .tmap__node.is-near .tmap__name { color: var(--fg); }
 .tmap__node.is-near .tmap__disc {
-  box-shadow: 0 0 0 2px var(--bg-subtle), 0 0 0 3px color-mix(in srgb, var(--fg) 38%, transparent);
+  box-shadow: 0 0 0 2px var(--bg-subtle), 0 0 0 3px color-mix(in srgb, var(--fg) 30%, transparent);
 }
-.tmap__node.is-far { opacity: 0.34; }
+.tmap__node.is-far { opacity: 0.32; }
 
-/* The click itself: a ring that leaves the disc and fades. Mounted per click
+/* The click itself: a ring that leaves the dot and fades. Mounted per click
    (TopicMap.tsx) so it replays even on an already-selected topic. */
 .tmap__pulse {
   position: absolute; inset: -2px; border-radius: 50%; pointer-events: none;
@@ -1828,7 +1841,7 @@ svg { display: block; }
 }
 @keyframes tmap-pulse {
   from { transform: scale(1); opacity: 0.8; }
-  to { transform: scale(2.1); opacity: 0; }
+  to { transform: scale(2.4); opacity: 0; }
 }
 
 /* ---- the wait ---- */
@@ -1838,18 +1851,18 @@ svg { display: block; }
   width: calc(var(--r) * 2); height: calc(var(--r) * 2);
   background: color-mix(in srgb, var(--ai-fg) 20%, var(--bg-hover));
   animation: tmap-breathe 1.6s ease-in-out infinite;
-  animation-delay: calc(var(--i, 0) * 0.11s);
+  animation-delay: calc(var(--i, 0) * 0.06s);
 }
 @keyframes tmap-breathe {
-  0%, 100% { opacity: 0.35; transform: translate(-50%, -50%) scale(0.86); }
+  0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.82); }
   50% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tmap__disc, .tmap__name, .tmap__links line, .tmap__links line.tmap__link--focus,
+  .tmap__disc, .tmap__name, .tmap__chords path, .tmap__chords path.tmap__chord--focus,
   .tmap__waitdot { animation: none; }
-  .tmap__node:hover .tmap__disc { transform: none; }
-  .tmap__node.is-selected .tmap__disc { transform: none; }
+  .tmap__node:hover .tmap__disc { scale: 1; }
+  .tmap__node.is-selected .tmap__disc { scale: 1; }
   /* Kept as an animation, not removed: the ring unmounts itself on
      `animationend`, so it still has to end — just invisibly and at once. */
   .tmap__pulse { animation: tmap-pulse 0.01s linear forwards; opacity: 0; }
