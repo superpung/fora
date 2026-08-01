@@ -1,10 +1,18 @@
-import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
+import {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  type CSSProperties,
+} from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useConference } from "../lib/conference-store";
 import { useFollow } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
 import { useAi } from "../lib/ai-store";
+import { useStickyState } from "../lib/sticky-state";
 import { formatDate } from "../lib/data";
 import { assemblePlan, buildPlanCorpus, rankPlan, type PlanDay, type PlanPick } from "../lib/plan";
 import { topicLabel } from "../lib/topic-labels";
@@ -20,6 +28,12 @@ import Icon from "../components/Icon";
 /** How many one-tap interest chips to offer, drawn from the topics this
     conference's program actually uses (most common first). */
 const CHIP_COUNT = 12;
+
+/** How long the "thinking" state stays up at minimum. Ranking is local and
+    usually finishes in well under this, but a result that appears in one frame
+    reads as a glitch rather than an answer — the floor gives the skeleton time
+    to be seen, and gives the work a beginning and an end. */
+const MIN_THINK_MS = 900;
 
 function PickRow({
   pick,
@@ -65,7 +79,16 @@ function PickRow({
         </div>
         <div className="planpick__title">
           {pick.code ? (
-            <Link to={`/${confId}/forum/${pick.code}`}>{pick.title}</Link>
+            // Land on the talk itself, not the top of its forum: the forum page
+            // scrolls to `#talk-N` and keeps it highlighted while the hash is
+            // there. Keynotes carry no anchor, so they stay plain text.
+            <Link
+              to={`/${confId}/forum/${pick.code}${
+                pick.talkIndex != null ? `#talk-${pick.talkIndex + 1}` : ""
+              }`}
+            >
+              {pick.title}
+            </Link>
           ) : (
             pick.title
           )}
@@ -108,11 +131,21 @@ export default function Plan() {
   const ai = useAi();
   const { importFollows } = useFollow();
 
-  const [text, setText] = useState("");
-  const [chips, setChips] = useState<string[]>([]);
-  const [plan, setPlan] = useState<PlanDay[] | null>(null);
-  const [selected, setSelected] = useState<Set<string>>(new Set());
-  const [starred, setStarred] = useState(0);
+  // Everything the user built here is sticky: following a pick into its forum
+  // and coming back must return the same interest, the same chips and the same
+  // plan — regenerating it from scratch (or worse, showing an empty page) throws
+  // away work they did. Session-scoped, like the schedule/speaker filters.
+  const [text, setText] = useStickyState(`${confId}:plan.text`, "");
+  const [chips, setChips] = useStickyState<string[]>(`${confId}:plan.chips`, []);
+  const [plan, setPlan] = useStickyState<PlanDay[] | null>(`${confId}:plan.days`, null);
+  const [selected, setSelected] = useStickyState<Set<string>>(
+    `${confId}:plan.sel`,
+    () => new Set(),
+  );
+  const [starred, setStarred] = useStickyState(`${confId}:plan.starred`, 0);
+  /** The request being worked on, or null when idle. Set on submit; cleared
+      when its result lands. */
+  const [thinking, setThinking] = useState<{ text: string; chips: string[] } | null>(null);
 
   // Walking the program is cheap; the BM25 model behind it is built lazily on
   // the first plan (see lib/plan.ts), so mounting the page stays instant.
@@ -120,16 +153,58 @@ export default function Plan() {
   const offered = useMemo(() => corpus.topics.slice(0, CHIP_COUNT), [corpus]);
   const canPlan = text.trim().length > 0 || chips.length > 0;
 
-  function makePlan() {
-    if (!canPlan) return;
-    const days = assemblePlan(rankPlan(corpus, text, chips));
-    setPlan(days);
-    // Colliding picks start unchecked: the stronger match owns the slot, and the
-    // user decides whether to swap.
-    setSelected(
-      new Set(days.flatMap((d) => d.picks).filter((p) => !p.clashesWith).map((p) => p.id)),
+  // The box grows with what is typed rather than offering a drag handle: reset
+  // to `auto` first so it can shrink again when text is deleted. Re-measured on
+  // resize because a narrower box rewraps into more lines.
+  const box = useRef<HTMLTextAreaElement>(null);
+  useLayoutEffect(() => {
+    const el = box.current;
+    if (!el) return;
+    const fit = () => {
+      el.style.height = "auto";
+      // `scrollHeight` is content + padding; under border-box the height we set
+      // must also cover the border, or the last line is clipped by 2px.
+      el.style.height = `${el.scrollHeight + el.offsetHeight - el.clientHeight}px`;
+    };
+    fit();
+    window.addEventListener("resize", fit);
+    return () => window.removeEventListener("resize", fit);
+  }, [text]);
+
+  // Ranking is synchronous and blocks the frame it runs in, so it is deferred
+  // past two frames: the first paints the skeleton, the second does the work.
+  // The result is then held until MIN_THINK_MS has passed.
+  useEffect(() => {
+    if (!thinking) return;
+    const started = performance.now();
+    let timer = 0;
+    const raf = requestAnimationFrame(() =>
+      requestAnimationFrame(() => {
+        const days = assemblePlan(rankPlan(corpus, thinking.text, thinking.chips));
+        timer = window.setTimeout(
+          () => {
+            setPlan(days);
+            // Colliding picks start unchecked: the stronger match owns the slot,
+            // and the user decides whether to swap.
+            setSelected(
+              new Set(days.flatMap((d) => d.picks).filter((p) => !p.clashesWith).map((p) => p.id)),
+            );
+            setStarred(0);
+            setThinking(null);
+          },
+          Math.max(0, MIN_THINK_MS - (performance.now() - started)),
+        );
+      }),
     );
-    setStarred(0);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(timer);
+    };
+  }, [thinking, corpus, setPlan, setSelected, setStarred]);
+
+  function makePlan() {
+    if (!canPlan || thinking) return;
+    setThinking({ text, chips });
   }
 
   function toggle(id: string) {
@@ -179,10 +254,10 @@ export default function Plan() {
         <>
           <div className="planform">
             <textarea
+              ref={box}
               className="planform__input"
-              rows={3}
+              rows={1}
               value={text}
-              placeholder={t("plan.placeholder")}
               aria-label={t("plan.inputLabel")}
               onChange={(e) => setText(e.target.value)}
               onKeyDown={(e) => {
@@ -215,15 +290,52 @@ export default function Plan() {
               </div>
             )}
             <div className="planform__actions">
-              <button className="btn btn--primary" onClick={makePlan} disabled={!canPlan}>
+              <button
+                className={`btn btn--primary planform__go ${thinking ? "is-busy" : ""}`}
+                onClick={makePlan}
+                disabled={!canPlan || !!thinking}
+              >
                 <Icon name="sparkle" size={14} />
-                {t("plan.submit")}
+                {thinking ? t("plan.thinking") : t("plan.submit")}
               </button>
               <AiNote className="planform__note" />
             </div>
           </div>
 
+          <AnimatePresence initial={false}>
+            {thinking && (
+              // Deliberately not a spinner: the skeleton says what is being
+              // built (a day of timed rows), so the wait shows the shape of the
+              // answer instead of an abstract wait.
+              <motion.div
+                className="planthink"
+                aria-live="polite"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -4 }}
+                transition={{ duration: 0.25 }}
+              >
+                <div className="planthink__head">
+                  <span className="planthink__orb" aria-hidden>
+                    <Icon name="sparkle" size={14} />
+                  </span>
+                  {t("plan.thinking")}
+                </div>
+                <div className="planthink__rows" aria-hidden>
+                  {[0, 1, 2].map((i) => (
+                    <div className="planthink__row" key={i} style={{ "--i": i } as CSSProperties}>
+                      <span className="planthink__bar planthink__bar--meta" />
+                      <span className="planthink__bar planthink__bar--title" />
+                      <span className="planthink__bar planthink__bar--sub" />
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           {plan &&
+            !thinking &&
             (plan.length === 0 ? (
               <div className="planempty">{t("plan.empty")}</div>
             ) : (
