@@ -19,6 +19,10 @@ web/.vite/
 source/raw/images/
 source/raw/files/
 source/tiles/
+source/chinaosc2026/raw/images/
+
+# Scratch git worktrees used by background agents
+.claude/worktrees/
 
 # Scratch git worktrees used by background agents
 .claude/worktrees/

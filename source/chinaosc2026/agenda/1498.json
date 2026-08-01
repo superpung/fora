@@ -1,0 +1,72 @@
+{
+  "_about": "Programme parsed from the forum's published timetable image. Verbatim transcription of the image — no inference.",
+  "doc": "1498",
+  "images": ["image_20260724201603A485.png"],
+  "rows": [
+    {
+      "start": "13:30",
+      "end": "13:35",
+      "title": "开场介绍",
+      "kind": "other",
+      "speakers": [{ "name": "张宇霞", "affiliation_raw": "北京理工大学" }]
+    },
+    {
+      "start": "13:35",
+      "end": "13:55",
+      "title": "面向可信AI供应链的开源神经网络演化与复用安全分析",
+      "speakers": [{ "name": "薛吟兴", "affiliation_raw": "中国科学院工业人工智能研究所" }]
+    },
+    {
+      "start": "13:55",
+      "end": "14:15",
+      "title": "算力网开源开放试验场",
+      "speakers": [{ "name": "余跃", "affiliation_raw": "鹏城实验室" }]
+    },
+    {
+      "start": "14:15",
+      "end": "14:35",
+      "title": "开源供应链风险数据基座的脆弱性剖析与可信重构",
+      "speakers": [{ "name": "陈森", "affiliation_raw": "南开大学" }]
+    },
+    {
+      "start": "14:35",
+      "end": "14:55",
+      "title": "面向依赖版本更新任务的大规模数据集挖掘",
+      "speakers": [{ "name": "高恺", "affiliation_raw": "北京科技大学" }]
+    },
+    {
+      "start": "14:55",
+      "end": "15:15",
+      "title": "从开源代码到开放权重：AI模型协作开发的新演进与挑战",
+      "speakers": [{ "name": "叶恒志", "affiliation_raw": "北京大学" }]
+    },
+    {
+      "start": "15:15",
+      "end": "15:40",
+      "title": "茶歇",
+      "kind": "break",
+      "speakers": []
+    },
+    {
+      "start": "15:40",
+      "end": "17:00",
+      "title": "Panel",
+      "kind": "other",
+      "speakers": [
+        { "name": "高恺", "affiliation_raw": null },
+        { "name": "周明辉", "affiliation_raw": null },
+        { "name": "毛晓光", "affiliation_raw": null },
+        { "name": "薛吟兴", "affiliation_raw": null },
+        { "name": "余跃", "affiliation_raw": null },
+        { "name": "陈森", "affiliation_raw": null }
+      ]
+    }
+  ],
+  "room": null,
+  "notes": [
+    "Timetable image is image_20260724201603A485.png (1080x656), columns 时间 / 报告题目 / 讲者 / 单位.",
+    "The Panel row spans the 报告题目/讲者/单位 columns as one merged cell reading verbatim: 'Panel' / '主持人：高恺' / '参与者：周明辉、毛晓光、薛吟兴、余跃、陈森'. 高恺 is the moderator, the rest are participants; no affiliations are printed for this row.",
+    "Non-timetable images: image_20260724201145A482.png is the forum title banner; the eight 84–182px squares are speaker headshots; {3BF3CB47-2349-477C-B72C-AA6928D2B74C}_20260724202414A491.png is a panellist photo strip (周明辉/毛晓光/薛吟兴/余跃/陈森); image_20260724161959A408.png is the site-wide registration QR code.",
+    "No room / hall / venue is shown anywhere in this document's images."
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "_about": "Programme parsed from the forum's published timetable image. Verbatim transcription of the image — no inference.",
+  "doc": "1491",
+  "images": ["image_20260724170746A413.png"],
+  "rows": [
+    {
+      "start": "13:30",
+      "end": "14:00",
+      "title": "主旨报告：AI时代的科学计算与系统建模——从开源工具链走向智能工程生态",
+      "speakers": [{ "name": "周凡利", "affiliation_raw": "openSCS 工委会主席，苏州同元软控技术股份有限公司董事长" }]
+    },
+    {
+      "start": "14:00",
+      "end": "14:20",
+      "title": "AI时代下能源系统工程发展的机遇与挑战",
+      "speakers": [{ "name": "李明涛", "affiliation_raw": "SIG6 负责人，西安交通大学 副教授" }]
+    },
+    {
+      "start": "14:25",
+      "end": "14:45",
+      "title": "Sysplorer MCP Server+智能体重塑系统建模仿真工作流",
+      "speakers": [{ "name": "许飞", "affiliation_raw": "苏州同元软控技术股份有限公司产品经理" }]
+    },
+    {
+      "start": "14:50",
+      "end": "15:10",
+      "title": "开源系统建模模型库与 Modelica 中文生态建设——面向智能应用的 MCP 赋能实践",
+      "speakers": [{ "name": "刘瑞栋", "affiliation_raw": "苏州同元软控技术股份有限公司产品经理" }]
+    },
+    {
+      "start": "15:50",
+      "end": "16:10",
+      "title": "具身智能场景下的系统建模、控制与仿真新需求",
+      "speakers": [{ "name": "周治国", "affiliation_raw": "SIG7 负责人，北京理工大学 副教授" }]
+    },
+    {
+      "start": "16:10",
+      "end": "16:30",
+      "title": "综合能源数字孪生系统管理发展探索",
+      "speakers": [{ "name": "杨党锋", "affiliation_raw": "中国电建西北院数字与智慧工程院院长" }]
+    },
+    {
+      "start": "16:30",
+      "end": "16:50",
+      "title": "2026“校源行”计划与高校参与路径",
+      "speakers": [{ "name": "惠立新", "affiliation_raw": "教育WG副组长，MWORKS生态负责人" }]
+    }
+  ],
+  "room": null,
+  "notes": [
+    "Images in this document: conference banner (1080x455), 8 speaker/chair headshots, 1 WeChat/registration QR code, and the one timetable image listed above.",
+    "Timetable columns: 时间 / 报告题目 / 讲者 / 单位. Times and affiliations are present for every row; no room/venue and no date are printed on the image.",
+    "The timetable prints no break rows, but the times leave unlabelled gaps: 14:20-14:25, 14:45-14:50 and a 40-minute gap 15:10-15:50 (likely a 茶歇, but the image does not say so, so no row is recorded).",
+    "The 单位 column here mixes organisation and role (e.g. 'SIG6 负责人，西安交通大学 副教授'); transcribed verbatim including the internal spacing as printed."
+  ]
+}

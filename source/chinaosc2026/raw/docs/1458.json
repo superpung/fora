@@ -1,0 +1,35 @@
+{
+ "code": 200,
+ "data": {
+  "auditStatus": "1",
+  "auditType": null,
+  "cmsDir": {
+   "createdAt": "2026-06-18 11:19",
+   "headImg": null,
+   "id": 1453,
+   "name": "议程详情",
+   "sort": 7
+  },
+  "content": "PHA+CiAgPHNwYW4+MDk6MDAtMjA6MDA8L3NwYW4+PHNwYW4+5YWo5aSpPC9zcGFuPjxzcGFuPuWkp+S8muaKpeWIsOOAgeWYieWuvuetvuWIsDwvc3Bhbj4KPC9wPgoK",
+  "createBy": "caishi",
+  "deptId": 386,
+  "docDetailUrl": null,
+  "editable": null,
+  "editorType": "markdown_editor",
+  "headImg": null,
+  "id": 1458,
+  "isFirstPublish": false,
+  "isHomepage": "0",
+  "keywords": null,
+  "name": "8月14日（周五）",
+  "publishTime": "2026/06/25",
+  "publishUser": "leoxie807",
+  "publishUserImage": "https://www.gitlink.org.cn/system/lets/letter_avatars/2/L/61_162_123/120.png",
+  "publishUserNickname": "leoxie807",
+  "publishUserUrl": "https://www.gitlink.org.cn/leoxie807",
+  "remark": null,
+  "summary": "8月14日的会议日程",
+  "visits": 6040
+ },
+ "msg": "操作成功"
+}

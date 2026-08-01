@@ -1,0 +1,35 @@
+{
+ "code": 200,
+ "data": {
+  "auditStatus": "1",
+  "auditType": null,
+  "cmsDir": {
+   "createdAt": "2026-06-18 11:19",
+   "headImg": null,
+   "id": 1453,
+   "name": "议程详情",
+   "sort": 7
+  },
+  "content": "PHA+CiAgPHNwYW4+MDk6MDAtMTI6MDA8L3NwYW4+PHNwYW4+5LiK5Y2IPC9zcGFuPjxzcGFuPuW8gOW5leW8jyArIOeJuemCgOaKpeWRiiArIOmrmOWzsOiuuuWdmzwvc3Bhbj4KPC9wPgo8cD4KICA8c3Bhbj4xMjowMC0xMzozMDwvc3Bhbj48c3Bhbj7ljYjpl7Q8L3NwYW4+PHNwYW4+5Y2I6aSQPC9zcGFuPgo8L3A+CjxwPgogIDxzcGFuPjEzOjMwLTE3OjMwPC9zcGFuPjxzcGFuPuS4i+WNiDwvc3Bhbj48c3Bhbj7poobln5/liIborrrlnZvvvIg5LTEwIOWcuuWQjOatpei/m+ihjO+8iTwvc3Bhbj4KPC9wPgo8cD4KICA8c3Bhbj4xODowMC0xOTowMDwvc3Bhbj48c3Bhbj7mmZrpl7Q8L3NwYW4+PHNwYW4+5pma6aSQPC9zcGFuPgo8L3A+CjxwPgogIDxzcGFuPjE5OjMwLTIxOjAwPC9zcGFuPjxzcGFuPuaZmumXtDwvc3Bhbj48c3Bhbj7miaflp5TlubTkvJo8L3NwYW4+CjwvcD4K",
+  "createBy": "Tiiia",
+  "deptId": 386,
+  "docDetailUrl": null,
+  "editable": null,
+  "editorType": "markdown_editor",
+  "headImg": null,
+  "id": 1459,
+  "isFirstPublish": false,
+  "isHomepage": "0",
+  "keywords": null,
+  "name": "8月15日（周六）",
+  "publishTime": "2026/06/25",
+  "publishUser": "leoxie807",
+  "publishUserImage": "https://www.gitlink.org.cn/system/lets/letter_avatars/2/L/61_162_123/120.png",
+  "publishUserNickname": "leoxie807",
+  "publishUserUrl": "https://www.gitlink.org.cn/leoxie807",
+  "remark": null,
+  "summary": "8月15日日程",
+  "visits": 6020
+ },
+ "msg": "操作成功"
+}

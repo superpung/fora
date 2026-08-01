@@ -1,0 +1,435 @@
+{
+ "code": 200,
+ "msg": "查询成功",
+ "rows": [
+  {
+   "id": 104,
+   "typeIntroduction": "PMC（Project Management Committee）是本专区的核心组织，负责监督和管理社区项目的开发进程。PMC成员负责制定项目的战略、管理项目过程及资源、协调开发者之间的合作，确保项目按照计划运行。PMC也是指导社区繁荣发展、吸引更多的贡献者、维护良好社区氛围的关键人员",
+   "typeName": "PMC（项目管理委员会）",
+   "zoneMemberList": null
+  },
+  {
+   "id": 105,
+   "typeIntroduction": "Committer是一个为社区特定项目做出贡献的人员团队。通常是开源社区的有资深经验的成员，他们通常拥有专区开源项目的授权和贡献者身份，并参与到代码编写阶段，为用户和PMC成员提供技术指导和支持",
+   "typeName": "Commiter（代码合作者）",
+   "zoneMemberList": null
+  },
+  {
+   "id": 106,
+   "typeIntroduction": "Developer（项目开发者）是为专区开源项目编写代码，提交代码，以及维护文档等工作的成员。他们在项目开始的不同阶段参与编写代码并提出优化、建议、解决问题和错误等，以便确保项目的顺利进行",
+   "typeName": "Developer（项目开发者）",
+   "zoneMemberList": null
+  },
+  {
+   "id": 107,
+   "typeIntroduction": "User是使用专区开源项目的会员用户，他们通过专区官方的网站，获得与专区相关的资源、文档、项目、新闻、及参与社区交流等。同时专区会员用户也可以贡献自己的意见、反馈bug、甚至提供代码，是项目不断发展的重要基石",
+   "typeName": "User（项目使用者）",
+   "zoneMemberList": null
+  },
+  {
+   "id": 108,
+   "typeIntroduction": null,
+   "typeName": "大会主席",
+   "zoneMemberList": [
+    {
+     "auditTime": null,
+     "id": 2815,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/07/22/王怀民_20260722165407A370.jpg",
+     "introduction": "大会主席，中国科学院院士，国防科技大学教授，计算机软件与理论专家，主要从事分布计算、软件工程、操作系统等领域的研究。",
+     "login": "ZeYH",
+     "memberLevel": "钻石",
+     "name": "王怀民"
+    },
+    {
+     "auditTime": null,
+     "id": 2821,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/07/22/刘昌盛_20260722172805A373.jpg",
+     "introduction": "大会主席，中国科学院院士、重庆大学校长",
+     "login": "Xiaoming630",
+     "memberLevel": "钻石",
+     "name": "刘昌胜"
+    }
+   ]
+  },
+  {
+   "id": 109,
+   "typeIntroduction": null,
+   "typeName": "院士嘉宾",
+   "zoneMemberList": null
+  },
+  {
+   "id": 110,
+   "typeIntroduction": null,
+   "typeName": "程序委员会",
+   "zoneMemberList": null
+  },
+  {
+   "id": 111,
+   "typeIntroduction": null,
+   "typeName": "组织委员会",
+   "zoneMemberList": null
+  },
+  {
+   "id": 112,
+   "typeIntroduction": null,
+   "typeName": "财务委员会",
+   "zoneMemberList": null
+  },
+  {
+   "id": 113,
+   "typeIntroduction": null,
+   "typeName": "宣传委员会",
+   "zoneMemberList": null
+  },
+  {
+   "id": 114,
+   "typeIntroduction": null,
+   "typeName": "与会嘉宾",
+   "zoneMemberList": [
+    {
+     "auditTime": null,
+     "id": 2686,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/18/陈左宁-新_20250620185346A290_20260618104238A125.jpg",
+     "introduction": "中国工程院院士、中国工程院原副院长",
+     "login": "otto",
+     "memberLevel": "最强王者",
+     "name": "陈左宁"
+    },
+    {
+     "auditTime": null,
+     "id": 2687,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/18/丁奎岭_20250619112633A243_20260618104430A126.jpg",
+     "introduction": "中国科学院院士、上海交通大学校长",
+     "login": "pumpkin",
+     "memberLevel": "最强王者",
+     "name": "丁奎岭"
+    },
+    {
+     "auditTime": null,
+     "id": 2688,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/18/鄂维南_20250617112119A190_20260618104940A127.png",
+     "introduction": "中国科学院院士、北京大学教授、上海交通大学人工智能学院首席顾问",
+     "login": "durian",
+     "memberLevel": "最强王者",
+     "name": "鄂维南"
+    },
+    {
+     "auditTime": null,
+     "id": 2689,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/18/梅宏_20250617112044A189_20260618105024A128.png",
+     "introduction": "中国科学院院士、北京大学教授",
+     "login": "wanjia9506",
+     "memberLevel": "最强王者",
+     "name": "梅宏"
+    },
+    {
+     "auditTime": null,
+     "id": 2690,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/18/吕建_20250617112206A191_20260618105054A129.png",
+     "introduction": "中国科学院院士、南京大学教授",
+     "login": "caishi",
+     "memberLevel": "最强王者",
+     "name": "吕建"
+    },
+    {
+     "auditTime": null,
+     "id": 2691,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/18/王怀民_20250619112844A244_20260618105129A130.jpg",
+     "introduction": "大会主席、中国科学院院士、CCF开源发展技术委员会主任",
+     "login": "y00451588",
+     "memberLevel": "最强王者",
+     "name": "王怀民"
+    },
+    {
+     "auditTime": null,
+     "id": 2692,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/18/郑纬民_20250620185405A291_20260618105154A131.png",
+     "introduction": "中国工程院院士、清华大学教授",
+     "login": "maxjhandsome",
+     "memberLevel": "最强王者",
+     "name": "郑纬民"
+    },
+    {
+     "auditTime": null,
+     "id": 2693,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/18/金海_20250617112302A192_20260618105220A132.png",
+     "introduction": "CCF副理事长、华中科技大学教授",
+     "login": "floraachy",
+     "memberLevel": "最强王者",
+     "name": "金海"
+    },
+    {
+     "auditTime": null,
+     "id": 2694,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/18/包云岗_20250617112542A194_20260618105251A133.png",
+     "introduction": "中国科学院计算技术研究所副所长、研究员",
+     "login": "Eeeros",
+     "memberLevel": "最强王者",
+     "name": "包云岗"
+    },
+    {
+     "auditTime": null,
+     "id": 2695,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/18/陈海波_20250619185713A263_20260618105320A134.png",
+     "introduction": "上海交通大学特聘教授、CCF开源发展技术委员会常委、OpenHarmony项目群技术指导委员会主席",
+     "login": "xieha123",
+     "memberLevel": "最强王者",
+     "name": "陈海波"
+    },
+    {
+     "auditTime": null,
+     "id": 2699,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/20/陈康_20260620114225A141.jpg",
+     "introduction": "清华大学计算机系研究员",
+     "login": "wdkcc",
+     "memberLevel": "最强王者",
+     "name": "陈康"
+    },
+    {
+     "auditTime": null,
+     "id": 2698,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/20/陈云霁_20260620114146A140.jpg",
+     "introduction": "中国科学院计算技术研究所副所长、研究员",
+     "login": "agdc",
+     "memberLevel": "最强王者",
+     "name": "陈云霁"
+    },
+    {
+     "auditTime": null,
+     "id": 2700,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/20/范科峰_20260620114336A142.jpg",
+     "introduction": "中国电子技术标准化研究院副院长",
+     "login": "jnd4QQ810228855",
+     "memberLevel": "最强王者",
+     "name": "范科峰"
+    },
+    {
+     "auditTime": null,
+     "id": 2701,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/20/管海兵_20260620114402A143.jpg",
+     "introduction": "上海交通大学副校长、教授",
+     "login": "ikoobi",
+     "memberLevel": "最强王者",
+     "name": "管海兵"
+    },
+    {
+     "auditTime": null,
+     "id": 2702,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/20/郭耀_20260620114428A144.jpg",
+     "introduction": "北京大学计算机学院副院长、教授",
+     "login": "cnzakii",
+     "memberLevel": "最强王者",
+     "name": "郭耀"
+    },
+    {
+     "auditTime": null,
+     "id": 2703,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/20/侯锐_20260620114455A145.png",
+     "introduction": "中国科学院信息工程研究所研究员",
+     "login": "xwayuzu",
+     "memberLevel": "最强王者",
+     "name": "侯锐"
+    },
+    {
+     "auditTime": null,
+     "id": 2704,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/20/胡欣蔚_20260620114521A146.png",
+     "introduction": "openEuler社区技术委员会主席",
+     "login": "DLUTysl",
+     "memberLevel": "最强王者",
+     "name": "胡欣蔚"
+    },
+    {
+     "auditTime": null,
+     "id": 2705,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/20/李青山_20260620114552A147.png",
+     "introduction": "西安电子科技大学计算机科学与技术学院（国家示范性软件学院）党委书记、教授",
+     "login": "yumushang",
+     "memberLevel": "最强王者",
+     "name": "李青山"
+    },
+    {
+     "auditTime": null,
+     "id": 2706,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/20/刘旭东_20260620114639A148.jpg",
+     "introduction": "北京航空航天大学计算机学院教授",
+     "login": "po9mwj6se",
+     "memberLevel": "最强王者",
+     "name": "刘旭东"
+    },
+    {
+     "auditTime": null,
+     "id": 2707,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/20/彭鑫_20260620115457A149.png",
+     "introduction": "复旦大学计算与智能创新学院副院长",
+     "login": "Fexli",
+     "memberLevel": "最强王者",
+     "name": "彭鑫"
+    },
+    {
+     "auditTime": null,
+     "id": 2708,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/20/乔宇_20260620120630A161.png",
+     "introduction": "上海人工智能实验室领军科学家",
+     "login": "qwerctrl",
+     "memberLevel": "最强王者",
+     "name": "乔宇"
+    },
+    {
+     "auditTime": null,
+     "id": 2717,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/20/任旭东_20260620120601A160.jpg",
+     "introduction": "华为首席开源联络官",
+     "login": "xxq2501",
+     "memberLevel": "最强王者",
+     "name": "任旭东"
+    },
+    {
+     "auditTime": null,
+     "id": 2711,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/20/田广礼_20260620120531A159.jpg",
+     "introduction": "天工开物开源基金会理事长",
+     "login": "bf109",
+     "memberLevel": "最强王者",
+     "name": "田广礼"
+    },
+    {
+     "auditTime": null,
+     "id": 2718,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/20/王兴兴_20260620120459A158.jpg",
+     "introduction": "宇树科技创始人",
+     "login": "asdfghjklzxcvb",
+     "memberLevel": "最强王者",
+     "name": "王兴兴"
+    },
+    {
+     "auditTime": null,
+     "id": 2697,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/20/韦韬_20260620113327A139.png",
+     "introduction": "蚂蚁集团副总裁、首席技术安全官",
+     "login": "p83270619",
+     "memberLevel": "最强王者",
+     "name": "韦韬"
+    },
+    {
+     "auditTime": null,
+     "id": 2719,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/20/文俊浩_20260620120414A157.jpg",
+     "introduction": "重庆大学大数据与软件学院党委书记、教授",
+     "login": "pg4lbmvs7",
+     "memberLevel": "最强王者",
+     "name": "文俊浩"
+    },
+    {
+     "auditTime": null,
+     "id": 2712,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/20/武延军_20260620120340A156.png",
+     "introduction": "中国科学院软件研究所副所长、研究员",
+     "login": "bdpwypgxnc",
+     "memberLevel": "最强王者",
+     "name": "武延军"
+    },
+    {
+     "auditTime": null,
+     "id": 2709,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/20/夏虞斌_20260620120306A155.jpg",
+     "introduction": "上海交通大学教授",
+     "login": "baobaobao",
+     "memberLevel": "最强王者",
+     "name": "夏虞斌"
+    },
+    {
+     "auditTime": null,
+     "id": 2710,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/20/谢涛_20260620120233A154.jpg",
+     "introduction": "北京大学计算机学院软件科学与工程系主任、教授",
+     "login": "AsonZheng",
+     "memberLevel": "最强王者",
+     "name": "谢涛"
+    },
+    {
+     "auditTime": null,
+     "id": 2715,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/20/谢炎_20260620120201A153.jpeg",
+     "introduction": "理想汽车CTO",
+     "login": "zhmh",
+     "memberLevel": "最强王者",
+     "name": "谢炎"
+    },
+    {
+     "auditTime": null,
+     "id": 2716,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/20/章文嵩_20260620120114A152.png",
+     "introduction": "安托盟丘联合创始人、CCF开源发展技术委员会副主任",
+     "login": "dawin",
+     "memberLevel": "最强王者",
+     "name": "章文嵩"
+    },
+    {
+     "auditTime": null,
+     "id": 2714,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/20/周明辉_20260620120039A151.jpg",
+     "introduction": "北京大学计算机学院副院长、教授，CCF开源发展技术委员会副主任",
+     "login": "ptlebrxa8",
+     "memberLevel": "最强王者",
+     "name": "周明辉"
+    },
+    {
+     "auditTime": null,
+     "id": 2713,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/20/周兴社_20260620115845A150.jpg",
+     "introduction": "西北工业大学计算机学院教授",
+     "login": "prho3gwf5",
+     "memberLevel": "最强王者",
+     "name": "周兴社"
+    },
+    {
+     "auditTime": null,
+     "id": 2817,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/07/22/梅宏_20260722170209A371.png",
+     "introduction": "中国科学院院士，北京大学教授，长期致力于软件工程和系统软件的研究与推动，是中国自主操作系统发展的重要推动者。",
+     "login": "wqpwqp1222",
+     "memberLevel": "钻石",
+     "name": "梅宏"
+    },
+    {
+     "auditTime": null,
+     "id": 2820,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/07/22/吕建_20260722170225A372.png",
+     "introduction": "中国科学院院士，南京大学教授，在软件基础理论与方法、网构软件方法学和新型软件平台及其应用方面取得系列成果。",
+     "login": "Lacia",
+     "memberLevel": "钻石",
+     "name": "吕建"
+    },
+    {
+     "auditTime": null,
+     "id": 2816,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/07/22/胡事民_20260722172822A374.jpg",
+     "introduction": "中国科学院院士，清华大学教授，长期从事计算机图形学、几何计算与人工智相关领域研究，在可视媒体智能处理等方面做出了系统性贡献。",
+     "login": "quqidingding",
+     "memberLevel": "钻石",
+     "name": "胡事民"
+    },
+    {
+     "auditTime": null,
+     "id": 2818,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/07/22/刘云浩_20260722172840A375.jpg",
+     "introduction": "中国科学院院士，清华大学教授，长期从事计算机网络与系统研究，在物联网理论、非测距定位系统、具身智能等方面取得突破性成果。",
+     "login": "xuronghua",
+     "memberLevel": "钻石",
+     "name": "刘云浩"
+    },
+    {
+     "auditTime": null,
+     "id": 2819,
+     "imageUrl": "https://gateway.gitlink.org.cn/api/file/statics/2026/07/22/宋永端_20260722172903A376.jpg",
+     "introduction": "中国工程院外籍院士，重庆大学教授，控制理论与人工智能专家，在非线性系统预设时间控制、时空变换智能控制等取得系列突破性成果。",
+     "login": "zhouweijian",
+     "memberLevel": "钻石",
+     "name": "宋永端"
+    }
+   ]
+  }
+ ],
+ "total": 11
+}

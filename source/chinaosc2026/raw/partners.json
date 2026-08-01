@@ -1,0 +1,61 @@
+{
+ "code": 200,
+ "msg": "查询成功",
+ "rows": [
+  {
+   "id": 85,
+   "typeName": "合作社区",
+   "zonePartnersList": [
+    {
+     "createBy": "",
+     "createTime": "2026-06-22 10:41:16",
+     "delFlag": "0",
+     "deptId": 386,
+     "id": 300,
+     "link": null,
+     "logo": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/22/GitLink logo黑色_20260622104102A166.png",
+     "name": "GitLink",
+     "remark": null,
+     "sort": 1,
+     "typeId": 85,
+     "updateBy": "",
+     "updateTime": null,
+     "zoneId": 40
+    },
+    {
+     "createBy": "",
+     "createTime": "2026-06-22 10:44:27",
+     "delFlag": "0",
+     "deptId": 386,
+     "id": 301,
+     "link": null,
+     "logo": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/22/AI INFRA(1)_20260622104409A167.png",
+     "name": "AI Infra开源社区",
+     "remark": null,
+     "sort": 2,
+     "typeId": 85,
+     "updateBy": "",
+     "updateTime": null,
+     "zoneId": 40
+    },
+    {
+     "createBy": "",
+     "createTime": "2026-07-29 10:54:57",
+     "delFlag": "0",
+     "deptId": 386,
+     "id": 318,
+     "link": null,
+     "logo": "https://gateway.gitlink.org.cn/api/file/statics/2026/07/29/taiyi_20260729105455A622.svg",
+     "name": "浙大太乙",
+     "remark": null,
+     "sort": 3,
+     "typeId": 85,
+     "updateBy": "",
+     "updateTime": null,
+     "zoneId": 40
+    }
+   ]
+  }
+ ],
+ "total": 1
+}

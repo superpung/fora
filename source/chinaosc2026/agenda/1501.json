@@ -1,0 +1,74 @@
+{
+  "_about": "Programme parsed from the forum's published timetable image. Verbatim transcription of the image — no inference.",
+  "doc": "1501",
+  "images": ["image_20260725140319A535.png"],
+  "rows": [
+    {
+      "start": "13:30",
+      "end": "14:00",
+      "title": "从启悟学习社区建设到高校AI自主开源生态发展",
+      "speakers": [{ "name": "姜开达", "affiliation_raw": "上海交通大学" }]
+    },
+    {
+      "start": "14:00",
+      "end": "14:30",
+      "title": "HUATUO 华佗：面向 Agent 沙箱的低损耗内核全景观测实践",
+      "speakers": [{ "name": "张同浩", "affiliation_raw": "滴滴出行" }]
+    },
+    {
+      "start": "14:30",
+      "end": "15:00",
+      "title": "从统一编程到异构推理：国产开源智能计算系统的探索与实践",
+      "speakers": [{ "name": "王豪杰", "affiliation_raw": "九源联合体" }]
+    },
+    {
+      "start": "15:00",
+      "end": "15:30",
+      "title": "GPU为中心的KV Cache存储",
+      "speakers": [{ "name": "仇实", "affiliation_raw": "腾讯高级工程师" }]
+    },
+    {
+      "start": "15:30",
+      "end": "15:50",
+      "title": "茶歇",
+      "kind": "break",
+      "speakers": []
+    },
+    {
+      "start": "15:50",
+      "end": "16:20",
+      "title": "大模型时代云原生InfraServices的机会",
+      "speakers": [{ "name": "章文嵩", "affiliation_raw": "LVS开源项目创始人" }]
+    },
+    {
+      "start": "16:20",
+      "end": "16:50",
+      "title": "智能体原生GPU架构设计与实现",
+      "speakers": [{ "name": "李兆石", "affiliation_raw": "沐曦股份" }]
+    },
+    {
+      "start": "16:50",
+      "end": "17:30",
+      "title": "Panel",
+      "kind": "other",
+      "speakers": [
+        { "name": "章文嵩", "affiliation_raw": null },
+        { "name": "章津楠", "affiliation_raw": null },
+        { "name": "李兆石", "affiliation_raw": null },
+        { "name": "姜开达", "affiliation_raw": null },
+        { "name": "王豪杰", "affiliation_raw": null },
+        { "name": "葛佳烨", "affiliation_raw": null },
+        { "name": "仇实", "affiliation_raw": null },
+        { "name": "张同浩", "affiliation_raw": null }
+      ]
+    }
+  ],
+  "room": null,
+  "notes": [
+    "Timetable image is image_20260725140319A535.png (1080x989), columns 时间 / 报告题目 / 讲者 / 单位.",
+    "The Panel row spans the last three columns as one merged cell reading verbatim: 'Panel' / '章文嵩、章津楠、李兆石、姜开达、王豪杰、葛佳烨、仇实、张同浩'. No moderator is distinguished and no affiliations are printed for this row. 章津楠 and 葛佳烨 appear only in this Panel row — they give no talk in the table.",
+    "The 单位 cells for 仇实 ('腾讯高级工程师') and 章文嵩 ('LVS开源项目创始人') print a role rather than a plain organisation name; copied verbatim as shown.",
+    "Non-timetable images: image_20260725141047A536.png is the forum title banner; the eight 133–437px squares are speaker headshots; image_20260724161959A408.png is the site-wide registration QR code.",
+    "No room / hall / venue is shown anywhere in this document's images."
+  ]
+}

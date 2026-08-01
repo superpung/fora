@@ -1,0 +1,12 @@
+{
+  "_about": "Programme parsed from the forum's published timetable image. Verbatim transcription of the image — no inference.",
+  "doc": "1510",
+  "images": [],
+  "rows": [],
+  "room": null,
+  "notes": [
+    "No timetable image exists in this document. It has only two images: 08783a0fbd22746dd032dc137c8a8836_47b24c04b49c9148352e0acb4d10b3f6_8_01_20260728102210A605.png is the 2220x944 forum title banner reading '“生态型智能化软件工厂” 分论坛', and image_20260724161959A408.png is the site-wide registration QR code.",
+    "The 生态型智能化软件工厂 forum has published no per-talk programme at all — neither in the CMS text (the dataset has 0 talks for F1510) nor as an image. Nothing was recoverable here.",
+    "No room / hall / venue is shown."
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "_about": "Programme parsed from the forum's published timetable image. Verbatim transcription of the image — no inference.",
+  "doc": "1512",
+  "images": ["image_20260730135852A655.png"],
+  "rows": [
+    {
+      "start": "13:30",
+      "end": "13:50",
+      "title": "开场、致辞",
+      "kind": "other",
+      "speakers": [{ "name": "王怀民", "affiliation_raw": "中国科学院" }]
+    },
+    {
+      "start": "13:50",
+      "end": "14:20",
+      "title": "红山开源平台半年总结及成果发布",
+      "speakers": []
+    },
+    {
+      "start": "14:20",
+      "end": "14:50",
+      "title": "硅基时间下的开源开发者红利",
+      "speakers": [{ "name": "蒋涛", "affiliation_raw": "CSDN" }]
+    },
+    {
+      "start": "14:50",
+      "end": "15:20",
+      "title": "AI智能研发范式下开源工业软件协同创新生态构建",
+      "speakers": [{ "name": "唐滨", "affiliation_raw": "北京开元工业软件研究院（筹）" }]
+    },
+    {
+      "start": "15:20",
+      "end": "15:40",
+      "title": "茶歇（世界机器人大赛成果展示）",
+      "kind": "break",
+      "speakers": []
+    },
+    {
+      "start": "15:40",
+      "end": "16:10",
+      "title": "开源共筑，生态共赢-打造人工智能根技术助力自主可控生态体系",
+      "speakers": [{ "name": "程捷", "affiliation_raw": "华为技术有限公司" }]
+    },
+    {
+      "start": "16:10",
+      "end": "16:40",
+      "title": "特定场景下的智能体系开源化建设路径与演进研究",
+      "speakers": [{ "name": "姜巍", "affiliation_raw": "中国电科智能科技研究院" }]
+    },
+    {
+      "start": "16:40",
+      "end": "17:20",
+      "title": "Panel",
+      "kind": "other",
+      "speakers": []
+    },
+    {
+      "start": "17:20",
+      "end": "17:30",
+      "title": "会议总结",
+      "kind": "other",
+      "speakers": []
+    }
+  ],
+  "room": null,
+  "notes": [
+    "Timetable image is image_20260730135852A655.png (1080x1045), columns 时间 / 报告题目 / 讲者 / 单位.",
+    "Rows 红山开源平台半年总结及成果发布, 茶歇（世界机器人大赛成果展示）, Panel and 会议总结 print the title across the full width — the 讲者 and 单位 cells do not exist for them, so speakers is empty rather than guessed.",
+    "The image justifies two-character names inside their cell (蒋 涛 / 唐 滨 / 程 捷 / 姜 巍 render with a gap); that is cell justification, not part of the name, so names are recorded unspaced as elsewhere in this dataset.",
+    "Non-timetable images: image_20260729224949A652.png is the forum title banner (“红山开源创新——智能开发与开源生态”分论坛); the five 106–207px squares are speaker headshots; image_20260724161959A408.png is the site-wide registration QR code.",
+    "No room / hall / venue is shown anywhere in this document's images."
+  ]
+}

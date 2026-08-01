@@ -16,6 +16,22 @@
     "updated_at": "2026-07-31"
   },
   {
+    "id": "chinaosc2026",
+    "name": {
+      "zh": "2026 CCF中国开源大会",
+      "en": "CCF ChinaOSC 2026"
+    },
+    "edition": null,
+    "start_date": "2026-08-14",
+    "end_date": "2026-08-16",
+    "city": "重庆",
+    "venue": "重庆・山城国际会议中心",
+    "forums": 22,
+    "keynotes": 0,
+    "days": 3,
+    "updated_at": "2026-08-01"
+  },
+  {
     "id": "chinasoft2025",
     "name": {
       "zh": "2025 CCF中国软件大会",

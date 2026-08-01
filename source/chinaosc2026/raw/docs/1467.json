@@ -1,0 +1,35 @@
+{
+ "code": 200,
+ "data": {
+  "auditStatus": "1",
+  "auditType": null,
+  "cmsDir": {
+   "createdAt": "2026-06-18 11:19",
+   "headImg": null,
+   "id": 1453,
+   "name": "议程详情",
+   "sort": 7
+  },
+  "content": "PHA+CiAgPHNwYW4+MDk6MDAtMTI6MDA8L3NwYW4+PHNwYW4+5LiK5Y2IPC9zcGFuPjxzcGFuPueJuemCgOaKpeWRiivpq5jls7DorrrlnZs8L3NwYW4+CjwvcD4KPHA+CiAgPHNwYW4+MTI6MDAtMTM6MzA8L3NwYW4+PHNwYW4+5Lit5Y2IPC9zcGFuPjxzcGFuPuWNiOmkkDwvc3Bhbj4KPC9wPgo8cD4KICA8c3Bhbj4xMzozMC0xNzowMDwvc3Bhbj48c3Bhbj7kuIvljYg8L3NwYW4+PHNwYW4+6aKG5Z+f5YiG6K665Z2b77yIOS0xMOWcuuWQjOatpei/m+ihjO+8iTwvc3Bhbj4KPC9wPgo8cD4KICA8c3Bhbj4xNzowMC0xODowMDwvc3Bhbj48c3Bhbj48L3NwYW4+PHNwYW4+5aSn5Lya6Zet5bmV5byPPC9zcGFuPgo8L3A+Cg==",
+  "createBy": "leoxie807",
+  "deptId": 386,
+  "docDetailUrl": null,
+  "editable": null,
+  "editorType": "markdown_editor",
+  "headImg": null,
+  "id": 1467,
+  "isFirstPublish": false,
+  "isHomepage": "0",
+  "keywords": null,
+  "name": "8月16日（周日）",
+  "publishTime": "2026/06/26",
+  "publishUser": "caishi",
+  "publishUserImage": "https://www.gitlink.org.cn/images/avatars/User/25728?t=1628664795",
+  "publishUserNickname": "蔡世",
+  "publishUserUrl": "https://www.gitlink.org.cn/caishi",
+  "remark": null,
+  "summary": "8月16日的会议日程",
+  "visits": 6007
+ },
+ "msg": "操作成功"
+}

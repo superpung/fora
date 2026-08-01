@@ -1,0 +1,58 @@
+{
+  "_about": "Programme parsed from the forum's published timetable image. Verbatim transcription of the image — no inference.",
+  "doc": "1500",
+  "images": ["image_20260725120536A524.png"],
+  "rows": [
+    {
+      "start": "13:30",
+      "end": "14:00",
+      "title": "大模型智能体轨迹分析：从失效定位到驾驭工程",
+      "speakers": [{ "name": "王俊杰", "affiliation_raw": "中国科学院软件研究所" }]
+    },
+    {
+      "start": "14:00",
+      "end": "14:30",
+      "title": "大模型驱动开源软件缺陷自动化诊治",
+      "speakers": [{ "name": "雷晏", "affiliation_raw": "重庆大学" }]
+    },
+    {
+      "start": "14:30",
+      "end": "15:00",
+      "title": "开源软件供应链安全风险治理的创新与实践",
+      "speakers": [{ "name": "陈铁明", "affiliation_raw": "浙江工业大学" }]
+    },
+    {
+      "start": "15:00",
+      "end": "15:30",
+      "title": "AI生态0-Day软件工程演进之路",
+      "speakers": [{ "name": "刘波", "affiliation_raw": "华为技术有限公司" }]
+    },
+    {
+      "start": "15:40",
+      "end": "16:10",
+      "title": "计算开源社区Agentic Workflow-- \"一切皆代码、一切皆 CLI + AI Agent Loop\"",
+      "speakers": [{ "name": "王泽俊", "affiliation_raw": "华为技术有限公司" }]
+    },
+    {
+      "start": "16:15",
+      "end": "17:30",
+      "title": "Panel",
+      "kind": "other",
+      "speakers": [
+        { "name": "王俊杰", "affiliation_raw": null },
+        { "name": "雷晏", "affiliation_raw": null },
+        { "name": "陈铁明", "affiliation_raw": null },
+        { "name": "刘波", "affiliation_raw": null },
+        { "name": "王泽俊", "affiliation_raw": null }
+      ]
+    }
+  ],
+  "room": null,
+  "notes": [
+    "Timetable image is image_20260725120536A524.png (1080x806), columns 时间 / 报告题目 / 讲者 / 单位.",
+    "The table prints no break row: there are unlabelled gaps 15:30–15:40 and 16:10–16:15. Not filled in — the image does not say what they are.",
+    "The Panel row spans the last three columns as one merged cell reading verbatim: 'Panel' / '王俊杰、雷晏、陈铁明、刘波、王泽俊'. No moderator is distinguished and no affiliations are printed for this row.",
+    "Non-timetable images: image_20260725120354A523.png is the forum title banner; the seven 85–157px squares are speaker headshots; {4B970709-8E1F-4376-97A4-D3B152F85557}_20260725120956A525.png is a speaker photo strip (王俊杰/雷晏/陈铁明/刘波/王泽俊); image_20260724161959A408.png is the site-wide registration QR code.",
+    "No room / hall / venue is shown anywhere in this document's images."
+  ]
+}
