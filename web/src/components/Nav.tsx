@@ -1,6 +1,7 @@
-import { NavLink, Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useState } from "react";
+import { useHScroll } from "../lib/hscroll";
 import ThemeToggle from "./ThemeToggle";
 import LangToggle from "./LangToggle";
 import AccountMenu from "./AccountMenu";
@@ -17,11 +18,10 @@ import { todayISO } from "../lib/data";
 interface NavLinkDef {
   to: string;
   key: string;
-  end?: boolean;
   live?: boolean;
 }
 const LINKS: NavLinkDef[] = [
-  { to: "", key: "nav.dashboard", end: true },
+  { to: "", key: "nav.dashboard" },
   { to: "/schedule", key: "nav.timeline" },
   { to: "/speakers", key: "nav.speakers" },
   { to: "/committee", key: "nav.committee" },
@@ -29,7 +29,7 @@ const LINKS: NavLinkDef[] = [
 ];
 
 export default function Nav({ confId }: { confId: string }) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const { enabled: aiEnabled } = useAi();
   const { setOpen: setSearchOpen } = useSearchUI();
   // The live "Now" view is only meaningful while the conference is running, so
@@ -56,6 +56,27 @@ export default function Nav({ confId }: { confId: string }) {
   const [scrolled, setScrolled] = useState(false);
   useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 12));
 
+  // On a narrow screen the row does not fit and scrolls. Keep the current view
+  // in sight and fade the side that continues — the links are the only way into
+  // most of the site, so a silent cut hides it. Re-run on the route (the active
+  // link moved), the language (every label re-measures) and the AI toggle
+  // (which adds or removes two entries).
+  const { pathname } = useLocation();
+  const linksRef = useHScroll<HTMLElement>([pathname, lang, aiEnabled, showNow]);
+
+  // Which entry is the current view. React Router's NavLink decides this by
+  // comparing path strings, so `/:conf/` — a trailing slash anyone can type,
+  // bookmark or share, and which renders the dashboard perfectly well — matched
+  // no entry at all and the bar showed no current view. Normalise the path once
+  // and decide here, so the highlight and `aria-current` agree on every
+  // spelling of the same URL.
+  const here = pathname.replace(/\/+$/, "") || "/";
+  const isActive = (to: string) => {
+    const target = `/${confId}${to}`;
+    // The dashboard is `/:conf` exactly; the rest also own their sub-paths.
+    return here === target || (to !== "" && here.startsWith(`${target}/`));
+  };
+
   return (
     <motion.header
       className={`nav ${scrolled ? "nav--scrolled" : ""}`}
@@ -68,20 +89,21 @@ export default function Nav({ confId }: { confId: string }) {
           <ForaMark size={22} />
         </Link>
         <ConferenceSwitcher confId={confId} />
-        <nav className="nav__links">
-          {links.map((l) => (
-            <NavLink
-              key={l.to}
-              to={`/${confId}${l.to}`}
-              end={l.end}
-              className={({ isActive }) =>
-                `nav__link ${l.live ? "nav__link--live" : ""} ${isActive ? "is-active" : ""}`
-              }
-            >
-              {l.live && <span className="nav__livedot" aria-hidden />}
-              {t(l.key)}
-            </NavLink>
-          ))}
+        <nav className="nav__links hstrip" ref={linksRef}>
+          {links.map((l) => {
+            const active = isActive(l.to);
+            return (
+              <Link
+                key={l.to}
+                to={`/${confId}${l.to}`}
+                aria-current={active ? "page" : undefined}
+                className={`nav__link ${l.live ? "nav__link--live" : ""} ${active ? "is-active" : ""}`}
+              >
+                {l.live && <span className="nav__livedot" aria-hidden />}
+                {t(l.key)}
+              </Link>
+            );
+          })}
         </nav>
         <div className="nav__tools">
           <button

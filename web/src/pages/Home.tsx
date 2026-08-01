@@ -6,6 +6,7 @@ import { useConference } from "../lib/conference-store";
 import { useFollow, talkId, keynoteId } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
 import { useStickyState } from "../lib/sticky-state";
+import { useHScroll } from "../lib/hscroll";
 import { useNow, isNowWithin, type Now } from "../lib/use-now";
 import { pageVariants } from "../lib/motion";
 import Icon from "../components/Icon";
@@ -664,6 +665,9 @@ export default function Home() {
   const [dayFilter, setDayFilter] = useStickyState<string>(`${confId}:home.day`, () =>
     scheduleDays.some((d) => d.date === todayStr) ? todayStr : "all",
   );
+  // The pills outgrow a phone once a conference runs more than a couple of
+  // days: keep the selected one in sight, and fade the side that continues.
+  const dayPillsRef = useHScroll<HTMLDivElement>([dayFilter, lang, scheduleDays.length]);
   const [query, setQuery] = useStickyState(`${confId}:home.query`, "");
   const [onlyFollowed, setOnlyFollowed] = useStickyState(`${confId}:home.followed`, false);
   // Clicking a speaker chip filters the board down to that person's forums/talks.
@@ -777,7 +781,7 @@ export default function Home() {
       {/* sticky control bar */}
       <div className="toolbar">
         <div className="container toolbar__inner">
-          <div className="daypills">
+          <div className="daypills hstrip" ref={dayPillsRef}>
             <button
               className={`daypill ${dayFilter === "all" ? "is-active" : ""}`}
               onClick={() => setDayFilter("all")}
