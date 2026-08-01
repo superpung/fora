@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import type { Person } from "../types";
 
 // Speaker/chair avatar. Uses a real headshot when `photo.local_path` (or
@@ -15,7 +16,8 @@ function initials(name: string): string {
   return (parts[0][0] + (parts[1]?.[0] ?? "")).toUpperCase();
 }
 
-// deterministic muted hue per name (subtle, theme-agnostic via low alpha)
+// Deterministic hue per name — the only thing about the placeholder that
+// depends on who it is. Lightness is NOT decided here: see `.avatar--ph`.
 function hue(name: string): number {
   let h = 0;
   for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) % 360;
@@ -39,15 +41,12 @@ export default function Avatar({ person, size = 40 }: { person: Person; size?: n
     );
   }
 
-  const h = hue(person.name);
+  // Only the hue is decided here. How light that hue has to be to stay readable
+  // depends on the theme, so the stylesheet owns it — see `.avatar--ph`.
   return (
     <span
       className="avatar avatar--ph"
-      style={{
-        ...style,
-        background: `hsl(${h} 48% 50% / 0.16)`,
-        color: `hsl(${h} 48% 52%)`,
-      }}
+      style={{ ...style, "--av-h": hue(person.name) } as CSSProperties}
       aria-hidden="true"
     >
       {initials(person.name)}
