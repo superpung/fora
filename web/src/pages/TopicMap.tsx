@@ -57,7 +57,7 @@ const NARROW_BOX = { w: 680, h: 740 };
 function boxFor(width: number): { w: number; h: number } {
   if (width <= 0) return { w: 0, h: 0 };
   if (width < NARROW) return NARROW_BOX;
-  const ratio = width >= 900 ? 0.62 : 0.78;
+  const ratio = width >= 900 ? 0.68 : 0.95;
   return { w: width, h: Math.round(width * ratio) };
 }
 
@@ -160,6 +160,7 @@ function TopicDot({
           left: `${node.x}px`,
           top: `${node.y}px`,
           "--r": `${node.r}px`,
+          "--lw": `${Math.round(node.labelW)}px`,
           "--w": node.weight,
           // Dots arrive biggest-first, capped so a large vocabulary still
           // finishes arriving in half a second.
@@ -345,6 +346,11 @@ export default function TopicMap() {
       >
         <div
           className="tmap__figure"
+          // The document is lang="zh-CN"; hyphenation only happens in a language
+          // the browser has patterns for, so an English figure has to say so —
+          // without it "Superconducting" is snapped in half at whatever letter
+          // the line ends on.
+          lang={lang === "en" ? "en" : "zh-CN"}
           style={{ width: box.w ? `${box.w}px` : undefined, height: box.h ? `${box.h}px` : undefined }}
         >
         {map && (
