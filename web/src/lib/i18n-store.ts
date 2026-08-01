@@ -91,6 +91,8 @@ const zh: Dict = {
   "export.csv": "表格",
   "export.md": "Markdown",
   "export.json": "备份",
+  "export.noTalks": "暂无报告",
+  "export.nothingToList": "你关注的内容暂无可列出的报告。备份不受影响。",
 
   "import.button": "导入",
   "import.title": "导入 .json 备份",
@@ -259,6 +261,7 @@ const zh: Dict = {
   "nav.plan": "规划",
   "plan.title": "为我规划",
   "plan.inputLabel": "描述你的研究方向或兴趣",
+  "plan.inputHint": "用一句话说说你的研究方向、手上的问题，或者这次最想带走什么",
   "plan.topicsLabel": "常见主题",
   "plan.submit": "生成日程",
   "plan.thinking": "正在生成…",
@@ -369,6 +372,8 @@ const en: Dict = {
   "export.csv": "Spreadsheet",
   "export.md": "Markdown",
   "export.json": "Backup",
+  "export.noTalks": "no talks",
+  "export.nothingToList": "Nothing you follow resolves to a talk yet. The backup is unaffected.",
 
   "import.button": "Import",
   "import.title": "Import a .json backup",
@@ -537,6 +542,7 @@ const en: Dict = {
   "nav.plan": "Plan",
   "plan.title": "Plan for me",
   "plan.inputLabel": "Describe your field or interests",
+  "plan.inputHint": "A sentence on your field, the problem you're working on, or what you want to take away",
   "plan.topicsLabel": "Common topics",
   "plan.submit": "Build my agenda",
   "plan.thinking": "Building…",
