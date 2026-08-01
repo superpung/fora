@@ -60,6 +60,7 @@ SITE = "https://chinaosc.ccf.org.cn"
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 from enrichment import apply_enrichment
 from people import read_person  # noqa: E402
+from times import read_time  # noqa: E402
 
 # CMS directory names (see raw/dirs.json).
 DIR_FORUMS = "专题议程"
@@ -776,7 +777,11 @@ def parse_day(row):
         if not cells:
             continue
         tm = TIME_RANGE.search(cells[0])
-        start, end = (tm.group(1), tm.group(2)) if tm else (None, None)
+        # Read through the shared rule rather than trusting the printed form:
+        # this site happens to pad its hours, the next one may not (see
+        # source/times.py).
+        start = read_time(tm.group(1))[0] if tm else None
+        end = read_time(tm.group(2))[0] if tm else None
         event = cells[-1]
         period = cells[1] if len(cells) > 2 else None
         if not event:
