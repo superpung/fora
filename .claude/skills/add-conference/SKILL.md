@@ -131,13 +131,42 @@ either.
      plausible. Where the join is ambiguous, prefer the reading a human would
      defend ("this guest has exactly one slot in this forum") over a similarity
      threshold, and never merge two different people because a string matched.
-   - **Watch for placeholders that parse as data.** A 讲者 column can read
-     "演讲嘉宾", "报告嘉宾及论坛主席" or "京东（人员待定）" — a group or a TBD, not
-     a name. Keep them as printed (they are what the site says) and `flag` them,
-     so nobody downstream mistakes one for a person.
+   - **A `person` must be a person — read every name through
+     `source/people.py`.** Faithful extraction does not mean putting whatever
+     the cell says into `person.name`: a 讲者 column also carries roles
+     ("主持人：执行主席"), groups ("参与者：报告嘉宾及论坛主席", "全体嘉宾"),
+     placeholders ("京东（人员待定）"), organizations ("华为公司") and the
+     numbering of the list a name sits in ("1. 胡欣蔚 …"). An earlier version of
+     this file said to keep those as printed and flag them; that is what put
+     bullet numbers on the speakers page, each with a page of its own. The fact
+     belongs in `flags`; the `name` field belongs to people. `read_person`
+     returns either a person or the reason it is not one — record the reason.
+   - **Names are typography, not just strings.** The same module repairs what
+     hides a real person: a surname spaced away from its given name
+     (`李 智 广西师范大学` is 李智 of 广西师范大学, not 李 of "智 广西师范大学"),
+     a Latin name run into its lab (`Jean-Pierre Talpin INRIA`), a cell carrying
+     two roles at once (`主持人：应时 武汉大学 嘉宾：翟季冬 粱辰晔 …`). Extend
+     `people.py` when a new source spells something a new way — do not add a
+     private regex to your adapter, because the next conference will need the
+     same rule and the validator only knows about that one file.
+   - **A run of bare names is not a name plus an affiliation.** `翟季冬 粱辰晔
+     王晔晖` under a 嘉宾 label is six people; `侯健 麒麟软件` is one person and
+     where they work. Only the label tells them apart — no institution word list
+     will (麒麟软件, 传音, 中国联通 name no 公司 and no 大学).
+   - **Say why a forum has no talks.** `detail_extracted: false` conflates two
+     different facts: the source publishes no programme for it yet, or this
+     build read none. Set `agenda_status` (`not_published` / `unknown`) from
+     what you actually observed — no timetable image, no schedule table, no
+     detail page. The app shows 日程待公布 for the first and blames its own
+     extraction for the second; it cannot guess which is true.
 
 4. **Validate (regression gate).** `python source/validate.py` must pass for
-   **every** conference — a schema change may not break an existing one.
+   **every** conference — a schema change may not break an existing one. It
+   checks two things: the schema, and that every name in a person field reads as
+   a person (same rules as `source/people.py`). The schema can say there *is* a
+   name, not what a name is, which is why the second check exists. If it rejects
+   something, fix the reading or extend `people.py` — never work around it in the
+   adapter.
 
 5. **Wire in.** Nothing to wire. `source/build_all.py` discovers every
    `source/<id>/build.py` by convention, so your adapter joins the build — and
@@ -155,6 +184,12 @@ either.
    app (the `run`/`verify` skills or Playwright against `pnpm preview`): the hub
    lists it, its dashboard/timeline/speakers/forum pages render, and the existing
    conferences still work. Report parse anomalies (the `flags`) honestly.
+   - **Read the aggregate pages, not just one forum.** The speakers page is
+     every person in the dataset in one A–Z list, and the topic map is every
+     topic in one figure: junk that is invisible in a forum page (a role, an
+     organization, a duplicate of the same person under two spellings, a
+     one-character name) is obvious there in seconds. Open them and actually
+     read the list.
    - **Count the output against the source, field by field.** Not "does it
      render" — *how much of it is there*. Talks per forum vs rows in the source;
      how many carry a time, a room, an affiliation, an abstract. A whole column
