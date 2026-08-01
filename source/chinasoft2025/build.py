@@ -20,7 +20,8 @@ YEAR = 2025
 # The shared enrichment merger lives in source/; make it importable when this
 # adapter is run directly (python source/chinasoft2025/build.py).
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
-from enrichment import apply_enrichment  # noqa: E402
+from enrichment import apply_enrichment
+from people import read_person  # noqa: E402
 
 # category slug -> (zh display name, en display name). keynote-speech is handled
 # separately (it feeds the keynotes block, not the forum list).
@@ -107,29 +108,59 @@ def split_name_aff(part):
     return name, (aff or None)
 
 
+# A cell can carry more than one role: "主持人：应时 武汉大学 嘉宾：翟季冬 粱辰晔 …".
+ROLE_SEGMENT = re.compile(r"(?=(?:主持人|主持|嘉宾|讲者|报告人|参与者|与谈人)\s*[：:])")
+ROLE_LEAD = re.compile(r"^(主持人|主持|嘉宾|讲者|报告人|参与者|与谈人)\s*[：:]\s*")
+# Bare CJK names printed side by side: "翟季冬 粱辰晔 王晔晖". Only when EVERY
+# token reads as a name and none of them is an institution — otherwise this is
+# one name and where they work ("应时 武汉大学").
+BARE_NAME_RUN = re.compile(r"^[一-鿿]{2,4}(?:\s+[一-鿿]{2,4})+$")
+
+
 def parse_person_cell(cell):
-    """A '报告嘉宾' cell -> [{name, affiliation_raw, chair_role?}]. Splits multiple
-    speakers on 、，,/ and English ' and ' / '&'; drops cells that are actually an
-    affiliation / venue / room rather than a person."""
-    out = []
-    for part in re.split(r"[、，,／/]|\s+and\s+|\s*&\s*", clean(cell)):
-        part = part.strip()
-        if not part or part in ("-", "--", "—"):
+    """A '报告嘉宾' cell -> ([{name, affiliation_raw, chair_role?}], [problem…]).
+
+    A cell holds one role's worth of people at a time — "主持人：应时 武汉大学"
+    then "嘉宾：翟季冬 粱辰晔 …" — so it is cut at each role label first, and each
+    segment split on 、，,/ and English ' and ' / '&'. What each part means is
+    decided by source/people.py, which is also what refuses the parts that are
+    not people (a role, a placeholder, an institution); the reasons come back so
+    the caller can record them as flags instead of losing them.
+    """
+    out, problems = [], []
+    for segment in ROLE_SEGMENT.split(clean(cell)):
+        segment = segment.strip()
+        if not segment:
             continue
-        chair_role = None
-        if re.search(r"[（(][^）)]*主持[^）)]*[）)]", part):
-            chair_role = "主持"
-        part = re.sub(r"[（(][^）)]*[）)]", "", part).strip()
-        name, aff = split_name_aff(part)
-        if not name or INST_RE.search(name):
-            continue  # empty, or an institution/venue/room mistaken for a speaker
-        p = {"name": name}
-        if aff:
-            p["affiliation_raw"] = aff
-        if chair_role:
-            p["chair_role"] = chair_role
-        out.append(p)
-    return out
+        lead = ROLE_LEAD.match(segment)
+        role = lead.group(1) if lead else None
+        body = segment[lead.end():] if lead else segment
+        # A run of bare names under one role is a list of people, not a name
+        # followed by where they work.
+        # Only a labelled segment ("嘉宾：翟季冬 粱辰晔 …") may be read as a run of
+        # names. Without the label, "侯健 麒麟软件" is a speaker and where they
+        # work — and the institution word list cannot be trusted to tell the two
+        # apart (麒麟软件, 传音, 中国联通 name no 公司 or 大学).
+        bare_names = bool(role) and BARE_NAME_RUN.match(body.strip()) and not INST_RE.search(body)
+        parts = (body.split() if bare_names
+                 else re.split(r"[、，,／/]|\s+and\s+|\s*&\s*", body))
+        for part in parts:
+            part = part.strip()
+            if not part or part in ("-", "--", "—"):
+                continue
+            chair_role = "主持" if role in ("主持人", "主持") else None
+            if re.search(r"[（(][^）)]*主持[^）)]*[）)]", part):
+                chair_role = "主持"
+            part = re.sub(r"[（(][^）)]*[）)]", "", part).strip()
+            name, aff = split_name_aff(part)
+            if not name:
+                continue
+            person, problem = read_person(name, aff, chair_role=chair_role)
+            if person:
+                out.append(person)
+            elif problem:
+                problems.append(problem)
+    return out, problems
 
 
 def classify_columns(headers):
@@ -218,7 +249,9 @@ def parse_chairs(soup):
             continue
         htext = clean(h4.get_text())
         mm = re.search(r"[:：]\s*(.+)$", htext)
-        who = mm.group(1) if mm else htext
+        # 'N. 论坛主席：江贺 教授' — and, in a list with no role at all,
+        # '1. 胡欣蔚 openEuler 技术委员会主席', where the numbering is not a name.
+        who = re.sub(r"^\s*\d+\s*[.、)）]\s*", "", mm.group(1) if mm else htext)
         # Split "<name> <title>". A Latin name can contain spaces ("David Lo"),
         # so for a Latin-initial entry take the name up to the first CJK title
         # ("David Lo 教授" -> "David Lo" + "教授"); a title-less Latin name stays
@@ -362,7 +395,7 @@ def parse_forum(cat, tid, html):
                 breaks.append({"name": title, "start": bs, "end": be})
                 continue  # a break row, not a talk
             start, end = parse_time(tcell)
-            speakers = parse_person_cell(col("members") or spk)
+            speakers, people_problems = parse_person_cell(col("members") or spk)
             title_status = "confirmed" if title else "tbd"
 
             # Competition team-roster row: member names landed in the title column
@@ -383,6 +416,12 @@ def parse_forum(cat, tid, html):
                     + (f"; units '{clean(spk)}' (per-person mapping unknown)" if len(units) != 1 else "")
                 )
                 title, title_status = None, "tbd"
+                # The cell the roster branch has just reinterpreted was the units
+                # column; that it holds no people is the point, not a finding.
+                people_problems = []
+
+            for problem in people_problems:
+                flags.append(f"speaker cell {problem}")
 
             ttype = "other" if (not speakers or any(w in (title or "") for w in PANEL_WORDS)) else "talk"
             t = {
@@ -432,6 +471,10 @@ def parse_forum(cat, tid, html):
         "chairs": chairs,
         "talks": talks,
         "detail_extracted": bool(talks),
+        # No schedule table on the page means the organisers have not published
+        # this forum's programme, not that the extraction lost it — see
+        # schema.json, agenda_status.
+        **({"agenda_status": "not_published"} if not talks else {}),
         "source_url": f"https://chinasoft.ccf.org.cn/2025/#agenda/{cat}/{tid}",
     }
     if breaks:
@@ -464,7 +507,9 @@ def parse_keynotes():
                         .setdefault("breaks", []).append({"name": title, "start": bs, "end": be})
                     continue
                 start, end = parse_time(tds[0])
-                speakers = parse_person_cell(spk)
+                speakers, people_problems = parse_person_cell(spk)
+                for problem in people_problems:
+                    flags.append(f"keynote speaker cell {problem}")
                 ttype = "keynote" if speakers else "other"
                 t = {
                     "title": i18n(title or None),
