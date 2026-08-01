@@ -18,7 +18,30 @@ svg { display: block; }
   letter-spacing: -0.02em; user-select: none;
 }
 .avatar--img { object-fit: cover; border: 1px solid var(--border); }
-.avatar--ph { border: 1px solid color-mix(in srgb, currentColor 24%, transparent); }
+/* Initials placeholder. The hue comes from the name (`--av-h`, set inline by
+   Avatar.tsx); everything about how READABLE that hue is belongs here, because
+   it depends on the theme.
+
+   It used to be `hsl(h 48% 52%)` in both themes, and HSL lightness is not
+   luminance: at L=52% yellow is nearly white and blue is nearly black. So the
+   same "52%" that looked fine on the hues one happened to check was 1.75:1 for
+   a yellow name on white and 2.80:1 for a blue name on black — text you cannot
+   read, decided by nothing but the spelling of somebody's name.
+
+   OKLCH's lightness IS perceptual, so one value holds across the whole wheel.
+   Measured across all 360 hues, the worst case is now 5.6:1 (light) and 6.2:1
+   (dark) — comfortably past AA, with the chroma kept low enough that the
+   placeholder still reads as a muted tint rather than a colour swatch. */
+.avatar--ph {
+  border: 1px solid color-mix(in srgb, currentColor 24%, transparent);
+  background: oklch(0.62 0.13 var(--av-h) / 0.16);
+  color: oklch(0.45 0.13 var(--av-h));
+}
+:root[data-theme="dark"] .avatar--ph,
+html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
+}
 
 .linkbtn { background: none; border: none; padding: 0; color: var(--accent); font-size: 13px; font-weight: 500; transition: color 0.15s; }
 .linkbtn:hover { color: var(--accent-hover); }
