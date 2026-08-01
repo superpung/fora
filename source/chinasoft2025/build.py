@@ -22,6 +22,7 @@ YEAR = 2025
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 from enrichment import apply_enrichment
 from people import read_person  # noqa: E402
+from times import read_time  # noqa: E402
 
 # category slug -> (zh display name, en display name). keynote-speech is handled
 # separately (it feeds the keynotes block, not the forum list).
@@ -206,13 +207,26 @@ def looks_like_name_list(text):
     return all(NAME_TOKEN.fullmatch(p) and not INST_RE.search(p) for p in parts)
 
 
-def parse_time(cell):
+def parse_time(cell, problems=None):
+    """The start/end printed in a cell, as stored clock times.
+
+    Everything the tables print goes through `read_time`, so an unpadded hour
+    becomes HH:MM and a `24:00` deadline is recorded as such rather than shipped
+    as a time no clock shows (see source/times.py). Anything it had to change or
+    could not read is appended to `problems` for the caller's `flags`.
+    """
+    def take(raw):
+        value, problem = read_time(raw)
+        if problem is not None and problems is not None:
+            problems.append(problem)
+        return value
+
     m = TIME_RANGE.search(cell)
     if m:
-        return m.group(1), m.group(2)
+        return take(m.group(1)), take(m.group(2))
     m = ONE_TIME.search(cell)
     if m:
-        return m.group(1), None
+        return take(m.group(1)), None
     return None, None
 
 
@@ -391,10 +405,14 @@ def parse_forum(cat, tid, html):
             spk = col("speaker")
             abstract_cell = col("abstract")
             if any(w in title for w in BREAK_WORDS) and not any(w in title for w in PANEL_WORDS):
-                bs, be = parse_time(tcell)
+                time_problems = []
+                bs, be = parse_time(tcell, time_problems)
+                flags.extend(f"break '{title}' {p}" for p in time_problems)
                 breaks.append({"name": title, "start": bs, "end": be})
                 continue  # a break row, not a talk
-            start, end = parse_time(tcell)
+            time_problems = []
+            start, end = parse_time(tcell, time_problems)
+            flags.extend(f"row '{title or tcell}' {p}" for p in time_problems)
             speakers, people_problems = parse_person_cell(col("members") or spk)
             title_status = "confirmed" if title else "tbd"
 
@@ -502,14 +520,23 @@ def parse_keynotes():
                 title = tds[1]
                 spk = tds[2] if len(tds) > 2 else ""
                 if any(w in title for w in BREAK_WORDS) and not any(w in title for w in PANEL_WORDS):
+                    # A break carries name/start/end and nothing else (schema),
+                    # so there is no slot for an annotation here. The value is
+                    # still read through the shared rule, so it is normalised or
+                    # dropped rather than stored as a non-time.
                     bs, be = parse_time(tds[0])
                     days.setdefault(date, {"location": location, "talks": [], "breaks": []}) \
                         .setdefault("breaks", []).append({"name": title, "start": bs, "end": be})
                     continue
-                start, end = parse_time(tds[0])
+                # Anomalies on a keynote row belong to that talk: this function
+                # builds day blocks, and a block has no `flags` of its own, while
+                # a talk does. (The speaker-cell branch below used to append to a
+                # `flags` name that does not exist here — it had simply never
+                # fired for this dataset.)
+                row_flags = []
+                start, end = parse_time(tds[0], row_flags)
                 speakers, people_problems = parse_person_cell(spk)
-                for problem in people_problems:
-                    flags.append(f"keynote speaker cell {problem}")
+                row_flags.extend(f"speaker cell {problem}" for problem in people_problems)
                 ttype = "keynote" if speakers else "other"
                 t = {
                     "title": i18n(title or None),
@@ -517,6 +544,8 @@ def parse_keynotes():
                     "start": start, "end": end, "speakers": speakers,
                     "abstract": None, "abstract_status": "unknown", "type": ttype,
                 }
+                if row_flags:
+                    t["flags"] = row_flags
                 for sp in speakers:
                     info = bios.get(sp["name"])
                     if info:

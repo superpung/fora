@@ -22498,7 +22498,7 @@
             "en": null
           },
           "title_status": "confirmed",
-          "start": "9:00",
+          "start": "09:00",
           "end": "12:00",
           "speakers": [],
           "abstract": null,
@@ -22546,7 +22546,7 @@
             "en": null
           },
           "title_status": "confirmed",
-          "start": "9:00",
+          "start": "09:00",
           "end": "12:00",
           "speakers": [],
           "abstract": null,
@@ -22786,7 +22786,7 @@
             "en": null
           },
           "title_status": "confirmed",
-          "start": "24:00",
+          "start": "23:59",
           "end": null,
           "speakers": [],
           "abstract": null,
@@ -22832,7 +22832,7 @@
             "en": null
           },
           "title_status": "confirmed",
-          "start": "24:00",
+          "start": "23:59",
           "end": null,
           "speakers": [],
           "abstract": null,
@@ -22878,7 +22878,7 @@
             "en": null
           },
           "title_status": "confirmed",
-          "start": "24:00",
+          "start": "23:59",
           "end": null,
           "speakers": [],
           "abstract": null,
@@ -22901,7 +22901,7 @@
             "en": null
           },
           "title_status": "confirmed",
-          "start": "9:00",
+          "start": "09:00",
           "end": "12:30",
           "speakers": [],
           "abstract": null,
@@ -22945,6 +22945,9 @@
       "detail_extracted": true,
       "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/competition/heterogeneous-systems-programming",
       "flags": [
+        "row '报名截止' source prints '24:00' (midnight ending the day); stored as 23:59",
+        "row '初审提交截止' source prints '24:00' (midnight ending the day); stored as 23:59",
+        "row '决赛提交截止' source prints '24:00' (midnight ending the day); stored as 23:59",
         "schedule present but no event date parsed; not placed on the dashboard"
       ]
     },
