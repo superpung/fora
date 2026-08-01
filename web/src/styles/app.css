@@ -37,7 +37,23 @@ svg { display: block; }
 .nav__brand { display: flex; align-items: center; gap: 8px; font-weight: 600; }
 .nav__logo { color: var(--fg); display: inline-flex; }
 .nav__brandtext { font-size: 14px; letter-spacing: -0.01em; }
-.nav__links { display: flex; gap: 2px; margin-left: auto; }
+/* The links take whatever room is left between the conference switcher and the
+   tools, and scroll inside it when the program has more entries than fit — in
+   Chinese or English, with or without the two AI views. Without `min-width: 0`
+   a flex item refuses to shrink below its content, so the row grew instead and
+   pushed the language and theme buttons off the right edge of the viewport
+   (which it did at ~620-1000px, on every page). */
+.nav__links {
+  display: flex; gap: 2px; margin-left: auto;
+  min-width: 0; overflow-x: auto; scrollbar-width: none;
+  /* A scroll container is a scroll BOX: without this the focus ring and hover
+     background of the first/last link would be clipped flush against it. */
+  scroll-padding: 0 4px;
+}
+.nav__links::-webkit-scrollbar { display: none; }
+/* Nothing else in the bar may shrink — they are the fixed poles the links
+   scroll between. */
+.nav__home, .confsw, .nav__tools { flex: 0 0 auto; }
 .nav__link {
   position: relative; padding: 7px 10px; border-radius: var(--radius); white-space: nowrap;
   font-size: 14px; color: var(--fg-secondary); font-weight: 500;
@@ -68,14 +84,9 @@ svg { display: block; }
 @media (max-width: 600px) {
   .confsw__name { display: none; }
   .nav__inner { gap: 6px; }
-  /* pin the switcher + theme toggle; the links scroll horizontally between them
-     so the row never overflows the viewport (was pushing the toggle off-screen) */
-  .confsw, .nav__tools { flex: 0 0 auto; }
-  .nav__links {
-    margin: 0; flex: 1 1 auto; min-width: 0; justify-content: flex-start;
-    overflow-x: auto; scrollbar-width: none;
-  }
-  .nav__links::-webkit-scrollbar { display: none; }
+  /* On a phone the links get the whole middle of the bar rather than being
+     pushed to the right of it. */
+  .nav__links { margin: 0; flex: 1 1 auto; justify-content: flex-start; }
   .nav__link { padding: 7px 8px; font-size: 13px; }
 }
 
