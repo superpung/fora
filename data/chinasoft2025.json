@@ -22092,10 +22092,10 @@
         },
         {
           "title": {
-            "zh": "",
+            "zh": "竞赛队伍决赛答辩",
             "en": null
           },
-          "title_status": "tbd",
+          "title_status": "unknown",
           "start": "16:50",
           "end": "17:05",
           "speakers": [
@@ -22134,10 +22134,10 @@
         },
         {
           "title": {
-            "zh": "",
+            "zh": "竞赛队伍决赛答辩",
             "en": null
           },
-          "title_status": "tbd",
+          "title_status": "unknown",
           "start": "17:05",
           "end": "17:20",
           "speakers": [
@@ -22188,10 +22188,10 @@
         },
         {
           "title": {
-            "zh": "",
+            "zh": "竞赛队伍决赛答辩",
             "en": null
           },
-          "title_status": "tbd",
+          "title_status": "unknown",
           "start": "17:20",
           "end": "17:35",
           "speakers": [
@@ -22239,10 +22239,10 @@
         },
         {
           "title": {
-            "zh": "",
+            "zh": "竞赛队伍决赛答辩",
             "en": null
           },
-          "title_status": "tbd",
+          "title_status": "unknown",
           "start": "17:35",
           "end": "17:50",
           "speakers": [
@@ -22279,10 +22279,10 @@
         },
         {
           "title": {
-            "zh": "",
+            "zh": "竞赛队伍决赛答辩",
             "en": null
           },
-          "title_status": "tbd",
+          "title_status": "unknown",
           "start": "17:50",
           "end": "18:05",
           "speakers": [
@@ -22321,10 +22321,10 @@
         },
         {
           "title": {
-            "zh": "",
+            "zh": "竞赛队伍决赛答辩",
             "en": null
           },
-          "title_status": "tbd",
+          "title_status": "unknown",
           "start": "18:05",
           "end": "18:20",
           "speakers": [
@@ -22366,10 +22366,10 @@
         },
         {
           "title": {
-            "zh": "",
+            "zh": "竞赛队伍决赛答辩",
             "en": null
           },
-          "title_status": "tbd",
+          "title_status": "unknown",
           "start": "18:20",
           "end": "18:35",
           "speakers": [
@@ -22409,13 +22409,13 @@
       "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/competition/auto-software-repair",
       "flags": [
         "multiple sections in template (2 titles); parsed the first, merged all schedule tables",
-        "team-roster row '16:50-17:05': 6 names were in the title column; recorded as speakers; units '华南理工大学 贵州民族大学' (per-person mapping unknown)",
-        "team-roster row '17:05-17:20': 10 names were in the title column; recorded as speakers; units '上海第二工业大学 国防科技大学' (per-person mapping unknown)",
-        "team-roster row '17:20-17:35': 9 names were in the title column; recorded as speakers; units '南京邮电大学 杭州安恒信息技术股份有限公司' (per-person mapping unknown)",
-        "team-roster row '17:35-17:50': 4 names were in the title column; recorded as speakers",
-        "team-roster row '17:50-18:05': 6 names were in the title column; recorded as speakers; units '蚂蚁集团 南京大学' (per-person mapping unknown)",
-        "team-roster row '18:05-18:20': 7 names were in the title column; recorded as speakers; units '南京大学 香港理工大学' (per-person mapping unknown)",
-        "team-roster row '18:20-18:35': 4 names were in the title column; recorded as speakers"
+        "team-roster row '16:50-17:05': 6 names were in the title column; recorded as speakers; units '华南理工大学 贵州民族大学' (per-person mapping unknown); slot named '竞赛队伍决赛答辩' after the table's own header",
+        "team-roster row '17:05-17:20': 10 names were in the title column; recorded as speakers; units '上海第二工业大学 国防科技大学' (per-person mapping unknown); slot named '竞赛队伍决赛答辩' after the table's own header",
+        "team-roster row '17:20-17:35': 9 names were in the title column; recorded as speakers; units '南京邮电大学 杭州安恒信息技术股份有限公司' (per-person mapping unknown); slot named '竞赛队伍决赛答辩' after the table's own header",
+        "team-roster row '17:35-17:50': 4 names were in the title column; recorded as speakers; slot named '竞赛队伍决赛答辩' after the table's own header",
+        "team-roster row '17:50-18:05': 6 names were in the title column; recorded as speakers; units '蚂蚁集团 南京大学' (per-person mapping unknown); slot named '竞赛队伍决赛答辩' after the table's own header",
+        "team-roster row '18:05-18:20': 7 names were in the title column; recorded as speakers; units '南京大学 香港理工大学' (per-person mapping unknown); slot named '竞赛队伍决赛答辩' after the table's own header",
+        "team-roster row '18:20-18:35': 4 names were in the title column; recorded as speakers; slot named '竞赛队伍决赛答辩' after the table's own header"
       ]
     },
     {

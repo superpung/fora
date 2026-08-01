@@ -10,10 +10,12 @@ import { buildLiveView, nextStarredItem, fmtClock, type NowRoom } from "../lib/l
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Icon from "../components/Icon";
 
-/** Talk title, falling back to the "TBD" chip when the title isn't set. */
+/** Talk title. When the slot has none of its own, whatever the source printed
+    there is shown muted, and the "TBD" line only when it printed nothing. */
 function Title({ text, tbd }: { text: string; tbd: boolean }) {
   const { t } = useI18n();
-  return tbd || !text ? <span className="muted-i">{t("now.tbd")}</span> : <>{text}</>;
+  if (!tbd) return <>{text}</>;
+  return <span className="muted-i">{text || t("now.tbd")}</span>;
 }
 
 function RoomCard({ room }: { room: NowRoom }) {
