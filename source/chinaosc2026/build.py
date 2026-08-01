@@ -325,53 +325,84 @@ SAME_PERSON = 0.5
 def bind_reports(rows, cards, flags):
     """Match each titled guest card to the timetable row it describes.
 
-    A card carries one report, so it binds to at most one row, and only to a row
-    that names both the guest AND (allowing for the two surfaces spelling a
-    title differently) the same report. The panel row a speaker also sits on
-    must not inherit their talk's abstract. Returns {row index: card}.
+    A card carries one report, so it binds to at most one row. Three passes, in
+    descending confidence — a card the timetable really does not print falls
+    through all of them and stays a timeless talk of its own:
+
+      1. the row that names both the guest and, allowing for the two surfaces
+         spelling it differently, the report;
+      2. the guest's one and only speaking slot, whatever the row calls the
+         report — one person, one slot, one card is not ambiguous, and the two
+         surfaces do sometimes carry different titles for it. A panel the guest
+         also sits on is not a slot, so a talk abstract never lands there;
+      3. a report the timetable prints under another name: a spelling of the
+         card's (郭伟康/郭康伟), or — when the page repeats one guest's name on
+         two cards — the name the page copy-pasted onto the wrong card.
+
+    Returns {row index: card}.
     """
     bound, taken = {}, set()
     titled = [c for c in cards if c.get("title")]
+    card_names = [c["person"]["name"] for c in cards]
 
-    def claim(card, allow_name_mismatch):
+    def free_rows_naming(name):
+        return [i for i, r in enumerate(rows)
+                if i not in taken and r.get("kind") != "break"
+                and any(s["name"] == name for s in r.get("speakers", []))]
+
+    def bind(i, card):
+        taken.add(i)
+        bound[i] = card
+
+    for card in titled:
+        best, score = None, 0
+        for i in free_rows_naming(card["person"]["name"]):
+            r = same_report(card["title"], rows[i]["title"])
+            if r > score:
+                best, score = i, r
+        if best is not None and score >= SAME_REPORT:
+            bind(best, card)
+
+    for card in titled:
+        if card in bound.values():
+            continue
+        slots = [i for i in free_rows_naming(card["person"]["name"])
+                 if not PANEL_ROW.search(rows[i]["title"])]
+        if len(slots) == 1:
+            bind(slots[0], card)
+
+    for card in titled:
+        if card in bound.values():
+            continue
+        name = card["person"]["name"]
+        mislabelled = card_names.count(name) > 1
         best, score = None, 0
         for i, row in enumerate(rows):
             if i in taken or row.get("kind") == "break":
                 continue
-            name = card["person"]["name"]
             printed = [s["name"] for s in row.get("speakers", [])]
-            if allow_name_mismatch:
-                # A misspelling, not a different person.
-                if not any(difflib.SequenceMatcher(None, n, name).ratio() >= SAME_PERSON
-                           for n in printed):
-                    continue
-            elif name not in printed:
+            misspelt = any(difflib.SequenceMatcher(None, n, name).ratio() >= SAME_PERSON
+                           for n in printed)
+            if not misspelt and not mislabelled:
                 continue
             r = same_report(card["title"], row["title"])
             if r > score:
                 best, score = i, r
-        floor = SAME_REPORT_BY_TITLE if allow_name_mismatch else SAME_REPORT
-        if best is None or score < floor:
-            return False
-        taken.add(best)
-        bound[best] = card
-        if allow_name_mismatch:
-            printed = "/".join(s["name"] for s in rows[best].get("speakers", []))
-            flags.append(
-                f"the timetable image and the page text name the speaker of "
-                f"'{rows[best]['title']}' differently: '{printed}' vs "
-                f"'{card['person']['name']}'; the image is kept"
-            )
-        return True
-
-    for card in titled:
-        claim(card, allow_name_mismatch=False)
-    # Second pass: a report the timetable prints but whose card the first pass
-    # could not reach, because only the name disagrees. Without this the report
-    # is listed twice — once timed from the image, once timeless from the card.
-    for card in titled:
-        if card not in bound.values():
-            claim(card, allow_name_mismatch=True)
+        if best is None or score < SAME_REPORT_BY_TITLE:
+            continue
+        bind(best, card)
+        printed = "/".join(s["name"] for s in rows[best].get("speakers", [])) or "(nobody)"
+        flags.append(
+            f"the page's guest card for '{rows[best]['title']}' is headed "
+            f"'{name}', the name of another card on the same page; the timetable "
+            f"image names '{printed}' and is kept"
+            if not any(difflib.SequenceMatcher(None, n, name).ratio() >= SAME_PERSON
+                       for n in (s["name"] for s in rows[best].get("speakers", [])))
+            else
+            f"the timetable image and the page text name the speaker of "
+            f"'{rows[best]['title']}' differently: '{printed}' vs '{name}'; "
+            f"the image is kept"
+        )
     return bound
 
 
@@ -388,6 +419,18 @@ def merge_timetable(rows, cards, flags):
         detail.setdefault(card["person"]["name"], card["person"])
     bound = bind_reports(rows, cards, flags)
 
+    # A panel row is a merged cell: it lists its panellists with no 单位 at all.
+    # Most of those people also give a talk in the SAME image, where their unit
+    # is printed — so the affiliation is carried across rows within one forum.
+    # This is the same document stating the same person's affiliation, not an
+    # inference: nothing is carried between forums, and a name the image never
+    # gives a unit to keeps none.
+    printed_affiliation = {}
+    for row in rows:
+        for s in row.get("speakers", []):
+            if s.get("affiliation_raw"):
+                printed_affiliation.setdefault(s["name"], s["affiliation_raw"])
+
     talks, breaks = [], []
     for i, row in enumerate(rows):
         if row.get("kind") == "break":
@@ -397,8 +440,9 @@ def merge_timetable(rows, cards, flags):
         speakers = []
         for printed in row.get("speakers", []):
             person = {"name": printed["name"]}
-            if printed.get("affiliation_raw"):
-                person["affiliation_raw"] = printed["affiliation_raw"]
+            affiliation = printed.get("affiliation_raw") or printed_affiliation.get(printed["name"])
+            if affiliation:
+                person["affiliation_raw"] = affiliation
             known = detail.get(printed["name"], {})
             if known.get("bio"):
                 person["bio"] = known["bio"]
@@ -814,16 +858,120 @@ def parse_organizations():
     return orgs
 
 
+def doc_link(row):
+    return {
+        "title": clean(row.get("name")),
+        "url": f"{SITE}/information/detail/{row['id']}",
+        "published_at": row.get("publishTime"),
+    }
+
+
 def parse_notices():
-    """The 会议通知 documents — registration/attendance guides, kept as links."""
+    """The 会议通知 documents — registration/attendance guides, as links plus,
+    for the ones that carry prose, the prose itself (see parse_guide)."""
     out = []
     for row in doc_rows(DIR_NOTICES):
-        out.append({
-            "title": clean(row.get("name")),
-            "url": f"{SITE}/information/detail/{row['id']}",
-            "published_at": row.get("publishTime"),
-        })
+        entry = doc_link(row)
+        sections = parse_guide(row["id"])
+        if sections:
+            entry["sections"] = sections
+        out.append(entry)
     return out
+
+
+def parse_other_directories():
+    """Every CMS directory the build has no special reading for.
+
+    The site publishes seven directories and this adapter models three of them
+    (专题议程 / 会议通知 / 议程详情). The rest are listed here as links so that a
+    directory nobody wrote code for — 最新动态 today, whatever the organisers add
+    next — is recorded rather than silently dropped. `unread_directories` names
+    the ones that were empty at extraction time, so "nothing here" stays
+    distinguishable from "nobody looked".
+    """
+    modelled = {DIR_FORUMS, DIR_NOTICES, DIR_DAYS}
+    out, empty = {}, []
+    for d in load("dirs.json")["rows"]:
+        name = clean(d["name"])
+        if name in modelled:
+            continue
+        rows = doc_rows(name)
+        if rows:
+            out[name] = [doc_link(r) for r in rows]
+        else:
+            empty.append(name)
+    return out, empty
+
+
+# A numbered section heading in a guide document: 一、大会基础总览.
+GUIDE_SECTION = re.compile(r"^[一二三四五六七八九十]+、\s*(.+)$")
+# "程序委员会主席：刘旭东、雷晏、高旻" — a role and the people filling it.
+GUIDE_ROLE = re.compile(r"^(.{2,10}?主席)\s*[：:]\s*(.*)$")
+NAME_SEP = re.compile(r"[、,，]\s*")
+
+
+def parse_guide(doc_id):
+    """A notice document as its numbered sections, verbatim.
+
+    The 参会指南 carries what the rest of the API never returns — the venue
+    address, how to reach it, the partner hotels, the code of conduct, the
+    organisers' contact details. It is kept as the site writes it: headings in
+    order, lines in order, nothing summarised and nothing rearranged.
+    """
+    path = RAW / "docs" / f"{doc_id}.json"
+    if not path.exists():
+        return []
+    _, html = doc_html(doc_id)
+    pars = paragraphs(html)
+    # A document that numbers its own sections (一、二、…) is split on them. One
+    # that does not — 团报操作指南 numbers plain steps 1. 2. 3. — is kept whole
+    # under no heading, so a numbering style nobody anticipated loses nothing.
+    if not any(GUIDE_SECTION.match(clean(p["text"]) or "") for p in pars):
+        lines = [clean(p["text"]) for p in pars if clean(p["text"])]
+        images = [i for p in pars for i in p["images"]]
+        return [{"heading": None, "lines": lines, "images": images}] if lines or images else []
+
+    sections, current = [], None
+    for p in pars:
+        text = clean(p["text"])
+        heading = GUIDE_SECTION.match(text) if text else None
+        if heading:
+            current = {"heading": heading.group(1).strip(), "lines": [], "images": []}
+            sections.append(current)
+            continue
+        if current is None:
+            # Anything before the first numbered heading is still the document.
+            current = {"heading": None, "lines": [], "images": []}
+            sections.append(current)
+        if text:
+            current["lines"].append(text)
+        current["images"].extend(p["images"])
+    return [s for s in sections if s["lines"] or s["images"]]
+
+
+def guide_roles(notices):
+    """role -> [names], from the lines of the parsed guides.
+
+    The member API returns 程序委员会 / 组织委员会 as empty groups, but the
+    参会指南 names their chairs in prose. Reading them here is how the site's own
+    answer to "who chairs this" reaches the dataset instead of an empty list.
+    """
+    roles = {}
+    for notice in notices:
+        for section in notice.get("sections", []):
+            for line in section["lines"]:
+                m = GUIDE_ROLE.match(line)
+                if not m:
+                    continue
+                role, rest = m.group(1).strip(), m.group(2).strip()
+                if not rest:
+                    continue
+                people = [n.strip() for n in NAME_SEP.split(rest) if n.strip()]
+                roles.setdefault(role, [])
+                for person in people:
+                    if person not in roles[role]:
+                        roles[role].append(person)
+    return roles
 
 
 # --------------------------------------------------------------------------
@@ -871,6 +1019,23 @@ def build():
     committees, empty_committees = parse_committees()
     zone = load("zone.json")["data"]
     notices = parse_notices()
+    other_dirs, empty_dirs = parse_other_directories()
+
+    # The member API returns 程序委员会 / 组织委员会 as empty groups while the
+    # 参会指南 names their chairs in prose. Those people are on the site, so they
+    # belong in the dataset — recorded as what they are, a name and nothing more,
+    # and marked with where they were read from.
+    named = {m["name"] for c in committees for m in c["members"]}
+    for role, people in guide_roles(notices).items():
+        if any(c["role"]["zh"] == role for c in committees):
+            continue
+        committees.append({
+            "role": i18n(role),
+            "ordering_note": None,
+            "members": [{"name": n} for n in people],
+            "extra": {"source": "参会指南 (the member API lists this group as empty)"},
+        })
+        named.update(people)
 
     conf = {
         "id": CONF_ID,
@@ -889,6 +1054,8 @@ def build():
             "name": i18n("重庆・山城国际会议中心"),
             "type": "main",
             "city": "重庆",
+            # As the 参会指南 writes it; the site names no hall or room below this.
+            "note": "重庆山城国际会议中心（重庆施柏阁酒店群）",
         }],
         "organizations": parse_organizations(),
         "committees": committees,
@@ -900,8 +1067,16 @@ def build():
             # additionally covers the check-in day the agenda publishes.
             "official_dates": "2026年8月15日至16日",
             "introduction": clean(zone.get("introductionContent")) or None,
+            "introduction_image": zone.get("introductionImage") or None,
+            "banners": [b for b in (zone.get("bannerList") or "").split(",") if b.strip()],
+            # The conference's own repository on the platform that hosts the site.
+            "gitlink_project": zone.get("gitlinkProject") or None,
             "notices": notices,
-            # Published on the site but still unfilled at extraction time.
+            # Every other CMS directory, as links; see parse_other_directories.
+            "documents": other_dirs,
+            "empty_directories": empty_dirs,
+            # Role groups the member API publishes but leaves unfilled. Some are
+            # filled from the 参会指南 above; the rest are genuinely unstaffed.
             "empty_role_groups": empty_committees,
         },
         "extraction": {

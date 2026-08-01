@@ -20,7 +20,8 @@
         "en": null
       },
       "type": "main",
-      "city": "重庆"
+      "city": "重庆",
+      "note": "重庆山城国际会议中心（重庆施柏阁酒店群）"
     }
   ],
   "organizations": [
@@ -437,6 +438,69 @@
           "吕建",
           "梅宏"
         ]
+      }
+    },
+    {
+      "role": {
+        "zh": "执行主席",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "文俊浩"
+        },
+        {
+          "name": "冯光升"
+        },
+        {
+          "name": "张洪宇"
+        }
+      ],
+      "extra": {
+        "source": "参会指南 (the member API lists this group as empty)"
+      }
+    },
+    {
+      "role": {
+        "zh": "程序委员会主席",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "刘旭东"
+        },
+        {
+          "name": "雷晏"
+        },
+        {
+          "name": "高旻"
+        }
+      ],
+      "extra": {
+        "source": "参会指南 (the member API lists this group as empty)"
+      }
+    },
+    {
+      "role": {
+        "zh": "组织委员会主席",
+        "en": null
+      },
+      "ordering_note": null,
+      "members": [
+        {
+          "name": "周魏"
+        },
+        {
+          "name": "王天阳"
+        },
+        {
+          "name": "桑春艳"
+        }
+      ],
+      "extra": {
+        "source": "参会指南 (the member API lists this group as empty)"
       }
     }
   ],
@@ -2501,6 +2565,7 @@
             },
             {
               "name": "邹艳珍",
+              "affiliation_raw": "北京通明湖创新中心",
               "bio": "北京大学计算机学院研究员、北京通明湖信息技术应用创新中心副主任。主要研究领域为软件工程、人工智能、知识图谱、智能软件开发等，已在国内外期刊、国际会议上发表学术论文60余篇，主持和参与了国家重点研发计划、国家自然科学基金、863计划等国家级项目10余项，多项研发成果在华为、浪潮、东软多家大型软件企业实际应用，曾获国家科学技术进步二等奖、教育部科技进步一等奖。",
               "photo": {
                 "local_path": null,
@@ -2509,6 +2574,7 @@
             },
             {
               "name": "陈亚兴",
+              "affiliation_raw": "西北工业大学",
               "bio": "西北工业大学副教授，ACM西安新星奖（2023）获得者，曾在弗吉尼亚理工大学访学两年。主要围绕群智计算系统与开源、数据隐私计算等方向开展研究工作。",
               "photo": {
                 "local_path": null,
@@ -2517,6 +2583,7 @@
             },
             {
               "name": "王潮",
+              "affiliation_raw": "深开鸿",
               "bio": "深圳开鸿数字产业发展有限公司高级研究工程师，北京理工大学信创学院、哈尔滨工业大学企业导师。长期从事操作系统、开源社区治理等技术领域的研究工作。",
               "photo": {
                 "local_path": null,
@@ -2525,6 +2592,7 @@
             },
             {
               "name": "田洪亮",
+              "affiliation_raw": "蚂蚁技术研究院",
               "bio": "高级研究员，蚂蚁集团资深技术专家，Asterinas OS项目发起人。",
               "photo": {
                 "local_path": null,
@@ -2532,7 +2600,8 @@
               }
             },
             {
-              "name": "郭伟康"
+              "name": "郭伟康",
+              "affiliation_raw": "麒麟软件"
             }
           ],
           "abstract": "1.操作系统架构如何重构？ 当大模型从“外部应用”变为操作系统的“内生能力”，传统操作系统的进程管理、内存管理、设备驱动等经典模块将发生怎样的根本性变化？\n\n2.开源创新与标准化如何协同？ 开源社区的分散创新与统一标准之间如何平衡？标准化应在产业发展中扮演什么角色——是提前布局、同步推进还是滞后响应？\n\n3.开发者生态如何破局？ 面向具身智能、工业物联等碎片化严重的垂直场景，泛在操作系统如何吸引第一批开发者，实现社区从“冷启动”到“自繁荣”的跨越？",
@@ -5703,6 +5772,7 @@
           "speakers": [
             {
               "name": "高恺",
+              "affiliation_raw": "北京科技大学",
               "bio": "北京科技大学计算机与通信工程学院预聘副教授。主要研究方向包括开源软件供应链分析、软件仓库挖掘、实证研究工程，相关研究成果发表在TSE、TOSEM、FSE、软件学报等软件工程领域的顶级期刊会议。担任TSE、TOSEM、EMSE、JSEP、ASE等国际期刊会议的审稿人和程序委员会成员。主持或参与国家自然科学基金青年科学基金（C类）、国家自然科学基金重大研究计划等项目。",
               "photo": {
                 "local_path": null,
@@ -5717,6 +5787,7 @@
             },
             {
               "name": "薛吟兴",
+              "affiliation_raw": "中国科学院工业人工智能研究所",
               "bio": "中国科学院工业人工智能研究所研究员，主要研究领域为软件安全。博士毕业于新加坡国立大学，其后在新加坡国立大学、南洋理工大学淡马锡实验室从事新加坡GF项目研究。2018年由中国科学院人才计划和安徽省人才计划引进回国加入中科大，2025加入中国科学院工业人工智能研究所。先后主持国家自然科学基金面上项目、国家重点研发计划课题、安徽省科技重大专项等国家和省部级项目6项；牵头推进两项智能网联车ISO/ITU国际标准，其中已成功立项一项ITU标准、一项IEEE标准。近六年以一作/通讯作者发表CCF A类论文20余篇，两次获得ACM SIGSOFT杰出论文奖。",
               "photo": {
                 "local_path": null,
@@ -5725,6 +5796,7 @@
             },
             {
               "name": "余跃",
+              "affiliation_raw": "鹏城实验室",
               "bio": "鹏城实验室研究员、博导，入选国家级青年人才计划，聚焦分布式智能计算与系统平台方面开展研究，在ASPLOS、ICSE、TSE、NeurIPS等软件工程与人工智能国际顶级会议或期刊发表论文80余篇，获得ACM SIGSOFT杰出论文奖2次、IEEE TCSE杰出论文奖1次，获得广东省科技进步特等奖、中国电子学会科技进步一等奖等科技奖励，担任IEEE P3404标准工作组组长，牵头规划制定人工智能算力中心到算力网络系列标准，获得中国青年五四奖章集体。",
               "photo": {
                 "local_path": null,
@@ -5733,6 +5805,7 @@
             },
             {
               "name": "陈森",
+              "affiliation_raw": "南开大学",
               "bio": "南开大学密码与网络空间安全学院教授，南开大学软件安全实验室（NKSSecLab）负责人。研究方向是软件系统安全，聚焦软件供应链安全，获得2026年度ACM SIGSOFT Early Career Researcher Award，CCF-A类会议杰出论文奖6项。",
               "photo": {
                 "local_path": null,
@@ -5940,9 +6013,23 @@
               }
             }
           ],
-          "abstract": null,
-          "abstract_status": "unknown",
-          "type": "talk"
+          "abstract": "近年来，大模型的出现为软件测试提供了全新的思路，大模型驱动的智能软件测试技术得到了快速发展。报告从大模型驱动的智能软件测试技术所面临的测试代码生成模型、测试用例优先级排序机制、测试预言生成与验证机制的关键问题出发，重点介绍基于大模型的多范式测试代码生成技术、基于大模型检索增强的测试用例优先级排序技术、基于大模型微调与检索增强的测试预言生成与验证技术以及面临的关键挑战等最新研究内容，探讨大模型在智能软件测试领域的未来发展趋势与机会。",
+          "abstract_status": "confirmed",
+          "type": "talk",
+          "extra": {
+            "cms_title": "大模型驱动的智能软件测试技术"
+          },
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "大模型驱动的测试代码生成、用例优先级排序与测试预言生成验证技术",
+              "en": null
+            },
+            "topics": [
+              "软件测试",
+              "大模型"
+            ]
+          }
         },
         {
           "order": 3,
@@ -6064,6 +6151,7 @@
           "speakers": [
             {
               "name": "王俊杰",
+              "affiliation_raw": "中国科学院软件研究所",
               "bio": "中国科学院软件研究所研究员，博士生导师，智能博弈重点实验室副主任（主持工作）。中国科学院特聘研究岗位，青年创新促进会会员。主要从事智能化软件工程、软件质量等方面的研究。在国际著名学术期刊/会议发表70余篇高水平学术论文，荣获ICSE、CHI、ICPC等会议的杰出论文奖、ACL领域主席亮点论文奖，共同指导学生获ACM学生研究竞赛全球总决赛冠军、中国科学院院长奖、中国科学院优秀博士学位论文等。主持和参与了多项国家自然科学基金项目、科技部重点研发计划、CCF-华为胡杨林基金等。担任CCF A类期刊TSE的Associate Editor，ICSE、FSE、ISSRE等的PC member，TOSEM、EMSE、AUSE等期刊的审稿人。",
               "photo": {
                 "local_path": null,
@@ -6072,6 +6160,7 @@
             },
             {
               "name": "雷晏",
+              "affiliation_raw": "重庆大学",
               "bio": "重庆大学大数据与软件学院教授，博士生导师，软件工程系主任，大数据智能与服务计算研究中心副主任，重庆市软件技术创新战略联盟副秘书长，CCF软工专委及开源发展委委员。主要从事智能软件与计算、大模型应用、大数据分析与挖掘、可信人工智能等研究。近年来，主持国家重点研发计划、国家自然科学基金等国家级项目4项以及省部级项目4项，在CCF推荐A类等领域顶级会议和期刊发表50多篇学术论文，出版著作2部，获CCF推荐国际会议最佳/杰出论文奖4次，发明专利20余项。",
               "photo": {
                 "local_path": null,
@@ -6080,6 +6169,7 @@
             },
             {
               "name": "陈铁明",
+              "affiliation_raw": "浙江工业大学",
               "bio": "浙江工业大学健行特聘教授、时空智能学院执行院长，浙江省网络空间安全创新研究中心主任、复杂网络攻击智能检测浙江省工程研究中心主任等。NAAI Member、ACM SIGSpatial中国分会执行委员、CCF开源技术发展委员会执行委员、中国软件行业协会理事、中国卫星导航定位协会低空经济工委会副主任、浙江省软件行业协会咨询委员会委员、浙江省人工智能学会空天智能分会副主任等。从事网络空间与智能系统安全、可信智能与软件等研究，已主持国家重点研发计划项目、国家基金重点项目等20余项重点课题，在ISSTA、KDD、CCS、TMC、TDSC、TIFS等发表论文200多篇，出版论著4部，授权发明专利120余项，以第一完成人获得日内瓦国际发明展金奖1项、浙江省政府和中国电子学会等5项省部级科技奖。",
               "photo": {
                 "local_path": null,
@@ -6088,6 +6178,7 @@
             },
             {
               "name": "刘波",
+              "affiliation_raw": "华为技术有限公司",
               "bio": "华为技术有限公司首席软件工程专家，深耕软件工程领域20+年，华为持续集成管理委员会主任，主导AI4SE、开源社区工程能力建设。",
               "photo": {
                 "local_path": null,
@@ -6096,6 +6187,7 @@
             },
             {
               "name": "王泽俊",
+              "affiliation_raw": "华为技术有限公司",
               "bio": "华为技术有限公司AI工程技术专家，负责计算产品线AI辅助研发、开源社区AI工程能力建设。",
               "photo": {
                 "local_path": null,
@@ -6116,43 +6208,6 @@
               "智能运维",
               "智能体",
               "AI4SE"
-            ]
-          }
-        },
-        {
-          "order": 7,
-          "start": null,
-          "end": null,
-          "speakers": [
-            {
-              "name": "雷晏",
-              "bio": "重庆大学大数据与软件学院教授，博士生导师，软件工程系主任，大数据智能与服务计算研究中心副主任，重庆市软件技术创新战略联盟副秘书长，CCF软工专委及开源发展委委员。主要从事智能软件与计算、大模型应用、大数据分析与挖掘、可信人工智能等研究。近年来，主持国家重点研发计划、国家自然科学基金等国家级项目4项以及省部级项目4项，在CCF推荐A类等领域顶级会议和期刊发表50多篇学术论文，出版著作2部，获CCF推荐国际会议最佳/杰出论文奖4次，发明专利20余项。",
-              "photo": {
-                "local_path": null,
-                "source_url": "https://gateway.gitlink.org.cn/api/file/statics/2026/07/25/image_20260725120251A519.png"
-              }
-            }
-          ],
-          "abstract": "近年来，大模型的出现为软件测试提供了全新的思路，大模型驱动的智能软件测试技术得到了快速发展。报告从大模型驱动的智能软件测试技术所面临的测试代码生成模型、测试用例优先级排序机制、测试预言生成与验证机制的关键问题出发，重点介绍基于大模型的多范式测试代码生成技术、基于大模型检索增强的测试用例优先级排序技术、基于大模型微调与检索增强的测试预言生成与验证技术以及面临的关键挑战等最新研究内容，探讨大模型在智能软件测试领域的未来发展趋势与机会。",
-          "abstract_status": "confirmed",
-          "type": "talk",
-          "title": {
-            "zh": "大模型驱动的智能软件测试技术",
-            "en": null
-          },
-          "title_status": "confirmed",
-          "extra": {
-            "off_timetable": true
-          },
-          "enrichment": {
-            "generated_by": "ai",
-            "summary": {
-              "zh": "大模型驱动的测试代码生成、用例优先级排序与测试预言生成验证技术",
-              "en": null
-            },
-            "topics": [
-              "软件测试",
-              "大模型"
             ]
           }
         }
@@ -6248,7 +6303,7 @@
         ]
       },
       "flags": [
-        "the page introduces a report by '雷晏' that the timetable image does not print: '大模型驱动的智能软件测试技术'"
+        "the timetable image and the page text title this report differently: '大模型驱动开源软件缺陷自动化诊治' vs '大模型驱动的智能软件测试技术'"
       ]
     },
     {
@@ -6508,6 +6563,7 @@
           "speakers": [
             {
               "name": "章文嵩",
+              "affiliation_raw": "LVS开源项目创始人",
               "bio": "CCF会士、常务理事、开源发展技术委员会副主任，开源项目LVS(Linux Virtual Server)创始人。",
               "photo": {
                 "local_path": null,
@@ -6519,6 +6575,7 @@
             },
             {
               "name": "李兆石",
+              "affiliation_raw": "沐曦股份",
               "bio": "沐曦AI研究院院长，清华大学博士。",
               "photo": {
                 "local_path": null,
@@ -6527,6 +6584,7 @@
             },
             {
               "name": "姜开达",
+              "affiliation_raw": "上海交通大学",
               "bio": "上海交通大学信息化推进办公室副主任、网络信息中心副主任。",
               "photo": {
                 "local_path": null,
@@ -6535,6 +6593,7 @@
             },
             {
               "name": "王豪杰",
+              "affiliation_raw": "九源联合体",
               "bio": "九源智能计算系统生态联合体副秘书长。",
               "photo": {
                 "local_path": null,
@@ -6546,6 +6605,7 @@
             },
             {
               "name": "仇实",
+              "affiliation_raw": "腾讯高级工程师",
               "bio": "腾讯高级工程师。于2026年厦门大学计算机科学与技术系取得博士学位，曾在USENIX FAST、ACM SC、TOS等存储及系统领域会议与期刊发表论文十篇。于同年加入腾讯数据计算平台部，工作聚焦于研究面向人工智能的高性GPU文件系统和分布式文件系统，并负责将相关技术部署到真实的生产系统中，以解决实际问题。",
               "photo": {
                 "local_path": null,
@@ -6554,6 +6614,7 @@
             },
             {
               "name": "张同浩",
+              "affiliation_raw": "滴滴出行",
               "bio": "滴滴出行系统软件负责人。",
               "photo": {
                 "local_path": null,
@@ -6753,9 +6814,24 @@
               }
             }
           ],
-          "abstract": null,
-          "abstract_status": "unknown",
-          "type": "talk"
+          "abstract": "聚焦开源模式对物理AI技术创新与工业智能化落地的推动作用。上海松应科技创始人聂凯旋将结合具身智能发展趋势，分享开放协作如何降低物理AI开发门槛，加快仿真训练、技术验证与行业应用进程。松应科技发布国内首个物理AI个人开发者平台“ORCA Lab 1.0”，以普惠化、轻量化、开放化为核心，致力于构建中国自主的物理AI开源生态与操作系统。报告还将围绕“AI向善”理念，探讨如何汇聚开发者、企业与生态伙伴，以更安全、可信、开放的技术服务工业场景，推动科技创新更好地服务产业与社会。",
+          "abstract_status": "confirmed",
+          "type": "talk",
+          "extra": {
+            "cms_title": "ORCA开源物理AI仿真平台：基于合成数据构建具身智能 Sim-to-Real训练闭环"
+          },
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "开源物理AI平台ORCA Lab以合成数据构建具身智能Sim-to-Real训练闭环",
+              "en": null
+            },
+            "topics": [
+              "具身智能",
+              "数字孪生",
+              "开放数据"
+            ]
+          }
         },
         {
           "order": 3,
@@ -6808,8 +6884,8 @@
               "affiliation_raw": "涛思数据创始人· CEO"
             }
           ],
-          "abstract": null,
-          "abstract_status": "unknown",
+          "abstract": "工业AI规模化落地，瓶颈已从算法层转向底层数据基础设施。具身智能对实时、多源、情境化数据要求极高，但企业仍面临数据烟囱林立、标准不统一、场景数据不足、系统封闭四大挑战。本次分享将聚焦《工业AI的挑战》，结合 TDengine 从时序数据库到 AI 原生工业数据底座的演进，探讨如何通过\"无问智推\"\"智能问数\"等能力，将复杂事件调查从数小时压缩至分钟级，并构建可控、可信、可审计、稳健的工业 AI 数据安全框架。",
+          "abstract_status": "confirmed",
           "type": "talk",
           "enrichment": {
             "generated_by": "ai",
@@ -6942,6 +7018,7 @@
             },
             {
               "name": "聂凯旋",
+              "affiliation_raw": "上海松应科技有限公司",
               "bio": "中国具身智能行业影响力人物，松应科技创始人。",
               "photo": {
                 "local_path": null,
@@ -6950,6 +7027,7 @@
             },
             {
               "name": "黄树福",
+              "affiliation_raw": "瀚博半导体（上海）股份有限公司",
               "bio": "人工智能专家、国产GPU行业资深专家、瀚博半导体副总裁&数据中心事业部总经理。",
               "photo": {
                 "local_path": null,
@@ -6957,10 +7035,12 @@
               }
             },
             {
-              "name": "陶建辉"
+              "name": "陶建辉",
+              "affiliation_raw": "涛思数据创始人· CEO"
             },
             {
               "name": "唐滨",
+              "affiliation_raw": "FastCAE创始人、北京开元工业软件研究院院长（筹），哈尔滨工程大学教授",
               "bio": "FastCAE创始人、北京开元工业软件研究院（筹）院长，哈尔滨工程大学教授。",
               "photo": {
                 "local_path": null,
@@ -6969,6 +7049,7 @@
             },
             {
               "name": "刘佳伟",
+              "affiliation_raw": "中国科学院沈阳自动化研究所",
               "bio": "2024年博士毕业于中国科学院沈阳自动化研究所，师从唐延东研究员，博士后合作导师为杜劲松研究员。目前作为机器人与智能系统全国重点实验室青年科研骨干，聚焦于生成式人工智能、机器人视觉感知前沿基础研究，成果发表在CVPR、AAAI、TNNLS、TMM、TCSVT、TIV等顶级期刊和会议。主持博士后面上项目、辽宁省博士启动项目、山东省实验室开放课题、研究所基础研究计划-青年项目。担任IEEE TPAMI, TIP, TMM, CVPR, ICCV, NeurIPS, ICLR等国际期刊和会议审稿人、中国图学学会可视化与认知计算专委会委员、CCF YOCSEF 沈阳分论坛委员、Intelligence & Robotics青年编委。获第二届辽宁省博士后创新创业大赛一等奖、IEEE-CYBER 2023 最佳海报奖、第四届中国软件开源创新大赛三等奖。",
               "photo": {
                 "local_path": null,
@@ -6977,6 +7058,7 @@
             },
             {
               "name": "陈阳",
+              "affiliation_raw": "原力灵机（重庆）智能科技有限公司",
               "bio": "原力灵机（重庆）智能科技有限公司开源战略生态总经理。",
               "photo": {
                 "local_path": null,
@@ -6997,70 +7079,6 @@
               "具身智能",
               "开源治理"
             ]
-          }
-        },
-        {
-          "order": 9,
-          "start": null,
-          "end": null,
-          "speakers": [
-            {
-              "name": "聂凯旋",
-              "bio": "中国具身智能行业影响力人物，松应科技创始人。",
-              "photo": {
-                "local_path": null,
-                "source_url": "https://gateway.gitlink.org.cn/api/file/statics/2026/07/25/image_20260725141928A542.png"
-              }
-            }
-          ],
-          "abstract": "聚焦开源模式对物理AI技术创新与工业智能化落地的推动作用。上海松应科技创始人聂凯旋将结合具身智能发展趋势，分享开放协作如何降低物理AI开发门槛，加快仿真训练、技术验证与行业应用进程。松应科技发布国内首个物理AI个人开发者平台“ORCA Lab 1.0”，以普惠化、轻量化、开放化为核心，致力于构建中国自主的物理AI开源生态与操作系统。报告还将围绕“AI向善”理念，探讨如何汇聚开发者、企业与生态伙伴，以更安全、可信、开放的技术服务工业场景，推动科技创新更好地服务产业与社会。",
-          "abstract_status": "confirmed",
-          "type": "talk",
-          "title": {
-            "zh": "ORCA开源物理AI仿真平台：基于合成数据构建具身智能 Sim-to-Real训练闭环",
-            "en": null
-          },
-          "title_status": "confirmed",
-          "extra": {
-            "off_timetable": true
-          },
-          "enrichment": {
-            "generated_by": "ai",
-            "summary": {
-              "zh": "开源物理AI平台ORCA Lab以合成数据构建具身智能Sim-to-Real训练闭环",
-              "en": null
-            },
-            "topics": [
-              "具身智能",
-              "数字孪生",
-              "开放数据"
-            ]
-          }
-        },
-        {
-          "order": 10,
-          "start": null,
-          "end": null,
-          "speakers": [
-            {
-              "name": "黄树福",
-              "bio": "涛思数据创始人· CEO ，开源软件 TDengine 时序数据库主要作者，2024 年“中国计算机学会(CCF)杰出工程师奖”获得者。1994年中国科大毕业后，赴美留学，先后在芝加哥Motorola、3Com等公司从事移动互联网的研发工作。2008年回到北京，先后创办科技企业“和信”和“快乐妈咪”。2017年5月创办涛思数据，专注物联网、工业数据处理。产品TDengine TSDB时序数据库在2019年7月开源后，在GitHub全球趋势排行榜上多次排名第一。2026年7月TDengine 升级为AI 原生的工业平台，并宣布对全球中小企业永久免费，将AI的能力在工业、物联网场景落地，为工业数据流提供从采集、存储、实时分析到可视化、事件管理、根因分析、AI洞察等全栈技术解决方案。涛思数据已获红杉、GGV、经纬、明势资本等多家机构超5亿RMB的投资。",
-              "photo": {
-                "local_path": null,
-                "source_url": "https://gateway.gitlink.org.cn/api/file/statics/2026/07/25/image_20260725162845A547.png"
-              }
-            }
-          ],
-          "abstract": "工业AI规模化落地，瓶颈已从算法层转向底层数据基础设施。具身智能对实时、多源、情境化数据要求极高，但企业仍面临数据烟囱林立、标准不统一、场景数据不足、系统封闭四大挑战。本次分享将聚焦《工业AI的挑战》，结合 TDengine 从时序数据库到 AI 原生工业数据底座的演进，探讨如何通过\"无问智推\"\"智能问数\"等能力，将复杂事件调查从数小时压缩至分钟级，并构建可控、可信、可审计、稳健的工业 AI 数据安全框架。",
-          "abstract_status": "confirmed",
-          "type": "talk",
-          "title": {
-            "zh": "工业AI的挑战",
-            "en": null
-          },
-          "title_status": "confirmed",
-          "extra": {
-            "off_timetable": true
           }
         }
       ],
@@ -7163,8 +7181,8 @@
         }
       ],
       "flags": [
-        "the page introduces a report by '聂凯旋' that the timetable image does not print: 'ORCA开源物理AI仿真平台：基于合成数据构建具身智能 Sim-to-Real训练闭环'",
-        "the page introduces a report by '黄树福' that the timetable image does not print: '工业AI的挑战'",
+        "the page's guest card for '工业AI的挑战' is headed '黄树福', the name of another card on the same page; the timetable image names '陶建辉' and is kept",
+        "the timetable image and the page text title this report differently: '开源物理AI正加速工业AI应用' vs 'ORCA开源物理AI仿真平台：基于合成数据构建具身智能 Sim-to-Real训练闭环'",
         "guest '黄树福' is introduced more than once on the page"
       ]
     },
@@ -7386,6 +7404,7 @@
           "speakers": [
             {
               "name": "唐滨",
+              "affiliation_raw": "北京开元工业软件研究院（筹）",
               "bio": "哈尔滨工程大学教授 现任北京开元工业软件研究院（筹）院长\n\nFastCAE创始人、北京开元工业软件研究院（筹）院长，哈尔滨工程大学教授，山东大学兼职教授，博士生导师，计算机专业博士，计算流体力学博士后，科学计算软件研发体系专家。主要从事AI for Science、工业软件体系结构与大模型智能化、工业软件开源生态的协作机制与演化理论等方向研究。首创开源工业仿真软件平台FastCAE，已服务国产CAE软件450余例，覆盖50余家单位。先后主持及参与国家级工业软件重大项目15项。发表CCF-A等高水平论文30余篇，获发明专利34项，参与制定国家标准2项，出版工业软件专著2部，主编行业白皮书1部。先后获得青岛市高层次人才、创新泰山产业领军人才\"未来之星\"人才计划、青岛市科技进步二等奖、2025年度十大关键软件技术创新成果等荣誉。",
               "photo": {
                 "local_path": null,
@@ -7394,6 +7413,7 @@
             },
             {
               "name": "赵钟",
+              "affiliation_raw": "中国空气动力研究与发展中心",
               "bio": "博士，国家数值风洞风雷软件负责人、团队学术带头人，中国空气动力学会CFD专委会副主任委员、科普工委会副主任委员。主持研发了风雷软件（PHengLEI），面向全国开源，已在航空、航天、能源、石化等领域实现规模化应用。主要研究方向：计算流体力学（CFD）方法研究与软件设计、开源技术、网格生成、并行计算、低空风场。发表学术论文30余篇，专利20余项，出版《计算流体力学》专著1本，获学会科技奖二等奖。",
               "photo": {
                 "local_path": null,
@@ -7402,6 +7422,7 @@
             },
             {
               "name": "马发俊",
+              "affiliation_raw": "麒麟软件有限公司",
               "bio": "麒麟软件有限公司正高级工程师，openKylin社区生态合作负责人；全国信标委多语言国家标准工作组成员，中国中文信息学会民文专委会常务委员，上海市计算机学会开工委副主任；长期从事国产基础软件研发和推广工作，多次参与和主持工信部电子发展基金、核高基重大专项、上海市软件和集成电路专项项目，获上海市科技进步二等奖和上海市徐汇区拔尖人才等荣誉。取得数项基础软件领域发明专利授权，发表相关学术论文多篇。",
               "photo": {
                 "local_path": null,
@@ -7410,6 +7431,7 @@
             },
             {
               "name": "杨程",
+              "affiliation_raw": "国防科技大学计算机学院、中国软件行业协会",
               "bio": "男，汉族，35岁，中共党员，博士研究生学历，现任国防科技大学计算机学院副研究员、中国软件行业协会副秘书长。长期从事开源领域、信创生态等方面的科研创新、工程实践以及人才培养工作，同时从事海洋声学、多模态机器学习等方向研究及项目工程实践创新。主持承担部委级课题6项，发表论文40余篇，获国家授权专利10余项。曾获中国电子学会科技进步一等奖1项、长沙市杰出创新青年等荣誉。",
               "photo": {
                 "local_path": null,
@@ -7418,6 +7440,7 @@
             },
             {
               "name": "黄宝锟",
+              "affiliation_raw": "重庆开源共创科技有限公司",
               "bio": "现任重庆开源共创科技有限公司AtomGit解决方案总监。长期深耕工业软件与开源生态建设领域，具有丰富的社区运营与项目统筹经验。曾牵头建设和运营多个具有行业影响力的开源社区及AI专区，致力于通过开源协作模式打破技术壁垒，汇聚产学研用多方力量，构建繁荣的开源生态体系，推动前沿开源技术在复杂行业场景中的应用转化。",
               "photo": {
                 "local_path": null,
@@ -7616,22 +7639,218 @@
     "theme": "渝见开源，数智启新",
     "official_dates": "2026年8月15日至16日",
     "introduction": "2026 CCF中国开源大会（CCF ChinaOSC）拟于2026年8月15日至16日在重庆召开。本届大会由中国计算机学会主办，CCF开源发展技术委员会、重庆大学联合承办。大会以“渝见开源，数智启新”为主题，由重庆大学校长刘昌胜教授与CCF开源发展技术委员会主任王怀民教授共同担任大会主席，重庆大学文俊浩教授、张洪宇教授，哈尔滨工程大学冯光升教授担任执行主席。本届大会将依托重庆深厚的软件产业底蕴与新兴智能科技生态，围绕AI赋能软件工程（AI4SE）与软件工程驱动AI（SE4AI）核心议题，汇聚国内外顶尖专家学者与开源领军人物，共同探索数智时代下的开源代码生成与可信维护、操作系统、工业软件、开源大模型与智能体、开源卫星、开源科学计算、开源供应链安全等关键前沿方向。通过开放协作与深度融合，激发软件技术与人工智能的双向创新活力，推动开源生态持续演进，为数字经济与智能产业发展注入新动能。作为中国开源领域的年度盛会，大会诚挚邀请软件工程、人工智能及开源领域的学术界、企业界、教育界学者、从业者、师生等踊跃参会，共绘中国开源新篇章！",
+    "introduction_image": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/24/cq_20260624134625A187.png",
+    "banners": [
+      "https://gateway.gitlink.org.cn/api/file/statics/2026/07/23/resized-banner-bg_20260622102501A165_metool_20260723081026A378.jpg"
+    ],
+    "gitlink_project": {
+      "identifier": "TSZQ_KaiYuanDaHui2026",
+      "owner": "prefecture",
+      "projectId": 1547711,
+      "wiki_url": "https://www.gitlink.org.cn/prefecture/TSZQ_KaiYuanDaHui2026/wiki"
+    },
     "notices": [
       {
         "title": "团报操作指南",
         "url": "https://chinaosc.ccf.org.cn/information/detail/1503",
-        "published_at": "2026/07/31"
+        "published_at": "2026/07/31",
+        "sections": [
+          {
+            "heading": null,
+            "lines": [
+              "团报指南：",
+              "1. 登录： https://ccf.org.cn/2026COSC，翻到页面最下面，在团体报名栏目选择“团报”",
+              "2. 点击“导入报名”",
+              "3. 点击“下载模板”，填写好团报信息，注意不要改变excel中的任何格式，不然导入会出错，需要手动修复表格",
+              "4. 点击浏览，选择已填写好的团报模板excel，然后点击“导入参会人信息”",
+              "5. 如人数较少，或表格填写错误不愿修改，也可不导入报名，直接在页面新增团报参会人信息",
+              "6. 在备注栏标注好团报来源，如：xxx分论坛/社区/企业的团报；",
+              "如统一缴费，10人以上即可直接享受折扣；如需要分开缴费，请在页面选择“单独缴费”。",
+              "7. 点击“选择团报负责人”，在姓名处输入团报人，点击搜索，选择团报人",
+              "8. 全部信息确认无误后选择“提交报名”。",
+              "9. 报名成功后，点击“我要交费”。之后，统一缴费的可以直接缴费，单独缴费的联系微信“TIA_630”在系统后台修改折扣后通知各位参会者缴费。"
+            ],
+            "images": [
+              "https://gateway.gitlink.org.cn/api/file/statics/2026/07/26/b7e4ec219502957c4a4494a8b950215c_20260726120847A556.png",
+              "https://gateway.gitlink.org.cn/api/file/statics/2026/07/26/092558080102d90969cf8b190120aa70_20260726120919A557.png",
+              "https://gateway.gitlink.org.cn/api/file/statics/2026/07/26/image_20260726121151A558.png",
+              "https://gateway.gitlink.org.cn/api/file/statics/2026/07/26/5d48300059eee3236ed3b1e45a1d0553_20260726121221A559.png",
+              "https://gateway.gitlink.org.cn/api/file/statics/2026/07/26/73a404099c283cc775ef59889f5c5ed5_20260726121252A560.png",
+              "https://gateway.gitlink.org.cn/api/file/statics/2026/07/26/914e9c464dc3f2194adf1d719d886a42_20260726121330A561.png",
+              "https://gateway.gitlink.org.cn/api/file/statics/2026/07/31/1b4b4a57eb8d56af8f2b76ef43f72777_20260731142921A658.png"
+            ]
+          }
+        ]
       },
       {
         "title": "报名指南",
         "url": "https://chinaosc.ccf.org.cn/information/detail/1477",
-        "published_at": "2026/06/26"
+        "published_at": "2026/06/26",
+        "sections": [
+          {
+            "heading": "报名渠道",
+            "lines": [
+              "大会专属报名页面： https://ccf.org.cn/2026COSC",
+              "官方大会网站： https://chinaosc.ccf.org.cn 注册入口",
+              "支持个人报名、企业 / 高校 10 人以上团体团购优惠"
+            ],
+            "images": []
+          },
+          {
+            "heading": "注册票价明细",
+            "lines": [
+              "大会分两个报名时段：早鸟期 6.23~7.31、常规期 8.1~8.16，共 3 类注册票种，价格如下：",
+              "1. 会议注册费（含晚餐，全场票，购买即赠送一年 CCF 会员）",
+              "2. 企业单日票（8 月 15 日，仅限 15 日参会）",
+              "3. 企业单日票（8 月 16 日，仅限 16 日参会）"
+            ],
+            "images": []
+          },
+          {
+            "heading": "注册权益说明",
+            "lines": [
+              "全场票（含晚餐）：购买即赠送一年 CCF 会员；CCF 会员、学生会员可享对应阶梯优惠；",
+              "单日票：仅可对应单日进入会场，不赠送 CCF 会员；",
+              "团体报名：企业、高校团队统一报名可享团购折扣；",
+              "所有票种往返交通、住宿均需自理。"
+            ],
+            "images": []
+          },
+          {
+            "heading": "退款规则",
+            "lines": [
+              "（一）因 CCF 原因或不可抗力导致活动无法举办，或因不可抗力参会者无法参会（含参会者突发重大疾病或近亲身故等原因），申请退款的，可全额退款或选保留下届参会资格；",
+              "（二）因参会者重复缴费申请退费的，全额退回重复缴费部分；",
+              "（三）因参会者自身原因不能参加，且在活动举行 30 日前申请退款的，扣除 10% 管理费和成本费后，退还剩余款项或选择保留下届参会资格；",
+              "（四）因参会者自身原因不能参加，且在活动举行 7 日前申请退款的，扣除 20% 管理费和成本费后，退还剩余款项或选择保留下届参会资格；",
+              "（五）因参会者自身原因不能参加，且在活动举行 4 日前申请退款的，扣除 30% 管理费和成本费后，退还剩余款项或选择保留下届参会资格；",
+              "（六）因参会者自身原因不能参加，且在活动举行前 3 日内（含当日）申请退款的，不予退还任何费用。"
+            ],
+            "images": []
+          },
+          {
+            "heading": "报名咨询渠道",
+            "lines": [
+              "大会官方邮箱：osc@ccf.org.cn"
+            ],
+            "images": []
+          }
+        ]
       },
       {
         "title": "参会指南",
         "url": "https://chinaosc.ccf.org.cn/information/detail/1476",
-        "published_at": "2026/07/24"
+        "published_at": "2026/07/24",
+        "sections": [
+          {
+            "heading": "大会基础总览",
+            "lines": [
+              "1. 核心信息",
+              "大会全称 ：2026 CCF 中国开源大会（2026 CCF ChinaOSC）",
+              "大会主题 ：渝见开源，数智启新",
+              "主办单位 ：中国计算机学会（CCF）",
+              "承办单位 ：CCF 开源发展技术委员会、重庆大学",
+              "举办时间：",
+              "报到：2026 年 8 月 14 日（周五）全天",
+              "正式会议：8 月 15 日（周六）—8 月 16 日（周日）",
+              "举办地点 ：重庆山城国际会议中心（重庆施柏阁酒店群）",
+              "官方网站 ： https://chinaosc.ccf.org.cn",
+              "2. 大会组织架构",
+              "大会主席：",
+              "刘昌胜 中科院院士、重庆大学校长",
+              "王怀民 中科院院士、CCF 开源发展技术委员会主任",
+              "执行主席 ：文俊浩、冯光升、张洪宇",
+              "程序委员会主席 ：刘旭东、雷晏、高旻",
+              "组织委员会主席 ：周魏、王天阳、桑春艳",
+              "专项委员会： 财务委员会、赞助委员会、宣传委员会"
+            ],
+            "images": []
+          },
+          {
+            "heading": "交通出行指引",
+            "lines": [
+              "会场：重庆山城国际会议中心（重庆施柏阁酒店群）",
+              "重庆江北国际机场：距离 40km，驾车约 50 分钟；可打车 / 预约会务接送车",
+              "重庆北站：距离 25km，驾车约 35 分钟",
+              "重庆西站：距离 23km，驾车约 30 分钟",
+              "重庆东站：距离 48km，驾车约 60 分钟",
+              "市内公共交通：官网将更新地铁、公交接驳专线，参会前可登录官网查询实时路线"
+            ],
+            "images": []
+          },
+          {
+            "heading": "住宿信息",
+            "lines": [
+              "为方便参会嘉宾参会期间住宿，大会组委会已协调会场周边酒店提供会议协议价格。参会嘉宾可根据需求选择酒店，并联系酒店进行预订。",
+              "协议酒店信息",
+              "酒店预订联系人： 熊亚辉、童靖瑜",
+              "联系电话： 15823905049、13452907985",
+              "酒店地址： 重庆市沙坪坝区文广大道18号附2号",
+              "预定链接：",
+              "酒店位置",
+              "两家协议酒店均位于大会会场周边区域，交通便利，参会嘉宾可步行抵达会场。",
+              "温馨提示",
+              "以上价格为大会协议优惠价格，房源数量有限，请参会嘉宾尽早完成住宿预订。",
+              "2026年8月重庆处于暑期旅游高峰期，建议参会嘉宾完成注册后提前安排住宿。"
+            ],
+            "images": [
+              "https://gateway.gitlink.org.cn/api/file/statics/2026/07/24/695335fba973f813889843f6bbdb5a23_20260724071629A381.jpg",
+              "https://gateway.gitlink.org.cn/api/file/statics/2026/07/24/e965c5781ee8d9d88859770f843cfe70_20260724071912A382.jpg",
+              "https://gateway.gitlink.org.cn/api/file/statics/2026/07/24/e8d03c653c32d2ee852b93a955479fc7_20260724072027A383.jpg"
+            ]
+          },
+          {
+            "heading": "合作、参展、分论坛申报指南",
+            "lines": [
+              "1. 企业赞助合作",
+              "大会设置钻石、铂金、黄金等多级合作伙伴体系，权益包含：会场品牌露出、联合主办分论坛、标准展位、免费参会名额、嘉宾专访、VIP 晚宴礼遇、白皮书联合发布等。",
+              "2. 分论坛申报",
+              "分论坛持续开放申报，由程序委员会统一评审；有意主办联合分论坛的高校、开源社区、企业可联系程序委员会对接申报材料。",
+              "3. 参展商须知",
+              "布展时间：8 月 14 日全天；撤展时间：8 月 16 日闭幕式结束后；",
+              "每个标准展位附赠多张全通道参会证，额外工作人员需单独注册；",
+              "展区开放时间：8.15–8.16 08:30–17:00，可开展项目演示、社区招募、校企洽谈。"
+            ],
+            "images": []
+          },
+          {
+            "heading": "参会行为规范",
+            "lines": [
+              "所有会场、展区凭实名胸牌入场，无胸牌禁止通行；",
+              "会场内手机调至静音，演讲时段禁止随意走动、喧哗；",
+              "公开主旨报告可正常拍摄录像；闭门执委会、闭门沙龙未经发言人许可禁止录制；",
+              "大会全部课件、白皮书、演讲内容版权归 CCF 及演讲人共有，禁止未经授权商用传播；",
+              "会场内禁止私自发传单、商业推销、私自组织收费培训活动；",
+              "会场配备医疗应急点，身体不适可前往一层服务台寻求帮助。"
+            ],
+            "images": []
+          },
+          {
+            "heading": "组委会全部联系方式",
+            "lines": [
+              "大会官网： https://chinaosc.ccf.org.cn",
+              "通用官方邮箱：osc@ccf.org.cn",
+              "咨询与合作：周魏 023-65678333 / zhouwei@cqu.edu.cn；桑春艳 15123100033 / sangcy@cqupt.edu.cn",
+              "分论坛、学术合作：程序委员会（官网公示对接邮箱）"
+            ],
+            "images": []
+          }
+        ]
       }
+    ],
+    "documents": {
+      "最新动态": [
+        {
+          "title": "2026 CCF中国开源大会分论坛申报火热进行中｜首批分论坛发布",
+          "url": "https://chinaosc.ccf.org.cn/information/detail/1454",
+          "published_at": "2026/06/18"
+        }
+      ]
+    },
+    "empty_directories": [
+      "会议指南",
+      "新闻宣传",
+      "住宿预订"
     ],
     "empty_role_groups": [
       "院士嘉宾",
@@ -7645,6 +7864,6 @@
     "source": "chinaosc.ccf.org.cn (GitLink zone CMS, zoneKey=kydh2026)",
     "forums_total": 22,
     "forums_detail_extracted": 18,
-    "notes": "Parsed from the site's CMS documents: 22 forums and 132 forum sessions across 3 days. The per-talk timetable is published only as an image inside each forum page (kept as the forum poster), so forum talks carry no time of their own and inherit the day's parallel-forum window. The site publishes no per-forum room."
+    "notes": "Parsed from the site's CMS documents: 22 forums and 129 forum sessions across 3 days. The per-talk timetable is published only as an image inside each forum page (kept as the forum poster), so forum talks carry no time of their own and inherit the day's parallel-forum window. The site publishes no per-forum room."
   }
 }
