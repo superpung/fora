@@ -59,20 +59,25 @@ export function FollowActionsBridge() {
     const runExport = (fmt: ExportFormat) => {
       const snapshot = { forums, speakers, talks };
       const items = collectFollowedItems(snapshot, views);
-      if (!items.length) return;
       const now = new Date().toISOString();
+      // The backup is the follows themselves, so it works even when they
+      // resolve to no talks — a forum whose agenda is not published yet is
+      // still worth backing up and syncing. Only the three display formats
+      // need talks to list, and the menu disables those rather than letting a
+      // click do nothing (see `exportableCount`).
+      if (fmt === "json")
+        return download(
+          exportFilename(items, "json", views),
+          toFollowJSON(snapshot, now, views),
+          "application/json;charset=utf-8",
+        );
+      if (!items.length) return;
       if (fmt === "ics")
         download(exportFilename(items, "ics", views), toICS(items, now, views), "text/calendar;charset=utf-8");
       else if (fmt === "csv")
         download(exportFilename(items, "csv", views), toCSV(items), "text/csv;charset=utf-8");
       else if (fmt === "md")
         download(exportFilename(items, "md", views), toMarkdown(items, views), "text/markdown;charset=utf-8");
-      else
-        download(
-          exportFilename(items, "json", views),
-          toFollowJSON(snapshot, now, views),
-          "application/json;charset=utf-8",
-        );
     };
 
     const importFile = async (file: File): Promise<{ ok: boolean; message: string }> => {
@@ -90,6 +95,7 @@ export function FollowActionsBridge() {
 
     register({
       followedCount: forums.size + speakers.size + talks.size,
+      exportableCount: collectFollowedItems({ forums, speakers, talks }, views).length,
       runExport,
       importFile,
       clearAll,

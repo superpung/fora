@@ -143,6 +143,8 @@ export default function AccountMenu() {
   };
 
   const count = actions?.followedCount ?? 0;
+  /** How many of those follows resolve to a talk a file could list. */
+  const exportable = actions?.exportableCount ?? 0;
 
   // Permission was denied at the OS/browser level — the switch cannot do
   // anything until the user changes it there, so it reads as a state, not a
@@ -252,20 +254,36 @@ export default function AccountMenu() {
                           exit={{ height: 0, opacity: 0 }}
                           transition={{ duration: 0.18, ease: easeOut }}
                         >
-                          {EXPORTS.map((f) => (
-                            <button
-                              key={f.key}
-                              className="acct-row acct-row--sub"
-                              onClick={() => {
-                                actions.runExport(f.key);
-                                setOpen(false);
-                              }}
-                            >
-                              <Icon name={f.icon} size={14} />
-                              <span className="acct-row__label">{t(f.labelKey)}</span>
-                              <span className="acct-ext mono">{f.ext}</span>
-                            </button>
-                          ))}
+                          {EXPORTS.map((f) => {
+                            // A followed forum whose agenda is not published
+                            // yet resolves to no talks, so there is nothing for
+                            // a calendar, a table or a Markdown list to hold.
+                            // The row says so instead of being clickable and
+                            // then doing nothing. The backup stays available —
+                            // it stores the follows, not the talks.
+                            const nothingToList = f.key !== "json" && exportable === 0;
+                            return (
+                              <button
+                                key={f.key}
+                                className="acct-row acct-row--sub"
+                                disabled={nothingToList}
+                                title={nothingToList ? t("export.nothingToList") : undefined}
+                                onClick={() => {
+                                  actions.runExport(f.key);
+                                  setOpen(false);
+                                }}
+                              >
+                                <Icon name={f.icon} size={14} />
+                                <span className="acct-row__label">{t(f.labelKey)}</span>
+                                {/* The row's state on the right, where every
+                                    other row in this menu keeps it — not a hint
+                                    paragraph (AGENTS.md, "UI copy / layout"). */}
+                                <span className="acct-ext mono">
+                                  {nothingToList ? t("export.noTalks") : f.ext}
+                                </span>
+                              </button>
+                            );
+                          })}
                         </motion.div>
                       )}
                     </AnimatePresence>
