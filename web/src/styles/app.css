@@ -47,6 +47,43 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 .linkbtn:hover { color: var(--accent-hover); }
 .linkbtn--inline { margin: 0 3px; }
 
+/* ============================ HORIZONTAL STRIP ============================
+   A row of items that scrolls sideways when it does not fit: the nav links,
+   the timeline's day tabs, the dashboard's day pills.
+
+   The scrollbar is hidden (it is chrome on a 34px-tall row, and on a phone
+   there is none to begin with), so the strip must SAY that it continues. A
+   plain `overflow-x: auto` cuts the last item mid-word against a hard edge,
+   which reads as the end of the list rather than the middle of it — at 390px
+   the nav showed "Dashboard  Tim" and five whole views looked like they did
+   not exist.
+
+   So the scrollable side is faded out. `data-edge` is set by useHScroll (which
+   also keeps the current item in view) and names the side(s) that still have
+   somewhere to go, so a strip that fits stays perfectly sharp. Same fade as
+   the forum rows' speaker list — one language for "there is more this way".
+
+   Fading is masking, so it dims whatever the element paints, background
+   included. Strips that carry their own backdrop (the sticky day tabs) put
+   `hstrip` on an inner track and keep the backdrop on the parent. */
+.hstrip {
+  --hs-fade: 22px;
+  overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+}
+.hstrip::-webkit-scrollbar { display: none; }
+.hstrip[data-edge="right"] {
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - var(--hs-fade)), transparent);
+  mask-image: linear-gradient(to right, #000 calc(100% - var(--hs-fade)), transparent);
+}
+.hstrip[data-edge="left"] {
+  -webkit-mask-image: linear-gradient(to left, #000 calc(100% - var(--hs-fade)), transparent);
+  mask-image: linear-gradient(to left, #000 calc(100% - var(--hs-fade)), transparent);
+}
+.hstrip[data-edge="both"] {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--hs-fade), #000 calc(100% - var(--hs-fade)), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 var(--hs-fade), #000 calc(100% - var(--hs-fade)), transparent);
+}
+
 /* ============================ NAV ============================ */
 .nav {
   position: sticky; top: 0; z-index: 50; height: var(--nav-h);
@@ -68,12 +105,11 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
    (which it did at ~620-1000px, on every page). */
 .nav__links {
   display: flex; gap: 2px; margin-left: auto;
-  min-width: 0; overflow-x: auto; scrollbar-width: none;
+  min-width: 0;
   /* A scroll container is a scroll BOX: without this the focus ring and hover
      background of the first/last link would be clipped flush against it. */
   scroll-padding: 0 4px;
 }
-.nav__links::-webkit-scrollbar { display: none; }
 /* Nothing else in the bar may shrink — they are the fixed poles the links
    scroll between. */
 .nav__home, .confsw, .nav__tools { flex: 0 0 auto; }
@@ -464,12 +500,13 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 .star--sm { position: static; transform: none; width: 20px; height: 20px; font-size: 12px; }
 
 /* ============================ SCHEDULE (timeline) ============================ */
+/* The sticky backdrop and the rule the tabs sit on; the track inside is what
+   scrolls, so the fade dims the tabs and not the surface behind them. */
 .daytabs {
-  display: flex; gap: 2px; margin-bottom: 8px; border-bottom: 1px solid var(--border);
+  margin-bottom: 8px; border-bottom: 1px solid var(--border);
   position: sticky; top: var(--nav-h); z-index: 20; background: var(--bg);
-  overflow-x: auto; -webkit-overflow-scrolling: touch;
 }
-.daytabs::-webkit-scrollbar { display: none; }
+.daytabs__track { display: flex; gap: 2px; }
 .daytab {
   position: relative; flex: 0 0 auto; border: none; background: transparent; color: var(--fg-secondary);
   padding: 12px 14px; display: flex; align-items: baseline; gap: 6px;
@@ -1238,8 +1275,7 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
   .dstat { padding: 10px 12px; }
   .dstat__n { font-size: 19px; }
   .toolbar__inner { gap: 8px; }
-  .daypills { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .daypills::-webkit-scrollbar { display: none; }
+  .daypills { width: 100%; }
   .daypill { flex: 1 0 auto; }
   /* toolbar collapses to 2 rows: day pills, then search + icon-only chips */
   .toolbar__right { width: 100%; margin-left: 0; gap: 6px; flex-wrap: nowrap; }
@@ -1690,6 +1726,7 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
   font: inherit; font-size: 14px; line-height: 1.55;
 }
 .planform__input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.planform__input::placeholder { color: var(--fg-muted); }
 .planform__actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 .planform__note { flex: 1 1 220px; }
 /* While a plan is being built the button stops looking clickable, and its
