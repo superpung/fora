@@ -36,6 +36,10 @@ export interface PlanCandidate {
   /** Forum title; empty for main-conference keynotes (the page labels those). */
   session: string;
   code?: string;
+  /** 0-based position in the forum's talk list, so a pick can link at the talk
+      itself (`#talk-${talkIndex + 1}`) instead of the top of the forum page.
+      Null for keynotes — main-stage blocks carry no per-talk anchor. */
+  talkIndex: number | null;
   room: string | null;
   date: string;
   start: string | null;
@@ -124,6 +128,7 @@ export function buildPlanCorpus(views: ConferenceViews): PlanCorpus {
         speakers: (t.speakers ?? []).map((s) => s.name).filter(Boolean).join("、"),
         session: f.title.zh,
         code: f.code,
+        talkIndex: i,
         room: f.room ?? null,
         date: f.day_date ?? "",
         start: t.start ?? win.start ?? null,
@@ -145,6 +150,7 @@ export function buildPlanCorpus(views: ConferenceViews): PlanCorpus {
       title: e.talk.title?.zh ?? "",
       speakers: (e.talk.speakers ?? []).map((s) => s.name).filter(Boolean).join("、"),
       session: "",
+      talkIndex: null,
       room: e.location ?? null,
       date: e.date,
       start: e.talk.start ?? null,
