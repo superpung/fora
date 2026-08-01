@@ -21,21 +21,36 @@ Shape of the source (see fetch.py for the endpoints):
   the remaining role groups exist on the site but are empty.
 * `partners/list` holds the partner communities.
 
-Faithful extraction: because the per-talk timetable is an image, forum talks have
-NO start/end time and inherit the day's forum block window; nothing is inferred.
-Guest entries the template leaves incomplete (no report title) are recorded as
-they are and flagged, never guessed.
+THE PROGRAMME IS IN THE IMAGE. A forum page's 论坛议程 section is a timetable
+picture: times, order, titles, speakers and their affiliations are printed there
+and nowhere else in the document text. Reading only the 嘉宾与报告介绍 cards —
+which is all the text offers — loses about a fifth of the programme (opening
+addresses, ceremonies, breaks, panels) and every clock time and affiliation.
+
+So the timetable is transcribed once, by hand, into agenda/<doc id>.json (see
+that directory's `_about`: verbatim, no inference) and IS THE PROGRAMME here:
+row order, times, titles and speakers all come from it. The guest cards are
+supplementary — they contribute the bio, the report abstract and the portrait,
+attached to a row by speaker name. A card whose guest never appears in the
+timetable is still kept, without a time, and flagged.
+
+Faithful extraction: a forum whose page publishes no timetable image keeps its
+card-derived talks with no time rather than inventing one; where the image and
+the card text disagree (a character, a dash, a name) the image is recorded and
+the divergence flagged, never silently reconciled.
 """
+import base64
+import difflib
 import json
 import pathlib
 import re
 import sys
-import base64
 
 from bs4 import BeautifulSoup
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
 RAW = pathlib.Path(__file__).resolve().parent / "raw"
+AGENDA = pathlib.Path(__file__).resolve().parent / "agenda"
 CONF_ID = "chinaosc2026"
 YEAR = 2026
 SITE = "https://chinaosc.ccf.org.cn"
@@ -254,6 +269,253 @@ def forum_title(doc_name):
     return clean(re.sub(r"^【[^】]*】", "", doc_name or "")) or clean(doc_name)
 
 
+# --------------------------------------------------------------------------
+# the transcribed timetable
+# --------------------------------------------------------------------------
+
+# Punctuation the CMS text and the printed timetable spell differently for the
+# same title — full-width vs ASCII colons, the several dashes, the space around
+# them. Folded away only to decide whether two titles are THE SAME title; both
+# strings are still recorded as they were written.
+TITLE_FOLD = str.maketrans({
+    "：": ":", "，": ",", "（": "(", "）": ")", "、": ",",
+    "—": "-", "–": "-", "－": "-", "‐": "-", "　": " ",
+})
+
+
+def fold_title(s):
+    """A title reduced to what it says, for comparison only."""
+    s = (s or "").translate(TITLE_FOLD).lower()
+    return re.sub(r"[\s\-,.:()]+", "", s)
+
+
+# Above this, two titles are the same report spelled differently (a missing
+# 设施, a "Keynote:" prefix, 和 for 与). Below it they are different reports, and
+# the card's abstract belongs to neither the row nor the reader.
+SAME_REPORT = 0.6
+
+
+def same_report(a, b):
+    return difflib.SequenceMatcher(None, fold_title(a), fold_title(b)).ratio()
+
+
+def load_agenda(doc_id):
+    """The hand-transcribed timetable for a forum document, or None."""
+    p = AGENDA / f"{doc_id}.json"
+    return json.loads(p.read_text()) if p.exists() else None
+
+
+def load_images():
+    """doc id -> every image the page embeds (see fetch.py)."""
+    p = RAW / "images.json"
+    return json.loads(p.read_text()) if p.exists() else {}
+
+
+IMAGES = load_images()
+
+
+# A title this alike, on a row no other card claims, is the same report even
+# when the two surfaces spell the speaker's name differently — but only when the
+# names are a spelling of each other (郭伟康 / 郭康伟), never when they are two
+# different people who happen to share a title.
+SAME_REPORT_BY_TITLE = 0.9
+SAME_PERSON = 0.5
+
+
+def bind_reports(rows, cards, flags):
+    """Match each titled guest card to the timetable row it describes.
+
+    A card carries one report, so it binds to at most one row, and only to a row
+    that names both the guest AND (allowing for the two surfaces spelling a
+    title differently) the same report. The panel row a speaker also sits on
+    must not inherit their talk's abstract. Returns {row index: card}.
+    """
+    bound, taken = {}, set()
+    titled = [c for c in cards if c.get("title")]
+
+    def claim(card, allow_name_mismatch):
+        best, score = None, 0
+        for i, row in enumerate(rows):
+            if i in taken or row.get("kind") == "break":
+                continue
+            name = card["person"]["name"]
+            printed = [s["name"] for s in row.get("speakers", [])]
+            if allow_name_mismatch:
+                # A misspelling, not a different person.
+                if not any(difflib.SequenceMatcher(None, n, name).ratio() >= SAME_PERSON
+                           for n in printed):
+                    continue
+            elif name not in printed:
+                continue
+            r = same_report(card["title"], row["title"])
+            if r > score:
+                best, score = i, r
+        floor = SAME_REPORT_BY_TITLE if allow_name_mismatch else SAME_REPORT
+        if best is None or score < floor:
+            return False
+        taken.add(best)
+        bound[best] = card
+        if allow_name_mismatch:
+            printed = "/".join(s["name"] for s in rows[best].get("speakers", []))
+            flags.append(
+                f"the timetable image and the page text name the speaker of "
+                f"'{rows[best]['title']}' differently: '{printed}' vs "
+                f"'{card['person']['name']}'; the image is kept"
+            )
+        return True
+
+    for card in titled:
+        claim(card, allow_name_mismatch=False)
+    # Second pass: a report the timetable prints but whose card the first pass
+    # could not reach, because only the name disagrees. Without this the report
+    # is listed twice — once timed from the image, once timeless from the card.
+    for card in titled:
+        if card not in bound.values():
+            claim(card, allow_name_mismatch=True)
+    return bound
+
+
+def merge_timetable(rows, cards, flags):
+    """Timetable rows + guest cards -> (talks, breaks).
+
+    The rows are the programme; the cards decorate them. A person's bio and
+    portrait follow the person, onto every row that names them. A report's
+    abstract follows the report, onto the one row that is it. A card whose
+    report the timetable never prints is appended, timeless, and flagged.
+    """
+    detail = {}
+    for card in cards:
+        detail.setdefault(card["person"]["name"], card["person"])
+    bound = bind_reports(rows, cards, flags)
+
+    talks, breaks = [], []
+    for i, row in enumerate(rows):
+        if row.get("kind") == "break":
+            breaks.append({"name": row["title"], "start": row["start"], "end": row["end"]})
+            continue
+
+        speakers = []
+        for printed in row.get("speakers", []):
+            person = {"name": printed["name"]}
+            if printed.get("affiliation_raw"):
+                person["affiliation_raw"] = printed["affiliation_raw"]
+            known = detail.get(printed["name"], {})
+            if known.get("bio"):
+                person["bio"] = known["bio"]
+            if (known.get("photo") or {}).get("source_url"):
+                person["photo"] = known["photo"]
+            speakers.append(person)
+
+        card = bound.get(i)
+        abstract = card["abstract"] if card else None
+        talk = {
+            "order": len(talks) + 1,
+            "title": i18n(row["title"]),
+            "title_status": "confirmed",
+            "start": row["start"],
+            "end": row["end"],
+            "speakers": speakers,
+            "abstract": abstract,
+            "abstract_status": "confirmed" if abstract else "unknown",
+            "type": "other" if row.get("kind") == "other" else "talk",
+        }
+        if card and fold_title(card["title"]) != fold_title(row["title"]):
+            # Both spellings are published by the same site; the image is the
+            # programme, so it wins the title and the page text is kept beside it.
+            talk["extra"] = {"cms_title": card["title"]}
+            flags.append(
+                f"the timetable image and the page text title this report "
+                f"differently: '{row['title']}' vs '{card['title']}'"
+            )
+        talks.append(talk)
+
+    on_timetable = {s["name"] for r in rows for s in r.get("speakers", [])}
+    for name in sorted(n for n in on_timetable if PLACEHOLDER_SPEAKER.search(n)):
+        flags.append(
+            f"the timetable's 讲者 column prints a label rather than a bare "
+            f"name: '{name}'; kept as printed"
+        )
+    for card in cards:
+        if card in bound.values() or not card.get("title"):
+            continue
+        talk = card_talk(card, len(talks) + 1)
+        talk["extra"] = dict(talk.get("extra") or {}, off_timetable=True)
+        name = card["person"]["name"]
+        flags.append(
+            f"the page introduces a report by '{name}' that the timetable image "
+            f"does not print: '{card['title']}'" if name in on_timetable else
+            f"guest '{name}' is introduced on the page but does not appear in "
+            f"the timetable image"
+        )
+        talks.append(talk)
+
+    return talks, breaks
+
+
+# A timetable row that is the panel the Panel section describes.
+PANEL_ROW = re.compile(r"panel|圆桌|对话", re.I)
+
+# A 讲者 cell that names a group instead of a person — "演讲嘉宾", "报告嘉宾及论坛
+# 主席", "京东（人员待定）". Printed that way by the site, so recorded that way,
+# but worth saying out loud: these are not people.
+PLACEHOLDER_SPEAKER = re.compile(r"嘉宾|主持人|参与者|待定|报告人|所有")
+
+
+def attach_panel_prose(talks, panel, flags):
+    """Give the Panel section's free-form lines to the panel row of the day.
+
+    The section's prose (the discussion topics, the rounds) has no other home
+    once the timetable owns the programme. It goes to the panel row, or — if the
+    timetable prints no panel — becomes a session of its own, as before.
+    """
+    if not panel["prose"]:
+        return
+    row = next((t for t in talks if PANEL_ROW.search(t.get("title", {}).get("zh", ""))), None)
+    if row is None:
+        talks.append({
+            "order": len(talks) + 1,
+            "title": i18n(panel["heading"]),
+            "title_status": "confirmed",
+            "start": None,
+            "end": None,
+            "speakers": panel["speakers"],
+            "abstract": panel["prose"],
+            "abstract_status": "confirmed" if panel["prose"] else "unknown",
+            "type": "other",
+        })
+        flags.append(
+            f"the page has a {panel['heading']} section but the timetable image "
+            f"prints no panel row; kept as a session with no time"
+        )
+        return
+    if row["abstract"]:
+        row["abstract"] = f"{row['abstract']}\n\n{panel['prose']}"
+    else:
+        row["abstract"] = panel["prose"]
+        row["abstract_status"] = "confirmed"
+
+
+def card_talk(card, order):
+    """A guest card as a talk of its own — no time, because the card has none."""
+    talk = {
+        "order": order,
+        "start": None,
+        "end": None,
+        "speakers": [card["person"]],
+        "abstract": card["abstract"],
+        "abstract_status": "confirmed" if card["abstract"] else "unknown",
+        "type": "talk",
+    }
+    if card["title"]:
+        talk["title"] = i18n(card["title"])
+        talk["title_status"] = "confirmed"
+    else:
+        # The template left this guest's report unfilled; recorded as-is.
+        talk["title_status"] = "unknown"
+        talk["type"] = "other"
+    return talk
+
+
 def parse_forum(row):
     doc, html = doc_html(row["id"])
     preamble, sections = split_sections(paragraphs(html))
@@ -292,45 +554,40 @@ def parse_forum(row):
     if not chairs:
         flags.append("no forum chair named on the page or in the keywords")
 
-    # 论坛议程 — the per-talk timetable, published only as an image.
+    # 论坛议程 — the per-talk timetable, published only as an image, and the
+    # transcription of it (see the module docstring).
+    agenda = load_agenda(doc["id"])
     poster = None
     for p in by_heading.get(SEC_AGENDA, []):
         if p["images"]:
             poster = {"local_path": None, "source_url": p["images"][0]}
             break
+    if poster is None and agenda and agenda["images"]:
+        # Two forums print their timetable outside a 论坛议程 heading; the
+        # transcription names the file, so the poster is found through it.
+        by_file = {im["file"]: im["url"] for im in IMAGES.get(str(doc["id"]), [])}
+        url = by_file.get(agenda["images"][0])
+        if url:
+            poster = {"local_path": None, "source_url": url}
     if poster is None:
-        flags.append("no 论坛议程 timetable image on the page")
+        flags.append("no timetable image on the page")
 
-    # 嘉宾与报告介绍 — one talk per guest. The timetable is an image, so no talk
-    # carries a time of its own; they inherit the day's forum block window.
-    talks = []
+    # 嘉宾与报告介绍 — the guest cards: photo, name, bio, report title, abstract.
+    # They are the supplement, not the programme (see the module docstring).
+    cards = []
     guest_pars = [p for h in SEC_GUESTS for p in by_heading.get(h, [])]
     for entry in person_entries(guest_pars):
         person, report_title, abstract = parse_person(entry)
         if person is None:
             continue
-        talk = {
-            "order": len(talks) + 1,
-            "start": None,
-            "end": None,
-            "speakers": [person],
-            "abstract": abstract,
-            "abstract_status": "confirmed" if abstract else "unknown",
-            "type": "talk",
-        }
-        if report_title:
-            talk["title"] = i18n(report_title)
-            talk["title_status"] = "confirmed"
-        else:
-            # The template left this guest's report unfilled; recorded as-is.
-            talk["title_status"] = "unknown"
-            talk["type"] = "other"
+        if not report_title:
             flags.append(f"guest '{person['name']}' has no report title on the page")
-        talks.append(talk)
+        cards.append({"person": person, "title": report_title, "abstract": abstract})
 
-    # Panel — a single discussion session; the template mixes panellist cards
-    # with free-form topic lines, so it is kept as one `other` session whose
-    # abstract is the section's prose and whose speakers are the named panellists.
+    # Panel — the template mixes panellist cards with free-form topic lines. The
+    # panellists join the guest cards, so their bios reach whichever timetable
+    # row names them; the free-form lines stay together as the session's prose.
+    panels = []
     for heading in SEC_PANEL:
         pars = by_heading.get(heading)
         if not pars:
@@ -349,23 +606,42 @@ def parse_forum(row):
                     prose.append(extra_abstract)
             else:
                 prose.extend(p["text"] for p in entry if p["text"])
-        talks.append({
-            "order": len(talks) + 1,
-            "title": i18n(heading),
-            "title_status": "confirmed",
-            "start": None,
-            "end": None,
-            "speakers": speakers,
-            "abstract": "\n\n".join(prose) or None,
-            "abstract_status": "confirmed" if prose else "unknown",
-            "type": "other",
-        })
+        panels.append({"heading": heading, "speakers": speakers,
+                       "prose": "\n\n".join(prose) or None})
+
+    # Where a timetable exists it dictates the programme; where the page never
+    # published one, the cards stand alone.
+    breaks = []
+    if agenda and agenda["rows"]:
+        panellist_cards = [{"person": p, "title": None, "abstract": None}
+                           for panel in panels for p in panel["speakers"]]
+        talks, breaks = merge_timetable(agenda["rows"], cards + panellist_cards, flags)
+        for panel in panels:
+            attach_panel_prose(talks, panel, flags)
+    else:
+        talks = [card_talk(c, i + 1) for i, c in enumerate(cards)]
+        for panel in panels:
+            talks.append({
+                "order": len(talks) + 1,
+                "title": i18n(panel["heading"]),
+                "title_status": "confirmed",
+                "start": None,
+                "end": None,
+                "speakers": panel["speakers"],
+                "abstract": panel["prose"],
+                "abstract_status": "confirmed" if panel["prose"] else "unknown",
+                "type": "other",
+            })
+        if agenda:
+            flags.append("the page publishes no timetable image, so no talk carries a time")
 
     if not talks:
         flags.append("no guest/report section on the page yet")
-    # The same guest name introduced twice in one forum usually means the page
-    # repeats a card with a different blurb; recorded verbatim and flagged.
-    guest_names = [s["name"] for t in talks for s in t["speakers"]]
+    # The same guest CARD twice in one forum usually means the page repeats it
+    # with a different blurb; recorded verbatim and flagged. Counted over the
+    # cards, not the programme — chairing a session and then joining the panel
+    # is a person appearing twice legitimately, and says nothing about the page.
+    guest_names = [c["person"]["name"] for c in cards]
     repeated = sorted({n for n in guest_names if guest_names.count(n) > 1})
     for name in repeated:
         flags.append(f"guest '{name}' is introduced more than once on the page")
@@ -376,7 +652,8 @@ def parse_forum(row):
         "day_date": day_date,
         # Every forum runs in the afternoon parallel-forum window of its day.
         "session_period": "afternoon" if day_date else None,
-        "room": None,  # the site does not publish per-forum rooms
+        # No timetable image printed a room either; the venue is the whole site.
+        "room": (agenda or {}).get("room"),
         "description": description,
         "chairs": chairs,
         "talks": talks,
@@ -388,8 +665,18 @@ def parse_forum(row):
             "cms_doc_name": doc.get("name"),
             "published_at": doc.get("publishTime"),
             "summary": doc.get("summary") or None,
+            # Every image the page embeds, in document order — the banners, the
+            # portraits, the QR codes and the timetable itself. The programme
+            # was hiding in these, so the index is part of the record.
+            "images": IMAGES.get(str(doc["id"]), []),
         },
     }
+    if breaks:
+        forum["breaks"] = breaks
+    if agenda:
+        forum["extra"]["timetable_images"] = agenda["images"]
+        if agenda.get("notes"):
+            forum["extra"]["timetable_notes"] = agenda["notes"]
     if flags:
         forum["flags"] = flags
     return forum
