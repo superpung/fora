@@ -46,8 +46,10 @@
     { "key": "移动软件", "zh": "移动软件", "en": "Mobile Software", "category": "se" },
     { "key": "开源软件", "zh": "开源软件", "en": "Open Source Software", "category": "se" },
     { "key": "软件供应链", "zh": "软件供应链", "en": "Software Supply Chain", "category": "se" },
+    { "key": "工业软件", "zh": "工业软件", "en": "Industrial Software", "category": "se" },
     { "key": "编译器", "zh": "编译器 / 编程语言", "en": "Compilers / Programming Languages", "category": "systems" },
     { "key": "操作系统", "zh": "操作系统", "en": "Operating Systems", "category": "systems" },
+    { "key": "实时系统", "zh": "实时系统 / RTOS", "en": "Real-Time Systems", "category": "systems" },
     { "key": "数据库", "zh": "数据库", "en": "Database", "category": "systems" },
     { "key": "分布式系统", "zh": "分布式系统", "en": "Distributed Systems", "category": "systems" },
     { "key": "云计算", "zh": "云计算 / 云原生", "en": "Cloud / Cloud-Native", "category": "systems" },
@@ -57,6 +59,8 @@
     { "key": "物联网", "zh": "物联网 / 边缘计算", "en": "IoT / Edge Computing", "category": "systems" },
     { "key": "数字孪生", "zh": "数字孪生 / 仿真", "en": "Digital Twin / Simulation", "category": "systems" },
     { "key": "软件教育", "zh": "软件教育", "en": "Software Education", "category": "meta" },
-    { "key": "产业生态", "zh": "产业与生态", "en": "Industry & Ecosystem", "category": "meta" }
+    { "key": "产业生态", "zh": "产业与生态", "en": "Industry & Ecosystem", "category": "meta" },
+    { "key": "开源治理", "zh": "开源治理 / 许可合规", "en": "Open Source Governance / Licensing", "category": "meta" },
+    { "key": "开放数据", "zh": "开放数据 / 数据集", "en": "Open Data / Datasets", "category": "meta" }
   ]
 }

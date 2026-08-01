@@ -1,0 +1,99 @@
+{
+  "_about": "Programme parsed from the forum's published timetable image. Verbatim transcription of the image — no inference.",
+  "doc": "1519",
+  "images": ["777127b067d799c70842891a338d4ee7_20260729165935A634.png"],
+  "rows": [
+    {
+      "start": "13:30",
+      "end": "13:35",
+      "title": "致辞",
+      "kind": "other",
+      "speakers": [{ "name": "梅宏", "affiliation_raw": "院士" }]
+    },
+    {
+      "start": "13:35",
+      "end": "13:40",
+      "title": "致辞",
+      "kind": "other",
+      "speakers": [{ "name": "王怀民", "affiliation_raw": "院士" }]
+    },
+    {
+      "start": "13:40",
+      "end": "14:20",
+      "title": "EIOT: Embodied Intelligence of Things",
+      "speakers": [{ "name": "刘云浩", "affiliation_raw": "院士 清华大学" }]
+    },
+    {
+      "start": "14:20",
+      "end": "15:00",
+      "title": "具身智能操作系统Robonix：原理与架构",
+      "speakers": [{ "name": "陈康", "affiliation_raw": "教授 北京大学" }]
+    },
+    {
+      "start": "15:00",
+      "end": "15:10",
+      "title": "Robonix战略合作揭牌仪式（梅宏院士、生态伙伴）",
+      "kind": "other",
+      "speakers": []
+    },
+    {
+      "start": "15:10",
+      "end": "15:30",
+      "title": "茶歇",
+      "kind": "break",
+      "speakers": []
+    },
+    {
+      "start": "15:30",
+      "end": "15:50",
+      "title": "RoboHarness：让机器人从实验室走向产线",
+      "speakers": [{ "name": "邹振盛", "affiliation_raw": "工程副总裁 面壁智能" }]
+    },
+    {
+      "start": "15:50",
+      "end": "16:10",
+      "title": "砻盘筑基 · 开源赋能——提速具身智能规模化应用进程",
+      "speakers": [{ "name": "陈文强", "affiliation_raw": "董事长 汉特云" }]
+    },
+    {
+      "start": "16:10",
+      "end": "16:30",
+      "title": "从四足到人形机器人--底层技术与产品演进",
+      "speakers": [{ "name": "范永", "affiliation_raw": "董事长 优宝特" }]
+    },
+    {
+      "start": "16:30",
+      "end": "16:50",
+      "title": "面向开放世界的具身多智能体决策",
+      "speakers": [{ "name": "李阳", "affiliation_raw": "助理教授 上海交通大学" }]
+    },
+    {
+      "start": "16:50",
+      "end": "17:10",
+      "title": "从视控一体到具身智能：工业智能机器人的技术与应用",
+      "speakers": [{ "name": "孙丹枫", "affiliation_raw": "副教授 杭州电子科技大学" }]
+    },
+    {
+      "start": "17:10",
+      "end": "17:30",
+      "title": "基于矽璓操作系统的关节控制与管理",
+      "speakers": [{ "name": "薛栋梁", "affiliation_raw": "研究员 北京大学信息技术高等研究院" }]
+    },
+    {
+      "start": "17:30",
+      "end": "17:35",
+      "title": "总结展望",
+      "kind": "other",
+      "speakers": []
+    }
+  ],
+  "room": null,
+  "notes": [
+    "Timetable image is 777127b067d799c70842891a338d4ee7_20260729165935A634.png (941x1220). Its columns are 时间 / 报告题目 / 讲者 / 主持 — there is no separate 单位 column, so each 讲者 cell prints 'name role' on the first line and the organisation, when given, on the second. affiliation_raw therefore carries the whole remainder of the cell after the name, with the line break rendered as a space (e.g. '院士 清华大学', '工程副总裁 面壁智能'). The 13:30 and 13:35 致辞 cells print only '梅宏 院士' / '王怀民 院士' — no organisation is published for them, so affiliation_raw is just the role.",
+    "The 主持 column is a set of merged cells this file's shape has no field for, so it is recorded here: 张洪宇（重庆大学）chairs 13:30-15:10; 文俊浩（重庆大学）chairs 15:30-17:30; 曹东刚 chairs the 17:30-17:35 总结展望 (no organisation printed for him). The 15:10-15:30 茶歇 row spans all four columns and so has no chair.",
+    "The 15:00-15:10 Robonix战略合作揭牌仪式（梅宏院士、生态伙伴）row merges the 报告题目 and 讲者 columns — no speaker cell exists for it, so speakers is empty rather than guessed; the participants named inside the title are left in the title as printed.",
+    "16:10-16:30 prints '从四足到人形机器人--底层技术与产品演进' with two ASCII hyphens, and 16:50-17:10 prints a full-width colon in '从视控一体到具身智能：…'. Both differ from the CMS text the dataset was built from (which has '，' and ':' respectively); the image is transcribed as printed.",
+    "Non-timetable images: CCF开源大会2.35x1PPT模板_01_20260729170736A635.png (5329x2267) is the forum title banner (“Robonix具身智能操作系统”分论坛) on the 2.35:1 PPT template; the nine 61–141px squares are speaker/chair headshots; image_20260724161959A408.png is the site-wide registration QR code.",
+    "No room / hall / venue is shown anywhere in this document's images."
+  ]
+}

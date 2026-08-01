@@ -1,0 +1,74 @@
+{
+  "_about": "Programme parsed from the forum's published timetable image. Verbatim transcription of the image — no inference.",
+  "doc": "1499",
+  "images": ["image_20260725114802A515.png"],
+  "rows": [
+    {
+      "start": "13:30",
+      "end": "13:35",
+      "title": "开场、嘉宾介绍",
+      "kind": "other",
+      "speakers": [
+        { "name": "田昊野", "affiliation_raw": "阿尔托大学" },
+        { "name": "李姗姗", "affiliation_raw": "国防科技大学" }
+      ]
+    },
+    {
+      "start": "13:35",
+      "end": "14:10",
+      "title": "基于大模型的软件自动化 —— Where Do We Stand?",
+      "speakers": [{ "name": "李戈", "affiliation_raw": "北京大学" }]
+    },
+    {
+      "start": "14:10",
+      "end": "14:45",
+      "title": "大模型智能体驱动的软件测试",
+      "speakers": [{ "name": "陈俊洁", "affiliation_raw": "天津大学" }]
+    },
+    {
+      "start": "14:45",
+      "end": "15:20",
+      "title": "智能时代的软件复用",
+      "speakers": [{ "name": "余跃", "affiliation_raw": "鹏城实验室" }]
+    },
+    {
+      "start": "15:20",
+      "end": "15:40",
+      "title": "茶歇",
+      "kind": "break",
+      "speakers": []
+    },
+    {
+      "start": "15:40",
+      "end": "16:15",
+      "title": "鸿蒙AI Coding实践",
+      "speakers": [{ "name": "黎立", "affiliation_raw": "北京航空航天大学" }]
+    },
+    {
+      "start": "16:15",
+      "end": "16:50",
+      "title": "大模型驱动的代码效率优化与缺陷定位研究",
+      "speakers": [{ "name": "任晓雪", "affiliation_raw": "浙江大学" }]
+    },
+    {
+      "start": "16:50",
+      "end": "17:25",
+      "title": "数据与隐私保护视角下的代码模型可信生态",
+      "speakers": [{ "name": "杨洲", "affiliation_raw": "阿尔伯塔大学" }]
+    },
+    {
+      "start": "17:25",
+      "end": "17:30",
+      "title": "总结、合影",
+      "kind": "break",
+      "speakers": []
+    }
+  ],
+  "room": null,
+  "notes": [
+    "Timetable image is image_20260725114802A515.png (1080x995), columns 时间 / 报告题目 / 讲者 / 单位.",
+    "Opening row prints '田昊野/李姗姗' against '阿尔托大学/国防科技大学'; split pairwise in printed order.",
+    "Non-timetable images: image_20260725114031A501.png is the forum title banner; the eight 111–167px squares are speaker headshots; image_20260724161959A408.png is the site-wide registration QR code.",
+    "No room / hall / venue is shown anywhere in this document's images."
+  ]
+}

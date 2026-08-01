@@ -1,0 +1,71 @@
+{
+  "_about": "Programme parsed from the forum's published timetable image. Verbatim transcription of the image — no inference.",
+  "doc": "1513",
+  "images": ["17-华为分论坛-CANN分论坛_02_20260728111923A610.png"],
+  "rows": [
+    {
+      "start": "13:30",
+      "end": "13:35",
+      "title": "开场",
+      "kind": "other",
+      "speakers": [{ "name": "任旭东", "affiliation_raw": "华为首席开源联络官" }]
+    },
+    {
+      "start": "13:35",
+      "end": "13:45",
+      "title": "Ascend 950 CANN开源概述",
+      "speakers": [{ "name": "陈敏", "affiliation_raw": "CANN 社区 PMC主席" }]
+    },
+    {
+      "start": "13:45",
+      "end": "14:20",
+      "title": "昇腾950特性全景剖析与开箱案例",
+      "speakers": [{ "name": "李东锋", "affiliation_raw": "CANN 架构师" }]
+    },
+    {
+      "start": "14:20",
+      "end": "14:50",
+      "title": "DeepSeek V4在昇腾950的优化实践",
+      "speakers": [{ "name": "邹楠", "affiliation_raw": "CANN 架构师" }]
+    },
+    {
+      "start": "14:50",
+      "end": "15:25",
+      "title": "xLLM推理引擎分享",
+      "speakers": [{ "name": "京东（人员待定）", "affiliation_raw": "京东首席技术专家" }]
+    },
+    {
+      "start": "15:25",
+      "end": "16:00",
+      "title": "训推全链路（预训练- > SFT- > RL- > 推理）低精度HiFx量化",
+      "speakers": [
+        { "name": "刘波", "affiliation_raw": "CANN 架构师" },
+        { "name": "王鑫", "affiliation_raw": "CANN 架构师" }
+      ]
+    },
+    {
+      "start": "16:00",
+      "end": "16:30",
+      "title": "面向异构计算的CANN算子编程教学体系设计与实践",
+      "speakers": [{ "name": "苏统华", "affiliation_raw": "哈工大教授" }]
+    },
+    {
+      "start": "16:30",
+      "end": "17:00",
+      "title": "基于稀疏序列并行和HiF8量化实践的大规模视频生成模型",
+      "speakers": [{ "name": "葛云阳", "affiliation_raw": "北大博士生，Open-Sora Plan团队核心贡献者" }]
+    }
+  ],
+  "room": null,
+  "notes": [
+    "Timetable image is 17-华为分论坛-CANN分论坛_02_20260728111923A610.png (1600x900). Its columns differ from the other forums': 时长(min) / 议题名称 / 内容介绍 / 演讲人 / 单位与职务. The 时长(min) column is headed as a duration but actually prints clock ranges, transcribed as start/end.",
+    "The table also carries a 内容介绍 column — a one-to-three-sentence abstract per talk. This file's shape has no field for abstracts, so they are left in the image rather than dropped silently; the source image is the record.",
+    "单位与职务 mixes organisation and job title (e.g. '华为首席开源联络官', 'CANN 架构师', '北大博士生，Open-Sora Plan团队核心贡献者'); transcribed verbatim including the internal spacing as printed.",
+    "14:50-15:25 prints '京东（人员待定）' in the 演讲人 column — a speaker-to-be-announced placeholder, not a person. Recorded as printed rather than dropped or guessed.",
+    "15:25-16:00 lists '刘波、王鑫' in one cell against a single 单位与职务 value; split into two speakers, both carrying that value.",
+    "The arrows in 训推全链路（预训练- > SFT- > RL- > 推理） render with a gap on each side of the '>' glyph; the underlying character (ASCII '>' vs full-width '＞') cannot be determined from the image, so the row is transcribed as rendered.",
+    "The table ends after the 16:30-17:00 row — a closing border with blank space below, so nothing is cut off at the image edge. No 茶歇 or other break is printed anywhere in this forum's table; the unbroken 13:30-17:00 sequence is what the image shows.",
+    "Non-timetable images: 2.35-1_01_20260728111815A609.png is the forum title banner (“CANN开源生态携手高校，共筑智能时代算力底座”分论坛) on the 2.35:1 PPT template; image_20260724161959A408.png is the site-wide registration QR code.",
+    "No room / hall / venue is shown anywhere in this document's images."
+  ]
+}

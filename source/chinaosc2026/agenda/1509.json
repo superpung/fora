@@ -1,0 +1,67 @@
+{
+  "_about": "Programme parsed from the forum's published timetable image. Verbatim transcription of the image — no inference.",
+  "doc": "1509",
+  "images": ["30d9f9ed6fab0d26952cabd7ba8ca728_20260729094904A620.png"],
+  "rows": [
+    {
+      "start": "13:35",
+      "end": "14:10",
+      "title": "以开源为基，以协同为翼——工业软件创新生态的协同发展路径",
+      "speakers": [{ "name": "唐滨", "affiliation_raw": "北京开元工业软件研究院（筹）" }]
+    },
+    {
+      "start": "14:10",
+      "end": "14:45",
+      "title": "风雷流体工业软件开源进展",
+      "speakers": [{ "name": "赵钟", "affiliation_raw": "中国空气动力研究与发展中心" }]
+    },
+    {
+      "start": "14:45",
+      "end": "15:20",
+      "title": "从根社区到行业实践——openKylin筑牢工业软件数字底座",
+      "speakers": [{ "name": "马发俊", "affiliation_raw": "麒麟软件有限公司" }]
+    },
+    {
+      "start": "15:20",
+      "end": "15:40",
+      "title": "茶歇",
+      "kind": "break",
+      "speakers": []
+    },
+    {
+      "start": "15:40",
+      "end": "16:15",
+      "title": "信创背景下，开源工业软件的国产化替代机遇与挑战",
+      "speakers": [
+        { "name": "杨程", "affiliation_raw": "国防科技大学计算机学院、中国软件行业协会" }
+      ]
+    },
+    {
+      "start": "16:15",
+      "end": "16:50",
+      "title": "开源协作驱动工业软件生态发展新机遇",
+      "speakers": [{ "name": "黄宝锟", "affiliation_raw": "重庆开源共创科技有限公司" }]
+    },
+    {
+      "start": "16:50",
+      "end": "17:30",
+      "title": "圆桌讨论",
+      "kind": "other",
+      "speakers": [
+        { "name": "唐滨", "affiliation_raw": null },
+        { "name": "赵钟", "affiliation_raw": null },
+        { "name": "马发俊", "affiliation_raw": null },
+        { "name": "杨程", "affiliation_raw": null },
+        { "name": "黄宝锟", "affiliation_raw": null }
+      ]
+    }
+  ],
+  "room": null,
+  "notes": [
+    "Timetable image is 30d9f9ed6fab0d26952cabd7ba8ca728_20260729094904A620.png (1138x811), columns 时间 / 报告题目 / 讲者 / 单位.",
+    "The 圆桌讨论 row keeps its title in the 报告题目 column; the 讲者/单位 columns are merged into one cell reading verbatim '主持人：唐滨' / '嘉宾：赵钟、马发俊、杨程、黄宝锟'. 唐滨 is the moderator, the rest are guests; no affiliations are printed for this row.",
+    "The table starts at 13:35 — no earlier row (no check-in or opening) is printed on this image.",
+    "Non-timetable images: image_20260727220344A596.png is the forum title banner; the seven 96–137px squares are speaker headshots; image_20260724161959A408.png is the site-wide registration QR code.",
+    "No room / hall / venue is shown anywhere in this document's images."
+  ]
+}

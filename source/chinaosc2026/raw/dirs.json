@@ -1,0 +1,56 @@
+{
+ "code": 200,
+ "msg": "查询成功",
+ "rows": [
+  {
+   "createdAt": "2026-06-18 11:17",
+   "headImg": null,
+   "id": 1447,
+   "name": "会议指南",
+   "sort": 1
+  },
+  {
+   "createdAt": "2026-06-18 11:18",
+   "headImg": null,
+   "id": 1448,
+   "name": "专题议程",
+   "sort": 2
+  },
+  {
+   "createdAt": "2026-06-18 11:18",
+   "headImg": null,
+   "id": 1449,
+   "name": " 最新动态",
+   "sort": 3
+  },
+  {
+   "createdAt": "2026-06-18 11:18",
+   "headImg": null,
+   "id": 1450,
+   "name": "会议通知",
+   "sort": 4
+  },
+  {
+   "createdAt": "2026-06-18 11:19",
+   "headImg": null,
+   "id": 1451,
+   "name": "新闻宣传",
+   "sort": 5
+  },
+  {
+   "createdAt": "2026-06-18 11:19",
+   "headImg": null,
+   "id": 1452,
+   "name": "住宿预订",
+   "sort": 6
+  },
+  {
+   "createdAt": "2026-06-18 11:19",
+   "headImg": null,
+   "id": 1453,
+   "name": "议程详情",
+   "sort": 7
+  }
+ ],
+ "total": 7
+}

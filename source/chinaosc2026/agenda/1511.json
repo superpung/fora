@@ -1,0 +1,88 @@
+{
+  "_about": "Programme parsed from the forum's published timetable image. Verbatim transcription of the image — no inference.",
+  "doc": "1511",
+  "images": ["image_20260729225712A654.png"],
+  "rows": [
+    {
+      "start": "13:40",
+      "end": "13:50",
+      "title": "致辞",
+      "kind": "other",
+      "speakers": [{ "name": "梅宏", "affiliation_raw": "北京大学" }]
+    },
+    {
+      "start": "13:50",
+      "end": "14:00",
+      "title": "社区新增会员单位授牌仪式",
+      "kind": "other",
+      "speakers": []
+    },
+    {
+      "start": "14:00",
+      "end": "14:20",
+      "title": "泛在操作系统开放社区介绍",
+      "speakers": [{ "name": "杨丽蕴", "affiliation_raw": "中国电子技术标准化研究院" }]
+    },
+    {
+      "start": "14:20",
+      "end": "14:50",
+      "title": "灵玑OS:智能体框架共性基础设施",
+      "speakers": [{ "name": "邹艳珍", "affiliation_raw": "北京通明湖创新中心" }]
+    },
+    {
+      "start": "14:50",
+      "end": "15:20",
+      "title": "泛在群智计算系统——主动认知型智能系统的创新探索与开源实践",
+      "speakers": [{ "name": "陈亚兴", "affiliation_raw": "西北工业大学" }]
+    },
+    {
+      "start": "15:20",
+      "end": "15:40",
+      "title": "茶歇",
+      "kind": "break",
+      "speakers": []
+    },
+    {
+      "start": "15:40",
+      "end": "16:05",
+      "title": "从开源鸿蒙到分布式智能体群：构建开放协同的产业AI底座",
+      "speakers": [{ "name": "王潮", "affiliation_raw": "深开鸿" }]
+    },
+    {
+      "start": "16:05",
+      "end": "16:30",
+      "title": "教会Agent像专家一样评审内核代码——以星绽为例",
+      "speakers": [{ "name": "田洪亮", "affiliation_raw": "蚂蚁技术研究院" }]
+    },
+    {
+      "start": "16:30",
+      "end": "16:55",
+      "title": "基于双体系内核架构的Klink-U软总线安全探索",
+      "speakers": [{ "name": "郭伟康", "affiliation_raw": "麒麟软件" }]
+    },
+    {
+      "start": "16:50",
+      "end": "17:30",
+      "title": "Panel：开源操作系统生态建设",
+      "kind": "other",
+      "speakers": [
+        { "name": "郭耀", "affiliation_raw": null },
+        { "name": "邹艳珍", "affiliation_raw": null },
+        { "name": "陈亚兴", "affiliation_raw": null },
+        { "name": "王潮", "affiliation_raw": null },
+        { "name": "田洪亮", "affiliation_raw": null },
+        { "name": "郭伟康", "affiliation_raw": null }
+      ]
+    }
+  ],
+  "room": null,
+  "notes": [
+    "Timetable image is image_20260729225712A654.png (1080x1160), columns 时间 / 报告题目 / 讲者 / 单位.",
+    "The last two rows overlap as printed: the talk before the Panel runs 16:30-16:55 while the Panel is printed as 16:50-17:30. Copied verbatim from the image; not corrected.",
+    "The final row spans the last three columns as one merged cell reading verbatim: 'Panel：开源操作系统生态建设' / '主持人：郭耀' / '嘉宾：邹艳珍、陈亚兴、王潮、田洪亮、郭伟康'. 郭耀 is the moderator, the rest are guests; no affiliations are printed for this row.",
+    "The 社区新增会员单位授牌仪式 row is a merged full-width cell with no 讲者 or 单位.",
+    "The image prints the Klink-U speaker's name as '郭伟康'.",
+    "Non-timetable images: image_20260729204432A650.png is the forum title banner; the seven 133–260px squares are speaker headshots; image_20260724161959A408.png is the site-wide registration QR code.",
+    "No room / hall / venue is shown anywhere in this document's images."
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "_about": "Programme parsed from the forum's published timetable image. Verbatim transcription of the image — no inference.",
+  "doc": "1502",
+  "images": ["image_20260725163242A548.png"],
+  "rows": [
+    {
+      "start": "13:30",
+      "end": "13:40",
+      "title": "科技向善，开源赋能 AI 全栈生态繁荣发展",
+      "speakers": [{ "name": "田广礼", "affiliation_raw": "重庆天工开物开源基金会" }]
+    },
+    {
+      "start": "13:40",
+      "end": "14:10",
+      "title": "开源物理AI正加速工业AI应用",
+      "speakers": [{ "name": "聂凯旋", "affiliation_raw": "上海松应科技有限公司" }]
+    },
+    {
+      "start": "14:10",
+      "end": "14:40",
+      "title": "国产GPU算力站支撑具身智能实时仿真与大规模世界模型应用",
+      "speakers": [{ "name": "黄树福", "affiliation_raw": "瀚博半导体（上海）股份有限公司" }]
+    },
+    {
+      "start": "14:40",
+      "end": "15:10",
+      "title": "工业AI的挑战",
+      "speakers": [{ "name": "陶建辉", "affiliation_raw": "涛思数据创始人· CEO" }]
+    },
+    {
+      "start": "15:10",
+      "end": "15:30",
+      "title": "茶歇",
+      "kind": "break",
+      "speakers": []
+    },
+    {
+      "start": "15:30",
+      "end": "16:00",
+      "title": "国家级工业软件开源生态平台创新路径探索",
+      "speakers": [
+        {
+          "name": "唐滨",
+          "affiliation_raw": "FastCAE创始人、北京开元工业软件研究院院长（筹），哈尔滨工程大学教授"
+        }
+      ]
+    },
+    {
+      "start": "16:00",
+      "end": "16:30",
+      "title": "探索统一的图像到图像分布变换框架-残差去噪扩散模型",
+      "speakers": [{ "name": "刘佳伟", "affiliation_raw": "中国科学院沈阳自动化研究所" }]
+    },
+    {
+      "start": "16:30",
+      "end": "17:00",
+      "title": "RoboChallenge真机测评年度报告：洞察具身智能趋势，推动开放测评生态共建",
+      "speakers": [{ "name": "陈阳", "affiliation_raw": "原力灵机（重庆）智能科技有限公司" }]
+    },
+    {
+      "start": "17:00",
+      "end": "17:30",
+      "title": "Panel",
+      "kind": "other",
+      "speakers": [
+        { "name": "庄表伟", "affiliation_raw": null },
+        { "name": "聂凯旋", "affiliation_raw": null },
+        { "name": "黄树福", "affiliation_raw": null },
+        { "name": "陶建辉", "affiliation_raw": null },
+        { "name": "唐滨", "affiliation_raw": null },
+        { "name": "刘佳伟", "affiliation_raw": null },
+        { "name": "陈阳", "affiliation_raw": null }
+      ]
+    }
+  ],
+  "room": null,
+  "notes": [
+    "Timetable image is image_20260725163242A548.png (1080x1121), columns 时间 / 报告题目 / 讲者 / 单位.",
+    "The Panel row spans the last three columns as one merged cell reading verbatim: 'Panel' / '庄表伟、聂凯旋、黄树福、陶建辉、唐滨、刘佳伟、陈阳'. No moderator is distinguished and no affiliations are printed for this row. 庄表伟 appears only in this Panel row.",
+    "唐滨's 单位 cell prints a multi-part title; copied verbatim including the punctuation '、' and '，' and the '（筹）'.",
+    "陶建辉's 单位 cell reads '涛思数据创始人· CEO' — the middle dot and the space before 'CEO' are as printed.",
+    "Non-timetable images: image_20260725141600A537.png is the forum title banner; the eight 144–485px squares are speaker headshots; image_20260724161959A408.png is the site-wide registration QR code.",
+    "No room / hall / venue is shown anywhere in this document's images."
+  ]
+}
