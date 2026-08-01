@@ -670,9 +670,19 @@ export default function ForumDetail() {
         </section>
       ) : (
         <section className="fd__section">
+          {/* Two different situations, and the reader deserves to know which:
+              the conference has not published this forum's programme yet, or it
+              has and we have not read one. Only the dataset can tell them
+              apart — see schema.json, agenda_status. */}
           <div className="pending">
-            <div className="pending__title">{tr("forum.pendingTitle")}</div>
-            <p className="pending__text">{tr("forum.pendingText")}</p>
+            <div className="pending__title">
+              {tr(forum.agenda_status === "not_published"
+                ? "forum.agendaPendingTitle" : "forum.pendingTitle")}
+            </div>
+            <p className="pending__text">
+              {tr(forum.agenda_status === "not_published"
+                ? "forum.agendaPendingText" : "forum.pendingText")}
+            </p>
           </div>
         </section>
       )}

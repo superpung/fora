@@ -240,6 +240,8 @@ for code, title, room, day, period, sponsor, series in FORUM_META:
         "poster": {"local_path": img, "source_url": None} if img else None,
         "source_url": forum_urls.get(code),
         "detail_extracted": False,
+        # The programme lists the forum but publishes no agenda for it.
+        "agenda_status": "not_published",
     })
 conf["forums"] = forums
 
