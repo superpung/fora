@@ -935,9 +935,6 @@
           "end": "17:30",
           "speakers": [
             {
-              "name": "演讲嘉宾"
-            },
-            {
               "name": "Jan Kiszka",
               "bio": "Xenomai实时操作系统的核心维护者，西门子嵌入式 Linux 技术中心的首席关键专家、顾问与开源布道者，同时也是轻量级嵌入式虚拟化平台 Jailhouse 的创始人及Civil Infrastructure Platform（CIP）内核主席。致力于支持西门子各业务部门，围绕实际产品需求推动开源平台的采用、增强与战略落地，并长期活跃于实时系统、虚拟化技术以及嵌入式 Linux 工具链等开源项目的开发与维护。",
               "photo": {
@@ -1058,7 +1055,7 @@
         "guest '陈渝' has no report title on the page",
         "the timetable image and the page text title this report differently: '从“天算星座”到太空操作系统：构建星座时代的太空算力基础' vs '从“天算星座”到太空操作系统：构建星座时代的太空算力基础设施'",
         "the timetable image and the page text title this report differently: '搭载MetaOS(基于Xenomai)的工智机在具身智能、AI基建领域的应用设施' vs '搭载MetaOS(基于Xenomai)的工智机在具身智能、AI基建领域的应用'",
-        "the timetable's 讲者 column prints a label rather than a bare name: '演讲嘉宾'; kept as printed"
+        "timetable row 'Panel': a role or a group, not a person: '演讲嘉宾'"
       ]
     },
     {
@@ -1412,11 +1409,7 @@
           "title_status": "confirmed",
           "start": "13:30",
           "end": "13:40",
-          "speakers": [
-            {
-              "name": "主持人：执行主席"
-            }
-          ],
+          "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
           "type": "other"
@@ -1662,9 +1655,6 @@
           "end": "17:30",
           "speakers": [
             {
-              "name": "主持人：执行主席"
-            },
-            {
               "name": "包云岗",
               "affiliation_raw": "中国科学院计算技术研究所副所长、研究员",
               "bio": "中国科学院计算技术研究所副所长、研究员，担任RISC-V国际协会理事、CCF开源发展委员会副主任。长期从事计算机体系结构前沿研究，带领团队在国内率先开展了一系列开源芯片实践，包括开源高性能RISC-V处理器“香山”项目、“一生一芯”计划等，在RISC-V国际社区形成积极影响力，入选《IEEE Micro》评选的2022年度领域全球十二大亮点成果、2024年度中关村论坛十项重大科技成果、2024年度RISC-V国际协会技术领导力奖等。他入选国家领军人才计划，享受国务院政府特殊津贴，曾获“CCF-IEEE CS”青年科学家奖、北京市“最美科技工作者”、共青团中央“全国向上向善好青年”、中国科学院先进个人等荣誉称号",
@@ -1862,7 +1852,8 @@
         }
       ],
       "flags": [
-        "the timetable's 讲者 column prints a label rather than a bare name: '主持人：执行主席'; kept as printed"
+        "timetable row '论坛背景介绍': a role or a group, not a person: '主持人：执行主席'",
+        "timetable row '圆桌论坛': a role or a group, not a person: '主持人：执行主席'"
       ]
     },
     {
@@ -2257,8 +2248,8 @@
       "chairs": [
         {
           "name": "王涛",
-          "bio": null,
-          "chair_role": "论坛主席"
+          "chair_role": "论坛主席",
+          "bio": null
         }
       ],
       "talks": [],
@@ -3046,8 +3037,8 @@
       "chairs": [
         {
           "name": "任旭东",
-          "bio": null,
-          "chair_role": "论坛主席"
+          "chair_role": "论坛主席",
+          "bio": null
         }
       ],
       "talks": [
@@ -3136,12 +3127,7 @@
           "title_status": "confirmed",
           "start": "14:50",
           "end": "15:25",
-          "speakers": [
-            {
-              "name": "京东（人员待定）",
-              "affiliation_raw": "京东首席技术专家"
-            }
-          ],
+          "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
           "type": "talk"
@@ -3256,7 +3242,7 @@
       },
       "flags": [
         "no 论坛主旨 section on the page",
-        "the timetable's 讲者 column prints a label rather than a bare name: '京东（人员待定）'; kept as printed"
+        "timetable row 'xLLM推理引擎分享': a placeholder, not a name yet: '京东（人员待定）'"
       ]
     },
     {
@@ -3272,8 +3258,8 @@
       "chairs": [
         {
           "name": "解壁伟",
-          "bio": null,
-          "chair_role": "论坛主席"
+          "chair_role": "论坛主席",
+          "bio": null
         }
       ],
       "talks": [],
@@ -3323,13 +3309,7 @@
       "session_period": "afternoon",
       "room": null,
       "description": null,
-      "chairs": [
-        {
-          "name": "华为公司",
-          "bio": null,
-          "chair_role": "论坛主席"
-        }
-      ],
+      "chairs": [],
       "talks": [],
       "poster": null,
       "source_url": "https://chinaosc.ccf.org.cn/information/detail/1517",
@@ -3362,7 +3342,8 @@
       },
       "flags": [
         "no 论坛主旨 section on the page",
-        "the keywords name an organization as chair: '华为公司'",
+        "the keywords name a chair that is not a person — an organization, not a person: '华为公司'",
+        "no forum chair named on the page or in the keywords",
         "no timetable image on the page",
         "the page publishes no timetable image, so no talk carries a time",
         "no guest/report section on the page yet"
@@ -4439,11 +4420,7 @@
           "title_status": "confirmed",
           "start": "16:50",
           "end": "17:20",
-          "speakers": [
-            {
-              "name": "论坛主席+所有讲者"
-            }
-          ],
+          "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
           "type": "other"
@@ -4542,7 +4519,7 @@
       ],
       "flags": [
         "the timetable image and the page text title this report differently: '基于大模型的缺陷检测和修复' vs '基于大模型的缺陷检测与修复'",
-        "the timetable's 讲者 column prints a label rather than a bare name: '论坛主席+所有讲者'; kept as printed"
+        "timetable row 'Panel：智能体对开源软件开发的赋能与挑战': a role or a group, not a person: '论坛主席+所有讲者'"
       ]
     },
     {
@@ -4833,10 +4810,8 @@
           "end": "17:30",
           "speakers": [
             {
-              "name": "主持人：梁广泰"
-            },
-            {
-              "name": "参与者：报告嘉宾及论坛主席"
+              "name": "梁广泰",
+              "chair_role": "主持人"
             }
           ],
           "abstract": null,
@@ -4943,8 +4918,7 @@
       },
       "flags": [
         "the timetable image and the page text title this report differently: 'Keynote:开源供应链合规性管理：从开源软件到开放模型' vs '开源供应链合规性管理：从开源软件到开放模型'",
-        "the timetable's 讲者 column prints a label rather than a bare name: '主持人：梁广泰'; kept as printed",
-        "the timetable's 讲者 column prints a label rather than a bare name: '参与者：报告嘉宾及论坛主席'; kept as printed"
+        "timetable row '战略研讨环节': a role or a group, not a person: '参与者：报告嘉宾及论坛主席'"
       ]
     },
     {
@@ -5162,11 +5136,7 @@
           "title_status": "confirmed",
           "start": "16:50",
           "end": "17:50",
-          "speakers": [
-            {
-              "name": "报告嘉宾"
-            }
-          ],
+          "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
           "type": "other"
@@ -5257,7 +5227,7 @@
         ]
       },
       "flags": [
-        "the timetable's 讲者 column prints a label rather than a bare name: '报告嘉宾'; kept as printed"
+        "timetable row '圆桌：当AI会写代码，开源教育如何培养“会创造的人”？': a role or a group, not a person: '报告嘉宾'"
       ]
     },
     {
