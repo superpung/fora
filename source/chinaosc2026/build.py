@@ -1025,7 +1025,6 @@ def build():
     # 参会指南 names their chairs in prose. Those people are on the site, so they
     # belong in the dataset — recorded as what they are, a name and nothing more,
     # and marked with where they were read from.
-    named = {m["name"] for c in committees for m in c["members"]}
     for role, people in guide_roles(notices).items():
         if any(c["role"]["zh"] == role for c in committees):
             continue
@@ -1035,7 +1034,6 @@ def build():
             "members": [{"name": n} for n in people],
             "extra": {"source": "参会指南 (the member API lists this group as empty)"},
         })
-        named.update(people)
 
     conf = {
         "id": CONF_ID,
