@@ -220,8 +220,45 @@ function icsEscape(s: string): string {
     .replace(/,/g, "\\,")
     .replace(/\n/g, "\\n");
 }
-function icsDateTime(date: string, time: string): string {
-  return `${date.replace(/-/g, "")}T${time.replace(":", "")}00`;
+// How far the given instant's wall clock in `tz` runs ahead of UTC.
+function tzOffsetMs(at: Date, tz: string): number {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: tz,
+    hour12: false,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  }).formatToParts(at);
+  const p: Record<string, string> = {};
+  for (const x of parts) p[x.type] = x.value;
+  // Intl can render midnight as hour 24; Date.UTC wants 0.
+  const h = p.hour === "24" ? 0 : Number(p.hour);
+  return (
+    Date.UTC(Number(p.year), Number(p.month) - 1, Number(p.day), h, Number(p.minute), Number(p.second)) -
+    at.getTime()
+  );
+}
+
+// A schedule states a WALL CLOCK at the venue ("14:00 in Wuxi"). Written without
+// a timezone, iCalendar reads it as floating time — whatever 14:00 means on the
+// importing device — so anyone planning from another timezone saw the wrong hour
+// and was never told. The dataset already carries the venue's zone, so each time
+// is resolved to the instant it actually names and written in UTC. UTC needs no
+// VTIMEZONE and cannot be misread; calendars show it back in the reader's own
+// zone, which is the point.
+//
+// Resolving takes two passes: read the wall clock as if it were UTC, ask what
+// offset the zone had at that rough instant, subtract it, then ask again at the
+// corrected instant — the second answer is right even across a DST boundary.
+function icsDateTime(date: string, time: string, tz: string): string {
+  const naive = Date.parse(`${date}T${time}:00Z`);
+  if (Number.isNaN(naive)) return `${date.replace(/-/g, "")}T${time.replace(":", "")}00`;
+  const rough = new Date(naive - tzOffsetMs(new Date(naive), tz));
+  const at = new Date(naive - tzOffsetMs(rough, tz));
+  return `${at.toISOString().slice(0, 19).replace(/[-:]/g, "")}Z`;
 }
 // RFC 5545 line folding at 74 UTF-8 bytes (continuation lines start with a space).
 function icsFold(line: string): string {
@@ -248,6 +285,9 @@ function icsFold(line: string): string {
 export function toICS(items: ExportItem[], stampISO: string, views: ConferenceViews): string {
   const stamp = stampISO.replace(/[-:]/g, "").replace(/\.\d+Z$/, "Z");
   const confId = views.conference.id;
+  // Every conference in the dataset carries its venue's zone; fall back to the
+  // one they all use rather than silently reverting to floating times.
+  const tz = views.conference.timezone || "Asia/Shanghai";
   const prodName = views.conference.name.en || views.conference.name.zh;
   const lines: string[] = [
     "BEGIN:VCALENDAR",
@@ -261,8 +301,12 @@ export function toICS(items: ExportItem[], stampISO: string, views: ConferenceVi
     lines.push(`UID:${it.uid}@${confId}`);
     lines.push(`DTSTAMP:${stamp}`);
     if (it.start && it.date) {
-      lines.push(`DTSTART:${icsDateTime(it.date, it.start)}`);
-      lines.push(`DTEND:${icsDateTime(it.date, it.end || it.start)}`);
+      lines.push(`DTSTART:${icsDateTime(it.date, it.start, tz)}`);
+      // No DTEND rather than DTEND = DTSTART: a talk whose end we do not know is
+      // not a talk that ends the moment it begins, and saying so put a
+      // zero-length block in the user's calendar. Left out, clients give it
+      // their own default length instead of believing us.
+      if (it.end) lines.push(`DTEND:${icsDateTime(it.date, it.end, tz)}`);
     } else if (it.date) {
       lines.push(`DTSTART;VALUE=DATE:${it.date.replace(/-/g, "")}`);
     }
