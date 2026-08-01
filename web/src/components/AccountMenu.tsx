@@ -41,6 +41,28 @@ function initialsOf(u: { name?: string; login?: string } | null): string {
   return (u?.name || u?.login || "?").trim().slice(0, 2).toUpperCase();
 }
 
+/** The icon of a settings row that can be on or off.
+ *
+ *  Two things every switch in this menu owes the user: its own colour, so the
+ *  menu doesn't read as one feature with three switches, and a gesture of its
+ *  own when it comes on, so the row confirms the click where the eye already
+ *  is (on the icon) and not only in the pill at the far right. The colour is
+ *  the row's `--row-fg`; the gesture is named per icon — a bell rings, a
+ *  calendar pops, a sparkle bursts.
+ *
+ *  Keyed on the state so React remounts the element: a CSS animation only
+ *  replays on a fresh element. */
+function RowIcon({ name, on, gesture, size = 15 }: {
+  name: IconName;
+  on: boolean;
+  /** Animation class played on the way in — `ai-burst` is the shared AI mark's
+      own gesture (app.css, "shared AI motion"). */
+  gesture: "row-ring" | "row-pop" | "ai-burst";
+  size?: number;
+}) {
+  return <Icon key={on ? "on" : "off"} name={name} size={size} className={on ? gesture : undefined} />;
+}
+
 export default function AccountMenu() {
   const gs = useGistSync();
   const actions = useFollowActions();
@@ -276,12 +298,12 @@ export default function AccountMenu() {
             {rem.supported && (
               <>
                 <button
-                  className="acct-row"
+                  className="acct-row acct-row--bell"
                   onClick={() => (rem.prefs.enabled ? rem.disable() : void rem.enable())}
                   aria-pressed={rem.prefs.enabled}
                   disabled={remBlocked}
                 >
-                  <Icon name="bell" size={15} />
+                  <RowIcon name="bell" on={rem.prefs.enabled && !remBlocked} gesture="row-ring" />
                   <span className="acct-row__label">{t("reminders.section")}</span>
                   {remBlocked ? (
                     <span className="acct-row__meta">{t("reminders.blocked")}</span>
@@ -299,22 +321,36 @@ export default function AccountMenu() {
                   <>
                     {/* Lead time cycles in place (5 → 10 → 15 → 30). Laying all
                         four out as chips overflowed the popover's width. */}
-                    <button className="acct-row" onClick={cycleLead}>
-                      <Icon name="clock" size={15} />
+                    <button className="acct-row acct-row--bell" onClick={cycleLead}>
+                      {/* The hand ticks round as the value changes, so the icon
+                          takes part in the cycle instead of watching it. */}
+                      <Icon key={rem.prefs.leadMin} name="clock" size={15} className="row-tick" />
                       <span className="acct-row__label">{t("reminders.lead")}</span>
                       {/* Rendered as a pill, not plain text, so it reads as
                           something you can press — the value changing on click
-                          is the whole explanation the row gets. */}
+                          is the whole explanation the row gets. The new value
+                          rolls in from above exactly like the language switch:
+                          same control shape, same answer to a click. */}
                       <span className="acct-row__value">
-                        {t("reminders.min", { n: rem.prefs.leadMin })}
+                        <AnimatePresence mode="wait" initial={false}>
+                          <motion.span
+                            key={rem.prefs.leadMin}
+                            initial={{ opacity: 0, y: -8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 8 }}
+                            transition={{ duration: 0.18, ease: easeOut }}
+                          >
+                            {t("reminders.min", { n: rem.prefs.leadMin })}
+                          </motion.span>
+                        </AnimatePresence>
                       </span>
                     </button>
                     <button
-                      className="acct-row"
+                      className="acct-row acct-row--cal"
                       onClick={() => rem.setDayStart(!rem.prefs.dayStart)}
                       aria-pressed={rem.prefs.dayStart}
                     >
-                      <Icon name="calendar" size={15} />
+                      <RowIcon name="calendar" on={rem.prefs.dayStart} gesture="row-pop" />
                       <span className="acct-row__label">{t("reminders.dayStart")}</span>
                       <span className={`acct-switch ${rem.prefs.dayStart ? "is-on" : ""}`} aria-hidden />
                     </button>
@@ -327,8 +363,11 @@ export default function AccountMenu() {
                 (summaries, semantic search, planner, topic map, similar talks).
                 Off => source text only. The "may contain errors" disclaimer lives
                 next to the generated content itself (AiMark), not here. */}
-            <button className="acct-row" onClick={ai.toggle} aria-pressed={ai.enabled}>
-              <Icon name="sparkle" size={15} />
+            <button className="acct-row acct-row--ai ai-hover" onClick={ai.toggle} aria-pressed={ai.enabled}>
+              {/* The sparkle bursts rather than pops: this is the switch that
+                  makes AI content appear, so it is the one place the mark's own
+                  gesture should be felt. */}
+              <RowIcon name="sparkle" on={ai.enabled} gesture="ai-burst" />
               <span className="acct-row__label">{t("ai.show")}</span>
               <span className={`acct-switch ${ai.enabled ? "is-on" : ""}`} aria-hidden />
             </button>
