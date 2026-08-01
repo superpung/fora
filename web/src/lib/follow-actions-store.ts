@@ -11,7 +11,13 @@ import type { ExportFormat } from "./export";
 export interface FollowActionsApi {
   /** forums + speakers + talks currently followed in this conference. */
   followedCount: number;
-  /** Run an export in the given format (no-op when nothing is followed). */
+  /** How many talks those follows actually resolve to. Lower than
+      `followedCount` — possibly zero — when a followed forum has no published
+      agenda yet, which is why the calendar/table/Markdown exports have to be
+      able to say "nothing to put in a file" instead of quietly doing nothing.
+      The JSON backup is unaffected: it stores the follows themselves. */
+  exportableCount: number;
+  /** Run an export in the given format. */
   runExport: (fmt: ExportFormat) => void;
   /** Merge a previously-exported JSON backup; resolves to a status message. */
   importFile: (file: File) => Promise<{ ok: boolean; message: string }>;

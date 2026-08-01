@@ -91,6 +91,8 @@ const zh: Dict = {
   "export.csv": "表格",
   "export.md": "Markdown",
   "export.json": "备份",
+  "export.noTalks": "暂无报告",
+  "export.nothingToList": "你关注的内容暂无可列出的报告。备份不受影响。",
 
   "import.button": "导入",
   "import.title": "导入 .json 备份",
@@ -370,6 +372,8 @@ const en: Dict = {
   "export.csv": "Spreadsheet",
   "export.md": "Markdown",
   "export.json": "Backup",
+  "export.noTalks": "no talks",
+  "export.nothingToList": "Nothing you follow resolves to a talk yet. The backup is unaffected.",
 
   "import.button": "Import",
   "import.title": "Import a .json backup",
