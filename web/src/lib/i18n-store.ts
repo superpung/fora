@@ -223,7 +223,7 @@ const zh: Dict = {
   "forum.track": "分会场 {n}",
   "forum.pendingTitle": "论坛详情整理中",
   "forum.pendingText":
-    "该论坛的报告与讲者信息以海报形式发布，尚未完成结构化解析。当前可见其编号、名称、会议室与时段等总览信息。",
+    "该论坛的报告与讲者信息尚未提供结构化内容。当前可见其编号、名称、会议室与时段等总览信息。",
 
   "hub.title": "会议",
   "hub.ongoing": "进行中",
@@ -484,7 +484,7 @@ const en: Dict = {
   "forum.track": "Room {n}",
   "forum.pendingTitle": "Forum details in preparation",
   "forum.pendingText":
-    "This forum's talks and speakers were published as a poster and haven't been parsed into structured data yet. Its code, name, room, and time slot are shown for now.",
+    "This forum's talks and speakers are not available in structured form yet. Its code, name, room, and time slot are shown for now.",
 
   "hub.title": "Conferences",
   "hub.ongoing": "Ongoing",
