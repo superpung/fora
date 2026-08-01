@@ -325,7 +325,12 @@ export default function UntimedForumGrid({
                   </Link>
                 );
               })}
-              {c.empty && <div className="tgrid__more">{tr("common.pending")}</div>}
+              {c.empty && (
+                <div className="tgrid__more">
+                  {tr(c.forum.agenda_status === "not_published"
+                    ? "common.agendaPending" : "common.pending")}
+                </div>
+              )}
             </div>
           </div>
         ))}
