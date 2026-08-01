@@ -272,7 +272,9 @@ export default function UntimedForumGrid({
                   <>
                     <span className="ufg__no mono">{pad(cell.no)}</span>
                     <span className="tgrid__ttitle">
-                      {cell.t.title_status === "tbd" ? tr("timeline.tbd") : cell.t.title?.zh}
+                      {cell.t.title_status === "tbd" || !cell.t.title?.zh
+                        ? tr("timeline.tbd")
+                        : cell.t.title.zh}
                     </span>
                     {sp?.name && <span className="tgrid__tspk">{sp.name}</span>}
                   </>
