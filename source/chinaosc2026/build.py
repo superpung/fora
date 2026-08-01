@@ -704,6 +704,11 @@ def parse_forum(row):
         "poster": poster,
         "source_url": f"{SITE}/information/detail/{doc['id']}",
         "detail_extracted": bool(talks),
+        # A forum with no talks is not the same thing as a forum we failed to
+        # read: these pages publish no timetable image and no guest section at
+        # all yet. Saying which it is lets the app tell the reader the agenda is
+        # still to come, instead of implying the fault is ours.
+        **({"agenda_status": "not_published"} if not talks else {}),
         "extra": {
             "cms_doc_id": doc["id"],
             "cms_doc_name": doc.get("name"),

@@ -24295,6 +24295,7 @@
       "chairs": [],
       "talks": [],
       "detail_extracted": false,
+      "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2025/#agenda/joint-events/harmonyos-codelab",
       "flags": [
         "no schedule table found"

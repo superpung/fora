@@ -432,6 +432,10 @@ def parse_forum(cat, tid, html):
         "chairs": chairs,
         "talks": talks,
         "detail_extracted": bool(talks),
+        # No schedule table on the page means the organisers have not published
+        # this forum's programme, not that the extraction lost it — see
+        # schema.json, agenda_status.
+        **({"agenda_status": "not_published"} if not talks else {}),
         "source_url": f"https://chinasoft.ccf.org.cn/2025/#agenda/{cat}/{tid}",
     }
     if breaks:

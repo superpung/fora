@@ -2265,6 +2265,7 @@
       "poster": null,
       "source_url": "https://chinaosc.ccf.org.cn/information/detail/1510",
       "detail_extracted": false,
+      "agenda_status": "not_published",
       "extra": {
         "cms_doc_id": 1510,
         "cms_doc_name": "【2026CCF中国开源大会分论坛介绍】生态型智能化软件工厂",
@@ -3280,6 +3281,7 @@
       "poster": null,
       "source_url": "https://chinaosc.ccf.org.cn/information/detail/1515",
       "detail_extracted": false,
+      "agenda_status": "not_published",
       "extra": {
         "cms_doc_id": 1515,
         "cms_doc_name": "【2026CCF中国开源大会分论坛介绍】开源芯片",
@@ -3334,6 +3336,7 @@
       "poster": null,
       "source_url": "https://chinaosc.ccf.org.cn/information/detail/1517",
       "detail_extracted": false,
+      "agenda_status": "not_published",
       "extra": {
         "cms_doc_id": 1517,
         "cms_doc_name": "【2026CCF中国开源大会分论坛介绍】鲲鹏昇腾开源基础软件技术",
@@ -7590,6 +7593,7 @@
       "poster": null,
       "source_url": "https://chinaosc.ccf.org.cn/information/detail/1514",
       "detail_extracted": false,
+      "agenda_status": "not_published",
       "extra": {
         "cms_doc_id": 1514,
         "cms_doc_name": "【2026CCF中国开源大会分论坛介绍】云际计算开源协同创新技术",
