@@ -268,6 +268,19 @@ const zh: Dict = {
   "plan.viewStarred": "查看",
   "plan.aiOff": "「为我规划」由 AI 推导生成，当前已关闭 AI 内容。",
   "plan.aiTurnOn": "开启 AI 内容",
+  "nav.topics": "主题",
+  "topics.title": "主题地图",
+  "topics.coverage": "{topics} 个主题 · {total} 场报告中 {tagged} 场带有主题标签",
+  "topics.pendingForum": "另有 {n} 个论坛详情待补",
+  "topics.pendingForums": "另有 {n} 个论坛详情待补",
+  "topics.mapAria": "主题地图：气泡大小表示报告数量，连线表示主题共现",
+  "topics.bubbleAriaOne": "{topic}，{n} 场报告",
+  "topics.bubbleAria": "{topic}，{n} 场报告",
+  "topics.related": "共现主题",
+  "topics.clear": "取消选择",
+  "topics.empty": "本届会议暂无主题标签",
+  "similar.title": "相似报告",
+  "similar.none": "没有找到足够相似的报告",
 };
 
 const en: Dict = {
@@ -516,6 +529,19 @@ const en: Dict = {
   "plan.viewStarred": "View",
   "plan.aiOff": "Plan for me is AI-derived, and AI content is currently off.",
   "plan.aiTurnOn": "Turn on AI content",
+  "nav.topics": "Topics",
+  "topics.title": "Topic map",
+  "topics.coverage": "{topics} topics · {tagged} of {total} talks tagged",
+  "topics.pendingForum": "{n} more forum pending extraction",
+  "topics.pendingForums": "{n} more forums pending extraction",
+  "topics.mapAria": "Topic map: bubble size is the talk count, links are co-occurring topics",
+  "topics.bubbleAriaOne": "{topic}, {n} talk",
+  "topics.bubbleAria": "{topic}, {n} talks",
+  "topics.related": "Co-occurring",
+  "topics.clear": "Clear selection",
+  "topics.empty": "No topic tags for this conference",
+  "similar.title": "Similar talks",
+  "similar.none": "No closely related talks",
 };
 
 const DICTS: Record<Lang, Dict> = { zh, en };
