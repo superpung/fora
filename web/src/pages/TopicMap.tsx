@@ -100,7 +100,11 @@ function TopicTalkRow({ talk }: { talk: TopicTalk }) {
       to={`/${confId}/forum/${talk.forumCode}#talk-${talk.index + 1}`}
     >
       <span className="tmaptalk__title">
-        {talk.titleTbd ? <span className="muted-i">{t("forum.titleTbd")}</span> : talk.title}
+        {talk.titleTbd ? (
+          <span className="muted-i">{talk.title || t("forum.titleTbd")}</span>
+        ) : (
+          talk.title
+        )}
       </span>
       <span className="tmaptalk__meta">
         <span className="tmaptalk__code mono">{talk.forumCode}</span>
