@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import { formatDate, todayISO } from "../lib/data";
 import { useConference } from "../lib/conference-store";
-import { useFollow } from "../lib/follow-store";
+import { useFollow, keynoteId } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
 import { useStickyState } from "../lib/sticky-state";
 import { useHScroll } from "../lib/hscroll";
@@ -38,13 +38,15 @@ function TimeRange({ start, end }: { start?: string | null; end?: string | null 
 // Merge talks and breaks into a single chronological list so a mid-morning
 // tea break sits between the talks it actually falls between — not at the end.
 type Row =
-  | { kind: "talk"; start?: string | null; end?: string | null; talk: Talk }
+  | { kind: "talk"; start?: string | null; end?: string | null; talk: Talk; i: number }
   | { kind: "break"; start?: string | null; end?: string | null; brk: Break };
 
 function chronoRows(block: Block): Row[] {
   const rows: Row[] = [
+    // The talk keeps its position in the block: that, plus the day, is the id a
+    // keynote is starred under.
     ...(block.talks ?? []).map(
-      (t): Row => ({ kind: "talk", start: t.start, end: t.end, talk: t }),
+      (t, i): Row => ({ kind: "talk", start: t.start, end: t.end, talk: t, i }),
     ),
     ...(block.breaks ?? []).map(
       (b): Row => ({ kind: "break", start: b.start, end: b.end, brk: b }),
@@ -53,12 +55,28 @@ function chronoRows(block: Block): Row[] {
   return rows.sort((a, b) => (a.start ?? "").localeCompare(b.start ?? ""));
 }
 
-function KeynotesBlock({ block, date }: { block: Block; date: string }) {
+function KeynotesBlock({
+  block,
+  date,
+  base = 0,
+  keep,
+}: {
+  block: Block;
+  date: string;
+  /** how many keynote talks the day's earlier keynote blocks hold — a keynote's
+      star id counts across the whole day, not within one block */
+  base?: number;
+  /** in the follow view, the rows to keep; breaks are context, so they go */
+  keep?: (index: number, talk: Talk) => boolean;
+}) {
   const { t } = useI18n();
   const now = useNow();
+  const rows = keep
+    ? chronoRows(block).filter((r) => r.kind === "talk" && keep(base + r.i, r.talk))
+    : chronoRows(block);
   return (
     <div className="talklist">
-      {chronoRows(block).map((row, i) =>
+      {rows.map((row, i) =>
         row.kind === "break" ? (
           <div key={`br${i}`} className="breakrow">
             <TimeRange start={row.start} end={row.end} />
@@ -149,14 +167,17 @@ export default function Schedule() {
   const views = useConference();
   const { id: confId, days, venueName } = views;
   const { t, lang } = useI18n();
-  const { forums, speakers, talks } = useFollow();
-  const followCount = forums.size + speakers.size + talks.size;
-  // Sticky so returning from a forum page restores the day tab and follow filter
-  // (paired with scroll restoration), keyed by conference so a switch is fresh.
-  const [onlyFollowed, setOnlyFollowed] = useStickyState(`${confId}:sched.followed`, false);
-  // Two ways to read the schedule: the full "list" board, or "My Day" — the
-  // user's starred items for the active day as an ordered vertical timeline.
-  const [view, setView] = useStickyState<"list" | "myday">(`${confId}:sched.view`, "list");
+  const { forums, speakers, talks, isTalk, isSpeaker } = useFollow();
+  // Two questions, asked in order, instead of two controls that both said
+  // "mine" and left the reader to work out how they differed:
+  //   scope — whose day is this, everyone's or the one I starred?
+  //   shape — and if it's mine, laid out across the rooms, or as one walk?
+  // Shape only means anything inside "mine", so it only appears there. Sticky so
+  // a trip to a forum page and back restores both (paired with scroll
+  // restoration), keyed by conference so switching conferences starts fresh.
+  const [scope, setScope] = useStickyState<"all" | "mine">(`${confId}:sched.scope`, "all");
+  const [shape, setShape] = useStickyState<"board" | "day">(`${confId}:sched.shape`, "day");
+  const mine = scope === "mine";
 
   // Every starred item, resolved to a talk with time/room, grouped by day. Reused
   // by My Day (the day tabs pick which day). Recomputed only when follows change.
@@ -190,12 +211,34 @@ export default function Schedule() {
   // A long conference has more day tabs than a phone can show. Keep the
   // selected day in sight and fade the side that continues.
   const dayTabsRef = useHScroll<HTMLDivElement>([active, lang, days.length]);
-  // In the follow view only the forum timeline is meaningful (that's where a
-  // "room / forum" lives); non-forum blocks — keynotes, check-in, committee
-  // meetings, breaks — aren't followable, so hide them while filtering.
-  const blocks = onlyFollowed
-    ? day.blocks.filter((b) => b.kind === "forums")
-    : day.blocks;
+  // The toggle reads one day, so its badge counts that day — the same number the
+  // view it opens shows, not a site-wide follow total that would disagree.
+  const myDayItems = myDayByDate.get(day.date) ?? [];
+
+  // A keynote is followed-relevant when starred or one of its speakers is —
+  // the same rule the forum board and My Day use. Its id counts keynote talks
+  // across the whole day, so each block starts where the previous one ended.
+  const keynoteFollowed = (index: number, talk: Talk) =>
+    isTalk(keynoteId(day.date, index)) ||
+    (talk.speakers ?? []).some((s) => isSpeaker(s.name));
+  const keynoteBase = new Map<Block, number>();
+  let keynoteSeen = 0;
+  for (const b of day.blocks) {
+    if (b.kind !== "keynotes") continue;
+    keynoteBase.set(b, keynoteSeen);
+    keynoteSeen += (b.talks ?? []).length;
+  }
+  // In the follow board, a block earns its place by holding something followed.
+  // Keynotes are starrable, so the block stays when one of its own is starred —
+  // it used to be dropped wholesale, which lost starred keynotes that My Day
+  // showed. Check-in, banquets and committee meetings can't be starred at all.
+  const boardBlocks = day.blocks.filter(
+    (b) =>
+      b.kind === "forums" ||
+      (b.kind === "keynotes" &&
+        (b.talks ?? []).some((t, i) => keynoteFollowed((keynoteBase.get(b) ?? 0) + i, t))),
+  );
+  const blocks = mine && shape === "board" ? boardBlocks : day.blocks;
 
   return (
     <motion.div
@@ -213,39 +256,68 @@ export default function Schedule() {
           <h2 className="section__title">{t("schedule.title")}</h2>
         </div>
         <div className="section__controls">
-          {/* List ↔ My Day: My Day reshapes the same starred set into a per-day
-              timeline, so the follow filter is redundant there and is hidden. */}
-          {view === "list" && (
-            <button
-              className={`filterchip ${onlyFollowed ? "is-on" : ""}`}
-              onClick={() => setOnlyFollowed((v) => !v)}
-              title={t("timeline.onlyFollowsTip")}
-              aria-pressed={onlyFollowed}
-            >
-              <Icon name="star" filled={onlyFollowed} size={14} />
-              <span className="filterchip__label">{t("timeline.onlyFollows")}</span>
-              {followCount ? <span className="filterchip__n">{followCount}</span> : null}
-            </button>
-          )}
-          <div className="segtoggle" role="tablist" aria-label={t("schedule.viewLabel")}>
+          {/* The shape of "mine" — only a choice once there is a "mine", so it
+              comes and goes. It sits *before* the scope toggle, which is always
+              there and stays pinned to the edge: what appears grows into the
+              empty space instead of shoving the button under the reader's
+              cursor. */}
+          <AnimatePresence>
+            {mine && (
+              <motion.div
+                className="segtoggle segtoggle--sub"
+                role="tablist"
+                aria-label={t("schedule.shapeLabel")}
+                initial={{ opacity: 0, x: 8 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 8 }}
+                transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <button
+                  role="tab"
+                  aria-selected={shape === "board"}
+                  className={`segtoggle__opt ${shape === "board" ? "is-on" : ""}`}
+                  onClick={() => setShape("board")}
+                  title={t("schedule.shapeBoardTip")}
+                >
+                  <Icon name="forums" size={13} />
+                  <span className="segtoggle__label">{t("schedule.shapeBoard")}</span>
+                </button>
+                <button
+                  role="tab"
+                  aria-selected={shape === "day"}
+                  className={`segtoggle__opt ${shape === "day" ? "is-on" : ""}`}
+                  onClick={() => setShape("day")}
+                  title={t("schedule.shapeDayTip")}
+                >
+                  <Icon name="clock" size={13} />
+                  <span className="segtoggle__label">{t("schedule.shapeDay")}</span>
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+          <div className="segtoggle" role="tablist" aria-label={t("schedule.scopeLabel")}>
             <button
               role="tab"
-              aria-selected={view === "list"}
-              className={`segtoggle__opt ${view === "list" ? "is-on" : ""}`}
-              onClick={() => setView("list")}
+              aria-selected={!mine}
+              className={`segtoggle__opt ${!mine ? "is-on" : ""}`}
+              onClick={() => setScope("all")}
+              title={t("schedule.scopeAllTip")}
             >
               <Icon name="calendar" size={13} />
-              <span className="segtoggle__label">{t("schedule.viewList")}</span>
+              <span className="segtoggle__label">{t("schedule.scopeAll")}</span>
             </button>
             <button
               role="tab"
-              aria-selected={view === "myday"}
-              className={`segtoggle__opt ${view === "myday" ? "is-on" : ""}`}
-              onClick={() => setView("myday")}
+              aria-selected={mine}
+              className={`segtoggle__opt ${mine ? "is-on" : ""}`}
+              onClick={() => setScope("mine")}
+              title={t("schedule.scopeMineTip")}
             >
-              <Icon name="star" filled={view === "myday"} size={13} />
-              <span className="segtoggle__label">{t("schedule.viewMyDay")}</span>
-              {followCount ? <span className="filterchip__n">{followCount}</span> : null}
+              <Icon name="star" filled={mine} size={13} />
+              <span className="segtoggle__label">{t("schedule.scopeMine")}</span>
+              {myDayItems.length ? (
+                <span className="filterchip__n">{myDayItems.length}</span>
+              ) : null}
             </button>
           </div>
         </div>
@@ -280,9 +352,13 @@ export default function Schedule() {
         </div>
       </div>
 
+      {/* Keyed by day *and* what is being shown: switching either replaces the
+          whole board, so both switches get the same enter/exit motion. Keyed by
+          day alone, going back to the full schedule swapped it in with no
+          animation at all, while the opposite direction appeared to have one. */}
       <AnimatePresence mode="wait">
         <motion.div
-          key={day.date}
+          key={`${day.date}:${mine ? shape : "all"}`}
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
@@ -294,11 +370,11 @@ export default function Schedule() {
             </span>
           </div>
 
-          {view === "myday" ? (
-            <MyDay date={day.date} items={myDayByDate.get(day.date) ?? []} />
+          {mine && shape === "day" ? (
+            <MyDay date={day.date} items={myDayItems} />
           ) : (
           <div className="blocks">
-            {onlyFollowed && blocks.length === 0 && (
+            {mine && blocks.length === 0 && (
               <div className="tgrid__empty">{t("timeline.noFollows")}</div>
             )}
             {blocks.map((block, bi) => (
@@ -329,8 +405,17 @@ export default function Schedule() {
                   )}
                 </div>
 
-                {block.kind === "keynotes" && <KeynotesBlock block={block} date={day.date} />}
-                {block.kind === "forums" && <ForumsBlock block={block} date={day.date} filtered={onlyFollowed} />}
+                {block.kind === "keynotes" && (
+                  <KeynotesBlock
+                    block={block}
+                    date={day.date}
+                    base={keynoteBase.get(block) ?? 0}
+                    keep={mine ? keynoteFollowed : undefined}
+                  />
+                )}
+                {block.kind === "forums" && (
+                  <ForumsBlock block={block} date={day.date} filtered={mine} />
+                )}
                 {block.kind === "committee_meetings" && <MeetingsBlock block={block} />}
                 {block.note && <div className="simplerow">{block.note}</div>}
               </motion.section>
