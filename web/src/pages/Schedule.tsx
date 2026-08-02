@@ -109,15 +109,15 @@ function KeynotesBlock({ block, date }: { block: Block; date: string }) {
   );
 }
 
-function ForumsBlock({ block, date, filtered }: { block: Block; date: string; filtered: boolean }) {
+function ForumsBlock({ block, date }: { block: Block; date: string }) {
   const { forumsByCode } = useConference();
   // Both paths are time-axis boards showing the forums running in parallel: when
   // talks carry real per-talk times, the proportional TimeGrid; otherwise the
   // untimed board that bands the shared window at its real breaks.
   return hasForumTimes(block, forumsByCode) ? (
-    <TimeGrid block={block} date={date} filtered={filtered} />
+    <TimeGrid block={block} date={date} />
   ) : (
-    <UntimedForumGrid block={block} date={date} filtered={filtered} />
+    <UntimedForumGrid block={block} date={date} />
   );
 }
 
@@ -150,12 +150,12 @@ export default function Schedule() {
   const { id: confId, days, venueName } = views;
   const { t, lang } = useI18n();
   const { forums, speakers, talks } = useFollow();
-  const followCount = forums.size + speakers.size + talks.size;
-  // Sticky so returning from a forum page restores the day tab and follow filter
-  // (paired with scroll restoration), keyed by conference so a switch is fresh.
-  const [onlyFollowed, setOnlyFollowed] = useStickyState(`${confId}:sched.followed`, false);
-  // Two ways to read the schedule: the full "list" board, or "My Day" — the
-  // user's starred items for the active day as an ordered vertical timeline.
+  // One control, two answers to "whose schedule am I reading": everything the
+  // day holds, or only what this reader starred. A separate follow filter used
+  // to sit beside this toggle and produced a third state — the same starred set
+  // as My Day, only laid out as a filtered board — which is why two controls
+  // stood here saying nearly the same thing. Sticky so a trip to a forum page
+  // and back restores it (paired with scroll restoration), keyed by conference.
   const [view, setView] = useStickyState<"list" | "myday">(`${confId}:sched.view`, "list");
 
   // Every starred item, resolved to a talk with time/room, grouped by day. Reused
@@ -190,12 +190,9 @@ export default function Schedule() {
   // A long conference has more day tabs than a phone can show. Keep the
   // selected day in sight and fade the side that continues.
   const dayTabsRef = useHScroll<HTMLDivElement>([active, lang, days.length]);
-  // In the follow view only the forum timeline is meaningful (that's where a
-  // "room / forum" lives); non-forum blocks — keynotes, check-in, committee
-  // meetings, breaks — aren't followable, so hide them while filtering.
-  const blocks = onlyFollowed
-    ? day.blocks.filter((b) => b.kind === "forums")
-    : day.blocks;
+  // The toggle reads one day, so its badge counts that day — the same number the
+  // panel it opens shows, not a site-wide follow total that would disagree.
+  const myDayItems = myDayByDate.get(day.date) ?? [];
 
   return (
     <motion.div
@@ -213,39 +210,29 @@ export default function Schedule() {
           <h2 className="section__title">{t("schedule.title")}</h2>
         </div>
         <div className="section__controls">
-          {/* List ↔ My Day: My Day reshapes the same starred set into a per-day
-              timeline, so the follow filter is redundant there and is hidden. */}
-          {view === "list" && (
-            <button
-              className={`filterchip ${onlyFollowed ? "is-on" : ""}`}
-              onClick={() => setOnlyFollowed((v) => !v)}
-              title={t("timeline.onlyFollowsTip")}
-              aria-pressed={onlyFollowed}
-            >
-              <Icon name="star" filled={onlyFollowed} size={14} />
-              <span className="filterchip__label">{t("timeline.onlyFollows")}</span>
-              {followCount ? <span className="filterchip__n">{followCount}</span> : null}
-            </button>
-          )}
           <div className="segtoggle" role="tablist" aria-label={t("schedule.viewLabel")}>
             <button
               role="tab"
               aria-selected={view === "list"}
               className={`segtoggle__opt ${view === "list" ? "is-on" : ""}`}
               onClick={() => setView("list")}
+              title={t("schedule.viewAllTip")}
             >
               <Icon name="calendar" size={13} />
-              <span className="segtoggle__label">{t("schedule.viewList")}</span>
+              <span className="segtoggle__label">{t("schedule.viewAll")}</span>
             </button>
             <button
               role="tab"
               aria-selected={view === "myday"}
               className={`segtoggle__opt ${view === "myday" ? "is-on" : ""}`}
               onClick={() => setView("myday")}
+              title={t("schedule.viewMyDayTip")}
             >
               <Icon name="star" filled={view === "myday"} size={13} />
               <span className="segtoggle__label">{t("schedule.viewMyDay")}</span>
-              {followCount ? <span className="filterchip__n">{followCount}</span> : null}
+              {myDayItems.length ? (
+                <span className="filterchip__n">{myDayItems.length}</span>
+              ) : null}
             </button>
           </div>
         </div>
@@ -280,9 +267,13 @@ export default function Schedule() {
         </div>
       </div>
 
+      {/* Keyed by day *and* view: switching either one replaces the whole board,
+          so both switches get the same enter/exit motion. Keyed by day alone,
+          going back to the full schedule swapped it in with no animation at
+          all, while the opposite direction appeared to have one. */}
       <AnimatePresence mode="wait">
         <motion.div
-          key={day.date}
+          key={`${day.date}:${view}`}
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
@@ -295,13 +286,10 @@ export default function Schedule() {
           </div>
 
           {view === "myday" ? (
-            <MyDay date={day.date} items={myDayByDate.get(day.date) ?? []} />
+            <MyDay date={day.date} items={myDayItems} />
           ) : (
           <div className="blocks">
-            {onlyFollowed && blocks.length === 0 && (
-              <div className="tgrid__empty">{t("timeline.noFollows")}</div>
-            )}
-            {blocks.map((block, bi) => (
+            {day.blocks.map((block, bi) => (
               <motion.section
                 key={bi}
                 className={`block block--${block.kind}`}
@@ -330,7 +318,7 @@ export default function Schedule() {
                 </div>
 
                 {block.kind === "keynotes" && <KeynotesBlock block={block} date={day.date} />}
-                {block.kind === "forums" && <ForumsBlock block={block} date={day.date} filtered={onlyFollowed} />}
+                {block.kind === "forums" && <ForumsBlock block={block} date={day.date} />}
                 {block.kind === "committee_meetings" && <MeetingsBlock block={block} />}
                 {block.note && <div className="simplerow">{block.note}</div>}
               </motion.section>

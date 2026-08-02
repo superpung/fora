@@ -124,9 +124,6 @@ const zh: Dict = {
   "timeline.tbd": "题目待定",
   "timeline.moreUntimed": "另有 {n} 场未标注时间",
   "timeline.enterTalk": "进入报告",
-  "timeline.noFollows": "本日暂无已关注的报告",
-  "timeline.onlyFollows": "我的关注",
-  "timeline.onlyFollowsTip": "只看我关注的会议室与报告",
 
   "home.filterForums": "筛选包含 {name} 的论坛与报告",
   "home.expandBefore": "展开前面 {n} 个报告",
@@ -164,8 +161,10 @@ const zh: Dict = {
   "schedule.talkTbd": "报告题目待定",
   "schedule.breakNote": "（各分论坛同时休息）",
   "schedule.viewLabel": "切换视图",
-  "schedule.viewList": "列表",
+  "schedule.viewAll": "全部",
+  "schedule.viewAllTip": "本日全部议程",
   "schedule.viewMyDay": "我的一天",
+  "schedule.viewMyDayTip": "只看我关注的，按时间排成一天",
 
   "myday.empty": "本日暂无收藏的议程",
   "myday.emptyHint": "在日程中点击星标即可加入我的一天",
@@ -173,6 +172,7 @@ const zh: Dict = {
   "myday.now": "进行中",
   "myday.gap": "空档 {n} 分钟",
   "myday.moveTo": "换场至 {to}",
+  "myday.clash": "与上一场时间重叠",
 
   "speakers.title": "讲者",
   "speakers.searchPlaceholder": "搜索讲者 / 单位 / 报告…",
@@ -407,9 +407,6 @@ const en: Dict = {
   "timeline.tbd": "TBD",
   "timeline.moreUntimed": "{n} more without a listed time",
   "timeline.enterTalk": "Open talk",
-  "timeline.noFollows": "No followed talks today",
-  "timeline.onlyFollows": "My follows",
-  "timeline.onlyFollowsTip": "Show only rooms & talks I follow",
 
   "home.filterForums": "Filter forums & talks containing {name}",
   "home.expandBefore": "Show {n} earlier",
@@ -447,8 +444,10 @@ const en: Dict = {
   "schedule.talkTbd": "Talk title TBD",
   "schedule.breakNote": " (all forums pause)",
   "schedule.viewLabel": "Switch view",
-  "schedule.viewList": "List",
+  "schedule.viewAll": "All",
+  "schedule.viewAllTip": "Everything on this day",
   "schedule.viewMyDay": "My Day",
+  "schedule.viewMyDayTip": "Only what I starred, in time order",
 
   "myday.empty": "No starred items for this day",
   "myday.emptyHint": "Star talks in the schedule to plan your day",
@@ -456,6 +455,7 @@ const en: Dict = {
   "myday.now": "On now",
   "myday.gap": "{n} min gap",
   "myday.moveTo": "Move to {to}",
+  "myday.clash": "Overlaps the previous one",
 
   "speakers.title": "Speakers",
   "speakers.searchPlaceholder": "Search speakers / affiliations / talks…",
