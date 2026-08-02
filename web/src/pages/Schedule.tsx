@@ -256,41 +256,20 @@ export default function Schedule() {
           <h2 className="section__title">{t("schedule.title")}</h2>
         </div>
         <div className="section__controls">
-          <div className="segtoggle" role="tablist" aria-label={t("schedule.scopeLabel")}>
-            <button
-              role="tab"
-              aria-selected={!mine}
-              className={`segtoggle__opt ${!mine ? "is-on" : ""}`}
-              onClick={() => setScope("all")}
-              title={t("schedule.scopeAllTip")}
-            >
-              <Icon name="calendar" size={13} />
-              <span className="segtoggle__label">{t("schedule.scopeAll")}</span>
-            </button>
-            <button
-              role="tab"
-              aria-selected={mine}
-              className={`segtoggle__opt ${mine ? "is-on" : ""}`}
-              onClick={() => setScope("mine")}
-              title={t("schedule.scopeMineTip")}
-            >
-              <Icon name="star" filled={mine} size={13} />
-              <span className="segtoggle__label">{t("schedule.scopeMine")}</span>
-              {myDayItems.length ? (
-                <span className="filterchip__n">{myDayItems.length}</span>
-              ) : null}
-            </button>
-          </div>
-          {/* The shape of "mine" — only a choice once there is a "mine". */}
+          {/* The shape of "mine" — only a choice once there is a "mine", so it
+              comes and goes. It sits *before* the scope toggle, which is always
+              there and stays pinned to the edge: what appears grows into the
+              empty space instead of shoving the button under the reader's
+              cursor. */}
           <AnimatePresence>
             {mine && (
               <motion.div
                 className="segtoggle segtoggle--sub"
                 role="tablist"
                 aria-label={t("schedule.shapeLabel")}
-                initial={{ opacity: 0, x: -6 }}
+                initial={{ opacity: 0, x: 8 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -6 }}
+                exit={{ opacity: 0, x: 8 }}
                 transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
               >
                 <button
@@ -316,6 +295,31 @@ export default function Schedule() {
               </motion.div>
             )}
           </AnimatePresence>
+          <div className="segtoggle" role="tablist" aria-label={t("schedule.scopeLabel")}>
+            <button
+              role="tab"
+              aria-selected={!mine}
+              className={`segtoggle__opt ${!mine ? "is-on" : ""}`}
+              onClick={() => setScope("all")}
+              title={t("schedule.scopeAllTip")}
+            >
+              <Icon name="calendar" size={13} />
+              <span className="segtoggle__label">{t("schedule.scopeAll")}</span>
+            </button>
+            <button
+              role="tab"
+              aria-selected={mine}
+              className={`segtoggle__opt ${mine ? "is-on" : ""}`}
+              onClick={() => setScope("mine")}
+              title={t("schedule.scopeMineTip")}
+            >
+              <Icon name="star" filled={mine} size={13} />
+              <span className="segtoggle__label">{t("schedule.scopeMine")}</span>
+              {myDayItems.length ? (
+                <span className="filterchip__n">{myDayItems.length}</span>
+              ) : null}
+            </button>
+          </div>
         </div>
       </div>
 

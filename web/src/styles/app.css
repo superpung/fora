@@ -1539,10 +1539,12 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 /* ============================ SCHEDULE — view toggle ============================ */
 .section__controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 /* On a phone the two toggles and the title cannot share a line without the
-   title breaking mid-word, so the controls take their own row instead. */
+   title breaking mid-word, so the controls take their own row instead — still
+   ending at the same right margin, so the toggle that is always there keeps its
+   place whether or not the one beside it is showing. */
 @media (max-width: 640px) {
   .section__head { flex-wrap: wrap; }
-  .section__controls { flex: 1 0 100%; }
+  .section__controls { flex: 1 0 100%; justify-content: flex-end; }
 }
 .segtoggle {
   display: inline-flex; align-items: center; gap: 2px; padding: 2px;
