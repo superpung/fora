@@ -11,6 +11,7 @@ import { useNow, isNowWithin, type Now } from "../lib/use-now";
 import { pageVariants } from "../lib/motion";
 import Icon from "../components/Icon";
 import type { Talk } from "../types";
+import { titleLine } from "../lib/talk-title";
 
 /* ---------------- small pieces ---------------- */
 
@@ -270,11 +271,10 @@ function KeynoteRow({
       <div className="krow__main">
         <div className="krow__titlerow">
           <div className="krow__title">
-            {t.title_status === "tbd" ? (
-              <span className="muted-i">{tr("home.tbd")}</span>
-            ) : (
-              t.title?.zh
-            )}
+            {(() => {
+              const line = titleLine(t, tr("home.tbd"));
+              return line.own ? line.text : <span className="muted-i">{line.text}</span>;
+            })()}
           </div>
           {!isOpening && (
             <StarButton
@@ -487,11 +487,10 @@ function ForumRow({
                         </span>
                       )}
                       <span className="ftalk__title">
-                        {t.title_status === "tbd" ? (
-                          <span className="muted-i">{tr("home.tbd")}</span>
-                        ) : (
-                          t.title?.zh
-                        )}
+                        {(() => {
+                          const line = titleLine(t, tr("home.tbd"));
+                          return line.own ? line.text : <span className="muted-i">{line.text}</span>;
+                        })()}
                       </span>
                       {(t.speakers ?? []).length > 0 && (
                         <span className="ftalk__speakers">
