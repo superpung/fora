@@ -1629,8 +1629,10 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
   font-size: 10.5px; font-weight: 600; letter-spacing: 0.04em;
   color: #fff; background: var(--tg-now); padding: 1px 6px; border-radius: 999px;
 }
-.myday__room { display: inline-flex; align-items: center; gap: 4px; }
-.myday__room svg { color: var(--fg-muted); }
+/* Speaker and room read as the same kind of fact, so they are drawn the same:
+   a muted icon, then the words. */
+.myday__spk, .myday__room { display: inline-flex; align-items: center; gap: 4px; }
+.myday__spk svg, .myday__room svg { color: var(--fg-muted); }
 .talkrow--now .talkrow__title { font-weight: 600; }
 
 /* the gap / room-move / clash strip between two rows */

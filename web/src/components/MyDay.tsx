@@ -100,7 +100,14 @@ export default function MyDay({ date, items }: { date: string; items: ExportItem
                     {running && <span className="myday__nowtag">{t("myday.now")}</span>}
                   </div>
                   <div className="talkrow__speaker">
-                    {it.speakers && <strong>{it.speakers}</strong>}
+                    {/* Speaker with a person icon, room with a pin, session
+                        plain — the way the plan list and the live card write the
+                        same three facts. */}
+                    {it.speakers && (
+                      <strong className="myday__spk">
+                        <Icon name="user" size={12} /> {it.speakers}
+                      </strong>
+                    )}
                     <span className="talkrow__aff">
                       {it.session}
                       {it.code ? ` · ${it.code}` : ""}
