@@ -3,6 +3,7 @@ import { keynoteId, talkId } from "./follow-store";
 import { topicAliases, topicSearchText } from "./topic-labels";
 import type { ConferenceViews } from "./data";
 import type { Talk } from "../types";
+import { ownTitle } from "./talk-title";
 
 // The "Plan for me" recommender behind /:conf/plan. A user describes an
 // interest in prose; this module ranks every talk in the conference against
@@ -85,7 +86,7 @@ function speakerText(t: Talk): string {
 /** Is this something a person would plan to attend? Untitled entries have
     nothing to recommend yet, and openings/greetings are ceremony, not a talk. */
 function plannable(t: Talk): boolean {
-  return t.title_status !== "tbd" && !!t.title?.zh && t.type !== "opening";
+  return ownTitle(t) !== null && t.type !== "opening";
 }
 
 /** Every plannable talk of a conference (forum talks + main-stage keynotes),

@@ -1,4 +1,5 @@
 import type { Conference } from "../types";
+import { ownTitle, titleLine } from "./talk-title";
 
 // "If you liked this, you might also want" — related talks for one open talk.
 //
@@ -109,8 +110,8 @@ function buildCorpus(conference: Conference): Corpus {
         forumCode: f.code,
         forumTitle: f.title.zh,
         index,
-        title: talk.title?.zh ?? undefined,
-        titleTbd: talk.title_status === "tbd" || !talk.title?.zh,
+        title: titleLine(talk, "").text || undefined,
+        titleTbd: !ownTitle(talk),
         room: f.room,
         date: f.day_date,
         period: f.session_period,

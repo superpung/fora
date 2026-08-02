@@ -15,6 +15,7 @@ import PosterModal from "../components/PosterModal";
 import SimilarTalks from "../components/SimilarTalks";
 import type { PosterSpec, PosterMeta } from "../lib/poster";
 import type { Person, Talk } from "../types";
+import { titleLine } from "../lib/talk-title";
 
 /** "2025年11月27–30日" — a compact CN date range, collapsing shared year/month. */
 function confDateRange(start: string, end: string): string {
@@ -362,8 +363,7 @@ export default function ForumDetail() {
     const chairs = (f.chairs ?? []).map((c) => ({ name: c.name, aff: c.affiliation_raw }));
     const talks = (f.talks ?? []).map((t, i) => ({
       index: i + 1,
-      title:
-        t.title_status === "tbd" || !t.title?.zh ? tr("forum.titleTbd") : t.title.zh,
+      title: titleLine(t, tr("forum.titleTbd")).text,
       time: t.start ? `${t.start}${t.end ? `–${t.end}` : ""}` : null,
       speakers: (t.speakers ?? []).map((s) => ({ name: s.name, aff: s.affiliation_raw })),
     }));
@@ -410,8 +410,7 @@ export default function ForumDetail() {
         confLocation,
         chip: f.category?.name.zh ?? tr("poster.kindTalk"),
         code: f.code,
-        title:
-          t.title_status === "tbd" || !t.title?.zh ? tr("forum.titleTbd") : t.title.zh,
+        title: titleLine(t, tr("forum.titleTbd")).text,
         metaLines,
         accent: accentColor(),
         qrUrl: `${shareUrl()}#talk-${i + 1}`,
@@ -442,11 +441,12 @@ export default function ForumDetail() {
             </span>
           )}
           <h3 className="talk__title">
-            {t.title_status === "tbd" ? (
-              <span className="muted-i">{tr("forum.titleTbd")}</span>
-            ) : (
-              t.title?.zh
-            )}
+            {(() => {
+              // A slot the source did not title keeps the words the source did
+              // print there — muted, the way a pending title already is.
+              const line = titleLine(t, tr("forum.titleTbd"));
+              return line.own ? line.text : <span className="muted-i">{line.text}</span>;
+            })()}
           </h3>
           <button
             className="iconbtn talk__poster"

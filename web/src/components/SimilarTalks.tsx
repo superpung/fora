@@ -29,7 +29,11 @@ function SimilarRow({ item }: { item: SimilarTalk }) {
   return (
     <Link className="simrow" to={`/${confId}/forum/${item.forumCode}#talk-${item.index + 1}`}>
       <span className="simrow__title">
-        {item.titleTbd ? <span className="muted-i">{t("forum.titleTbd")}</span> : item.title}
+        {item.titleTbd ? (
+          <span className="muted-i">{item.title || t("forum.titleTbd")}</span>
+        ) : (
+          item.title
+        )}
       </span>
       <span className="simrow__meta">
         <span className="simrow__code mono">{item.forumCode}</span>
