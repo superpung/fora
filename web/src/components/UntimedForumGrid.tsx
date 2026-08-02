@@ -7,6 +7,7 @@ import { useCoarsePointer } from "../lib/use-coarse-pointer";
 import { useNow } from "../lib/use-now";
 import Icon from "../components/Icon";
 import type { Block, Forum, Talk } from "../types";
+import { titleLine } from "../lib/talk-title";
 
 // A time-vs-forum board for a day whose forums run in PARALLEL but carry NO
 // per-talk times (e.g. ccfchip: each forum is an ordered talk list inside one
@@ -272,9 +273,7 @@ export default function UntimedForumGrid({
                   <>
                     <span className="ufg__no mono">{pad(cell.no)}</span>
                     <span className="tgrid__ttitle">
-                      {cell.t.title_status === "tbd" || !cell.t.title?.zh
-                        ? tr("timeline.tbd")
-                        : cell.t.title.zh}
+                      {titleLine(cell.t, tr("timeline.tbd")).text}
                     </span>
                     {sp?.name && <span className="tgrid__tspk">{sp.name}</span>}
                   </>

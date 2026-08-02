@@ -387,13 +387,33 @@ def parse_forum(cat, tid, html):
         is_schedule = "time" in roles and any(
             r in roles for r in ("title", "speaker", "members")
         )
-        rows = tbl.select("tbody tr")
+        # Document order, not just tbody: a table can interleave header rows
+        # between bodies, and a full-width one names the rows beneath it.
+        rows = tbl.find_all("tr")
         if not is_schedule:
             flags.append(f"non-schedule table headers {headers} captured as extra")
             continue
+        band = None
         for tr in rows:
+            ths = tr.find_all("th")
+            if ths:
+                # A lone spanning header is the source's own name for the block
+                # of rows that follows (e.g. C2's '竞赛队伍决赛答辩'). Rows there
+                # may carry no title of their own; this is the only one they get.
+                # A row of column headers belongs to the block already named and
+                # leaves it alone.
+                if len(ths) == 1:
+                    band = clean(ths[0].get_text()) or None
+                continue
+            # Slots live in a tbody. Rows outside one are the loose milestone
+            # tables some competitions print above their agenda; they were never
+            # read as slots and walking the table in document order must not
+            # start reading them now.
+            if tr.find_parent("tbody") is None:
+                continue
             tds = [clean(td.get_text(" ")) for td in tr.select("td")]
-            if len(tds) < 2:
+            # Zero-height spacer rows exist purely for layout; they are not slots.
+            if len(tds) < 2 or not any(tds):
                 continue
 
             def col(role, default=""):
@@ -432,8 +452,13 @@ def parse_forum(cat, tid, html):
                     f"team-roster row '{clean(tcell)}': {len(names)} names were in the "
                     f"title column; recorded as speakers"
                     + (f"; units '{clean(spk)}' (per-person mapping unknown)" if len(units) != 1 else "")
+                    + (f"; slot named '{band}' after the table's own header" if band else "")
                 )
-                title, title_status = None, "tbd"
+                # Not a talk whose title is pending — a team taking its slot. The
+                # source gives these rows no title of their own and never promises
+                # one, so the status is `unknown`, and the only name they have is
+                # the header the source printed above them.
+                title, title_status = band, "unknown"
                 # The cell the roster branch has just reinterpreted was the units
                 # column; that it holds no people is the point, not a finding.
                 people_problems = []
