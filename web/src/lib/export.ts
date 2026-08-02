@@ -18,6 +18,10 @@ export interface ExportItem {
   speakers: string;
   session: string; // forum name or 大会主旨报告
   code?: string;
+  /** The talk's place in its forum's agenda — what `#talk-N` on the forum page
+      counts, so anything linking here lands on the talk and not on the top of a
+      page holding twenty of them. Absent for keynotes, which have no page. */
+  talkIndex?: number;
   date: string; // YYYY-MM-DD
   start?: string | null;
   end?: string | null;
@@ -88,6 +92,7 @@ function forumTalkItem(
     speakers: speakerNames(t),
     session: forum.title.zh,
     code: forum.code,
+    talkIndex: i,
     date: forum.day_date ?? "",
     start: t.start ?? win.start ?? null,
     end: t.end ?? win.end ?? null,
@@ -178,14 +183,8 @@ export function collectFollowedItems(f: FollowSnapshot, views: ConferenceViews):
     (a, b) =>
       (a.date + (a.start ?? "")).localeCompare(b.date + (b.start ?? "")) ||
       (a.code ?? "").localeCompare(b.code ?? "") ||
-      talkIndex(a) - talkIndex(b),
+      (a.talkIndex ?? 0) - (b.talkIndex ?? 0),
   );
-}
-
-/** A talk's position in its forum's agenda, from its follow id (`CF01#7`). */
-function talkIndex(it: ExportItem): number {
-  const n = Number(it.followId.split("#")[1]);
-  return Number.isFinite(n) ? n : 0;
 }
 
 /** A download filename built from the conference name + the dates it spans,

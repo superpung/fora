@@ -180,7 +180,9 @@ export default function MyDay({ date, items }: { date: string; items: ExportItem
                   )}
                   {it.code && (
                     <Link
-                      to={`/${confId}/forum/${it.code}`}
+                      to={`/${confId}/forum/${it.code}${
+                        it.talkIndex != null ? `#talk-${it.talkIndex + 1}` : ""
+                      }`}
                       className="talkrow__cover"
                       aria-label={it.title}
                     />

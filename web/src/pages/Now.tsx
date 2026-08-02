@@ -227,7 +227,9 @@ export default function Now() {
                 </div>
                 {starred.item.code && (
                   <Link
-                    to={`/${views.id}/forum/${starred.item.code}`}
+                    to={`/${views.id}/forum/${starred.item.code}${
+                      starred.item.talkIndex != null ? `#talk-${starred.item.talkIndex + 1}` : ""
+                    }`}
                     className="nowstar__link"
                   >
                     {t("now.open")} <Icon name="arrow-right" size={13} />
