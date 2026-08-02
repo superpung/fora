@@ -61,7 +61,7 @@ function PickRow({
       <div className="planpick__body">
         <div className="planpick__meta">
           {time ? (
-            <span className="planpick__time mono" title={pick.approxTime ? t("plan.approxTime") : undefined}>
+            <span className="planpick__time mono" title={pick.approxTime ? t("common.approxTime") : undefined}>
               {pick.approxTime ? `~${time}` : time}
             </span>
           ) : (

@@ -1,16 +1,18 @@
-import { useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { formatDate, todayISO } from "../lib/data";
 import { useConference } from "../lib/conference-store";
 import { useFollow, keynoteId } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
 import { useStickyState } from "../lib/sticky-state";
+import { useSavedState, oneOf } from "../lib/saved-state";
 import { useHScroll } from "../lib/hscroll";
 import { useNow, isNowWithin } from "../lib/use-now";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import { collectFollowedItems } from "../lib/export";
 import Icon, { type IconName } from "../components/Icon";
+import StarButton from "../components/StarButton";
 import TimeGrid from "../components/TimeGrid";
 import UntimedForumGrid from "../components/UntimedForumGrid";
 import MyDay from "../components/MyDay";
@@ -70,6 +72,7 @@ function KeynotesBlock({
   keep?: (index: number, talk: Talk) => boolean;
 }) {
   const { t } = useI18n();
+  const { isTalk, toggleTalk } = useFollow();
   const now = useNow();
   const rows = keep
     ? chronoRows(block).filter((r) => r.kind === "talk" && keep(base + r.i, r.talk))
@@ -120,6 +123,21 @@ function KeynotesBlock({
                 </>
               )}
             </div>
+            {/* An opening address is not a talk anyone plans around, so it has no
+                star — the same rule the home page's keynote list follows. */}
+            {row.talk.type !== "opening" && (row.talk.speakers ?? []).length > 0 && (
+              <StarButton
+                active={isTalk(keynoteId(date, base + row.i))}
+                size={15}
+                className="star--sm talkrow__star"
+                label={t(
+                  isTalk(keynoteId(date, base + row.i))
+                    ? "common.talkFollowRemove"
+                    : "common.talkFollowAdd",
+                )}
+                onClick={() => toggleTalk(keynoteId(date, base + row.i))}
+              />
+            )}
           </motion.div>
         ),
       )}
@@ -153,6 +171,20 @@ function MeetingsBlock({ block }: { block: Block }) {
   );
 }
 
+type Scope = "all" | "mine";
+type Shape = "board" | "day";
+
+/** `?v=all` | `?v=mine-board` | `?v=mine-day` — the view a shared link carries.
+    Anything else is read as "no view named", so a mangled link still opens.
+    `all` names no shape: it isn't one, and the reader's own last choice should
+    still be waiting inside "mine". */
+function parseView(v: string | null): { scope: Scope; shape?: Shape } | null {
+  if (v === "all") return { scope: "all" };
+  if (v === "mine-board") return { scope: "mine", shape: "board" };
+  if (v === "mine-day") return { scope: "mine", shape: "day" };
+  return null;
+}
+
 const KIND_ICON: Record<string, IconName> = {
   registration: "registration",
   keynotes: "keynotes",
@@ -168,16 +200,52 @@ export default function Schedule() {
   const { id: confId, days, venueName } = views;
   const { t, lang } = useI18n();
   const { forums, speakers, talks, isTalk, isSpeaker } = useFollow();
+  const navigate = useNavigate();
+  const location = useLocation();
   // Two questions, asked in order, instead of two controls that both said
   // "mine" and left the reader to work out how they differed:
   //   scope — whose day is this, everyone's or the one I starred?
   //   shape — and if it's mine, laid out across the rooms, or as one walk?
-  // Shape only means anything inside "mine", so it only appears there. Sticky so
-  // a trip to a forum page and back restores both (paired with scroll
-  // restoration), keyed by conference so switching conferences starts fresh.
-  const [scope, setScope] = useStickyState<"all" | "mine">(`${confId}:sched.scope`, "all");
-  const [shape, setShape] = useStickyState<"board" | "day">(`${confId}:sched.shape`, "day");
+  // Shape only means anything inside "mine", so it only appears there.
+  //
+  // The answers live in two places on purpose. Saved per conference, so someone
+  // who reads their own day keeps reading their own day after a reload — the
+  // stars already survive one, and the view onto them should too. And written
+  // into the URL as `?v=`, so a link can carry the view the sender was looking
+  // at, the way `#YYYY-MM-DD` already carries the day. A `?v=` in the address
+  // wins for that visit without overwriting what the reader saved.
+  const [savedScope, setSavedScope] = useSavedState<Scope>(
+    `${confId}:sched.scope`,
+    "all",
+    oneOf("all", "mine"),
+  );
+  const [savedShape, setSavedShape] = useSavedState<Shape>(
+    `${confId}:sched.shape`,
+    "day",
+    oneOf("board", "day"),
+  );
+  const urlView = parseView(new URLSearchParams(location.search).get("v"));
+  const scope = urlView?.scope ?? savedScope;
+  const shape = urlView?.shape ?? savedShape;
   const mine = scope === "mine";
+  const setView = useCallback(
+    (next: { scope?: Scope; shape?: Shape }) => {
+      const s = next.scope ?? scope;
+      const sh = next.shape ?? shape;
+      setSavedScope(s);
+      setSavedShape(sh);
+      const params = new URLSearchParams(location.search);
+      params.set("v", s === "all" ? "all" : `mine-${sh}`);
+      // Replace, not push: the toggles are how you read this page, not places
+      // you travelled to — Back should leave the page, as it did before. The
+      // hash is carried over by hand, or the day deep link would be dropped.
+      navigate(
+        { pathname: location.pathname, search: `?${params}`, hash: location.hash },
+        { replace: true },
+      );
+    },
+    [scope, shape, location, navigate, setSavedScope, setSavedShape],
+  );
 
   // Every starred item, resolved to a talk with time/room, grouped by day. Reused
   // by My Day (the day tabs pick which day). Recomputed only when follows change.
@@ -194,7 +262,7 @@ export default function Schedule() {
   // Local calendar date (YYYY-MM-DD) for highlighting today's tab and, when the
   // conference is running today, opening on it by default.
   const todayStr = todayISO();
-  const hash = useLocation().hash.replace("#", "");
+  const hash = location.hash.replace("#", "");
   const initial = days.findIndex((d) => d.date === hash);
   // A hash (deep link) wins; otherwise open on today if the conference runs
   // today, else the first day.
@@ -276,7 +344,7 @@ export default function Schedule() {
                   role="tab"
                   aria-selected={shape === "board"}
                   className={`segtoggle__opt ${shape === "board" ? "is-on" : ""}`}
-                  onClick={() => setShape("board")}
+                  onClick={() => setView({ shape: "board" })}
                   title={t("schedule.shapeBoardTip")}
                 >
                   <Icon name="forums" size={13} />
@@ -286,7 +354,7 @@ export default function Schedule() {
                   role="tab"
                   aria-selected={shape === "day"}
                   className={`segtoggle__opt ${shape === "day" ? "is-on" : ""}`}
-                  onClick={() => setShape("day")}
+                  onClick={() => setView({ shape: "day" })}
                   title={t("schedule.shapeDayTip")}
                 >
                   <Icon name="clock" size={13} />
@@ -300,7 +368,7 @@ export default function Schedule() {
               role="tab"
               aria-selected={!mine}
               className={`segtoggle__opt ${!mine ? "is-on" : ""}`}
-              onClick={() => setScope("all")}
+              onClick={() => setView({ scope: "all" })}
               title={t("schedule.scopeAllTip")}
             >
               <Icon name="calendar" size={13} />
@@ -310,7 +378,7 @@ export default function Schedule() {
               role="tab"
               aria-selected={mine}
               className={`segtoggle__opt ${mine ? "is-on" : ""}`}
-              onClick={() => setScope("mine")}
+              onClick={() => setView({ scope: "mine" })}
               title={t("schedule.scopeMineTip")}
             >
               <Icon name="star" filled={mine} size={13} />

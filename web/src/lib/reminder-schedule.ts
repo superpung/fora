@@ -108,11 +108,37 @@ export function planReminders(
   const ctx: PlanContext = { prefs, t, zh };
   const out: PlannedReminder[] = [];
   for (const set of sets) {
+    // Talks that borrowed their forum's window all "start" at the same minute,
+    // so one reminder each would be the same buzz N times for one room. They are
+    // grouped into a single nudge naming the forum; only a talk with a time of
+    // its own gets called out on its own.
+    const borrowed = new Map<string, ExportItem[]>();
     for (const it of set.items) {
       const startAt = itemStartMs(it.date, it.start);
       if (startAt == null) continue; // an item with no known time can't be timed
+      if (it.approx) {
+        const key = `${it.date}#${it.code ?? it.session}#${it.start}`;
+        const group = borrowed.get(key);
+        if (group) group.push(it);
+        else borrowed.set(key, [it]);
+        continue;
+      }
       const r = leadReminder(set, it, startAt, ctx);
       if (r) out.push(r);
+    }
+    for (const [key, group] of borrowed) {
+      const first = group[0];
+      const startAt = itemStartMs(first.date, first.start);
+      if (startAt == null) continue;
+      out.push({
+        id: `${set.confId}#${key}#lead`,
+        fireAt: startAt - prefs.leadMin * 60_000,
+        startAt,
+        title: first.session,
+        body: t("reminders.notifBodyForum", { min: prefs.leadMin, n: group.length }),
+        url: `/${set.confId}/schedule`,
+        kind: "lead",
+      });
     }
     if (prefs.dayStart) out.push(...dayStartReminders(set, ctx));
   }

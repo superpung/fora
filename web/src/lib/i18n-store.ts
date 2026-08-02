@@ -47,6 +47,7 @@ const zh: Dict = {
   "now.inMin": "{n} 分钟后",
   "now.at": "{t} 开始",
   "now.starredNow": "正在进行",
+  "now.starredNowForum": "所在论坛进行中",
   "now.open": "进入",
 
   "common.all": "全部",
@@ -62,6 +63,7 @@ const zh: Dict = {
   "common.collapseReports": "收起报告",
   "common.talkFollowAdd": "收藏该报告",
   "common.talkFollowRemove": "取消收藏该报告",
+  "common.approxTime": "该报告未单独标注时间，此处显示所属论坛的时段",
   "common.reportsCount": "{n} 报告",
   "common.sessionsCount": "{n} 场",
   "common.pending": "详情待补",
@@ -113,6 +115,7 @@ const zh: Dict = {
   "reminders.testTitle": "提醒已开启",
   "reminders.testBody": "你收藏的报告开始前会收到通知。",
   "reminders.notifBody": "{min} 分钟后开始 · {session}",
+  "reminders.notifBodyForum": "{min} 分钟后开始 · 含你收藏的 {n} 场报告",
   "reminders.dayStartTitle": "{conf} 今日日程即将开始",
   "reminders.dayStartBody": "你收藏的第一场报告即将开始。",
 
@@ -180,6 +183,8 @@ const zh: Dict = {
   "myday.gap": "空档 {n} 分钟",
   "myday.moveTo": "换场至 {to}",
   "myday.clash": "与上一场时间重叠",
+  "myday.viaForum": "来自关注的论坛：{name}",
+  "myday.viaSpeaker": "来自关注的讲者：{name}",
 
   "speakers.title": "讲者",
   "speakers.searchPlaceholder": "搜索讲者 / 单位 / 报告…",
@@ -276,7 +281,6 @@ const zh: Dict = {
   "plan.thinking": "正在生成…",
   "plan.empty": "没有匹配的报告",
   "plan.timeTbd": "时间待定",
-  "plan.approxTime": "该报告未单独标注时间，此处显示所属论坛的时段",
   "plan.include": "选中「{title}」",
   "plan.clash": "与「{title}」时间重叠，已优先保留匹配度更高的一场",
   "plan.starAll": "收藏选中的 {n} 场",
@@ -337,6 +341,7 @@ const en: Dict = {
   "now.inMin": "in {n} min",
   "now.at": "at {t}",
   "now.starredNow": "On now",
+  "now.starredNowForum": "Its forum is on now",
   "now.open": "Open",
 
   "common.all": "All",
@@ -352,6 +357,7 @@ const en: Dict = {
   "common.collapseReports": "Collapse talks",
   "common.talkFollowAdd": "Save this talk",
   "common.talkFollowRemove": "Unsave this talk",
+  "common.approxTime": "This talk carries no time of its own — showing its forum's session window",
   "common.reportsCount": "{n} talks",
   "common.sessionsCount": "{n}",
   "common.pending": "Details pending",
@@ -403,6 +409,7 @@ const en: Dict = {
   "reminders.testTitle": "Reminders are on",
   "reminders.testBody": "You'll be notified before your starred talks start.",
   "reminders.notifBody": "Starts in {min} min · {session}",
+  "reminders.notifBodyForum": "Starts in {min} min · {n} of your starred talks",
   "reminders.dayStartTitle": "{conf} starts soon today",
   "reminders.dayStartBody": "Your first starred talk is about to begin.",
 
@@ -470,6 +477,8 @@ const en: Dict = {
   "myday.gap": "{n} min gap",
   "myday.moveTo": "Move to {to}",
   "myday.clash": "Overlaps the previous one",
+  "myday.viaForum": "From a followed forum: {name}",
+  "myday.viaSpeaker": "From a followed speaker: {name}",
 
   "speakers.title": "Speakers",
   "speakers.searchPlaceholder": "Search speakers / affiliations / talks…",
@@ -566,7 +575,6 @@ const en: Dict = {
   "plan.thinking": "Building…",
   "plan.empty": "No matching talks",
   "plan.timeTbd": "Time TBD",
-  "plan.approxTime": "This talk carries no time of its own — showing its forum's session window",
   "plan.include": "Include {title}",
   "plan.clash": "Overlaps “{title}” — the stronger match was kept",
   "plan.starAll": "Star {n} selected",
