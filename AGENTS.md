@@ -122,6 +122,16 @@ restrained, and detailed. Match it; do not drift toward other looks.
   dates, location, counts) goes *below* the heading or *beside* it on the same
   line — never on a line above it. This applies to every title/heading (page
   titles, section heads, card/row headers), not just the page's main title.
+- **A talk is written the same way in every list.** Wherever a list names talks
+  — My Day, the planner, the live card, the topic map's selected topic, the
+  similar-talks panel — a row reads: the **title**, then the **speakers** behind
+  a person icon (`<Icon name="user" size={12} />`), then **where and when** (room
+  behind a pin, time behind a clock). Nothing is dropped because it felt
+  redundant in that particular list. This is the mistake that keeps recurring:
+  each list owns its own row component, so a new one gets written by copying the
+  nearest neighbour, and whatever that neighbour was missing is inherited
+  silently. Before shipping a list of talks, put it next to My Day and check the
+  same facts are there, in the same order.
 - **No left-edge highlight bars.** Do not indicate an active/anchored/selected
   item with a colored strip that runs the full left edge, hugging the rounded
   corners (e.g. `border-left` / `box-shadow: inset 3px 0 0` on a rounded card).
