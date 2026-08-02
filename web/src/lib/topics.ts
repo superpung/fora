@@ -2,6 +2,7 @@ import type { Conference } from "../types";
 import type { Lang } from "./i18n-store";
 import { topicLabel, topicMapLabel, topicCategory } from "./topic-labels";
 import { ownTitle, titleLine } from "./talk-title";
+import { speakerNames } from "./data";
 
 // "Conference at a glance": the topic landscape of one program, built from the
 // AI-derived `talk.enrichment.topics` tags (a controlled vocabulary — see
@@ -38,6 +39,8 @@ export interface TopicTalk {
   index: number;
   title?: string;
   titleTbd: boolean;
+  /** The speakers as one line — a talk row anywhere in this app names them. */
+  speakers?: string;
   room?: string | null;
   date?: string | null;
   period?: string | null;
@@ -430,6 +433,7 @@ export function buildTopicMap(
         index,
         title: titleLine(talk, "").text || undefined,
         titleTbd: !ownTitle(talk),
+        speakers: speakerNames(talk) || undefined,
         room: f.room,
         date: f.day_date,
         period: f.session_period,
