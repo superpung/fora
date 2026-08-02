@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useTheme } from "../lib/theme-store";
+import { useTheme, THEME_LABEL } from "../lib/theme-store";
 import { useI18n } from "../lib/i18n-store";
 import Icon, { type IconName } from "./Icon";
 
@@ -8,15 +8,10 @@ const ICON: Record<string, IconName> = {
   light: "sun",
   dark: "moon",
 };
-const LABEL: Record<string, Record<string, string>> = {
-  zh: { system: "跟随系统", light: "浅色", dark: "深色" },
-  en: { system: "System", light: "Light", dark: "Dark" },
-};
-
 export default function ThemeToggle() {
   const { mode, cycle } = useTheme();
   const { lang } = useI18n();
-  const label = LABEL[lang][mode];
+  const label = THEME_LABEL[lang][mode];
   return (
     <button
       className="theme-toggle"

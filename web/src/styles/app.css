@@ -147,6 +147,15 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
      pushed to the right of it. */
   .nav__links { margin: 0; flex: 1 1 auto; justify-content: flex-start; }
   .nav__link { padding: 7px 8px; font-size: 13px; }
+  /* Four 34px buttons plus their gaps is 154px of a 360px bar. With the home
+     mark and the conference switcher on the other side the links were left
+     narrower than a single entry, so no entry could ever be read in full —
+     scrolling a strip that can never show one whole thing is not a fix, the
+     bar was simply over-subscribed. Language and theme go where every other
+     site-wide setting already is; search and the account menu stay, because
+     they are the two the bar exists to reach. Exactly one copy of each control
+     exists at any width (see .acct-row--narrow). */
+  .nav__tools .lang-toggle, .nav__tools .theme-toggle { display: none; }
 }
 
 /* ============================ CONFERENCE SWITCHER ============================ */
@@ -1122,6 +1131,11 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
   color: var(--fg-secondary); font-size: 13px; cursor: pointer;
 }
 .acct-row:hover { background: var(--bg-hover); color: var(--fg); }
+/* The settings the top bar carries as its own buttons until the bar runs out
+   of room. `display: none` keeps the hidden copy out of the accessibility tree
+   too, so the control is never announced twice. */
+.acct-row--narrow { display: none; }
+@media (max-width: 600px) { .acct-row--narrow { display: flex; } }
 .acct-row__label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .acct-row__meta {
   flex: none; color: var(--fg-muted); font-size: 11.5px; font-family: var(--font-mono);
