@@ -112,6 +112,9 @@ export interface KeynoteEntry {
   index: number;
   talk: Talk;
   location?: string | null;
+  /** The block's own name for this session (e.g. 大会特邀报告), so anything
+      listing a keynote outside the schedule calls it what the schedule does. */
+  blockTitle?: string | null;
 }
 
 export interface SpeakerTalk {
@@ -273,13 +276,14 @@ export function buildConferenceViews(raw: unknown): ConferenceViews {
   const keynoteEntries: KeynoteEntry[] = days.flatMap((d) => {
     const talks = d.blocks
       .filter((b) => b.kind === "keynotes")
-      .flatMap((b) => (b.talks ?? []).map((t) => ({ t, loc: b.location })));
-    return talks.map(({ t, loc }, i) => ({
+      .flatMap((b) => (b.talks ?? []).map((t) => ({ t, loc: b.location, title: b.title?.zh })));
+    return talks.map(({ t, loc, title }, i) => ({
       id: keynoteId(d.date, i),
       date: d.date,
       index: i,
       talk: t,
       location: loc,
+      blockTitle: title,
     }));
   });
   const keynoteById = new Map(keynoteEntries.map((e) => [e.id, e]));

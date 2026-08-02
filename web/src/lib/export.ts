@@ -17,6 +17,9 @@ export interface ExportItem {
   start?: string | null;
   end?: string | null;
   location: string;
+  /** Just the room, without the venue — what a reader already standing in the
+      venue needs (which room, and whether the next item is a different one). */
+  room: string;
   abstract?: string | null;
 }
 
@@ -41,13 +44,23 @@ function talkTitle(t: Talk): string {
 function speakerNames(t: Talk): string {
   return (t.speakers ?? []).map((s) => s.name).filter(Boolean).join("、");
 }
-function fullLocation(mainVenueName: string, room?: string | null): string {
+// A forum records a bare room ("二楼荆溪厅204"); a keynote block records a
+// location that already names the venue ("武汉国际会议中心 五楼主会议厅"). Strip
+// the venue when it is already there, or the export reads "武汉国际会议中心
+// 武汉国际会议中心 五楼主会议厅".
+function roomOnly(mainVenueName: string, loc?: string | null): string {
+  const s = (loc ?? "").trim();
+  if (!s || !mainVenueName) return s;
+  return s.startsWith(mainVenueName) ? s.slice(mainVenueName.length).trim() : s;
+}
+function fullLocation(mainVenueName: string, room: string): string {
   return [mainVenueName, room].filter(Boolean).join(" ");
 }
 
 function forumTalkItem(forum: Forum, i: number, views: ConferenceViews): ExportItem {
   const t = (forum.talks ?? [])[i];
   const win = views.forumTimeWindow(forum);
+  const room = roomOnly(views.mainVenueName, forum.room);
   return {
     uid: `${forum.code}-${i}`,
     title: talkTitle(t),
@@ -57,22 +70,26 @@ function forumTalkItem(forum: Forum, i: number, views: ConferenceViews): ExportI
     date: forum.day_date ?? "",
     start: t.start ?? win.start ?? null,
     end: t.end ?? win.end ?? null,
-    location: fullLocation(views.mainVenueName, forum.room),
+    location: fullLocation(views.mainVenueName, room),
+    room,
     abstract: t.abstract ?? null,
   };
 }
 function keynoteItem(id: string, views: ConferenceViews): ExportItem | null {
   const e = views.keynoteById.get(id);
   if (!e) return null;
+  const room = roomOnly(views.mainVenueName, e.location);
   return {
     uid: id.replace(/[:#]/g, "-"),
     title: talkTitle(e.talk),
     speakers: speakerNames(e.talk),
-    session: "大会主旨报告",
+    // The block's own name for the session, so the export agrees with the page.
+    session: e.blockTitle || "大会主旨报告",
     date: e.date,
     start: e.talk.start ?? null,
     end: e.talk.end ?? null,
-    location: fullLocation(views.mainVenueName, e.location),
+    location: fullLocation(views.mainVenueName, room),
+    room,
     abstract: e.talk.abstract ?? null,
   };
 }
