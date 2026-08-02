@@ -102,6 +102,8 @@ const zh: Dict = {
   "import.failed": "导入失败：文件无法解析",
 
   "settings.section": "设置",
+  "settings.language": "语言",
+  "settings.theme": "主题",
 
   "reminders.section": "日程提醒",
   "reminders.lead": "提前提醒",
@@ -383,6 +385,8 @@ const en: Dict = {
   "import.failed": "Import failed: the file could not be parsed.",
 
   "settings.section": "Settings",
+  "settings.language": "Language",
+  "settings.theme": "Theme",
 
   "reminders.section": "Reminders",
   "reminders.lead": "Lead time",

@@ -6,6 +6,7 @@ import { useI18n } from "../lib/i18n-store";
 import { syncConfig } from "../lib/sync";
 import { useReminders, LEAD_CHOICES } from "../lib/reminder-store";
 import { useAi } from "../lib/ai-store";
+import { useTheme, THEME_LABEL } from "../lib/theme-store";
 import { useFollowActions } from "../lib/follow-actions-store";
 import { bugReportUrl } from "../lib/repo";
 import { easeOut } from "../lib/motion";
@@ -68,7 +69,8 @@ export default function AccountMenu() {
   const actions = useFollowActions();
   const rem = useReminders();
   const ai = useAi();
-  const { t, lang } = useI18n();
+  const theme = useTheme();
+  const { t, lang, toggle: toggleLang } = useI18n();
   const zh = lang !== "en";
   const loc = useLocation();
   // "New issue" link with the bug template pre-filled; rebuilt per route + language
@@ -388,6 +390,50 @@ export default function AccountMenu() {
               <RowIcon name="sparkle" on={ai.enabled} gesture="ai-burst" />
               <span className="acct-row__label">{t("ai.show")}</span>
               <span className={`acct-switch ${ai.enabled ? "is-on" : ""}`} aria-hidden />
+            </button>
+
+            {/* Language and theme live as buttons in the top bar, which has no
+                room for them on a phone (see .acct-row--narrow). There they are
+                these two rows instead — never both, at any width. Same shape as
+                the lead-time row: press it, the value on the right changes. */}
+            <button className="acct-row acct-row--narrow" onClick={toggleLang}>
+              <Icon name="globe" size={15} />
+              <span className="acct-row__label">{t("settings.language")}</span>
+              <span className="acct-row__value">
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={lang}
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ duration: 0.18, ease: easeOut }}
+                  >
+                    {zh ? "中文" : "English"}
+                  </motion.span>
+                </AnimatePresence>
+              </span>
+            </button>
+            <button className="acct-row acct-row--narrow" onClick={theme.cycle}>
+              <Icon
+                key={theme.mode}
+                name={theme.mode === "light" ? "sun" : theme.mode === "dark" ? "moon" : "monitor"}
+                size={15}
+                className="row-tick"
+              />
+              <span className="acct-row__label">{t("settings.theme")}</span>
+              <span className="acct-row__value">
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={theme.mode}
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ duration: 0.18, ease: easeOut }}
+                  >
+                    {THEME_LABEL[lang][theme.mode]}
+                  </motion.span>
+                </AnimatePresence>
+              </span>
             </button>
 
             {/* Bottom utility group: report a bug, then sign out kept LAST. */}
