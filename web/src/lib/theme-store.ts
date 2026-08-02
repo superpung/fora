@@ -11,6 +11,12 @@ export interface ThemeCtx {
   cycle: () => void;
 }
 
+/** The mode's name, for anything that shows the theme's current value. */
+export const THEME_LABEL: Record<string, Record<ThemeMode, string>> = {
+  zh: { system: "跟随系统", light: "浅色", dark: "深色" },
+  en: { system: "System", light: "Light", dark: "Dark" },
+};
+
 export const KEY = "fora-theme";
 
 export function systemDark() {

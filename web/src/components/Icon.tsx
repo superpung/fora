@@ -18,6 +18,7 @@ export type IconName =
   | "sun"
   | "moon"
   | "monitor"
+  | "globe"
   | "chip"
   | "conference"
   | "registration"
@@ -270,6 +271,12 @@ const PATHS: Record<IconName, ReactElement> = {
     </>
   ),
   dot: <circle cx="12" cy="12" r="2.5" />,
+  globe: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3 12h18M12 3c2.4 2.7 2.4 15.3 0 18M12 3c-2.4 2.7-2.4 15.3 0 18" />
+    </>
+  ),
 };
 
 interface IconProps extends Omit<SVGProps<SVGSVGElement>, "name"> {
