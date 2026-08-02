@@ -745,6 +745,7 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
   .talkrow__time.is-now::before,
   .ftalk__time.is-now::before { animation: none; }
 }
+.tgrid__empty { padding: 40px 16px; text-align: center; color: var(--fg-muted); font-size: 13.5px; }
 .tgrid__ttitle { font-size: 12px; font-weight: 500; line-height: 1.3; color: var(--fg); }
 .tgrid__tspk { font-size: 11px; line-height: 1.3; color: var(--fg-secondary); }
 .tgrid__more { position: absolute; left: 3px; right: 3px; font-size: 11px; color: var(--fg-muted); padding: 4px 7px; }
@@ -1537,6 +1538,12 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 
 /* ============================ SCHEDULE — view toggle ============================ */
 .section__controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+/* On a phone the two toggles and the title cannot share a line without the
+   title breaking mid-word, so the controls take their own row instead. */
+@media (max-width: 640px) {
+  .section__head { flex-wrap: wrap; }
+  .section__controls { flex: 1 0 100%; }
+}
 .segtoggle {
   display: inline-flex; align-items: center; gap: 2px; padding: 2px;
   border: 1px solid var(--border-strong); border-radius: var(--radius); background: var(--bg-subtle);
@@ -1549,6 +1556,19 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 .segtoggle__opt:hover { color: var(--fg); }
 .segtoggle__opt.is-on { background: var(--primary-bg); color: var(--primary-fg); }
 .segtoggle__opt.is-on .filterchip__n { background: color-mix(in srgb, var(--primary-fg) 22%, transparent); }
+/* The layout switch is a choice *within* "mine", so it answers quietly: same
+   shape, one size down, and a selected state that reads as a setting rather
+   than as the thing you are looking at. */
+.segtoggle--sub { background: transparent; }
+.segtoggle--sub .segtoggle__opt { height: 26px; padding: 0 9px; font-size: 12.5px; }
+/* On the narrowest phones the two toggles plus a three-digit count are a few
+   pixels over one line; tighten the padding rather than wrap or drop a label. */
+@media (max-width: 400px) {
+  .section__controls { gap: 8px; }
+  .segtoggle__opt { padding: 0 9px; gap: 5px; }
+  .segtoggle--sub .segtoggle__opt { padding: 0 7px; }
+}
+.segtoggle--sub .segtoggle__opt.is-on { background: var(--bg-active); color: var(--fg); }
 
 /* ============================ MY DAY (the starred day) ============================
    Drawn with the schedule's own parts — a .block panel, .talkrow rows, and the

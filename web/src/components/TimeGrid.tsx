@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useConference } from "../lib/conference-store";
+import { useFollow, talkId } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
 import { useCoarsePointer } from "../lib/use-coarse-pointer";
 import { useNow, isNowWithin } from "../lib/use-now";
@@ -82,18 +83,29 @@ function splitByReset<T extends { s: number }>(items: T[]): T[][] {
 export default function TimeGrid({
   block,
   date,
+  filtered = false,
 }: {
   block: Block;
   /** the day's date (YYYY-MM-DD) — drives the "now" indicator when it's today */
   date?: string;
+  filtered?: boolean;
 }) {
   const { id: confId, forumsByCode } = useConference();
   const { t: tr } = useI18n();
+  const { isForum, isTalk, isSpeaker } = useFollow();
   const coarse = useCoarsePointer();
   const [openKey, setOpenKey] = useState<string | null>(null);
   // A live clock (re-ticks each 30s) for the "now" line and the running-report
   // highlight, so both drift with real time without a page reload.
   const now = useNow();
+
+  // A talk is "followed-relevant" when its forum is followed (keep the whole
+  // column), the talk itself is starred, or one of its speakers is followed —
+  // the same rule the dashboard's 我的关注 filter uses.
+  const relevant = (code: string, i: number, t: Talk): boolean =>
+    isForum(code) ||
+    isTalk(talkId(code, i)) ||
+    (t.speakers ?? []).some((s) => isSpeaker(s.name));
 
   // First pass: gather each forum's timed talks as minute offsets, and the day's
   // overall time span.
@@ -235,6 +247,24 @@ export default function TimeGrid({
     (a, b) => a.room.localeCompare(b.room, "zh-Hans-CN") || a.start - b.start,
   );
 
+  // 我的关注 filter: keep only followed-relevant cells; drop columns (rooms) that
+  // end up with nothing followed. Cells keep their original top positions, so the
+  // remaining talks still sit at their true clock time.
+  const shown = filtered
+    ? columns
+        .map((c) => ({
+          ...c,
+          // Breaks are context, not followable — drop them (and unfollowed talks).
+          cells: c.cells.filter((cell) => cell.kind === "talk" && relevant(c.code, cell.i, cell.t)),
+          untimed: 0,
+        }))
+        .filter((c) => c.cells.length > 0)
+    : columns;
+
+  if (filtered && shown.length === 0) {
+    return <div className="tgrid__empty">{tr("timeline.noFollows")}</div>;
+  }
+
   const hours: number[] = [];
   for (let h = lo; h <= hi; h += HOUR) hours.push(h);
 
@@ -260,7 +290,7 @@ export default function TimeGrid({
         </div>
 
         {/* one column per forum */}
-        {columns.map((c) => (
+        {shown.map((c) => (
           <div className="tgrid__col" key={c.key}>
             <Link
               to={`/${confId}/forum/${c.code}`}

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useConference } from "../lib/conference-store";
+import { useFollow, talkId } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
 import { useCoarsePointer } from "../lib/use-coarse-pointer";
 import { useNow } from "../lib/use-now";
@@ -67,15 +68,23 @@ interface UCol {
 export default function UntimedForumGrid({
   block,
   date,
+  filtered = false,
 }: {
   block: Block;
   date?: string;
+  filtered?: boolean;
 }) {
   const { id: confId, forumsByCode } = useConference();
   const { t: tr } = useI18n();
+  const { isForum, isTalk, isSpeaker } = useFollow();
   const coarse = useCoarsePointer();
   const [openKey, setOpenKey] = useState<string | null>(null);
   const now = useNow();
+
+  const relevant = (code: string, i: number, t: Talk): boolean =>
+    isForum(code) ||
+    isTalk(talkId(code, i)) ||
+    (t.speakers ?? []).some((s) => isSpeaker(s.name));
 
   const entries = (block.forum_entries ?? []).filter((e) => forumsByCode[e.forum_code]);
   if (entries.length === 0) return null;
@@ -186,6 +195,17 @@ export default function UntimedForumGrid({
     };
   });
 
+  // 我的关注 filter: keep follow-relevant cells; drop columns with none.
+  const shown = filtered
+    ? columns
+        .map((c) => ({ ...c, cells: c.cells.filter((cell) => relevant(c.code, cell.i, cell.t)), empty: false }))
+        .filter((c) => c.cells.length > 0)
+    : columns;
+
+  if (filtered && shown.length === 0) {
+    return <div className="tgrid__empty">{tr("timeline.noFollows")}</div>;
+  }
+
   // Axis anchors: only real times — each band boundary, plus the window end.
   const ticks: { top: number; label: string }[] = [];
   const seen = new Set<number>();
@@ -231,7 +251,7 @@ export default function UntimedForumGrid({
         </div>
 
         {/* one column per forum */}
-        {columns.map((c) => (
+        {shown.map((c) => (
           <div className="tgrid__col" key={c.key}>
             <Link to={`/${confId}/forum/${c.code}`} className="tgrid__chead" title={c.forum.title.zh}>
               <span className="tgrid__croom">
