@@ -1,6 +1,7 @@
 import type { Conference } from "../types";
 import type { Lang } from "./i18n-store";
 import { topicLabel, topicMapLabel, topicCategory } from "./topic-labels";
+import { ownTitle, titleLine } from "./talk-title";
 
 // "Conference at a glance": the topic landscape of one program, built from the
 // AI-derived `talk.enrichment.topics` tags (a controlled vocabulary — see
@@ -427,8 +428,8 @@ export function buildTopicMap(
         forumCode: f.code,
         forumTitle: f.title.zh,
         index,
-        title: talk.title?.zh ?? undefined,
-        titleTbd: talk.title_status === "tbd" || !talk.title?.zh,
+        title: titleLine(talk, "").text || undefined,
+        titleTbd: !ownTitle(talk),
         room: f.room,
         date: f.day_date,
         period: f.session_period,

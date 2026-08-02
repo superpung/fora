@@ -15,6 +15,7 @@ import TimeGrid from "../components/TimeGrid";
 import UntimedForumGrid from "../components/UntimedForumGrid";
 import MyDay from "../components/MyDay";
 import type { Block, Forum, Talk, Break } from "../types";
+import { titleLine } from "../lib/talk-title";
 
 /** True when at least one talk in the day's forum block carries a start time —
     the signal to switch from the forum-card list to the time-vs-forum matrix. */
@@ -80,11 +81,14 @@ function KeynotesBlock({ block, date }: { block: Block; date: string }) {
               ) : (
                 <>
                   <div className="talkrow__title">
-                    {row.talk.title_status === "tbd" || !row.talk.title?.zh ? (
-                      <span className="tag tag--tbd">{t("schedule.talkTbd")}</span>
-                    ) : (
-                      row.talk.title?.zh
-                    )}
+                    {(() => {
+                      const line = titleLine(row.talk, t("schedule.talkTbd"));
+                      return line.own ? (
+                        line.text
+                      ) : (
+                        <span className="tag tag--tbd">{line.text}</span>
+                      );
+                    })()}
                   </div>
                   <div className="talkrow__speaker">
                     <strong>{row.talk.speakers?.[0]?.name}</strong>

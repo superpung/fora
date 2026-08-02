@@ -7,6 +7,7 @@ import type { ConferenceViews } from "./data";
 import { collectFollowedItems, type ExportItem, type FollowSnapshot } from "./export";
 import type { Talk } from "../types";
 import type { Now } from "./use-now";
+import { ownTitle, titleLine } from "./talk-title";
 
 function toMin(t?: string | null): number | null {
   if (!t) return null;
@@ -26,8 +27,8 @@ export interface TalkLite {
 
 function liteOf(t: Talk): TalkLite {
   return {
-    title: t.title?.zh ?? "",
-    tbd: t.title_status === "tbd" || !t.title?.zh,
+    title: titleLine(t, "").text,
+    tbd: !ownTitle(t),
     speaker: t.speakers?.[0]?.name ?? null,
     start: t.start ?? null,
     end: t.end ?? null,
@@ -89,8 +90,8 @@ export function buildLiveView(views: ConferenceViews, now: Now): LiveView {
     if (cur >= s && cur < end) {
       nowRooms.push({
         room: e.location ?? null,
-        title: e.talk.title?.zh ?? "",
-        tbd: e.talk.title_status === "tbd" || !e.talk.title?.zh,
+        title: titleLine(e.talk, "").text,
+        tbd: !ownTitle(e.talk),
         kind: "keynote",
         start: e.talk.start ?? null,
         end: e.talk.end ?? null,
@@ -179,8 +180,8 @@ export function buildLiveView(views: ConferenceViews, now: Now): LiveView {
         start: e.talk.start,
         startMin: m,
         session: {
-          title: e.talk.title?.zh ?? "",
-          tbd: e.talk.title_status === "tbd" || !e.talk.title?.zh,
+          title: titleLine(e.talk, "").text,
+          tbd: !ownTitle(e.talk),
           kind: "keynote",
           room: e.location ?? null,
         },
