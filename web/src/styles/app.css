@@ -549,8 +549,32 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 .time { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
 
 .talklist { padding: 4px 16px; }
-.talkrow { display: grid; grid-template-columns: 108px 1fr; gap: 18px; padding: 13px 0; border-top: 1px solid var(--border); }
+/* The third track holds the star. It collapses to nothing on a row that has
+   none (an opening address, a break), so those rows keep their old two-column
+   measure exactly. */
+.talkrow {
+  position: relative; display: grid; grid-template-columns: 108px 1fr auto; gap: 18px;
+  padding: 13px 0; border-top: 1px solid var(--border);
+}
 .talkrow:first-child { border-top: none; }
+/* The row's link covers the row and the star layers above it, so the star is a
+   button beside a link rather than inside one (the speakers list does the
+   same). */
+.talkrow__cover { position: absolute; inset: 0; z-index: 1; }
+/* Positioned (not static) so it paints above the cover link and stays
+   clickable; the base .star is pinned to the middle of whatever it sits in, and
+   a row's star belongs on the row's first line, beside the title. */
+.talkrow__star.star, .talkrow__via {
+  position: relative; top: auto; right: auto; transform: none;
+  z-index: 2; align-self: start;
+}
+/* Not starred on its own — it is in the list because a forum or a speaker is
+   followed. A quiet mark, not a button: it says where it came from, and the
+   place to remove it is where it was followed. */
+.talkrow__via {
+  display: grid; place-items: center; width: 20px; height: 20px;
+  color: var(--fg-muted); cursor: help;
+}
 .talkrow__time { font-family: var(--font-mono); color: var(--accent); font-size: 13px; padding-top: 1px; }
 .talkrow__title { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
 .talkrow__speaker { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 13px; color: var(--fg-secondary); }
@@ -680,6 +704,24 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
   background: transparent; border: none;
 }
 .tgrid__tenter:active { background: var(--bg-active); }
+/* The star for a board cell. It sits beside the cell (a cell is a link) pinned
+   to its top-right corner, above the raised hover state, and keeps out of the
+   way until the cell is hovered or opened — unless the talk is already starred,
+   which the board should show without being asked. */
+.tgrid__tstarwrap {
+  position: absolute; right: 5px; z-index: 6; opacity: 0;
+  transition: opacity 0.12s ease-in-out;
+}
+.tgrid__talk:hover + .tgrid__tstarwrap,
+.tgrid__talk.is-open + .tgrid__tstarwrap,
+.tgrid__tstarwrap:hover,
+.tgrid__tstarwrap:focus-within,
+.tgrid__tstarwrap.is-on { opacity: 1; }
+.tgrid__tstar.star {
+  width: 19px; height: 19px;
+  background: color-mix(in srgb, var(--bg-subtle) 85%, transparent);
+}
+.tgrid__tstar.star:hover { background: var(--bg-active); }
 
 /* ============================ SHARE POSTER ============================ */
 .postermodal {
@@ -1319,7 +1361,7 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 
   .talk { grid-template-columns: 28px 1fr; gap: 12px; padding: 18px 14px; }
   .tlrow { grid-template-columns: 42px 18px minmax(0, 1fr); gap: 0 10px; }
-  .talkrow { grid-template-columns: 88px 1fr; gap: 12px; }
+  .talkrow { grid-template-columns: 88px 1fr auto; gap: 12px; }
   .sponsorcard { flex-direction: column; gap: 3px; }
   .cmt__grid { grid-template-columns: 1fr; }
 }
@@ -1587,8 +1629,10 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
   font-size: 10.5px; font-weight: 600; letter-spacing: 0.04em;
   color: #fff; background: var(--tg-now); padding: 1px 6px; border-radius: 999px;
 }
-.myday__room { display: inline-flex; align-items: center; gap: 4px; }
-.myday__room svg { color: var(--fg-muted); }
+/* Speaker and room read as the same kind of fact, so they are drawn the same:
+   a muted icon, then the words. */
+.myday__spk, .myday__room { display: inline-flex; align-items: center; gap: 4px; }
+.myday__spk svg, .myday__room svg { color: var(--fg-muted); }
 .talkrow--now .talkrow__title { font-weight: 600; }
 
 /* the gap / room-move / clash strip between two rows */

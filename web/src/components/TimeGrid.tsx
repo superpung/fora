@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { useConference } from "../lib/conference-store";
 import { useFollow, talkId } from "../lib/follow-store";
@@ -6,6 +6,7 @@ import { useI18n } from "../lib/i18n-store";
 import { useCoarsePointer } from "../lib/use-coarse-pointer";
 import { useNow, isNowWithin } from "../lib/use-now";
 import Icon from "../components/Icon";
+import StarButton from "../components/StarButton";
 import type { Block, Forum, Talk } from "../types";
 import { titleLine } from "../lib/talk-title";
 
@@ -92,7 +93,7 @@ export default function TimeGrid({
 }) {
   const { id: confId, forumsByCode } = useConference();
   const { t: tr } = useI18n();
-  const { isForum, isTalk, isSpeaker } = useFollow();
+  const { isForum, isTalk, isSpeaker, toggleTalk } = useFollow();
   const coarse = useCoarsePointer();
   const [openKey, setOpenKey] = useState<string | null>(null);
   // A live clock (re-ticks each 30s) for the "now" line and the running-report
@@ -349,44 +350,68 @@ export default function TimeGrid({
                 // hover/open (see .tgrid__talk:hover / .is-open) without shrinking
                 // below its slot.
                 const style = { top, height: h, minHeight: h };
+                // The star sits beside the cell, not in it: a cell is a link, and
+                // a button inside a link is neither valid nor clickable. As the
+                // next sibling it can still follow the cell's hover (see
+                // .tgrid__talk:hover + .tgrid__tstarwrap).
+                const followed = isTalk(talkId(c.code, i));
+                const star = (
+                  <span
+                    className={`tgrid__tstarwrap ${followed ? "is-on" : ""}`}
+                    style={{ top: top + 2 }}
+                  >
+                    <StarButton
+                      active={followed}
+                      size={13}
+                      className="star--sm tgrid__tstar"
+                      label={tr(followed ? "common.talkFollowRemove" : "common.talkFollowAdd")}
+                      onClick={() => toggleTalk(talkId(c.code, i))}
+                    />
+                  </span>
+                );
                 // Coarse pointer (touch): tap toggles the card open, then an
                 // explicit enter button navigates. Fine pointer keeps the plain
                 // link + hover reveal.
                 if (coarse) {
                   return (
-                    <div
-                      key={i}
-                      className={`tgrid__talk ${open ? "is-open" : ""}`}
-                      style={style}
-                      role="button"
-                      tabIndex={0}
-                      aria-expanded={open}
-                      onClick={() => setOpenKey(open ? null : key)}
-                      onKeyDown={(ev) => {
-                        if (ev.key === "Enter" || ev.key === " ") {
-                          ev.preventDefault();
-                          setOpenKey(open ? null : key);
-                        }
-                      }}
-                    >
-                      {inner}
-                      {open && (
-                        <Link
-                          to={to}
-                          className="tgrid__tenter"
-                          aria-label={tr("timeline.enterTalk")}
-                          onClick={(ev) => ev.stopPropagation()}
-                        >
-                          <Icon name="arrow-right" size={13} />
-                        </Link>
-                      )}
-                    </div>
+                    <Fragment key={i}>
+                      <div
+                        className={`tgrid__talk ${open ? "is-open" : ""}`}
+                        style={style}
+                        role="button"
+                        tabIndex={0}
+                        aria-expanded={open}
+                        onClick={() => setOpenKey(open ? null : key)}
+                        onKeyDown={(ev) => {
+                          if (ev.key === "Enter" || ev.key === " ") {
+                            ev.preventDefault();
+                            setOpenKey(open ? null : key);
+                          }
+                        }}
+                      >
+                        {inner}
+                        {open && (
+                          <Link
+                            to={to}
+                            className="tgrid__tenter"
+                            aria-label={tr("timeline.enterTalk")}
+                            onClick={(ev) => ev.stopPropagation()}
+                          >
+                            <Icon name="arrow-right" size={13} />
+                          </Link>
+                        )}
+                      </div>
+                      {star}
+                    </Fragment>
                   );
                 }
                 return (
-                  <Link key={i} to={to} className="tgrid__talk" style={style}>
-                    {inner}
-                  </Link>
+                  <Fragment key={i}>
+                    <Link to={to} className="tgrid__talk" style={style}>
+                      {inner}
+                    </Link>
+                    {star}
+                  </Fragment>
                 );
               })}
               {c.untimed > 0 && (
