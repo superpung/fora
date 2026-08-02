@@ -204,8 +204,10 @@ export default function Now() {
             ) : (
               <div className={`nowstar ${starred.running ? "nowstar--live" : ""}`}>
                 <div className="nowstar__when">
+                  {/* A talk that borrowed its forum's window can only say the
+                      forum is on — it doesn't know which talk is being given. */}
                   {starred.running
-                    ? t("now.starredNow")
+                    ? t(starred.item.approx ? "now.starredNowForum" : "now.starredNow")
                     : relTime(starred.minutesUntil, starred.item.date, starred.item.start ?? "")}
                 </div>
                 <div className="nowstar__title">

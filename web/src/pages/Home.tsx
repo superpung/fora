@@ -10,38 +10,11 @@ import { useHScroll } from "../lib/hscroll";
 import { useNow, isNowWithin, type Now } from "../lib/use-now";
 import { pageVariants } from "../lib/motion";
 import Icon from "../components/Icon";
+import StarButton from "../components/StarButton";
 import type { Talk } from "../types";
 import { titleLine } from "../lib/talk-title";
 
 /* ---------------- small pieces ---------------- */
-
-function StarButton({
-  active,
-  onClick,
-  label,
-  className = "",
-}: {
-  active: boolean;
-  onClick: () => void;
-  label: string;
-  className?: string;
-}) {
-  return (
-    <button
-      className={`star ${className} ${active ? "is-on" : ""}`}
-      aria-pressed={active}
-      aria-label={label}
-      title={label}
-      onClick={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        onClick();
-      }}
-    >
-      <Icon name="star" filled={active} size={16} />
-    </button>
-  );
-}
 
 function timeRange(b?: { start?: string | null; end?: string | null }) {
   if (!b?.start) return "";

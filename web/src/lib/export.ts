@@ -7,6 +7,11 @@ import { isKeynoteId } from "./follow-store";
 import type { Forum, Talk } from "../types";
 import { titleLine } from "./talk-title";
 
+/** Why an item is in the user's list — a talk starred on its own, or one pulled
+    in by a followed forum or speaker. Only the first kind can be unstarred from
+    the item itself; the other two are removed where they were followed. */
+export type FollowVia = "talk" | "forum" | "speaker";
+
 export interface ExportItem {
   uid: string;
   title: string;
@@ -16,11 +21,21 @@ export interface ExportItem {
   date: string; // YYYY-MM-DD
   start?: string | null;
   end?: string | null;
+  /** True when the talk carries no time of its own and these are its forum's
+      window instead. Everything reading a time has to say so — an inherited
+      window is not a claim about when this talk runs, and treating it as one
+      makes every talk in a forum look like it clashes with the next. */
+  approx: boolean;
   location: string;
   /** Just the room, without the venue — what a reader already standing in the
       venue needs (which room, and whether the next item is a different one). */
   room: string;
   abstract?: string | null;
+  /** The follow id to toggle to remove this item (a talk id or a keynote id). */
+  followId: string;
+  via: FollowVia;
+  /** The forum or speaker that pulled the item in, when `via` isn't "talk". */
+  viaName?: string;
 }
 
 export interface FollowSnapshot {
@@ -57,7 +72,13 @@ function fullLocation(mainVenueName: string, room: string): string {
   return [mainVenueName, room].filter(Boolean).join(" ");
 }
 
-function forumTalkItem(forum: Forum, i: number, views: ConferenceViews): ExportItem {
+function forumTalkItem(
+  forum: Forum,
+  i: number,
+  views: ConferenceViews,
+  via: FollowVia,
+  viaName?: string,
+): ExportItem {
   const t = (forum.talks ?? [])[i];
   const win = views.forumTimeWindow(forum);
   const room = roomOnly(views.mainVenueName, forum.room);
@@ -70,12 +91,21 @@ function forumTalkItem(forum: Forum, i: number, views: ConferenceViews): ExportI
     date: forum.day_date ?? "",
     start: t.start ?? win.start ?? null,
     end: t.end ?? win.end ?? null,
+    approx: !t.start,
     location: fullLocation(views.mainVenueName, room),
     room,
     abstract: t.abstract ?? null,
+    followId: `${forum.code}#${i}`,
+    via,
+    viaName,
   };
 }
-function keynoteItem(id: string, views: ConferenceViews): ExportItem | null {
+function keynoteItem(
+  id: string,
+  views: ConferenceViews,
+  via: FollowVia,
+  viaName?: string,
+): ExportItem | null {
   const e = views.keynoteById.get(id);
   if (!e) return null;
   const room = roomOnly(views.mainVenueName, e.location);
@@ -88,50 +118,74 @@ function keynoteItem(id: string, views: ConferenceViews): ExportItem | null {
     date: e.date,
     start: e.talk.start ?? null,
     end: e.talk.end ?? null,
+    // A keynote states its own time or has none at all — it never borrows one.
+    approx: false,
     location: fullLocation(views.mainVenueName, room),
     room,
     abstract: e.talk.abstract ?? null,
+    followId: id,
+    via,
+    viaName,
   };
 }
 
 /** Every talk the user follows, via a starred talk, forum, or speaker (deduped). */
 export function collectFollowedItems(f: FollowSnapshot, views: ConferenceViews): ExportItem[] {
   const map = new Map<string, ExportItem>();
-  const putForum = (forum: Forum, i: number) => {
+  // Directly starred talks are read first, so an item that is also covered by a
+  // followed forum or speaker still knows it can be unstarred on its own.
+  const putForum = (forum: Forum, i: number, via: FollowVia, viaName?: string) => {
     const key = `${forum.code}#${i}`;
-    if (!map.has(key)) map.set(key, forumTalkItem(forum, i, views));
+    if (!map.has(key)) map.set(key, forumTalkItem(forum, i, views, via, viaName));
   };
-  const putKeynote = (id: string) => {
+  const putKeynote = (id: string, via: FollowVia, viaName?: string) => {
     if (map.has(id)) return;
-    const it = keynoteItem(id, views);
+    const it = keynoteItem(id, views, via, viaName);
     if (it) map.set(id, it);
   };
 
   f.talks.forEach((id) => {
-    if (isKeynoteId(id)) return putKeynote(id);
+    if (isKeynoteId(id)) return putKeynote(id, "talk");
     const [code, idx] = id.split("#");
     const forum = views.getForum(code);
     const i = Number(idx);
-    if (forum && (forum.talks ?? [])[i]) putForum(forum, i);
+    if (forum && (forum.talks ?? [])[i]) putForum(forum, i, "talk");
   });
   f.forums.forEach((code) => {
     const forum = views.getForum(code);
-    (forum?.talks ?? []).forEach((_, i) => forum && putForum(forum, i));
+    (forum?.talks ?? []).forEach(
+      (_, i) => forum && putForum(forum, i, "forum", forum.title.zh),
+    );
   });
   if (f.speakers.size) {
     (views.conference.forums ?? []).forEach((forum) =>
       (forum.talks ?? []).forEach((t, i) => {
-        if ((t.speakers ?? []).some((s) => f.speakers.has(s.name))) putForum(forum, i);
+        const who = (t.speakers ?? []).find((s) => f.speakers.has(s.name));
+        if (who) putForum(forum, i, "speaker", who.name);
       }),
     );
     views.keynoteEntries.forEach((e) => {
-      if ((e.talk.speakers ?? []).some((s) => f.speakers.has(s.name))) putKeynote(e.id);
+      const who = (e.talk.speakers ?? []).find((s) => f.speakers.has(s.name));
+      if (who) putKeynote(e.id, "speaker", who.name);
     });
   }
 
-  return [...map.values()].sort((a, b) =>
-    (a.date + (a.start ?? "")).localeCompare(b.date + (b.start ?? "")),
+  // Date, then clock. Talks that share one forum's window carry the same time, so
+  // the tie is broken by the forum and the talk's place in its agenda: a session
+  // reads in the order it will be given, instead of interleaving with the other
+  // rooms' talks that happen to borrow the same window.
+  return [...map.values()].sort(
+    (a, b) =>
+      (a.date + (a.start ?? "")).localeCompare(b.date + (b.start ?? "")) ||
+      (a.code ?? "").localeCompare(b.code ?? "") ||
+      talkIndex(a) - talkIndex(b),
   );
+}
+
+/** A talk's position in its forum's agenda, from its follow id (`CF01#7`). */
+function talkIndex(it: ExportItem): number {
+  const n = Number(it.followId.split("#")[1]);
+  return Number.isFinite(n) ? n : 0;
 }
 
 /** A download filename built from the conference name + the dates it spans,
@@ -200,9 +254,21 @@ function csvCell(v: string | null | undefined): string {
 }
 
 export function toCSV(items: ExportItem[]): string {
-  const head = ["日期", "开始", "结束", "标题", "讲者", "场次", "编号", "地点"];
+  // The last column exists so a borrowed time cannot be read as a stated one:
+  // the sheet still sorts by 开始, but says where that number came from.
+  const head = ["日期", "开始", "结束", "标题", "讲者", "场次", "编号", "地点", "时间说明"];
   const rows = items.map((it) =>
-    [it.date, it.start ?? "", it.end ?? "", it.title, it.speakers, it.session, it.code ?? "", it.location]
+    [
+      it.date,
+      it.start ?? "",
+      it.end ?? "",
+      it.title,
+      it.speakers,
+      it.session,
+      it.code ?? "",
+      it.location,
+      it.approx ? "论坛时段（该报告未公布具体时间）" : "",
+    ]
       .map(csvCell)
       .join(","),
   );
@@ -221,7 +287,11 @@ export function toMarkdown(items: ExportItem[], views: ConferenceViews): string 
   for (const [date, list] of byDate) {
     out += `\n## ${date}\n\n`;
     for (const it of list) {
-      const time = it.start ? `\`${it.start}${it.end ? `–${it.end}` : ""}\` ` : "";
+      // "~" marks a time the talk borrowed from its forum, the way the plan and
+      // My Day print it.
+      const time = it.start
+        ? `\`${it.approx ? "~" : ""}${it.start}${it.end ? `–${it.end}` : ""}\` `
+        : "";
       out += `- ${time}**${it.title}**\n`;
       if (it.speakers) out += `  - 讲者：${it.speakers}\n`;
       out += `  - 场次：${it.session}${it.code ? ` (${it.code})` : ""}\n`;
@@ -333,6 +403,10 @@ export function toICS(items: ExportItem[], stampISO: string, views: ConferenceVi
     const desc = [
       `${it.session}${it.code ? ` (${it.code})` : ""}`,
       it.speakers ? `讲者：${it.speakers}` : "",
+      // The event has to carry a time to be a calendar entry at all, so a talk
+      // without one of its own gets its forum's window — and says so, or the
+      // reader would read the block as this talk's own 3-hour slot.
+      it.approx ? "时间为所属论坛的时段，该报告未公布具体时间" : "",
       it.abstract ?? "",
     ]
       .filter(Boolean)
