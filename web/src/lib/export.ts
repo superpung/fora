@@ -2,7 +2,7 @@
 // calendar / spreadsheet / markdown. A forum talk has no time of its own, so we
 // fall back to its forum block's window; the location is the full venue name
 // joined with the room (e.g. "无锡国际会议中心 205A").
-import { type ConferenceViews } from "./data";
+import { speakerNames, type ConferenceViews } from "./data";
 import { isKeynoteId } from "./follow-store";
 import type { Forum, Talk } from "../types";
 import { titleLine } from "./talk-title";
@@ -59,9 +59,6 @@ export interface ParsedFollows {
 
 function talkTitle(t: Talk): string {
   return titleLine(t, "（题目待定）").text;
-}
-function speakerNames(t: Talk): string {
-  return (t.speakers ?? []).map((s) => s.name).filter(Boolean).join("、");
 }
 // A forum records a bare room ("二楼荆溪厅204"); a keynote block records a
 // location that already names the venue ("武汉国际会议中心 五楼主会议厅"). Strip

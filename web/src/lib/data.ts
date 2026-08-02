@@ -36,6 +36,14 @@ export function formatDate(iso: string, lang: Lang = "zh"): { md: string; weekda
     : { md: `${d.getMonth() + 1}月${d.getDate()}日`, weekday: WEEKDAY_ZH[d.getDay()] };
 }
 
+/** A talk's speakers as one line. Every surface that writes the speakers of a
+    talk — My Day, the planner, the live card, the topic map, the exports —
+    writes them the same way, so the join lives here rather than in each of
+    them. */
+export function speakerNames(t: Talk): string {
+  return (t.speakers ?? []).map((s) => s.name).filter(Boolean).join("、");
+}
+
 export type SpeakerCategory = "university" | "research" | "industry" | "other";
 
 // Classify a person by their affiliation string. Order matters: a corporate
