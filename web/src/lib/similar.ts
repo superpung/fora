@@ -1,5 +1,6 @@
 import type { Conference } from "../types";
 import { ownTitle, titleLine } from "./talk-title";
+import { speakerNames } from "./data";
 
 // "If you liked this, you might also want" — related talks for one open talk.
 //
@@ -22,6 +23,8 @@ export interface SimilarTalk {
   index: number;
   title?: string;
   titleTbd: boolean;
+  /** The speakers as one line — a talk row anywhere in this app names them. */
+  speakers?: string;
   room?: string | null;
   date?: string | null;
   period?: string | null;
@@ -68,6 +71,7 @@ interface Doc {
   index: number;
   title?: string;
   titleTbd: boolean;
+  speakers?: string;
   room?: string | null;
   date?: string | null;
   period?: string | null;
@@ -112,6 +116,7 @@ function buildCorpus(conference: Conference): Corpus {
         index,
         title: titleLine(talk, "").text || undefined,
         titleTbd: !ownTitle(talk),
+        speakers: speakerNames(talk) || undefined,
         room: f.room,
         date: f.day_date,
         period: f.session_period,
@@ -227,6 +232,7 @@ export function similarTalks(
       index: doc.index,
       title: doc.title,
       titleTbd: doc.titleTbd,
+      speakers: doc.speakers,
       room: doc.room,
       date: doc.date,
       period: doc.period,

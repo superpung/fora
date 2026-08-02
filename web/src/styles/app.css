@@ -2137,6 +2137,13 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 .tmapsel__talks > .tmaptalk:first-child { border-top: none; }
 .tmaptalk:hover { background: var(--bg-hover); }
 .tmaptalk__title { font-size: 14px; font-weight: 500; line-height: 1.4; }
+/* Speaker line, one step under the title — same shape as My Day's and the
+   planner's, so a talk reads the same wherever it is listed. */
+.tmaptalk__spk {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 13px; color: var(--fg-secondary);
+}
+.tmaptalk__spk svg { flex: 0 0 auto; color: var(--fg-muted); }
 .tmaptalk__meta {
   display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px;
   font-size: 12px; color: var(--fg-muted);
@@ -2183,6 +2190,11 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 .simblock__list > .simrow:first-child { border-top: none; }
 .simrow:hover { background: var(--bg-hover); }
 .simrow__title { font-size: 13.5px; font-weight: 500; line-height: 1.4; }
+.simrow__spk {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 12.5px; color: var(--fg-secondary);
+}
+.simrow__spk svg { flex: 0 0 auto; color: var(--fg-muted); }
 .simrow__meta {
   display: flex; flex-wrap: wrap; align-items: center; gap: 3px 10px;
   font-size: 11.5px; color: var(--fg-muted);

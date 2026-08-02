@@ -35,6 +35,13 @@ function SimilarRow({ item }: { item: SimilarTalk }) {
           item.title
         )}
       </span>
+      {/* Speaker with a person icon, directly under the title — the way My Day,
+          the planner, the live card and the topic map write a talk. */}
+      {item.speakers && (
+        <span className="simrow__spk">
+          <Icon name="user" size={12} /> {item.speakers}
+        </span>
+      )}
       <span className="simrow__meta">
         <span className="simrow__code mono">{item.forumCode}</span>
         <span className="simrow__forum">{item.forumTitle}</span>
