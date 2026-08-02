@@ -560,6 +560,10 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 .talkrow--link { color: inherit; transition: background 0.15s; }
 .talkrow--link:hover { background: var(--bg-hover); }
 .block--myday .talkrow { margin-inline: -16px; padding-inline: 16px; }
+/* A row's hover fill runs the full width of the panel, so the list's own 4px
+   top and bottom padding showed as a seam between the first (or last) hovered
+   row and the panel's edge. The rows carry their own spacing here. */
+.block--myday .talklist { padding-block: 0; }
 .breakrow { display: flex; gap: 14px; align-items: center; padding: 9px 16px; color: var(--fg-muted); font-size: 12.5px; background: var(--bg-subtle); border-top: 1px solid var(--border); }
 .breakrow:first-child { border-top: none; }
 .breakrow .time { color: var(--fg-muted); }
