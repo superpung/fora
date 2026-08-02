@@ -4,6 +4,62 @@ All notable changes to this project, newest first. The top entry is the current
 release; the dated log beneath it records development day by day. Written in
 English per the repository language rule (see AGENTS.md).
 
+## v0.3.0 — 2026-08-02
+
+### Added
+- **Now / Next live view** — a zero-scroll page for the conference day: what is
+  running in every room, what starts next, and when your next starred item
+  begins. It appears in the nav only while the conference is on.
+- **My Day** — your starred items for one day, read as a plan rather than a
+  list: the free gaps between them, the room-to-room moves, and the real
+  clashes. It lives inside the schedule, behind a single view toggle.
+- **Global search** — a command palette across talks, abstracts, speakers,
+  affiliations, forums and committees, ranked by BM25 relevance.
+- **Plan for me** — an agenda planner that assembles a day without clashes from
+  what you are interested in, and shows the reasoning behind every pick.
+- **Reminders** — opt-in PWA notifications ahead of the sessions you starred.
+- **Topic map and similar talks** — a radial sector graph of a conference's
+  topics, and "talks like this one" on every talk.
+- **AI-derived content, governed** — one-line TL;DR summaries and topics,
+  generated ahead of time into their own provenance-marked container and shown
+  only behind a site-wide switch, with a visible marker and disclaimer; the
+  source text is always one tap away.
+- **A third conference** — 2026 CCF 中国开源大会 (chinaosc2026).
+- **Unpublished agendas say so** — a forum whose programme is not out yet says
+  that, instead of showing an empty page.
+
+### Changed
+- Borrowed times read as borrowed: a talk with no time of its own wears its
+  forum's window, marked `~`, and neither the day view nor the reminders nor the
+  exports present it as exact.
+- The schedule's view choice survives a reload and travels in the URL, so a
+  shared link opens on what the sender was reading.
+- Star where you plan: a talk can be starred from the timeline board and
+  unstarred from My Day.
+- One conference-agnostic build entry point, and one motion language shared by
+  every AI control.
+- The navigation strip: room for the links on a phone, and a scrolling strip
+  that says where you are and that it continues.
+
+### Fixed
+- Calendar exports mean the right hour in the right timezone, and the export
+  button no longer reports a file it did not write.
+- A start time has to be a time — the validator now says so, and the data it
+  caught was corrected.
+- The dataset joins the offline cache on the visit that loads it, so the second
+  visit works offline.
+- Links land on the talk, not on the top of the page holding it — from the
+  planner, from My Day and from the live card.
+- Things that are not people stay out of the speaker list, a competition slot is
+  no longer read as a talk missing its title, topic names fit on the map, avatar
+  initials stay readable at every hue, and the account menu opens and fits.
+
+### Data
+- Corrected the 7/19 ChinaSoft keynote against the official handbook, and
+  refreshed the manifest dates that derive from the data commits.
+
+_Every change in this release landed as a reviewed pull request (#1–#32)._
+
 ## v0.2.0 — 2026-07-18
 
 ### Added
