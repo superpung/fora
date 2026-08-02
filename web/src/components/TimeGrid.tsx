@@ -7,6 +7,7 @@ import { useCoarsePointer } from "../lib/use-coarse-pointer";
 import { useNow, isNowWithin } from "../lib/use-now";
 import Icon from "../components/Icon";
 import type { Block, Forum, Talk } from "../types";
+import { titleLine } from "../lib/talk-title";
 
 // A time-vs-forum matrix for one day's parallel forum sessions: the vertical
 // axis is wall-clock time, each forum is a column, and every talk sits near its
@@ -339,9 +340,7 @@ export default function TimeGrid({
                       {t.end ? `–${t.end}` : ""}
                     </span>
                     <span className="tgrid__ttitle">
-                      {t.title_status === "tbd" || !t.title?.zh
-                        ? tr("timeline.tbd")
-                        : t.title.zh}
+                      {titleLine(t, tr("timeline.tbd")).text}
                     </span>
                     {sp?.name && <span className="tgrid__tspk">{sp.name}</span>}
                   </>

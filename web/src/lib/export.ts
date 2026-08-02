@@ -5,6 +5,7 @@
 import { type ConferenceViews } from "./data";
 import { isKeynoteId } from "./follow-store";
 import type { Forum, Talk } from "../types";
+import { titleLine } from "./talk-title";
 
 export interface ExportItem {
   uid: string;
@@ -35,7 +36,7 @@ export interface ParsedFollows {
 }
 
 function talkTitle(t: Talk): string {
-  return t.title_status === "tbd" || !t.title?.zh ? "（题目待定）" : t.title.zh;
+  return titleLine(t, "（题目待定）").text;
 }
 function speakerNames(t: Talk): string {
   return (t.speakers ?? []).map((s) => s.name).filter(Boolean).join("、");
