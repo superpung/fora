@@ -204,8 +204,10 @@ export default function Now() {
             ) : (
               <div className={`nowstar ${starred.running ? "nowstar--live" : ""}`}>
                 <div className="nowstar__when">
+                  {/* A talk that borrowed its forum's window can only say the
+                      forum is on — it doesn't know which talk is being given. */}
                   {starred.running
-                    ? t("now.starredNow")
+                    ? t(starred.item.approx ? "now.starredNowForum" : "now.starredNow")
                     : relTime(starred.minutesUntil, starred.item.date, starred.item.start ?? "")}
                 </div>
                 <div className="nowstar__title">
@@ -225,7 +227,9 @@ export default function Now() {
                 </div>
                 {starred.item.code && (
                   <Link
-                    to={`/${views.id}/forum/${starred.item.code}`}
+                    to={`/${views.id}/forum/${starred.item.code}${
+                      starred.item.talkIndex != null ? `#talk-${starred.item.talkIndex + 1}` : ""
+                    }`}
                     className="nowstar__link"
                   >
                     {t("now.open")} <Icon name="arrow-right" size={13} />
