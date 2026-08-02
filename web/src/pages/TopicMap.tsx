@@ -106,6 +106,13 @@ function TopicTalkRow({ talk }: { talk: TopicTalk }) {
           talk.title
         )}
       </span>
+      {/* Speaker with a person icon, directly under the title — the way My Day,
+          the planner, the live card and the similar-talks list write a talk. */}
+      {talk.speakers && (
+        <span className="tmaptalk__spk">
+          <Icon name="user" size={12} /> {talk.speakers}
+        </span>
+      )}
       <span className="tmaptalk__meta">
         <span className="tmaptalk__code mono">{talk.forumCode}</span>
         <span className="tmaptalk__forum">{talk.forumTitle}</span>
