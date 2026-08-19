@@ -1,12 +1,73 @@
 {
   "_about": "Programme parsed from the forum's published timetable image. Verbatim transcription of the image — no inference.",
   "doc": "1515",
-  "images": [],
-  "rows": [],
+  "images": ["image_20260801123603A663.png"],
+  "rows": [
+    {
+      "start": "13:30",
+      "end": "13:45",
+      "title": "论坛介绍：RISC-V与开源芯片",
+      "kind": "other",
+      "speakers": [{ "name": "解壁伟", "affiliation_raw": "中国科学院计算技术研究所" }]
+    },
+    {
+      "start": "13:45",
+      "end": "14:15",
+      "title": "甲辰计划：为了 RISC-V 软件生态的繁荣",
+      "speakers": [{ "name": "吴伟", "affiliation_raw": "苦芽科技" }]
+    },
+    {
+      "start": "14:15",
+      "end": "14:45",
+      "title": "开源高性能处理器芯片的敏捷设计方法",
+      "speakers": [{ "name": "徐易难", "affiliation_raw": "中国科学院计算技术研究所" }]
+    },
+    {
+      "start": "14:45",
+      "end": "15:15",
+      "title": "基于RISC-V矩阵扩展指令集的AI加速器设计",
+      "speakers": [{ "name": "高明晋", "affiliation_raw": "中国科学院计算技术研究所" }]
+    },
+    {
+      "start": "15:15",
+      "end": "15:30",
+      "title": "茶歇",
+      "kind": "break",
+      "speakers": []
+    },
+    {
+      "start": "15:30",
+      "end": "16:00",
+      "title": "开源PDK与公共流片平台：筑牢开源芯片全栈创新底座",
+      "speakers": [{ "name": "欧阳平", "affiliation_raw": "浙江创芯" }]
+    },
+    {
+      "start": "16:00",
+      "end": "16:30",
+      "title": "ECOS Studio：开源EDA、IP与PDK的端到端芯片设计与社区流片实践",
+      "speakers": [{ "name": "王昊", "affiliation_raw": "中国科学院计算技术研究所" }]
+    },
+    {
+      "start": "16:30",
+      "end": "17:00",
+      "title": "UCAgent：AI 驱动的芯片验证全流程加速实践",
+      "speakers": [{ "name": "皮彦", "affiliation_raw": "中国科学院计算技术研究所" }]
+    },
+    {
+      "start": "17:00",
+      "end": "17:30",
+      "title": "“一生一芯”计划——从零开始设计自己的RISC-V处理器芯片",
+      "speakers": [{ "name": "杨昊天", "affiliation_raw": "北京开源芯片研究院" }]
+    }
+  ],
   "room": null,
   "notes": [
-    "This forum (开源芯片) publishes NO timetable image. Both images in the document were examined and neither is a table: 2.35-1_01(2)_20260728113606A615.png is the forum title banner (“开源芯片”分论坛) on the 2.35:1 PPT template; image_20260724161959A408.png is the site-wide registration QR code.",
-    "The document is a placeholder: the conference-wide boilerplate, the single line '分论坛：开源芯片', and the registration footer. It carries no 论坛主旨, no 论坛主席 bio, no talk titles, no speakers and no times. This matches the dataset, where F1515 has 0 talks; nothing was recoverable here, so the gap is the source's, not the parse's.",
+    "This forum's page was a placeholder — conference boilerplate and the line '分论坛：开源芯片' — and has since been filled in; the timetable image image_20260801123603A663.png (1080x1121) is new, so its programme is transcribed here for the first time.",
+    "Timetable columns: 时间 / 报告题目 / 讲者 / 单位. Times are present for every row; no room/venue and no date are printed on the image.",
+    "The table runs contiguously from 13:30 to 17:30; the forum window on 8/16 is 13:30-17:00, so the last row runs half an hour past it. As printed.",
+    "The 茶歇 row (15:15-15:30) spans the three right-hand columns as one merged cell; no speaker is printed for it.",
+    "单位 prints organisations only, without job titles.",
+    "Punctuation kept as printed, including the full-width colons in the titles and the 中文 quotation marks and em dash in '“一生一芯”计划——从零开始设计自己的RISC-V处理器芯片'.",
     "No room / hall / venue is shown anywhere in this document's images."
   ]
 }
