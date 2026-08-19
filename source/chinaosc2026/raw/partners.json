@@ -3,23 +3,201 @@
  "msg": "查询成功",
  "rows": [
   {
+   "id": 86,
+   "typeName": "钻石合作伙伴",
+   "zonePartnersList": [
+    {
+     "createBy": "",
+     "createTime": "2026-08-12 18:37:47",
+     "delFlag": "0",
+     "deptId": 386,
+     "id": 321,
+     "link": "https://www.huawei.com/cn/?redir=huawei_com_cn",
+     "logo": "https://gateway.gitlink.org.cn/api/file/statics/2026/08/12/huawei_20250729130303A923_20260812191800A970.png",
+     "name": "华为技术有限公司",
+     "remark": null,
+     "sort": 1,
+     "typeId": 86,
+     "updateBy": "",
+     "updateTime": "2026-08-12 19:18:01",
+     "zoneId": 40
+    }
+   ]
+  },
+  {
+   "id": 87,
+   "typeName": "黄金合作伙伴",
+   "zonePartnersList": [
+    {
+     "createBy": "",
+     "createTime": "2026-08-12 18:38:19",
+     "delFlag": "0",
+     "deptId": 386,
+     "id": 322,
+     "link": "https://www.metax-tech.com/",
+     "logo": "https://gateway.gitlink.org.cn/api/file/statics/2026/08/12/图片1_20260812200651A977.png",
+     "name": "沐曦",
+     "remark": null,
+     "sort": 1,
+     "typeId": 87,
+     "updateBy": "",
+     "updateTime": "2026-08-12 20:06:53",
+     "zoneId": 40
+    }
+   ]
+  },
+  {
+   "id": 88,
+   "typeName": "白银合作伙伴",
+   "zonePartnersList": [
+    {
+     "createBy": "",
+     "createTime": "2026-08-12 18:39:15",
+     "delFlag": "0",
+     "deptId": 386,
+     "id": 323,
+     "link": "https://opensource.didiglobal.com/home",
+     "logo": "https://gateway.gitlink.org.cn/api/file/statics/2026/08/12/96d82706.logo-zh-1_20260812184205A967.png",
+     "name": "滴滴开源",
+     "remark": null,
+     "sort": 1,
+     "typeId": 88,
+     "updateBy": "",
+     "updateTime": "2026-08-12 18:42:07",
+     "zoneId": 40
+    },
+    {
+     "createBy": "",
+     "createTime": "2026-08-12 18:40:00",
+     "delFlag": "0",
+     "deptId": 386,
+     "id": 324,
+     "link": "https://www.openkylin.top/index-cn.html",
+     "logo": "https://gateway.gitlink.org.cn/api/file/statics/2026/08/12/openkylin_20250728211030A908_20260812183958A965.png",
+     "name": "开放麒麟",
+     "remark": null,
+     "sort": 2,
+     "typeId": 88,
+     "updateBy": "",
+     "updateTime": null,
+     "zoneId": 40
+    },
+    {
+     "createBy": "",
+     "createTime": "2026-08-12 18:40:46",
+     "delFlag": "0",
+     "deptId": 386,
+     "id": 325,
+     "link": "https://www.baai.ac.cn/zh-cn/",
+     "logo": "https://gateway.gitlink.org.cn/api/file/statics/2026/08/12/logo1_20260812184045A966.png",
+     "name": "智源研究院",
+     "remark": null,
+     "sort": 3,
+     "typeId": 88,
+     "updateBy": "",
+     "updateTime": null,
+     "zoneId": 40
+    }
+   ]
+  },
+  {
    "id": 85,
    "typeName": "合作社区",
    "zonePartnersList": [
+    {
+     "createBy": "",
+     "createTime": "2026-07-29 10:54:57",
+     "delFlag": "0",
+     "deptId": 386,
+     "id": 318,
+     "link": "https://www.taiyi.top/home",
+     "logo": "https://gateway.gitlink.org.cn/api/file/statics/2026/08/12/图片2_20260812200450A975.png",
+     "name": "浙大太乙",
+     "remark": null,
+     "sort": 1,
+     "typeId": 85,
+     "updateBy": "",
+     "updateTime": "2026-08-12 20:04:53",
+     "zoneId": 40
+    },
+    {
+     "createBy": "",
+     "createTime": "2026-08-12 19:25:07",
+     "delFlag": "0",
+     "deptId": 386,
+     "id": 327,
+     "link": "https://kaiyuanshe.cn/",
+     "logo": "https://gateway.gitlink.org.cn/api/file/statics/2026/08/12/开源社_20250728210808A905_20260812192505A972.png",
+     "name": "开源社",
+     "remark": null,
+     "sort": 2,
+     "typeId": 85,
+     "updateBy": "",
+     "updateTime": "2026-08-12 19:34:12",
+     "zoneId": 40
+    },
+    {
+     "createBy": "",
+     "createTime": "2026-08-12 19:27:22",
+     "delFlag": "0",
+     "deptId": 386,
+     "id": 329,
+     "link": "https://www.openi.org.cn/",
+     "logo": "https://gateway.gitlink.org.cn/api/file/statics/2026/08/12/启智_20250728210703A903_20260812192720A974.jpg",
+     "name": "启智",
+     "remark": null,
+     "sort": 3,
+     "typeId": 85,
+     "updateBy": "",
+     "updateTime": "2026-08-12 19:34:27",
+     "zoneId": 40
+    },
+    {
+     "createBy": "",
+     "createTime": "2026-08-12 19:25:52",
+     "delFlag": "0",
+     "deptId": 386,
+     "id": 328,
+     "link": "https://www.osredm.com/",
+     "logo": "https://gateway.gitlink.org.cn/api/file/statics/2026/08/12/红山_20250728210857A906_20260812192545A973.png",
+     "name": "红山开源",
+     "remark": null,
+     "sort": 4,
+     "typeId": 85,
+     "updateBy": "",
+     "updateTime": "2026-08-12 19:35:00",
+     "zoneId": 40
+    },
+    {
+     "createBy": "",
+     "createTime": "2026-08-12 18:11:21",
+     "delFlag": "0",
+     "deptId": 386,
+     "id": 320,
+     "link": "https://www.jljlab.ac.cn/index.html",
+     "logo": "https://gateway.gitlink.org.cn/api/file/statics/2026/08/12/嘉陵江实验室-removebg-preview_20260812181307A961.png",
+     "name": "嘉陵江实验室",
+     "remark": null,
+     "sort": 5,
+     "typeId": 85,
+     "updateBy": "",
+     "updateTime": "2026-08-12 19:28:34",
+     "zoneId": 40
+    },
     {
      "createBy": "",
      "createTime": "2026-06-22 10:41:16",
      "delFlag": "0",
      "deptId": 386,
      "id": 300,
-     "link": null,
+     "link": "https://www.gitlink.org.cn/",
      "logo": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/22/GitLink logo黑色_20260622104102A166.png",
      "name": "GitLink",
      "remark": null,
-     "sort": 1,
+     "sort": 6,
      "typeId": 85,
      "updateBy": "",
-     "updateTime": null,
+     "updateTime": "2026-08-12 19:35:12",
      "zoneId": 40
     },
     {
@@ -32,23 +210,7 @@
      "logo": "https://gateway.gitlink.org.cn/api/file/statics/2026/06/22/AI INFRA(1)_20260622104409A167.png",
      "name": "AI Infra开源社区",
      "remark": null,
-     "sort": 2,
-     "typeId": 85,
-     "updateBy": "",
-     "updateTime": null,
-     "zoneId": 40
-    },
-    {
-     "createBy": "",
-     "createTime": "2026-07-29 10:54:57",
-     "delFlag": "0",
-     "deptId": 386,
-     "id": 318,
-     "link": null,
-     "logo": "https://gateway.gitlink.org.cn/api/file/statics/2026/07/29/taiyi_20260729105455A622.svg",
-     "name": "浙大太乙",
-     "remark": null,
-     "sort": 3,
+     "sort": 7,
      "typeId": 85,
      "updateBy": "",
      "updateTime": null,
@@ -57,5 +219,5 @@
    ]
   }
  ],
- "total": 1
+ "total": 4
 }

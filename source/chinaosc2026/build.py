@@ -740,6 +740,12 @@ def parse_forum(row):
 # day documents
 # --------------------------------------------------------------------------
 
+# The day timetable's period column, and the label it gives each parallel forum
+# ("分会场一" … "分会场十一") — an ordering, not a room; the room is its own cell.
+PERIOD_LABELS = ("全天", "上午", "午间", "中午", "下午", "傍晚", "晚间")
+HALL_LABEL = re.compile(r"分会场[一二三四五六七八九十]+")
+
+
 def block_kind(event):
     """Map a day-timetable row to a schema block kind."""
     if "报到" in event or "签到" in event or "注册" in event:
@@ -758,47 +764,117 @@ def block_kind(event):
 
 
 def parse_day(row):
-    """One 议程详情 document -> (ISO date, [block]).
+    """One 议程详情 document -> (ISO date, [block], [parallel-forum row]).
 
-    Each row of the document is "<time range><period label><event>"; the period
-    label (全天 / 上午 / 午间 / 下午 / 晚间) has no schema field of its own and is
-    kept verbatim on the block's `extra`.
+    A row is a handful of spans in one paragraph, in no fixed order: a period
+    label (全天 / 上午 / 午间 / 下午 / 晚间), a time range, what happens, and — since
+    the halls were assigned — where. The period label has no schema field of its
+    own and is kept verbatim on the block's `extra`.
+
+    The parallel-forum window is printed as one row per forum:
+
+        下午 | 13:30-17:30（分会场一） | Robonix具身智能操作系统分论坛 | 二楼嘉陵1厅
+             | 分会场二              | 红山开源创新分论坛           | 二楼嘉陵2厅
+
+    so the window itself is one block (the time comes from the first row) and
+    each row names a forum and its hall. Those are returned separately: the
+    forum they name is a document of its own, matched by title in build().
     """
     doc, html = doc_html(row["id"])
     md = MONTH_DAY.search(doc.get("name") or "")
     if not md:
-        return None, []
+        return None, [], []
     date = f"{YEAR}-{int(md.group(1)):02d}-{int(md.group(2)):02d}"
     soup = BeautifulSoup(html, "html.parser")
-    blocks = []
+    blocks, parallel = [], []
     for p in soup.find_all("p"):
         cells = [clean(s.get_text(" ")) for s in p.find_all("span")]
         cells = [c for c in cells if c]
         if not cells:
             continue
-        tm = TIME_RANGE.search(cells[0])
+        i_time = next((i for i, c in enumerate(cells) if TIME_RANGE.search(c)), None)
+        i_period = next((i for i, c in enumerate(cells) if c in PERIOD_LABELS), None)
+        i_hall = next((i for i, c in enumerate(cells) if HALL_LABEL.search(c)), None)
+        rest = [c for i, c in enumerate(cells) if i not in {i_time, i_period, i_hall}]
+        if not rest:
+            continue
         # Read through the shared rule rather than trusting the printed form:
         # this site happens to pad its hours, the next one may not (see
         # source/times.py).
+        tm = TIME_RANGE.search(cells[i_time]) if i_time is not None else None
         start = read_time(tm.group(1))[0] if tm else None
         end = read_time(tm.group(2))[0] if tm else None
-        event = cells[-1]
-        period = cells[1] if len(cells) > 2 else None
-        if not event:
+        period = cells[i_period] if i_period is not None else None
+
+        if i_hall is not None:
+            parallel.append({
+                "hall_label": HALL_LABEL.search(cells[i_hall]).group(0),
+                "title": rest[0],
+                "room": rest[1] if len(rest) > 1 else None,
+            })
+            # The window's own time is printed once, on its first forum's row.
+            if tm and not any(b["kind"] == "forums" for b in blocks):
+                blocks.append({
+                    "id": f"{date}-{len(blocks) + 1}",
+                    "kind": "forums",
+                    "title": i18n("领域分论坛"),
+                    "start": start,
+                    "end": end,
+                    "location": None,
+                    "note": None,
+                    **({"extra": {"period_label": period}} if period else {}),
+                })
             continue
+
         block = {
             "id": f"{date}-{len(blocks) + 1}",
-            "kind": block_kind(event),
-            "title": i18n(event),
+            "kind": block_kind(rest[0]),
+            "title": i18n(rest[0]),
             "start": start,
             "end": end,
-            "location": None,
+            "location": rest[1] if len(rest) > 1 else None,
             "note": None,
         }
         if period:
             block["extra"] = {"period_label": period}
         blocks.append(block)
-    return date, blocks
+    return date, blocks, parallel
+
+
+def assign_rooms(forums, date, parallel):
+    """Give each forum the hall its day's timetable prints for it.
+
+    The two documents write a forum's title differently — the day timetable adds
+    "分论坛", drops a space around a dash, shortens a subtitle — so the rows are
+    matched by title similarity rather than equality, and only within the day
+    they were printed on. A row that matches nothing, and a forum that no row
+    names, are both flagged rather than quietly dropped: an unassigned hall is a
+    fact about the source, and a wrong hall would send a reader to the wrong room.
+    """
+    same_day = [f for f in forums if f["day_date"] == date]
+    for row in parallel:
+        best, score = None, 0.0
+        for f in same_day:
+            ratio = same_report(row["title"], f["title"]["zh"])
+            if ratio > score:
+                best, score = f, ratio
+        if best is None or score < SAME_REPORT:
+            print(f"  ! {date}: no forum matches the timetable row "
+                  f"'{row['hall_label']} {row['title']}'")
+            continue
+        if best.get("room") and best["room"] != row["room"]:
+            best.setdefault("flags", []).append(
+                f"the day timetable puts this forum in '{row['room']}', its own "
+                f"page in '{best['room']}'; the day timetable is kept")
+        best["room"] = row["room"]
+        best["extra"]["hall_label"] = row["hall_label"]
+        # The day timetable titles the forum too; keep it where it differs from
+        # the forum document's own title, so the difference stays visible.
+        if fold_title(row["title"]) != fold_title(best["title"]["zh"]):
+            best["extra"]["day_timetable_title"] = row["title"]
+    for f in same_day:
+        if not f.get("room"):
+            f.setdefault("flags", []).append("the day timetable names no hall for this forum")
 
 
 # --------------------------------------------------------------------------
@@ -849,6 +925,12 @@ def parse_committees():
     return committees, empty
 
 
+# The partner list groups its rows by 合作类型. A tier ("钻石合作伙伴") is a
+# sponsorship; 合作社区 is a community standing alongside the conference, not
+# paying for it. The group name is kept verbatim either way.
+TIER_SUFFIX = "合作伙伴"
+
+
 def parse_organizations():
     """The hosts (from the zone's own conference blurb) plus the partner list."""
     orgs = [
@@ -858,16 +940,20 @@ def parse_organizations():
     ]
     for group in load("partners.json")["rows"]:
         kind = clean(group.get("typeName"))
+        tier = kind[:-len(TIER_SUFFIX)] if kind.endswith(TIER_SUFFIX) else None
         for p in group.get("zonePartnersList") or []:
             name = clean(p.get("name"))
             if not name:
                 continue
+            extra = {"partner_type": kind}
+            if p.get("link"):
+                extra["link"] = p["link"]
             orgs.append({
                 "name": i18n(name),
-                "role": "support",
-                "sponsor_tier": None,
+                "role": "sponsor" if tier else "support",
+                "sponsor_tier": tier,
                 "logo": {"local_path": None, "source_url": p.get("logo") or None},
-                "extra": {"partner_type": kind},
+                "extra": extra,
             })
     return orgs
 
@@ -999,11 +1085,17 @@ def build():
     enrich_path = pathlib.Path(__file__).resolve().parent / "enrichment.json"
     n_enriched, n_summaries = apply_enrichment(forums, enrich_path)
 
-    day_blocks = {}
+    day_blocks, day_parallel = {}, {}
     for row in doc_rows(DIR_DAYS):
-        date, blocks = parse_day(row)
+        date, blocks, parallel = parse_day(row)
         if date:
             day_blocks[date] = blocks
+            day_parallel[date] = parallel
+
+    # The day timetable is where the halls are published, one row per forum,
+    # naming the forum by title. Match those titles back to the forum documents.
+    for date, parallel in day_parallel.items():
+        assign_rooms(forums, date, parallel)
 
     # Attach the forums to their day's parallel-forum block; a date the day
     # documents never mention still gets its own forums block so nothing is lost.
@@ -1099,9 +1191,12 @@ def build():
                 f"Parsed from the site's CMS documents: {len(forums)} forums and "
                 f"{sum(len(f['talks']) for f in forums)} forum sessions across "
                 f"{len(days)} days. The per-talk timetable is published only as an "
-                f"image inside each forum page (kept as the forum poster), so forum "
-                f"talks carry no time of their own and inherit the day's "
-                f"parallel-forum window. The site publishes no per-forum room."
+                f"image inside each forum page (kept as the forum poster); it is "
+                f"transcribed verbatim under source/chinaosc2026/agenda/ and is "
+                f"where a talk's time comes from. Rooms come from the day "
+                f"documents, which name a hall per parallel forum "
+                f"({sum(1 for f in forums if f.get('room'))} of {len(forums)} "
+                f"forums); no forum page names its own room."
             ),
         },
     }

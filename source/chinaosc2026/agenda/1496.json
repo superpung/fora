@@ -1,13 +1,13 @@
 {
   "_about": "Programme parsed from the forum's published timetable image. Verbatim transcription of the image — no inference.",
   "doc": "1496",
-  "images": ["image_20260724193703A461.png"],
+  "images": ["b75901b7607ec6c90555d6bef5bdf554_20260809182221A737.png"],
   "rows": [
     {
       "start": "13:30",
       "end": "14:00",
       "title": "面向协同驾驶的智能车辆运动行为建模与仿真测试关键技术",
-      "speakers": [{ "name": "李永福", "affiliation_raw": "重庆邮电大学自动化学院院长，国家高层次青年人才" }]
+      "speakers": [{ "name": "黄鑫", "affiliation_raw": "重庆邮电大学自动化学院讲师" }]
     },
     {
       "start": "14:00",
@@ -29,17 +29,31 @@
     },
     {
       "start": "15:20",
-      "end": "17:20",
+      "end": "15:40",
+      "title": "研讨引导报告（介绍需要研讨的问题）",
+      "speakers": [{ "name": "房建武", "affiliation_raw": "西安交通大学" }]
+    },
+    {
+      "start": "15:40",
+      "end": "17:10",
+      "title": "茶歇",
+      "kind": "break",
+      "speakers": []
+    },
+    {
+      "start": "17:10",
+      "end": "17:40",
       "title": "圆桌研讨",
       "kind": "other",
-      "speakers": [{ "name": "房建武", "affiliation_raw": "西安交通大学" }]
+      "speakers": [{ "name": "房建武", "affiliation_raw": "主持人" }]
     }
   ],
   "room": null,
   "notes": [
-    "Images in this document: conference banner (1080x464), 6 speaker/chair headshots, 1 WeChat/registration QR code, and the one timetable image listed above.",
-    "Timetable columns: 时间 / 报告题目 / 讲者 / 单位. Times and affiliations are present for every row; no room/venue and no date are printed on the image.",
+    "The timetable image was replaced on the page (was image_20260724193703A461.png, now b75901b7607ec6c90555d6bef5bdf554_20260809182221A737.png). Re-transcribed from the new image.",
+    "Timetable columns: 时间 / 报告题目 / 讲者 / 单位. Times are present for every row; no room/venue and no date are printed on the image.",
+    "Against the earlier image: the opening report is now given to '黄鑫 / 重庆邮电大学自动化学院讲师' where the earlier image printed '李永福 / 重庆邮电大学自动化学院院长，国家高层次青年人才'; the closing block is now split into 研讨引导报告 (15:20-15:40), 茶歇 (15:40-17:10) and 圆桌研讨 (17:10-17:40) where the earlier image printed one 圆桌研讨 row 15:20-17:20.",
     "The 单位 column here mixes organisation, post and honours (e.g. '重庆大学教授，国家自然科学基金优秀青年科学基金获得者'); transcribed verbatim including the printed punctuation.",
-    "No break row is printed and the times run contiguously from 13:30 to 17:20, so no 茶歇 is recorded."
+    "The last row's 单位 cell reads '主持人' — a role, not an organisation; kept verbatim where the image puts it."
   ]
 }

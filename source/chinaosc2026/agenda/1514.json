@@ -1,12 +1,54 @@
 {
   "_about": "Programme parsed from the forum's published timetable image. Verbatim transcription of the image — no inference.",
   "doc": "1514",
-  "images": [],
-  "rows": [],
+  "images": ["image_20260804101731A685.png"],
+  "rows": [
+    {
+      "start": "14:30",
+      "end": "15:00",
+      "title": "跨云端协同的开源智能体系统",
+      "speakers": [{ "name": "夏虞斌", "affiliation_raw": "上海交通大学" }]
+    },
+    {
+      "start": "15:00",
+      "end": "15:30",
+      "title": "复杂智能软件云际构造环境",
+      "speakers": [{ "name": "冯大为", "affiliation_raw": "国防科技大学" }]
+    },
+    {
+      "start": "15:30",
+      "end": "15:50",
+      "title": "茶歇",
+      "kind": "break",
+      "speakers": []
+    },
+    {
+      "start": "15:50",
+      "end": "16:20",
+      "title": "Omni-infer性能极致优化实践 & LFAI&Data 开原生态",
+      "speakers": [{ "name": "杨家荷", "affiliation_raw": "华为技术有限公司" }]
+    },
+    {
+      "start": "16:20",
+      "end": "16:50",
+      "title": "FlagOS开源智能软件技术体系",
+      "speakers": [{ "name": "朱其罡", "affiliation_raw": "智源研究院" }]
+    },
+    {
+      "start": "16:50",
+      "end": "17:30",
+      "title": "高效可靠的AI Infra资源管理技术与开源实践",
+      "speakers": [{ "name": "杨任宇", "affiliation_raw": "北京航空航天大学" }]
+    }
+  ],
   "room": null,
   "notes": [
-    "This forum (云际计算开源协同创新技术) publishes NO timetable image. Every image in the document was examined and none is a table: 2.35-1_01(1)_20260728112240A611.png is the forum title banner (“云际计算开源协同创新技术”分论坛) on the 2.35:1 PPT template; 王意洁_20260728113017A612.png (490x604) and 余跃_20260728113102A613.png (426x473) are photographs of the two forum chairs, named by their file names; image_20260724161959A408.png is the site-wide registration QR code.",
-    "The document text carries only the 论坛主旨 abstract and the two chairs' biographies — no talk titles, no speakers, no times. This matches the dataset, where F1514 has 0 talks; nothing was recoverable here, so the gap is the source's, not the parse's.",
+    "This forum published no timetable at all until now; the page has since added image_20260804101731A685.png (1080x826), so its programme is transcribed here for the first time.",
+    "Timetable columns: 时间 / 报告题目 / 讲者 / 单位. Times are present for every row; no room/venue and no date are printed on the image.",
+    "The published table starts at 14:30, one hour into the 13:30-17:00 parallel-forum window, and runs to 17:30, half an hour past it. Both are as printed; nothing is cut off at the image edges (the header row is at the top and the table closes with a border under the last row).",
+    "The 15:50 title is printed '…实践 & LFAI&Data 开原生态' — '开原生态' where the rest of the site writes 开源生态. Kept as printed.",
+    "The 茶歇 row spans the three right-hand columns as one merged cell; no speaker is printed for it.",
+    "单位 prints organisations only, without job titles.",
     "No room / hall / venue is shown anywhere in this document's images. The registration footer repeated on every forum page names the conference venue (重庆・山城国际会议中心), which is not a per-forum room."
   ]
 }

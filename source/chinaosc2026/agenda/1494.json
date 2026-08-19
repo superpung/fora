@@ -1,7 +1,7 @@
 {
   "_about": "Programme parsed from the forum's published timetable image. Verbatim transcription of the image — no inference.",
   "doc": "1494",
-  "images": ["image_20260724182139A444.png"],
+  "images": ["37e8380572e2aae3616850d35d190cd7_20260809180259A736.png"],
   "rows": [
     {
       "start": "13:30",
@@ -27,6 +27,13 @@
       "end": "15:15",
       "title": "软件与大模型供应链安全治理",
       "speakers": [{ "name": "陈碧欢", "affiliation_raw": "复旦大学副教授" }]
+    },
+    {
+      "start": "15:20",
+      "end": "15:40",
+      "title": "茶歇",
+      "kind": "break",
+      "speakers": []
     },
     {
       "start": "15:40",
@@ -59,11 +66,11 @@
   ],
   "room": null,
   "notes": [
-    "Images in this document: conference banner (1080x464), 10 speaker/chair headshots, 1 WeChat/registration QR code, and the one timetable image listed above.",
+    "The timetable image was replaced on the page (was image_20260724182139A444.png, now 37e8380572e2aae3616850d35d190cd7_20260809180259A736.png). Re-transcribed from the new image.",
     "Timetable columns: 时间 / 报告题目 / 讲者 / 单位. Times are present for every row; no room/venue and no date are printed on the image.",
+    "Against the earlier image: a 茶歇 row 15:20-15:40 is now printed (the earlier image left that gap unlabelled). Every other row is unchanged.",
     "The 单位 column here prints organisation plus academic title (e.g. '北京大学教授'); transcribed verbatim.",
     "The second row's title is printed with a half-width colon after 'Keynote' and a full-width colon inside the Chinese text: 'Keynote:开源供应链合规性管理：从开源软件到开放模型' — kept exactly as printed.",
-    "No break row is printed, but the times leave an unlabelled 25-minute gap 15:15-15:40 (likely a 茶歇, but the image does not say so, so no row is recorded).",
-    "The closing 战略研讨环节 row's 讲者 cell prints two labelled lines, '主持人：梁广泰' and '参与者：报告嘉宾及论坛主席'; both are kept verbatim as separate speaker entries including their labels. Its 单位 cell applies to the row as a whole and reads '北京大学、华中科技大学、复旦大学、同济大学、东北大学'; it is not attributable to either 讲者 line individually, so it is recorded here rather than on a speaker."
+    "The closing 战略研讨环节 row's 讲者 cell prints two labelled lines, '主持人：梁广泰' and '参与者：报告嘉宾及论坛主席'; both are kept verbatim as separate speaker entries including their labels. Unlike the earlier image, its 单位 cell is blank."
   ]
 }

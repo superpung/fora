@@ -1,12 +1,74 @@
 {
   "_about": "Programme parsed from the forum's published timetable image. Verbatim transcription of the image — no inference.",
   "doc": "1510",
-  "images": [],
-  "rows": [],
+  "images": ["议程_生态型智能化软件工厂建设(2)_20260811102719A801.png"],
+  "rows": [
+    {
+      "start": "13:30",
+      "end": "13:40",
+      "title": "嘉宾致辞",
+      "kind": "other",
+      "speakers": [{ "name": "王怀民", "affiliation_raw": "中国科学院院士，国防科技大学教授" }]
+    },
+    {
+      "start": "13:40",
+      "end": "14:10",
+      "title": "工业软件开源生态构建",
+      "speakers": [{ "name": "唐滨", "affiliation_raw": "FastCAE创始人、北京开元工业软件研究院（筹）院长，哈尔滨工程大学教授" }]
+    },
+    {
+      "start": "14:10",
+      "end": "14:40",
+      "title": "AI软件工厂在关键行业的落地难点及实践思考",
+      "speakers": [{ "name": "王一", "affiliation_raw": "中国电子云助理总裁、软件工厂首席专家" }]
+    },
+    {
+      "start": "14:40",
+      "end": "15:10",
+      "title": "让AI编程在控制中释放智能",
+      "speakers": [{ "name": "王蕴博", "affiliation_raw": "CCF开源发展技术委员会办公室副主任，智源研究院FlagOS社区产品负责人" }]
+    },
+    {
+      "start": "15:10",
+      "end": "15:20",
+      "title": "茶歇",
+      "kind": "break",
+      "speakers": []
+    },
+    {
+      "start": "15:20",
+      "end": "15:50",
+      "title": "智能软件工厂开源治理实践——如何构建可信中心仓",
+      "speakers": [{ "name": "高琨", "affiliation_raw": "开源中国工程师，STF基金会board成员、OSS-Compass、开源雨林联合创始人、OIN唯一中国member、前OpenChain board" }]
+    },
+    {
+      "start": "15:50",
+      "end": "16:20",
+      "title": "区块链如何为开源贡献存证",
+      "speakers": [{ "name": "傅翔", "affiliation_raw": "国防科技大学副研究员" }]
+    },
+    {
+      "start": "16:30",
+      "end": "17:30",
+      "title": "Panel讨论：关键领域软件生态联盟的建设与发展",
+      "kind": "other",
+      "speakers": [
+        { "name": "丁博", "affiliation_raw": "国防科技大学" },
+        { "name": "彭璐", "affiliation_raw": "航天科工二院706所" },
+        { "name": "王一", "affiliation_raw": "中国电子云" },
+        { "name": "王蕴博", "affiliation_raw": "智源研究院" },
+        { "name": "高琨", "affiliation_raw": "开源中国" },
+        { "name": "其他发言嘉宾：与会单位代表", "affiliation_raw": null }
+      ]
+    }
+  ],
   "room": null,
   "notes": [
-    "No timetable image exists in this document. It has only two images: 08783a0fbd22746dd032dc137c8a8836_47b24c04b49c9148352e0acb4d10b3f6_8_01_20260728102210A605.png is the 2220x944 forum title banner reading '“生态型智能化软件工厂” 分论坛', and image_20260724161959A408.png is the site-wide registration QR code.",
-    "The 生态型智能化软件工厂 forum has published no per-talk programme at all — neither in the CMS text (the dataset has 0 talks for F1510) nor as an image. Nothing was recoverable here.",
+    "This forum published no timetable at all until now; the page has since added 议程_生态型智能化软件工厂建设(2)_20260811102719A801.png (1541x1497), so its programme is transcribed here for the first time.",
+    "Timetable columns: 时间 / 报告题目 / 讲者 / 单位. Times are present for every row; no room/venue and no date are printed on the image.",
+    "The 茶歇 row spans the three right-hand columns as one merged cell; no speaker is printed for it.",
+    "The closing row spans the three right-hand columns as one merged cell reading 'Panel讨论：关键领域软件生态联盟的建设与发展', then '主发言嘉宾：丁博（国防科技大学）、彭璐（航天科工二院706所）、王一（中国电子云）、王蕴博（智源研究院）、高琨（开源中国）' and '其他发言嘉宾：与会单位代表'. The five named 主发言嘉宾 are recorded with the organisation printed in their brackets; the unnamed '其他发言嘉宾：与会单位代表' line is kept verbatim as its own entry.",
+    "The times leave an unlabelled 10-minute gap 16:20-16:30 before the panel; the image prints nothing there, so no row is recorded.",
     "No room / hall / venue is shown."
   ]
 }
