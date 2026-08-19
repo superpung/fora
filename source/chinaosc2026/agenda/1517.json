@@ -1,12 +1,77 @@
 {
   "_about": "Programme parsed from the forum's published timetable image. Verbatim transcription of the image — no inference.",
   "doc": "1517",
-  "images": [],
-  "rows": [],
+  "images": ["image_20260809170702A723.png"],
+  "rows": [
+    {
+      "start": "13:30",
+      "end": "13:50",
+      "title": "AI 时代的数字基础设施：openGauss AI多模数据库创新实践",
+      "speakers": [{ "name": "熊钦", "affiliation_raw": "openGauss技术专家" }]
+    },
+    {
+      "start": "13:50",
+      "end": "14:10",
+      "title": "openGauss基于鲲鹏超节点的最佳实践",
+      "speakers": [{ "name": "彭炯", "affiliation_raw": "openGauss技术专家" }]
+    },
+    {
+      "start": "14:10",
+      "end": "14:30",
+      "title": "Triton-Ascend的功能泛化和性能优化",
+      "speakers": [{ "name": "杨开昕", "affiliation_raw": "Triton-Ascend技术专家" }]
+    },
+    {
+      "start": "14:30",
+      "end": "14:50",
+      "title": "AscendNPU IR：面向AI算力基础设施的Tile编程与编译关键技术",
+      "speakers": [{ "name": "程琛", "affiliation_raw": "AscendNPU IR架构师" }]
+    },
+    {
+      "start": "14:50",
+      "end": "15:10",
+      "title": "MindSpore HyperParallel的开源分布式编程新范式",
+      "speakers": [{ "name": "常哲睿", "affiliation_raw": "MindSpore技术专家" }]
+    },
+    {
+      "start": "15:10",
+      "end": "15:30",
+      "title": "茶歇",
+      "kind": "break",
+      "speakers": []
+    },
+    {
+      "start": "15:30",
+      "end": "15:50",
+      "title": "MemCache、MemFabric和BoostIO构筑超节点高性能KV Cache",
+      "speakers": [{ "name": "刘勇", "affiliation_raw": "UBS Memory技术专家" }]
+    },
+    {
+      "start": "15:50",
+      "end": "16:10",
+      "title": "MindCluster释放昇腾超节点极致性能",
+      "speakers": [{ "name": "李睿", "affiliation_raw": "MindCluster Maintainer" }]
+    },
+    {
+      "start": "16:10",
+      "end": "16:30",
+      "title": "鲲鹏超智融合软件架构的探索与实践",
+      "speakers": [{ "name": "朱延超", "affiliation_raw": "鲲鹏HPC专家" }]
+    },
+    {
+      "start": "16:30",
+      "end": "17:00",
+      "title": "OmniRuntime基于鲲鹏的大数据开源最佳实践",
+      "speakers": [{ "name": "尹伟杰", "affiliation_raw": "华为大数据工程师" }]
+    }
+  ],
   "room": null,
   "notes": [
-    "This forum (鲲鹏昇腾开源基础软件技术) publishes NO timetable image. Both images in the document were examined and neither is a table: 2.35-1_01(4)_20260728114723A617.png is the forum title banner (“鲲鹏昇腾开源基础软件技术”分论坛) on the 2.35:1 PPT template; image_20260724161959A408.png is the site-wide registration QR code.",
-    "The document is a placeholder: the conference-wide boilerplate, the single line '分论坛：鲲鹏昇腾开源基础软件技术', and the registration footer. It carries no 论坛主旨, no 论坛主席 bio, no talk titles, no speakers and no times — the keywords name the chair only as '华为公司'. This matches the dataset, where F1517 has 0 talks; nothing was recoverable here, so the gap is the source's, not the parse's.",
+    "This forum's page was a placeholder — conference boilerplate and the line '分论坛：鲲鹏昇腾开源基础软件技术' — and has since been filled in and renamed (AI时代的开源基础软件技术); the timetable image image_20260809170702A723.png (1080x1307) is new, so its programme is transcribed here for the first time.",
+    "Timetable columns: 时间 / 报告题目 / 讲者 / 单位. Times are present for every row; no room/venue and no date are printed on the image.",
+    "The 单位 column prints project roles rather than employers ('openGauss技术专家', 'MindCluster Maintainer', '鲲鹏HPC专家'); transcribed verbatim.",
+    "The 茶歇 row (15:10-15:30) spans the three right-hand columns as one merged cell; no speaker is printed for it.",
+    "The table runs contiguously from 13:30 to 17:00, matching the 8/15 parallel-forum window, and closes with a border under the last row.",
     "No room / hall / venue is shown anywhere in this document's images."
   ]
 }

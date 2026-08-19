@@ -1,21 +1,21 @@
 {
   "_about": "Programme parsed from the forum's published timetable image. Verbatim transcription of the image — no inference.",
   "doc": "1497",
-  "images": ["image_20260724195337A470.png"],
+  "images": ["议程_共建·共治·共成长_20260811101910A799.png"],
   "rows": [
     {
       "start": "13:30",
       "end": "13:40",
       "title": "论坛背景介绍",
       "kind": "other",
-      "speakers": [{ "name": "主持人：执行主席", "affiliation_raw": null }]
+      "speakers": [{ "name": "执行主席", "affiliation_raw": null }]
     },
     {
       "start": "13:40",
       "end": "13:50",
       "title": "CCF ODTC 主任指导",
       "kind": "other",
-      "speakers": [{ "name": "王怀民", "affiliation_raw": "国防科技大学教授 CCF 开源发展技术委员会主任" }]
+      "speakers": [{ "name": "王怀民", "affiliation_raw": "国防科技大学教授" }]
     },
     {
       "start": "13:50",
@@ -24,7 +24,7 @@
       "speakers": [
         {
           "name": "周建中",
-          "affiliation_raw": "中国科学院科技战略咨询研究院研究员，中国科学院大学公共政策与管理学院岗位教授、博士生导师"
+          "affiliation_raw": "中国科学院科技战略咨询研究院，研究员，中国科学院大学公共政策与管理学院，岗位教授，博士生导师"
         }
       ]
     },
@@ -38,13 +38,13 @@
       "start": "14:20",
       "end": "14:35",
       "title": "AI4Science范式下科学数据生态社区的建设和变化",
-      "speakers": [{ "name": "许哲平", "affiliation_raw": "中国科学院文献情报中心研究馆员" }]
+      "speakers": [{ "name": "许哲平", "affiliation_raw": "中国科学院文献情报中心 研究馆员" }]
     },
     {
       "start": "14:35",
       "end": "14:50",
       "title": "构筑开源生态的“数据基石”：OSIDX 全球开源生态高质量数据集建设之路",
-      "speakers": [{ "name": "王伟", "affiliation_raw": "华东师范大学数据科学学院教授" }]
+      "speakers": [{ "name": "王伟", "affiliation_raw": "华东师范大学数据科学与工程学院教授" }]
     },
     {
       "start": "14:50",
@@ -71,7 +71,7 @@
       "title": "圆桌论坛",
       "kind": "other",
       "speakers": [
-        { "name": "主持人：执行主席", "affiliation_raw": null },
+        { "name": "执行主席", "affiliation_raw": null },
         { "name": "包云岗", "affiliation_raw": "中国科学院计算技术研究所副所长、研究员" },
         { "name": "陶建辉", "affiliation_raw": "涛思数据创始人·CEO" },
         {
@@ -80,19 +80,21 @@
         },
         {
           "name": "谭中意",
-          "affiliation_raw": "中国开源推进联盟常务副秘书长，CCF 开源发展技术委员会常委"
+          "affiliation_raw": "中国开源推进联盟常务副秘书长，CCF开源技术委员会常委"
         },
-        { "name": "边思康", "affiliation_raw": "蚂蚁百灵基础模型产品和运营负责人" }
+        { "name": "边思康", "affiliation_raw": "蚂蚁百灵基础模型产品和运营负责人" },
+        { "name": "郭晧", "affiliation_raw": "Gitconomy Research 社区发起人、连续创业者" }
       ]
     }
   ],
   "room": null,
   "notes": [
-    "Images in this document: conference banner (1080x457), 15 speaker/chair headshots, 1 WeChat/registration QR code, and the one timetable image listed above.",
+    "The timetable image was replaced on the page (was image_20260724195337A470.png, now 议程_共建·共治·共成长_20260811101910A799.png, 1541x2147). Re-transcribed from the new image.",
     "Timetable columns: 时间 / 报告题目 / 讲者 / 单位. Times are present for every row; no room/venue and no date are printed on the image.",
-    "The 论坛背景介绍 and 圆桌论坛 rows print '主持人：执行主席' in the 讲者 column instead of a personal name; kept verbatim as a speaker entry with a null affiliation.",
-    "The 圆桌论坛 row lists its five panellists, each with an affiliation, inside the 单位 cell (names in bold, affiliation after a comma); each is recorded as its own speaker entry in printed order, after the 主持人 entry.",
-    "The 王怀民 row's 单位 cell is printed on two centred lines, '国防科技大学教授' and 'CCF 开源发展技术委员会主任'; joined here with a single space, no punctuation added.",
+    "Against the earlier image: the 讲者 cell of the 论坛背景介绍 and 圆桌论坛 rows now reads '执行主席' without the '主持人：' label; 王怀民's 单位 is now only '国防科技大学教授' (the earlier image added 'CCF 开源发展技术委员会主任'); 周建中's and 王伟's affiliations are reworded (王伟 is now 数据科学与工程学院); 谭中意 is now 'CCF开源技术委员会常委'; and a sixth panellist, 郭晧, is added to the 圆桌论坛.",
+    "The 论坛背景介绍 and 圆桌论坛 rows print '执行主席' in the 讲者 column instead of a personal name; kept verbatim as a speaker entry with a null affiliation.",
+    "The 圆桌论坛 row lists its six panellists, each with an affiliation, inside the 单位 cell (names in bold, affiliation after a comma); each is recorded as its own speaker entry in printed order, after the 执行主席 entry.",
+    "许哲平's 单位 cell prints two spaces between organisation and title ('中国科学院文献情报中心  研究馆员'); collapsed to one, nothing else changed.",
     "Break: 合影&交流讨论 (15:20-15:40) is printed with its 报告题目 cell spanning the title/讲者/单位 columns; recorded as kind=break. All other times run contiguously from 13:30 to 17:30.",
     "Punctuation kept as printed, including the 中文 quotation marks around the 15:05 title, the interpuncts in '开放·共享·创新' and '涛思数据创始人·CEO', the em dash in '社区共识的重构——演进中的开源规则', and the half-width ampersand in '合影&交流讨论'."
   ]
