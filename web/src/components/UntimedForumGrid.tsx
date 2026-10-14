@@ -200,8 +200,9 @@ export default function UntimedForumGrid({
   // 我的关注 filter: keep follow-relevant cells; drop columns with none.
   const shown = filtered
     ? columns
-        .map((c) => ({ ...c, cells: c.cells.filter((cell) => relevant(c.code, cell.i, cell.t)), empty: false }))
-        .filter((c) => c.cells.length > 0)
+        .map((c) => ({ ...c, cells: c.cells.filter((cell) => relevant(c.code, cell.i, cell.t)),
+          empty: c.empty && isForum(c.code) }))
+        .filter((c) => c.cells.length > 0 || c.empty)
     : columns;
 
   if (filtered && shown.length === 0) {

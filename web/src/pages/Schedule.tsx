@@ -20,12 +20,12 @@ import MyDay from "../components/MyDay";
 import type { Block, Forum, Talk, Break } from "../types";
 import { titleLine } from "../lib/talk-title";
 
-/** True when at least one talk in the day's forum block carries a start time —
-    the signal to switch from the forum-card list to the time-vs-forum matrix. */
+/** Published forum or report starts select the proportional time board. */
 function hasForumTimes(block: Block, forumsByCode: Record<string, Forum>): boolean {
-  return (block.forum_entries ?? []).some((e) =>
-    (forumsByCode[e.forum_code]?.talks ?? []).some((t) => t.start),
-  );
+  return (block.forum_entries ?? []).some((e) => {
+    const forum = forumsByCode[e.forum_code];
+    return !!forum?.start || (forum?.talks ?? []).some((talk) => talk.start);
+  });
 }
 
 function TimeRange({ start, end }: { start?: string | null; end?: string | null }) {

@@ -69,10 +69,33 @@ try {
     check(exported.length === 1 && exported[0].start === '14:10' && exported[0].talkIndex == null,
       'empty forums export their own window without a talk anchor');
     const people = [{ name: 'Alex', extra: { identity_key: 'source:a' } }, { name: 'Alex', extra: { identity_key: 'source:b' } }];
-    check(personKey(people[0]) !== personKey(people[1]) && personKey({ name: 'Alex', affiliation_raw: 'Other' }) === 'Alex',
+    check(personKey(people[0]) !== personKey(people[1]) && personKey({ name: 'Alex', affiliation_raw: 'Other' }) === personKey({ name: 'Alex' }),
       'only explicit source keys separate namesakes');
     const migrated = resolveSpeakerKeys(new Set(['Alex']), { forums: [{ talks: [{ speakers: people }] }] });
     check(migrated.size === 2 && migrated.has('source:a') && migrated.has('source:b'), 'legacy name follows preserve their original scope');
+    const mixed = { ...raw, forums: [
+      forum('A', { talks: [{ title: { zh: 'Keyed report' }, speakers: [people[0]] }] }),
+      forum('B', { talks: [{ title: { zh: 'Name-only report' }, speakers: [{ name: 'Alex' }] }] }),
+    ], days: [{ date, blocks: [{ kind: 'keynotes', talks: [
+      { title: { zh: 'Keynote-only identity' }, speakers: [{ name: 'Alex', extra: { identity_key: 'source:keynote' } }] },
+    ] }] }] };
+    const mixedViews = buildConferenceViews(mixed);
+    const legacy = { ...follow([]), speakers: new Set(['Alex']) };
+    const mixedKeys = resolveSpeakerKeys(legacy.speakers, mixed);
+    check(collectFollowedItems(legacy, mixedViews).length === 3,
+      'legacy follows retain keyed, name-only and keynote-only appearances');
+    const again = resolveSpeakerKeys(mixedKeys, mixed);
+    check(again.size === mixedKeys.size && [...mixedKeys].every(key => again.has(key)),
+      'speaker migration is idempotent');
+    mixedKeys.delete('source:a');
+    const remaining = collectFollowedItems({ ...legacy, speakers: resolveSpeakerKeys(mixedKeys, mixed) }, mixedViews);
+    check(remaining.length === 2 && !remaining.some(item => item.title === 'Keyed report'),
+      'unfollowing one namesake survives migration and agenda resolution');
+    const keynoteOnly = { ...mixed, forums: [] };
+    check(collectFollowedItems(legacy, buildConferenceViews(keynoteOnly)).length === 1,
+      'legacy follows migrate when the person appears only in keynotes');
+    check(resolveSpeakerKeys(new Set(['Unpublished person']), mixed).has('Unpublished person'),
+      'unresolved legacy follows survive until their source records arrive');
     const instant = Date.parse('2030-05-07T16:00:00Z');
     check(clockAt(instant, 'Asia/Shanghai').todayStr === date && clockAt(instant, 'Asia/Shanghai').nowMin === 0,
       'venue midnight is independent of the device timezone');

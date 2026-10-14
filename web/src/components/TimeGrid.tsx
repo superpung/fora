@@ -15,8 +15,8 @@ import { speakerNames } from "../lib/data";
 // A time-vs-forum matrix for one day's parallel forum sessions: the vertical
 // axis is wall-clock time, each forum is a column, and every talk sits near its
 // real start. It answers "at 10:00, what is each forum running".
-// Only usable when talks carry per-talk times; Schedule falls back to the card
-// view otherwise (see hasForumTimes).
+// Published forum windows also anchor placeholders before reports are announced.
+// Without any starts, Schedule uses the untimed board (see hasForumTimes).
 //
 // Time-proportional heights alone don't work here: talks run as short as 2 min,
 // far too little room for a title + speaker, so strict scaling clips text and
@@ -159,8 +159,11 @@ export default function TimeGrid({
       });
     // Published forum windows remain visible even when their individual talks
     // are not announced. They are forum placeholders, never fabricated talks.
-    if (forum.start) lo = Math.min(lo, toMin(forum.start));
-    if (forum.end) hi = Math.max(hi, toMin(forum.end));
+    for (const clock of [forum.start, forum.end]) {
+      if (!clock) continue;
+      lo = Math.min(lo, toMin(clock));
+      hi = Math.max(hi, toMin(clock));
+    }
     const roomStr = (e.room ?? forum.room ?? "").replace(/\s+/g, " ").trim();
     const roomParts = roomStr
       .split(/[、，,]/)
@@ -235,7 +238,11 @@ export default function TimeGrid({
         : { kind: "talk", t: it.talk.t, i: it.talk.i, top, h };
     });
     const bottom = cursor + (c.untimed > 0 ? 26 : 0);
-    bodyH = Math.max(bodyH, bottom);
+    // A start-only placeholder still needs physical room without inventing an
+    // end time. This is a display-height floor, not a schedule duration.
+    const placeholderBottom = !c.forum.talks?.length
+      ? (c.forum.start ? (toMin(c.forum.start) - lo) * PX_PER_MIN : 0) + 48 : 0;
+    bodyH = Math.max(bodyH, bottom, placeholderBottom);
     return {
       forum: c.forum,
       code: c.code,
