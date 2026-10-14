@@ -55,16 +55,25 @@ async function shot(test,suffix='') {
   await document.fonts.ready;
   const previous = scrollY;
   for(let top=0;top<document.documentElement.scrollHeight;top+=innerHeight*0.8) {
-   scrollTo({top,behavior:'instant'}); await new Promise(r=>setTimeout(r,60));
+   scrollTo({top,behavior:'instant'}); await new Promise(r=>setTimeout(r,650));
   }
   scrollTo({top:forum?previous:0,behavior:'instant'});
  },test.path.includes('/forum/'));
- await page.waitForTimeout(350);
+ await page.waitForTimeout(650);
+ // Let finite entry/expansion animations finish; keep live pulse animations running.
+ await page.waitForFunction(()=>document.getAnimations().every(a=>
+  a.playState!=='running'||a.effect?.getComputedTiming().iterations===Infinity));
+ assert(await page.locator('.frow__talks, .meetrow').evaluateAll(elements=>elements.every(el=>{
+  for(let node=el;node;node=node.parentElement) if(Number(getComputedStyle(node).opacity)<0.99) return false;
+  return true;
+ })),name+' expanded content must be painted');
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),name+' page overflow');
  await page.locator(test.ready).waitFor();
  await page.locator('.pageloader').waitFor({state:'hidden'});
  const filename=name+suffix+'.png';
- await page.screenshot({path:resolve(out,filename),fullPage:!test.path.includes('/forum/')});
+ await page.screenshot({path:resolve(out,filename),fullPage:!test.path.includes('/forum/'),
+  // The hosting provider's review toolbar is not part of the application.
+  style:'iframe[title="Netlify Drawer"] { visibility: hidden !important; }'});
  snapshots.push({...meta,context:undefined,filename,name:name+suffix});
  console.log('SCREENSHOT '+name+suffix);
 }
@@ -76,6 +85,16 @@ try {
   await new Promise(r=>setTimeout(r,100));
  }
  browser=await chromium.launch();
+ if(!process.env.REMINDERS_ONLY) for(const [name,day,before,after] of [
+  ['nav-conference-start','04',0,1],['nav-conference-end','08',1,0]]) {
+  const test=await open(name,`2026-11-${day}T23:59:40+08:00`,'/chinasoft2026',
+   {clock:true,zone:'America/Los_Angeles'});
+  assert.equal(await test.page.locator('.nav__link--live').count(),before);
+  await test.page.clock.fastForward(31_000);
+  await test.page.waitForFunction(expected=>document.querySelectorAll('.nav__link--live').length===expected,after);
+  await shot(test); await finish(test);
+ }
+ if(!process.env.NAV_ONLY) {
  if(!process.env.REMINDERS_ONLY) {
  const moments=[['preconference','04','12:00'],['registration','05','13:00'],['first-report','06','08:55'],
   ['morning','06','10:00'],['break','06','10:25'],['overrun','06','12:05'],['afternoon','06','14:00'],
@@ -227,6 +246,7 @@ try {
  await legacy.page.waitForFunction(()=>window.__notifications.length===1);
  assert((await legacy.page.evaluate(()=>window.__notifications[0].title)).includes('大模型威胁下的硬件组件供应链安全'));
  await shot(legacy); await finish(legacy);
+ }
  assert.deepEqual(errors,[]);
  console.log(`PASS clock audit: ${snapshots.length} screenshots, live boundaries, overseas clocks, automatic ticks, midnight and reminders`);
 } finally {
