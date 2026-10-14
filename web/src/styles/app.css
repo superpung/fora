@@ -939,6 +939,13 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 
 /* ---- vertical time-rail layout (forums whose talks carry times) ---- */
 .tline { display: flex; flex-direction: column; }
+.source-notes { margin: 10px 0; color: var(--fg-secondary); font-size: 12px; }
+.source-notes__toggle { display: inline-flex; align-items: center; gap: 6px; color: inherit; background: none; border: 0; padding: 4px 0; cursor: pointer; font: inherit; }
+.source-notes__content { overflow: hidden; overflow-wrap: anywhere; }
+.source-notes__content ul { margin: 6px 0; padding-left: 20px; }
+.source-notes__content li + li { margin-top: 5px; }
+.fd__break { margin: 8px 0; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+.talk__hosts { margin-top: 12px; }
 .tlrow {
   display: grid; grid-template-columns: 48px 22px minmax(0, 1fr); gap: 0 14px;
   scroll-margin-top: calc(var(--nav-h) + 16px);

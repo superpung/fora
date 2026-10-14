@@ -1247,7 +1247,7 @@
           },
           "abstract": "教学与科研是青年教师入职后必须面对的两项核心任务，也是教师职业发展的\"任督二脉\"。二者看似各有侧重，实则内在相通、相辅相成。本报告围绕\"讲课逻辑互通、科研反哺教学、科研方法迁移教研、教学促进科研\"四个层面展开讨论，并结合本人三十年教学科研经历，探讨高校教师如何在日常工作中实现教学与科研的双向赋能，构建教学与科研相互促进、彼此滋养的良性循环。",
           "flags": [
-            "Timetable title differs from profile title; both retained"
+            "报告题目不一致：日程表为“特邀报告: 双链耦合：打通教学科研的任督二脉——探索教学与科研的双向赋能”，报告资料为“双链耦合：打通教学科研的任督二脉——探索教学与科研的双向赋能”，均按原文保留。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -1287,7 +1287,7 @@
           },
           "abstract": "本报告以\"软件工程之美\"为题，从方法论、研究实践与学科价值三方面展开。经验软件工程立足真实开发情境，综合仓库挖掘、日志分析、问卷、访谈与案例研究，通过定性定量互证识别可复现、可解释、可迁移的真实问题，并具跨领域迁移潜力。结合本人在安全与区块链方向的研究，说明该方法论如何拓展至跨领域问题发现与理论建构。最后，阐释软件工程\"上善若水，水善利万物而不争\"的学科品格：作为基础学科，它以隐性、利他和赋能方式支撑多领域创新。",
           "flags": [
-            "Timetable title differs from profile title; both retained"
+            "报告题目不一致：日程表为“特邀报告: 软件工程之美”，报告资料为“软件工程之美”，均按原文保留。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -1327,7 +1327,7 @@
           },
           "abstract": "从网构软件研究，到群智感知计算，再到如今的智能化软件，我的科研探索始终沿着一条主线展开——如何通过软件组织分散、异构的智能体，实现高效、公平且安全的协同。回望早期的网构软件研究，其中的一些理念已与今天智能化软件的发展形成呼应；而群智感知计算的研究，则为理解和实现多智能体协同提供了新的视角与方法。本报告将以个人研究经历为线索，分享沿着这一主线持续深耕、拓展前沿应用的探索历程。从网构软件起步，围绕群智感知中的多智能体任务协同与优化展开研究，进而探索智能化技术及其在无人集群博弈系统、星地群智软件系统中的应用，重点研究任务调度、数据安全与协同机制等核心问题。本报告旨在分享一名女性研究者如何在技术浪潮的更迭中保持研究主线的连续性，以\"深耕\"积累研究厚度，以\"拓界\"回应行业变化，在软件技术与多领域的交叉融合中寻找并拓展属于自己的学术生态位。",
           "flags": [
-            "Timetable title differs from profile title; both retained"
+            "报告题目不一致：日程表为“青年学者报告: 在深耕中拓界：从网构软件到智能化软件的探索之旅”，报告资料为“在深耕中拓界：从网构软件到智能化软件的探索之旅”，均按原文保留。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -1368,7 +1368,7 @@
           },
           "abstract": "如何从真实的软件开发实践与不断演进的技术中发现值得研究的问题，并逐步形成自己的研究方向？本报告结合报告人的科研经历，分享从研究开源社区开发者的参与、成长与持续贡献，到探索面向新手的软件工程智能辅助技术的研究历程，交流在这一过程中如何识别实践中的问题、判断研究价值，以及如何在持续研究中拓展和凝练研究方向。同时，结合生成式AI为软件开发与开源协作带来的新现象与新问题，分享对后续研究的思考，以及青年科研工作者在探索中的体会。",
           "flags": [
-            "Timetable title differs from profile title; both retained"
+            "报告题目不一致：日程表为“青年学者报告: 从发现问题到形成研究方向”，报告资料为“从发现问题到形成研究方向”，均按原文保留。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -1408,7 +1408,7 @@
           },
           "abstract": "博士毕业一年后，报告回望读博期间的选择、困惑与成长，以本人\"ISFJ\"这一性格标签为切入点，分享这些倾向如何影响科研与合作，也谈面对比较、评价和身份转换时，对自己的期待如何逐渐改变。希望借个人经历，与仍在求学的研究生同学交流：怎样理解自己的性格与外界期待，找到适合自己的成长节奏。",
           "flags": [
-            "Timetable title differs from profile title; both retained"
+            "报告题目不一致：日程表为“青年学者报告: 一个ISFJ人的读博后记”，报告资料为“一个ISFJ人的读博后记”，均按原文保留。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -1448,7 +1448,7 @@
           },
           "abstract": "本次报告将结合我在博士期间围绕智能化软件开发与维护领域开展的科研探索与研究成果，以及参与校企合作研究的实践经历，分享如何从真实软件场景中发现问题、围绕实际需求开展研究的探索与感悟。报告将以代码生成与软件漏洞检测等研究工作为例，介绍如何针对真实复杂软件系统中的技术挑战，凝练研究问题、推进研究工作，推动研究成果解决实际问题的探索经历。",
           "flags": [
-            "Timetable title differs from profile title; both retained"
+            "报告题目不一致：日程表为“博士生报告: 在复杂软件中寻真问题，在真实场景中解真问题：我的科研探索与思考”，报告资料为“在复杂软件中寻真问题，在真实场景中解真问题：我的科研探索与思考”，均按原文保留。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -1488,7 +1488,7 @@
           },
           "abstract": "AI正在改变我们获取知识、解决问题和开展研究的方式。借助AI，我们可以更快地检索信息、生成代码和尝试不同方案，仿佛拥有了更强的装备与随时可调用的攻略。然而，更强的装备可以帮助我们攻克关卡，却不能代替我们决定应该进入哪一关、什么任务值得长期投入。当我们越来越擅长完成任务、奔向下一个目标时，或许更需要停下来追问：我们为什么出发，又靠什么长期坚持？",
           "flags": [
-            "Timetable title differs from profile title; both retained"
+            "报告题目不一致：日程表为“博士生报告: \"打怪升级\"之外：AI时代，如何找到自己的问题与动力？”，报告资料为“\"打怪升级\"之外：AI时代，如何找到自己的问题与动力？”，均按原文保留。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -1528,7 +1528,7 @@
           },
           "abstract": "科研之路伴随着对未知的探索，也伴随着自身的成长。每一项工作的推进，既需要知识与方法的积累，也离不开面对困难时的耐心与坚持。我的博士研究聚焦于代码大模型，主要围绕模型效率、生成可靠性及其在实际软件工程任务中的应用展开。本次报告将介绍我在代码大模型轻量化、代码生成中的幻觉缓解及数据库测试用例生成方面的代表性工作，分享研究过程中面临的挑战与解决思路。这些工作也记录了我从参与具体研究任务，到逐步凝练研究问题、独立推进研究的成长经历。报告还将结合我的读博、企业实习和访学经历，分享不同阶段的思考与感悟，期望与各位同行相互交流、共同成长。",
           "flags": [
-            "Timetable title differs from profile title; both retained"
+            "报告题目不一致：日程表为“博士生报告: 在实验中求真，在实践中成长：探索可信代码大模型的科研之路”，报告资料为“在实验中求真，在实践中成长：探索可信代码大模型的科研之路”，均按原文保留。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -1569,7 +1569,7 @@
           },
           "abstract": "软件缺陷是影响软件质量与开发效率的重要因素，也是我硕博阶段持续关注的研究对象。从硕士阶段的软件缺陷预测，到博士阶段围绕缺陷定位、缺陷分配和修复提交定位开展研究，我逐渐从一个个具体问题出发，不断拓展对软件缺陷处理过程的理解，也在这一过程中慢慢形成了自己的研究主线。本报告将结合个人科研经历，分享如何沿着软件缺陷这一线索，从寻找问题代码、寻找合适的开发者，到追踪最终的修复提交，一步步探索软件缺陷智能分析问题；同时也分享自己在这一过程中，从完成一个具体研究任务，到发现问题、连接问题并逐渐形成研究方向的一些经历与思考。希望通过这次分享，与大家共同交流科研道路上关于探索、选择与成长的体会。",
           "flags": [
-            "Timetable title differs from profile title; both retained"
+            "报告题目不一致：日程表为“博士生报告: 让缺陷有迹可循，也让科研有迹可循”，报告资料为“让缺陷有迹可循，也让科研有迹可循”，均按原文保留。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -1593,7 +1593,7 @@
       ],
       "detail_extracted": true,
       "flags": [
-        "Overview title differs from detail title: '软件女性学者'; detail title retained"
+        "论坛名称不一致：总表为“软件女性学者”，此处使用详情页名称。"
       ],
       "extra": {
         "schedule_raw": "2026年11月8日,09:00-12:00",
@@ -1946,7 +1946,7 @@
       ],
       "detail_extracted": true,
       "flags": [
-        "Overview title differs from detail title: '青年学者'; detail title retained"
+        "论坛名称不一致：总表为“青年学者”，此处使用详情页名称。"
       ],
       "extra": {
         "schedule_raw": "2026年11月8日,09:00-12:10",
@@ -1982,7 +1982,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "regular-forum",
@@ -2055,7 +2055,7 @@
             "speaker_raw": "论坛组委会"
           },
           "flags": [
-            "a role or a group, not a person: '论坛组委会'"
+            "原文署名为“论坛组委会”，未明确具体人物。"
           ]
         },
         {
@@ -2148,6 +2148,9 @@
               "photo": {
                 "local_path": "/portraits/chinasoft2026/f0451376b157ad1efff8.webp",
                 "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%B8%B8%E8%AE%BE%E8%AE%BA%E5%9D%9B/%E6%9D%8E%E4%BD%B3.png"
+              },
+              "extra": {
+                "identity_key": "P4:李佳"
               }
             }
           ],
@@ -2158,7 +2161,7 @@
           },
           "abstract": "基于大模型的Coding Agent显著提升了编码效率，将以往数月的开发工作压缩至数小时完成。然而，当编码效率成倍提升后，一个更加关键的问题随之出现：Coding Agent生成的代码值得信任吗？面对海量AI生成的代码，我们又该如何高效验证其可信性？本次报告将围绕以上问题展开。首先梳理当前Coding Agent面向的可信性挑战，例如Agent被挟制生成破坏生产系统的代码；并进一步提出Evidence Coding，讨论如何提升Coding Agent的可信性。",
           "flags": [
-            "李佳 appears with different affiliations/profiles in P4 and R4; each source credit is retained without assuming an identity correction"
+            "P4 与 R4 的李佳分别署名清华大学、武汉大学，简介也不同；身份尚未确认，按各自来源分开显示。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -2237,7 +2240,7 @@
           },
           "abstract": "可满足模理论 (SMT) 已广泛应用于软件分析、验证和测试。本次报告聚焦于算术理论上的 SMT 问题，目前该领域的主流求解范式是 DPLL(T) 框架。然而，DPLL(T) 高度依赖 SAT 求解器与理论求解器之间的交互，在处理复杂理论时往往会出现显著的性能退化。尽管局部搜索 (Local Search) 作为一种不完备算法在 SAT 领域取得了巨大成功，但由于固有的技术挑战，将其扩展到算术理论 SMT 领域仍有待深入探索。因此，如何将局部搜索技术有效地集成到算术理论 SMT 中，并实现与主流方法相媲美的性能，具有极高的研究价值。本报告将深入探讨SMT的局部搜索算法及其实际应用。",
           "flags": [
-            "Timetable title differs from profile title; both retained"
+            "报告题目不一致：日程表为“SMT 的局部搜索技术与应用”，报告资料为“SMT的局部搜索技术与应用”，均按原文保留。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -2277,7 +2280,7 @@
           },
           "abstract": "随着人工智能技术逐步应用于自动驾驶、机器人等安全攸关领域，如何为具有复杂非线性动力学和神经网络控制策略的智能系统提供严格、可证明的安全保障，已成为可信人工智能与形式化方法交叉领域的重要研究问题。安全证书通过将系统性质转化为一组可验证的数学条件，为无限时间范围内的形式化验证提供了重要途径。然而，传统证书综合方法高度依赖预设模板与数值优化，在复杂、高维和强非线性系统中存在一定局限性。本报告围绕人工智能与形式化方法的深度融合，探索人工智能在表示、学习与搜索方面的能力，提升安全证书综合及复杂系统验证的自动化程度与可扩展性，同时借助形式化方法为智能系统的学习、决策与控制提供可证明的安全保障。在此基础上，进一步探讨面向感知不确定性和复杂开放环境的可信智能系统验证问题，并展望AI与形式化方法双向赋能的发展方向。",
           "flags": [
-            "Timetable title differs from profile title; both retained"
+            "报告题目不一致：日程表为“AI 赋能的安全证书综合与形式化验证方法”，报告资料为“AI赋能的安全证书综合与形式化验证方法”，均按原文保留。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -2306,7 +2309,7 @@
             "speaker_raw": "论坛组委会"
           },
           "flags": [
-            "a role or a group, not a person: '论坛组委会'"
+            "原文署名为“论坛组委会”，未明确具体人物。"
           ]
         }
       ],
@@ -2319,7 +2322,7 @@
       ],
       "detail_extracted": true,
       "flags": [
-        "Overview title differs from detail title: '优秀博士生激励计划'; detail title retained"
+        "论坛名称不一致：总表为“优秀博士生激励计划”，此处使用详情页名称。"
       ],
       "extra": {
         "schedule_raw": "2026年11月8日，09:00-12:00",
@@ -2655,7 +2658,7 @@
           },
           "abstract": "随着大模型智能体逐渐应用于软件维护，如何利用领域知识提升智能体对复杂项目的理解与任务执行能力成为重要问题。本报告聚焦领域知识增强的软件维护智能体，探索融合领域代码、项目文档、开发经验与工具知识等多源知识，增强智能体的项目理解、任务规划与执行能力，并围绕缺陷修复、新特性添加、项目级代码迁移等典型软件维护任务，介绍相关研究进展与实践探索。",
           "flags": [
-            "Talk window 18:00-18:30 extends beyond the published forum window 15:20-18:20; both retained"
+            "时间不一致：本报告为 18:00–18:30，超出论坛标注的 15:20–18:20，均按原文保留。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -2673,7 +2676,7 @@
       "breaks": [],
       "detail_extracted": true,
       "flags": [
-        "Overview title differs from detail title: 'Agentic AI分析与测试'; detail title retained"
+        "论坛名称不一致：总表为“Agentic AI分析与测试”，此处使用详情页名称。"
       ],
       "extra": {
         "schedule_raw": "2026年11月7日，15:20-18:20",
@@ -2709,7 +2712,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "academic-forum",
@@ -2793,7 +2796,7 @@
             "speaker_raw": "嘉宾致辞"
           },
           "flags": [
-            "a role or a group, not a person: '嘉宾致辞'"
+            "原文署名为“嘉宾致辞”，未明确具体人物。"
           ]
         },
         {
@@ -3034,7 +3037,7 @@
             "speaker_raw": "所有嘉宾"
           },
           "flags": [
-            "a role or a group, not a person: '所有嘉宾'"
+            "原文署名为“所有嘉宾”，未明确具体人物。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -3058,7 +3061,7 @@
       ],
       "detail_extracted": true,
       "flags": [
-        "Overview title differs from detail title: 'AI赋能软件系统的架构治理与维护'; detail title retained"
+        "论坛名称不一致：总表为“AI赋能软件系统的架构治理与维护”，此处使用详情页名称。"
       ],
       "extra": {
         "schedule_raw": "2026年11月6日，09:00-12:00",
@@ -3328,6 +3331,9 @@
               "photo": {
                 "local_path": "/portraits/chinasoft2026/28e100ab38f6258975b0.webp",
                 "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E6%9D%8E%E4%BD%B3.png"
+              },
+              "extra": {
+                "identity_key": "R4:李佳"
               }
             }
           ],
@@ -3338,7 +3344,7 @@
           },
           "abstract": "随着大模型与智能体在代码生成任务中的广泛应用，一个前提性问题往往被忽视——模型能否准确理解需求，以及需求本身是否具备充分的安全约束。本报告围绕基于需求的安全代码生成，分享在需求理解、安全约束提取与需求补全方面的研究进展。针对大模型并不总能准确理解需求、致使后续推理生成代码与后处理策略失去意义的问题，提出需求对齐的代码生成框架。针对安全约束往往散落在复杂异构软件资产中、难以被生成模型感知的问题，提出从软件资产中逆向提取与需求相关的安全约束，并据此驱动安全感知的代码生成。针对需求通常存在安全描述不完整的问题，提出安全需求补全方法，先检测需求中的不安全缺口，再针对性补全安全描述，为下游代码生成提供完备的安全规约。上述工作系统地提供了从需求侧出发的安全代码生成与软件可信构建探索方案。",
           "flags": [
-            "李佳 appears with different affiliations/profiles in P4 and R4; each source credit is retained without assuming an identity correction"
+            "P4 与 R4 的李佳分别署名清华大学、武汉大学，简介也不同；身份尚未确认，按各自来源分开显示。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -3363,7 +3369,7 @@
       ],
       "detail_extracted": true,
       "flags": [
-        "Overview title differs from detail title: '安全代码生成与软件可信构建'; detail title retained"
+        "论坛名称不一致：总表为“安全代码生成与软件可信构建”，此处使用详情页名称。"
       ],
       "extra": {
         "schedule_raw": "2026年11月8日，09:00-12:00",
@@ -3399,7 +3405,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "academic-forum",
@@ -3425,7 +3431,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "academic-forum",
@@ -3451,7 +3457,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "academic-forum",
@@ -3477,7 +3483,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "academic-forum",
@@ -3503,7 +3509,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "academic-forum",
@@ -3877,7 +3883,7 @@
       ],
       "detail_extracted": true,
       "flags": [
-        "Overview title differs from detail title: '软件形式化工程方法'; detail title retained"
+        "论坛名称不一致：总表为“软件形式化工程方法”，此处使用详情页名称。"
       ],
       "extra": {
         "schedule_raw": "2026年11月6日，09:00-17:00",
@@ -3913,7 +3919,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "academic-forum",
@@ -4340,7 +4346,7 @@
             "speaker_raw": "主持人"
           },
           "flags": [
-            "a role or a group, not a person: '主持人'"
+            "原文署名为“主持人”，未明确具体人物。"
           ]
         },
         {
@@ -4729,7 +4735,7 @@
             "speaker_raw": "主持人及报告嘉宾"
           },
           "flags": [
-            "a role or a group, not a person: '主持人及报告嘉宾'"
+            "原文署名为“主持人及报告嘉宾”，未明确具体人物。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -4783,7 +4789,7 @@
           },
           "abstract": "人机物融合软件系统（HCPSs）是人类、计算以及物理组件的有机整合，它们正在成为日常生活中不可或缺的部分。这种系统的设计会面临严重挑战，主要源于人在这些复杂系统中所起的关键作用，人类行为的主观性和不确定性，以及高度异质组件之间复杂的相互作用。这次报告将探讨这种HCPSs的设计原则和可行方法。",
           "flags": [
-            "Timetable title differs from profile title; both retained"
+            "报告题目不一致：日程表为“特邀报告1：《人机物融合软件系统的设计方法——探索和挑战》”，报告资料为“人机物融合软件系统的设计方法——探索和挑战”，均按原文保留。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -4824,7 +4830,7 @@
           },
           "abstract": "尽管人工智能发展迅速，但当今的系统本质上仍处于\"反应式\"阶段：它们擅长模式识别，却在推理、记忆、抽象和自我反思方面显得脆弱。如果智能不仅仅在于规模，更在于结构，那么核心问题就不再是如何构建更大的模型，而是如何构建认知架构。在本次演讲中，我将介绍一种受大脑启发的智能体计算架构，该架构将智能视为一种可执行的认知系统。我们借鉴神经科学、心理学和计算系统设计的理念，将智能体建模为分层认知架构，集成了记忆巩固、结构化知识形成、因果推理、元认知以及目标导向的问题解决能力。我们构建的不是简单的工具链，而是认知基础设施。为了将这些理念具体化，我们展示了如何将复杂的网络安全专业知识——涵盖软件漏洞发现、诊断、漏洞利用生成及自动修复——编码为结构化的认知工作流。这为实现更宏大的愿景奠定了原型：即在自主编程、医学分析、材料科学乃至科学发现等领域，实现专家级推理过程的自动化。最后，我将概述一条通往通用人工智能（AGI）的跨学科路径，该路径融合了神经科学、心理学、社会科学和计算机科学的见解。人工智能的未来不应仅仅源于更大规模的模型，而应源于那些能够映射大脑组织原理、在结构层面内嵌对齐机制，并将智能扩展为一种数字认知基础设施的架构。我们的目标不仅仅是制造更智能的机器，而是实现可计算的认知。",
           "flags": [
-            "Timetable title differs from profile title; both retained"
+            "报告题目不一致：日程表为“特邀报告2：《从人类智能到机器智能：一种受脑启发的智能体计算架构》”，报告资料为“从人类智能到机器智能：一种受脑启发的智能体计算架构”，均按原文保留。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -4865,8 +4871,8 @@
           },
           "abstract": "针对生态文明建设、国土科学绿化、绿色发展与双碳战略、生态安全保障、生态产品价值转化等我国林草行业智能软件重大需求，介绍人工智能如何赋能林草科技创新与人才培养改革，结合野生动物监测、古树智慧保护等林业智能软件案例，介绍了人工智能在林草行业的典型应用，并展望了未来发展趋势。",
           "flags": [
-            "Timetable affiliation says 南洋理工大学; biography says 北京林业大学. Both source values retained",
-            "Timetable title differs from profile title; both retained"
+            "单位信息不一致：日程表为南洋理工大学，个人简介为北京林业大学，均按原文保留。",
+            "报告题目不一致：日程表为“特邀报告3：《林草智能软件研究与典型应用》”，报告资料为“林草智能软件研究与典型应用”，均按原文保留。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -4920,7 +4926,7 @@
           },
           "abstract": "数据要素流通成为促进数据要素市场化配置，充分释放数据要素价值的重要环节。隐私保护计算为保障数据要素安全流通，实现数据\"可用不可见\"提供关键技术支撑。然而，严重的性能瓶颈阻碍了隐私保护计算技术的规模化应用。本报告将系统梳理隐私保护计算的性能优化路径，探讨安全协议优化、软硬件协同加速等关键技术，探索在联邦学习、隐私信息检索，大模型隐私推理等典型应用场景的系统性能优化。",
           "flags": [
-            "Timetable title differs from profile title; both retained"
+            "报告题目不一致：日程表为“特邀报告4：《面向数据安全保护场景的系统性能优化》”，报告资料为“面向数据安全保护场景的系统性能优化”，均按原文保留。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -4961,7 +4967,7 @@
           },
           "abstract": "随着人工智能与机器人技术快速融合，软件正在从信息处理工具演化为能够直接影响物理世界的智能执行体。由此，软件可靠性的边界也从传统的程序正确性与服务可用性，进一步扩展到现实行为的安全、可控与可验证。本报告围绕这一\"从数字可靠性到物理可靠性\"的范式转变，探讨具身智能软件生态中的新型可靠性问题。以快速发展的机器人动作软件与第三方动作市场为例，分析软件代码、动作模型和数字内容如何被进一步转化为真实世界中的运动、碰撞和人机交互行为，并揭示数字表示、机器人实际执行状态与现实物理后果之间存在的可靠性鸿沟。在此基础上，介绍我们在大规模机器人动作审计方面的探索，通过软件侧分析、代表性真机测量以及物理后果评估，将传统的软件分析进一步延伸至真实物理世界。最后，本报告讨论面向具身智能时代的软件可靠性研究新方向，包括软件—模型—执行体跨层可靠性、第三方智能行为供应链、数字与物理状态一致性，以及面向现实后果的软件测试与验证，为构建安全、可信、可规模化部署的新一代智能软件系统提供思考。",
           "flags": [
-            "Timetable title differs from profile title; both retained"
+            "报告题目不一致：日程表为“特邀报告5：《机无所恶，伤有所至：具身智能时代的软件的可靠性危机》”，报告资料为“机无所恶，伤有所至：具身智能时代的软件的可靠性危机”，均按原文保留。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -5002,7 +5008,7 @@
           },
           "abstract": "生-机-电系统及融合技术旨在构建生物系统与机电系统的功能融合体，实现人-机深度交互与高效协同，是仿生肢体、可穿戴机器人等智能载体的核心环节，对专用任务、康复医疗、特种制造等领域发展有重要支撑作用。美国DARPA、北约战略司令部ACT等机构均持续布局，资助生-机-电系统融合技术发展，将其作为国家战略性支撑技术；我国多个国家重点专项，也均将该技术列为核心攻关技术之一。本报告针对生-机-电系统融合中的信号采集、特征表达和人机融合优化等三个关键卡点，介绍了近年研究进展，报告人提出基于肌肉形态学特征的生机接口、人机一体化识别模型和机器人生成式设计等技术和方法，取得了理论和技术突破成果，在国家重大需求领域得到成功应用。",
           "flags": [
-            "Timetable title differs from profile title; both retained"
+            "报告题目不一致：日程表为“特邀报告6：《生-机-电系统融合：从感知到生成》”，报告资料为“生-机-电系统融合：从感知到生成”，均按原文保留。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -5026,7 +5032,7 @@
       ],
       "detail_extracted": true,
       "flags": [
-        "Overview title differs from detail title: '智能化软件开发、维护与安全'; detail title retained"
+        "论坛名称不一致：总表为“智能化软件开发、维护与安全”，此处使用详情页名称。"
       ],
       "extra": {
         "schedule_raw": "2026年11月6日，09:00-18:20",
@@ -5108,7 +5114,7 @@
           "affiliation_raw": "中国科学院软件研究所",
           "chair_role": "论坛组委会",
           "title": "中国科学院软件研究所副研究员",
-          "bio": "中国科学院软件研究所副研究员，主要研究领域为智能系统安全，主持国家自然科学基金、国家重点研发计划项目课题等重点项目，在IEEE S&P、USENIX Security、ICSE、Black Hat Asia、TIFS等国内外重要会议和期刊上发表论文50余篇，出版Springer英文专著一部，担任知名网络安全学术期刊Cybersecurity、信息安全学报、网络空间安全科学学报等青年编委，入选北京市科技新星，获ACM SIGSOFT杰出论文奖等荣誉。",
+          "bio": "中国科学院软件研究所副研究员，主要研究领域为智能系统安全，主持国家自然科学基金、国家重点研发计划项目课题等项目，在IEEE S&P、USENIX Security、ICSE、Black Hat Asia、TIFS等国内外重要会议和期刊上发表论文50余篇，出版Springer英文专著一部，担任知名网络安全学术期刊Cybersecurity、信息安全学报、网络空间安全科学学报等青年编委，入选北京市科技新星，获ACM SIGSOFT杰出论文奖等荣誉，指导学生多次获得国际RISC-V硬件安全竞赛 HACKTHESILICON 冠军(HACK@DATE 2025、HAC@CHES 2025、HACK@DAC 2026)和DataCon 大数据安全分析竞赛冠军(2020年、2021年、2022年、2024年、2025年)。",
           "photo": {
             "local_path": "/portraits/chinasoft2026/46514eb6fa6517cd6aaa.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E5%87%8C%E7%A5%A5.png"
@@ -5141,7 +5147,7 @@
             "speaker_raw": "陈森 南开大学",
             "section_title": "特邀专家报告"
           },
-          "abstract": "随着开源生态、AI辅助编程和智能体技术的快速发展，现代软件正从自主开发走向开放组装与智能构建，软件供应链中的安全对象也由自主代码和第三方依赖进一步扩展至AI生成代码、模型、Skills及外部服务等多源异构成分。软件形态的持续演化，对传统依赖人工规则和专用工具的安全分析范式提出了新的挑战。",
+          "abstract": "随着开源生态、AI辅助编程和智能体技术的快速发展，现代软件正从自主开发走向开放组装与智能构建，软件供应链中的安全对象也由自主代码和第三方依赖进一步扩展至AI生成代码、模型、Skills及外部服务等多源异构成分。软件形态的持续演化，对传统依赖人工规则和专用工具的安全分析范式提出了新的挑战。\n\n本报告围绕软件供应链中的风险发现、成分认知与安全验证，介绍我们在静态应用安全测试（SAST）和软件成分分析（SCA）方面的研究探索，包括复杂程序漏洞分析、第三方依赖识别与风险治理，以及面向真实漏洞的自动化验证。在此基础上，进一步探讨大模型与智能体技术如何改变软件供应链安全分析范式，通过安全知识、分析工具、执行环境与自动化验证的协同，使安全分析从\"发现潜在风险\"逐步走向\"自主分析与验证\"。最后，报告将结合面向漏洞挖掘的模型后训练与智能安全分析实践，讨论AI时代软件供应链安全面临的新问题与未来研究方向。",
           "enrichment": {
             "generated_by": "ai",
             "summary": {
@@ -5240,15 +5246,27 @@
           "title_status": "confirmed",
           "start": "10:00",
           "end": "10:20",
-          "speakers": [],
+          "speakers": [
+            {
+              "name": "廖楠",
+              "affiliation_raw": "华为",
+              "bio": "廖楠，华为2012硬件安全Lab技术规划专家，博士毕业于北京大学微电子系，在硬件安全领域有10+年行业从业经验，长期从事硬件安全测评技术研究创新和落地，目前负责硬件安全技术规划和价值落地。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/ec7c6977bf296748962b.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E5%BB%96%E6%A5%A0.png"
+              }
+            }
+          ],
           "type": "talk",
-          "abstract_status": "unknown",
+          "abstract_status": "confirmed",
           "extra": {
-            "speaker_raw": "姓名（待定） 华为",
-            "section_title": "特邀专家报告"
+            "speaker_raw": "廖楠 华为",
+            "section_title": "特邀专家报告",
+            "profile_report_title": "AI威胁下的硬件安全演进趋势"
           },
+          "abstract": "AI时代，安全会是一个贯穿始终的的命题，而硬件安全是其中最为关键的一部分，因为\"AI is learning to think for itself but only hardware can prove it's thinking for us\"。过去我们谈安全，更多聚焦在软件和网络层面，但\"熔断\"\"幽灵\"等硬件级漏洞一再警示我们：硬件一旦存在漏洞，上层的软件防护就如同建立在沙丘之上的堡垒，再坚固也无济于事。在AI时代，硬件安全也成为了产、学、研关注和聚焦的课题，本次报告将基于行业洞察，介绍在AI威胁下的硬件安全演进趋势和思考。",
           "flags": [
-            "a placeholder, not a name yet: '姓名（待定） 华为'"
+            "报告题目不一致：日程表为“大模型威胁下的硬件组件供应链安全”，报告资料为“AI威胁下的硬件安全演进趋势”，均按原文保留。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -5324,7 +5342,7 @@
           "abstract_status": "confirmed",
           "extra": {
             "speaker_raw": "朱康晨 国防科技大学",
-            "section_title": "研途分享（Spotlight Talk）"
+            "section_title": "研途分享"
           },
           "abstract": "针对软件供应链中二进制组件源码缺失、代码混淆导致程序理解与安全分析困难的问题，本报告介绍行为规约引导的二进制反混淆方法 BinMirror。该方法从动态执行中提取程序交互行为与运行上下文，构建行为规约，并筛选行为相关的指令证据，引导大语言模型重构可读源码。通过差分执行检查重构代码与原程序的观测行为一致性，利用差异反馈迭代修正重构结果。最后，结合多架构混淆程序与真实恶意软件上的实验，展示该方法在代码重构和恶意软件检测中的效果，探讨其对软件供应链安全分析的支撑作用。",
           "enrichment": {
@@ -5362,7 +5380,7 @@
           "abstract_status": "confirmed",
           "extra": {
             "speaker_raw": "胡鑫 复旦大学",
-            "section_title": "研途分享（Spotlight Talk）"
+            "section_title": "研途分享"
           },
           "abstract": "代码漏洞检测是软件安全防护的关键屏障，依托大语言模型的智能化检测技术已成为当前的主流研究方向，有效弥补了传统静态分析、机器学习方法的技术短板。然而，现有大模型漏洞检测方案仍存在诸多关键问题，包括漏洞上下文抽取方式精准度不足、漏洞专业知识缺失、纯静态检测缺乏验证机制、误报率高且难以生成可复现POC等问题，极大制约了大模型在真实漏洞检测场景中的落地应用。本报告将介绍团队在大模型赋能代码漏洞检测领域的系列递进式研究探索与技术思考，依次介绍大语言模型赋能静态分析增强的漏洞检测技术、上下文检索及推理增强的漏洞检测技术，以及大模型驱动的漏洞静态报告生成与POC自动生成技术。",
           "enrichment": {
@@ -5401,7 +5419,7 @@
           "abstract_status": "confirmed",
           "extra": {
             "speaker_raw": "王承杰 中国科学院软件研究所",
-            "section_title": "研途分享（Spotlight Talk）"
+            "section_title": "研途分享"
           },
           "abstract": "软件物料清单（SBOM）是提升软件供应链透明度、支撑安全与合规治理的重要数据载体。然而，SBOM工具的实际产出与标准规范之间仍存在差距。本报告介绍自动化评估框架SAP，从合规性、一致性和准确性三个方面，对多种编程语言生态中的主流SBOM工具开展大规模评估与纵向分析。研究发现，现有工具对政策要求的支持不充分，不同工具及其不同版本的生成结果存在明显差异，许可证等关键字段的准确性也较为有限。最后，本报告分析标准约束、工具范围和软件元数据等方面的成因，并探讨提升SBOM质量与软件供应链治理能力的可行方向。",
           "enrichment": {
@@ -5439,7 +5457,7 @@
           "abstract_status": "confirmed",
           "extra": {
             "speaker_raw": "崔星 中国科学院软件研究所",
-            "section_title": "研途分享（Spotlight Talk）"
+            "section_title": "研途分享"
           },
           "abstract": "随着开源软件在软件研发与产业应用中的广泛使用，软件来源复杂、依赖关系多样、版本演化频繁，漏洞、许可证及供应链攻击等风险持续增加，对开源软件的可信获取、安全分析与持续治理提出了更高要求。本报告围绕可信开源代码库的建设与关键进展，介绍其在开源代码与制品汇聚、漏洞与依赖分析、许可证合规、安全检测、软件物料清单及持续监测等方面形成的能力。在此基础上，进一步构建面向可信开源软件分析的 AI 助手，并围绕智能体能力建设高质量 Skills 数据集，提升复杂分析任务的自动化与智能化水平。同时，开展标准研制工作，促进平台能力向规范化、标准化方向演进。围绕可信开源代码库及其关键技术，构建了集平台能力、智能分析、数据资源、标准规范与科研创新于一体的可信开源软件技术体系，为开源软件安全使用和软件供应链治理提供支撑。",
           "enrichment": {
@@ -5464,31 +5482,14 @@
       ],
       "detail_extracted": true,
       "flags": [
-        "Profiles without an exact timetable speaker match retained in extra.unmatched_profiles",
-        "Overview title differs from detail title: '智能驱动供应链安全分析'; detail title retained"
+        "论坛名称不一致：总表为“智能驱动供应链安全分析”，此处使用详情页名称。"
       ],
       "extra": {
-        "schedule_raw": "2026年11月6日，09:00-12:00",
+        "schedule_raw": "2026年11月6日（周五），9:00~12:00",
         "location_raw": "天津市社会山国际会议中心酒店，一层2号大宴会厅",
         "published_window": {
           "start": "09:00",
           "end": "12:00"
-        },
-        "unmatched_profiles": {
-          "廖楠": {
-            "person": {
-              "name": "廖楠",
-              "affiliation_raw": "华为2012硬件安全Lab专家",
-              "photo": {
-                "local_path": "/portraits/chinasoft2026/ec7c6977bf296748962b.webp",
-                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E5%BB%96%E6%A5%A0.png"
-              }
-            },
-            "heading_raw": "4. 报告人：廖楠 华为2012硬件安全Lab专家",
-            "report_title": "AI威胁下的硬件安全演进趋势",
-            "abstract": "AI时代，安全会是一个贯穿始终的的命题，而硬件安全是其中最为关键的一部分，因为\"AI is learning to think for itself but only hardware can prove it's thinking for us\"。过去我们谈安全，更多聚焦在软件和网络层面，但\"熔断\"\"幽灵\"等硬件级漏洞一再警示我们：硬件一旦存在漏洞，上层的软件防护就如同建立在沙丘之上的堡垒，再坚固也无济于事。在AI时代，硬件安全也成为了产、学、研关注和聚焦的课题，本次报告将基于行业洞察，介绍在AI威胁下的硬件安全演进趋势和思考。",
-            "bio": "廖楠，华为2012硬件安全Lab技术规划专家，博士毕业于北京大学微电子系，在硬件安全领域有10+年行业从业经验，长期从事硬件安全测评技术研究创新和落地，目前负责硬件安全技术规划和价值落地。"
-          }
         },
         "overview_title": "智能驱动供应链安全分析"
       },
@@ -5804,7 +5805,7 @@
       ],
       "detail_extracted": true,
       "flags": [
-        "Overview title differs from detail title: '可信区块链'; detail title retained"
+        "论坛名称不一致：总表为“可信区块链”，此处使用详情页名称。"
       ],
       "extra": {
         "schedule_raw": "2026年11月7日，15:20-18:20",
@@ -6172,7 +6173,7 @@
       ],
       "detail_extracted": true,
       "flags": [
-        "Overview title differs from detail title: '智能软件与开源生态'; detail title retained"
+        "论坛名称不一致：总表为“智能软件与开源生态”，此处使用详情页名称。"
       ],
       "extra": {
         "schedule_raw": "2026年11月8日，09:00-12:00",
@@ -6208,7 +6209,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "academic-forum",
@@ -6561,7 +6562,7 @@
       ],
       "detail_extracted": true,
       "flags": [
-        "Overview title differs from detail title: '移动软件工程'; detail title retained"
+        "论坛名称不一致：总表为“移动软件工程”，此处使用详情页名称。"
       ],
       "extra": {
         "schedule_raw": "2026年11月6日，09:00-12:00",
@@ -6597,7 +6598,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "academic-forum",
@@ -7177,7 +7178,7 @@
       ],
       "detail_extracted": true,
       "flags": [
-        "Overview title differs from detail title: '攻击溯源、推理与安全分析'; detail title retained"
+        "论坛名称不一致：总表为“攻击溯源、推理与安全分析”，此处使用详情页名称。"
       ],
       "extra": {
         "schedule_raw": "2026年11月7日，15:20-18:20",
@@ -7213,7 +7214,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "academic-forum",
@@ -7471,7 +7472,7 @@
           },
           "abstract": "随着量子信息技术的飞速发展，量子计算正在加速从实验室走向实用化。量子计算云平台已成为连接量子计算机与终端用户之间的关键桥梁。本报告全面介绍了北京量子信息科学研究院自主研发的新一代Quafu超导量子计算云平台。该平台由云平台硬件研发团队开发，为用户提供一站式的量子计算服务。报告系统地阐述了Quafu 量子云平台的技术架构、核心功能以及具体使用方式，旨在帮助用户深入了解并高效利用该平台，降低量子计算的应用门槛，推动量子计算生态建设。",
           "flags": [
-            "Timetable title differs from profile title; both retained"
+            "报告题目不一致：日程表为“量子算法可靠实现的形式验证”，报告资料为“Quafu量子计算云平台介绍”，均按原文保留。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -7495,7 +7496,7 @@
       ],
       "detail_extracted": true,
       "flags": [
-        "Overview title differs from detail title: '量子计算软件和算法'; detail title retained"
+        "论坛名称不一致：总表为“量子计算软件和算法”，此处使用详情页名称。"
       ],
       "extra": {
         "schedule_raw": "2026年11月7日，15:20-18:20",
@@ -7828,7 +7829,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "academic-forum",
@@ -7854,7 +7855,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "academic-forum",
@@ -7880,7 +7881,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "academic-forum",
@@ -8182,7 +8183,7 @@
       ],
       "detail_extracted": true,
       "flags": [
-        "Overview title differs from detail title: '软件分析与软件安全新技术'; detail title retained"
+        "论坛名称不一致：总表为“软件分析与软件安全新技术”，此处使用详情页名称。"
       ],
       "extra": {
         "schedule_raw": "2026年11月6日，14:00-17:30",
@@ -8218,7 +8219,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "academic-forum",
@@ -8492,7 +8493,7 @@
       "breaks": [],
       "detail_extracted": true,
       "flags": [
-        "Overview title differs from detail title: '形式化方法与大模型技术'; detail title retained"
+        "论坛名称不一致：总表为“形式化方法与大模型技术”，此处使用详情页名称。"
       ],
       "extra": {
         "schedule_raw": "2026年11月7日，15:20-18:20",
@@ -8528,7 +8529,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "academic-forum",
@@ -8556,7 +8557,7 @@
           "affiliation_raw": "天津大学",
           "chair_role": "论坛组委会",
           "title": "教授",
-          "bio": "角色：论坛主席（唯一主负责人） 吕勇强，天津大学讲席教授、网络安全学院执行院长，教育部长江学者、CCF杰出会员。长期从事处理器芯片安全研究，作为主要贡献人之一发现并披露了 Intel、ARM 可信执行环境中密码实现模块的安全漏洞\"骑士\"（CVE-2019-11157）及 Nvidia GPU 漏洞\"闪电\"等。担任 IEEE TCAD、ACM IMUT 期刊副主编；担任 CCF 网络与系统安全专委会执委、集成电路设计专委会执委、体系结构专委会执委等。",
+          "bio": "吕勇强，天津大学讲席教授、网络安全学院执行院长，教育部长江学者、CCF杰出会员。长期从事处理器芯片安全研究，作为主要贡献人之一发现并披露了 Intel、ARM 可信执行环境中密码实现模块的安全漏洞\"骑士\"（CVE-2019-11157）及 Nvidia GPU 漏洞\"闪电\"等。担任 IEEE TCAD、ACM IMUT 期刊副主编；担任 CCF 网络与系统安全专委会执委、集成电路设计专委会执委、体系结构专委会执委等。",
           "photo": {
             "local_path": "/portraits/chinasoft2026/aeb35de8a590014c22ee.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E5%90%95%E5%8B%87%E5%BC%BA.png"
@@ -8567,7 +8568,7 @@
           "affiliation_raw": "天津大学",
           "chair_role": "论坛组委会",
           "title": "教授",
-          "bio": "角色：论坛主持人、组委会成员 天津大学教授、博导，院长助理，国家重点研发计划青年科学家项目首席，中国计算机学会网络与系统安全专委会执行委员，中国密码学会密码芯片专委会委员，天津市企业科技特派员、\"科技副总\"。主要研究领域为数字集成电路（全流程）设计、处理器漏洞挖掘、硬件形式化验证、密码芯片设计与安全分析。",
+          "bio": "天津大学教授、博导，院长助理，国家重点研发计划青年科学家项目首席，中国计算机学会网络与系统安全专委会执行委员，中国密码学会密码芯片专委会委员，天津市企业科技特派员、\"科技副总\"。主要研究领域为数字集成电路（全流程）设计、处理器漏洞挖掘、硬件形式化验证、密码芯片设计与安全分析。",
           "photo": {
             "local_path": "/portraits/chinasoft2026/a9df630f5f9a12f65c6f.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E4%BD%95%E5%AE%B6%E9%AA%A5.png"
@@ -8578,7 +8579,7 @@
           "affiliation_raw": "天津大学",
           "chair_role": "论坛组委会",
           "title": "副教授",
-          "bio": "角色：论坛主持人、组委会成员 胡强，天津大学英才副教授/特聘研究员，博士生导师，主要研究方向为可信人工智能、软件安全以及智能软件工程。在ICSE、S&P等会议和TOSEM、TSE等期刊发表论文60余篇，获得ICSE 2025杰出论文奖，ML4CS最佳论文奖。主持科技部重点研发计划课题、国自然青年C类等项目。长期担任ICSE、ASE、ISSTA等CCF A类会议程序委员会委员。",
+          "bio": "胡强，天津大学英才副教授/特聘研究员，博士生导师，主要研究方向为可信人工智能、软件安全以及智能软件工程。在ICSE、S&P等会议和TOSEM、TSE等期刊发表论文60余篇，获得ICSE 2025杰出论文奖，ML4CS最佳论文奖。主持科技部重点研发计划课题、国自然青年C类等项目。长期担任ICSE、ASE、ISSTA等CCF A类会议程序委员会委员。",
           "photo": {
             "local_path": "/portraits/chinasoft2026/1ffa466cef41999dd2f8.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E8%83%A1%E5%BC%BA.png"
@@ -8589,7 +8590,7 @@
           "affiliation_raw": "天津大学",
           "chair_role": "论坛组委会",
           "title": "副教授",
-          "bio": "角色：论坛主持人、组委会成员 于天津大学获得工学硕士和工学博士学位。研究方向包括程序分析、程序测试、大模型安全，以及智慧软件工程等。在上述领域国际高水平期刊与会议上发表论文30余篇，包括ASE、NDSS、FSE、TSE、TMC、TPDS、AAAI等CCF-A类期刊和会议。曾在CCF-A类会议ASE上以第一作者身份获得杰出论文奖、并获得ACM天津分会优秀博士论文奖。担任TSE、TDSC、TIFS、TMC等期刊审稿人，并在AAAI、NeurIPS、IJCAI等国际顶级会议担任PC。同时，主持了国家青年基金并参与了多项国家自然科学基金面上项目以及国家重点研发项目。",
+          "bio": "于天津大学获得工学硕士和工学博士学位。研究方向包括程序分析、程序测试、大模型安全，以及智慧软件工程等。在上述领域国际高水平期刊与会议上发表论文30余篇，包括ASE、NDSS、FSE、TSE、TMC、TPDS、AAAI等CCF-A类期刊和会议。曾在CCF-A类会议ASE上以第一作者身份获得杰出论文奖、并获得ACM天津分会优秀博士论文奖。担任TSE、TDSC、TIFS、TMC等期刊审稿人，并在AAAI、NeurIPS、IJCAI等国际顶级会议担任PC。同时，主持了国家青年基金并参与了多项国家自然科学基金面上项目以及国家重点研发项目。",
           "photo": {
             "local_path": "/portraits/chinasoft2026/6dcaf9ffbe7db77d1bdb.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E5%BC%A0%E7%91%B6.png"
@@ -8987,7 +8988,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "academic-forum",
@@ -9013,7 +9014,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "academic-forum",
@@ -9039,7 +9040,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "special-issue-forum",
@@ -9065,7 +9066,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "special-issue-forum",
@@ -9091,7 +9092,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "special-issue-forum",
@@ -9117,7 +9118,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "special-issue-forum",
@@ -9565,7 +9566,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "special-issue-forum",
@@ -9591,7 +9592,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "special-issue-forum",
@@ -9617,7 +9618,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "special-issue-forum",
@@ -9643,7 +9644,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "education-forum",
@@ -9823,7 +9824,7 @@
             "speaker_raw": "彭蓉-张颖"
           },
           "flags": [
-            "Ambiguous speaker credit retained verbatim: '彭蓉-张颖'"
+            "署名“彭蓉-张颖”中的讲者／主持角色不明确，保留原文，暂不关联人物。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -9852,7 +9853,7 @@
             "speaker_raw": "刘璘- 全体嘉宾"
           },
           "flags": [
-            "Ambiguous speaker credit retained verbatim: '刘璘- 全体嘉宾'"
+            "署名“刘璘- 全体嘉宾”中的讲者／主持角色不明确，保留原文，暂不关联人物。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -9876,7 +9877,7 @@
       ],
       "detail_extracted": true,
       "flags": [
-        "Profiles without an exact timetable speaker match retained in extra.unmatched_profiles"
+        "以下报告资料未能与日程表署名明确对应，单独保留：张颖"
       ],
       "extra": {
         "schedule_raw": "2026年11月6日，09:00-12:00",
@@ -9927,7 +9928,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "education-forum",
@@ -10280,7 +10281,7 @@
           },
           "abstract": "随着深度神经网络模型在自动驾驶等重要及安全关键领域中的应用，模型在面对复杂环境、恶意扰动和未知输入时能否保持稳定、可靠的性能，已成为可信人工智能发展所面临的重要挑战。如何理解和验证模型的鲁棒性，是形式化方法在人工智能安全研究的重要课题。本报告将介绍我们在模型鲁棒性验证方面的探索，并进一步讨论如何将前沿研究成果融入人工智能安全教学。",
           "flags": [
-            "Talk window 11:45-12:10 extends beyond the published forum window 09:00-12:00; both retained"
+            "时间不一致：本报告为 11:45–12:10，超出论坛标注的 09:00–12:00，均按原文保留。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -10337,7 +10338,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "education-forum",
@@ -10363,7 +10364,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "education-forum",
@@ -11018,7 +11019,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "industry-forum",
@@ -11175,7 +11176,7 @@
           },
           "abstract": "在大模型加速软件研发的背景下，企业面临的关键问题已从“Agent能否生成Rust代码”转向“如何让不同产品线的Agent稳定交付高质量Rust软件”。RustBot为此提供覆盖环境建设、规格驱动开发、渐进式重构、质量度量与验证交付的整体方案，将模型能力沉淀为可复制、可审计、可持续演进的企业级Rust工程能力。",
           "flags": [
-            "Timetable title differs from profile title; both retained"
+            "报告题目不一致：日程表为“RustBot：企业级Rust智能化作业解决方案”，报告资料为“《RustBot：企业级Rust智能化作业解决方案》”，均按原文保留。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -11216,7 +11217,7 @@
           },
           "abstract": "随着 AI 能力的进化与 Agent 的普及，个人层面的 AI 使用已取得显著进展：使用频次快速增长、覆盖群体持续扩大、配套度量体系逐步完善，Agent 产品已成为员工日常工作的重要组成部分。但个人 AI 用得好，并不天然等于组织竞争力的提升——个体的提效只是孤立的“点”，若不能沉淀为组织的知识、流程与协作方式，就无法连接成“面”。从个人提效到组织提效，仍有很长的路要走。本次演讲将以百度集团产研及职能团队的研发提效实践为例，拆解当前组织提效的方法与路径，探讨如何让个体的 AI 能力真正转化为组织级竞争力。",
           "flags": [
-            "Timetable title differs from profile title; both retained"
+            "报告题目不一致：日程表为“从个人提效到组织提效—Coding Agent的组织落地实践”，报告资料为“从个人提效到组织提效——Coding Agent的组织落地实践”，均按原文保留。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -11323,7 +11324,7 @@
             "speaker_raw": "周鑫（主持人）、曾祝玮、柯猛、臧志、荣国平"
           },
           "flags": [
-            "Talk window 11:30-12:00 extends beyond the published forum window 09:00-11:30; both retained"
+            "时间不一致：本报告为 11:30–12:00，超出论坛标注的 09:00–11:30，均按原文保留。"
           ],
           "enrichment": {
             "generated_by": "ai",
@@ -11380,7 +11381,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "industry-forum",
@@ -11704,7 +11705,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "competition",
@@ -11730,7 +11731,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "competition",
@@ -11756,7 +11757,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "competition",
@@ -11782,7 +11783,7 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes"
+        "总体日程已列出此论坛，官网尚未公布详细议程。"
       ],
       "category": {
         "key": "competition",
@@ -11808,8 +11809,8 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#competition/cangjie",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes",
-        "Competition announcement gives the final date, but no clock times, room or participant programme"
+        "总体日程已列出此论坛，官网尚未公布详细议程。",
+        "竞赛通知已公布决赛日期，具体时间、会场和参赛议程尚未公布。"
       ],
       "category": {
         "key": "competition",
@@ -11845,8 +11846,8 @@
       "agenda_status": "not_published",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#competition/harmony-ai",
       "flags": [
-        "Listed in the overview; no programme linked from the published forum indexes",
-        "Competition announcement gives the final date, but no clock times, room or participant programme"
+        "总体日程已列出此论坛，官网尚未公布详细议程。",
+        "竞赛通知已公布决赛日期，具体时间、会场和参赛议程尚未公布。"
       ],
       "category": {
         "key": "competition",
@@ -11873,7 +11874,7 @@
       {
         "category": "闭门会议",
         "code": "M1",
-        "title": "闭门会议（梅老师）"
+        "title": "闭门会议"
       },
       {
         "category": "闭门会议",
@@ -11991,28 +11992,17 @@
         }
       ]
     },
-    "announcements": [
-      {
-        "title": "软件研究成果原型系统案例论坛",
-        "source_url": "https://chinasoft.ccf.org.cn/2026/#competition/prototype-systems-forum",
-        "schedule_raw": "11月6日下午，在CCF中国软件大会（ChinaSoft2026），通过材料审核的原型案例团队通过案例介绍、系统演示、专家提问与同行交流等方式开展现场研讨。每个作品进行10分钟的介绍：原理、核心技术和效果等。并安排5分钟用于专家交流、提问与技术建议。",
-        "day_date": "2026-11-06",
-        "session_period": "afternoon",
-        "flags": [
-          "No forum code published; not silently mapped to the overview's C2 competition"
-        ]
-      }
-    ],
+    "announcements": [],
     "flags": [
-      "Home news says November 6-8; introduction and overview include November 5 check-in. The dataset includes check-in.",
-      "程序委员会: a placeholder, not a name yet: '待更新'",
-      "本地组织委员会: a placeholder, not a name yet: '待定'",
-      "宣传委员会主席: source pages publish different rosters; all explicitly named members retained"
+      "日期口径不同：首页为 11 月 6–8 日，大会介绍和总体日程包含 11 月 5 日签到；本站包含签到日。",
+      "程序委员会：原文为“待更新”，名单尚未公布。",
+      "本地组织委员会：原文为“待定”，名单尚未公布。",
+      "宣传委员会主席：来源页面名单不一致，分别为“王栋、辜文蔚、张重群；王栋、辜文蔚”，保留全部明确列出的人名。"
     ]
   },
   "extraction": {
     "source": "https://chinasoft.ccf.org.cn/2026/",
-    "content_sha256": "68aed93be29657e65168e13002fd087be5add2360519a28f39b1646d50352bbf",
+    "content_sha256": "f04566e4c28b4cb28bd7e01d1c4a6ee60f436c15930ffb34260476b2934c1c98",
     "forums_total": 64,
     "forums_detail_extracted": 27,
     "notes": "Only live navigation links are followed. Unpublished programmes remain unscheduled. Timetable titles and affiliations are retained verbatim; profiles supplement abstracts and biographies."

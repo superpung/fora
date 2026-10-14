@@ -5,7 +5,7 @@
 // the page stays a thin renderer that re-runs these on every 30s clock tick.
 import type { ConferenceViews } from "./data";
 import { collectFollowedItems, type ExportItem, type FollowSnapshot } from "./export";
-import type { Talk } from "../types";
+import type { Forum, Talk } from "../types";
 import type { Now } from "./use-now";
 import { ownTitle, titleLine } from "./talk-title";
 
@@ -14,6 +14,15 @@ function toMin(t?: string | null): number | null {
   const [h, m] = t.split(":").map((x) => parseInt(x, 10));
   if (Number.isNaN(h)) return null;
   return h * 60 + (m || 0);
+}
+
+/** Include published report times even when they exceed a conflicting forum
+    window. Explicit unknown forum clocks must not inherit a whole-day block. */
+function forumBounds(forum: Forum, views: ConferenceViews) {
+  const window = views.forumTimeWindow(forum);
+  const starts = [window.start, ...(forum.talks ?? []).map((t) => t.start)].filter((x): x is string => !!x).sort();
+  const ends = [window.end, ...(forum.talks ?? []).map((t) => t.end)].filter((x): x is string => !!x).sort();
+  return { start: starts[0] ?? null, end: ends.at(-1) ?? null };
 }
 
 /** A talk reduced to just what the live view shows (title + first speaker). */
@@ -99,20 +108,17 @@ export function buildLiveView(views: ConferenceViews, now: Now): LiveView {
     }
   });
 
-  // Forum rooms: all parallel forums run inside their shared block window, so a
-  // room is "on" while the block window contains now (or, absent a window, while
-  // one of its timed talks does). We then surface the current & next talk in it.
+  // A day can hold morning and afternoon forums with different windows.
+  // Determine activity from each forum, never the enclosing board's span.
   const todaySched = scheduleDays.find((d) => d.date === today);
   const block = todaySched?.forumBlock;
   if (todaySched && block) {
-    const ws = toMin(block.start);
-    const we = toMin(block.end);
     todaySched.slots.forEach((slot) => {
+      if (!slot.forum) return;
       const talks = slot.forum?.talks ?? [];
-      const starts = talks.map((t) => toMin(t.start)).filter((x): x is number => x != null);
-      const ends = talks.map((t) => toMin(t.end)).filter((x): x is number => x != null);
-      const start = ws ?? (starts.length ? Math.min(...starts) : null);
-      const end = we ?? (ends.length ? Math.max(...ends) : null);
+      const window = forumBounds(slot.forum, views);
+      const start = toMin(window.start);
+      const end = toMin(window.end);
       const active =
         start != null && end != null
           ? cur >= start && cur < end
@@ -142,8 +148,8 @@ export function buildLiveView(views: ConferenceViews, now: Now): LiveView {
         title: slot.forum?.title.zh ?? slot.code,
         tbd: false,
         kind: "forum",
-        start: block.start ?? null,
-        end: block.end ?? null,
+        start: window.start,
+        end: window.end,
         nowTalk,
         nextTalk,
       });
@@ -161,14 +167,17 @@ export function buildLiveView(views: ConferenceViews, now: Now): LiveView {
   }
   const evs: StartEv[] = [];
   scheduleDays.forEach((d) => {
-    const bm = toMin(d.forumBlock?.start);
-    if (d.forumBlock?.start && bm != null) {
-      // The parallel forum block begins as one event ("N rooms at HH:MM").
+    const counts = new Map<string, number>();
+    for (const slot of d.slots) {
+      const start = slot.forum ? forumBounds(slot.forum, views).start : null;
+      if (start) counts.set(start, (counts.get(start) ?? 0) + 1);
+    }
+    for (const [start, count] of counts) {
       evs.push({
         date: d.date,
-        start: d.forumBlock.start,
-        startMin: bm,
-        session: { title: "", kind: "forum", room: null, count: d.slots.length },
+        start,
+        startMin: toMin(start)!,
+        session: { title: "", kind: "forum", room: null, count },
       });
     }
   });

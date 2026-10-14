@@ -1,3 +1,4 @@
+import { personKey, resolveSpeakerKeys } from "./person-key";
 // Export the user's followed talks (forum talks + main-conference keynotes) to
 // calendar / spreadsheet / markdown. A forum talk has no time of its own, so we
 // fall back to its forum block's window; the location is the full venue name
@@ -134,6 +135,7 @@ function keynoteItem(
 /** Every talk the user follows, via a starred talk, forum, or speaker (deduped). */
 export function collectFollowedItems(f: FollowSnapshot, views: ConferenceViews): ExportItem[] {
   const map = new Map<string, ExportItem>();
+  const speakerKeys = resolveSpeakerKeys(f.speakers, views.conference);
   // Directly starred talks are read first, so an item that is also covered by a
   // followed forum or speaker still knows it can be unstarred on its own.
   const putForum = (forum: Forum, i: number, via: FollowVia, viaName?: string) => {
@@ -155,6 +157,16 @@ export function collectFollowedItems(f: FollowSnapshot, views: ConferenceViews):
   });
   f.forums.forEach((code) => {
     const forum = views.getForum(code);
+    if (forum && !forum.talks?.length && forum.day_date) {
+      const win = views.forumTimeWindow(forum);
+      const room = roomOnly(views.mainVenueName, forum.room);
+      map.set(`forum:${code}`, {
+        uid: `forum-${code}`, title: forum.title.zh, speakers: "", session: forum.title.zh,
+        code, date: forum.day_date, start: win.start, end: win.end, approx: false,
+        location: fullLocation(views.mainVenueName, room), room,
+        followId: code, via: "forum", viaName: forum.title.zh,
+      });
+    }
     (forum?.talks ?? []).forEach(
       (_, i) => forum && putForum(forum, i, "forum", forum.title.zh),
     );
@@ -162,12 +174,12 @@ export function collectFollowedItems(f: FollowSnapshot, views: ConferenceViews):
   if (f.speakers.size) {
     (views.conference.forums ?? []).forEach((forum) =>
       (forum.talks ?? []).forEach((t, i) => {
-        const who = (t.speakers ?? []).find((s) => f.speakers.has(s.name));
+        const who = (t.speakers ?? []).find((s) => speakerKeys.has(personKey(s)));
         if (who) putForum(forum, i, "speaker", who.name);
       }),
     );
     views.keynoteEntries.forEach((e) => {
-      const who = (e.talk.speakers ?? []).find((s) => f.speakers.has(s.name));
+      const who = (e.talk.speakers ?? []).find((s) => speakerKeys.has(personKey(s)));
       if (who) putKeynote(e.id, "speaker", who.name);
     });
   }

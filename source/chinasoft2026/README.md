@@ -5,8 +5,13 @@ The snapshot follows the published navigation at
 still name previous-year forums. Fetching fails on request errors and completes
 all downloads before replacing the source snapshot.
 
+Before every refresh, read [the gap and correction checklist](../../data/CHINASOFT2026_GAPS.md).
+It includes unresolved source identities and a deliberate data-only R32
+biography correction that must be reviewed after fetching.
+
 ```bash
 uv run python source/chinasoft2026/fetch.py
+# Inspect and apply the documented R32 snapshot correction before building.
 uv run python source/chinasoft2026/fetch_photos.py
 uv run python source/build_all.py
 uv run python source/validate.py
@@ -47,12 +52,14 @@ Unpublished programmes have `agenda_status: not_published`. C5/C6 final dates
 come from their competition announcements. E6's date, room and window come
 from its exact title in the overview. No guessed clock times or people are
 assigned. The prototype-system announcement has no code and a different name
-from C2; it is preserved in `extra.announcements` rather than silently matched.
+from C2. Its navigation link was withdrawn in the latest snapshot; the build
+reads it only while published, without assuming either cancellation or C2 identity.
 
 Source inconsistencies are retained in `flags` and `extra`: R1/E4/I4 talks
-outlast their forum's printed window; R14's pending speaker conflicts with a
-named profile; E2 has ambiguous hyphenated speaker credits. Unmatched profiles
-remain under `extra.unmatched_profiles`. Planned academician guests are stored
+outlast their forum's printed window; R14/R23 have differing timetable/profile
+titles; E2 has ambiguous hyphenated speaker credits. R14 now explicitly names
+廖楠, so his profile is attached. Unmatched profiles remain separately visible
+under `extra.unmatched_profiles`. Planned academician guests are stored
 with their original tentative label, not treated as confirmed keynote speakers.
 
 The viewer resolves one forum block per day. Its envelope covers all published
@@ -62,11 +69,16 @@ clock times unknown. Original overview placeholders are preserved in
 `extra.overview_rows`, avoiding duplicate visible sessions. E6 remains visible
 even with no announced talks. Repeated committee roles are merged; differing
 published rosters remain flagged, with both source lists retained.
+Undated forums remain browsable under a pending-date section. Hosts, breaks
+and expandable source notes are visible in forum details. Empty dated forums
+remain valid followed agenda items before individual reports are announced.
+Explicit `person.extra.identity_key` values separate unresolved same-name
+source records; the viewer never infers identity from affiliation alone.
 
 `enrichment.json` supplies 188 AI summaries/topic classifications, covering all
 substantive reports and meaningful panels. They live only in `enrichment` and
 respect the global AI switch. Each entry records its source title so an agenda
-reordering cannot silently attach annotations to the wrong report. The 171
+reordering cannot silently attach annotations to the wrong report. The 172
 source abstracts remain separate and unchanged.
 
 The source fingerprint covers every captured page and the portrait manifest;
@@ -74,3 +86,6 @@ builds perform no network requests and write identical dataset copies under
 `data/` and `web/src/data/`. `cd web && pnpm test` checks eight report permalinks
 and audits all published forum pages, portrait decoding, committees, all four
 schedule days, pending forums, follows, topics, the AI switch and mobile routes.
+The gap regression suite additionally checks undated inventory entries,
+multi-paragraph abstracts, host/break display, source notes, identity separation,
+legacy follows, and empty-forum calendar exports across conference datasets.

@@ -1,3 +1,4 @@
+import { personKey } from "../lib/person-key";
 import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { useConference } from "../lib/conference-store";
@@ -107,7 +108,7 @@ export default function TimeGrid({
   const relevant = (code: string, i: number, t: Talk): boolean =>
     isForum(code) ||
     isTalk(talkId(code, i)) ||
-    (t.speakers ?? []).some((s) => isSpeaker(s.name));
+    (t.speakers ?? []).some((s) => isSpeaker(personKey(s)));
 
   // First pass: gather each forum's timed talks as minute offsets, and the day's
   // overall time span.

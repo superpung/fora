@@ -52,13 +52,15 @@ try {
     assert((await page.locator(".fd__meta").textContent()).includes(`${forum.start}–${forum.end}`), `${forum.code}: published forum window`);
     const result = await page.locator("[id^=talk-]").evaluateAll((nodes) => nodes.map((node) => ({
       title: node.querySelector(".talk__title")?.textContent.trim(),
-      people: [...node.querySelectorAll(".person__name,.authorchip__name")].map((el) => el.textContent.trim()),
-      portraits: [...node.querySelectorAll("img.avatar")].map((el) => `${el.alt}:${el.getAttribute("src")}`),
+      people: [...node.querySelectorAll(".person__name,.authorchip__name")].filter((el) => !el.closest(".talk__hosts")).map((el) => el.textContent.trim()),
+      hosts: [...node.querySelectorAll(".talk__hosts .person__name")].map((el) => el.textContent.trim()),
+      portraits: [...node.querySelectorAll("img.avatar")].filter((el) => !el.closest(".talk__hosts")).map((el) => `${el.alt}:${el.getAttribute("src")}`),
     })));
     assert.equal(result.length, forum.talks.length, `${forum.code}: missing programme rows`);
     result.forEach((row, i) => {
       assert.equal(row.title, forum.talks[i].title.zh);
       assert.deepEqual([...row.people].sort(), forum.talks[i].speakers.map((p) => p.name).sort(), `${forum.code}#${i}: people`);
+      assert.deepEqual(row.hosts, (forum.talks[i].extra?.hosts ?? []).map((p) => p.name), `${forum.code}#${i}: hosts`);
       row.people.forEach((name) => assert(!forbidden.has(name), `${forum.code}: pseudo-person ${name}`));
       assert.deepEqual(row.portraits.sort(), forum.talks[i].speakers.filter((p) => p.photo)
         .map((p) => `${p.name}:${p.photo.local_path}`).sort(), `${forum.code}#${i}: portraits`);

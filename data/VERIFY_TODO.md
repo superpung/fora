@@ -58,37 +58,8 @@ kept verbatim with a `flag`; only change if the organizers correct the poster.
 - Invited guests with a bio but no talk title/abstract: CF04#6 (曾晓洋),
   CF07#9 (倪家伟).
 
-## ChinaSoft 2026 (snapshot: 2026-10-14)
+## ChinaSoft 2026
 
-- Re-audited all 27 detailed programmes (204 programme rows and 27 breaks),
-  all linked speaker profiles and committee pages after preview feedback.
-  Fixed short-company pseudo-speakers, honorary titles split into people,
-  duplicated committee groups, chronological block order, hidden empty forums,
-  missing AI topic data and a profile lost by splitting punctuation in its job
-  title. Source abstracts now total 171; 188 reports/panels have separate AI
-  annotations. All 298 linked portraits were fetched and decoded, then stored
-  as small local assets with source/hash provenance.
-- The publicity committee overview includes 张重群, while its subpage lists
-  only 王栋 and 辜文蔚. Retain all three explicit names and both source rosters;
-  flag the disagreement instead of silently picking a roster.
-- 64 forums/competitions are listed in the overview; 27 have linked detailed
-  programmes. Keep the other 37 as `not_published`. E6's window is in the
-  overview, and C5/C6 final dates are in competition announcements; their
-  individual programmes remain unpublished.
-- The homepage says November 6–8, while the introduction and timetable include
-  November 5 check-in. The dataset includes November 5 and records both claims.
-- R1, E4 and I4 have talks ending later than their printed forum windows. Keep
-  both values, with talk-level flags; do not shorten talks to fit the overview.
-- R14's timetable prints a pending Huawei speaker, while a profile names 廖楠.
-  Keep the pending timetable credit and the unmatched profile separately.
-- R13's 许福 has 南洋理工大学 in the timetable but 北京林业大学 in his
-  biography. Keep both with a flag. P4 and R4 publish 李佳 with different
-  affiliations/biographies (清华大学 / 武汉大学); flag both credits without
-  guessing whether they describe namesakes or an outdated source profile.
-- E2 prints ambiguous credits `彭蓉-张颖` and `刘璘- 全体嘉宾`. Preserve the raw
-  strings and flag the uncertain speaker/host roles; do not guess identities.
-- The prototype-system announcement names a November 6 afternoon case forum,
-  while the overview names competition C2 without an explicit linking code.
-  Keep the announcement separately under conference `extra` until confirmed.
-- The programme committee is marked pending; the local organizing committee's
-  member list is also pending. Neither placeholder is a person.
+The current source gaps, unresolved identities, deliberate data corrections and
+mandatory refresh checklist are maintained separately in
+[CHINASOFT2026_GAPS.md](CHINASOFT2026_GAPS.md). Read it before every refresh.

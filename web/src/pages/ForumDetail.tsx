@@ -1,3 +1,4 @@
+import { personKey } from "../lib/person-key";
 import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useParams, Link, useLocation, useNavigate } from "react-router-dom";
@@ -9,12 +10,13 @@ import { useAi, talkSummaryText } from "../lib/ai-store";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Icon from "../components/Icon";
 import Avatar from "../components/Avatar";
+import SourceNotes from "../components/SourceNotes";
 import { AiNote } from "../components/AiMark";
 import TalkSummary from "../components/TalkSummary";
 import PosterModal from "../components/PosterModal";
 import SimilarTalks from "../components/SimilarTalks";
 import type { PosterSpec, PosterMeta } from "../lib/poster";
-import type { Person, Talk } from "../types";
+import type { Person, Talk, Break } from "../types";
 import { titleLine } from "../lib/talk-title";
 
 /** "2025年11月27–30日" — a compact CN date range, collapsing shared year/month. */
@@ -74,7 +76,7 @@ function PersonLine({ p, role, avatarSize = 40 }: { p: Person; role?: string; av
   const [open, setOpen] = useState(false);
   const { isSpeaker, toggleSpeaker } = useFollow();
   const { t } = useI18n();
-  const followed = p.name ? isSpeaker(p.name) : false;
+  const followed = p.name ? isSpeaker(personKey(p)) : false;
   return (
     <div className="person">
       <Avatar person={p} size={avatarSize} />
@@ -87,7 +89,7 @@ function PersonLine({ p, role, avatarSize = 40 }: { p: Person; role?: string; av
               aria-pressed={followed}
               aria-label={followed ? t("common.followRemove", { name: p.name }) : t("common.followAdd", { name: p.name })}
               title={followed ? t("common.followRemove", { name: p.name }) : t("common.followAdd", { name: p.name })}
-              onClick={() => toggleSpeaker(p.name)}
+              onClick={() => toggleSpeaker(personKey(p))}
             >
               <Icon name="star" filled={followed} size={15} />
             </button>
@@ -149,7 +151,7 @@ function AuthorChip({ p }: { p: Person }) {
   const { isSpeaker, toggleSpeaker } = useFollow();
   const { t } = useI18n();
   if (!p.name) return null;
-  const followed = isSpeaker(p.name);
+  const followed = isSpeaker(personKey(p));
   return (
     <span className="authorchip">
       <Avatar person={p} size={24} />
@@ -159,7 +161,7 @@ function AuthorChip({ p }: { p: Person }) {
         aria-pressed={followed}
         aria-label={followed ? t("common.followRemove", { name: p.name }) : t("common.followAdd", { name: p.name })}
         title={followed ? t("common.followRemove", { name: p.name }) : t("common.followAdd", { name: p.name })}
-        onClick={() => toggleSpeaker(p.name)}
+        onClick={() => toggleSpeaker(personKey(p))}
       >
         <Icon name="star" filled={followed} size={13} />
       </button>
@@ -476,11 +478,7 @@ export default function ForumDetail() {
             <Icon name="star" filled={followed} size={16} />
           </button>
         </div>
-        {t.flags?.length ? (
-          <div className="talk__flag" title={t.flags.join("\n")}>
-            <Icon name="alert" size={13} /> {tr("forum.sourceAnnotated")}
-          </div>
-        ) : null}
+        <SourceNotes flags={t.flags} />
         {(() => {
           const speakers = t.speakers ?? [];
           const rich = speakers.filter(isRichPerson);
@@ -500,6 +498,9 @@ export default function ForumDetail() {
             </>
           );
         })()}
+        {!!t.extra?.hosts?.length && <div className="talk__hosts">
+          {t.extra.hosts.map((host, j) => <PersonLine key={j} p={host} role={tr("forum.hosts")} avatarSize={28} />)}
+        </div>}
         {/* TL;DR sits below the speakers, not under the title: title and
             speaker are the talk's own identity and belong together, so the
             generated line starts where the source's own header ends and the
@@ -555,6 +556,20 @@ export default function ForumDetail() {
         <div className="talk__body">{body}</div>
       </motion.article>
     );
+  }
+
+  function renderProgramme(entries: { t: Talk; i: number }[], breaks: Break[] = []) {
+    const rows = [
+      ...entries.map(({ t, i }) => ({ start: t.start, node: renderTalk(t, i) })),
+      ...breaks.map((pause, i) => ({ start: pause.start, node: (
+        <motion.div key={`break-${i}`} variants={riseItem} className="breakrow fd__break">
+          <span className="time">{pause.start}{pause.end ? `–${pause.end}` : ""}</span>
+          <span className="breakrow__label"><Icon name="clock" size={13} /> {pause.name}</span>
+        </motion.div>
+      ) })),
+    ];
+    if (breaks.length) rows.sort((a, b) => (a.start ?? "99:99").localeCompare(b.start ?? "99:99"));
+    return rows.map((row) => row.node);
   }
 
   return (
@@ -617,6 +632,7 @@ export default function ForumDetail() {
           )}
         </div>
       </header>
+      <SourceNotes flags={forum.flags} />
 
       {forum.description && (
         <motion.p variants={riseItem} initial="initial" animate="animate" className="fd__desc">
@@ -655,7 +671,8 @@ export default function ForumDetail() {
                   initial={activeId ? false : "initial"}
                   animate="animate"
                 >
-                  {track.talks.map(({ t, i }) => renderTalk(t, i))}
+                  {renderProgramme(track.talks, (forum.breaks ?? []).filter((b) =>
+                    b.start && b.start >= (track.talks[0]?.t.start ?? "") && b.start < (track.talks.at(-1)?.t.end ?? "99:99")))}
                 </motion.div>
               </div>
             ))
@@ -666,7 +683,7 @@ export default function ForumDetail() {
               initial={activeId ? false : "initial"}
               animate="animate"
             >
-              {forum.talks.map((t, i) => renderTalk(t, i))}
+              {renderProgramme(forum.talks.map((t, i) => ({ t, i })), forum.breaks)}
             </motion.div>
           )}
         </section>
@@ -688,6 +705,17 @@ export default function ForumDetail() {
           </div>
         </section>
       )}
+
+      {forum.extra?.unmatched_profiles && <section className="fd__section">
+        <h2 className="fd__sectitle">{tr("forum.unmatchedProfiles")}</h2>
+        {Object.entries(forum.extra.unmatched_profiles).map(([name, info]) => <div className="talk" key={name}>
+          <div className="talk__body">
+            {info.report_title && <h3 className="talk__title">{info.report_title}</h3>}
+            <PersonLine p={{ ...info.person, bio: info.bio }} />
+            {info.abstract && <Abstract text={info.abstract} />}
+          </div>
+        </div>)}
+      </section>}
 
       <PosterModal
         spec={poster?.spec ?? null}

@@ -1,3 +1,4 @@
+import { personKey } from "./person-key";
 import { keynoteId } from "./follow-store";
 import type { Conference, Forum, Day, Talk, Person, I18n, Status } from "../types";
 
@@ -141,6 +142,7 @@ export interface SpeakerTalk {
 }
 
 export interface SpeakerAgg {
+  key: string;
   name: string;
   person: Person; // representative record (prefers one carrying a bio)
   talks: SpeakerTalk[];
@@ -196,6 +198,7 @@ export interface ConferenceViews {
   days: Day[];
   stats: { days: number; forums: number; keynotes: number; committeeMembers: number };
   scheduleDays: ScheduleDay[];
+  unscheduledForums: ForumSlot[];
   uniqueSpeakerCount: number;
   keynoteEntries: KeynoteEntry[];
   keynoteById: Map<string, KeynoteEntry>;
@@ -276,8 +279,15 @@ export function buildConferenceViews(raw: unknown): ConferenceViews {
     })
     .filter((d) => d.slots.length > 0);
 
+  const scheduledCodes = new Set(scheduleDays.flatMap((d) => d.slots.map((s) => s.code)));
+  const unscheduledForums = (conference.forums ?? []).filter((f) => !scheduledCodes.has(f.code)).map((f) => ({
+    code: f.code, room: f.room, forum: f,
+    search: forumSearchText(f, f.code, f.room), people: forumPeople(f),
+  }));
+
   const uniqueSpeakerCount = new Set(
-    (conference.forums ?? []).flatMap((f) => forumPeople(f)),
+    (conference.forums ?? []).flatMap((f) =>
+      [...(f.chairs ?? []), ...(f.talks ?? []).flatMap((t) => t.speakers ?? [])].map(personKey)),
   ).size;
 
   // Flattened main-conference keynotes, indexed the same way the dashboard rail is.
@@ -314,12 +324,14 @@ export function buildConferenceViews(raw: unknown): ConferenceViews {
   const speakerMap = new Map<string, SpeakerAgg>();
   const addSpeakerTalk = (sp: Person, talk: SpeakerTalk) => {
     if (!sp.name) return;
-    const existing = speakerMap.get(sp.name);
+    const key = personKey(sp);
+    const existing = speakerMap.get(key);
     if (existing) {
       existing.person = pickPerson(existing.person, sp);
       existing.talks.push(talk);
     } else {
-      speakerMap.set(sp.name, {
+      speakerMap.set(key, {
+        key,
         name: sp.name,
         person: sp,
         talks: [talk],
@@ -423,6 +435,7 @@ export function buildConferenceViews(raw: unknown): ConferenceViews {
     days,
     stats,
     scheduleDays,
+    unscheduledForums,
     uniqueSpeakerCount,
     keynoteEntries,
     keynoteById,

@@ -5,6 +5,7 @@ import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Reveal from "../components/Reveal";
 import Icon from "../components/Icon";
 import Avatar from "../components/Avatar";
+import SourceNotes from "../components/SourceNotes";
 
 export default function Committee() {
   const { conference } = useConference();
@@ -27,6 +28,7 @@ export default function Committee() {
         </div>
       </div>
 
+      <SourceNotes flags={conference.extra?.flags} />
       <div className="committees">
         {committees.map((c) => (
           <Reveal key={c.role.zh} className="cmt">

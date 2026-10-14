@@ -124,11 +124,14 @@ class ProgrammeTests(unittest.TestCase):
         self.assertEqual(forum["talks"][-1]["end"], "18:30")
         self.assertTrue(forum["talks"][-1]["flags"])
 
-    def test_profile_does_not_silently_replace_pending_speaker(self):
+    def test_updated_speaker_and_multiline_abstract(self):
         forum = detail("academic-forum", "supply-chain-security")
         talk = next(t for t in forum["talks"] if t["start"] == "10:00")
-        self.assertEqual(talk["speakers"], [])
-        self.assertIn("廖楠", forum["extra"]["unmatched_profiles"])
+        self.assertEqual(talk["speakers"][0]["name"], "廖楠")
+        self.assertTrue(talk["speakers"][0]["photo"])
+        self.assertTrue(talk["abstract"])
+        self.assertNotIn("unmatched_profiles", forum["extra"])
+        self.assertIn("本报告围绕软件供应链中的风险发现", forum["talks"][0]["abstract"])
 
     def test_overview_date_rowspans(self):
         overview = load("pages/agenda/agenda-overview/index.html")

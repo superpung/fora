@@ -1,3 +1,4 @@
+import { personKey } from "../lib/person-key";
 import { useCallback, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -288,7 +289,7 @@ export default function Schedule() {
   // across the whole day, so each block starts where the previous one ended.
   const keynoteFollowed = (index: number, talk: Talk) =>
     isTalk(keynoteId(day.date, index)) ||
-    (talk.speakers ?? []).some((s) => isSpeaker(s.name));
+    (talk.speakers ?? []).some((s) => isSpeaker(personKey(s)));
   const keynoteBase = new Map<Block, number>();
   let keynoteSeen = 0;
   for (const b of day.blocks) {

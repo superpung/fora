@@ -301,6 +301,19 @@ pnpm preview    # serve the production build
   with no time of its own borrows its forum's window and is flagged
   `approx: true`; every surface must present that as borrowed (a `~`, a note in
   the export), never as an exact time.
+  A followed, dated forum with no published talks is itself an agenda item;
+  keep its own window and omit a talk anchor. Undated forums remain browsable
+  through `ConferenceViews.unscheduledForums` but receive no invented date.
+- **Ambiguous people:** `lib/person-key.ts` uses `person.extra.identity_key`
+  when the adapter explicitly separates unresolved same-name source records.
+  Otherwise it preserves the existing name key. Directory aggregation, follows
+  and exports use the same key; legacy name follows retain their original
+  scope across the separated records. Never infer identity from affiliation.
+- **Source gaps:** `SourceNotes.tsx` exposes flags through an animated,
+  keyboard/touch-accessible disclosure. Forum details display hosts from
+  `talk.extra.hosts`, chronological breaks, and separately retained
+  `forum.extra.unmatched_profiles`. Before refreshing ChinaSoft 2026, read
+  `data/CHINASOFT2026_GAPS.md`, including its deliberate data-only correction.
 - **Search (`lib/search.ts` + `lib/bm25.ts`):** one palette over the whole
   program — talk titles/abstracts, speakers, affiliations, forums, committee
   members, organizations — ranked by BM25 in the browser over the already-loaded

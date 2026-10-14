@@ -138,7 +138,7 @@ def people(value, flags, role=None, known_names=(), single=False):
     # The education table prints ambiguous hyphenated credits. Preserve them,
     # rather than guessing which participant is a speaker or a moderator.
     if value in {"彭蓉-张颖", "刘璘- 全体嘉宾"}:
-        flags.append(f"Ambiguous speaker credit retained verbatim: {value!r}")
+        flags.append(f"署名“{value}”中的讲者／主持角色不明确，保留原文，暂不关联人物。")
         return []
     parts = [value] if single else re.split(r"[、；;]", value)
     # Whitespace is normally the name/affiliation boundary. Split a bare list
@@ -152,7 +152,7 @@ def people(value, flags, role=None, known_names=(), single=False):
         titled = re.match(r"^([一-鿿]{2,4})\s+((?:教授|研究员|副教授|高级工程师|正高级工程师|求是特聘教授|专职研究员|博士).*)$", part)
         person, problem = read_person(titled[1], titled[2], chair_role=role) if titled else read_person(part, chair_role=role)
         if problem:
-            flags.append(problem)
+            flags.append(f"原文署名为“{part}”，未明确具体人物。")
         else:
             # A moderator annotation is a role; other parenthetical text may
             # be an affiliation and must remain attached to this person.
@@ -185,18 +185,24 @@ def profiles(soup, flags):
         if portrait := photo(card):
             person["photo"] = portrait
         info = {"person": person, "heading_raw": heading}
+        field = None
         for paragraph in card.find_all("p"):
             strong = paragraph.find("strong")
             label = txt(strong)
             if not label:
+                if field and txt(paragraph):
+                    info[field] += "\n\n" + txt(paragraph)
                 continue
             value = txt(paragraph).removeprefix(label).lstrip("：: ")
+            field = None
             if "摘要" in label:
-                info["abstract"] = value
+                field = "abstract"
             elif "简介" in label:
-                info["bio"] = value
+                field = "bio"
             elif "题目" in label:
-                info["report_title"] = value
+                field = "report_title"
+            if field:
+                info[field] = value
         name = person["name"]
         if name in result:
             raise ValueError(f"Duplicate profile identity: {name}")
@@ -303,13 +309,13 @@ def detail(category, slug):
                     speaker["photo"] = info["person"]["photo"]
                 if (speaker["name"] == "许福" and "南洋理工大学" in speaker.get("affiliation_raw", "")
                         and "北京林业大学" in info.get("bio", "")):
-                    row_flags.append("Timetable affiliation says 南洋理工大学; biography says 北京林业大学. Both source values retained")
+                    row_flags.append("单位信息不一致：日程表为南洋理工大学，个人简介为北京林业大学，均按原文保留。")
                 if info.get("abstract") and talk["type"] == "talk":
                     talk["abstract"] = info["abstract"]
                     talk["abstract_status"] = "tbd" if "待定" in info["abstract"] else "confirmed"
                 if info.get("report_title") and talk["type"] == "talk" and info["report_title"] != title:
                     talk["extra"]["profile_report_title"] = info["report_title"]
-                    row_flags.append("Timetable title differs from profile title; both retained")
+                    row_flags.append(f"报告题目不一致：日程表为“{title}”，报告资料为“{info['report_title']}”，均按原文保留。")
             if row.get("主持") not in {None, "", "-"}:
                 host_raw = row["主持"]
                 talk["extra"]["hosts_raw"] = host_raw
@@ -319,14 +325,14 @@ def detail(category, slug):
                     host_raw = re.sub(r"\s+(?=[一-鿿]{2,3}，)", "、", host_raw).replace("，", " ")
                 talk["extra"]["hosts"] = people(host_raw, row_flags, "主持")
             if start < window[0] or end > window[1]:
-                row_flags.append(f"Talk window {start}-{end} extends beyond the published forum window {window[0]}-{window[1]}; both retained")
+                row_flags.append(f"时间不一致：本报告为 {start}–{end}，超出论坛标注的 {window[0]}–{window[1]}，均按原文保留。")
             if row_flags:
                 talk["flags"] = row_flags
             forum["talks"].append(talk)
     unmatched = {name: info for name, info in bios.items() if name not in used_bios}
     if unmatched:
         forum["extra"]["unmatched_profiles"] = unmatched
-        flags.append("Profiles without an exact timetable speaker match retained in extra.unmatched_profiles")
+        flags.append("以下报告资料未能与日程表署名明确对应，单独保留：" + "、".join(unmatched))
     if not forum["talks"]:
         raise ValueError(f"Published detail has no parsed programme: {code[0]}")
     return forum
@@ -358,7 +364,7 @@ def committees():
                     if person:
                         members.append(person)
                     else:
-                        flags.append(f"{name}: {problem}")
+                        flags.append(f"{name}：原文为“{item['name']}”，名单尚未公布。")
             if members:
                 role = txt(heading)
                 if role in {"主席", "委员", "共同主席", "副主席"}:
@@ -371,7 +377,7 @@ def committees():
                 if person:
                     members.append(person)
                 else:
-                    flags.append(f"{name}: {problem}")
+                    flags.append(f"{name}：原文为“{item['name']}”，名单尚未公布。")
             if members:
                 result.append({"role": i18n(name), "members": members})
     # Committee subpages repeat roles from the overview. Merge exact roles,
@@ -389,7 +395,8 @@ def committees():
         previous = merged[key]
         previous["extra"]["source_rosters"].append(names)
         if set(names) != {p["name"] for p in previous["members"]}:
-            flags.append(f"{key}: source pages publish different rosters; all explicitly named members retained")
+            rosters = "；".join("、".join(roster) for roster in previous["extra"]["source_rosters"])
+            flags.append(f"{key}：来源页面名单不一致，分别为“{rosters}”，保留全部明确列出的人名。")
         known = {p["name"]: p for p in previous["members"]}
         for member in group["members"]:
             if member["name"] not in known:
@@ -429,10 +436,10 @@ def build():
                      "start": None, "end": None,
                      "room": None, "chairs": [], "talks": [], "detail_extracted": False,
                      "agenda_status": "not_published", "source_url": BASE + "#agenda/agenda-overview/index",
-                     "flags": ["Listed in the overview; no programme linked from the published forum indexes"]}
+                     "flags": ["总体日程已列出此论坛，官网尚未公布详细议程。"]}
         elif forum["title"]["zh"] != title:
             forum["extra"]["overview_title"] = title
-            forum["flags"].append(f"Overview title differs from detail title: {title!r}; detail title retained")
+            forum["flags"].append(f"论坛名称不一致：总表为“{title}”，此处使用详情页名称。")
         forum["category"] = {"key": CATEGORIES[category], "name": i18n(category)}
         forums.append(forum)
     if details:
@@ -453,7 +460,7 @@ def build():
         forum["source_url"] = BASE + f"#competition/{slug}"
         forum["extra"] = {"announcement_title": txt(announcement.find(["h1", "h2"])),
                           "milestones": milestones}
-        forum["flags"].append("Competition announcement gives the final date, but no clock times, room or participant programme")
+        forum["flags"].append("竞赛通知已公布决赛日期，具体时间、会场和参赛议程尚未公布。")
     days = {}
     for cells, header in table_rows(tables[0]):
         if header:
@@ -519,18 +526,26 @@ def build():
             committee_flags.append(problem)
     # The prototype-system announcement and overview use different names and
     # publish no common code. Preserve it separately instead of guessing C2.
-    prototype = load("pages/competition/prototype-systems-forum.html")
-    prototype_schedule = [txt(p) for p in prototype.find_all("p") if "11月6日下午" in txt(p)]
-    if len(prototype_schedule) != 1:
-        raise ValueError("Expected one published prototype forum date")
+    announcements = []
+    if (RAW / "pages/competition/prototype-systems-forum.html").exists():
+        prototype = load("pages/competition/prototype-systems-forum.html")
+        prototype_schedule = [txt(p) for p in prototype.find_all("p") if "11月6日下午" in txt(p)]
+        if len(prototype_schedule) != 1:
+            raise ValueError("Expected one published prototype forum date")
+        announcements.append({"title": txt(prototype.find(["h1", "h2"])),
+                              "source_url": BASE + "#competition/prototype-systems-forum",
+                              "schedule_raw": prototype_schedule[0],
+                              "day_date": date(prototype_schedule[0]), "session_period": "afternoon",
+                              "flags": ["此通知未注明论坛编号，暂不与总表中的 C2 竞赛合并。"]})
     dates = sorted(days)
     # Two source profiles use the same name with different affiliations and
     # biographies. Preserve each credit; a shared name alone cannot settle
     # whether this is a source update or a namesake.
     name_credits = [(f, t, p) for f in forums for t in f["talks"] for p in t["speakers"] if p["name"] == "李佳"]
     if len({p.get("affiliation_raw") for _, _, p in name_credits}) > 1:
-        for _, talk, _ in name_credits:
-            talk.setdefault("flags", []).append("李佳 appears with different affiliations/profiles in P4 and R4; each source credit is retained without assuming an identity correction")
+        for forum, talk, person in name_credits:
+            person.setdefault("extra", {})["identity_key"] = f"{forum['code']}:李佳"
+            talk.setdefault("flags", []).append("P4 与 R4 的李佳分别署名清华大学、武汉大学，简介也不同；身份尚未确认，按各自来源分开显示。")
     apply_enrichment(forums, HERE / "enrichment.json")
     fingerprint = hashlib.sha256()
     for path in sorted(RAW.rglob("*.html")):
@@ -545,12 +560,8 @@ def build():
         "days": [days[day] for day in dates], "forums": forums,
         "extra": {"theme": "软件筑基智能新时代", "other_meetings": other_meetings,
                   "planned_guests": {"label": "拟出席院士嘉宾", "members": planned_guests},
-                  "announcements": [{"title": txt(prototype.find(["h1", "h2"])),
-                                     "source_url": BASE + "#competition/prototype-systems-forum",
-                                     "schedule_raw": prototype_schedule[0],
-                                     "day_date": date(prototype_schedule[0]), "session_period": "afternoon",
-                                     "flags": ["No forum code published; not silently mapped to the overview's C2 competition"]}],
-                  "flags": ["Home news says November 6-8; introduction and overview include November 5 check-in. The dataset includes check-in."] + committee_flags},
+                  "announcements": announcements,
+                  "flags": ["日期口径不同：首页为 11 月 6–8 日，大会介绍和总体日程包含 11 月 5 日签到；本站包含签到日。"] + committee_flags},
         "extraction": {"source": BASE, "content_sha256": fingerprint.hexdigest(),
                        "forums_total": len(forums), "forums_detail_extracted": sum(f["detail_extracted"] for f in forums),
                        "notes": "Only live navigation links are followed. Unpublished programmes remain unscheduled. Timetable titles and affiliations are retained verbatim; profiles supplement abstracts and biographies."},
