@@ -1,3 +1,4 @@
+import { conferenceList } from "./conferences";
 import { createContext, useContext } from "react";
 import type { ExportItem } from "./export";
 
@@ -55,6 +56,7 @@ export function reminderItemsKey(confId: string): string {
     notification and a deep link back into the app. */
 export interface ReminderItemSet {
   confId: string;
+  timezone?: string;
   nameZh: string;
   nameEn: string;
   items: ExportItem[];
@@ -105,7 +107,10 @@ export function loadItemSets(): ReminderItemSet[] {
     if (!k || !REMINDER_ITEMS_RE.test(k)) continue;
     try {
       const parsed = JSON.parse(localStorage.getItem(k) ?? "");
-      if (parsed && Array.isArray(parsed.items)) out.push(parsed as ReminderItemSet);
+      if (parsed && Array.isArray(parsed.items)) {
+        parsed.timezone ??= conferenceList.find((c) => c.id === parsed.confId)?.timezone;
+        out.push(parsed as ReminderItemSet);
+      }
     } catch {
       /* ignore malformed */
     }

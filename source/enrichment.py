@@ -21,7 +21,8 @@ from the verbatim source fields (title/abstract are never touched):
   - ``enrichment.topics``       -> list of controlled-vocabulary keys (source/topics.json)
 
 Topics are validated against the controlled vocabulary so a typo fails the build
-rather than silently minting an off-list tag. Both adapters call apply_enrichment.
+rather than silently minting an off-list tag. An optional source_title guards
+against stale indices when an agenda changes. Adapters call apply_enrichment.
 """
 import json
 import pathlib
@@ -66,6 +67,9 @@ def apply_enrichment(forums, path):
             entry = talks_map.get(key)
             if entry is None:
                 continue
+            expected_title = entry.get("source_title")
+            if expected_title is not None and expected_title != (t.get("title") or {}).get("zh"):
+                raise ValueError(f"{path}: {key} source title changed; review its enrichment before rebuilding")
             seen.add(key)
             summary = entry.get("summary") or {}
             zh = summary.get("zh")

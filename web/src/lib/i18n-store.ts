@@ -195,6 +195,7 @@ const zh: Dict = {
   "speakers.tbd": "题目待定",
 
   "committee.title": "大会委员会",
+  "committee.pending": "名单待公布",
 
   "orgs.title": "组织与赞助",
   "orgs.enterpriseLabs": "企业 / 实验室专场",
@@ -212,6 +213,10 @@ const zh: Dict = {
   "forum.linkCopied": "链接已复制",
   "forum.copyShareLink": "复制分享链接",
   "forum.sourceAnnotated": "源数据存在标注，已如实保留",
+  "forum.sourceNotes": "来源注记",
+  "forum.hosts": "主持",
+  "forum.unmatchedProfiles": "未匹配的报告资料",
+  "home.datePending": "日期待公布",
   "forum.abstractTbd": "演讲摘要待确认",
   "forum.saved": "已收藏",
   "forum.save": "收藏论坛",
@@ -489,6 +494,7 @@ const en: Dict = {
   "speakers.tbd": "TBD",
 
   "committee.title": "Conference committee",
+  "committee.pending": "Members pending",
 
   "orgs.title": "Organizers & Sponsors",
   "orgs.enterpriseLabs": "Enterprise / Lab sessions",
@@ -506,6 +512,10 @@ const en: Dict = {
   "forum.linkCopied": "Link copied",
   "forum.copyShareLink": "Copy share link",
   "forum.sourceAnnotated": "Source data carried annotations, preserved as-is",
+  "forum.sourceNotes": "Source notes",
+  "forum.hosts": "Host",
+  "forum.unmatchedProfiles": "Unmatched report profiles",
+  "home.datePending": "Date to be announced",
   "forum.abstractTbd": "Abstract to be confirmed",
   "forum.saved": "Saved",
   "forum.save": "Save forum",

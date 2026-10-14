@@ -3,8 +3,8 @@ import { createContext, useContext } from "react";
 // Personal-agenda state helpers, context and hook. Kept in a component-free
 // module so the provider file (follow.tsx) exports only a component and stays
 // Fast-Refresh friendly. Persisted to localStorage so a user's plan survives
-// reloads. Speakers are keyed by name (the dataset has no stable person id);
-// collisions are rare and acceptable for a "follow" convenience feature.
+// reloads. Speakers use an explicit source identity when provided, otherwise
+// a namespaced name key. Known ambiguous names must not combine affiliations.
 
 // This site hosts several conferences, so every persisted key is namespaced
 // under the active conference id — otherwise two conferences' agendas would
@@ -64,10 +64,10 @@ export interface FollowState {
   speakers: Set<string>;
   talks: Set<string>;
   toggleForum: (code: string) => void;
-  toggleSpeaker: (name: string) => void;
+  toggleSpeaker: (key: string) => void;
   toggleTalk: (id: string) => void;
   isForum: (code: string) => boolean;
-  isSpeaker: (name: string) => boolean;
+  isSpeaker: (key: string) => boolean;
   isTalk: (id: string) => boolean;
   clearAll: () => void;
   /** Merge imported follow ids into the current sets; returns how many ids the
