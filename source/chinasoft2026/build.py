@@ -413,6 +413,37 @@ def committees():
     return list(merged.values()), flags
 
 
+def apply_note_review(conf):
+    """Apply the reviewed snapshot's exact note decisions, not a global filter."""
+    review = json.loads((HERE / "note_review.json").read_text())
+    dismissed = set(review["dismissed_flags"])
+    conference_flags = conf["extra"]["flags"]
+    for pending in review["pending_committees"]:
+        if pending["source_flag"] in conference_flags:
+            conf["committees"].append({
+                "role": pending["role"], "members": [],
+                "extra": {"members_status": "not_published", "status_raw": pending["status_raw"]},
+            })
+    # Roster discrepancies belong to their committee, not to the whole event.
+    for group in conf["committees"]:
+        prefix = group["role"]["zh"] + "：来源页面名单不一致"
+        notes = [flag for flag in conference_flags if flag.startswith(prefix)]
+        if notes:
+            group.setdefault("extra", {})["flags"] = notes
+            conference_flags[:] = [flag for flag in conference_flags if flag not in notes]
+    nodes = [conf["extra"]]
+    for forum in conf["forums"]:
+        nodes.append(forum)
+        for talk in forum["talks"]:
+            nodes.append(talk)
+            raw = talk.get("extra", {}).get("speaker_raw")
+            if raw in review["collective_credits"] and not talk["speakers"]:
+                talk["extra"]["collective_credit"] = raw
+    for node in nodes:
+        if "flags" in node:
+            node["flags"] = [flag for flag in node["flags"] if flag not in dismissed]
+
+
 def build():
     overview = load(OVERVIEW)
     tables = overview.select("table.forum-table")
@@ -557,6 +588,7 @@ def build():
     for path in sorted(RAW.rglob("*.html")):
         fingerprint.update(path.relative_to(RAW).as_posix().encode() + b"\0" + path.read_bytes())
     fingerprint.update(b"portraits.json\0" + (RAW / "portraits.json").read_bytes())
+    fingerprint.update(b"note_review.json\0" + (HERE / "note_review.json").read_bytes())
     conf = {
         "id": "chinasoft2026", "name": {"zh": "2026 CCF中国软件大会", "en": "ChinaSoft 2026"},
         "source_url": BASE, "start_date": dates[0], "end_date": dates[-1], "timezone": "Asia/Shanghai",
@@ -572,6 +604,7 @@ def build():
                        "forums_total": len(forums), "forums_detail_extracted": sum(f["detail_extracted"] for f in forums),
                        "notes": "Only live navigation links are followed. Unpublished programmes remain unscheduled. Timetable titles and affiliations are retained verbatim; profiles supplement abstracts and biographies."},
     }
+    apply_note_review(conf)
     payload = json.dumps(conf, ensure_ascii=False, indent=2) + "\n"
     for directory in (ROOT / "data", ROOT / "web/src/data/conferences"):
         (directory / "chinasoft2026.json").write_text(payload, encoding="utf-8")

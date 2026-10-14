@@ -195,6 +195,7 @@ const zh: Dict = {
   "speakers.tbd": "题目待定",
 
   "committee.title": "大会委员会",
+  "committee.pending": "名单待公布",
 
   "orgs.title": "组织与赞助",
   "orgs.enterpriseLabs": "企业 / 实验室专场",
@@ -493,6 +494,7 @@ const en: Dict = {
   "speakers.tbd": "TBD",
 
   "committee.title": "Conference committee",
+  "committee.pending": "Members pending",
 
   "orgs.title": "Organizers & Sponsors",
   "orgs.enterpriseLabs": "Enterprise / Lab sessions",

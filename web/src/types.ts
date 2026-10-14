@@ -44,6 +44,7 @@ export interface Committee {
   role: I18n;
   ordering_note?: string | null;
   members: Person[];
+  extra?: { flags?: string[]; members_status?: "not_published"; status_raw?: string; [key: string]: unknown };
 }
 
 export interface Talk {
@@ -57,7 +58,7 @@ export interface Talk {
   abstract_status?: Status;
   type?: "keynote" | "invited" | "talk" | "opening" | "other";
   flags?: string[];
-  extra?: { hosts?: Person[]; [key: string]: unknown };
+  extra?: { hosts?: Person[]; collective_credit?: string; [key: string]: unknown };
   /** AI-generated derived content, kept in its own container so it is never
       commingled with the verbatim source fields (title/abstract). Absent when the
       talk has no enrichment. `generated_by` marks the whole container as AI output

@@ -37,8 +37,9 @@ export default function Committee() {
               {c.ordering_note && (
                 <span className="cmt__note">{c.ordering_note}</span>
               )}
-              <span className="cmt__count">{c.members.length}</span>
+              <span className="cmt__count">{c.extra?.members_status === "not_published" ? t("committee.pending") : c.members.length}</span>
             </div>
+            <SourceNotes flags={c.extra?.flags} />
             <motion.div
               className="cmt__grid"
               variants={stagger(0, 0.03)}

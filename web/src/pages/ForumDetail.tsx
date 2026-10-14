@@ -498,6 +498,9 @@ export default function ForumDetail() {
             </>
           );
         })()}
+        {t.extra?.collective_credit && <div className="talk__authors">
+          <Icon name="user" size={12} /> {t.extra.collective_credit}
+        </div>}
         {!!t.extra?.hosts?.length && <div className="talk__hosts">
           {t.extra.hosts.map((host, j) => <PersonLine key={j} p={host} role={tr("forum.hosts")} avatarSize={28} />)}
         </div>}

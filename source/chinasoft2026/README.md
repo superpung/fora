@@ -22,7 +22,7 @@ The overview supplies 64 forum/competition entries and 13 conference timetable
 rows across November 5–8. The 27 linked detail pages supply 204 programme items
 and 27 breaks. Conference meetings are retained separately from technical forums.
 The homepage advertises November 6–8; the dataset includes November 5 check-in
-as published in the overview and introduction, with the discrepancy flagged.
+as published in the overview and introduction, as a normal schedule event.
 
 Programme rows determine titles, times and speaker credits. Profile cards add
 abstracts and biographies using normalized person identities. Opening remarks,
@@ -72,7 +72,7 @@ published rosters remain flagged, with both source lists retained.
 Undated forums remain browsable under a pending-date section. Hosts, breaks
 and expandable source notes are visible in forum details. Empty dated forums
 remain valid followed agenda items before individual reports are announced.
-Explicit `person.extra.identity_key` values separate unresolved same-name
+Explicit `person.extra.identity_key` values separate distinct same-name
 source records; the viewer never infers identity from affiliation alone.
 
 `enrichment.json` supplies 188 AI summaries/topic classifications, covering all
@@ -89,3 +89,10 @@ schedule days, pending forums, follows, topics, the AI switch and mobile routes.
 The gap regression suite additionally checks undated inventory entries,
 multi-paragraph abstracts, host/break display, source notes, identity separation,
 legacy follows, and empty-forum calendar exports across conference datasets.
+
+The reviewed note cleanup is stored in `note_review.json`: 84 unnecessary notes
+are removed from generated data, leaving nine substantive notes. Exact reviewed
+text is matched so future changed discrepancies still need review. Pending
+committee rosters and collective credits remain normal content; committee flags
+are scoped to their own group. See the applied inventory in
+[`data/CHINASOFT2026_GAPS.md`](../../data/CHINASOFT2026_GAPS.md).
