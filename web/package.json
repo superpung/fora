@@ -9,7 +9,7 @@
     "build": "tsc -b && vite build && node scripts/build-sw.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
-    "test": "node tests/conference-core.mjs && node tests/permalink-scroll.mjs && node tests/conference-audit.mjs && node tests/conference-gaps.mjs && node tests/live-clock.mjs"
+    "test": "node tests/conference-core.mjs && node tests/conference-ui.mjs && node tests/permalink-scroll.mjs && node tests/conference-audit.mjs && node tests/conference-gaps.mjs && node tests/live-clock.mjs"
   },
   "dependencies": {
     "@repus/gist-sync": "^0.2.2",

@@ -304,8 +304,9 @@ pnpm preview    # serve the production build
   semantics. Never compare a venue agenda directly against device wall time.
 - **Shared regressions:** `web/tests/conference-core.mjs` checks venue clocks,
   live events, pending forum windows, identities, reminders and live navigation
-  independently of any newly imported conference. `permalink-scroll.mjs` checks
-  browser anchor positioning against the existing datasets.
+  independently of any newly imported conference. `conference-ui.mjs` checks
+  empty-forum boards on desktop/mobile and speaker-follow migration across
+  reloads. `permalink-scroll.mjs` checks browser anchors against existing data.
 - **Clock regression:** `web/tests/live-clock.mjs` controls browser clocks and
   checks event boundaries, current-report highlights, midnight, foreign device
   timezones and notification delivery through a mock. It captures desktop/mobile
@@ -323,9 +324,11 @@ pnpm preview    # serve the production build
   through `ConferenceViews.unscheduledForums` but receive no invented date.
 - **Ambiguous people:** `lib/person-key.ts` uses `person.extra.identity_key`
   when the adapter explicitly separates unresolved same-name source records.
-  Otherwise it preserves the existing name key. Directory aggregation, follows
-  and exports use the same key; legacy name follows retain their original
-  scope across the separated records. Never infer identity from affiliation.
+  Otherwise it uses `name:<name>` to distinguish a current name-only identity
+  from a legacy bare-name follow. Directory aggregation, follows and exports
+  use the same key. Legacy follows expand across forum and keynote identities,
+  including name-only records; canonical keys never expand again on reload.
+  Never infer identity from affiliation.
 - **Source gaps:** `SourceNotes.tsx` exposes flags through an animated,
   keyboard/touch-accessible disclosure. Forum details display hosts from
   `talk.extra.hosts`, chronological breaks, and separately retained
