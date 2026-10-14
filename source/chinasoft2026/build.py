@@ -49,6 +49,19 @@ def i18n(value):
     return {"zh": value, "en": None}
 
 
+def room_name(location):
+    """Separate the single main venue from its floor/room in source locations."""
+    prefixes = (
+        "天津市社会山国际会议中心酒店", "天津社会山国际会议中心酒店",
+        "天津市社会山国际会议中心", "天津社会山国际会议中心",
+        "社会山会议中心", "会议中心",
+    )
+    for prefix in prefixes:
+        if location.startswith(prefix):
+            return location.removeprefix(prefix).lstrip(" ，,、") or None
+    return location
+
+
 def load(path):
     return BeautifulSoup((RAW / path).read_text(encoding="utf-8"), "html.parser")
 
@@ -209,12 +222,12 @@ def detail(category, slug):
     forum = {
         "code": code[0], "title": i18n(title),
         "start": window[0], "end": window[1],
-        "day_date": date(fields["时间"]), "room": fields["地点"],
+        "day_date": date(fields["时间"]), "room": room_name(fields["地点"]),
         "session_period": (None if window[0] < "12:00" and window[1] >= "13:00"
                            else "morning" if window[0] < "12:00" else "afternoon"),
         "source_url": f"{BASE}#agenda/{category}/{slug}",
         "chairs": [], "talks": [], "breaks": [], "detail_extracted": True,
-        "flags": flags, "extra": {"schedule_raw": fields["时间"],
+        "flags": flags, "extra": {"schedule_raw": fields["时间"], "location_raw": fields["地点"],
                                      "published_window": dict(zip(("start", "end"), window))},
     }
     for person in parse_chairs(soup):
@@ -445,13 +458,15 @@ def build():
     for cells, header in table_rows(tables[0]):
         if header:
             continue
-        day_raw, time_raw, event, room = cells
+        day_raw, time_raw, event, location_raw = cells
+        room = room_name(location_raw)
         day = date(day_raw)
         flags = []
         start, end = time_range(time_raw, flags)
         kind = "registration" if "签到" in event else "banquet" if "晚宴" in event else "committee_meetings" if "年会" in event else "other"
         block = {"kind": kind, "title": i18n(event), "start": start, "end": end,
-                 "location": room, "extra": {"source_url": BASE + "#agenda/agenda-overview/index"}}
+                 "location": room, "extra": {"source_url": BASE + "#agenda/agenda-overview/index",
+                                               "location_raw": location_raw}}
         if flags:
             block["extra"]["flags"] = flags
         if kind == "committee_meetings":
@@ -464,6 +479,7 @@ def build():
                 forum["session_period"] = "morning" if start < "12:00" else "afternoon"
                 forum["start"], forum["end"] = start, end
                 forum.setdefault("extra", {})["published_window"] = {"start": start, "end": end}
+                forum["extra"]["location_raw"] = location_raw
         days.setdefault(day, {"date": day, "venue_id": "society-hill", "blocks": []})["blocks"].append(block)
     # One time-axis board per day contains every parallel forum. Its envelope
     # orders the board among plenaries/meetings; each forum keeps its own window.

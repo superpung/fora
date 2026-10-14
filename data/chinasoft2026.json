@@ -754,9 +754,10 @@
           },
           "start": "12:00",
           "end": "21:00",
-          "location": "社会山会议中心大堂",
+          "location": "大堂",
           "extra": {
-            "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index"
+            "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
+            "location_raw": "社会山会议中心大堂"
           }
         }
       ]
@@ -774,47 +775,47 @@
           "forum_entries": [
             {
               "forum_code": "R3",
-              "room": "天津市社会山国际会议中心酒店，二层17号会议室"
+              "room": "二层17号会议室"
             },
             {
               "forum_code": "R10",
-              "room": "天津市社会山国际会议中心酒店，二层18号会议室"
+              "room": "二层18号会议室"
             },
             {
               "forum_code": "R13",
-              "room": "天津市社会山国际会议中心酒店，三层1号会议室"
+              "room": "三层1号会议室"
             },
             {
               "forum_code": "R14",
-              "room": "天津市社会山国际会议中心酒店，一层2号大宴会厅"
+              "room": "一层2号大宴会厅"
             },
             {
               "forum_code": "R18",
-              "room": "天津市社会山国际会议中心酒店，四层3号多功能厅"
+              "room": "四层3号多功能厅"
             },
             {
               "forum_code": "R28",
-              "room": "天津市社会山国际会议中心酒店，四层3号多功能厅"
+              "room": "四层3号多功能厅"
             },
             {
               "forum_code": "R32",
-              "room": "天津市社会山国际会议中心，二层1号会议室"
+              "room": "二层1号会议室"
             },
             {
               "forum_code": "E2",
-              "room": "天津市社会山国际会议中心酒店，二层15号会议室"
+              "room": "二层15号会议室"
             },
             {
               "forum_code": "E4",
-              "room": "天津市社会山国际会议中心酒店，二层6号会议室"
+              "room": "二层6号会议室"
             },
             {
               "forum_code": "I2",
-              "room": "天津社会山国际会议中心，三层1号多功能厅"
+              "room": "三层1号多功能厅"
             },
             {
               "forum_code": "I4",
-              "room": "天津市社会山国际会议中心酒店，四层6号多功能厅"
+              "room": "四层6号多功能厅"
             }
           ],
           "start": "08:50",
@@ -829,9 +830,10 @@
                 },
                 "start": "09:00",
                 "end": "12:00",
-                "location": "会议中心各会议室",
+                "location": "各会议室",
                 "extra": {
-                  "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index"
+                  "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
+                  "location_raw": "会议中心各会议室"
                 }
               },
               {
@@ -842,9 +844,10 @@
                 },
                 "start": "13:30",
                 "end": "17:00",
-                "location": "会议中心各会议室",
+                "location": "各会议室",
                 "extra": {
-                  "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index"
+                  "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
+                  "location_raw": "会议中心各会议室"
                 }
               }
             ]
@@ -860,7 +863,8 @@
           "end": "21:20",
           "location": "一层1号&2号大宴会厅",
           "extra": {
-            "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index"
+            "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
+            "location_raw": "一层1号&2号大宴会厅"
           },
           "meetings": [
             {
@@ -888,9 +892,10 @@
           },
           "start": "08:30",
           "end": "11:45",
-          "location": "会议中心三层多功能厅",
+          "location": "三层多功能厅",
           "extra": {
-            "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index"
+            "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
+            "location_raw": "会议中心三层多功能厅"
           }
         },
         {
@@ -901,9 +906,10 @@
           },
           "start": "13:30",
           "end": "14:10",
-          "location": "会议中心三层多功能厅",
+          "location": "三层多功能厅",
           "extra": {
-            "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index"
+            "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
+            "location_raw": "会议中心三层多功能厅"
           }
         },
         {
@@ -915,31 +921,31 @@
           "forum_entries": [
             {
               "forum_code": "R1",
-              "room": "天津市社会山国际会议中心酒店，一层1号大宴会厅"
+              "room": "一层1号大宴会厅"
             },
             {
               "forum_code": "R15",
-              "room": "天津市社会山国际会议中心酒店，三层接见厅"
+              "room": "三层接见厅"
             },
             {
               "forum_code": "R21",
-              "room": "天津市社会山国际会议中心酒店，三层1号多功能厅"
+              "room": "三层1号多功能厅"
             },
             {
               "forum_code": "R23",
-              "room": "天津市社会山国际会议中心酒店，二层1号会议室"
+              "room": "二层1号会议室"
             },
             {
               "forum_code": "R24",
-              "room": "天津市社会山国际会议中心酒店，二层19号会议室"
+              "room": "二层19号会议室"
             },
             {
               "forum_code": "R30",
-              "room": "天津市社会山国际会议中心酒店，四层5号多功能厅"
+              "room": "四层5号多功能厅"
             },
             {
               "forum_code": "E6",
-              "room": "会议中心三层多功能厅"
+              "room": "三层多功能厅"
             },
             {
               "forum_code": "C5",
@@ -962,9 +968,10 @@
                 },
                 "start": "14:10",
                 "end": "15:10",
-                "location": "会议中心三层多功能厅",
+                "location": "三层多功能厅",
                 "extra": {
-                  "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index"
+                  "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
+                  "location_raw": "会议中心三层多功能厅"
                 }
               },
               {
@@ -975,9 +982,10 @@
                 },
                 "start": "15:20",
                 "end": "18:20",
-                "location": "会议中心各会议室",
+                "location": "各会议室",
                 "extra": {
-                  "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index"
+                  "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
+                  "location_raw": "会议中心各会议室"
                 }
               }
             ]
@@ -991,9 +999,10 @@
           },
           "start": "18:30",
           "end": "20:30",
-          "location": "会议中心三层多功能厅",
+          "location": "三层多功能厅",
           "extra": {
-            "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index"
+            "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
+            "location_raw": "会议中心三层多功能厅"
           }
         },
         {
@@ -1006,7 +1015,8 @@
           "end": "22:30",
           "location": "一层1号&2号大宴会厅",
           "extra": {
-            "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index"
+            "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
+            "location_raw": "一层1号&2号大宴会厅"
           },
           "meetings": [
             {
@@ -1035,43 +1045,43 @@
           "forum_entries": [
             {
               "forum_code": "P1",
-              "room": "天津市社会山国际会议中心酒店，二层16号会议室"
+              "room": "二层16号会议室"
             },
             {
               "forum_code": "P2",
-              "room": "天津市社会山国际会议中心酒店，一层1号大宴会厅"
+              "room": "一层1号大宴会厅"
             },
             {
               "forum_code": "P4",
-              "room": "天津市社会山国际会议中心酒店，一层2号大宴会厅"
+              "room": "一层2号大宴会厅"
             },
             {
               "forum_code": "R4",
-              "room": "天津市社会山国际会议中心酒店，二层17号会议室"
+              "room": "二层17号会议室"
             },
             {
               "forum_code": "R12",
-              "room": "天津市社会山国际会议中心酒店，二层1号会议室"
+              "room": "二层1号会议室"
             },
             {
               "forum_code": "R16",
-              "room": "天津市社会山国际会议中心酒店，二层15号会议厅"
+              "room": "二层15号会议厅"
             },
             {
               "forum_code": "R20",
-              "room": "天津市社会山国际会议中心酒店，四层6号多功能厅"
+              "room": "四层6号多功能厅"
             },
             {
               "forum_code": "S5",
-              "room": "天津市社会山国际会议中心酒店，二层11号会议厅"
+              "room": "二层11号会议厅"
             },
             {
               "forum_code": "I1",
-              "room": "天津市社会山国际会议中心酒店，四层5号多功能厅"
+              "room": "四层5号多功能厅"
             },
             {
               "forum_code": "I6",
-              "room": "天津市社会山国际会议中心酒店，二层18号会议室"
+              "room": "二层18号会议室"
             }
           ],
           "start": "09:00",
@@ -1086,9 +1096,10 @@
                 },
                 "start": "09:00",
                 "end": "12:00",
-                "location": "会议中心各会议室",
+                "location": "各会议室",
                 "extra": {
-                  "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index"
+                  "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
+                  "location_raw": "会议中心各会议室"
                 }
               }
             ]
@@ -1102,9 +1113,10 @@
           },
           "start": "13:30",
           "end": "16:30",
-          "location": "会议中心三层多功能厅",
+          "location": "三层多功能厅",
           "extra": {
-            "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index"
+            "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
+            "location_raw": "会议中心三层多功能厅"
           }
         },
         {
@@ -1117,7 +1129,8 @@
           "end": "18:30",
           "location": "一层1号&2号大宴会厅",
           "extra": {
-            "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index"
+            "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
+            "location_raw": "一层1号&2号大宴会厅"
           },
           "meetings": [
             {
@@ -1144,7 +1157,7 @@
       "start": "09:00",
       "end": "12:00",
       "day_date": "2026-11-08",
-      "room": "天津市社会山国际会议中心酒店，二层16号会议室",
+      "room": "二层16号会议室",
       "session_period": "morning",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/regular-forum/women-scholars",
       "chairs": [
@@ -1584,6 +1597,7 @@
       ],
       "extra": {
         "schedule_raw": "2026年11月8日,09:00-12:00",
+        "location_raw": "天津市社会山国际会议中心酒店，二层16号会议室",
         "published_window": {
           "start": "09:00",
           "end": "12:00"
@@ -1608,7 +1622,7 @@
       "start": "09:00",
       "end": "12:10",
       "day_date": "2026-11-08",
-      "room": "天津市社会山国际会议中心酒店，一层1号大宴会厅",
+      "room": "一层1号大宴会厅",
       "session_period": "morning",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/regular-forum/young-scholars",
       "chairs": [
@@ -1936,6 +1950,7 @@
       ],
       "extra": {
         "schedule_raw": "2026年11月8日,09:00-12:10",
+        "location_raw": "天津市社会山国际会议中心酒店，一层1号大宴会厅",
         "published_window": {
           "start": "09:00",
           "end": "12:10"
@@ -1986,7 +2001,7 @@
       "start": "09:00",
       "end": "12:00",
       "day_date": "2026-11-08",
-      "room": "天津市社会山国际会议中心酒店，一层2号大宴会厅",
+      "room": "一层2号大宴会厅",
       "session_period": "morning",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/regular-forum/phd-award",
       "chairs": [
@@ -2308,6 +2323,7 @@
       ],
       "extra": {
         "schedule_raw": "2026年11月8日，09:00-12:00",
+        "location_raw": "天津市社会山国际会议中心酒店，一层2号大宴会厅",
         "published_window": {
           "start": "09:00",
           "end": "12:00"
@@ -2332,7 +2348,7 @@
       "start": "15:20",
       "end": "18:20",
       "day_date": "2026-11-07",
-      "room": "天津市社会山国际会议中心酒店，一层1号大宴会厅",
+      "room": "一层1号大宴会厅",
       "session_period": "afternoon",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/academic-forum/agentic-ai-testing",
       "chairs": [
@@ -2661,6 +2677,7 @@
       ],
       "extra": {
         "schedule_raw": "2026年11月7日，15:20-18:20",
+        "location_raw": "天津市社会山国际会议中心酒店，一层1号大宴会厅",
         "published_window": {
           "start": "15:20",
           "end": "18:20"
@@ -2711,7 +2728,7 @@
       "start": "09:00",
       "end": "12:00",
       "day_date": "2026-11-06",
-      "room": "天津市社会山国际会议中心酒店，二层17号会议室",
+      "room": "二层17号会议室",
       "session_period": "morning",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/academic-forum/ai-architecture-governance",
       "chairs": [
@@ -3045,6 +3062,7 @@
       ],
       "extra": {
         "schedule_raw": "2026年11月6日，09:00-12:00",
+        "location_raw": "天津市社会山国际会议中心酒店，二层17号会议室",
         "published_window": {
           "start": "09:00",
           "end": "12:00"
@@ -3069,7 +3087,7 @@
       "start": "09:00",
       "end": "12:00",
       "day_date": "2026-11-08",
-      "room": "天津市社会山国际会议中心酒店，二层17号会议室",
+      "room": "二层17号会议室",
       "session_period": "morning",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/academic-forum/secure-code-generation",
       "chairs": [
@@ -3349,6 +3367,7 @@
       ],
       "extra": {
         "schedule_raw": "2026年11月8日，09:00-12:00",
+        "location_raw": "天津市社会山国际会议中心酒店，二层17号会议室",
         "published_window": {
           "start": "09:00",
           "end": "12:00"
@@ -3503,7 +3522,7 @@
       "start": "09:00",
       "end": "17:00",
       "day_date": "2026-11-06",
-      "room": "天津市社会山国际会议中心酒店，二层18号会议室",
+      "room": "二层18号会议室",
       "session_period": null,
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/academic-forum/formal-engineering",
       "chairs": [
@@ -3862,6 +3881,7 @@
       ],
       "extra": {
         "schedule_raw": "2026年11月6日，09:00-17:00",
+        "location_raw": "天津市社会山国际会议中心酒店，二层18号会议室",
         "published_window": {
           "start": "09:00",
           "end": "17:00"
@@ -3912,7 +3932,7 @@
       "start": "09:00",
       "end": "12:00",
       "day_date": "2026-11-08",
-      "room": "天津市社会山国际会议中心酒店，二层1号会议室",
+      "room": "二层1号会议室",
       "session_period": "morning",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/academic-forum/forse-defect-detection",
       "chairs": [
@@ -4198,6 +4218,7 @@
       "flags": [],
       "extra": {
         "schedule_raw": "2026年11月8日，09:00-12:00",
+        "location_raw": "天津市社会山国际会议中心酒店，二层1号会议室",
         "published_window": {
           "start": "09:00",
           "end": "12:00"
@@ -4221,7 +4242,7 @@
       "start": "09:00",
       "end": "18:20",
       "day_date": "2026-11-06",
-      "room": "天津市社会山国际会议中心酒店，三层1号会议室",
+      "room": "三层1号会议室",
       "session_period": null,
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/academic-forum/intelligent-software-dev",
       "chairs": [
@@ -5009,6 +5030,7 @@
       ],
       "extra": {
         "schedule_raw": "2026年11月6日，09:00-18:20",
+        "location_raw": "天津市社会山国际会议中心酒店，三层1号会议室",
         "published_window": {
           "start": "09:00",
           "end": "18:20"
@@ -5033,7 +5055,7 @@
       "start": "09:00",
       "end": "12:00",
       "day_date": "2026-11-06",
-      "room": "天津市社会山国际会议中心酒店，一层2号大宴会厅",
+      "room": "一层2号大宴会厅",
       "session_period": "morning",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/academic-forum/supply-chain-security",
       "chairs": [
@@ -5447,6 +5469,7 @@
       ],
       "extra": {
         "schedule_raw": "2026年11月6日，09:00-12:00",
+        "location_raw": "天津市社会山国际会议中心酒店，一层2号大宴会厅",
         "published_window": {
           "start": "09:00",
           "end": "12:00"
@@ -5487,7 +5510,7 @@
       "start": "15:20",
       "end": "18:20",
       "day_date": "2026-11-07",
-      "room": "天津市社会山国际会议中心酒店，三层接见厅",
+      "room": "三层接见厅",
       "session_period": "afternoon",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/academic-forum/trusted-blockchain",
       "chairs": [
@@ -5785,6 +5808,7 @@
       ],
       "extra": {
         "schedule_raw": "2026年11月7日，15:20-18:20",
+        "location_raw": "天津市社会山国际会议中心酒店，三层接见厅",
         "published_window": {
           "start": "15:20",
           "end": "18:20"
@@ -5809,7 +5833,7 @@
       "start": "09:00",
       "end": "12:00",
       "day_date": "2026-11-08",
-      "room": "天津市社会山国际会议中心酒店，二层15号会议厅",
+      "room": "二层15号会议厅",
       "session_period": "morning",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/academic-forum/intelligent-open-source",
       "chairs": [
@@ -6152,6 +6176,7 @@
       ],
       "extra": {
         "schedule_raw": "2026年11月8日，09:00-12:00",
+        "location_raw": "天津市社会山国际会议中心酒店，二层15号会议厅",
         "published_window": {
           "start": "09:00",
           "end": "12:00"
@@ -6202,7 +6227,7 @@
       "start": "09:00",
       "end": "12:00",
       "day_date": "2026-11-06",
-      "room": "天津市社会山国际会议中心酒店，四层3号多功能厅",
+      "room": "四层3号多功能厅",
       "session_period": "morning",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/academic-forum/mobile-software-engineering",
       "chairs": [
@@ -6540,6 +6565,7 @@
       ],
       "extra": {
         "schedule_raw": "2026年11月6日，09:00-12:00",
+        "location_raw": "天津市社会山国际会议中心酒店，四层3号多功能厅",
         "published_window": {
           "start": "09:00",
           "end": "12:00"
@@ -6590,7 +6616,7 @@
       "start": "09:00",
       "end": "12:00",
       "day_date": "2026-11-08",
-      "room": "天津市社会山国际会议中心酒店，四层6号多功能厅",
+      "room": "四层6号多功能厅",
       "session_period": "morning",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/academic-forum/llm-reliability-security",
       "chairs": [
@@ -6827,6 +6853,7 @@
       "flags": [],
       "extra": {
         "schedule_raw": "2026年11月8日，09:00-12:00",
+        "location_raw": "天津市社会山国际会议中心酒店，四层6号多功能厅",
         "published_window": {
           "start": "09:00",
           "end": "12:00"
@@ -6850,7 +6877,7 @@
       "start": "15:20",
       "end": "18:20",
       "day_date": "2026-11-07",
-      "room": "天津市社会山国际会议中心酒店，三层1号多功能厅",
+      "room": "三层1号多功能厅",
       "session_period": "afternoon",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/academic-forum/attack-attribution-analysis",
       "chairs": [
@@ -7154,6 +7181,7 @@
       ],
       "extra": {
         "schedule_raw": "2026年11月7日，15:20-18:20",
+        "location_raw": "天津市社会山国际会议中心酒店，三层1号多功能厅",
         "published_window": {
           "start": "15:20",
           "end": "18:20"
@@ -7204,7 +7232,7 @@
       "start": "15:20",
       "end": "18:20",
       "day_date": "2026-11-07",
-      "room": "天津市社会山国际会议中心酒店，二层1号会议室",
+      "room": "二层1号会议室",
       "session_period": "afternoon",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/academic-forum/quantum-computing-software",
       "chairs": [
@@ -7471,6 +7499,7 @@
       ],
       "extra": {
         "schedule_raw": "2026年11月7日，15:20-18:20",
+        "location_raw": "天津市社会山国际会议中心酒店，二层1号会议室",
         "published_window": {
           "start": "15:20",
           "end": "18:20"
@@ -7495,7 +7524,7 @@
       "start": "15:20",
       "end": "18:20",
       "day_date": "2026-11-07",
-      "room": "天津市社会山国际会议中心酒店，二层19号会议室",
+      "room": "二层19号会议室",
       "session_period": "afternoon",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/academic-forum/eda-frontier",
       "chairs": [
@@ -7768,6 +7797,7 @@
       "flags": [],
       "extra": {
         "schedule_raw": "2026年11月7日，15:20-18:20",
+        "location_raw": "天津市社会山国际会议中心酒店，二层19号会议室",
         "published_window": {
           "start": "15:20",
           "end": "18:20"
@@ -7869,7 +7899,7 @@
       "start": "14:00",
       "end": "17:30",
       "day_date": "2026-11-06",
-      "room": "天津市社会山国际会议中心酒店，四层3号多功能厅",
+      "room": "四层3号多功能厅",
       "session_period": "afternoon",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/academic-forum/software-analysis-security",
       "chairs": [
@@ -8156,6 +8186,7 @@
       ],
       "extra": {
         "schedule_raw": "2026年11月6日，14:00-17:30",
+        "location_raw": "天津市社会山国际会议中心酒店，四层3号多功能厅",
         "published_window": {
           "start": "14:00",
           "end": "17:30"
@@ -8206,7 +8237,7 @@
       "start": "15:20",
       "end": "18:20",
       "day_date": "2026-11-07",
-      "room": "天津市社会山国际会议中心酒店，四层5号多功能厅",
+      "room": "四层5号多功能厅",
       "session_period": "afternoon",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/academic-forum/formal-methods-llm",
       "chairs": [
@@ -8465,6 +8496,7 @@
       ],
       "extra": {
         "schedule_raw": "2026年11月7日，15:20-18:20",
+        "location_raw": "天津市社会山国际会议中心酒店，四层5号多功能厅",
         "published_window": {
           "start": "15:20",
           "end": "18:20"
@@ -8515,7 +8547,7 @@
       "start": "13:30",
       "end": "17:30",
       "day_date": "2026-11-06",
-      "room": "天津市社会山国际会议中心，二层1号会议室",
+      "room": "二层1号会议室",
       "session_period": "afternoon",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/academic-forum/hw-sw-collaborative-security",
       "chairs": [
@@ -8924,6 +8956,7 @@
       "flags": [],
       "extra": {
         "schedule_raw": "2026年11月6日，13:30-17:30",
+        "location_raw": "天津市社会山国际会议中心，二层1号会议室",
         "published_window": {
           "start": "13:30",
           "end": "17:30"
@@ -9103,7 +9136,7 @@
       "start": "09:00",
       "end": "12:00",
       "day_date": "2026-11-08",
-      "room": "天津市社会山国际会议中心酒店，二层11号会议厅",
+      "room": "二层11号会议厅",
       "session_period": "morning",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/special-issue-forum/agent-efficient",
       "chairs": [
@@ -9501,6 +9534,7 @@
       "flags": [],
       "extra": {
         "schedule_raw": "2026年11月8日,09:00-12:00",
+        "location_raw": "天津市社会山国际会议中心酒店，二层11号会议厅",
         "published_window": {
           "start": "09:00",
           "end": "12:00"
@@ -9628,7 +9662,7 @@
       "start": "09:00",
       "end": "12:00",
       "day_date": "2026-11-06",
-      "room": "天津市社会山国际会议中心酒店，二层15号会议室",
+      "room": "二层15号会议室",
       "session_period": "morning",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/education-forum/software-engineering",
       "chairs": [
@@ -9846,6 +9880,7 @@
       ],
       "extra": {
         "schedule_raw": "2026年11月6日，09:00-12:00",
+        "location_raw": "天津市社会山国际会议中心酒店，二层15号会议室",
         "published_window": {
           "start": "09:00",
           "end": "12:00"
@@ -9911,7 +9946,7 @@
       "start": "09:00",
       "end": "12:00",
       "day_date": "2026-11-06",
-      "room": "天津市社会山国际会议中心酒店，二层6号会议室",
+      "room": "二层6号会议室",
       "session_period": "morning",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/education-forum/formal-methods",
       "chairs": [
@@ -10271,6 +10306,7 @@
       "flags": [],
       "extra": {
         "schedule_raw": "2026年11月6日，09:00-12:00",
+        "location_raw": "天津市社会山国际会议中心酒店，二层6号会议室",
         "published_window": {
           "start": "09:00",
           "end": "12:00"
@@ -10320,7 +10356,7 @@
       "day_date": "2026-11-07",
       "start": "14:10",
       "end": "15:10",
-      "room": "会议中心三层多功能厅",
+      "room": "三层多功能厅",
       "chairs": [],
       "talks": [],
       "detail_extracted": false,
@@ -10341,7 +10377,8 @@
         "published_window": {
           "start": "14:10",
           "end": "15:10"
-        }
+        },
+        "location_raw": "会议中心三层多功能厅"
       }
     },
     {
@@ -10353,7 +10390,7 @@
       "start": "09:00",
       "end": "12:00",
       "day_date": "2026-11-08",
-      "room": "天津市社会山国际会议中心酒店，四层5号多功能厅",
+      "room": "四层5号多功能厅",
       "session_period": "morning",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/industry-forum/agent-arch",
       "chairs": [],
@@ -10600,6 +10637,7 @@
       "flags": [],
       "extra": {
         "schedule_raw": "2026年11月8日，09:00-12:00",
+        "location_raw": "天津市社会山国际会议中心酒店，四层5号多功能厅",
         "published_window": {
           "start": "09:00",
           "end": "12:00"
@@ -10622,7 +10660,7 @@
       "start": "08:50",
       "end": "12:05",
       "day_date": "2026-11-06",
-      "room": "天津社会山国际会议中心，三层1号多功能厅",
+      "room": "三层1号多功能厅",
       "session_period": "morning",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/industry-forum/key-software-ai",
       "chairs": [
@@ -10949,6 +10987,7 @@
       "flags": [],
       "extra": {
         "schedule_raw": "2026年11月6日，08:50-12:05",
+        "location_raw": "天津社会山国际会议中心，三层1号多功能厅",
         "published_window": {
           "start": "08:50",
           "end": "12:05"
@@ -10998,7 +11037,7 @@
       "start": "09:00",
       "end": "11:30",
       "day_date": "2026-11-06",
-      "room": "天津市社会山国际会议中心酒店，四层6号多功能厅",
+      "room": "四层6号多功能厅",
       "session_period": "morning",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/industry-forum/llm-dev-paradigm",
       "chairs": [
@@ -11310,6 +11349,7 @@
       "flags": [],
       "extra": {
         "schedule_raw": "2026年11月6日，09:00-11:30",
+        "location_raw": "天津市社会山国际会议中心酒店，四层6号多功能厅",
         "published_window": {
           "start": "09:00",
           "end": "11:30"
@@ -11359,7 +11399,7 @@
       "start": "09:00",
       "end": "12:00",
       "day_date": "2026-11-08",
-      "room": "天津市社会山国际会议中心酒店，二层18号会议室",
+      "room": "二层18号会议室",
       "session_period": "morning",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/industry-forum/trusted-embedded",
       "chairs": [
@@ -11633,6 +11673,7 @@
       "flags": [],
       "extra": {
         "schedule_raw": "2026年11月8日，09:00-12:00",
+        "location_raw": "天津市社会山国际会议中心酒店，二层18号会议室",
         "published_window": {
           "start": "09:00",
           "end": "12:00"

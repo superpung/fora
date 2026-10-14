@@ -29,6 +29,11 @@ independently named person on that page. A profile card always describes one
 person, including punctuation inside their titles. Short company names and
 honorifics are rejected as standalone people by the shared person gate.
 
+Locations separate the shared hotel from floor/room labels. Forum rooms and
+overview block locations omit the known venue prefixes, while `extra.location_raw`
+retains the full source wording. The conference venue remains available for
+the page header, calendar exports and standalone share posters.
+
 All 298 explicitly linked portrait URLs have been downloaded and decoded.
 `fetch_photos.py` and `web/scripts/prepare-portraits.mjs` prepare 256px WebP
 assets under `web/public/portraits/chinasoft2026/`; install web dependencies
