@@ -12,6 +12,7 @@ export interface ConferenceMeta {
   edition?: string | null;
   start_date: string;
   end_date: string;
+  timezone?: string | null;
   city?: string | null;
   venue?: string | null;
   forums: number;

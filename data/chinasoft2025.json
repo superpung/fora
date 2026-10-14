@@ -8858,11 +8858,7 @@
           "title_status": "confirmed",
           "start": "11:25",
           "end": "12:15",
-          "speakers": [
-            {
-              "name": "所有嘉宾"
-            }
-          ],
+          "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
           "type": "other",
@@ -8886,6 +8882,9 @@
           "start": "10:15",
           "end": "10:35"
         }
+      ],
+      "flags": [
+        "speaker cell a role or a group, not a person: '所有嘉宾'"
       ]
     },
     {
@@ -12699,9 +12698,6 @@
             {
               "name": "胡欣蔚",
               "affiliation_raw": "北京航空航天大学"
-            },
-            {
-              "name": "华为"
             }
           ],
           "abstract": null,
@@ -12954,6 +12950,9 @@
           "start": "10:30",
           "end": "10:50"
         }
+      ],
+      "flags": [
+        "speaker cell an organization, not a person: '华为'"
       ]
     },
     {

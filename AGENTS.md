@@ -161,6 +161,10 @@ and how to add a conference.
   registration / committee meetings) → forum (CFxx) → talk`.
   - **A forum is a first-class entity** (code / name / room / session sponsor /
     chairs / embedded talks).
+  - Optional forum `start`/`end` describe its own published window. Explicit
+    nulls mean unknown; only legacy records with absent fields inherit their
+    parent block's window. A shared day-wide board is not an individual
+    forum's schedule.
   - Bilingual and TBD states are supported throughout.
 - Dirty data is recorded faithfully and marked with `flags` — never silently
   corrected (see `data/VERIFY_TODO.md` for the running data-quality tracker).
@@ -287,9 +291,22 @@ pnpm preview    # serve the production build
   schedule's `?v=`), so a link opens on what the sender was reading without
   rewriting the recipient's own preference.
 - **The live view (`/:conf/now`):** `lib/live.ts` turns the views plus the clock
-  (`use-now.ts`, 30s tick) into what is running per room, what starts next, and
-  when the user's next starred item begins. Side-effect free, so the page is a
-  thin renderer.
+  (`use-now.ts`, 30s tick and foreground refresh) into what is running per room,
+  what starts next, and when the user's next starred item begins. Timed event
+  blocks (registration, ceremonies, banquets and committee meetings) participate
+  even without report details. Date-only follows never displace a timed next
+  item or acquire an invented start. Side-effect free, so the page stays thin.
+- **Conference time:** `lib/conference-time.ts` resolves venue-local dates and
+  instants for live states, reminders and calendar exports. The manifest carries
+  `timezone` so the hub can update conference status at venue midnight without
+  loading full datasets. Reminder caches also carry the timezone; legacy caches
+  recover it from the manifest. An absent source timezone retains device-local
+  semantics. Never compare a venue agenda directly against device wall time.
+- **Shared regressions:** `web/tests/conference-core.mjs` checks venue clocks,
+  live events, pending forum windows, identities, reminders and live navigation
+  independently of any newly imported conference. `conference-ui.mjs` checks
+  empty-forum boards on desktop/mobile and speaker-follow migration across
+  reloads. `permalink-scroll.mjs` checks browser anchors against existing data.
 - **The resolved agenda:** `lib/export.ts`'s `collectFollowedItems()` is the one
   place that turns follows (talks + forums + speakers) into a sorted list of
   `ExportItem`. My Day, the live card, the reminders and every export format
@@ -297,6 +314,20 @@ pnpm preview    # serve the production build
   with no time of its own borrows its forum's window and is flagged
   `approx: true`; every surface must present that as borrowed (a `~`, a note in
   the export), never as an exact time.
+  A followed, dated forum with no published talks is itself an agenda item;
+  keep its own window and omit a talk anchor. Undated forums remain browsable
+  through `ConferenceViews.unscheduledForums` but receive no invented date.
+- **Ambiguous people:** `lib/person-key.ts` uses `person.extra.identity_key`
+  when the adapter explicitly separates unresolved same-name source records.
+  Otherwise it uses `name:<name>` to distinguish a current name-only identity
+  from a legacy bare-name follow. Directory aggregation, follows and exports
+  use the same key. Legacy follows expand across forum and keynote identities,
+  including name-only records; canonical keys never expand again on reload.
+  Never infer identity from affiliation.
+- **Source gaps:** `SourceNotes.tsx` exposes flags through an animated,
+  keyboard/touch-accessible disclosure. Forum details display hosts from
+  `talk.extra.hosts`, chronological breaks, and separately retained
+  `forum.extra.unmatched_profiles`.
 - **Search (`lib/search.ts` + `lib/bm25.ts`):** one palette over the whole
   program — talk titles/abstracts, speakers, affiliations, forums, committee
   members, organizations — ranked by BM25 in the browser over the already-loaded
@@ -312,6 +343,8 @@ pnpm preview    # serve the production build
   source-only behaviour when it is off and carries a provenance mark plus the
   "may contain errors" disclaimer (`AiMark.tsx`) when it is on. Topics travel as
   vocabulary keys and are shown through `topicLabel()`, never as raw text.
+  Enrichment entries may include `source_title`; the merge fails if that title
+  changes, preventing stale index-based annotations after programme edits.
 - **Reminders:** opt-in local notifications for starred items
   (`lib/reminder-store.ts` prefs, `lib/reminder.tsx` provider,
   `lib/reminder-schedule.ts` scheduling). Nothing schedules and no OS permission
@@ -320,7 +353,9 @@ pnpm preview    # serve the production build
   after `vite build` to emit `dist/sw.js` — a **post-build** step by design, so it
   doesn't depend on the Vite 8 / rolldown plugin surface. It precaches the app
   shell and runtime-caches per-conference datasets (emitted under `assets/data/`
-  via `vite.config.ts`'s `chunkFileNames`) on first visit. The SW is registered in
+  via `vite.config.ts`'s `chunkFileNames`) on first visit. Content-addressed
+  portraits are cached on demand in `fora-portraits`, never precached with the
+  app shell. The SW is registered in
   `main.tsx` in production only, and its navigation fallback denylists
   `/.netlify/*` so login always hits the network. `public/manifest.webmanifest`
   + the `icon-*.png` mark it installable.

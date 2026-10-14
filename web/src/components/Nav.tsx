@@ -12,7 +12,8 @@ import { useI18n } from "../lib/i18n-store";
 import { useAi } from "../lib/ai-store";
 import { useSearchUI } from "../lib/search-store";
 import { conferenceMeta } from "../lib/conferences";
-import { todayISO } from "../lib/data";
+import { clockAt } from "../lib/conference-time";
+import { useClockMs } from "../lib/use-now";
 
 // In-conference links, relative to the active conference (`/:conf/...`).
 interface NavLinkDef {
@@ -36,7 +37,7 @@ export default function Nav({ confId }: { confId: string }) {
   // its nav entry appears solely between the conference's start and end dates
   // (read from the lightweight manifest — no dataset load needed).
   const meta = conferenceMeta(confId);
-  const today = todayISO();
+  const today = clockAt(useClockMs(), meta?.timezone ?? undefined).todayStr;
   const showNow = !!meta && today >= meta.start_date && today <= meta.end_date;
   const links: NavLinkDef[] = [
     LINKS[0],
