@@ -3,10 +3,8 @@ import type { Person } from "../types";
 
 // Speaker/chair avatar. Uses a real headshot when `photo.local_path` (or
 // `source_url`) is available; otherwise renders a deterministic initials
-// placeholder. Extracting headshots from the source forum posters (one JPEG
-// per forum, ~370 people) needs face detection + reliable person matching,
-// which is high-effort / low-accuracy — so placeholders ship first and real
-// images drop in later without touching call sites.
+// placeholder. Adapters attach portraits only when their source explicitly
+// associates an image with that person; poster-only sources may have none.
 
 function initials(name: string): string {
   const t = name.trim();

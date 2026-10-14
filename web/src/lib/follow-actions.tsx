@@ -42,6 +42,7 @@ export function FollowActionsBridge() {
     const items = collectFollowedItems({ forums, speakers, talks }, views);
     const payload = {
       confId,
+      timezone: views.conference.timezone,
       nameZh: views.conference.name.zh,
       nameEn: views.conference.name.en || views.conference.name.zh,
       // drop abstracts to keep the cache small; the scheduler only needs timing.

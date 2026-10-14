@@ -5,6 +5,7 @@ import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Reveal from "../components/Reveal";
 import Icon from "../components/Icon";
 import Avatar from "../components/Avatar";
+import SourceNotes from "../components/SourceNotes";
 
 export default function Committee() {
   const { conference } = useConference();
@@ -27,6 +28,7 @@ export default function Committee() {
         </div>
       </div>
 
+      <SourceNotes flags={conference.extra?.flags} />
       <div className="committees">
         {committees.map((c) => (
           <Reveal key={c.role.zh} className="cmt">
@@ -35,8 +37,9 @@ export default function Committee() {
               {c.ordering_note && (
                 <span className="cmt__note">{c.ordering_note}</span>
               )}
-              <span className="cmt__count">{c.members.length}</span>
+              <span className="cmt__count">{c.extra?.members_status === "not_published" ? t("committee.pending") : c.members.length}</span>
             </div>
+            <SourceNotes flags={c.extra?.flags} />
             <motion.div
               className="cmt__grid"
               variants={stagger(0, 0.03)}
@@ -49,8 +52,10 @@ export default function Committee() {
                   <Avatar person={m} size={34} />
                   <div className="member__info">
                     <div className="member__name">{m.name}</div>
-                    {m.affiliation_raw && (
-                      <div className="member__aff">{m.affiliation_raw}</div>
+                    {(m.affiliation_raw || m.title) && (
+                      <div className="member__aff">
+                        {[m.affiliation_raw, m.title && !m.affiliation_raw?.includes(m.title) ? m.title : null].filter(Boolean).join(" · ")}
+                      </div>
                     )}
                   </div>
                 </motion.div>

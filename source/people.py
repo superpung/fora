@@ -29,7 +29,8 @@ __all__ = ["read_person", "person_problem", "ROLE_WORDS"]
 ROLE_WORDS = (
     "主持人", "主持", "嘉宾", "特邀嘉宾", "讲者", "报告人", "演讲嘉宾", "汇报人",
     "参与者", "与谈人", "对话嘉宾", "点评人", "执行主席", "论坛主席", "大会主席",
-    "全体嘉宾", "全体", "各位嘉宾", "报告嘉宾", "圆桌嘉宾",
+    "全体嘉宾", "全体", "各位嘉宾", "所有嘉宾", "报告嘉宾", "圆桌嘉宾",
+    "嘉宾致辞", "论坛组委会",
     "Moderator", "Panelists", "Panelist", "Speakers", "Speaker", "Chair", "Chairs", "Host",
 )
 _ROLE_PREFIX = re.compile(r"^(?:%s)\s*[：:]\s*" % "|".join(map(re.escape, ROLE_WORDS)))
@@ -38,7 +39,7 @@ _ROLE_ONLY = re.compile(r"^(?:%s)(?:\s*[、，,/及和与]\s*(?:%s))*$" % (
     "|".join(map(re.escape, ROLE_WORDS)), "|".join(map(re.escape, ROLE_WORDS))))
 # Not a name yet: the programme says so itself.
 _PLACEHOLDER = re.compile(
-    r"待定|待公布|待确认|暂定|另行通知|虚位以待|^TBD$|^TBA$|^To be (?:announced|confirmed)$",
+    r"待定|待公布|待确认|待更新|暂定|另行通知|虚位以待|^TBD$|^TBA$|^To be (?:announced|confirmed)$",
     re.I,
 )
 # An organization standing where a person is expected.
@@ -46,6 +47,11 @@ _ORG = re.compile(
     r"公司|大学|大學|学院|學院|研究所|研究院|实验室|集团|中心|基金会|社区|委员会|学会|协会|"
     r"University|Institute|Laborator|College|Academy|Foundation|Committee|Inc\.?$|Ltd\.?$|LLC$|Corp\.?$"
 )
+# Short organization names and standalone titles have the same visual length
+# as Chinese personal names. They must never become people or given names.
+SHORT_ORGANIZATIONS = {"华为", "百度", "腾讯", "阿里巴巴", "京东", "昆仑芯"}
+PERSON_TITLES = {"院士", "校长", "院长", "所长", "教授", "副教授", "研究员",
+                 "副研究员", "博士", "博士生", "博士后", "工程师"}
 # The numbering of the list a name sits in: "1. 胡欣蔚 …", "(2) 秦彬娟".
 _LIST_MARK = re.compile(r"^\s*[（(]?\d+\s*[.、）)]\s*")
 # A trailing acronym is the speaker's lab, not part of their name: INRIA, CMU.
@@ -80,6 +86,10 @@ def person_problem(name):
         return "list numbering, not a name"
     if _PLACEHOLDER.search(n):
         return "a placeholder, not a name yet"
+    if n in SHORT_ORGANIZATIONS:
+        return "an organization, not a person"
+    if n in PERSON_TITLES:
+        return "a title, not a person"
     stripped = _clean(_ROLE_PREFIX.sub("", n))
     if not stripped:
         return "a role with no name after it"
@@ -125,14 +135,16 @@ def read_person(name, affiliation=None, **extra):
         spaced = _SPACED_NAME.match(n)
         run = _CJK_RUN.match(n)
         head, rest = run.group(1), _clean(run.group(2))
-        if spaced and len(head) <= 2:
+        if spaced and len(head) <= 2 and spaced.group(2) not in SHORT_ORGANIZATIONS | PERSON_TITLES:
             # "李 智 广西师范大学": a surname spaced away from the given name, not
             # a person called 李 who works at "智 广西师范大学".
             n = spaced.group(1) + spaced.group(2)
             rest = _clean(spaced.group(3) or "")
         else:
             n = head
-        if rest:
+        if rest in PERSON_TITLES:
+            extra.setdefault("title", rest)
+        elif rest:
             aff = rest if not aff else aff
     else:
         acro = _TRAILING_ACRONYM.match(n)
