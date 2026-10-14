@@ -1,3 +1,4 @@
+import { scheduleTimeMs } from "./conference-time";
 import type { ReminderItemSet, ReminderPrefs } from "./reminder-store";
 import type { ExportItem } from "./export";
 
@@ -22,17 +23,11 @@ export interface PlannedReminder {
   kind: "lead" | "dayStart";
 }
 
-/** Combine a YYYY-MM-DD date and HH:MM local time into epoch-ms, or null.
-    Times are treated as device-local — the same assumption use-now.ts makes when
-    it decides whether a session "is running now". */
-export function itemStartMs(date: string | undefined, start: string | null | undefined): number | null {
-  if (!date || !start) return null;
-  const m = /^(\d{2}):(\d{2})/.exec(start);
-  if (!m) return null;
-  const d = new Date(`${date}T00:00:00`);
-  if (Number.isNaN(d.getTime())) return null;
-  d.setHours(Number(m[1]), Number(m[2]), 0, 0);
-  return d.getTime();
+/** Resolve a published venue time to the notification's absolute instant. */
+export function itemStartMs(date: string | undefined, start: string | null | undefined, timezone?: string): number | null {
+  if (!date || !start || !/^\d{2}:\d{2}$/.test(start)) return null;
+  const ms = scheduleTimeMs(date, start, timezone);
+  return Number.isFinite(ms) ? ms : null;
 }
 
 /** Translator shape (a subset of i18n's `t`) so this module stays UI-free. */
@@ -42,6 +37,12 @@ interface PlanContext {
   prefs: ReminderPrefs;
   t: Translate;
   zh: boolean;
+  now?: number;
+}
+
+function remainingMinutes(startAt: number, ctx: PlanContext): number {
+  if (ctx.now == null) return ctx.prefs.leadMin;
+  return Math.min(ctx.prefs.leadMin, Math.max(0, Math.ceil((startAt - ctx.now) / 60_000)));
 }
 
 function confName(set: ReminderItemSet, zh: boolean): string {
@@ -57,7 +58,7 @@ function leadReminder(
   const fireAt = startAt - ctx.prefs.leadMin * 60_000;
   const title = it.title;
   const body = ctx.t("reminders.notifBody", {
-    min: ctx.prefs.leadMin,
+    min: remainingMinutes(startAt, ctx),
     session: it.session,
   });
   return {
@@ -77,7 +78,7 @@ function dayStartReminders(set: ReminderItemSet, ctx: PlanContext): PlannedRemin
   // earliest start per date
   const earliest = new Map<string, number>();
   for (const it of set.items) {
-    const ms = itemStartMs(it.date, it.start);
+    const ms = itemStartMs(it.date, it.start, set.timezone);
     if (ms == null) continue;
     const prev = earliest.get(it.date);
     if (prev == null || ms < prev) earliest.set(it.date, ms);
@@ -104,8 +105,9 @@ export function planReminders(
   prefs: ReminderPrefs,
   t: Translate,
   zh: boolean,
+  now?: number,
 ): PlannedReminder[] {
-  const ctx: PlanContext = { prefs, t, zh };
+  const ctx: PlanContext = { prefs, t, zh, now };
   const out: PlannedReminder[] = [];
   for (const set of sets) {
     // Talks that borrowed their forum's window all "start" at the same minute,
@@ -114,7 +116,7 @@ export function planReminders(
     // its own gets called out on its own.
     const borrowed = new Map<string, ExportItem[]>();
     for (const it of set.items) {
-      const startAt = itemStartMs(it.date, it.start);
+      const startAt = itemStartMs(it.date, it.start, set.timezone);
       if (startAt == null) continue; // an item with no known time can't be timed
       if (it.approx) {
         const key = `${it.date}#${it.code ?? it.session}#${it.start}`;
@@ -128,14 +130,14 @@ export function planReminders(
     }
     for (const [key, group] of borrowed) {
       const first = group[0];
-      const startAt = itemStartMs(first.date, first.start);
+      const startAt = itemStartMs(first.date, first.start, set.timezone);
       if (startAt == null) continue;
       out.push({
         id: `${set.confId}#${key}#lead`,
         fireAt: startAt - prefs.leadMin * 60_000,
         startAt,
         title: first.session,
-        body: t("reminders.notifBodyForum", { min: prefs.leadMin, n: group.length }),
+        body: t("reminders.notifBodyForum", { min: remainingMinutes(startAt, ctx), n: group.length }),
         url: `/${set.confId}/schedule`,
         kind: "lead",
       });

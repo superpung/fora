@@ -2,7 +2,7 @@ import { personKey } from "../lib/person-key";
 import { useCallback, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
-import { formatDate, todayISO } from "../lib/data";
+import { formatDate } from "../lib/data";
 import { useConference } from "../lib/conference-store";
 import { useFollow, keynoteId } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
@@ -260,9 +260,10 @@ export default function Schedule() {
     }
     return map;
   }, [forums, speakers, talks, views]);
-  // Local calendar date (YYYY-MM-DD) for highlighting today's tab and, when the
+  // Venue calendar date (YYYY-MM-DD) for highlighting today's tab and, when the
   // conference is running today, opening on it by default.
-  const todayStr = todayISO();
+  const now = useNow();
+  const todayStr = now.todayStr;
   const hash = location.hash.replace("#", "");
   const initial = days.findIndex((d) => d.date === hash);
   // A hash (deep link) wins; otherwise open on today if the conference runs
@@ -464,7 +465,9 @@ export default function Schedule() {
                   </h3>
                   {(block.start || block.location) && (
                     <span className="block__meta">
-                      <TimeRange start={block.start} end={block.end} />
+                      <span className={`block__time${isNowWithin(day.date, block.start, block.end, now) ? " is-now" : ""}`}>
+                        <TimeRange start={block.start} end={block.end} />
+                      </span>
                       {block.location && (
                         <span className="block__loc">
                           <Icon name="pin" size={12} /> {block.location}

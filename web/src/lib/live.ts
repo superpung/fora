@@ -3,7 +3,7 @@
 // answers: what is running right now (per room), what starts next (across all
 // rooms), and when the user's next starred item begins. Kept side-effect free so
 // the page stays a thin renderer that re-runs these on every 30s clock tick.
-import type { ConferenceViews } from "./data";
+import { speakerNames, type ConferenceViews } from "./data";
 import { collectFollowedItems, type ExportItem, type FollowSnapshot } from "./export";
 import type { Forum, Talk } from "../types";
 import type { Now } from "./use-now";
@@ -25,7 +25,7 @@ function forumBounds(forum: Forum, views: ConferenceViews) {
   return { start: starts[0] ?? null, end: ends.at(-1) ?? null };
 }
 
-/** A talk reduced to just what the live view shows (title + first speaker). */
+/** A talk reduced to its live-view title, speaker list and published clock. */
 export interface TalkLite {
   title: string;
   tbd: boolean;
@@ -38,23 +38,24 @@ function liteOf(t: Talk): TalkLite {
   return {
     title: titleLine(t, "").text,
     tbd: !ownTitle(t),
-    speaker: t.speakers?.[0]?.name ?? null,
+    speaker: speakerNames(t) || null,
     start: t.start ?? null,
     end: t.end ?? null,
   };
 }
 
-/** A room that is active right now — a parallel forum or a main-stage keynote. */
+/** An active forum, keynote, or published conference event. */
 export interface NowRoom {
   code?: string; // forum code, for a detail link (undefined for keynotes)
   room: string | null;
   title: string; // forum title, or the keynote's own title
   tbd: boolean;
-  kind: "forum" | "keynote";
+  kind: "forum" | "keynote" | "event";
   start: string | null;
   end: string | null;
   nowTalk?: TalkLite | null; // the talk currently on within this room (timed forums)
   nextTalk?: TalkLite | null; // the next talk to come in this room
+  nowBreak?: { name: string; start?: string | null; end?: string | null } | null;
 }
 
 /** One session that starts at the soonest upcoming moment. */
@@ -63,7 +64,7 @@ export interface NextSession {
   room: string | null;
   title: string;
   tbd?: boolean;
-  kind: "forum" | "keynote";
+  kind: "forum" | "keynote" | "event";
   /** number of parallel rooms, when this is the "forums begin" event */
   count?: number;
 }
@@ -89,6 +90,23 @@ export function buildLiveView(views: ConferenceViews, now: Now): LiveView {
 
   // ---- NOW: every room currently active ----
   const nowRooms: NowRoom[] = [];
+  // Timed event blocks are real agenda entries even without individual reports.
+  // Committee meetings may provide their own times/rooms within a parent block.
+  const events = views.days.flatMap((day) => day.blocks.flatMap((block) => {
+    if (block.kind === "forums" || (block.kind === "keynotes" && block.talks?.length)) return [];
+    const entries = block.meetings?.length
+      ? block.meetings.map((m) => ({ title: m.name.zh, start: m.start ?? block.start,
+          end: m.end ?? block.end, room: m.room ?? block.location }))
+      : [{ title: block.title?.zh ?? "", start: block.start, end: block.end, room: block.location }];
+    return entries.map((entry) => ({ ...entry, date: day.date }));
+  }));
+  for (const event of events) {
+    const start = toMin(event.start), end = toMin(event.end);
+    if (event.date === today && start != null && end != null && cur >= start && cur < end) {
+      nowRooms.push({ title: event.title, room: event.room ?? null, kind: "event", tbd: false,
+        start: event.start ?? null, end: event.end ?? null });
+    }
+  }
 
   // Keynotes running now (each carries its own start/end + stage location).
   keynoteEntries.forEach((e) => {
@@ -152,6 +170,10 @@ export function buildLiveView(views: ConferenceViews, now: Now): LiveView {
         end: window.end,
         nowTalk,
         nextTalk,
+        nowBreak: (slot.forum.breaks ?? []).find((pause) => {
+          const s = toMin(pause.start), e = toMin(pause.end);
+          return s != null && e != null && cur >= s && cur < e;
+        }) ?? null,
       });
     });
   }
@@ -166,6 +188,13 @@ export function buildLiveView(views: ConferenceViews, now: Now): LiveView {
     session: NextSession;
   }
   const evs: StartEv[] = [];
+  for (const event of events) {
+    const startMin = toMin(event.start);
+    if (event.start && startMin != null) evs.push({
+      date: event.date, start: event.start, startMin,
+      session: { title: event.title, kind: "event", room: event.room ?? null },
+    });
+  }
   scheduleDays.forEach((d) => {
     const counts = new Map<string, number>();
     for (const slot of d.slots) {
@@ -231,17 +260,18 @@ export function nextStarredItem(
 ): StarredNext | null {
   const cur = now.nowMin;
   const items = collectFollowedItems(snapshot, views); // already date+time sorted
+  let untimed: ExportItem | undefined;
   for (const item of items) {
     if (!item.date) continue;
-    if (item.date > now.todayStr) return { item, minutesUntil: null, running: false };
     if (item.date < now.todayStr) continue;
     const s = toMin(item.start);
-    if (s == null) return { item, minutesUntil: null, running: false };
+    if (s == null) { untimed ??= item; continue; }
+    if (item.date > now.todayStr) return { item, minutesUntil: null, running: false };
     const e = toMin(item.end) ?? s + 20;
     if (cur < s) return { item, minutesUntil: s - cur, running: false };
     if (cur < e) return { item, minutesUntil: 0, running: true };
   }
-  return null;
+  return untimed ? { item: untimed, minutesUntil: null, running: false } : null;
 }
 
 /** HH:MM for a minute-of-day (the live clock in the header). */

@@ -2,7 +2,7 @@ import { personKey } from "../lib/person-key";
 import { useMemo, useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { formatDate, todayISO, type ScheduleDay, type ForumSlot } from "../lib/data";
+import { formatDate, type ScheduleDay, type ForumSlot } from "../lib/data";
 import { useConference } from "../lib/conference-store";
 import { useFollow, talkId, keynoteId } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
@@ -639,7 +639,8 @@ export default function Home() {
   // (paired with scroll restoration), keyed by conference so a switch is fresh.
   // When the conference is running today, open filtered to today; otherwise show
   // every day ("all"). Matched against a real day so gaps fall back cleanly.
-  const todayStr = todayISO();
+  const now = useNow();
+  const todayStr = now.todayStr;
   const [dayFilter, setDayFilter] = useStickyState<string>(`${confId}:home.day`, () =>
     scheduleDays.some((d) => d.date === todayStr) ? todayStr : "all",
   );

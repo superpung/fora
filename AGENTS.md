@@ -291,9 +291,22 @@ pnpm preview    # serve the production build
   schedule's `?v=`), so a link opens on what the sender was reading without
   rewriting the recipient's own preference.
 - **The live view (`/:conf/now`):** `lib/live.ts` turns the views plus the clock
-  (`use-now.ts`, 30s tick) into what is running per room, what starts next, and
-  when the user's next starred item begins. Side-effect free, so the page is a
-  thin renderer.
+  (`use-now.ts`, 30s tick and foreground refresh) into what is running per room,
+  what starts next, and when the user's next starred item begins. Timed event
+  blocks (registration, ceremonies, banquets and committee meetings) participate
+  even without report details. Date-only follows never displace a timed next
+  item or acquire an invented start. Side-effect free, so the page stays thin.
+- **Conference time:** `lib/conference-time.ts` resolves venue-local dates and
+  instants for live states, reminders and calendar exports. The manifest carries
+  `timezone` so the hub can update conference status at venue midnight without
+  loading full datasets. Reminder caches also carry the timezone; legacy caches
+  recover it from the manifest. An absent source timezone retains device-local
+  semantics. Never compare a venue agenda directly against device wall time.
+- **Clock regression:** `web/tests/live-clock.mjs` controls browser clocks and
+  checks event boundaries, current-report highlights, midnight, foreign device
+  timezones and notification delivery through a mock. It captures desktop/mobile
+  pages plus a gallery under `LIVE_AUDIT_DIR` (default:
+  `/tmp/chinasoft2026-live-audit/after`). `AUDIT_BASE_URL` can target a preview.
 - **The resolved agenda:** `lib/export.ts`'s `collectFollowedItems()` is the one
   place that turns follows (talks + forums + speakers) into a sorted list of
   `ExportItem`. My Day, the live card, the reminders and every export format

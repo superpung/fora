@@ -1,3 +1,4 @@
+import { useNow } from "../lib/use-now";
 import { personKey } from "../lib/person-key";
 import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -226,13 +227,7 @@ export default function ForumDetail() {
   const [copied, setCopied] = useState<number | null>(null);
   const [poster, setPoster] = useState<{ spec: PosterSpec; filename: string } | null>(null);
 
-  // A live clock so the "now" rail marker follows the current talk without a
-  // reload — only meaningful on the day this forum runs.
-  const [nowMs, setNowMs] = useState(() => Date.now());
-  useEffect(() => {
-    const id = window.setInterval(() => setNowMs(Date.now()), 30_000);
-    return () => window.clearInterval(id);
-  }, []);
+  const { todayStr, nowMin } = useNow();
 
   // The talk pointed at by the URL hash (1-based, e.g. #talk-3) stays highlighted
   // for as long as the hash is present — it's a shareable anchor, not a flash.
@@ -317,10 +312,6 @@ export default function ForumDetail() {
   // "Now" on the rail: only on the day this forum runs, find the currently-live
   // talk in each track (start ≤ now < end, end inferred from the next talk when
   // absent) and mark its rail segment + node dot red.
-  const nowD = new Date(nowMs);
-  const p2 = (n: number) => String(n).padStart(2, "0");
-  const todayStr = `${nowD.getFullYear()}-${p2(nowD.getMonth() + 1)}-${p2(nowD.getDate())}`;
-  const nowMin = nowD.getHours() * 60 + nowD.getMinutes();
   const nowTalks = new Set<number>();
   if (timed && forum.day_date === todayStr) {
     const lists = tracks
