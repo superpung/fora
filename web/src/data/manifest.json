@@ -45,7 +45,7 @@
     "forums": 73,
     "keynotes": 9,
     "days": 4,
-    "updated_at": "2026-08-02"
+    "updated_at": "2026-10-14"
   },
   {
     "id": "chinasoft2026",
@@ -60,6 +60,7 @@
     "venue": "天津社会山国际会议中心酒店",
     "forums": 64,
     "keynotes": 0,
-    "days": 4
+    "days": 4,
+    "updated_at": "2026-10-14"
   }
 ]
