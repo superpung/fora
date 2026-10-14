@@ -302,6 +302,10 @@ pnpm preview    # serve the production build
   loading full datasets. Reminder caches also carry the timezone; legacy caches
   recover it from the manifest. An absent source timezone retains device-local
   semantics. Never compare a venue agenda directly against device wall time.
+- **Shared regressions:** `web/tests/conference-core.mjs` checks venue clocks,
+  live events, pending forum windows, identities, reminders and live navigation
+  independently of any newly imported conference. `permalink-scroll.mjs` checks
+  browser anchor positioning against the existing datasets.
 - **Clock regression:** `web/tests/live-clock.mjs` controls browser clocks and
   checks event boundaries, current-report highlights, midnight, foreign device
   timezones and notification delivery through a mock. It captures desktop/mobile
