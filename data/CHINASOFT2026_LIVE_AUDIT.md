@@ -10,11 +10,16 @@ otherwise the test starts Vite. `LIVE_AUDIT_DIR` selects the screenshot director
 (default `/tmp/chinasoft2026-live-audit/after`). The directory contains PNGs,
 `results.json`, and an `index.html` gallery. The tests use real Chromium rendering
 with simulated browser dates, not screenshots of fabricated mock pages.
-Captures scroll through each page to trigger entry animations, wait for finite
-animations to finish, and assert that expanded reports and meeting rows are
+Captures scroll through each page to trigger entry animations, finish finite
+animations, and assert that expanded reports and meeting rows are
 opaque. The Netlify review toolbar is hidden only in captures, so it cannot
 cover application content. Early captures taken during entry animations were
 discarded and regenerated; no application workaround was needed.
+Expanded touch cards are also captured at the actual mobile viewport: Chromium's
+full-page capture can change hover emulation while resizing the page. Their full
+metadata must fit before capture. Simulated performance clocks and native browser
+animation clocks can diverge after a clock jump; finishing finite animations
+avoids recording that instrumentation artifact.
 
 Fixed clocks cover 22 moments from November 4 through November 9, including
 check-in, morning/afternoon reports, a source tea break, reports running beyond
@@ -48,7 +53,7 @@ previously selected day.
 
 All existing browser suites, the 11 source regression checks, four-dataset
 schema/person/clock validation, lint, production build and deterministic rebuild
-passed. The clock suite captures 59 screenshots. Each affected page type was
+passed. The clock suite captures 61 screenshots. Each affected page type was
 visually reviewed on desktop and mobile; assertions independently check current
 entries, highlights, clock updates, absence of page overflow and runtime errors.
 

@@ -49,7 +49,7 @@ async function open(name,time,path,{mobile=false,zone='Asia/Shanghai',dark=false
  await page.waitForTimeout(500);
  return {context,page,name,time,path,zone,mobile,dark,ready};
 }
-async function shot(test,suffix='') {
+async function shot(test,suffix='',expandedCard=false) {
  const {page,name,...meta}=test;
  await page.evaluate(async(forum)=>{
   await document.fonts.ready;
@@ -60,9 +60,12 @@ async function shot(test,suffix='') {
   scrollTo({top:forum?previous:0,behavior:'instant'});
  },test.path.includes('/forum/'));
  await page.waitForTimeout(650);
- // Let finite entry/expansion animations finish; keep live pulse animations running.
- await page.waitForFunction(()=>document.getAnimations().every(a=>
-  a.playState!=='running'||a.effect?.getComputedTiming().iterations===Infinity));
+ // Simulated performance clocks and native animation clocks advance separately.
+ // Finish finite animations for captures; keep live pulse animations running.
+ await page.evaluate(()=>document.getAnimations().forEach(a=>{
+  if(Number.isFinite(a.effect?.getComputedTiming().endTime)) a.finish();
+ }));
+ await page.waitForTimeout(100);
  assert(await page.locator('.frow__talks, .meetrow').evaluateAll(elements=>elements.every(el=>{
   for(let node=el;node;node=node.parentElement) if(Number(getComputedStyle(node).opacity)<0.99) return false;
   return true;
@@ -70,8 +73,14 @@ async function shot(test,suffix='') {
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),name+' page overflow');
  await page.locator(test.ready).waitFor();
  await page.locator('.pageloader').waitFor({state:'hidden'});
+ if(expandedCard) {
+  const card=page.locator('.tgrid__talk.is-open');
+  await card.evaluate(el=>el.scrollIntoView({block:'center',inline:'nearest',behavior:'instant'}));
+  await page.waitForTimeout(300);
+  assert(await card.evaluate(el=>el.scrollHeight<=el.clientHeight+1),'expanded card must reveal all metadata');
+ }
  const filename=name+suffix+'.png';
- await page.screenshot({path:resolve(out,filename),fullPage:!test.path.includes('/forum/'),
+ await page.screenshot({path:resolve(out,filename),fullPage:!expandedCard&&!test.path.includes('/forum/'),
   // The hosting provider's review toolbar is not part of the application.
   style:'iframe[title="Netlify Drawer"] { visibility: hidden !important; }'});
  snapshots.push({...meta,context:undefined,filename,name:name+suffix});
@@ -87,7 +96,7 @@ try {
  browser=await chromium.launch();
  if(!process.env.REMINDERS_ONLY) for(const [name,day,before,after] of [
   ['nav-conference-start','04',0,1],['nav-conference-end','08',1,0]]) {
-  const test=await open(name,`2026-11-${day}T23:59:40+08:00`,'/chinasoft2026',
+  const test=await open(name,`2026-11-${day}T23:59:40+08:00`,'/chinasoft2026/now',
    {clock:true,zone:'America/Los_Angeles'});
   assert.equal(await test.page.locator('.nav__link--live').count(),before);
   await test.page.clock.fastForward(31_000);
@@ -137,7 +146,12 @@ try {
     assert((await page.locator('.tgrid__ttime.is-now').count())>0);
     const current=page.locator('.tgrid__talk').filter({has:page.locator('.tgrid__ttime.is-now')}).first();
     await current.scrollIntoViewIfNeeded();
-    if(mobile) { await current.click(); assert.equal(await current.getAttribute('aria-expanded'),'true'); }
+    if(mobile) {
+     await current.click(); assert.equal(await current.getAttribute('aria-expanded'),'true');
+     // Full-page capture resizes Chromium's mobile viewport and can change hover
+     // emulation. Capture the expanded touch control at its real viewport first.
+     await shot(test,'-expanded',true);
+    }
    }
    if(name==='myday') assert((await page.locator('.talkrow--now').innerText()).includes('大模型威胁下的硬件组件供应链安全'));
    if(name==='forum') assert.equal(await page.locator('#talk-4.tlrow--now').count(),1);
