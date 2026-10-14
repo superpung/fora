@@ -324,6 +324,12 @@ def detail(category, slug):
                 if "，" in host_raw:
                     host_raw = re.sub(r"\s+(?=[一-鿿]{2,3}，)", "、", host_raw).replace("，", " ")
                 talk["extra"]["hosts"] = people(host_raw, row_flags, "主持")
+                for host in talk["extra"]["hosts"]:
+                    chair = chairs_by_name.get(host["name"])
+                    if chair and chair.get("photo"):
+                        host["photo"] = chair["photo"]
+                    if chair and chair.get("affiliation_raw"):
+                        host.setdefault("affiliation_raw", chair["affiliation_raw"])
             if start < window[0] or end > window[1]:
                 row_flags.append(f"时间不一致：本报告为 {start}–{end}，超出论坛标注的 {window[0]}–{window[1]}，均按原文保留。")
             if row_flags:

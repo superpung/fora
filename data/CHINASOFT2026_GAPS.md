@@ -130,7 +130,8 @@ generated JSON copies must come from the same rebuilt source.
 - All 64 forum entries are reachable in the normal dashboard, including the
   34 entries under the pending-date section; filtering works there too.
 - R13's two host-bearing rows and E4's seven host-bearing rows display their
-  hosts separately from speakers. Forum details include all 27 source breaks,
+  hosts separately from speakers, with portraits from each forum's own chair
+  profiles. Forum details include all 27 source breaks,
   without changing report anchor numbering.
 - R14's confirmed speaker, profile and new abstract paragraph are imported;
   凌祥's updated biography and M1's updated title are synchronized.

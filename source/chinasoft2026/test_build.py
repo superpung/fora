@@ -78,6 +78,7 @@ class ProgrammeTests(unittest.TestCase):
         self.assertEqual(talks[1]["speakers"][0]["name"], "刘万伟")
         self.assertEqual(talks[1]["extra"]["hosts"][0]["name"], "邓玉欣")
         self.assertEqual(talks[-1]["extra"]["hosts"][0]["name"], "李晓红")
+        self.assertTrue(all(host.get("photo") for talk in talks for host in talk["extra"]["hosts"]))
         self.assertEqual(forum["breaks"][0]["name"], "茶歇")
         self.assertTrue(all(t.get("abstract") for t in talks))
 

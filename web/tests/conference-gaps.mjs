@@ -48,6 +48,7 @@ try {
 
   await go("/chinasoft2026/forum/E4", ".talk__hosts");
   assert.equal(await page.locator(".talk__hosts").count(), 7);
+  assert.equal(await page.locator(".talk__hosts img.avatar").count(), 7);
   assert.equal(await page.locator("#talk-1 .talk__hosts .person__name").textContent(), "邓玉欣");
   await go("/chinasoft2026/forum/R32", ".fd__people");
   for (const button of await page.locator(".fd__people .person__toggle").all()) await button.click();
@@ -128,6 +129,8 @@ try {
   assert((await page.locator("#talk-4 .source-notes__content").textContent()).includes("彭蓉-张颖"));
   assert(await page.getByRole("heading", { name: "未匹配的报告资料" }).count());
   assert(await page.locator(".person__name").getByText("张颖", { exact: true }).count());
+  const profileWidth = await page.locator(".talk--profile .talk__body").evaluate((el) => el.getBoundingClientRect().width);
+  assert(profileWidth >= 300, "Unmatched profiles must not occupy the report-number column on mobile");
   assert(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth <= 1));
   assert.deepEqual(errors, []);
   console.log("PASS all forum entries, updated source, hosts, breaks, clean biographies, separate identities, legacy follows, pending-forum agenda/exports and accessible source notes");

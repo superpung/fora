@@ -708,7 +708,7 @@ export default function ForumDetail() {
 
       {forum.extra?.unmatched_profiles && <section className="fd__section">
         <h2 className="fd__sectitle">{tr("forum.unmatchedProfiles")}</h2>
-        {Object.entries(forum.extra.unmatched_profiles).map(([name, info]) => <div className="talk" key={name}>
+        {Object.entries(forum.extra.unmatched_profiles).map(([name, info]) => <div className="talk talk--profile" key={name}>
           <div className="talk__body">
             {info.report_title && <h3 className="talk__title">{info.report_title}</h3>}
             <PersonLine p={{ ...info.person, bio: info.bio }} />

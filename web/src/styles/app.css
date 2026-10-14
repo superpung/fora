@@ -946,6 +946,7 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 .source-notes__content li + li { margin-top: 5px; }
 .fd__break { margin: 8px 0; border: 1px solid var(--border); border-radius: var(--radius-sm); }
 .talk__hosts { margin-top: 12px; }
+.talk--profile { display: block; }
 .tlrow {
   display: grid; grid-template-columns: 48px 22px minmax(0, 1fr); gap: 0 14px;
   scroll-margin-top: calc(var(--nav-h) + 16px);
