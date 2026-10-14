@@ -114,17 +114,17 @@ function TalkLine({ t }: { t: SpeakerTalk }) {
 }
 
 function SpeakerCard({ s }: { s: SpeakerAgg }) {
-  const [open, setOpen] = useState(() => openCards.has(s.name));
+  const [open, setOpen] = useState(() => openCards.has(s.key));
   const { isSpeaker, toggleSpeaker } = useFollow();
   const { t } = useI18n();
-  const followed = isSpeaker(s.name);
+  const followed = isSpeaker(s.key);
   const p = s.person;
 
   const toggle = () =>
     setOpen((v) => {
       const next = !v;
-      if (next) openCards.add(s.name);
-      else openCards.delete(s.name);
+      if (next) openCards.add(s.key);
+      else openCards.delete(s.key);
       return next;
     });
 
@@ -144,7 +144,7 @@ function SpeakerCard({ s }: { s: SpeakerAgg }) {
             aria-pressed={followed}
             aria-label={followed ? t("common.followRemove", { name: s.name }) : t("common.followAdd", { name: s.name })}
             title={followed ? t("common.followRemove", { name: s.name }) : t("common.followAdd", { name: s.name })}
-            onClick={() => toggleSpeaker(s.name)}
+            onClick={() => toggleSpeaker(s.key)}
           >
             <Icon name="star" filled={followed} size={15} />
           </button>
@@ -213,7 +213,7 @@ export default function Speakers() {
     () =>
       speakerList.filter((s) => {
         if (q && !s.search.includes(q)) return false;
-        if (onlyFollowed && !isSpeaker(s.name)) return false;
+        if (onlyFollowed && !isSpeaker(s.key)) return false;
         if (cat !== "all" && s.category !== cat) return false;
         return true;
       }),
@@ -311,7 +311,7 @@ export default function Speakers() {
               <div className="spgroup" id={`sp-${letter}`} key={letter}>
                 <div className="spgroup__label mono">{letter}</div>
                 {list.map((s) => (
-                  <SpeakerCard key={s.name} s={s} />
+                  <SpeakerCard key={s.key} s={s} />
                 ))}
               </div>
             ))}

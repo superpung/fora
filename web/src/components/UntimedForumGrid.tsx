@@ -1,3 +1,4 @@
+import { personKey } from "../lib/person-key";
 import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { useConference } from "../lib/conference-store";
@@ -85,7 +86,7 @@ export default function UntimedForumGrid({
   const relevant = (code: string, i: number, t: Talk): boolean =>
     isForum(code) ||
     isTalk(talkId(code, i)) ||
-    (t.speakers ?? []).some((s) => isSpeaker(s.name));
+    (t.speakers ?? []).some((s) => isSpeaker(personKey(s)));
 
   const entries = (block.forum_entries ?? []).filter((e) => forumsByCode[e.forum_code]);
   if (entries.length === 0) return null;
@@ -199,8 +200,9 @@ export default function UntimedForumGrid({
   // 我的关注 filter: keep follow-relevant cells; drop columns with none.
   const shown = filtered
     ? columns
-        .map((c) => ({ ...c, cells: c.cells.filter((cell) => relevant(c.code, cell.i, cell.t)), empty: false }))
-        .filter((c) => c.cells.length > 0)
+        .map((c) => ({ ...c, cells: c.cells.filter((cell) => relevant(c.code, cell.i, cell.t)),
+          empty: c.empty && isForum(c.code) }))
+        .filter((c) => c.cells.length > 0 || c.empty)
     : columns;
 
   if (filtered && shown.length === 0) {

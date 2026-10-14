@@ -1,3 +1,5 @@
+import { useClockMs } from "../lib/use-now";
+import { clockAt } from "../lib/conference-time";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import ThemeToggle from "../components/ThemeToggle";
@@ -23,7 +25,6 @@ const GROUPS: { key: Status; labelKey: string }[] = [
   { key: "ended", labelKey: "hub.ended" },
 ];
 
-const pad = (n: number) => String(n).padStart(2, "0");
 
 function ConferenceCard({ c }: { c: ConferenceMeta }) {
   const { t, lang } = useI18n();
@@ -69,10 +70,11 @@ function ConferenceCard({ c }: { c: ConferenceMeta }) {
 export default function Hub() {
   useTitle();
   const { t } = useI18n();
-  const now = new Date();
-  const today = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
-  const statusOf = (c: ConferenceMeta): Status =>
-    c.end_date < today ? "ended" : c.start_date > today ? "upcoming" : "ongoing";
+  const now = useClockMs();
+  const statusOf = (c: ConferenceMeta): Status => {
+    const today = clockAt(now, c.timezone ?? undefined).todayStr;
+    return c.end_date < today ? "ended" : c.start_date > today ? "upcoming" : "ongoing";
+  };
 
   const grouped: Record<Status, ConferenceMeta[]> = { ongoing: [], upcoming: [], ended: [] };
   for (const c of conferenceList) grouped[statusOf(c)].push(c);
