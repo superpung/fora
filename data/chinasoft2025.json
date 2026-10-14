@@ -8858,11 +8858,7 @@
           "title_status": "confirmed",
           "start": "11:25",
           "end": "12:15",
-          "speakers": [
-            {
-              "name": "所有嘉宾"
-            }
-          ],
+          "speakers": [],
           "abstract": null,
           "abstract_status": "unknown",
           "type": "other",
@@ -8886,6 +8882,9 @@
           "start": "10:15",
           "end": "10:35"
         }
+      ],
+      "flags": [
+        "speaker cell a role or a group, not a person: '所有嘉宾'"
       ]
     },
     {

@@ -57,3 +57,23 @@ kept verbatim with a `flag`; only change if the organizers correct the poster.
   CF33#6, CF34#6, CF41#6.
 - Invited guests with a bio but no talk title/abstract: CF04#6 (曾晓洋),
   CF07#9 (倪家伟).
+
+## ChinaSoft 2026 (snapshot: 2026-10-14)
+
+- 64 forums/competitions are listed in the overview; 27 have linked detailed
+  programmes. Keep the other 37 as `not_published`. E6's window is in the
+  overview, and C5/C6 final dates are in competition announcements; their
+  individual programmes remain unpublished.
+- The homepage says November 6–8, while the introduction and timetable include
+  November 5 check-in. The dataset includes November 5 and records both claims.
+- R1, E4 and I4 have talks ending later than their printed forum windows. Keep
+  both values, with talk-level flags; do not shorten talks to fit the overview.
+- R14's timetable prints a pending Huawei speaker, while a profile names 廖楠.
+  Keep the pending timetable credit and the unmatched profile separately.
+- E2 prints ambiguous credits `彭蓉-张颖` and `刘璘- 全体嘉宾`. Preserve the raw
+  strings and flag the uncertain speaker/host roles; do not guess identities.
+- The prototype-system announcement names a November 6 afternoon case forum,
+  while the overview names competition C2 without an explicit linking code.
+  Keep the announcement separately under conference `extra` until confirmed.
+- The programme committee is marked pending; the local organizing committee's
+  member list is also pending. Neither placeholder is a person.

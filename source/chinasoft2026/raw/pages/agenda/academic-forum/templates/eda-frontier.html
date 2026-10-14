@@ -1,0 +1,197 @@
+<div class="container">
+
+    <h2 class="section-title">EDA前沿技术论坛</h2>
+    <div class="section-title-en">学术论坛 R24</div>
+
+    <section class="forum-section">
+        <h3>一、论坛介绍</h3>
+        <p>本论坛聚焦电子设计自动化(EDA)的前沿趋势，以"形式化背景下的智能EDA技术"为核心主题，系统探讨形式化方法在复杂芯片验证、测试、逻辑修复中的支柱作用。论坛聚焦于约束求解、AI/LLM辅助EDA、工程变更指令、布局布线等技术，通过分享从前沿理论成果到工业级实践的最新进展，推动形式化技术在EDA流程中的体系化部署与智能化演进。通过汇聚产学研各界专家，论坛旨在搭建高水平交流平台，共同探讨先进验证方法如何转化为可规模化的工程生产力，为构建新一代高效、可信的验证生态提供明确的技术指引与路径参考。</p>
+    </section>
+
+    <section class="forum-section">
+        <h3>二、论坛组织委员会</h3>
+        <ul class="committee-list">
+            <li>
+                <span class="member-name">张昕荻</span>
+                <span class="member-unit">（中国科学院软件研究所）</span>
+            </li>
+            <li>
+                <span class="member-name">李旻</span>
+                <span class="member-unit">（东南大学）</span>
+            </li>
+            <li>
+                <span class="member-name">张弘策</span>
+                <span class="member-unit">（香港科技大学（广州））</span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="forum-section">
+        <h3>三、论坛安排</h3>
+        <h4>日程安排：</h4>
+        <p><strong>时间：</strong>2026年11月7日，15:20-18:20</p>
+        <p><strong>地点：</strong>天津市社会山国际会议中心酒店，二层19号会议室</p>
+
+        <h4>论坛议程：</h4>
+        <table class="forum-table">
+            <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>题目</th>
+                    <th>报告嘉宾</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="white-space: nowrap;">15:20-15:45</td>
+                    <td>面向ECO电源网络稀疏矩阵的高性能增量求解器</td>
+                    <td>金洲<br>浙江大学</td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">15:45-16:10</td>
+                    <td>AI原生EDA和3D-IC原生EDA</td>
+                    <td>李兴权<br>东南大学</td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">16:10-16:35</td>
+                    <td>大模型与自主智能体驱动的 RTL 硬件设计验证框架</td>
+                    <td>吕杨迪<br>香港科技大学（广州）</td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">16:35-17:05</td>
+                    <td>茶歇及自主讨论</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">17:05-17:30</td>
+                    <td>面向资产复用的 AI 辅助 IC 测试与形式化验证</td>
+                    <td>晁志腾<br>中国科学院计算技术研究所</td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">17:30-17:55</td>
+                    <td>Agentic EDA：从单点AI到芯片设计范式重构</td>
+                    <td>许思源<br>华为诺亚方舟实验室</td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">17:55-18:20</td>
+                    <td>面向芯片设计的ECO工具及关键问题</td>
+                    <td>袁峰<br>奇捷科技有限公司</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="forum-section">
+        <h3>四、论坛报告嘉宾简介</h3>
+        <div class="speaker-member">
+            <h4>1. 报告人：金洲 研究员</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/学术论坛/金洲.png" alt="金洲头像" onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>面向ECO电源网络稀疏矩阵的高性能增量求解器</p>
+                    <p><strong>摘要：</strong>随着先进工艺下电源完整性问题日益突出，电源网络分析需要频繁求解大规模稀疏线性方程组。特别是在设计后期ECO过程中，局部布线和拓扑修改会导致传统稀疏直接求解器反复执行完整的重排序、符号分解与数值分解，产生大量冗余计算。本报告介绍一种面向ECO电源网络的高性能增量稀疏直接求解器SPEED。该方法利用分隔树与消去树，提出路径感知的结构剪枝机制，精确追踪局部修改在不同求解阶段的影响范围，仅更新受影响的重排序、符号结构及Cholesky分解结果，同时复用未变化部分，从而支持多种拓扑及参数修改并保持直接求解精度。在IBMPG和THUPG基准上的多轮ECO实验中，该方法相较完整CHOLMOD求解平均实现4.02×加速，展示了增量稀疏求解技术在快速电源完整性分析与ECO设计收敛中的应用潜力。</p>
+                    <p><strong>简介：</strong>金洲，浙江大学百人计划研究员、博士生导师。入选国家级高层次青年人才，CCF集成电路设计专委会副秘书长。2010年本科毕业于南京大学，2012年和2015年分别获日本早稻田大学硕士和博士学位。主要从事集成电路设计自动化（EDA）高性能仿真方法研究。已在DAC、ICCAD、TCAD等EDA领域重要国际会议和期刊发表论文90余篇。曾获SC'23最佳论文奖、SC'24/PPoPP'26/DATE'26等顶会最佳论文奖提名、EDA²青年科技奖等。主持国自然交叉重点青年专项、重大研究计划培育项目及企业合作项目等二十余项。担任SC、DAC等国际会议技术委员会委员，受邀在ICCAD作Tutorial报告，并担任多个国内外学术会议宣传主席、出版主席等。</p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>2. 报告人：李兴权 副教授</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/学术论坛/李兴权.png" alt="李兴权头像" onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>AI原生EDA和3D-IC原生EDA</p>
+                    <p><strong>摘要：</strong>随着先进工艺复杂度提升、Chiplet与3D集成快速发展，以及大模型与智能体进入芯片设计流程，传统以人工编排、单点工具和二维设计对象为核心的EDA模式正在发生系统性重构。我们提出"Agent原生EDA与3D-IC原生EDA"双原生技术范式：Agent原生EDA通过结构化工具接口、微工具与微操作、统一设计状态、过程数据归因、事务回滚和确定性签核，使智能体能够完成任务规划、多工具协同、候选探索、结果复测和闭环优化。</p>
+                    <p><strong>简介：</strong>李兴权，东南大学副研究员，EDA国创中心人才培训部部长，EDA精英挑战赛秘书长。主要从事芯片设计自动化，芯片设计无人化。牵头研发开源智能数字芯片EDA平台和工具链（iEDA），研发支持Netlist-to-Vector专用AI框架（AiEDA），研发芯片设计专用大模型（iPCL）。主持和参与工信部创新平台项目、国家实验室重大攻关项目、国自然基金项目、省优秀青年基金项目等多项。在EDA国际主流期刊TCAD、TC、TVLSI、TODAES，国际主流会议DAC、ICCAD、DATE、NeurIPS、ASP-DAC、ISPD发表论文80多篇。申请发明专利20项（含国际PCT专利2项）。2019年获得福建省优秀博士论文，于2017、2018、2022年分别三次获得国际计算机辅助设计竞赛（ICCAD@CAD Contest）第一名，2020年获中国运筹学会科学技术奖。</p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>3. 报告人：吕杨迪 助理教授</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/学术论坛/吕杨迪.png" alt="吕杨迪头像" onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>大模型与自主智能体驱动的 RTL 硬件设计验证框架</p>
+                    <p><strong>摘要：</strong>随着现代芯片设计规模与复杂度的剧增，传统依赖人工编写约束及局部测试用例的 RTL 验证方法，愈发难以应对深层状态空间爆炸与快速设计迭代的严峻挑战。本报告围绕 RTL 硬件设计，介绍一种由大语言模型与自主智能体协同驱动的全新硬件设计验证框架。报告将系统阐述该框架的三大核心技术。首先，针对 LLM 生成 Verilog 代码的功能缺陷，介绍基于大模型的自主 Debug 与修复机制，实现 RTL 代码功能错误的自动隔离与闭环纠错；其次，针对混合测试与半形式化验证中的路径爆炸瓶颈，重点展示如何引入多步强化学习与智能体协同，通过构建长期奖励回报模型，实现深层状态空间的高效探索；最后，介绍面向 RTL 仿真器及系统级设计的高效模糊测试技术，包括基于语法感知的端到端差分 RTL 仿真器模糊测试，以及基于快照技术的高效系统级 RTL 模糊测试方法。该框架打通了从自动化代码生成、深度漏洞挖掘到代码自主修复的全闭环，为构建下一代自主化 EDA 硬件验证系统提供了全新的解决思路。</p>
+                    <p><strong>简介：</strong>吕杨迪为香港科技大学（广州）微电子学域助理教授、博士生导师。长期深耕芯片自动化设计与验证（EDA）、大语言模型驱动的 RTL 代码生成与自动修复、Concolic 混合测试与符号执行以及硬件安全验证等领域。其团队多项研究成果发表于 DAC、DATE、ICCAD、ICCD、ASPDAC 等 EDA 领域顶级学术会议。曾任 IEEE CEDA 广州分会主席，并长期担任 DATE、ASPDAC、ICCD、ESWEEK 等多个国际学术会议的程序委员会委员，以及 IEEE TCAD、ACM TODAES 等期刊的审稿人。</p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>4. 报告人：晁志腾 助理研究员</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/学术论坛/晁志腾.png" alt="晁志腾头像" onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>面向资产复用的 AI 辅助 IC 测试与形式化验证</p>
+                    <p><strong>摘要：</strong>随着集成电路规模和复杂度不断提升，测试与验证面临着测试成本高、验证周期长以及专家经验难以复用等问题。传统的测试平台、ATPG、故障仿真和形式化验证通常以相互独立的流程运行，产生的IC测试与验证结果也难以在不同设计、不同版本和不同验证任务之间持续复用。本报告探讨一种面向资产复用的 AI 辅助 IC 测试与验证方法。通过结合大语言模型与现有测试、形式化验证平台及工具，以生成式智能为核心的AI方法可以自主地将测试与验证过程中产生的结果组织为结构化资产，从而支持后续任务中的检索、组合、迁移和增量维护。报告将重点讨论如何利用统一的设计表示和工具反馈，形成生成、检查、修复和复用的闭环。利用 AI 连接测试与形式化验证流程，将一次性的验证经验逐步转化为可复用、可追踪和可审计的工程知识，为复杂 IC 的持续测试与验证提供新的自动化路径。</p>
+                    <p><strong>简介：</strong>晁志腾，中国科学院计算技术研究所，特别研究助理，研究方向为集成电路测试与验证，于DAC、ITC、DATE、TODAES等会议及期刊发表学术论文十余篇。其研究工作获评2025年度 CCF 集成电路设计专业委员会博士学位论文激励计划提名奖励，以及第六届CCF 集成电路设计与自动化学术会议（CCF-DAC 2025）A 类论文（唯一获奖），2025年度IEEE TTTC E. J. McCluskey 博士论文竞赛（TTTC's E. J. McCluskey Best Doctoral Thesis Award）亚洲赛区优胜者。目前已经有部分成果落地某初创国产 EDA 公司。</p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>5. 报告人：许思源 主任工程师</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/学术论坛/许思源.png" alt="许思源头像" onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>Agentic EDA：从单点AI到芯片设计范式重构</p>
+                    <p><strong>摘要：</strong>EDA作为芯片设计的核心工具链，正经历从单点AI辅助向Agentic全流程编排的范式转变。本报告将结合我们在AI使能EDA方向的工作实践，系统介绍Agentic EDA的技术背景、业界进展与核心挑战，分享在基准评测体系建设、网表切分、布局布线优化等环节的研究进展与经验教训，并对数据驱动与大模型结合的未来EDA技术路径进行展望。</p>
+                    <p><strong>简介：</strong>许思源，博士毕业于美国德克萨斯大学达拉斯分校。曾在NXP恩智浦半导体、博巨兴微电子及美国Futurewei实习，后任美国MathWorks高级软件工程师，主导软硬协同算法及基于SoC的深度学习研发。现任华为诺亚方舟实验室技术专家及AI4EDA团队负责人，研究方向包括学习优化、2D/3D芯片物理建模优化与大模型驱动仿真加速，带领团队攻坚AI+EDA前沿算法与工程落地，在AI及EDA顶会顶刊发表论文50余篇，获EDA顶会DATE 2025最佳论文奖。累计申请专利30余项，获评公司级金牌个人、金牌团队荣誉。</p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>6. 报告人：袁峰 研发副总裁</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/学术论坛/袁峰.png" alt="袁峰头像" onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>面向芯片设计的ECO工具及关键问题</p>
+                    <p><strong>摘要：</strong>待定</p>
+                    <p><strong>简介：</strong>本科毕业于浙江大学竺可桢学院，2012年获香港中文大学博士学位，研究方向为芯片测试与高可靠性设计，博士期间发表论文30余篇，获授权专利2项。毕业后加入奥比中光，历任算法与芯片部门负责人，主导多款边缘端传感算力平台芯片的研发与量产，产品广泛应用于机器人、3D成像等领域。2023年加入奇捷科技，现任研发副总裁，全面负责芯片ECO工具的研发工作。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="forum-section">
+        <h3>五、论坛组织委员会简介</h3>
+        <div class="committee-member">
+            <h4>1. 论坛组委会：张昕荻 助理研究员</h4>
+            <div class="committee-profile">
+                <div class="committee-image">
+                    <img src="./images/academic-forum/学术论坛/张昕荻.png" alt="张昕荻头像" onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <p><strong>简介：</strong>张昕荻长期从事基于SAT的EDA形式化研究。他曾获得国际SAT协会"最佳博士学位论文奖"（亚洲首项）、国际SAT会议"最佳论文奖"（亚洲首项），研制的求解器于国际SAT、SMT、FLoC竞赛获冠军20余次。基于SAT的等价性验证及模型检查技术落地于国内多家头部EDA企业，入选中国教育发展基金会"集成电路人才培养"，受邀参与编写《EDA算力底座白皮书》。于DAC、SAT、FM、CAV等领域顶会/期刊发表论文二十余篇。</p>
+            </div>
+        </div>
+        <div class="committee-member">
+            <h4>2. 论坛组委会：李旻 研究员</h4>
+            <div class="committee-profile">
+                <div class="committee-image">
+                    <img src="./images/academic-forum/学术论坛/李旻.png" alt="李旻头像" onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <p><strong>简介：</strong>李旻，现东南大学集成电路学院研究员，国家高层次人才。2023年获得香港中文大学计算机科学与工程系博士学位，并于华为诺亚方舟实验室担任主任工程师，负责参与国产自研硬件形式化验证工具，服务于华为多款高性能处理器验证。主要研究领域为人工智能辅助电子设计自动化（EDA）、面向计算芯片的高效形式化验证、人工智能驱动的新一代硬件形式化验证工具等。电路表征学习和形式化验证研究获得了DAC'22最佳论文提名、DAC'26最佳论文。</p>
+            </div>
+        </div>
+        <div class="committee-member">
+            <h4>3. 论坛组委会：张弘策 助理教授</h4>
+            <div class="committee-profile">
+                <div class="committee-image">
+                    <img src="./images/academic-forum/学术论坛/张弘策.png" alt="张弘策头像" onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <p><strong>简介：</strong>张弘策，香港科技大学（广州）功能枢纽微电子学域助理教授。博士毕业于普林斯顿大学电子与计算机工程系，主要研究方向为数字芯片的形式化验证方法。研究成果发表于DAC、CAV、ICCAD、TCAD等EDA领域顶级国际会议与期刊，曾获得2020年美国计算机学会电子设计自动化期刊TODAES的最佳文章奖，担任了CAV、DAC、ICCAD等国际会议的技术程序委员会委员。</p>
+            </div>
+        </div>
+    </section>
+
+</div>

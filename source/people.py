@@ -29,7 +29,8 @@ __all__ = ["read_person", "person_problem", "ROLE_WORDS"]
 ROLE_WORDS = (
     "主持人", "主持", "嘉宾", "特邀嘉宾", "讲者", "报告人", "演讲嘉宾", "汇报人",
     "参与者", "与谈人", "对话嘉宾", "点评人", "执行主席", "论坛主席", "大会主席",
-    "全体嘉宾", "全体", "各位嘉宾", "报告嘉宾", "圆桌嘉宾",
+    "全体嘉宾", "全体", "各位嘉宾", "所有嘉宾", "报告嘉宾", "圆桌嘉宾",
+    "嘉宾致辞", "论坛组委会",
     "Moderator", "Panelists", "Panelist", "Speakers", "Speaker", "Chair", "Chairs", "Host",
 )
 _ROLE_PREFIX = re.compile(r"^(?:%s)\s*[：:]\s*" % "|".join(map(re.escape, ROLE_WORDS)))
@@ -38,7 +39,7 @@ _ROLE_ONLY = re.compile(r"^(?:%s)(?:\s*[、，,/及和与]\s*(?:%s))*$" % (
     "|".join(map(re.escape, ROLE_WORDS)), "|".join(map(re.escape, ROLE_WORDS))))
 # Not a name yet: the programme says so itself.
 _PLACEHOLDER = re.compile(
-    r"待定|待公布|待确认|暂定|另行通知|虚位以待|^TBD$|^TBA$|^To be (?:announced|confirmed)$",
+    r"待定|待公布|待确认|待更新|暂定|另行通知|虚位以待|^TBD$|^TBA$|^To be (?:announced|confirmed)$",
     re.I,
 )
 # An organization standing where a person is expected.
