@@ -179,7 +179,7 @@ export function buildSearchIndex(
   for (const s of speakerList) {
     const p = s.person;
     records.push({
-      id: `speaker:${s.name}`,
+      id: `speaker:${s.key}`,
       type: "speaker",
       title: s.name,
       subtitle: p.affiliation_raw ?? p.organization ?? undefined,

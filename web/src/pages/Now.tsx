@@ -6,7 +6,7 @@ import { useFollow } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
 import { useNow } from "../lib/use-now";
 import { formatDate } from "../lib/data";
-import { buildLiveView, nextStarredItem, fmtClock, type NowRoom } from "../lib/live";
+import { buildLiveView, nextStarredItem, fmtClock, type NowRoom, type TalkLite } from "../lib/live";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Icon from "../components/Icon";
 
@@ -18,37 +18,33 @@ function Title({ text, tbd }: { text: string; tbd: boolean }) {
   return <span className="muted-i">{text || t("now.tbd")}</span>;
 }
 
+function LiveTalk({ talk, room, next = false }: { talk: TalkLite; room: string | null; next?: boolean }) {
+  return <>
+    <span className="nowcard__talktitle">{next && <Icon name="chevron-right" size={11} />}<Title text={talk.title} tbd={talk.tbd} /></span>
+    {talk.speaker && <span className="nowcard__spk"><Icon name="user" size={12} /> {talk.speaker}</span>}
+    <div className="nowcard__details">
+      {room && <span><Icon name="pin" size={12} /> {room}</span>}
+      {talk.start && <span className="mono"><Icon name="clock" size={12} /> {talk.start}{talk.end ? `–${talk.end}` : ""}</span>}
+    </div>
+  </>;
+}
+
 function RoomCard({ room }: { room: NowRoom }) {
   const { id: confId } = useConference();
-  const { t } = useI18n();
   const inner = (
     <>
+      <div className="nowcard__title"><Title text={room.title} tbd={room.tbd} /></div>
       <div className="nowcard__top">
-        <span className={`nowcard__room ${room.kind === "keynote" ? "nowcard__room--key" : ""}`}>
-          <Icon name={room.kind === "keynote" ? "keynotes" : "pin"} size={12} />
-          {room.room || (room.kind === "keynote" ? t("now.keynote") : "")}
-        </span>
+        {room.room && <span className="nowcard__room"><Icon name="pin" size={12} /> {room.room}</span>}
         {room.code && <span className="nowcard__code">{room.code}</span>}
+        {room.start && <span className="nowcard__room mono"><Icon name="clock" size={12} /> {room.start}{room.end ? `–${room.end}` : ""}</span>}
       </div>
-      <div className="nowcard__title">
-        <Title text={room.title} tbd={room.tbd} />
-      </div>
-      {room.nowTalk && (
-        <div className="nowcard__talk">
-          {room.nowTalk.start && <span className="nowcard__time mono">{room.nowTalk.start}</span>}
-          <span className="nowcard__talktitle">
-            <Title text={room.nowTalk.title} tbd={room.nowTalk.tbd} />
-          </span>
-          {room.nowTalk.speaker && <span className="nowcard__spk">{room.nowTalk.speaker}</span>}
-        </div>
-      )}
-      {room.nextTalk && (
-        <div className="nowcard__next">
-          <Icon name="chevron-right" size={11} />
-          {room.nextTalk.start && <span className="mono">{room.nextTalk.start}</span>}{" "}
-          <Title text={room.nextTalk.title} tbd={room.nextTalk.tbd} />
-        </div>
-      )}
+      {room.nowTalk && <div className="nowcard__talk"><LiveTalk talk={room.nowTalk} room={room.room} /></div>}
+      {!room.nowTalk && room.nowBreak && <div className="nowcard__talk">
+        <span><Icon name="coffee" size={12} /> {room.nowBreak.name}</span>
+        <span className="mono">{room.nowBreak.start}–{room.nowBreak.end}</span>
+      </div>}
+      {room.nextTalk && <div className="nowcard__next"><LiveTalk talk={room.nextTalk} room={room.room} next /></div>}
     </>
   );
   return room.code ? (
@@ -84,7 +80,8 @@ export default function Now() {
   const { md: endMd } = formatDate(conference.end_date, lang);
 
   // Countdown phrasing shared by the "next" panel and the starred panel.
-  const relTime = (minutesUntil: number | null, date: string, start: string): string => {
+  const relTime = (minutesUntil: number | null, date: string, start?: string | null): string => {
+    if (!start) return `${date === now.todayStr ? "" : formatDate(date, lang).md + " · "}${t("myday.untimed")}`;
     if (minutesUntil != null && minutesUntil <= 90) return t("now.inMin", { n: minutesUntil });
     if (date === now.todayStr) return t("now.at", { t: start });
     const { md, weekday } = formatDate(date, lang);
@@ -176,7 +173,7 @@ export default function Now() {
                         </>
                       ) : (
                         <>
-                          <Icon name="keynotes" size={13} />
+                          <Icon name={s.kind === "keynote" ? "keynotes" : "calendar"} size={13} />
                           <span className="nownext__title">
                             <Title text={s.title} tbd={!!s.tbd} />
                           </span>
@@ -198,8 +195,8 @@ export default function Now() {
             </h3>
             {!starred ? (
               <div className="nowpanel__empty">
-                {t("now.noStarred")}
-                <span className="nowpanel__hint">{t("now.noStarredHint")}</span>
+                {forums.size + speakers.size + talks.size > 0 ? t("now.nothingNext") : t("now.noStarred")}
+                {forums.size + speakers.size + talks.size === 0 && <span className="nowpanel__hint">{t("now.noStarredHint")}</span>}
               </div>
             ) : (
               <div className={`nowstar ${starred.running ? "nowstar--live" : ""}`}>
@@ -219,11 +216,14 @@ export default function Now() {
                       <Icon name="user" size={12} /> {starred.item.speakers}
                     </span>
                   )}
-                  {starred.item.location && (
+                  {starred.item.room && (
                     <span className="nowstar__loc">
-                      <Icon name="pin" size={12} /> {starred.item.location}
+                      <Icon name="pin" size={12} /> {starred.item.room}
                     </span>
                   )}
+                  {starred.item.start && <span className="nowstar__loc mono">
+                    <Icon name="clock" size={12} /> {starred.item.approx ? "~" : ""}{starred.item.start}{starred.item.end ? `–${starred.item.end}` : ""}
+                  </span>}
                 </div>
                 {starred.item.code && (
                   <Link

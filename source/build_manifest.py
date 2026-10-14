@@ -44,6 +44,7 @@ def manifest_entry(d, path):
         "edition": d.get("edition"),
         "start_date": d["start_date"],
         "end_date": d["end_date"],
+        "timezone": d.get("timezone"),
         "city": (main_v or {}).get("city"),
         "venue": ((main_v or {}).get("name") or {}).get("zh"),
         "forums": len(d.get("forums", [])),

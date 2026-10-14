@@ -1,7 +1,8 @@
+import { personKey } from "../lib/person-key";
 import { useMemo, useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { formatDate, todayISO, type ScheduleDay, type ForumSlot } from "../lib/data";
+import { formatDate, type ScheduleDay, type ForumSlot } from "../lib/data";
 import { useConference } from "../lib/conference-store";
 import { useFollow, talkId, keynoteId } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
@@ -11,6 +12,7 @@ import { useNow, isNowWithin, type Now } from "../lib/use-now";
 import { pageVariants } from "../lib/motion";
 import Icon from "../components/Icon";
 import StarButton from "../components/StarButton";
+import SourceNotes from "../components/SourceNotes";
 import type { Talk } from "../types";
 import { titleLine } from "../lib/talk-title";
 
@@ -266,7 +268,7 @@ function KeynoteRow({
                 name={s.name}
                 affiliation={s.affiliation_raw}
                 active={activeSpeaker === s.name}
-                followed={isSpeaker(s.name)}
+                followed={isSpeaker(personKey(s))}
                 onSpeaker={onSpeaker}
               />
             ))}
@@ -299,14 +301,15 @@ function ForumRow({
   const f = slot.forum;
   const talks = f?.talks ?? [];
   const hasTalks = !!f?.detail_extracted && talks.length > 0;
-  const followedHere = slot.people.filter((n) => isSpeaker(n));
+  const followedHere = [...new Set([...(f?.chairs ?? []), ...talks.flatMap((t) => t.speakers ?? [])]
+    .filter((p) => isSpeaker(personKey(p))).map((p) => p.name))];
 
   // Whole-forum follow keeps every talk; otherwise, in the "我的关注" view a talk
   // is kept only when it's starred or has a followed speaker — the same rule the
   // timeline uses. A talk merely revealed from a collapsed run isn't "shown".
   const showAll = isForum(slot.code);
   const talkMatches = (t: Talk, i: number) =>
-    isTalk(talkId(slot.code, i)) || (t.speakers ?? []).some((s) => isSpeaker(s.name));
+    isTalk(talkId(slot.code, i)) || (t.speakers ?? []).some((s) => isSpeaker(personKey(s)));
   const isShown = (i: number) => showAll || !filtered || talkMatches(talks[i], i);
   const matchCount = filtered && !showAll ? talks.filter(talkMatches).length : 0;
   // Chair-only follow: the forum surfaced solely because a followed person chairs
@@ -368,7 +371,7 @@ function ForumRow({
                 <button
                   key={n}
                   className={`pauthor ${activeSpeaker === n ? "is-active" : ""} ${
-                    isSpeaker(n) ? "is-followed" : ""
+                    followedHere.includes(n) ? "is-followed" : ""
                   }`}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -473,7 +476,7 @@ function ForumRow({
                               name={s.name}
                               affiliation={s.affiliation_raw}
                               active={activeSpeaker === s.name}
-                              followed={isSpeaker(s.name)}
+                              followed={isSpeaker(personKey(s))}
                               onSpeaker={onSpeaker}
                             />
                           ))}
@@ -515,13 +518,13 @@ function DaySection({
   const { t, lang } = useI18n();
   const now = useNow();
   const [showKeynotes, setShowKeynotes] = useState(false);
-  const { md, weekday } = formatDate(day.date, lang);
+  const { md, weekday } = day.date ? formatDate(day.date, lang) : { md: t("home.datePending"), weekday: "" };
   // A keynote is followed-relevant when starred or one of its speakers is
   // followed — the same rule forum talks use.
   const keyShown = (i: number) =>
     !filtered ||
     isTalk(keynoteId(day.date, i)) ||
-    (day.keynotes[i].speakers ?? []).some((s) => isSpeaker(s.name));
+    (day.keynotes[i].speakers ?? []).some((s) => isSpeaker(personKey(s)));
   // In the follow view, auto-open the keynote rail if one of its keynotes is
   // followed, so the highlighted keynote is actually visible.
   const anyKeyFollowed = filtered && day.keynotes.some((_t, i) => keyShown(i));
@@ -536,9 +539,9 @@ function DaySection({
           <span className="dashday__wd">{weekday}</span>
         </h2>
         <div className="dashday__meta">
-          <span>
+          {day.venue && <span>
             <Icon name="building" size={12} /> {day.venue}
-          </span>
+          </span>}
           {day.forumBlock && (
             <span className="dashday__time">
               <Icon name="clock" size={12} /> {timeRange(day.forumBlock)}
@@ -620,7 +623,10 @@ function DaySection({
 /* ---------------- dashboard ---------------- */
 
 export default function Home() {
-  const { id: confId, conference, scheduleDays, stats, uniqueSpeakerCount } = useConference();
+  const { id: confId, conference, scheduleDays: datedDays, unscheduledForums, stats, uniqueSpeakerCount } = useConference();
+  const scheduleDays = useMemo(() => unscheduledForums.length ? [...datedDays, {
+    date: "", md: "", weekday: "", venue: "", keynotes: [], slots: unscheduledForums,
+  }] : datedDays, [datedDays, unscheduledForums]);
   const { t, lang } = useI18n();
   const {
     forums: followedForums,
@@ -633,7 +639,8 @@ export default function Home() {
   // (paired with scroll restoration), keyed by conference so a switch is fresh.
   // When the conference is running today, open filtered to today; otherwise show
   // every day ("all"). Matched against a real day so gaps fall back cleanly.
-  const todayStr = todayISO();
+  const now = useNow();
+  const todayStr = now.todayStr;
   const [dayFilter, setDayFilter] = useStickyState<string>(`${confId}:home.day`, () =>
     scheduleDays.some((d) => d.date === todayStr) ? todayStr : "all",
   );
@@ -675,7 +682,8 @@ export default function Home() {
           if (onlyFollowed) {
             const tracked =
               followedForums.has(s.code) ||
-              s.people.some((n) => isSpeaker(n)) ||
+              (s.forum?.chairs ?? []).some((p) => isSpeaker(personKey(p))) ||
+              (s.forum?.talks ?? []).some((t) => (t.speakers ?? []).some((p) => isSpeaker(personKey(p)))) ||
               (s.forum?.talks ?? []).some((_, i) => isTalk(talkId(s.code, i)));
             if (!tracked) return false;
           }
@@ -693,7 +701,7 @@ export default function Home() {
             if (q && !keynoteSearch(kt).includes(q)) return false;
             return (
               isTalk(keynoteId(d.date, i)) ||
-              (kt.speakers ?? []).some((s) => isSpeaker(s.name))
+              (kt.speakers ?? []).some((s) => isSpeaker(personKey(s)))
             );
           });
         return { day: d, slots, keynoteHit };
@@ -733,6 +741,7 @@ export default function Home() {
               {startMd}–{endMd}
               {mainCity && ` · ${t("common.inChina", { city: mainCity })}`}
             </div>
+            <SourceNotes flags={conference.extra?.flags} />
           </div>
           <div className="dashhead__stats">
             {[
@@ -761,7 +770,7 @@ export default function Home() {
               {t("common.all")}
             </button>
             {scheduleDays.map((d) => {
-              const { md, weekday } = formatDate(d.date, lang);
+              const { md, weekday } = d.date ? formatDate(d.date, lang) : { md: t("home.datePending"), weekday: "" };
               return (
                 <button
                   key={d.date}

@@ -8,14 +8,17 @@ import {
   type FollowState,
 } from "./follow-store";
 import { FOLLOWS_UPDATED } from "./sync";
+import { useConference } from "./conference-store";
+import { resolveSpeakerKeys } from "./person-key";
 
 // Follows are per-conference: the provider is mounted inside the conference
 // layout keyed by conference id, so switching conferences remounts it with that
 // conference's own persisted follows (and never mixes two agendas together).
 export function FollowProvider({ confId, children }: { confId: string; children: React.ReactNode }) {
+  const { conference } = useConference();
   const keys = useMemo(() => followKeys(confId), [confId]);
   const [forums, setForums] = useState<Set<string>>(() => load(keys.forums));
-  const [speakers, setSpeakers] = useState<Set<string>>(() => load(keys.speakers));
+  const [speakers, setSpeakers] = useState<Set<string>>(() => resolveSpeakerKeys(load(keys.speakers), conference));
   const [talks, setTalks] = useState<Set<string>>(() => load(keys.talks));
 
   useEffect(() => save(keys.forums, forums), [keys.forums, forums]);
@@ -26,7 +29,7 @@ export function FollowProvider({ confId, children }: { confId: string; children:
   useEffect(() => {
     const reload = () => {
       setForums(load(keys.forums));
-      setSpeakers(load(keys.speakers));
+      setSpeakers(resolveSpeakerKeys(load(keys.speakers), conference));
       setTalks(load(keys.talks));
     };
     window.addEventListener(FOLLOWS_UPDATED, reload);
@@ -35,7 +38,7 @@ export function FollowProvider({ confId, children }: { confId: string; children:
       window.removeEventListener(FOLLOWS_UPDATED, reload);
       window.removeEventListener("storage", reload);
     };
-  }, [keys.forums, keys.speakers, keys.talks]);
+  }, [keys.forums, keys.speakers, keys.talks, conference]);
 
   // Tell the sync engine after a local mutation (debounced push). Skip the mount
   // run so merely navigating into a conference doesn't schedule a push; a pull
@@ -77,11 +80,11 @@ export function FollowProvider({ confId, children }: { confId: string; children:
   const importFollows = useCallback(
     (data: { forums: string[]; speakers: string[]; talks: string[] }) => {
       setForums((prev) => new Set([...prev, ...data.forums]));
-      setSpeakers((prev) => new Set([...prev, ...data.speakers]));
+      setSpeakers((prev) => resolveSpeakerKeys(new Set([...prev, ...data.speakers]), conference));
       setTalks((prev) => new Set([...prev, ...data.talks]));
       return data.forums.length + data.speakers.length + data.talks.length;
     },
-    [],
+    [conference],
   );
 
   const value = useMemo<FollowState>(
