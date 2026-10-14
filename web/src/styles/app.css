@@ -794,6 +794,8 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 .tgrid__empty { padding: 40px 16px; text-align: center; color: var(--fg-muted); font-size: 13.5px; }
 .tgrid__ttitle { font-size: 12px; font-weight: 500; line-height: 1.3; color: var(--fg); }
 .tgrid__tspk { font-size: 11px; line-height: 1.3; color: var(--fg-secondary); }
+.tgrid__tspk, .tgrid__ttime { display: flex; align-items: baseline; gap: 3px; }
+.tgrid__tspk svg, .tgrid__ttime svg { flex: none; align-self: flex-start; margin-top: 1px; }
 .tgrid__more { position: absolute; left: 3px; right: 3px; font-size: 11px; color: var(--fg-muted); padding: 4px 7px; }
 
 /* Per-forum break cell (chinasoft: each forum breaks at its own time). Styled

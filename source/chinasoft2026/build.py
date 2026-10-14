@@ -4,13 +4,16 @@
 The overview supplies the inventory and conference timetable. Detail pages
 supply forum programmes, including breaks, opening remarks and row-spanned
 hosts. Unpublished details stay unscheduled; conflicting source values survive
-in flags/extra. No previous-year programme or AI-derived content is imported.
+in flags/extra. No previous-year programme is imported. AI annotations are
+merged separately into the enrichment container.
 """
 import hashlib
 import json
 import pathlib
 import re
 import sys
+from functools import lru_cache
+from urllib.parse import quote, urljoin
 
 from bs4 import BeautifulSoup
 
@@ -23,6 +26,7 @@ sys.path.insert(0, str(HERE.parent))
 from people import read_person
 from times import read_time
 from chinasoft2025.build import parse_chairs, committee_members_flat
+from enrichment import apply_enrichment
 
 CATEGORIES = {
     "常设论坛": "regular-forum", "学术论坛": "academic-forum",
@@ -47,6 +51,27 @@ def i18n(value):
 
 def load(path):
     return BeautifulSoup((RAW / path).read_text(encoding="utf-8"), "html.parser")
+
+
+@lru_cache(maxsize=1)
+def portrait_manifest():
+    manifest = json.loads((RAW / "portraits.json").read_text(encoding="utf-8"))
+    for entry in manifest.values():
+        path = ROOT / "web/public" / entry["local_path"].lstrip("/")
+        if hashlib.sha256(path.read_bytes()).hexdigest() != entry["sha256"]:
+            raise ValueError(f"Portrait hash mismatch: {path}")
+    return manifest
+
+
+def photo(card):
+    image = card.find("img")
+    if not image:
+        return None
+    url = urljoin(BASE, image["src"])
+    entry = portrait_manifest().get(url)
+    if entry is None:
+        raise ValueError(f"Portrait missing from the snapshot: {url}; run fetch_photos.py")
+    return {"local_path": entry["local_path"], "source_url": quote(url, safe=":/%")}
 
 
 def time_range(value, flags):
@@ -93,7 +118,7 @@ def table_rows(table):
         yield [cells.get(i, "") for i in range(max(cells, default=-1) + 1)], bool(row.find("th"))
 
 
-def people(value, flags, role=None):
+def people(value, flags, role=None, known_names=(), single=False):
     """Split explicit lists, preserving punctuation inside affiliations."""
     if value in {"", "-", "—", "/"}:
         return []
@@ -102,8 +127,10 @@ def people(value, flags, role=None):
     if value in {"彭蓉-张颖", "刘璘- 全体嘉宾"}:
         flags.append(f"Ambiguous speaker credit retained verbatim: {value!r}")
         return []
-    parts = re.split(r"[、；;]", value)
-    if len(parts) == 1 and not re.search(r"教授|研究员|博士|工程师", value) and re.fullmatch(r"[一-鿿]{2,3}(?:\s+[一-鿿]{2,3})+", value):
+    parts = [value] if single else re.split(r"[、；;]", value)
+    # Whitespace is normally the name/affiliation boundary. Split a bare list
+    # only when every token is independently named on this same source page.
+    if not single and len(parts) == 1 and len(value.split()) > 1 and all(word in known_names for word in value.split()):
         parts = value.split()
     result = []
     for part in parts:
@@ -114,17 +141,16 @@ def people(value, flags, role=None):
         if problem:
             flags.append(problem)
         else:
-            # A parenthesized annotation immediately after a name is not an
-            # institution. Keep it verbatim, without letting it hide the unit.
+            # A moderator annotation is a role; other parenthetical text may
+            # be an affiliation and must remain attached to this person.
             aff = person.get("affiliation_raw", "")
             annotation = re.match(r"^[（(]([^）)]+)[）)]\s*(.*)$", aff)
-            if annotation:
+            if annotation and "主持" in annotation[1]:
                 person["extra"] = {"name_annotation": annotation[1]}
                 person.pop("affiliation_raw", None)
                 if annotation[2]:
                     person["affiliation_raw"] = annotation[2]
-                if "主持" in annotation[1]:
-                    person["chair_role"] = "主持"
+                person["chair_role"] = "主持"
             result.append(person)
     return result
 
@@ -136,11 +162,15 @@ def profiles(soup, flags):
         heading = txt(card.find("h4"))
         who = re.sub(r"^.*?[：:]", "", heading)
         who = re.sub(r"^\d+[.、]\s*", "", who)
-        persons = people(who, flags)
+        # Each profile card describes one person. Punctuation in their roles
+        # or affiliations is not a delimiter between multiple speakers.
+        persons = people(who, flags, single=True)
         if len(persons) != 1:
             flags.append(f"Profile has no unique person identity: {heading!r}")
             continue
         person = persons[0]
+        if portrait := photo(card):
+            person["photo"] = portrait
         info = {"person": person, "heading_raw": heading}
         for paragraph in card.find_all("p"):
             strong = paragraph.find("strong")
@@ -178,8 +208,10 @@ def detail(category, slug):
     window = time_range(fields["时间"], flags)
     forum = {
         "code": code[0], "title": i18n(title),
+        "start": window[0], "end": window[1],
         "day_date": date(fields["时间"]), "room": fields["地点"],
-        "session_period": "morning" if window[0] < "12:00" else "afternoon",
+        "session_period": (None if window[0] < "12:00" and window[1] >= "13:00"
+                           else "morning" if window[0] < "12:00" else "afternoon"),
         "source_url": f"{BASE}#agenda/{category}/{slug}",
         "chairs": [], "talks": [], "breaks": [], "detail_extracted": True,
         "flags": flags, "extra": {"schedule_raw": fields["时间"],
@@ -193,11 +225,22 @@ def detail(category, slug):
             forum["chairs"].append(parsed)
         else:
             flags.append(problem)
+    chairs_by_name = {p["name"]: p for p in forum["chairs"]}
+    for card in soup.select(".committee-member"):
+        if not card.find("img"):
+            continue
+        heading = txt(card.find("h4") or card.select_one(".member-name"))
+        who = re.sub(r"^.*?[：:]", "", heading)
+        parsed = people(who, flags, single=True)
+        if len(parsed) != 1 or parsed[0]["name"] not in chairs_by_name:
+            raise ValueError(f"Unmatched chair portrait: {code[0]} {heading}")
+        chairs_by_name[parsed[0]["name"]]["photo"] = photo(card)
     for section in soup.select(".forum-section"):
         if re.search(r"介绍|背景|简介", txt(section.find(["h2", "h3"]))) and not section.select(".committee-member,.speaker-member"):
             forum["description"] = "\n\n".join(txt(p) for p in section.find_all("p"))
             break
     bios = profiles(soup, flags)
+    known_names = set(bios) | {p["name"] for p in forum["chairs"]}
     used_bios = set()
     for table in soup.select(".forum-table"):
         rows = list(table_rows(table))
@@ -222,7 +265,7 @@ def detail(category, slug):
                 flags.extend(row_flags)
                 continue
             speaker_raw = row.get("报告嘉宾", row.get("讲者", ""))
-            speakers = people(speaker_raw, row_flags)
+            speakers = people(speaker_raw, row_flags, known_names=known_names)
             talk = {
                 "title": i18n(title), "title_status": "tbd" if "待定" in title else "confirmed",
                 "start": start, "end": end, "speakers": speakers,
@@ -233,6 +276,9 @@ def detail(category, slug):
             if section_title:
                 talk["extra"]["section_title"] = section_title
             for speaker in speakers:
+                chair = chairs_by_name.get(speaker["name"])
+                if chair and chair.get("photo"):
+                    speaker["photo"] = chair["photo"]
                 info = bios.get(speaker["name"])
                 if not info:
                     continue
@@ -240,6 +286,11 @@ def detail(category, slug):
                 for key in ("bio",):
                     if info.get(key):
                         speaker[key] = info[key]
+                if info["person"].get("photo"):
+                    speaker["photo"] = info["person"]["photo"]
+                if (speaker["name"] == "许福" and "南洋理工大学" in speaker.get("affiliation_raw", "")
+                        and "北京林业大学" in info.get("bio", "")):
+                    row_flags.append("Timetable affiliation says 南洋理工大学; biography says 北京林业大学. Both source values retained")
                 if info.get("abstract") and talk["type"] == "talk":
                     talk["abstract"] = info["abstract"]
                     talk["abstract_status"] = "tbd" if "待定" in info["abstract"] else "confirmed"
@@ -284,7 +335,10 @@ def committees():
             members = []
             if "committee-grid" in group.get("class", []):
                 for item in group.select(".committee-name"):
-                    members.extend(people(txt(item), flags))
+                    parsed = people(txt(item), flags, single=True)
+                    if parsed and (portrait := photo(item.parent)):
+                        parsed[0]["photo"] = portrait
+                    members.extend(parsed)
             elif "member-list" in group.get("class", []):
                 for item in committee_members_flat(group):
                     person, problem = read_person(item["name"], item.get("affiliation_raw"))
@@ -307,7 +361,30 @@ def committees():
                     flags.append(f"{name}: {problem}")
             if members:
                 result.append({"role": i18n(name), "members": members})
-    return result, flags
+    # Committee subpages repeat roles from the overview. Merge exact roles,
+    # retaining each source roster and flagging disagreements rather than
+    # rendering the same committee twice or silently choosing one roster.
+    merged = {}
+    for group in result:
+        key = group["role"]["zh"].replace(" ", "")
+        group["role"] = i18n(key)
+        names = [p["name"] for p in group["members"]]
+        if key not in merged:
+            group["extra"] = {"source_rosters": [names]}
+            merged[key] = group
+            continue
+        previous = merged[key]
+        previous["extra"]["source_rosters"].append(names)
+        if set(names) != {p["name"] for p in previous["members"]}:
+            flags.append(f"{key}: source pages publish different rosters; all explicitly named members retained")
+        known = {p["name"]: p for p in previous["members"]}
+        for member in group["members"]:
+            if member["name"] not in known:
+                previous["members"].append(member)
+                known[member["name"]] = member
+            elif member.get("photo"):
+                known[member["name"]].setdefault("photo", member["photo"])
+    return list(merged.values()), flags
 
 
 def build():
@@ -336,6 +413,7 @@ def build():
         forum = details.pop(code, None)
         if forum is None:
             forum = {"code": code, "title": i18n(title), "day_date": None,
+                     "start": None, "end": None,
                      "room": None, "chairs": [], "talks": [], "detail_extracted": False,
                      "agenda_status": "not_published", "source_url": BASE + "#agenda/agenda-overview/index",
                      "flags": ["Listed in the overview; no programme linked from the published forum indexes"]}
@@ -384,14 +462,26 @@ def build():
                 forum["day_date"] = day
                 forum["room"] = room
                 forum["session_period"] = "morning" if start < "12:00" else "afternoon"
+                forum["start"], forum["end"] = start, end
                 forum.setdefault("extra", {})["published_window"] = {"start": start, "end": end}
         days.setdefault(day, {"date": day, "venue_id": "society-hill", "blocks": []})["blocks"].append(block)
-    # The viewer resolves one forum block per day. Keep the overview's separate
-    # windows intact and put all dated detail references in one unbounded block.
+    # One time-axis board per day contains every parallel forum. Its envelope
+    # orders the board among plenaries/meetings; each forum keeps its own window.
+    # Preserve overview placeholders in metadata instead of displaying them a
+    # second time above the actual programme.
     for day, record in days.items():
         entries = [{"forum_code": f["code"], "room": f["room"]} for f in forums if f["day_date"] == day]
         if entries:
-            record["blocks"].append({"kind": "forums", "title": i18n("论坛"), "forum_entries": entries})
+            dated = [f for f in forums if f["day_date"] == day]
+            overview_rows = [b for b in record["blocks"] if b["title"]["zh"] == "分领域论坛"
+                             or any(f["title"]["zh"] == b["title"]["zh"] for f in dated)]
+            record["blocks"] = [b for b in record["blocks"] if b not in overview_rows]
+            starts = [f["start"] for f in dated if f["start"]] + [t["start"] for f in dated for t in f["talks"] if t.get("start")]
+            ends = [f["end"] for f in dated if f["end"]] + [t["end"] for f in dated for t in f["talks"] if t.get("end")]
+            record["blocks"].append({"kind": "forums", "title": i18n("论坛"), "forum_entries": entries,
+                                     "start": min(starts) if starts else None, "end": max(ends) if ends else None,
+                                     "extra": {"overview_rows": overview_rows}})
+        record["blocks"].sort(key=lambda b: b.get("start") or "99:99")
     for forum in forums:
         if forum["day_date"] and forum["day_date"] not in days:
             raise ValueError(f"Forum date outside overview: {forum['code']}")
@@ -406,6 +496,8 @@ def build():
     for card in load("pages/home.html").select(".speaker-card"):
         person, problem = read_person(txt(card.select_one(".speaker-name")), title=txt(card.select_one(".speaker-title")))
         if person:
+            if portrait := photo(card):
+                person["photo"] = portrait
             planned_guests.append(person)
         else:
             committee_flags.append(problem)
@@ -416,9 +508,18 @@ def build():
     if len(prototype_schedule) != 1:
         raise ValueError("Expected one published prototype forum date")
     dates = sorted(days)
+    # Two source profiles use the same name with different affiliations and
+    # biographies. Preserve each credit; a shared name alone cannot settle
+    # whether this is a source update or a namesake.
+    name_credits = [(f, t, p) for f in forums for t in f["talks"] for p in t["speakers"] if p["name"] == "李佳"]
+    if len({p.get("affiliation_raw") for _, _, p in name_credits}) > 1:
+        for _, talk, _ in name_credits:
+            talk.setdefault("flags", []).append("李佳 appears with different affiliations/profiles in P4 and R4; each source credit is retained without assuming an identity correction")
+    apply_enrichment(forums, HERE / "enrichment.json")
     fingerprint = hashlib.sha256()
     for path in sorted(RAW.rglob("*.html")):
         fingerprint.update(path.relative_to(RAW).as_posix().encode() + b"\0" + path.read_bytes())
+    fingerprint.update(b"portraits.json\0" + (RAW / "portraits.json").read_bytes())
     conf = {
         "id": "chinasoft2026", "name": {"zh": "2026 CCF中国软件大会", "en": "ChinaSoft 2026"},
         "source_url": BASE, "start_date": dates[0], "end_date": dates[-1], "timezone": "Asia/Shanghai",

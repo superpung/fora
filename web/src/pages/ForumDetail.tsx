@@ -358,7 +358,7 @@ export default function ForumDetail() {
         icon: "calendar",
         text:
           `${dateInfo.md} ${dateInfo.weekday}` +
-          (f.session_period ? ` · ${tr(`period.${f.session_period}`)}` : ""),
+          (f.start ? ` · ${f.start}${f.end ? `–${f.end}` : ""}` : f.session_period ? ` · ${tr(`period.${f.session_period}`)}` : ""),
       });
     const forumRoom = [confVenue, f.room].filter(Boolean).join(" ");
     if (forumRoom) metaLines.push({ icon: "pin", text: forumRoom });
@@ -607,7 +607,7 @@ export default function ForumDetail() {
           {dateInfo && (
             <span>
               <Icon name="calendar" size={13} /> {dateInfo.md} {dateInfo.weekday}
-              {forum.session_period && ` · ${tr(`period.${forum.session_period}`)}`}
+              {forum.start ? ` · ${forum.start}${forum.end ? `–${forum.end}` : ""}` : forum.session_period && ` · ${tr(`period.${forum.session_period}`)}`}
             </span>
           )}
           {forum.sponsor && (

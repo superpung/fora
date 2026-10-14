@@ -3,11 +3,51 @@
 Run with: uv run python -m unittest discover -s source/chinasoft2026
 """
 import unittest
+import json
 
-from build import detail, load, people, table_rows
+from build import detail, load, people, table_rows, committees, profiles, RAW, ROOT
+from people import read_person, person_problem
 
 
 class ProgrammeTests(unittest.TestCase):
+    def test_every_profile_retains_its_identity_and_portrait(self):
+        for page in RAW.rglob("*.html"):
+            soup = load(page.relative_to(RAW))
+            cards = soup.select(".speaker-member")
+            if not cards:
+                continue
+            with self.subTest(page=page.name):
+                flags = []
+                parsed = profiles(soup, flags)
+                self.assertEqual(len(parsed), len(cards))
+                self.assertFalse(flags)
+                self.assertEqual(sum(bool(p["person"].get("photo")) for p in parsed.values()),
+                                 sum(bool(card.find("img")) for card in cards))
+        forum = detail("academic-forum", "intelligent-software-dev")
+        speaker = forum["talks"][2]["speakers"][0]
+        self.assertEqual(speaker["name"], "狄鹏")
+        self.assertTrue(speaker["bio"])
+        self.assertTrue(speaker["photo"])
+        self.assertTrue(forum["talks"][2]["abstract"])
+
+    def test_built_schedule_windows_and_enrichment_coverage(self):
+        data = json.loads((ROOT / "data/chinasoft2026.json").read_text())
+        for day in data["days"]:
+            starts = [b.get("start") or "99:99" for b in day["blocks"]]
+            self.assertEqual(starts, sorted(starts))
+        forums = {f["code"]: f for f in data["forums"]}
+        for code in ("R10", "R13"):
+            self.assertIsNone(forums[code]["session_period"], "A full-day programme is not a morning-only forum")
+        self.assertEqual((forums["E6"]["start"], forums["E6"]["end"]), ("14:10", "15:10"))
+        for code in ("C5", "C6"):
+            self.assertIsNone(forums[code]["start"])
+            self.assertIsNone(forums[code]["end"])
+        for forum in forums.values():
+            for talk in forum["talks"]:
+                if talk.get("type") == "talk":
+                    self.assertTrue(talk["enrichment"]["topics"], (forum["code"], talk["title"]))
+                    self.assertEqual(talk["enrichment"]["generated_by"], "ai")
+
     def test_every_timed_source_row_is_retained(self):
         categories = ("academic-forum", "industry-forum", "education-forum",
                       "regular-forum", "special-issue-forum")
@@ -46,9 +86,30 @@ class ProgrammeTests(unittest.TestCase):
         result = people("金芝 教授 武汉大学/北京大学", flags)
         self.assertEqual(result[0]["name"], "金芝")
         self.assertEqual(result[0]["affiliation_raw"], "教授 武汉大学/北京大学")
-        self.assertEqual([p["name"] for p in people("李必信 孙小兵 裴玉", flags)],
+        self.assertEqual([p["name"] for p in people("李必信 孙小兵 裴玉", flags, known_names={"李必信", "孙小兵", "裴玉"})],
                          ["李必信", "孙小兵", "裴玉"])
         self.assertFalse(flags)
+
+    def test_short_companies_are_affiliations_not_speakers(self):
+        for name, affiliation in (("金意儿", "华为"), ("陈驰", "华为"), ("狄鹏", "昆仑芯"), ("杨经纬", "百度")):
+            with self.subTest(name=name):
+                flags = []
+                self.assertEqual(people(f"{name} {affiliation}", flags),
+                                 [{"name": name, "affiliation_raw": affiliation}])
+                self.assertTrue(person_problem(affiliation))
+                self.assertFalse(flags)
+
+    def test_honorifics_stay_attached_to_people(self):
+        for name, title in (("梅宏", "院士"), ("柴立元", "校长"), ("金芝", "教授")):
+            person, problem = read_person(f"{name} {title}")
+            self.assertIsNone(problem)
+            self.assertEqual(person, {"name": name, "title": title})
+            self.assertTrue(person_problem(title))
+        groups, _ = committees()
+        honorary = next(g for g in groups if g["role"]["zh"] == "荣誉主席")
+        self.assertEqual([p["name"] for p in honorary["members"]],
+                         ["林惠民", "梅宏", "吕建", "柴立元", "陈雨露"])
+        self.assertEqual(len({g["role"]["zh"] for g in groups}), len(groups))
 
     def test_pending_and_collective_credits_are_flags(self):
         for raw in ("待更新", "所有嘉宾", "论坛组委会", "姓名（待定） 华为"):

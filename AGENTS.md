@@ -161,6 +161,10 @@ and how to add a conference.
   registration / committee meetings) → forum (CFxx) → talk`.
   - **A forum is a first-class entity** (code / name / room / session sponsor /
     chairs / embedded talks).
+  - Optional forum `start`/`end` describe its own published window. Explicit
+    nulls mean unknown; only legacy records with absent fields inherit their
+    parent block's window. A shared day-wide board is not an individual
+    forum's schedule.
   - Bilingual and TBD states are supported throughout.
 - Dirty data is recorded faithfully and marked with `flags` — never silently
   corrected (see `data/VERIFY_TODO.md` for the running data-quality tracker).
@@ -312,6 +316,14 @@ pnpm preview    # serve the production build
   source-only behaviour when it is off and carries a provenance mark plus the
   "may contain errors" disclaimer (`AiMark.tsx`) when it is on. Topics travel as
   vocabulary keys and are shown through `topicLabel()`, never as raw text.
+  Enrichment entries may include `source_title`; the merge fails if that title
+  changes, preventing stale index-based annotations after programme edits.
+- **Portraits:** ChinaSoft 2026 snapshots explicit person-card images with
+  `source/chinasoft2026/fetch_photos.py`. `scripts/prepare-portraits.mjs` uses
+  Sharp to make 256px WebP files under `public/portraits/chinasoft2026/`.
+  Source URLs and input/output hashes live in `raw/portraits.json`; the offline
+  adapter verifies assets before attaching `person.photo`. Browser regression
+  checks decode every portrait and verify its association with the talk's person.
 - **Reminders:** opt-in local notifications for starred items
   (`lib/reminder-store.ts` prefs, `lib/reminder.tsx` provider,
   `lib/reminder-schedule.ts` scheduling). Nothing schedules and no OS permission
@@ -320,7 +332,9 @@ pnpm preview    # serve the production build
   after `vite build` to emit `dist/sw.js` — a **post-build** step by design, so it
   doesn't depend on the Vite 8 / rolldown plugin surface. It precaches the app
   shell and runtime-caches per-conference datasets (emitted under `assets/data/`
-  via `vite.config.ts`'s `chunkFileNames`) on first visit. The SW is registered in
+  via `vite.config.ts`'s `chunkFileNames`) on first visit. Content-addressed
+  portraits are cached on demand in `fora-portraits`, never precached with the
+  app shell. The SW is registered in
   `main.tsx` in production only, and its navigation fallback denylists
   `/.netlify/*` so login always hits the network. `public/manifest.webmanifest`
   + the `icon-*.png` mark it installable.

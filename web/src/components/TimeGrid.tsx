@@ -9,6 +9,7 @@ import Icon from "../components/Icon";
 import StarButton from "../components/StarButton";
 import type { Block, Forum, Talk } from "../types";
 import { titleLine } from "../lib/talk-title";
+import { speakerNames } from "../lib/data";
 
 // A time-vs-forum matrix for one day's parallel forum sessions: the vertical
 // axis is wall-clock time, each forum is a column, and every talk sits near its
@@ -155,7 +156,10 @@ export default function TimeGrid({
         hi = Math.max(hi, e2);
         return { s, e: e2, name: b.name, start: b.start as string, end: b.end };
       });
-    if (timed.length === 0 && untimed === 0) continue;
+    // Published forum windows remain visible even when their individual talks
+    // are not announced. They are forum placeholders, never fabricated talks.
+    if (forum.start) lo = Math.min(lo, toMin(forum.start));
+    if (forum.end) hi = Math.max(hi, toMin(forum.end));
     const roomStr = (e.room ?? forum.room ?? "").replace(/\s+/g, " ").trim();
     const roomParts = roomStr
       .split(/[、，,]/)
@@ -236,7 +240,7 @@ export default function TimeGrid({
       code: c.code,
       key: c.key,
       room: c.room,
-      start: cells.length ? Math.min(...c.timed.map((x) => x.s)) : Infinity,
+      start: c.timed.length ? Math.min(...c.timed.map((x) => x.s)) : c.forum.start ? toMin(c.forum.start) : Infinity,
       cells,
       bottom,
       untimed: c.untimed,
@@ -259,7 +263,7 @@ export default function TimeGrid({
           cells: c.cells.filter((cell) => cell.kind === "talk" && relevant(c.code, cell.i, cell.t)),
           untimed: 0,
         }))
-        .filter((c) => c.cells.length > 0)
+        .filter((c) => c.cells.length > 0 || isForum(c.code))
     : columns;
 
   if (filtered && shown.length === 0) {
@@ -298,10 +302,10 @@ export default function TimeGrid({
               className="tgrid__chead"
               title={c.forum.title.zh}
             >
+              <span className="tgrid__ctitle">{c.forum.title.zh}</span>
               <span className="tgrid__croom">
                 <Icon name="pin" size={10} /> {c.room}
               </span>
-              <span className="tgrid__ctitle">{c.forum.title.zh}</span>
             </Link>
             <div className="tgrid__cbody" style={{ height: bodyH }}>
               {hours.map((h) => (
@@ -326,7 +330,7 @@ export default function TimeGrid({
                   );
                 }
                 const { t, i, top, h } = cell;
-                const sp = t.speakers?.[0];
+                const speakers = speakerNames(t);
                 const to = `/${confId}/forum/${c.code}#talk-${i + 1}`;
                 const key = `${c.key}#${i}`;
                 const open = coarse && openKey === key;
@@ -336,14 +340,15 @@ export default function TimeGrid({
                 const isNow = isNowWithin(date, t.start, t.end, now);
                 const inner = (
                   <>
-                    <span className={`tgrid__ttime mono${isNow ? " is-now" : ""}`}>
-                      {t.start}
-                      {t.end ? `–${t.end}` : ""}
-                    </span>
                     <span className="tgrid__ttitle">
                       {titleLine(t, tr("timeline.tbd")).text}
                     </span>
-                    {sp?.name && <span className="tgrid__tspk">{sp.name}</span>}
+                    {speakers && <span className="tgrid__tspk"><Icon name="user" size={12} /> {speakers}</span>}
+                    <span className="tgrid__tspk"><Icon name="pin" size={11} /> {c.room}</span>
+                    <span className={`tgrid__ttime mono${isNow ? " is-now" : ""}`}>
+                      <Icon name="clock" size={11} /> {t.start}
+                      {t.end ? `–${t.end}` : ""}
+                    </span>
                   </>
                 );
                 // minHeight lets a compressed cell grow to its full content on
@@ -418,6 +423,16 @@ export default function TimeGrid({
                 <div className="tgrid__more" style={{ top: c.bottom - 22 }}>
                   {tr("timeline.moreUntimed", { n: c.untimed })}
                 </div>
+              )}
+              {!c.forum.talks?.length && (
+                <Link
+                  to={`/${confId}/forum/${c.code}`}
+                  className="tgrid__more"
+                  style={{ top: c.forum.start ? (toMin(c.forum.start) - lo) * PX_PER_MIN : 0 }}
+                >
+                  <span className="mono">{c.forum.start ? `${c.forum.start}${c.forum.end ? `–${c.forum.end}` : ""}` : tr("plan.timeTbd")} · </span>
+                  {tr(c.forum.agenda_status === "not_published" ? "common.agendaPending" : "common.pending")}
+                </Link>
               )}
             </div>
           </div>

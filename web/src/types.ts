@@ -132,6 +132,9 @@ export interface Forum {
   sponsor?: string | null;
   series_part?: string | null;
   day_date?: string | null;
+  /** A forum's own published window. Explicit null means not announced. */
+  start?: string | null;
+  end?: string | null;
   session_period?: "morning" | "afternoon" | "evening" | null;
   room?: string | null;
   description?: string | null;

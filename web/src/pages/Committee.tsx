@@ -49,8 +49,10 @@ export default function Committee() {
                   <Avatar person={m} size={34} />
                   <div className="member__info">
                     <div className="member__name">{m.name}</div>
-                    {m.affiliation_raw && (
-                      <div className="member__aff">{m.affiliation_raw}</div>
+                    {(m.affiliation_raw || m.title) && (
+                      <div className="member__aff">
+                        {[m.affiliation_raw, m.title && !m.affiliation_raw?.includes(m.title) ? m.title : null].filter(Boolean).join(" · ")}
+                      </div>
                     )}
                   </div>
                 </motion.div>

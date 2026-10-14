@@ -305,6 +305,7 @@ export function buildConferenceViews(raw: unknown): ConferenceViews {
   const forumBlockByDate = new Map(scheduleDays.map((d) => [d.date, d.forumBlock]));
   // A forum talk has no time of its own; fall back to its forum block's window.
   const forumTimeWindow = (forum: Forum): { start?: string | null; end?: string | null } => {
+    if ("start" in forum || "end" in forum) return { start: forum.start, end: forum.end };
     const blk = forum.day_date ? forumBlockByDate.get(forum.day_date) : undefined;
     return { start: blk?.start, end: blk?.end };
   };

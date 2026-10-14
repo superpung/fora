@@ -12698,9 +12698,6 @@
             {
               "name": "胡欣蔚",
               "affiliation_raw": "北京航空航天大学"
-            },
-            {
-              "name": "华为"
             }
           ],
           "abstract": null,
@@ -12953,6 +12950,9 @@
           "start": "10:30",
           "end": "10:50"
         }
+      ],
+      "flags": [
+        "speaker cell an organization, not a person: '华为'"
       ]
     },
     {
