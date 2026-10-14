@@ -1,27 +1,34 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ConferenceCtx } from "./conference-store";
+import { clockAt } from "./conference-time";
 
 // A live clock that re-ticks every 30s so "now"-dependent UI (the running-report
 // highlight across the dashboard, schedule and timeline) drifts with real time
-// without a page reload. Returns today's LOCAL date (YYYY-MM-DD) and the current
+// without a page reload. Returns the venue's date (YYYY-MM-DD) and the current
 // minute-of-day — the two values every "is it running now" check needs.
 export interface Now {
   todayStr: string;
   nowMin: number;
 }
 
-const p2 = (n: number) => String(n).padStart(2, "0");
-
-export function useNow(): Now {
+/** Tick while visible and immediately refresh after returning to the tab. */
+export function useClockMs(): number {
   const [ms, setMs] = useState(() => Date.now());
   useEffect(() => {
-    const id = window.setInterval(() => setMs(Date.now()), 30_000);
-    return () => window.clearInterval(id);
+    const update = () => setMs(Date.now());
+    const id = window.setInterval(update, 30_000);
+    document.addEventListener("visibilitychange", update);
+    return () => {
+      window.clearInterval(id);
+      document.removeEventListener("visibilitychange", update);
+    };
   }, []);
-  const d = new Date(ms);
-  return {
-    todayStr: `${d.getFullYear()}-${p2(d.getMonth() + 1)}-${p2(d.getDate())}`,
-    nowMin: d.getHours() * 60 + d.getMinutes(),
-  };
+  return ms;
+}
+
+export function useNow(): Now {
+  const conference = useContext(ConferenceCtx)?.conference;
+  return clockAt(useClockMs(), conference?.timezone);
 }
 
 // True when `date` is today AND the current minute falls inside [start, end).

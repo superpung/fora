@@ -178,8 +178,8 @@ export function ReminderProvider({ children }: { children: React.ReactNode }) {
     }
 
     const p = loadPrefs();
-    const planned = planReminders(loadItemSets(), p, tRef.current, zhRef.current);
     const now = Date.now();
+    const planned = planReminders(loadItemSets(), p, tRef.current, zhRef.current, now);
     const fired = loadFired();
     const plannedTags = new Set(planned.map((r) => tagOf(r.id)));
     const plannedIds = new Set(planned.map((r) => r.id));

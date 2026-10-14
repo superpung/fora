@@ -239,6 +239,8 @@
         "sponsor": { "type": ["string", "null"], "description": "Session sponsor, e.g. 知存科技/阿里巴巴达摩院" },
         "series_part": { "type": ["string", "null"], "description": "Series-part marker, e.g. （一）/（二）" },
         "day_date": { "type": ["string", "null"], "format": "date" },
+        "start": { "type": ["string", "null"], "description": "The forum's own published start time. Explicit null means unknown, not the enclosing day's shared window." },
+        "end": { "type": ["string", "null"], "description": "The forum's own published end time; may differ from a talk's recorded time." },
         "session_period": { "type": ["string", "null"], "enum": ["morning", "afternoon", "evening", null] },
         "room": { "type": ["string", "null"] },
         "description": { "type": ["string", "null"] },

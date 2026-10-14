@@ -13,7 +13,7 @@ const { count, size, warnings } = await generateSW({
   globDirectory: "dist",
   globPatterns: ["**/*.{html,css,js,svg,png,ico,webmanifest,woff2}"],
   // Conference datasets are runtime-cached, not precached (see below).
-  globIgnores: ["assets/data/**", "sw.js", "workbox-*.js"],
+  globIgnores: ["assets/data/**", "portraits/**", "sw.js", "workbox-*.js"],
   swDest: "dist/sw.js",
   clientsClaim: true,
   skipWaiting: true,
@@ -27,6 +27,16 @@ const { count, size, warnings } = await generateSW({
   navigateFallback: "/index.html",
   navigateFallbackDenylist: [/^\/\.netlify\//, /^\/api\//],
   runtimeCaching: [
+    {
+      // Content-addressed portraits are cached as viewed, never downloaded for
+      // unrelated conferences when the app shell first installs.
+      urlPattern: ({ url, sameOrigin }) => sameOrigin && url.pathname.startsWith("/portraits/"),
+      handler: "CacheFirst",
+      options: {
+        cacheName: "fora-portraits",
+        expiration: { maxEntries: 400, maxAgeSeconds: 60 * 60 * 24 * 90 },
+      },
+    },
     {
       // per-conference datasets: fetched on first (online) visit, then served
       // from cache offline; revalidated in the background when online.

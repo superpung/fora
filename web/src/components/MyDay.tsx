@@ -74,7 +74,7 @@ export default function MyDay({ date, items }: { date: string; items: ExportItem
             // A gap counted off borrowed times would be invented, so only exact
             // ones are subtracted.
             const gap = bothTimed && !borrowed && !clash ? thisStart - prevEnd : null;
-            const moved = !!prev && !clash && !!it.room && prev.room !== it.room;
+            const moved = bothTimed && !clash && !!prev?.room && !!it.room && prev.room !== it.room;
             // A borrowed window can say its forum is on; it cannot say that this
             // talk is the one being given right now.
             const running = !it.approx && isNowWithin(date, it.start, it.end, now);
