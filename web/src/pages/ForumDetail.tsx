@@ -266,7 +266,9 @@ export default function ForumDetail() {
           getComputedStyle(document.documentElement).getPropertyValue("--nav-h"),
           10,
         ) || 56;
-      window.scrollTo({ top: Math.max(0, top - navH - 16), behavior: "auto" });
+      // `auto` inherits the global smooth-scroll CSS and makes these repeated
+      // corrections animate. Long pages may still be moving after settling.
+      window.scrollTo({ top: Math.max(0, top - navH - 16), behavior: "instant" });
     };
     const timers = [0, 90, 220, 450].map((d) => window.setTimeout(scrollToAnchor, d));
     return () => {
