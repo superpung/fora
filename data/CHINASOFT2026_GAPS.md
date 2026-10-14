@@ -46,12 +46,6 @@ One further abstract is retained in an unmatched profile, separately displayed.
   unmatched-profile section. Do not attach them to a guessed speaker credit.
 - **E2#5:** `刘璘- 全体嘉宾` is also ambiguous. Keep the source credit in an
   accessible note; do not create a person named after a group.
-- **P4#4 / R4#6:** 李佳 is credited to 清华大学 / 武汉大学 with different
-  biographies. It is unresolved whether these are namesakes or updated
-  affiliations. Explicit `person.extra.identity_key` values keep the source
-  records, portraits, directory entries and follows separate. Do not merge or
-  rename either person without evidence. Legacy name-based follows retain
-  their old scope by resolving to both records.
 - **R13 / 许福:** timetable affiliation 南洋理工大学 differs from biography
   北京林业大学. Preserve both and revisit when the source changes.
 - **R14#4:** the timetable now explicitly names 廖楠; its previous unmatched
@@ -140,9 +134,124 @@ generated JSON copies must come from the same rebuilt source.
   forum and report level; unresolved profiles remain separately accessible.
 - E6 can be followed as a timed forum before individual reports are announced.
   C5/C6 retain date-only events; unknown dates are never fabricated for exports.
-- Ambiguous same-name identities no longer share one representative profile or
-  one new follow key. Existing unambiguous records retain their original keys.
+- P4#4 / R4#6 are two different people named 李佳, confirmed by the user.
+  Their profiles and identity keys remain separate. They are not a source
+  discrepancy and carry no uncertainty note. Legacy name-based follows retain
+  their old coverage; new follows use the separate keys.
 - The live view uses each forum's window, including published reports that
   exceed it, rather than treating the entire day's forum board as one session.
   Date-only competitions never acquire a fabricated active time. Upcoming
   forum counts group actual starts instead of grouping every forum in the day.
+
+## Source-note inventory and necessity review
+
+After removing the two namesake warnings, 93 stored notes remain: 4 at
+conference level, 56 at forum level and 33 at report level. The four conference
+notes currently appear in both Home and Committee, so these are data-entry
+counts, not unique text counts or the number of rendered instances.
+
+The review recommends keeping 9 concise substantive notes and replacing or
+removing 84 unnecessary warning-style notes. Pending states and collective
+credits still need their normal display. These recommendations have **not**
+been applied by this review; only the two user-identified namesake warnings
+were removed. Committee notes belong on Committee, not on Home. The existing
+AI provenance mark is a separate feature and is not part of this inventory.
+
+The table quotes every remaining source note verbatim. Report indices are
+one-based. Review these judgments before changing presentation.
+
+| Location | Current note (verbatim UI text) | Assessment |
+| --- | --- | --- |
+| Home + Committee | 日期口径不同：首页为 11 月 6–8 日，大会介绍和总体日程包含 11 月 5 日签到；本站包含签到日。 | Show check-in as a normal event; no discrepancy warning needed |
+| Home + Committee | 程序委员会：原文为“待更新”，名单尚未公布。 | Show pending status normally, without an extra warning |
+| Home + Committee | 本地组织委员会：原文为“待定”，名单尚未公布。 | Show pending status normally, without an extra warning |
+| Home + Committee | 宣传委员会主席：来源页面名单不一致，分别为“王栋、辜文蔚、张重群；王栋、辜文蔚”，保留全部明确列出的人名。 | Keep a concise factual note |
+| P1 / forum | 论坛名称不一致：总表为“软件女性学者”，此处使用详情页名称。 | Remove from UI: wording/formatting only |
+| P1#2 | 报告题目不一致：日程表为“特邀报告: 双链耦合：打通教学科研的任督二脉——探索教学与科研的双向赋能”，报告资料为“双链耦合：打通教学科研的任督二脉——探索教学与科研的双向赋能”，均按原文保留。 | Remove from UI: wording/formatting only |
+| P1#3 | 报告题目不一致：日程表为“特邀报告: 软件工程之美”，报告资料为“软件工程之美”，均按原文保留。 | Remove from UI: wording/formatting only |
+| P1#4 | 报告题目不一致：日程表为“青年学者报告: 在深耕中拓界：从网构软件到智能化软件的探索之旅”，报告资料为“在深耕中拓界：从网构软件到智能化软件的探索之旅”，均按原文保留。 | Remove from UI: wording/formatting only |
+| P1#5 | 报告题目不一致：日程表为“青年学者报告: 从发现问题到形成研究方向”，报告资料为“从发现问题到形成研究方向”，均按原文保留。 | Remove from UI: wording/formatting only |
+| P1#6 | 报告题目不一致：日程表为“青年学者报告: 一个ISFJ人的读博后记”，报告资料为“一个ISFJ人的读博后记”，均按原文保留。 | Remove from UI: wording/formatting only |
+| P1#7 | 报告题目不一致：日程表为“博士生报告: 在复杂软件中寻真问题，在真实场景中解真问题：我的科研探索与思考”，报告资料为“在复杂软件中寻真问题，在真实场景中解真问题：我的科研探索与思考”，均按原文保留。 | Remove from UI: wording/formatting only |
+| P1#8 | 报告题目不一致：日程表为“博士生报告: "打怪升级"之外：AI时代，如何找到自己的问题与动力？”，报告资料为“"打怪升级"之外：AI时代，如何找到自己的问题与动力？”，均按原文保留。 | Remove from UI: wording/formatting only |
+| P1#9 | 报告题目不一致：日程表为“博士生报告: 在实验中求真，在实践中成长：探索可信代码大模型的科研之路”，报告资料为“在实验中求真，在实践中成长：探索可信代码大模型的科研之路”，均按原文保留。 | Remove from UI: wording/formatting only |
+| P1#10 | 报告题目不一致：日程表为“博士生报告: 让缺陷有迹可循，也让科研有迹可循”，报告资料为“让缺陷有迹可循，也让科研有迹可循”，均按原文保留。 | Remove from UI: wording/formatting only |
+| P2 / forum | 论坛名称不一致：总表为“青年学者”，此处使用详情页名称。 | Remove from UI: wording/formatting only |
+| P3 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| P4 / forum | 论坛名称不一致：总表为“优秀博士生激励计划”，此处使用详情页名称。 | Remove from UI: wording/formatting only |
+| P4#1 | 原文署名为“论坛组委会”，未明确具体人物。 | Show the collective credit normally, not as a warning |
+| P4#6 | 报告题目不一致：日程表为“SMT 的局部搜索技术与应用”，报告资料为“SMT的局部搜索技术与应用”，均按原文保留。 | Remove from UI: wording/formatting only |
+| P4#7 | 报告题目不一致：日程表为“AI 赋能的安全证书综合与形式化验证方法”，报告资料为“AI赋能的安全证书综合与形式化验证方法”，均按原文保留。 | Remove from UI: wording/formatting only |
+| P4#8 | 原文署名为“论坛组委会”，未明确具体人物。 | Show the collective credit normally, not as a warning |
+| R1 / forum | 论坛名称不一致：总表为“Agentic AI分析与测试”，此处使用详情页名称。 | Remove from UI: wording/formatting only |
+| R1#7 | 时间不一致：本报告为 18:00–18:30，超出论坛标注的 15:20–18:20，均按原文保留。 | Keep a concise factual note |
+| R2 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| R3 / forum | 论坛名称不一致：总表为“AI赋能软件系统的架构治理与维护”，此处使用详情页名称。 | Remove from UI: wording/formatting only |
+| R3#1 | 原文署名为“嘉宾致辞”，未明确具体人物。 | Show the collective credit normally, not as a warning |
+| R3#8 | 原文署名为“所有嘉宾”，未明确具体人物。 | Show the collective credit normally, not as a warning |
+| R4 / forum | 论坛名称不一致：总表为“安全代码生成与软件可信构建”，此处使用详情页名称。 | Remove from UI: wording/formatting only |
+| R5 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| R6 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| R7 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| R8 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| R9 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| R10 / forum | 论坛名称不一致：总表为“软件形式化工程方法”，此处使用详情页名称。 | Remove from UI: wording/formatting only |
+| R11 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| R13 / forum | 论坛名称不一致：总表为“智能化软件开发、维护与安全”，此处使用详情页名称。 | Remove from UI: wording/formatting only |
+| R13#1 | 原文署名为“主持人”，未明确具体人物。 | Show the collective credit normally, not as a warning |
+| R13#12 | 原文署名为“主持人及报告嘉宾”，未明确具体人物。 | Show the collective credit normally, not as a warning |
+| R13#13 | 报告题目不一致：日程表为“特邀报告1：《人机物融合软件系统的设计方法——探索和挑战》”，报告资料为“人机物融合软件系统的设计方法——探索和挑战”，均按原文保留。 | Remove from UI: wording/formatting only |
+| R13#14 | 报告题目不一致：日程表为“特邀报告2：《从人类智能到机器智能：一种受脑启发的智能体计算架构》”，报告资料为“从人类智能到机器智能：一种受脑启发的智能体计算架构”，均按原文保留。 | Remove from UI: wording/formatting only |
+| R13#15 | 单位信息不一致：日程表为南洋理工大学，个人简介为北京林业大学，均按原文保留。 | Keep a concise factual note |
+| R13#15 | 报告题目不一致：日程表为“特邀报告3：《林草智能软件研究与典型应用》”，报告资料为“林草智能软件研究与典型应用”，均按原文保留。 | Remove from UI: wording/formatting only |
+| R13#16 | 报告题目不一致：日程表为“特邀报告4：《面向数据安全保护场景的系统性能优化》”，报告资料为“面向数据安全保护场景的系统性能优化”，均按原文保留。 | Remove from UI: wording/formatting only |
+| R13#17 | 报告题目不一致：日程表为“特邀报告5：《机无所恶，伤有所至：具身智能时代的软件的可靠性危机》”，报告资料为“机无所恶，伤有所至：具身智能时代的软件的可靠性危机”，均按原文保留。 | Remove from UI: wording/formatting only |
+| R13#18 | 报告题目不一致：日程表为“特邀报告6：《生-机-电系统融合：从感知到生成》”，报告资料为“生-机-电系统融合：从感知到生成”，均按原文保留。 | Remove from UI: wording/formatting only |
+| R14 / forum | 论坛名称不一致：总表为“智能驱动供应链安全分析”，此处使用详情页名称。 | Remove from UI: wording/formatting only |
+| R14#4 | 报告题目不一致：日程表为“大模型威胁下的硬件组件供应链安全”，报告资料为“AI威胁下的硬件安全演进趋势”，均按原文保留。 | Keep a concise factual note |
+| R15 / forum | 论坛名称不一致：总表为“可信区块链”，此处使用详情页名称。 | Remove from UI: wording/formatting only |
+| R16 / forum | 论坛名称不一致：总表为“智能软件与开源生态”，此处使用详情页名称。 | Remove from UI: wording/formatting only |
+| R17 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| R18 / forum | 论坛名称不一致：总表为“移动软件工程”，此处使用详情页名称。 | Remove from UI: wording/formatting only |
+| R19 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| R21 / forum | 论坛名称不一致：总表为“攻击溯源、推理与安全分析”，此处使用详情页名称。 | Remove from UI: wording/formatting only |
+| R22 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| R23 / forum | 论坛名称不一致：总表为“量子计算软件和算法”，此处使用详情页名称。 | Remove from UI: wording/formatting only |
+| R23#6 | 报告题目不一致：日程表为“量子算法可靠实现的形式验证”，报告资料为“Quafu量子计算云平台介绍”，均按原文保留。 | Keep a concise factual note |
+| R25 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| R26 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| R27 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| R28 / forum | 论坛名称不一致：总表为“软件分析与软件安全新技术”，此处使用详情页名称。 | Remove from UI: wording/formatting only |
+| R29 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| R30 / forum | 论坛名称不一致：总表为“形式化方法与大模型技术”，此处使用详情页名称。 | Remove from UI: wording/formatting only |
+| R31 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| R33 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| R34 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| S1 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| S2 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| S3 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| S4 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| S6 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| S7 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| S8 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| E1 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| E2 / forum | 以下报告资料未能与日程表署名明确对应，单独保留：张颖 | Remove duplicate note; the separate profile section already identifies it |
+| E2#4 | 署名“彭蓉-张颖”中的讲者／主持角色不明确，保留原文，暂不关联人物。 | Keep a concise factual note |
+| E2#5 | 署名“刘璘- 全体嘉宾”中的讲者／主持角色不明确，保留原文，暂不关联人物。 | Keep a concise factual note |
+| E3 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| E4#7 | 时间不一致：本报告为 11:45–12:10，超出论坛标注的 09:00–12:00，均按原文保留。 | Keep a concise factual note |
+| E5 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| E6 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| I3 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| I4#3 | 报告题目不一致：日程表为“RustBot：企业级Rust智能化作业解决方案”，报告资料为“《RustBot：企业级Rust智能化作业解决方案》”，均按原文保留。 | Remove from UI: wording/formatting only |
+| I4#4 | 报告题目不一致：日程表为“从个人提效到组织提效—Coding Agent的组织落地实践”，报告资料为“从个人提效到组织提效——Coding Agent的组织落地实践”，均按原文保留。 | Remove from UI: wording/formatting only |
+| I4#6 | 时间不一致：本报告为 11:30–12:00，超出论坛标注的 09:00–11:30，均按原文保留。 | Keep a concise factual note |
+| I5 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| C1 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| C2 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| C3 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| C4 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| C5 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| C5 / forum | 竞赛通知已公布决赛日期，具体时间、会场和参赛议程尚未公布。 | Show pending status normally, without an extra warning |
+| C6 / forum | 总体日程已列出此论坛，官网尚未公布详细议程。 | Show pending status normally, without an extra warning |
+| C6 / forum | 竞赛通知已公布决赛日期，具体时间、会场和参赛议程尚未公布。 | Show pending status normally, without an extra warning |

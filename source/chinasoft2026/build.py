@@ -544,14 +544,14 @@ def build():
                               "day_date": date(prototype_schedule[0]), "session_period": "afternoon",
                               "flags": ["此通知未注明论坛编号，暂不与总表中的 C2 竞赛合并。"]})
     dates = sorted(days)
-    # Two source profiles use the same name with different affiliations and
-    # biographies. Preserve each credit; a shared name alone cannot settle
-    # whether this is a source update or a namesake.
-    name_credits = [(f, t, p) for f in forums for t in f["talks"] for p in t["speakers"] if p["name"] == "李佳"]
-    if len({p.get("affiliation_raw") for _, _, p in name_credits}) > 1:
-        for forum, talk, person in name_credits:
-            person.setdefault("extra", {})["identity_key"] = f"{forum['code']}:李佳"
-            talk.setdefault("flags", []).append("P4 与 R4 的李佳分别署名清华大学、武汉大学，简介也不同；身份尚未确认，按各自来源分开显示。")
+    # The user confirmed these are two different people. Keep their existing
+    # identity keys without presenting a source discrepancy or uncertainty.
+    for forum in forums:
+        if forum["code"] in {"P4", "R4"}:
+            for talk in forum["talks"]:
+                for person in talk["speakers"]:
+                    if person["name"] == "李佳":
+                        person.setdefault("extra", {})["identity_key"] = f"{forum['code']}:李佳"
     apply_enrichment(forums, HERE / "enrichment.json")
     fingerprint = hashlib.sha256()
     for path in sorted(RAW.rglob("*.html")):
