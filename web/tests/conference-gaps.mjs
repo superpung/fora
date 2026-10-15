@@ -22,7 +22,8 @@ try {
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
   const go = async (path, selector) => {
-    await page.goto(base + path, { waitUntil: "networkidle" });
+    // Preview analytics may keep connections open after the application is ready.
+    await page.goto(base + path, { waitUntil: "domcontentloaded" });
     await page.locator(selector).first().waitFor();
   };
   await go("/chinasoft2026", ".frow");

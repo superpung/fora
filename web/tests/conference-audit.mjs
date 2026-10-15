@@ -131,7 +131,8 @@ try {
   assert(await page.locator(".tmaptalk__spk").count() > 0, "Topic talks have no speakers");
   await goto("/chinasoft2026/forum/R32", ".talksum");
   await page.evaluate(() => localStorage.setItem("fora-ai.enabled", "0"));
-  await page.reload({ waitUntil: "networkidle" });
+  await page.reload({ waitUntil: "domcontentloaded" });
+  await page.locator("#talk-5 .person__aff").waitFor();
   assert.equal(await page.locator(".talksum").count(), 0, "AI summary ignores the global switch");
   assert.equal(await page.locator('nav a[href="/chinasoft2026/topics"]').count(), 0);
   assert.equal(await page.locator("#talk-5 .person__aff").textContent(), "华为");
@@ -141,7 +142,13 @@ try {
   phone.on("pageerror", (error) => errors.push(error.message));
   for (const path of ["forum/R32#talk-5", "committee", "schedule", "topics", "speakers", "plan",
     "forum/R6#talk-1", "forum/R7#talk-5", "forum/R7#talk-7", "forum/R8#talk-10", "forum/R11#talk-1", "forum/R17#talk-1"]) {
-    await phone.goto(`${base}/chinasoft2026/${path}`, { waitUntil: "networkidle" });
+    // Assert application readiness, independent of the preview's analytics requests.
+    await phone.goto(`${base}/chinasoft2026/${path}`, { waitUntil: "domcontentloaded" });
+    const ready = path.startsWith("forum/") ? `#${path.split("#")[1]}` : {
+      committee: ".member__name", schedule: ".daytab", topics: ".tmap__node",
+      speakers: ".spcard", plan: ".planform",
+    }[path];
+    await phone.locator(ready).first().waitFor();
     await phone.waitForTimeout(550);
     assert(await phone.locator("h1,h2").count() > 0, `Blank mobile page: ${path}`);
     const overflow = await phone.evaluate(() => document.documentElement.scrollWidth - innerWidth);
