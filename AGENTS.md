@@ -334,6 +334,15 @@ pnpm preview    # serve the production build
   `talk.extra.hosts`, chronological breaks, and separately retained
   `forum.extra.unmatched_profiles`. Before refreshing ChinaSoft 2026, read
   `data/CHINASOFT2026_GAPS.md`, including its deliberate data-only correction.
+  `source/chinasoft2026/check_updates.py` archives original HTML and portrait
+  hashes under `source/chinasoft2026/checks/` without changing curated input.
+  Its reports compare both the previous successful check and the imported
+  snapshot; failed checks do not advance the baseline. See `checks/README.md`
+  for coverage and the treatment of broken source references.
+  Reviewed code/identity associations and retained accessible pages live in
+  `source/chinasoft2026/curation.json`; do not derive identities from affiliation.
+  Committee reveal animations trigger on intersection, not a fraction of the
+  roster's height, so long lists remain visible on short viewports.
 - **Search (`lib/search.ts` + `lib/bm25.ts`):** one palette over the whole
   program — talk titles/abstracts, speakers, affiliations, forums, committee
   members, organizations — ranked by BM25 in the browser over the already-loaded

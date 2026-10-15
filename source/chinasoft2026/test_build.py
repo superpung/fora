@@ -141,6 +141,45 @@ class ProgrammeTests(unittest.TestCase):
         self.assertEqual(rows[-1][0], "11月8日 周日")
         self.assertEqual(rows[-1][2], "CCF形式化方法专委会年会")
 
+    def test_october_15_programmes_and_committee_are_complete(self):
+        data = json.loads((ROOT / "data/chinasoft2026.json").read_text())
+        forums = {f["code"]: f for f in data["forums"]}
+        for code, count, breaks in (("R6", 6, 1), ("R7", 8, 1), ("R8", 18, 2), ("R11", 3, 1), ("R17", 8, 1)):
+            with self.subTest(code=code):
+                forum = forums[code]
+                self.assertEqual(len(forum["talks"]), count)
+                self.assertEqual(len(forum["breaks"]), breaks)
+                self.assertFalse(forum["flags"])
+                for talk in forum["talks"]:
+                    if talk["type"] == "talk":
+                        self.assertTrue(talk.get("abstract"))
+                        self.assertTrue(talk.get("enrichment", {}).get("topics"))
+        self.assertEqual([t["type"] for t in forums["R8"]["talks"] if t["title"]["zh"] == "结语"], ["other", "other"])
+        self.assertEqual(len(forums["R8"]["chairs"]), 6)
+        self.assertEqual(forums["R6"]["talks"][-1]["end"], "17:30")
+        self.assertEqual(forums["R6"]["end"], "18:20")
+        self.assertTrue(forums["R16"]["talks"])
+        self.assertEqual(forums["R16"]["extra"]["source_navigation_status"], "link_withdrawn")
+        self.assertNotIn("photo", forums["R17"]["talks"][0]["speakers"][0])
+        committee = next(g for g in data["committees"] if g["role"]["zh"] == "程序委员会委员")
+        self.assertEqual(len(committee["members"]), 195)
+        self.assertEqual([p["name"] for p in committee["members"] if not p.get("affiliation_raw")],
+                         ["任晗", "谢筱恒", "许文强"])
+
+    def test_namesakes_in_the_same_forum_keep_the_correct_reports_and_follows(self):
+        data = json.loads((ROOT / "data/chinasoft2026.json").read_text())
+        forums = {f["code"]: f for f in data["forums"]}
+        qinghua = forums["R7"]["talks"][4]["speakers"][0]
+        wuhan = forums["R7"]["talks"][6]["speakers"][0]
+        self.assertEqual(qinghua["extra"]["identity_key"], "P4:李佳")
+        self.assertEqual(wuhan["extra"]["identity_key"], "R4:李佳")
+        self.assertIn("清华大学人工智能学院", qinghua["bio"])
+        self.assertIn("武汉大学弘毅博士后", wuhan["bio"])
+        self.assertNotEqual(qinghua["photo"], wuhan["photo"])
+        self.assertIn("恶意挟持", forums["R7"]["talks"][4]["abstract"])
+        self.assertIn("执行轨迹评估框架", forums["R7"]["talks"][6]["abstract"])
+        self.assertNotIn("unmatched_profiles", forums["R7"]["extra"])
+
 
 if __name__ == "__main__":
     unittest.main()

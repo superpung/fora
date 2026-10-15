@@ -5,6 +5,7 @@ Follow live DOM links only: commented-out links include previous-year material.
 Download the complete snapshot before replacing any committed source files.
 """
 import pathlib
+import json
 import re
 import urllib.request
 
@@ -43,6 +44,8 @@ def fetch():
                 get(f"pages/agenda/{forum[1]}/templates/{forum[2]}.html")
             elif intro:
                 get(f"pages/intro/{intro[1]}.html")
+    for retained in json.loads((RAW.parent / "curation.json").read_text())["retained_details"]:
+        get(f"pages/agenda/{retained['category']}/templates/{retained['slug']}.html")
     for path, html in pages.items():
         target = RAW / path
         target.parent.mkdir(parents=True, exist_ok=True)

@@ -1,12 +1,14 @@
 // End-to-end audit of the onboarded conference, including every published
 // forum, chronological schedule blocks, people, AI governance and follows.
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readFile, mkdir } from "node:fs/promises";
 import { spawn } from "node:child_process";
 import { chromium } from "playwright";
 
 const data = JSON.parse(await readFile(new URL("../src/data/conferences/chinasoft2026.json", import.meta.url)));
 const base = process.env.AUDIT_BASE_URL || "http://127.0.0.1:4201";
+const screenshots = process.env.SOURCE_AUDIT_DIR || "/tmp/chinasoft2026-source-refresh";
+await mkdir(screenshots, { recursive: true });
 const server = process.env.AUDIT_BASE_URL ? null : spawn(
   new URL("../node_modules/.bin/vite", import.meta.url).pathname,
   ["--host", "127.0.0.1", "--port", "4201", "--strictPort"],
@@ -66,6 +68,10 @@ try {
         .map((p) => `${p.name}:${p.photo.local_path}`).sort(), `${forum.code}#${i}: portraits`);
     });
     console.log(`PASS ${forum.code}: ${result.length} programme rows and speaker identities`);
+    if (["R6", "R7", "R8", "R11", "R17"].includes(forum.code)) {
+      await page.waitForTimeout(600);
+      await page.screenshot({ path: `${screenshots}/desktop-${forum.code}.png` });
+    }
   }
   await goto("/chinasoft2026/forum/R32#talk-5", "#talk-5 .person__name");
   assert.deepEqual(await page.locator("#talk-5 .person__name").allTextContents(), ["金意儿"]);
@@ -81,6 +87,15 @@ try {
   const roles = await page.locator(".cmt__role").allTextContents();
   assert.equal(new Set(roles).size, roles.length, "Duplicate committee groups");
   assert.equal(await page.locator(".cmt").filter({ has: page.locator(".cmt__role", { hasText: "荣誉主席" }) }).locator(".member").count(), 5);
+  const programmeCommittee = page.locator(".cmt").filter({ has: page.locator(".cmt__role", { hasText: "程序委员会委员" }) });
+  assert.equal(await programmeCommittee.locator(".member").count(), 195);
+  await programmeCommittee.locator(".cmt__role").scrollIntoViewIfNeeded();
+  await page.waitForFunction(() => [...document.querySelectorAll('.cmt')]
+    .filter(el => el.querySelector('.cmt__role')?.textContent === '程序委员会委员')
+    .every(el => Number(getComputedStyle(el).opacity) >= 0.99
+      && [...el.querySelectorAll('.member')].every(member => Number(getComputedStyle(member).opacity) >= 0.99)));
+  await page.waitForTimeout(650);
+  await page.screenshot({ path: `${screenshots}/desktop-programme-committee.png` });
   await page.waitForTimeout(1200);
   await page.screenshot({ path: "/tmp/chinasoft2026-committee.png" });
 
@@ -124,12 +139,29 @@ try {
   const mobile = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, locale: "zh-CN" });
   const phone = await mobile.newPage();
   phone.on("pageerror", (error) => errors.push(error.message));
-  for (const path of ["forum/R32#talk-5", "committee", "schedule", "topics", "speakers", "plan"]) {
+  for (const path of ["forum/R32#talk-5", "committee", "schedule", "topics", "speakers", "plan",
+    "forum/R6#talk-1", "forum/R7#talk-5", "forum/R7#talk-7", "forum/R8#talk-10", "forum/R11#talk-1", "forum/R17#talk-1"]) {
     await phone.goto(`${base}/chinasoft2026/${path}`, { waitUntil: "networkidle" });
     await phone.waitForTimeout(550);
     assert(await phone.locator("h1,h2").count() > 0, `Blank mobile page: ${path}`);
     const overflow = await phone.evaluate(() => document.documentElement.scrollWidth - innerWidth);
     assert(overflow <= 1, `${path}: mobile page overflows by ${overflow}px`);
+    if (path === "committee") {
+      const roster = phone.locator('.cmt').filter({ has: phone.locator('.cmt__role', { hasText: '程序委员会委员' }) });
+      await roster.locator('.cmt__role').scrollIntoViewIfNeeded();
+      await phone.waitForFunction(() => [...document.querySelectorAll('.cmt')]
+        .filter(el => el.querySelector('.cmt__role')?.textContent === '程序委员会委员')
+        .every(el => Number(getComputedStyle(el).opacity) >= 0.99
+          && [...el.querySelectorAll('.member')].every(member => Number(getComputedStyle(member).opacity) >= 0.99)));
+      await phone.waitForTimeout(650);
+      await phone.screenshot({ path: `${screenshots}/mobile-programme-committee.png` });
+    }
+    if (path.startsWith("forum/") && !path.includes("R32")) {
+      const target = phone.locator(`#${path.split("#")[1]}`);
+      const box = await target.boundingBox();
+      assert(box && box.y >= 0 && box.y < 844, `Report anchor is not visible: ${path}`);
+      await phone.screenshot({ path: `${screenshots}/mobile-${path.replaceAll("/", "-").replaceAll("#", "-")}.png` });
+    }
   }
   assert.deepEqual(errors, [], "Browser runtime errors");
   console.log("PASS hub, committees, four schedule days, pending forums, follows, topics, AI switch and mobile routes");

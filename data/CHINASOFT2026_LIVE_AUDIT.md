@@ -2,6 +2,13 @@
 
 Audit date: 2026-10-14. Source data is unchanged by these fixes.
 
+Rerun: **2026-10-15**, after importing five new programmes and updated portraits.
+All 61 clock captures and assertions pass against the 247-item dataset; the
+gallery and results are under `/tmp/chinasoft2026-oct15-live/`. An earlier run
+was interrupted by local dataset rebuilding and was discarded; the successful
+rerun used stable input. The added committee visibility fix is covered separately
+by 400-member desktop/mobile fixtures and actual-source screenshots.
+
 ## Method
 
 Run `cd web && pnpm test`, or run `node tests/live-clock.mjs` independently.

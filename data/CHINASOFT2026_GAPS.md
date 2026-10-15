@@ -1,37 +1,46 @@
 # ChinaSoft 2026: source gaps and refresh checklist
 
-Last source review: 2026-10-14. This is the conference-specific checklist for
-every subsequent refresh, not a claim that the official programme is complete.
-Talk numbers below are **one-based**, matching the website's `#talk-N` links.
+Last imported source review: **2026-10-15**. This is the conference-specific
+checklist for every subsequent refresh, not a claim that the official programme
+is complete. Talk numbers below are **one-based**, matching `#talk-N` links.
+
+The [October 15 observation](../source/chinasoft2026/checks/20261015T055445155743Z/REVIEW.md)
+is now incorporated: R6/R7/R8/R11/R17, the 195-member programme committee,
+R14 biography formatting and updated portraits. The accessible R16 programme
+is retained despite its withdrawn navigation entry. Original snapshots stay
+separate from the curated importer input.
 
 Sources: [official site](https://chinasoft.ccf.org.cn/2026/),
 [overview](https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index).
-The current live navigation exposes 53 HTML pages and 27 detailed programmes.
-The dataset contains 64 forum/competition entries, 204 programme items, 27
-breaks, 172 attached source abstracts and 298 downloaded portrait assets.
+The official navigation exposes 57 importer-scope HTML pages and 31 detailed
+programmes. The curated input additionally retains the accessible R16 page,
+for 58 HTML pages and 32 published programmes.
+The dataset contains 64 forum/competition entries, 247 programme items, 33
+breaks, 211 attached source abstracts and 348 downloaded portrait assets.
 One further abstract is retained in an unmatched profile, separately displayed.
 
 ## Unpublished programmes
 
 | Category | Detailed / listed | Codes still without a detailed programme |
 | --- | --- | --- |
-| Academic | 17 / 34 | R2, R5, R6, R7, R8, R9, R11, R17, R19, R22, R25, R26, R27, R29, R31, R33, R34 |
+| Academic | 22 / 34 | R2, R5, R9, R19, R22, R25, R26, R27, R29, R31, R33, R34 |
 | Regular | 3 / 4 | P3 |
 | Education | 2 / 6 | E1, E3, E5, E6 |
 | Industry | 4 / 6 | I3, I5 |
 | Special issue | 1 / 8 | S1, S2, S3, S4, S6, S7, S8 |
 | Competition | 0 / 6 | C1, C2, C3, C4, C5, C6 |
 
-- 37 programmes are unpublished. Of the 64 entries, 34 have no date, 36 no
-  room and 36 no clock window. These sets overlap; do not add the counts.
+- 32 programmes are unpublished. Of the 64 entries, 29 have no date, 31 no
+  room and 31 no clock window. These sets overlap; do not add the counts.
 - E6 has a November 7, 14:10–15:10 window and a room in the overview. C5/C6
   have November 7 final dates in their announcements, but no clock times or
   rooms. Keep these partial facts without inventing reports or participants.
 - Main-conference keynote/academician sessions have overview windows but no
   individual confirmed talk programme. Tentatively attending guests in
   `extra.planned_guests` are not confirmed keynote speakers.
-- The programme committee and the local organizing committee's member list
-  remain pending. Placeholder words must not become person records.
+- The local organizing committee's member list remains pending. The programme
+  committee now has 195 members; 任晗, 谢筱恒 and 许文强 have no published
+  affiliations. Keep those affiliations absent.
 - Other meeting names M1–M3 and T1 lack dated programme entries and remain in
   `extra.other_meetings`; the three A1–A3 annual meetings have timed day blocks.
   Do not assign the undated meetings to a day by analogy.
@@ -76,6 +85,30 @@ One further abstract is retained in an unmatched profile, separately displayed.
   **not** establish cancellation. The previous page remains in Git history;
   monitor its return. The active build no longer requires the withdrawn page.
 
+## October 15 refresh details to recheck
+
+- R16's navigation link was withdrawn, but its direct official page remains
+  accessible and byte-identical. `curation.json` explicitly retains the programme;
+  `fetch.py` continues fetching that URL. Recheck its status on the next refresh.
+- R17's detail page omits its code; `curation.json` maps its exact title to R17
+  using the unchanged overview. A changed title fails the association guard.
+- R17's 王林章 portrait URL returned HTTP 404. Remove only that `<img>` from
+  curated HTML before preparing portraits; leave the person, biography and
+  abstract intact. The original tag/URL/status remain in the check archive.
+  Do not substitute another person's photo or display a broken image. Recheck
+  `images/academic-forum/学术论坛/王林章.png` on the next fetch and restore it
+  when available. This is a data-only correction, not a shared fallback rule.
+- R7 contains both previously confirmed distinct people named 李佳. Their report
+  titles and biographies establish their associations with P4 and R4. Reviewed
+  title-guarded identities in `curation.json` preserve both original follow keys;
+  no additional uncertainty notes are needed.
+- R8 has two programme tables, 14 reports, two openings, two closing remarks,
+  six organizers and two breaks. Its day-wide envelope does not remove its
+  morning/afternoon programme rows. R6's last report ends at 17:30 while its
+  published forum window ends at 18:20; no extra reports or times are invented.
+- Existing portrait resources for 刘杨, 苏亭, 王莹 and 高翠芸 changed in place.
+  Their source/output hashes and prepared WebP files have been refreshed.
+
 ## Deliberate data-only correction: R32 biographies
 
 At the user's explicit request, remove the four standalone role paragraphs
@@ -97,11 +130,15 @@ generated JSON copies must come from the same rebuilt source.
 
 ## Refresh procedure
 
-1. Fetch live pages and compare added, changed and removed links. A withdrawn
+1. Run `uv run python source/chinasoft2026/check_updates.py` to preserve an
+   original-source observation before refreshing curated input. Review both
+   comparisons in its report: changes since the last check and pending changes
+   versus curated input. Then fetch live pages and compare added, changed and removed links. A withdrawn
    link is not evidence of a cancelled event. Review this document's pending
    codes, identities, title differences and source rosters against the new pages.
-2. Apply the documented R32 data correction; do not generalize a one-off source
-   edit into shared parsing code. Update this document when upstream fixes it.
+2. Apply the documented R32 data correction and recheck the R17 missing portrait;
+   do not generalize one-off source edits into shared parsing code. Review
+   `curation.json` against the source and update this document when upstream fixes gaps.
 3. Refresh portrait assets if image references/content changed. Check identities
    against their own profile cards, not filenames or same-name records elsewhere.
 4. Rebuild with `uv run python source/build_all.py`; run
@@ -122,10 +159,13 @@ generated JSON copies must come from the same rebuilt source.
 ## Resolved display defects tracked by regression checks
 
 - All 64 forum entries are reachable in the normal dashboard, including the
-  34 entries under the pending-date section; filtering works there too.
+  29 entries under the pending-date section; filtering works there too.
+- Long committee rosters reveal when entering the viewport. A fractional
+  visibility threshold hid the 195-member programme committee on mobile;
+  independent 400-member fixtures now cover both desktop and mobile.
 - R13's two host-bearing rows and E4's seven host-bearing rows display their
   hosts separately from speakers, with portraits from each forum's own chair
-  profiles. Forum details include all 27 source breaks,
+  profiles. Forum details include all 33 source breaks,
   without changing report anchor numbering.
 - R14's confirmed speaker, profile and new abstract paragraph are imported;
   凌祥's updated biography and M1's updated title are synchronized.
@@ -146,7 +186,9 @@ generated JSON copies must come from the same rebuilt source.
 ## Source-note inventory and necessity review
 
 The cleanup is applied: 84 of the 93 reviewed notes were removed from the
-built dataset. Nine substantive notes remain: eight report-level discrepancies
+built dataset. The October 15 refresh also dismisses two equivalent forum-title
+suffix notes (R8/R11) using exact data entries, for 86 dismissals in total.
+Nine substantive notes remain: eight report-level discrepancies
 or ambiguous credits, and one publicity-committee roster discrepancy. The
 committee note appears only beneath that committee, not on Home.
 

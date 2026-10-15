@@ -9,6 +9,16 @@ Before every refresh, read [the gap and correction checklist](../../data/CHINASO
 It includes unresolved source identities and a deliberate data-only R32
 biography correction that must be reviewed after fetching.
 
+For a read-only update check, run:
+
+```bash
+uv run python source/chinasoft2026/check_updates.py
+```
+
+This saves timestamped original-source archives and comparisons under
+[`checks/`](checks/README.md), without overwriting `raw/`, portraits, enrichment
+or generated datasets. Review those changes before running the import below.
+
 ```bash
 uv run python source/chinasoft2026/fetch.py
 # Inspect and apply the documented R32 snapshot correction before building.
@@ -19,8 +29,8 @@ uv run python -m unittest discover -s source/chinasoft2026
 ```
 
 The overview supplies 64 forum/competition entries and 13 conference timetable
-rows across November 5–8. The 27 linked detail pages supply 204 programme items
-and 27 breaks. Conference meetings are retained separately from technical forums.
+rows across November 5–8. The 31 linked detail pages and retained accessible R16 programme supply
+247 programme items and 33 breaks. Conference meetings are retained separately from technical forums.
 The homepage advertises November 6–8; the dataset includes November 5 check-in
 as published in the overview and introduction, as a normal schedule event.
 
@@ -39,7 +49,9 @@ overview block locations omit the known venue prefixes, while `extra.location_ra
 retains the full source wording. The conference venue remains available for
 the page header, calendar exports and standalone share posters.
 
-All 298 explicitly linked portrait URLs have been downloaded and decoded.
+All 348 available portrait URLs have been downloaded and decoded. R17's 王林章
+URL returns 404; its image tag is omitted from curated input and tracked in the
+gap checklist, with the original preserved in the check archive.
 `fetch_photos.py` and `web/scripts/prepare-portraits.mjs` prepare 256px WebP
 assets under `web/public/portraits/chinasoft2026/`; install web dependencies
 before refreshing portraits. `raw/portraits.json` records original URLs,
@@ -75,13 +87,14 @@ remain valid followed agenda items before individual reports are announced.
 Explicit `person.extra.identity_key` values separate distinct same-name
 source records; the viewer never infers identity from affiliation alone.
 
-`enrichment.json` supplies 188 AI summaries/topic classifications, covering all
+`enrichment.json` supplies 227 AI summaries/topic classifications, covering all
 substantive reports and meaningful panels. They live only in `enrichment` and
 respect the global AI switch. Each entry records its source title so an agenda
-reordering cannot silently attach annotations to the wrong report. The 172
+reordering cannot silently attach annotations to the wrong report. The 211
 source abstracts remain separate and unchanged.
 
-The source fingerprint covers every captured page and the portrait manifest;
+The source fingerprint covers every captured page, the portrait manifest and
+reviewed curation/notes;
 builds perform no network requests and write identical dataset copies under
 `data/` and `web/src/data/`. `cd web && pnpm test` checks eight report permalinks
 and audits all published forum pages, portrait decoding, committees, all four
@@ -90,7 +103,13 @@ The gap regression suite additionally checks undated inventory entries,
 multi-paragraph abstracts, host/break display, source notes, identity separation,
 legacy follows, and empty-forum calendar exports across conference datasets.
 
-The reviewed note cleanup is stored in `note_review.json`: 84 unnecessary notes
+The new flat programme-committee grid supplies 195 members, including three
+without affiliations. Same-name profiles within a forum are matched by their
+explicit report titles. `curation.json` records guarded forum-code and person
+associations and retained pages; it preserves the two known 李佳 identities
+across R7 and their original P4/R4 appearances without changing follow keys.
+
+The reviewed note cleanup is stored in `note_review.json`: 84 initially reviewed notes plus two new forum-title suffix notes
 are removed from generated data, leaving nine substantive notes. Exact reviewed
 text is matched so future changed discrepancies still need review. Pending
 committee rosters and collective credits remain normal content; committee flags

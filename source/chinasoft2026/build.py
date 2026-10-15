@@ -66,6 +66,10 @@ def load(path):
     return BeautifulSoup((RAW / path).read_text(encoding="utf-8"), "html.parser")
 
 
+def curation():
+    return json.loads((HERE / "curation.json").read_text(encoding="utf-8"))
+
+
 @lru_cache(maxsize=1)
 def portrait_manifest():
     manifest = json.loads((RAW / "portraits.json").read_text(encoding="utf-8"))
@@ -205,7 +209,9 @@ def profiles(soup, flags):
                 info[field] = value
         name = person["name"]
         if name in result:
-            raise ValueError(f"Duplicate profile identity: {name}")
+            name = f"{name} / {info.get('report_title', '')}"
+            if not info.get("report_title") or name in result:
+                raise ValueError(f"Duplicate profile without a distinct report title: {name}")
         result[name] = info
     return result
 
@@ -215,6 +221,10 @@ def detail(category, slug):
     title = txt(soup.select_one(".section-title"))
     subtitle = txt(soup.select_one(".section-title-en"))
     code = re.search(r"\b[A-Z]\d+\b", subtitle)
+    if code is None and (association := curation()["detail_codes"].get(slug)):
+        if title != association["title"]:
+            raise ValueError(f"Reviewed forum title changed: {slug}")
+        code = [association["code"]]
     if not title or not code:
         raise ValueError(f"Missing forum identity: {category}/{slug}")
     flags = []
@@ -259,7 +269,7 @@ def detail(category, slug):
             forum["description"] = "\n\n".join(txt(p) for p in section.find_all("p"))
             break
     bios = profiles(soup, flags)
-    known_names = set(bios) | {p["name"] for p in forum["chairs"]}
+    known_names = {info["person"]["name"] for info in bios.values()} | {p["name"] for p in forum["chairs"]}
     used_bios = set()
     for table in soup.select(".forum-table"):
         rows = list(table_rows(table))
@@ -289,7 +299,7 @@ def detail(category, slug):
                 "title": i18n(title), "title_status": "tbd" if "待定" in title else "confirmed",
                 "start": start, "end": end, "speakers": speakers,
                 "type": "opening" if re.search(r"开场|开幕|致辞|论坛介绍", title) else
-                        "other" if re.search(r"圆桌|[Pp]an+el|交流与总结|论坛总结", title) else "talk",
+                        "other" if re.search(r"圆桌|[Pp]an+el|交流与总结|论坛总结|结语", title) else "talk",
                 "abstract_status": "unknown", "extra": {"speaker_raw": speaker_raw},
             }
             if section_title:
@@ -298,10 +308,16 @@ def detail(category, slug):
                 chair = chairs_by_name.get(speaker["name"])
                 if chair and chair.get("photo"):
                     speaker["photo"] = chair["photo"]
-                info = bios.get(speaker["name"])
-                if not info:
+                candidates = [(key, info) for key, info in bios.items()
+                              if info["person"]["name"] == speaker["name"]]
+                if len(candidates) > 1:
+                    candidates = [(key, info) for key, info in candidates if info.get("report_title") == title]
+                    if len(candidates) != 1:
+                        raise ValueError(f"Ambiguous profile credit in {code[0]}: {speaker['name']} / {title}")
+                if not candidates:
                     continue
-                used_bios.add(speaker["name"])
+                profile_key, info = candidates[0]
+                used_bios.add(profile_key)
                 for key in ("bio",):
                     if info.get(key):
                         speaker[key] = info[key]
@@ -353,6 +369,18 @@ def committees():
             continue
         name = txt(link)
         soup = load(f"pages/intro/{match[1]}.html")
+        # The published programme committee uses a flat grid after a sorting note.
+        if items := soup.select(".program-grid .program-item"):
+            members = []
+            for item in items:
+                person_name = txt(item.find("strong"))
+                affiliation = txt(item).removeprefix(person_name).strip()
+                person, problem = read_person(person_name, affiliation or None)
+                if problem:
+                    raise ValueError(f"Invalid programme committee member: {txt(item)}")
+                members.append(person)
+            result.append({"role": i18n(txt(soup.select_one('.section-title'))), "members": members})
+            continue
         for heading in soup.select(".section-title"):
             group = heading.find_next_sibling()
             if not group:
@@ -459,6 +487,13 @@ def build():
                 if forum["code"] in details:
                     raise ValueError(f"Duplicate forum code: {forum['code']}")
                 details[forum["code"]] = forum
+    for retained in curation()["retained_details"]:
+        if retained["code"] not in details:
+            forum = detail(retained["category"], retained["slug"])
+            if forum["code"] != retained["code"]:
+                raise ValueError(f"Retained source identity changed: {retained['slug']}")
+            forum["extra"]["source_navigation_status"] = "link_withdrawn"
+            details[forum["code"]] = forum
     forums, other_meetings = [], []
     for cells, header in table_rows(tables[1]):
         if header:
@@ -575,20 +610,27 @@ def build():
                               "day_date": date(prototype_schedule[0]), "session_period": "afternoon",
                               "flags": ["此通知未注明论坛编号，暂不与总表中的 C2 竞赛合并。"]})
     dates = sorted(days)
-    # The user confirmed these are two different people. Keep their existing
-    # identity keys without presenting a source discrepancy or uncertainty.
+    # Explicit reviewed associations preserve existing follow keys across forums.
+    identities = curation()["person_identities"]
+    assigned = set()
     for forum in forums:
-        if forum["code"] in {"P4", "R4"}:
-            for talk in forum["talks"]:
-                for person in talk["speakers"]:
-                    if person["name"] == "李佳":
-                        person.setdefault("extra", {})["identity_key"] = f"{forum['code']}:李佳"
+        for index, talk in enumerate(forum["talks"]):
+            key = f"{forum['code']}#{index}"
+            if association := identities.get(key):
+                persons = [p for p in talk["speakers"] if p["name"] == association["name"]]
+                if talk["title"]["zh"] != association["source_title"] or len(persons) != 1:
+                    raise ValueError(f"Reviewed person association changed: {key}")
+                persons[0].setdefault("extra", {})["identity_key"] = association["identity_key"]
+                assigned.add(key)
+    if assigned != identities.keys():
+        raise ValueError(f"Stale person associations: {identities.keys() - assigned}")
     apply_enrichment(forums, HERE / "enrichment.json")
     fingerprint = hashlib.sha256()
     for path in sorted(RAW.rglob("*.html")):
         fingerprint.update(path.relative_to(RAW).as_posix().encode() + b"\0" + path.read_bytes())
     fingerprint.update(b"portraits.json\0" + (RAW / "portraits.json").read_bytes())
     fingerprint.update(b"note_review.json\0" + (HERE / "note_review.json").read_bytes())
+    fingerprint.update(b"curation.json\0" + (HERE / "curation.json").read_bytes())
     conf = {
         "id": "chinasoft2026", "name": {"zh": "2026 CCF中国软件大会", "en": "ChinaSoft 2026"},
         "source_url": BASE, "start_date": dates[0], "end_date": dates[-1], "timezone": "Asia/Shanghai",
@@ -602,7 +644,7 @@ def build():
                   "flags": ["日期口径不同：首页为 11 月 6–8 日，大会介绍和总体日程包含 11 月 5 日签到；本站包含签到日。"] + committee_flags},
         "extraction": {"source": BASE, "content_sha256": fingerprint.hexdigest(),
                        "forums_total": len(forums), "forums_detail_extracted": sum(f["detail_extracted"] for f in forums),
-                       "notes": "Only live navigation links are followed. Unpublished programmes remain unscheduled. Timetable titles and affiliations are retained verbatim; profiles supplement abstracts and biographies."},
+                       "notes": "Active navigation and explicitly reviewed accessible withdrawn pages are captured. Unpublished programmes remain unscheduled. Timetable titles and affiliations are retained verbatim; profiles supplement abstracts and biographies."},
     }
     apply_note_review(conf)
     payload = json.dumps(conf, ensure_ascii=False, indent=2) + "\n"

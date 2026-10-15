@@ -28,10 +28,10 @@ try {
   await go("/chinasoft2026", ".frow");
   assert.equal(await page.locator(".frow").count(), 64);
   const pending = page.locator(".dashday").filter({ has: page.locator("h2", { hasText: "日期待公布" }) });
-  assert.equal(await pending.locator(".frow").count(), 34);
+  assert.equal(await pending.locator(".frow").count(), 29);
   await page.locator(".daypill").filter({ hasText: "日期待公布" }).click();
-  await page.waitForFunction(() => document.querySelectorAll(".frow").length === 34);
-  assert.equal(await page.locator(".frow").count(), 34);
+  await page.waitForFunction(() => document.querySelectorAll(".frow").length === 29);
+  assert.equal(await page.locator(".frow").count(), 29);
   await page.locator(".search__input").fill("软件工程智能体创新论坛");
   await page.waitForFunction(() => document.querySelectorAll(".frow").length === 1);
   assert.equal(await page.locator(".frow").count(), 1);
@@ -66,6 +66,9 @@ try {
   await page.locator(".daytab").nth(3).click();
   await page.locator('a[href="/chinasoft2026/forum/P4#talk-4"]').waitFor();
   assert.equal(await page.locator('a[href="/chinasoft2026/forum/R4#talk-6"]').count(), 0);
+  await page.locator(".daytab").nth(2).click();
+  await page.locator('a[href="/chinasoft2026/forum/R7#talk-5"]').waitFor();
+  assert.equal(await page.locator('a[href="/chinasoft2026/forum/R7#talk-7"]').count(), 0);
 
   // Legacy imports followed every appearance of the name. Preserve that scope,
   // then allow either source record to be unfollowed independently.
