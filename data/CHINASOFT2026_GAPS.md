@@ -1,38 +1,37 @@
 # ChinaSoft 2026: source gaps and refresh checklist
 
-Last imported source review: **2026-10-15**. This is the conference-specific
+Last imported source review: **2026-10-16**. This is the conference-specific
 checklist for every subsequent refresh, not a claim that the official programme
 is complete. Talk numbers below are **one-based**, matching `#talk-N` links.
 
-The [October 15 observation](../source/chinasoft2026/checks/20261015T055445155743Z/REVIEW.md)
-is now incorporated: R6/R7/R8/R11/R17, the 195-member programme committee,
-R14 biography formatting and updated portraits. The accessible R16 programme
-is retained despite its withdrawn navigation entry. Original snapshots stay
-separate from the curated importer input.
+The [October 16 observation](../source/chinasoft2026/checks/20261016T064546591524Z/REVIEW.md)
+is incorporated: P3/R22/R26/R31/S2/S6/S7/S8/I3, overview renumbering,
+committee ordering, corrected R13 affiliation/room and updated portraits.
+The accessible R16 programme is retained despite its withdrawn navigation entry.
+Original snapshots stay separate from the curated importer input.
 
 Sources: [official site](https://chinasoft.ccf.org.cn/2026/),
 [overview](https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index).
-The official navigation exposes 57 importer-scope HTML pages and 31 detailed
-programmes. The curated input additionally retains the accessible R16 page,
-for 58 HTML pages and 32 published programmes.
-The dataset contains 64 forum/competition entries, 247 programme items, 33
-breaks, 211 attached source abstracts and 348 downloaded portrait assets.
+The official navigation exposes 66 importer-scope HTML pages and 40 detailed
+programmes. Curated input retains R16, giving 67 HTML pages and 41 programmes.
+The dataset contains 65 forum/competition entries, 334 programme items, 44
+breaks, 289 attached source abstracts and 429 downloaded portrait resources.
 One further abstract is retained in an unmatched profile, separately displayed.
 
 ## Unpublished programmes
 
 | Category | Detailed / listed | Codes still without a detailed programme |
 | --- | --- | --- |
-| Academic | 22 / 34 | R2, R5, R9, R19, R22, R25, R26, R27, R29, R31, R33, R34 |
-| Regular | 3 / 4 | P3 |
-| Education | 2 / 6 | E1, E3, E5, E6 |
-| Industry | 4 / 6 | I3, I5 |
-| Special issue | 1 / 8 | S1, S2, S3, S4, S6, S7, S8 |
-| Competition | 0 / 6 | C1, C2, C3, C4, C5, C6 |
+| Academic | 25 / 35 | R2, R5, R9, R19, R25, R27, R29, R33, R34, R35 |
+| Regular | 4 / 4 | None |
+| Education | 2 / 7 | E1, E3, E5, E6, E7 |
+| Industry | 5 / 6 | I5 |
+| Special issue | 5 / 8 | S1, S3, S4 |
+| Competition | 0 / 5 | C1, C2, C3, C4, C5 |
 
-- 32 programmes are unpublished. Of the 64 entries, 29 have no date, 31 no
-  room and 31 no clock window. These sets overlap; do not add the counts.
-- E6 has a November 7, 14:10–15:10 window and a room in the overview. C5/C6
+- 24 programmes are unpublished. Of the 65 entries, 21 have no date, 23 no
+  room and 23 no clock window. These sets overlap; do not add the counts.
+- E7 has a November 7, 14:10–15:10 window and a room in the overview. C5/C2
   have November 7 final dates in their announcements, but no clock times or
   rooms. Keep these partial facts without inventing reports or participants.
 - Main-conference keynote/academician sessions have overview windows but no
@@ -55,8 +54,14 @@ One further abstract is retained in an unmatched profile, separately displayed.
   unmatched-profile section. Do not attach them to a guessed speaker credit.
 - **E2#5:** `刘璘- 全体嘉宾` is also ambiguous. Keep the source credit in an
   accessible note; do not create a person named after a group.
-- **R13 / 许福:** timetable affiliation 南洋理工大学 differs from biography
-  北京林业大学. Preserve both and revisit when the source changes.
+- **R13 / 许福:** resolved on October 16; the timetable now says 北京林业大学,
+  matching the biography. The previous discrepancy note is gone.
+- **R22#3 / 武延军:** timetable says 中科院计算所, biography says
+  中国科学院软件研究所. Both are retained with a guarded data note.
+- **S2#4 and #5:** timetable/profile titles differ substantively. Both original
+  titles and a note are retained; compare the next source update.
+- **S2#10 / 朱煜琪:** the timetable literally prints 事科学院战争研究院.
+  Keep it verbatim; do not silently expand it from the biography.
 - **R14#4:** the timetable now explicitly names 廖楠; its previous unmatched
   profile is now attached. A remaining title difference must be rechecked:
   timetable `大模型威胁下的硬件组件供应链安全` versus profile
@@ -74,8 +79,8 @@ One further abstract is retained in an unmatched profile, separately displayed.
   November 5 check-in. Include check-in as a normal event without a discrepancy warning.
 - R1, E4 and I4 have talks extending beyond their printed forum windows. Keep
   both windows; never shorten the reports to make them fit.
-- The publicity committee overview includes 张重群; the subpage lists 王栋
-  and 辜文蔚. Keep all explicit names, both source rosters and the visible note.
+- The publicity committee discrepancy was resolved on October 16: its subpage
+  now also lists 张重群. Both rosters are retained; the warning is gone.
 - Several overview forum names differ from detail-page names. The detail-page
   title is displayed and the overview wording remains in `extra.overview_title`.
   The reviewed suffix differences carry no warning.
@@ -90,8 +95,8 @@ One further abstract is retained in an unmatched profile, separately displayed.
 - R16's navigation link was withdrawn, but its direct official page remains
   accessible and byte-identical. `curation.json` explicitly retains the programme;
   `fetch.py` continues fetching that URL. Recheck its status on the next refresh.
-- R17's detail page omits its code; `curation.json` maps its exact title to R17
-  using the unchanged overview. A changed title fails the association guard.
+- R17 now explicitly prints its code (October 16). The previously reviewed
+  exact-title association remains recorded in `curation.json`.
 - R17's 王林章 portrait URL returned HTTP 404. Remove only that `<img>` from
   curated HTML before preparing portraits; leave the person, biography and
   abstract intact. The original tag/URL/status remain in the check archive.
@@ -108,6 +113,34 @@ One further abstract is retained in an unmatched profile, separately displayed.
   published forum window ends at 18:20; no extra reports or times are invented.
 - Existing portrait resources for 刘杨, 苏亭, 王莹 and 高翠芸 changed in place.
   Their source/output hashes and prepared WebP files have been refreshed.
+
+## October 16 refresh details to recheck
+
+- The overview renumbers the Harmony AI competition from C6 to C2 and the
+  talent-training forum from E6 to E7; E6 now names the prototype-system case
+  forum. R35 is newly listed. The old prototype competition title is no longer
+  listed. Use the current official codes; do not carry old E6 times into the
+  newly named E6. Previously saved code-only links/follows are not migrated.
+- The academic navigation repeats the exact R22 link twice. Remove only the
+  second duplicate from curated HTML; original snapshots retain both copies.
+- There are 22 broken portrait URLs: the existing R17 image, all eight I3
+  resources and all 13 P3 resources. Exact URLs/statuses are in the October 16
+  `report.json` under `broken_portraits`. Remove only these `<img>` tags from
+  curated HTML before `fetch_photos.py`; preserve people and all text. Restore
+  tags if those exact official resources recover. Do not guess substitute URLs.
+- The S2 and S6 陈子涵 records have separate graduate-programme biographies and
+  research fields. Explicit identity keys keep them separate without a UI note.
+  Both official cards reference the same 专刊论坛/陈子涵.png resource; retain
+  that explicit source association and recheck if the source replaces either image.
+  S2 chair 李佳 shares R4/R7's Hongyi postdoctoral biography and uses that key.
+- S7's 论坛组委会代表 and S2's 全体 are collective credits, not people.
+  R31 closing remarks, S2's anniversary discussion, and S7/S8 opening remarks
+  are retained with their appropriate event types, without invented abstracts.
+- P3 has both morning/afternoon sessions and three breaks; S2 also has both
+  sessions. All 78 newly published reports have attached source abstracts.
+- Four previously imported portrait resources changed: 文俊浩, 王喆, 王焱林,
+  and 武延军. The last was previously referenced only by retained R16, so it
+  appears as an added active reference but a changed imported resource.
 
 ## Deliberate data-only correction: R32 biographies
 
@@ -136,7 +169,8 @@ generated JSON copies must come from the same rebuilt source.
    versus curated input. Then fetch live pages and compare added, changed and removed links. A withdrawn
    link is not evidence of a cancelled event. Review this document's pending
    codes, identities, title differences and source rosters against the new pages.
-2. Apply the documented R32 data correction and recheck the R17 missing portrait;
+2. Apply the documented R32 data correction, remove the repeated R22 link, and
+   recheck all 22 broken portrait URLs;
    do not generalize one-off source edits into shared parsing code. Review
    `curation.json` against the source and update this document when upstream fixes gaps.
 3. Refresh portrait assets if image references/content changed. Check identities
@@ -158,22 +192,22 @@ generated JSON copies must come from the same rebuilt source.
 
 ## Resolved display defects tracked by regression checks
 
-- All 64 forum entries are reachable in the normal dashboard, including the
-  29 entries under the pending-date section; filtering works there too.
+- All 65 forum entries are reachable in the normal dashboard, including the
+  21 entries under the pending-date section; filtering works there too.
 - Long committee rosters reveal when entering the viewport. A fractional
   visibility threshold hid the 195-member programme committee on mobile;
   independent 400-member fixtures now cover both desktop and mobile.
 - R13's two host-bearing rows and E4's seven host-bearing rows display their
   hosts separately from speakers, with portraits from each forum's own chair
-  profiles. Forum details include all 33 source breaks,
+  profiles. Forum details include all 44 source breaks,
   without changing report anchor numbering.
 - R14's confirmed speaker, profile and new abstract paragraph are imported;
   凌祥's updated biography and M1's updated title are synchronized.
 - R32 role paragraphs are removed by the documented data edit, not parser code.
 - Source notes are expandable with keyboard/touch; substantive notes now appear
   at committee and report level; unresolved profiles remain separately accessible.
-- E6 can be followed as a timed forum before individual reports are announced.
-  C5/C6 retain date-only events; unknown dates are never fabricated for exports.
+- E7 can be followed as a timed forum before individual reports are announced.
+  C5/C2 retain date-only events; unknown dates are never fabricated for exports.
 - P4#4 / R4#6 are two different people named 李佳, confirmed by the user.
   Their profiles and identity keys remain separate. They are not a source
   discrepancy and carry no uncertainty note. Legacy name-based follows retain
@@ -185,19 +219,21 @@ generated JSON copies must come from the same rebuilt source.
 
 ## Source-note inventory and necessity review
 
-The cleanup is applied: 84 of the 93 reviewed notes were removed from the
-built dataset. The October 15 refresh also dismisses two equivalent forum-title
-suffix notes (R8/R11) using exact data entries, for 86 dismissals in total.
-Nine substantive notes remain: eight report-level discrepancies
-or ambiguous credits, and one publicity-committee roster discrepancy. The
-committee note appears only beneath that committee, not on Home.
+The original cleanup removed 84 of 93 notes. October 15 added two exact
+forum-title dismissals; October 16 adds 16 equivalent title/collective-credit
+messages to the exact-text review list. These are not new source warnings.
+R13's affiliation and the publicity roster discrepancy are now resolved.
+Ten substantive notes remain: three timing conflicts (R1/E4/I4), four report
+title conflicts (R14/R23/S2#4/S2#5), two ambiguous E2 credits, and the R22#3
+institution discrepancy. No uncertainty notes were added for known distinct
+same-name people. The historical inventory below retains its original status.
 
 The conference-specific `source/chinasoft2026/note_review.json` records exact
 reviewed note text. The adapter removes only those reviewed messages; a new or
 changed discrepancy remains visible for review. This is data curation, not a
 shared UI suppression rule. Recheck this file against the inventory on refresh.
 Pending programmes retain their normal status, pending committee member lists
-have empty membership with a pending status, and six collective credits display
+have empty membership with a pending status, and reviewed collective credits display
 as source text without fabricated people. Check-in remains a normal event.
 Original overview titles and profile report titles remain in metadata.
 

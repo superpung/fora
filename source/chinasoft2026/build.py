@@ -298,8 +298,8 @@ def detail(category, slug):
             talk = {
                 "title": i18n(title), "title_status": "tbd" if "待定" in title else "confirmed",
                 "start": start, "end": end, "speakers": speakers,
-                "type": "opening" if re.search(r"开场|开幕|致辞|论坛介绍", title) else
-                        "other" if re.search(r"圆桌|[Pp]an+el|交流与总结|论坛总结|结语", title) else "talk",
+                "type": "opening" if re.search(r"开场|开幕|致辞|论坛介绍|论坛情况介绍|论坛引导发言", title) else
+                        "other" if re.search(r"圆桌|[Pp]an+el|交流与总结|论坛总结|论坛闭幕|结语|专题研讨", title) else "talk",
                 "abstract_status": "unknown", "extra": {"speaker_raw": speaker_raw},
             }
             if section_title:
@@ -323,9 +323,6 @@ def detail(category, slug):
                         speaker[key] = info[key]
                 if info["person"].get("photo"):
                     speaker["photo"] = info["person"]["photo"]
-                if (speaker["name"] == "许福" and "南洋理工大学" in speaker.get("affiliation_raw", "")
-                        and "北京林业大学" in info.get("bio", "")):
-                    row_flags.append("单位信息不一致：日程表为南洋理工大学，个人简介为北京林业大学，均按原文保留。")
                 if info.get("abstract") and talk["type"] == "talk":
                     talk["abstract"] = info["abstract"]
                     talk["abstract_status"] = "tbd" if "待定" in info["abstract"] else "confirmed"
@@ -518,7 +515,7 @@ def build():
         raise ValueError(f"Detail forums absent from inventory: {list(details)}")
     # Announcements publish competition dates without a timed programme. Keep
     # those dates and the source milestones, without inventing clock times.
-    for code, slug in (("C5", "cangjie"), ("C6", "harmony-ai")):
+    for code, slug in (("C5", "cangjie"), ("C2", "harmony-ai")):
         announcement = load(f"pages/competition/{slug}.html")
         forum = next(f for f in forums if f["code"] == code)
         milestones = []
@@ -550,7 +547,7 @@ def build():
             block["extra"]["flags"] = flags
         if kind == "committee_meetings":
             block["meetings"] = [{"name": i18n(event), "start": start, "end": end, "room": room}]
-        # E6 is named explicitly in the overview despite having no detail link.
+        # E7 is named explicitly in the overview despite having no detail link.
         for forum in forums:
             if forum["title"]["zh"] == event and not forum["detail_extracted"]:
                 forum["day_date"] = day
@@ -614,8 +611,21 @@ def build():
     identities = curation()["person_identities"]
     assigned = set()
     for forum in forums:
+        for person in forum["chairs"]:
+            key = f"{forum['code']}:chair:{person['name']}"
+            if association := curation().get("chair_identities", {}).get(key):
+                if association["bio_excerpt"] not in person.get("bio", ""):
+                    raise ValueError(f"Reviewed chair biography changed: {key}")
+                person.setdefault("extra", {})["identity_key"] = association["identity_key"]
         for index, talk in enumerate(forum["talks"]):
             key = f"{forum['code']}#{index}"
+            if note := curation().get("talk_notes", {}).get(key):
+                persons = [p for p in talk["speakers"] if p["name"] == note["name"]]
+                if (talk["title"]["zh"] != note["source_title"] or len(persons) != 1
+                        or persons[0].get("affiliation_raw") != note["affiliation_raw"]
+                        or note["bio_excerpt"] not in persons[0].get("bio", "")):
+                    raise ValueError(f"Reviewed source discrepancy changed: {key}")
+                talk.setdefault("flags", []).extend(note["flags"])
             if association := identities.get(key):
                 persons = [p for p in talk["speakers"] if p["name"] == association["name"]]
                 if talk["title"]["zh"] != association["source_title"] or len(persons) != 1:

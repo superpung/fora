@@ -68,7 +68,7 @@ try {
         .map((p) => `${p.name}:${p.photo.local_path}`).sort(), `${forum.code}#${i}: portraits`);
     });
     console.log(`PASS ${forum.code}: ${result.length} programme rows and speaker identities`);
-    if (["R6", "R7", "R8", "R11", "R17"].includes(forum.code)) {
+    if (["P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].includes(forum.code)) {
       await page.waitForTimeout(600);
       await page.screenshot({ path: `${screenshots}/desktop-${forum.code}.png` });
     }
@@ -113,7 +113,7 @@ try {
       await page.screenshot({ path: "/tmp/chinasoft2026-schedule.png" });
     }
     if (data.days[i].date === "2026-11-07") {
-      for (const code of ["E6", "C5", "C6"]) {
+      for (const code of ["E7", "C5", "C2"]) {
         assert(await page.locator(`.tgrid__chead[href="/chinasoft2026/forum/${code}"]`).count(), `Missing pending forum ${code}`);
       }
     }
@@ -141,7 +141,8 @@ try {
   const phone = await mobile.newPage();
   phone.on("pageerror", (error) => errors.push(error.message));
   for (const path of ["forum/R32#talk-5", "committee", "schedule", "topics", "speakers", "plan",
-    "forum/R6#talk-1", "forum/R7#talk-5", "forum/R7#talk-7", "forum/R8#talk-10", "forum/R11#talk-1", "forum/R17#talk-1"]) {
+    "forum/R6#talk-1", "forum/R7#talk-5", "forum/R7#talk-7", "forum/R8#talk-10", "forum/R11#talk-1", "forum/R17#talk-1",
+    ...["P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].map(code => `forum/${code}#talk-2`)]) {
     // Assert application readiness, independent of the preview's analytics requests.
     await phone.goto(`${base}/chinasoft2026/${path}`, { waitUntil: "domcontentloaded" });
     const ready = path.startsWith("forum/") ? `#${path.split("#")[1]}` : {

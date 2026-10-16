@@ -10,7 +10,7 @@ mkdirSync(out, {recursive:true});
 const data = JSON.parse(readFileSync(new URL('../src/data/conferences/chinasoft2026.json', import.meta.url)));
 const server = process.env.AUDIT_BASE_URL ? null : spawn(new URL('../node_modules/.bin/vite',import.meta.url).pathname,
  ['--host','127.0.0.1','--port','4216','--strictPort'],{cwd:new URL('..',import.meta.url).pathname,stdio:'ignore'});
-const follows = {forums:['E6','C5'],talks:['R14#3','R32#1','E4#6','R1#6'],speakers:[]};
+const follows = {forums:['E7','C5'],talks:['R14#3','R32#1','E4#6','R1#6'],speakers:[]};
 const snapshots = [], errors = [];
 let browser;
 function active(start,end,time) { return !!start && !!end && start <= time && time < end; }
@@ -107,8 +107,8 @@ try {
  if(!process.env.REMINDERS_ONLY) {
  const moments=[['preconference','04','12:00'],['registration','05','13:00'],['first-report','06','08:55'],
   ['morning','06','10:00'],['break','06','10:25'],['overrun','06','12:05'],['afternoon','06','14:00'],
-  ['annual-meeting','06','19:40'],['opening','07','09:00'],['keynote','07','13:45'],['before-e6','07','14:09'],
-  ['e6-running','07','14:30'],['e6-end','07','15:10'],['late-report','07','18:25'],['banquet','07','18:30'],
+  ['annual-meeting','06','19:40'],['opening','07','09:00'],['keynote','07','13:45'],['before-e7','07','14:09'],
+  ['e7-running','07','14:30'],['e7-end','07','15:10'],['late-report','07','18:25'],['banquet','07','18:30'],
   ['evening-meeting','07','20:45'],['day-ended','07','23:00'],['last-morning','08','09:30'],
   ['closing','08','14:00'],['last-meeting','08','17:00'],['programme-ended','08','19:00'],['postconference','09','09:00']];
  for(const [name,day,time] of moments) {
@@ -116,7 +116,7 @@ try {
   await shot(test);
   assert.equal(await test.page.locator('.nowclock__time').innerText(),time);
   assert.deepEqual((await test.page.locator('.nowcard__title').allTextContents()).sort(),expectedRooms('2026-11-'+day,time),name);
-  if(name==='e6-running') assert((await test.page.locator('.nowstar--live').innerText()).includes('智能化时代软件人才培养特别大会论坛'));
+  if(name==='e7-running') assert((await test.page.locator('.nowstar--live').innerText()).includes('智能化时代软件人才培养特别大会论坛'));
   if(name==='break') assert((await test.page.locator('.nowcard').filter({hasText:'R14'}).innerText()).includes('茶歇'));
   if(['preconference','postconference'].includes(name)) assert.equal(await test.page.locator('.nowempty').count(),1);
   console.log('PASS '+name); await finish(test);

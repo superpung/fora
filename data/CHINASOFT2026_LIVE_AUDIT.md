@@ -9,6 +9,13 @@ was interrupted by local dataset rebuilding and was discarded; the successful
 rerun used stable input. The added committee visibility fix is covered separately
 by 400-member desktop/mobile fixtures and actual-source screenshots.
 
+Rerun: **2026-10-16**, after importing nine more programmes (334 items total)
+and the official E6-to-E7 numbering change. All 61 clock captures and assertions
+pass; results and the gallery are under `/tmp/chinasoft2026-oct16-live/`.
+The complete web suite also passes, including all 41 published forum pages,
+429 portraits, mobile routes, source-gap checks and the revised E7 timed forum.
+New-forum screenshots are under `/tmp/chinasoft2026-oct16-source/`.
+
 ## Method
 
 Run `cd web && pnpm test`, or run `node tests/live-clock.mjs` independently.
@@ -31,7 +38,7 @@ avoids recording that instrumentation artifact.
 Fixed clocks cover 22 moments from November 4 through November 9, including
 check-in, morning/afternoon reports, a source tea break, reports running beyond
 forum windows, opening/keynote sessions without individual report details,
-E6 before/during/after its window, banquet, committee meetings, closing, nightly
+E7 (formerly E6) before/during/after its window, banquet, committee meetings, closing, nightly
 idle time and dates outside the conference. Expected active entries are derived
 independently from the committed source dataset.
 

@@ -1,4 +1,100 @@
 {
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/万新熠.png": {
+    "local_path": "/portraits/chinasoft2026/ea19cf66abb2b28aedae.webp",
+    "source_sha256": "5dd8a0aba32599a3bd447b83017a71d0962f357138e68c8a0ad4c246ec92d78b",
+    "sha256": "ea19cf66abb2b28aedae080cc513421ef88f9fc3a2d4d64284c8e3054603acae",
+    "bytes": 3924,
+    "width": 241,
+    "height": 241
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/尹振洋.png": {
+    "local_path": "/portraits/chinasoft2026/b5983a81f80825b82ec3.webp",
+    "source_sha256": "5bfe2e5d25bbca9183b0a9385c092eca442c5ab4ba42dec1e05a863bbb3db8d9",
+    "sha256": "b5983a81f80825b82ec3c14a3366f440db880a2a8f7c2b16d271cd24c926aed8",
+    "bytes": 4924,
+    "width": 183,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/仇晶.png": {
+    "local_path": "/portraits/chinasoft2026/c863dda3fa6ff67e4cf2.webp",
+    "source_sha256": "1005d152e33dcbc160aeb814f1746cdc778551c359b435ff7d4b3adc45b8e40d",
+    "sha256": "c863dda3fa6ff67e4cf23f2f4a189a76e83d82a48d28dc8e187a05709100ff87",
+    "bytes": 4586,
+    "width": 144,
+    "height": 163
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/伍复慧.png": {
+    "local_path": "/portraits/chinasoft2026/6eea14f0c1cd60ace0b7.webp",
+    "source_sha256": "63346199a703cfc19d289db426838839a76a98a38aba8a36a9df4d70da35d6e8",
+    "sha256": "6eea14f0c1cd60ace0b72dfab9dce735194736b79ac04c4c66a6a48108ac5052",
+    "bytes": 4628,
+    "width": 192,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/何嘉骐.png": {
+    "local_path": "/portraits/chinasoft2026/39e9594e1ba190702844.webp",
+    "source_sha256": "486b4ec647b1208c8ad96a2e21f0ba957ee9d784be979fb4f3e215b35201733a",
+    "sha256": "39e9594e1ba19070284415280839bb5277ec2056870b2f697da7031c96ed2dcc",
+    "bytes": 4030,
+    "width": 172,
+    "height": 241
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/刘杨.png": {
+    "local_path": "/portraits/chinasoft2026/566f7c003ca491751ac2.webp",
+    "source_sha256": "54a84db465bffadefea5f74b9634f7f540c478330b53dcd186d549e8acbad93c",
+    "sha256": "566f7c003ca491751ac2266d8f977dddfa5b3e88bb2d7076d573e62405e5a82b",
+    "bytes": 3914,
+    "width": 210,
+    "height": 242
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/刘维杰.png": {
+    "local_path": "/portraits/chinasoft2026/8041d28f04385f958a68.webp",
+    "source_sha256": "0458f91a2ff8f4a732fbbea2d4b3e63cf55f86eb6459de45bcc52d57cee345db",
+    "sha256": "8041d28f04385f958a68acd7b134f5300ccb8460a7e6d3049a3c061a6e2f0c44",
+    "bytes": 4352,
+    "width": 210,
+    "height": 242
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/司徒凌云.png": {
+    "local_path": "/portraits/chinasoft2026/10063627cbe6374451ca.webp",
+    "source_sha256": "7a13285fe599818a0f60acf66c9e7c835432b2041ad03c3d55b34c69495b17b6",
+    "sha256": "10063627cbe6374451ca75aa1ce88c49fe873dd67f09185a11733e3533b237b4",
+    "bytes": 4116,
+    "width": 256,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/向剑文.png": {
+    "local_path": "/portraits/chinasoft2026/21de51c7b47acfb3735d.webp",
+    "source_sha256": "585d1d03c920e63e99781b52ec8ff9d6146f1ee6cfa6b8d5a0b18916d3306ae5",
+    "sha256": "21de51c7b47acfb3735d35c4560df8a23b837bfe4a6355b6ebf983dbaccb0e57",
+    "bytes": 3474,
+    "width": 192,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/吴云环.png": {
+    "local_path": "/portraits/chinasoft2026/e11204cd28050f5a9c89.webp",
+    "source_sha256": "79307ec9889f10ff594ab6805d7f9e32a82e1479a67ff1cabac704ae6fc21951",
+    "sha256": "e11204cd28050f5a9c8925ff9dd64895f98e9657c878c5a3943d2edd5ce92631",
+    "bytes": 5038,
+    "width": 211,
+    "height": 242
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/吴月明.png": {
+    "local_path": "/portraits/chinasoft2026/fc62d95b715b16270792.webp",
+    "source_sha256": "bf60525cef0df71cffc3180b54b625d36ca28f9192bcdebb5d3b68e59cf1289f",
+    "sha256": "fc62d95b715b16270792fafda2c34bdf1eb6114995ba8a4950695f90c72d8d36",
+    "bytes": 5084,
+    "width": 215,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/周俊伟.png": {
+    "local_path": "/portraits/chinasoft2026/ca28b9cb29566ffd7915.webp",
+    "source_sha256": "cf39f718c8149fd0a4b16da7fd91d0563c1bfa62931d139c13d0e658307fe7b3",
+    "sha256": "ca28b9cb29566ffd791543d716f448c774010027b112a9cd806613a5077b6c39",
+    "bytes": 3174,
+    "width": 183,
+    "height": 256
+  },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/周晓波.png": {
     "local_path": "/portraits/chinasoft2026/94022b7f0b0c8b710fd3.webp",
     "source_sha256": "70de2a58e9c197ad0d3458b9666dcb47b17fadcec9077747e019a4af49c7f3a4",
@@ -7,12 +103,124 @@
     "width": 196,
     "height": 256
   },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/周远.png": {
+    "local_path": "/portraits/chinasoft2026/dc0064cff6932093d4d7.webp",
+    "source_sha256": "ec02905ad0950e29bf19ff5c8567b70a7a164422be4e312fc6c7c74de210be45",
+    "sha256": "dc0064cff6932093d4d701a57f06ff4e62d27875f8a6a3fdd30f5c7a9eff5467",
+    "bytes": 3848,
+    "width": 204,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/唐晓辰.png": {
+    "local_path": "/portraits/chinasoft2026/9c046fa9ab038f076770.webp",
+    "source_sha256": "8460b98e4e49addd57c0e03b8cfd97a844017d4dd0674492744560dc24ef9e79",
+    "sha256": "9c046fa9ab038f07677015d3b0eb358dfe7032550b7046b86db445bc8db632a9",
+    "bytes": 3678,
+    "width": 181,
+    "height": 241
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/姚李昊升.png": {
+    "local_path": "/portraits/chinasoft2026/38193950202b804911a7.webp",
+    "source_sha256": "42a1eebcd370173e3cd0ece1fc47dbff292985693dc5506c1e6689204fbbefdc",
+    "sha256": "38193950202b804911a7842d26af8d4146ae1e448f5bc66df7efaf104539bfe9",
+    "bytes": 3528,
+    "width": 175,
+    "height": 252
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/姜雪.png": {
+    "local_path": "/portraits/chinasoft2026/8bbe31f11c1cdce8b211.webp",
+    "source_sha256": "ee31d18269546b71c451029cf6e3c45494b4176640cadb7de3b8912abc7b6f3e",
+    "sha256": "8bbe31f11c1cdce8b211012fa45f166315e3428531a81ba6ae5840010bf3ce0e",
+    "bytes": 5458,
+    "width": 211,
+    "height": 242
+  },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/孙毓忠.png": {
     "local_path": "/portraits/chinasoft2026/ea428c833b7e34ebd66f.webp",
     "source_sha256": "8f69c0fa778b5e6631f515b3b252f713d889bfa6db96719374474aae52d25b81",
     "sha256": "ea428c833b7e34ebd66f296256a2e47088568e5659a1705ebb1fc4e40799ffdd",
     "bytes": 4832,
     "width": 223,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/孙茂林.png": {
+    "local_path": "/portraits/chinasoft2026/d9da2b1c8dc114d32b6d.webp",
+    "source_sha256": "270bf48148f63356de0f5d8c76bbf57715a89e476cb50a35c609df73685d9f06",
+    "sha256": "d9da2b1c8dc114d32b6d4c1b765bfb3bc2db111ac29a5bb6a799708b65370b52",
+    "bytes": 4502,
+    "width": 241,
+    "height": 241
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/宋文纳.png": {
+    "local_path": "/portraits/chinasoft2026/e401ce8e033a4f0c36b7.webp",
+    "source_sha256": "09fba9eff2c73239f9a982e2e918ca1945d67cdf0380669e5e6a80bb6ff215c2",
+    "sha256": "e401ce8e033a4f0c36b79c47ee3aba116f0e52781ba8906083888cfda6878421",
+    "bytes": 4462,
+    "width": 210,
+    "height": 242
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/张一筝.png": {
+    "local_path": "/portraits/chinasoft2026/e2732ba361f85a58ce6f.webp",
+    "source_sha256": "cef46c654e710a46ae213a8343490b34ff658e7060504c6d82c0b9fe5b945a43",
+    "sha256": "e2732ba361f85a58ce6f5c372253eb42ae176b0d4cf83e6430cb6537ee55042e",
+    "bytes": 4810,
+    "width": 216,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/张凯林.png": {
+    "local_path": "/portraits/chinasoft2026/d6b49c428fe96a3cda2c.webp",
+    "source_sha256": "ff03993dea2c850f6d536fcebc652683fdfc1d9a5ab55b023d85c7adb052e834",
+    "sha256": "d6b49c428fe96a3cda2cd6a2c44b6fb6bcc2976f5366ccc45cca97c2ee202b1a",
+    "bytes": 4172,
+    "width": 210,
+    "height": 242
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/张建.png": {
+    "local_path": "/portraits/chinasoft2026/533eaaac7518d6d0dc90.webp",
+    "source_sha256": "56ff587386030bcbc6c513298d29450844f11b57da158f088504dc64788348b9",
+    "sha256": "533eaaac7518d6d0dc90417d6242e72e6eff592e40c8bd1b1a4adc5ae7aef8f1",
+    "bytes": 5518,
+    "width": 222,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/张明悦.png": {
+    "local_path": "/portraits/chinasoft2026/8aa3fb2178f092d45c28.webp",
+    "source_sha256": "0f117154e30e2f0d4a71a148faa6be50e9db644ad3f37b60466bf0e498fcb9a1",
+    "sha256": "8aa3fb2178f092d45c28bf49888c6e8a8ad2eba21a65df882e46bab1308689bf",
+    "bytes": 3694,
+    "width": 211,
+    "height": 242
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/张涛.png": {
+    "local_path": "/portraits/chinasoft2026/1c7bff2be60d189fd806.webp",
+    "source_sha256": "ea4b796ff2b6a28e8201bc12ca62bfe21f06a9e0396c3bb064ac15c98ff32a4d",
+    "sha256": "1c7bff2be60d189fd806f3abf08c1f1269145225190bd688a72a7d1dd3a6f10e",
+    "bytes": 4028,
+    "width": 256,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/张润坤.png": {
+    "local_path": "/portraits/chinasoft2026/3cb8901a8afd3e7fc582.webp",
+    "source_sha256": "0d5f60510d604b718d8372dbdb1e81babe34fe49b5316c7b200dd0ff03887101",
+    "sha256": "3cb8901a8afd3e7fc582a9713e54f57957cf54a399f531c302f0849f2fe70223",
+    "bytes": 4410,
+    "width": 211,
+    "height": 242
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/张莉.png": {
+    "local_path": "/portraits/chinasoft2026/7a344466202b36e0a58b.webp",
+    "source_sha256": "e22c58f07ff1b509df6c721e14347aee2023d4742e28e5857f24c9abd3cd8459",
+    "sha256": "7a344466202b36e0a58b6f793d44731d098939e9b9d89991ee40ee40b6203415",
+    "bytes": 6268,
+    "width": 211,
+    "height": 243
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/徐刚.png": {
+    "local_path": "/portraits/chinasoft2026/1c2cae92c7aa28c4a33f.webp",
+    "source_sha256": "a4c6864d1933ee15bd41173f794edfefc10dc7bfc27e1928ec19fa2bb440c25b",
+    "sha256": "1c2cae92c7aa28c4a33f6ef19b4fa1678643d149255c1907dba819acba36e0bc",
+    "bytes": 4652,
+    "width": 192,
     "height": 256
   },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/戚正伟.png": {
@@ -23,6 +231,62 @@
     "width": 194,
     "height": 256
   },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/方应涛.png": {
+    "local_path": "/portraits/chinasoft2026/1e50edcb083a5bcc0701.webp",
+    "source_sha256": "555f8dacbfa7ce4c59945d839fad7f0e6c44c158e38b4be338e0d28e95b1cf6f",
+    "sha256": "1e50edcb083a5bcc0701d849c1f81e87e93ea1b9bb593c43b04894e0bade074f",
+    "bytes": 5730,
+    "width": 211,
+    "height": 243
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/曹思聪.png": {
+    "local_path": "/portraits/chinasoft2026/b5455a2fe18848c4ee49.webp",
+    "source_sha256": "efb9e2eeb6195960882cd8ad79fb4fc8ad8137f1b8402cf4b55254a81b629888",
+    "sha256": "b5455a2fe18848c4ee49c9a10d1c585ef1a095f3c6b261ab99964598894427c1",
+    "bytes": 4706,
+    "width": 183,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/朱晨.png": {
+    "local_path": "/portraits/chinasoft2026/1ee689c0cd292519ce5a.webp",
+    "source_sha256": "6fad302f58f5a3468dfee94bd13de40ee0940566455618088be221aed32ff8a6",
+    "sha256": "1ee689c0cd292519ce5adbf65fbd53a0971dd45573ed69dded97fd389dc2d9b8",
+    "bytes": 4236,
+    "width": 171,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/朱煜琪.png": {
+    "local_path": "/portraits/chinasoft2026/c0fda9acc226da78d0de.webp",
+    "source_sha256": "5dc2edf873b4dc39e84e9ba54144d9371d2d8036d078dfe5926ceee46a304279",
+    "sha256": "c0fda9acc226da78d0de8b139bde409adab3918ea9bf3887467df8abe93b9e2a",
+    "bytes": 2466,
+    "width": 148,
+    "height": 194
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/朱辉.png": {
+    "local_path": "/portraits/chinasoft2026/e0164f4aaa3d2a02a757.webp",
+    "source_sha256": "d9a1da4954a4a88a21c1224244d3fce2b75be851187855016550285ea8680d17",
+    "sha256": "e0164f4aaa3d2a02a7572616d952e5dede594fd3884c2d12a58faee6de46ccb1",
+    "bytes": 3642,
+    "width": 210,
+    "height": 242
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/李佳.png": {
+    "local_path": "/portraits/chinasoft2026/1be28d45b74b110b8b35.webp",
+    "source_sha256": "a400efb67b3f8157316aaf291347944b6d219407c012f59875d4af44a925a76c",
+    "sha256": "1be28d45b74b110b8b35e6d27aefa2f49e4189c155181f8b159aa70977dca30c",
+    "bytes": 2820,
+    "width": 134,
+    "height": 154
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/李国强.png": {
+    "local_path": "/portraits/chinasoft2026/a38f4e0e4f36bd17a046.webp",
+    "source_sha256": "cddf9e14f9b1659f0cff42ae8a458a6e9a818089df5559ac2beb8715a7bd6453",
+    "sha256": "a38f4e0e4f36bd17a0467501cc6794bf0001a7ffe9d8fcd892936305025f5745",
+    "bytes": 2744,
+    "width": 150,
+    "height": 200
+  },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/李建欣.png": {
     "local_path": "/portraits/chinasoft2026/2d44e3c169a9bcdfa7ac.webp",
     "source_sha256": "5da26611d7eb6031b74ac0acafeda485090d911f78a1776192aff4c2f04b5479",
@@ -30,6 +294,150 @@
     "bytes": 8876,
     "width": 224,
     "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/杜冬冬.png": {
+    "local_path": "/portraits/chinasoft2026/6db686ccbd6f94e29178.webp",
+    "source_sha256": "4f2263057a948fcc15ade27b1837e207061c426edaeb1165e4afaa801b9a45af",
+    "sha256": "6db686ccbd6f94e2917868449eba0041af280e431b65045c59269de0d5ab41eb",
+    "bytes": 4054,
+    "width": 183,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/毛晓光.png": {
+    "local_path": "/portraits/chinasoft2026/b107300dddc59a9a1a45.webp",
+    "source_sha256": "be99133269f628b1fde2e9a64585103d304cfdfe97742f390718bbddefdc98b2",
+    "sha256": "b107300dddc59a9a1a45aafb0a27e0f9d581763816130ef68b9f35483b35ad2e",
+    "bytes": 4052,
+    "width": 190,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/王培新.png": {
+    "local_path": "/portraits/chinasoft2026/a21c4f063d08e089b6fc.webp",
+    "source_sha256": "26fc883503f20ab5e96a4bcc9d270afe8e1aaa77b0bf4bc015409a379d61a207",
+    "sha256": "a21c4f063d08e089b6fc878457a5ac7849279c53d94a0a52a4617448895c7218",
+    "bytes": 3062,
+    "width": 224,
+    "height": 241
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/王承杰.png": {
+    "local_path": "/portraits/chinasoft2026/9045a48bbc813e8d9f28.webp",
+    "source_sha256": "4f9fefd7b620d4b429dc2cdf7792988d742377adf834e0054596ca4e2acafd91",
+    "sha256": "9045a48bbc813e8d9f285a3c9b477a55d753190e77c85f9cae6097771f0f20ee",
+    "bytes": 4428,
+    "width": 203,
+    "height": 248
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/王林章.png": {
+    "local_path": "/portraits/chinasoft2026/df5b7a546591065ef303.webp",
+    "source_sha256": "dc24ce999fcf295964a374dbc7cfbdddeb7bfa8b75451b54adf4e15af9b9e107",
+    "sha256": "df5b7a546591065ef3039d22752df2011a3de4e08aee6638136ea35d44e9c3cc",
+    "bytes": 4530,
+    "width": 179,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/王磊.png": {
+    "local_path": "/portraits/chinasoft2026/8d50b21c8bdc61b55e97.webp",
+    "source_sha256": "a62180cdf52d5d2336da2dba694640ac6e62a5847d2265a15ce64f3bb735474f",
+    "sha256": "8d50b21c8bdc61b55e97c9fe4abbb4fb605e24a6a186605bef6913f78e1d7f87",
+    "bytes": 3762,
+    "width": 256,
+    "height": 243
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/王超.png": {
+    "local_path": "/portraits/chinasoft2026/3a105e4d3b0da87be4cf.webp",
+    "source_sha256": "4127cc81f8b3633a98ed64f1b42de6400fe56950037da1123afd02bc59610a9e",
+    "sha256": "3a105e4d3b0da87be4cf68842ef9f430825b7b2610a1460f375c26963be9abcf",
+    "bytes": 5772,
+    "width": 162,
+    "height": 241
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/田聪.png": {
+    "local_path": "/portraits/chinasoft2026/c2b90038fcab92f53b5e.webp",
+    "source_sha256": "b0b16f6c110e910d820d3673951a714365bc90eb5d997184cae93276c871c75e",
+    "sha256": "c2b90038fcab92f53b5ec72bd1abebf8e516bae1b3f6135bb42b825edbb40045",
+    "bytes": 5990,
+    "width": 196,
+    "height": 241
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/白子卉.png": {
+    "local_path": "/portraits/chinasoft2026/820ed97fa9cca839a1fb.webp",
+    "source_sha256": "a730ef36f43d821cfc789d90329a793b66d2e81bdc2b01878d1da536e23b7548",
+    "sha256": "820ed97fa9cca839a1fb569b93ff00249a947b567631a35295abd2a24955250d",
+    "bytes": 4322,
+    "width": 181,
+    "height": 241
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/綦艳霞.png": {
+    "local_path": "/portraits/chinasoft2026/654db9102f56d0d581e6.webp",
+    "source_sha256": "25f11b05c08d4f5ae00888b35a8bd48924a8a35a3573a537aa03b38bb66eef32",
+    "sha256": "654db9102f56d0d581e61e8adedb5966f680ed3c16d1db5ed65b957ace94063c",
+    "bytes": 8696,
+    "width": 177,
+    "height": 254
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/肖扬.png": {
+    "local_path": "/portraits/chinasoft2026/e19a5f27b13fb881772c.webp",
+    "source_sha256": "88a01f2e842aecc9eaa2a6f28de3f126fc8bbf5e1cb2e889942f8d1695c59aeb",
+    "sha256": "e19a5f27b13fb881772cbc6c604d51618f688696d77e55b65f0c7d258daf8bbd",
+    "bytes": 3240,
+    "width": 190,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/谢华澄.png": {
+    "local_path": "/portraits/chinasoft2026/9f794a83f6beb6d1231e.webp",
+    "source_sha256": "c9be6fab63eb3e52844bc45dca6a045b3ecdae682a1c7e4610f40fcc7a16a217",
+    "sha256": "9f794a83f6beb6d1231e9a08437485890ee381b9271cfbf5ac2722069aef9423",
+    "bytes": 4182,
+    "width": 211,
+    "height": 242
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/贺昕曈.png": {
+    "local_path": "/portraits/chinasoft2026/372cbff07d4dc95151ef.webp",
+    "source_sha256": "50df46478c3e89e68f35f39bc70ae966e046ccc4b606be0c64d81c1b0d0e357b",
+    "sha256": "372cbff07d4dc95151ef715dbb5b1ad34e1fcf3415a7756dd9c640092e90877e",
+    "bytes": 4794,
+    "width": 175,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/贺腾宇.png": {
+    "local_path": "/portraits/chinasoft2026/b0c522c6d8b113ff2da4.webp",
+    "source_sha256": "7256d14994f6b290b19a95f8d5fa06673f2050f25d12172ef570451a292119e0",
+    "sha256": "b0c522c6d8b113ff2da4c703d9947a681d4c4e818e2811f137c8965f6ecf3d96",
+    "bytes": 3012,
+    "width": 181,
+    "height": 241
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/贾凤鸣.png": {
+    "local_path": "/portraits/chinasoft2026/94305b43bb8a807386cb.webp",
+    "source_sha256": "db71007c4cff274368950d1285e9d4a22532d4be98edb70409bb5fbf794df0df",
+    "sha256": "94305b43bb8a807386cb15b38e84bb970f688612ed3ce1fd1274c232d3b2afde",
+    "bytes": 5064,
+    "width": 185,
+    "height": 241
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/赵琳慧.png": {
+    "local_path": "/portraits/chinasoft2026/59e0fe9551f6a3e9f066.webp",
+    "source_sha256": "4be3aec1789e119136742795fc1bb27b1d795900bdb9fc07debeb459530a208b",
+    "sha256": "59e0fe9551f6a3e9f066d00468f6fa15746813dd3bf203cd91b1f9ea52576a0e",
+    "bytes": 6166,
+    "width": 180,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/金翔宇.png": {
+    "local_path": "/portraits/chinasoft2026/035dfc5b7cf238d609b0.webp",
+    "source_sha256": "f81980782f74c2b1d56b4f983ecae36fe96b8e7f0b5e59f6d070acb6ed96fd7a",
+    "sha256": "035dfc5b7cf238d609b05c14efff3e7ca0a55554f4cb771f11ebf68a592cda44",
+    "bytes": 3764,
+    "width": 180,
+    "height": 241
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/金芝.png": {
+    "local_path": "/portraits/chinasoft2026/692352822ebeadad709e.webp",
+    "source_sha256": "308f23dbc89990a4881d95e19396451041d2dbda2ce4a48b3c927d4f20a6fc57",
+    "sha256": "692352822ebeadad709e105acb558bdc97474170627c0a9090d213dcfd66cd9a",
+    "bytes": 2768,
+    "width": 138,
+    "height": 159
   },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/金鑫.png": {
     "local_path": "/portraits/chinasoft2026/3664a535228985833d7a.webp",
@@ -39,12 +447,76 @@
     "width": 192,
     "height": 256
   },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/陈奕铭.png": {
+    "local_path": "/portraits/chinasoft2026/1e6ad721abf5e4bf0e4e.webp",
+    "source_sha256": "ef3aaa789df856044bb37c21c20015e9fae2015c49e063c5fb9c1a3710f50ed0",
+    "sha256": "1e6ad721abf5e4bf0e4ef482d321386a61ae9ab1459018a56ad268c94c812309",
+    "bytes": 3688,
+    "width": 211,
+    "height": 243
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/陈子涵.png": {
+    "local_path": "/portraits/chinasoft2026/5c51adb071bee293a646.webp",
+    "source_sha256": "13797e0ade47c7be280c8ffbdd0a8f72f8c18c0c3e5bd1d5877dd581f7edbc0f",
+    "sha256": "5c51adb071bee293a646a0df4a7c9078786631409ff688cdac4b8ce7af2f0f0d",
+    "bytes": 3376,
+    "width": 183,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/陈宇奇.png": {
+    "local_path": "/portraits/chinasoft2026/f13233d50af65e0e5a3a.webp",
+    "source_sha256": "cc80ec52370f5545115ae008c097f0e484597191da567fcb858f294c0b54d6ae",
+    "sha256": "f13233d50af65e0e5a3a48f305a72c66917f00573c0eb837612f44bcc562d165",
+    "bytes": 5818,
+    "width": 181,
+    "height": 241
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/陈小红.png": {
+    "local_path": "/portraits/chinasoft2026/791ae7dfa40c8750787f.webp",
+    "source_sha256": "cf9e4dcf8557044c49392a1023bfa5c151332e088aa7f226f8be2cfc82dbcdba",
+    "sha256": "791ae7dfa40c8750787f22a2a73878bb91ec48d2b8452cdc21013c1a1464e690",
+    "bytes": 2044,
+    "width": 113,
+    "height": 130
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/陈晓东.png": {
+    "local_path": "/portraits/chinasoft2026/36a909a5129a48eaf9fe.webp",
+    "source_sha256": "410fec8b2ef47b0d6821ce62d0bb6b555881c32fd79a14808f003bbff7b19096",
+    "sha256": "36a909a5129a48eaf9fe61c3fb34a3284fd84d00f25ba80945e1bab67f55b6af",
+    "bytes": 4392,
+    "width": 199,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/陈森.png": {
+    "local_path": "/portraits/chinasoft2026/2ff7b27b583d4469a485.webp",
+    "source_sha256": "1091102055be8ea029be5c548ff46b43c0041f6a829c31ec135c5a34490fb05c",
+    "sha256": "2ff7b27b583d4469a4852b76c69d998fb96fb3f7cbee10b40338787982444f59",
+    "bytes": 4510,
+    "width": 185,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/霍玮.png": {
+    "local_path": "/portraits/chinasoft2026/17bee3c60f2908f526aa.webp",
+    "source_sha256": "38e6cd14fc4fffc2de689818075cdcc2e8e8daf44576572537e0a36da1393970",
+    "sha256": "17bee3c60f2908f526aac36b3d684f012329837cc7639ec47bc257a8d210cbb2",
+    "bytes": 3744,
+    "width": 182,
+    "height": 256
+  },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/韩锐.png": {
     "local_path": "/portraits/chinasoft2026/d5441b44fcf487a4e428.webp",
     "source_sha256": "1eab19bc40873df4367ab6146cf2617e64a625f6ccd6a06e2b5643f13d2291b8",
     "sha256": "d5441b44fcf487a4e428fe646afec4adfdf0ff4231769918707a2874853ac10d",
     "bytes": 4012,
     "width": 185,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/黄颖华.png": {
+    "local_path": "/portraits/chinasoft2026/6cfe3f8b8e30375cb18b.webp",
+    "source_sha256": "33c93df4a59e75d5b3bc448bc315105d641d4e8e0664468e3150967570cb3524",
+    "sha256": "6cfe3f8b8e30375cb18b0887febc7d389d27584649e325ccf9fb680a2faf57bc",
+    "bytes": 3648,
+    "width": 198,
     "height": 256
   },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/万志远.png": {
@@ -70,6 +542,22 @@
     "bytes": 8106,
     "width": 214,
     "height": 244
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/付天福.png": {
+    "local_path": "/portraits/chinasoft2026/5bc6593202059e551e4b.webp",
+    "source_sha256": "9c349fa5e6e6410f8dcc6ca79543bb11d02f4dd6698722b6cdadd7e37169a2ed",
+    "sha256": "5bc6593202059e551e4bbbbac94f9e6449152e7de0b033930e6e391b7dfe70db",
+    "bytes": 4200,
+    "width": 222,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/付明.png": {
+    "local_path": "/portraits/chinasoft2026/3796dbca083232987e7c.webp",
+    "source_sha256": "9f344b4b9aa54ca574656c237d0af3449815504d5a2f33e2cd91193124ea8367",
+    "sha256": "3796dbca083232987e7ce5dd4b54cd7ee2ff6ee0d79c0a9b1a4a206009ea0ebf",
+    "bytes": 3460,
+    "width": 199,
+    "height": 256
   },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/任文慧.png": {
     "local_path": "/portraits/chinasoft2026/12cbea620d05720492a5.webp",
@@ -159,6 +647,14 @@
     "width": 222,
     "height": 256
   },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/刘晟材.png": {
+    "local_path": "/portraits/chinasoft2026/30b193cbc1d4c1a11edd.webp",
+    "source_sha256": "51c5b302632134dbb956207678f160b77eeacfab1f3b40a75e3845519ad30ae8",
+    "sha256": "30b193cbc1d4c1a11edd0ac6dba052a7f33f3a43919f1bc72fd7a4c3ac1f37cd",
+    "bytes": 3358,
+    "width": 209,
+    "height": 241
+  },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/刘杨.png": {
     "local_path": "/portraits/chinasoft2026/516bed94998687b2cd06.webp",
     "source_sha256": "4c8c4ce1806fcf7d7c6abca643353a93d5960e6c5d4a84a395d0929034d36323",
@@ -215,6 +711,14 @@
     "width": 191,
     "height": 256
   },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/史建琦.png": {
+    "local_path": "/portraits/chinasoft2026/4cdf30241341868993ad.webp",
+    "source_sha256": "6d0e281d770817180219b3a4e26da9d0d0abb78bef3f2fbeab5a4843ec22628a",
+    "sha256": "4cdf30241341868993ad1e517e51f6520db4dcdf4bf0c22bba0bbf04c944ae05",
+    "bytes": 2686,
+    "width": 149,
+    "height": 171
+  },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/吕勇强.png": {
     "local_path": "/portraits/chinasoft2026/aeb35de8a590014c22ee.webp",
     "source_sha256": "76a67acdf023d7b8d78bc09061bf05e8fe3aa7da17d4044207bd68f74066fab2",
@@ -262,6 +766,14 @@
     "bytes": 4236,
     "width": 210,
     "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/吴志林.png": {
+    "local_path": "/portraits/chinasoft2026/3db3a87ae5129ad5ded1.webp",
+    "source_sha256": "33df5bef6f7e50cd0e9d7bf418078175eca0ab3af314fad5a6d34c35791bd915",
+    "sha256": "3db3a87ae5129ad5ded13f4a32048aba7ab08e7f6ac8608b5c5da68db681c7c4",
+    "bytes": 3520,
+    "width": 156,
+    "height": 203
   },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/吴敬征.png": {
     "local_path": "/portraits/chinasoft2026/a84d9a6e47e78de680b0.webp",
@@ -311,6 +823,14 @@
     "width": 194,
     "height": 256
   },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/姚培森.png": {
+    "local_path": "/portraits/chinasoft2026/dcbe56a1a1465bf4ca29.webp",
+    "source_sha256": "6cd7161c9ce194c8d63b23cedadabda6e48a818976c71b7671dd5eedb27a2e58",
+    "sha256": "dcbe56a1a1465bf4ca29d92a5d32874bbe9104e455e387185db5bde83ba8b713",
+    "bytes": 3514,
+    "width": 209,
+    "height": 240
+  },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/姜伟.png": {
     "local_path": "/portraits/chinasoft2026/616887a0624214957ae9.webp",
     "source_sha256": "6e91c5e6140d27101c7e82e8c193355ca84c5892de04ffb34fad0a0abff4e1b2",
@@ -318,6 +838,14 @@
     "bytes": 4180,
     "width": 204,
     "height": 204
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/姜宇.png": {
+    "local_path": "/portraits/chinasoft2026/125365f5e39e34c354a5.webp",
+    "source_sha256": "f3e796e483315ec212b178750ede239d248c1eb1249ff0a0dfc4c04cae4c1020",
+    "sha256": "125365f5e39e34c354a56719f00767e39e82d7e441d3c20fcb6264fbbdafdc64",
+    "bytes": 9264,
+    "width": 180,
+    "height": 238
   },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/孔令和.png": {
     "local_path": "/portraits/chinasoft2026/7104e62b97e494477da1.webp",
@@ -471,6 +999,14 @@
     "width": 183,
     "height": 256
   },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/张健.png": {
+    "local_path": "/portraits/chinasoft2026/393cc921f4ec30c58462.webp",
+    "source_sha256": "24d8f488d42c823473a58e3ee64c1ef358435d74a68b2a4a8a13dbf43ad9142f",
+    "sha256": "393cc921f4ec30c58462a407d292a016f41ce7614190c50fdb214eadaf5ad8e6",
+    "bytes": 4900,
+    "width": 209,
+    "height": 241
+  },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/张圣林.png": {
     "local_path": "/portraits/chinasoft2026/7c157d5060ac6b3e715c.webp",
     "source_sha256": "b1db2fedc76f03cecd4b6d83dbdd0dcfe826f6cc0543cd8bd6e033d3259ef47d",
@@ -567,6 +1103,14 @@
     "width": 183,
     "height": 256
   },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/张锋巍.png": {
+    "local_path": "/portraits/chinasoft2026/e9362ef2b0e6a4ded3b9.webp",
+    "source_sha256": "775e093e12a0161ee28b826cd55f4b6979fc1b94206a80bc70b885801ea51d5d",
+    "sha256": "e9362ef2b0e6a4ded3b919286647fd21463dbe425f9ed8b3e49ef69a2bf45034",
+    "bytes": 3934,
+    "width": 184,
+    "height": 256
+  },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/张雅坤.png": {
     "local_path": "/portraits/chinasoft2026/40afd56212c737d0e3fa.webp",
     "source_sha256": "e960659087a7f8fd9832c29b9e6e407240e121379090e38bec5dbe2d46d6abf2",
@@ -600,11 +1144,11 @@
     "height": 242
   },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/文俊浩.png": {
-    "local_path": "/portraits/chinasoft2026/a8716fd198607c0cc0bf.webp",
-    "source_sha256": "05934bd6827f635680e97abfc69808d5fd2a3e960fc22ed9828f903a7d541560",
-    "sha256": "a8716fd198607c0cc0bf1c081aa953f4afc00a581becd4c971bfc7b5c4c324f4",
-    "bytes": 4596,
-    "width": 222,
+    "local_path": "/portraits/chinasoft2026/5bac3a953aa80ed8718c.webp",
+    "source_sha256": "8e335125531a808c4bee558f4e4835770360c72f5d43aebd2b966282f4ec89b2",
+    "sha256": "5bac3a953aa80ed8718cc9bb07670530c455cd4071af134d56d0a49f7396c5a4",
+    "bytes": 4370,
+    "width": 256,
     "height": 256
   },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/文明.png": {
@@ -896,12 +1440,20 @@
     "height": 253
   },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/武延军.png": {
-    "local_path": "/portraits/chinasoft2026/5fb63bae8b9b60e6bf9e.webp",
-    "source_sha256": "2f448903d2f5f9541cac567230cf60df05de55ccd9bf5673005ec1ab0dc56173",
-    "sha256": "5fb63bae8b9b60e6bf9e27131d927fcd8559e75ca572b43109b173e77f72dc9c",
-    "bytes": 2216,
-    "width": 210,
-    "height": 242
+    "local_path": "/portraits/chinasoft2026/c642d64c00afd107ce17.webp",
+    "source_sha256": "a0d24af7ad81aee6cf8e05db8ed13d50d78d32f98347073c728dd254922f5d05",
+    "sha256": "c642d64c00afd107ce178551340464def7b053579b0aee2e918b5d9f69c66807",
+    "bytes": 4222,
+    "width": 195,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/武成岗.png": {
+    "local_path": "/portraits/chinasoft2026/835f9db2acc527186867.webp",
+    "source_sha256": "27fa61c344ed6174025a2676b52b0812259693af8ff3b4dd05f49969cdfc971b",
+    "sha256": "835f9db2acc527186867048c198f4adc0c743916969cec7a8808ca2c6dcd1592",
+    "bytes": 6716,
+    "width": 183,
+    "height": 256
   },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/江贺.png": {
     "local_path": "/portraits/chinasoft2026/76644cb06fa69541a29e.webp",
@@ -909,6 +1461,14 @@
     "sha256": "76644cb06fa69541a29ed4c9c59d85fe93c574f8ac96f9ba04de25edb3ba41ef",
     "bytes": 4712,
     "width": 191,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/汪宇霆.png": {
+    "local_path": "/portraits/chinasoft2026/224a3b69d1ee9bb67281.webp",
+    "source_sha256": "08db661703ea466261525142db8b63e7631bc862b63f0191cded52a8cc197929",
+    "sha256": "224a3b69d1ee9bb672813b602a342e34ab5d93b119ad26283ccca3bc5b73a4dc",
+    "bytes": 3586,
+    "width": 200,
     "height": 256
   },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/沈志荣.png": {
@@ -984,12 +1544,12 @@
     "height": 256
   },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/王喆.png": {
-    "local_path": "/portraits/chinasoft2026/b14974da8b445d663ca2.webp",
-    "source_sha256": "c914d7b8dc73392b4fac546dcf02973220240ccc0321ed14ccdecc6bca704e36",
-    "sha256": "b14974da8b445d663ca2d92477607dfc2887e110fcd6b1d336f6960cbe4272eb",
-    "bytes": 3074,
-    "width": 256,
-    "height": 228
+    "local_path": "/portraits/chinasoft2026/0fd3fc507f1a2886094b.webp",
+    "source_sha256": "8f635d52d8b4b2cec119c9089982043997ccbada7d591301487f822de9bff87e",
+    "sha256": "0fd3fc507f1a2886094b8c70370026764c08639f0849dfdbfd29b106c3a23b2a",
+    "bytes": 3004,
+    "width": 187,
+    "height": 256
   },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/王坚.png": {
     "local_path": "/portraits/chinasoft2026/1bce07b57060ff60fe49.webp",
@@ -1080,12 +1640,12 @@
     "height": 243
   },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/王焱林.png": {
-    "local_path": "/portraits/chinasoft2026/8325e0cdd2c937bb9ab8.webp",
-    "source_sha256": "f2d124c0a77390fb9dce26fbf85e376c58a87204883ef595f8273e8af037c92a",
-    "sha256": "8325e0cdd2c937bb9ab85dc9af3c91df3dd9a6585583a230e45ba2fb62b152a9",
-    "bytes": 4208,
-    "width": 210,
-    "height": 242
+    "local_path": "/portraits/chinasoft2026/5d800e61cd80b96fe46a.webp",
+    "source_sha256": "89997b7a6af31650d7ce81d43c2cd686827988e358b0254d1bec2ac7bbd8662f",
+    "sha256": "5d800e61cd80b96fe46ad652fb9404d2411e63a8909230c081e060609b1dee86",
+    "bytes": 3106,
+    "width": 251,
+    "height": 256
   },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/王璐璐.png": {
     "local_path": "/portraits/chinasoft2026/88621dd6ee325162f4b8.webp",
@@ -1101,6 +1661,14 @@
     "sha256": "4b85b3c847e3fa61d13a92ef08694b2d01a4ace6ed43d08d2959fa7e99c3d8c3",
     "bytes": 7486,
     "width": 222,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/王肇国.png": {
+    "local_path": "/portraits/chinasoft2026/52a618aba6ee87f845b8.webp",
+    "source_sha256": "55e9fc1ea39e015355449b33c673b7edf5a97d9479bf62d8c0e17757599a1b94",
+    "sha256": "52a618aba6ee87f845b89b00a089d6d1aca12bb0c8a290a492d36f69fec47c51",
+    "bytes": 2802,
+    "width": 170,
     "height": 256
   },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/王莹.png": {
@@ -1166,6 +1734,30 @@
     "bytes": 4832,
     "width": 211,
     "height": 243
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/罗川.png": {
+    "local_path": "/portraits/chinasoft2026/8b807319955a63855321.webp",
+    "source_sha256": "bf5def5fcc5d29abba3a90ea06c26c0f031e4bffa889fb92bf56834d31874e49",
+    "sha256": "8b807319955a63855321a0d0093204d97c0ca210252918f43c3ab04dcb65786a",
+    "bytes": 6538,
+    "width": 209,
+    "height": 240
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/罗正雄.png": {
+    "local_path": "/portraits/chinasoft2026/cdc3960a3ecc0743001a.webp",
+    "source_sha256": "195671425a5c4d59cb60dd9b7f7ff68e6d9b7c27a9d667aabcf7f63a0afc1a54",
+    "sha256": "cdc3960a3ecc0743001a00d5b8d7f3325f7b604751132b4ce060b294702a0185",
+    "bytes": 4064,
+    "width": 256,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/翟恩南.png": {
+    "local_path": "/portraits/chinasoft2026/64121c25ee4fb164c528.webp",
+    "source_sha256": "a7e3337c5c9ffb6e0dcc03e914f6c5a1c601f15d289b950a8ab56dab9a281469",
+    "sha256": "64121c25ee4fb164c5288753a4947856612bdc85b20b8d190be9720e5f2f2f8b",
+    "bytes": 3964,
+    "width": 256,
+    "height": 256
   },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/肖江.png": {
     "local_path": "/portraits/chinasoft2026/6fe665d808a7478abe13.webp",
@@ -1263,6 +1855,14 @@
     "width": 211,
     "height": 242
   },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/蔡少伟.png": {
+    "local_path": "/portraits/chinasoft2026/8deb09b12e4ed5c37959.webp",
+    "source_sha256": "d1d9b30e8943edce6f50dd463337f8208de1ae6cbd1d1cbeb4ec16237388282a",
+    "sha256": "8deb09b12e4ed5c3795966d99a28067742fef7e988565631d3ab9f8cae091f90",
+    "bytes": 7484,
+    "width": 209,
+    "height": 241
+  },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/薛磊.png": {
     "local_path": "/portraits/chinasoft2026/812f0b28892be76a0bab.webp",
     "source_sha256": "ee14ffd9941c8fae6fb649cf031dbce3c55844861766f0d81773c274bc1af5d4",
@@ -1277,6 +1877,14 @@
     "sha256": "564fae7a82169ca44265065f93bd8c2aed79cbbd10f4b1b7c9e08a7bfaa897b5",
     "bytes": 4376,
     "width": 171,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/袁胜浩.png": {
+    "local_path": "/portraits/chinasoft2026/2cdb319ba21b0424aaf4.webp",
+    "source_sha256": "27c0d2b0d911d46e3db927fec12d7df157753f6457bc7de9621c3fd726dc4298",
+    "sha256": "2cdb319ba21b0424aaf4bdba85a1d45c9d3f3d73e2dfd7c97ff0b9564fec2c4d",
+    "bytes": 3094,
+    "width": 176,
     "height": 256
   },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/裴昶华.png": {
@@ -1366,6 +1974,14 @@
     "bytes": 3470,
     "width": 178,
     "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/贺飞.png": {
+    "local_path": "/portraits/chinasoft2026/840b2469175762aca290.webp",
+    "source_sha256": "a965453422ede8ece4469943c6f10458b822a64fa88c4a8cddedb168edb1c234",
+    "sha256": "840b2469175762aca2904232ab5622d46927fb7a8dd6d26ee1fc2239522ff28e",
+    "bytes": 7670,
+    "width": 209,
+    "height": 241
   },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/贾周阳.png": {
     "local_path": "/portraits/chinasoft2026/c4cf4330f5a30a508523.webp",
@@ -1503,6 +2119,22 @@
     "width": 249,
     "height": 256
   },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/钱超.png": {
+    "local_path": "/portraits/chinasoft2026/7909885635f9e2a992d0.webp",
+    "source_sha256": "2a198d471c3ef2f576e9e252cc9e3f3f74a8e66da0249c227296f3e72ef02023",
+    "sha256": "7909885635f9e2a992d0f4b405c9c5cebcb2341c94da31b29c6cf8d7093251dd",
+    "bytes": 6818,
+    "width": 209,
+    "height": 240
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/陈元亮.png": {
+    "local_path": "/portraits/chinasoft2026/d86b0fa7c0db11dfc6f4.webp",
+    "source_sha256": "55901193f986d0f1746ab2c3c023d8896f77e2f4f8712a745bfce848c963e229",
+    "sha256": "d86b0fa7c0db11dfc6f4b05048b1d1ea9b03aa47f9f1f46575def327f93f19c5",
+    "bytes": 3552,
+    "width": 207,
+    "height": 256
+  },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/陈嘉弛.png": {
     "local_path": "/portraits/chinasoft2026/a2155135c86438673471.webp",
     "source_sha256": "3c899f4ca27e76dd2bf67deecea524c1e212e8e82fc34f434bd4c0d208241806",
@@ -1623,6 +2255,14 @@
     "width": 201,
     "height": 256
   },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/马菲菲.png": {
+    "local_path": "/portraits/chinasoft2026/133b9f6b66b5f3ff75f7.webp",
+    "source_sha256": "f6a9cbf762ca9b436300258fdcad01680197fe5b058b349dcc4f37497d3ebbdf",
+    "sha256": "133b9f6b66b5f3ff75f7776e14218e868920b9e60e62067d8de0e03f980f5f8d",
+    "bytes": 5400,
+    "width": 208,
+    "height": 241
+  },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/马雷.png": {
     "local_path": "/portraits/chinasoft2026/32c6cccc3f510ad84226.webp",
     "source_sha256": "7f34d5d791f0fca64a61844532f1919fca0b56b248695f96bb624e57536fe8d4",
@@ -1686,6 +2326,14 @@
     "bytes": 3786,
     "width": 249,
     "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/黄冕.png": {
+    "local_path": "/portraits/chinasoft2026/620e4a0210f0ec12248c.webp",
+    "source_sha256": "e3d83378f44123fdf47860ad8c4fa6ee7039154760ec4ce5bde16ffea0cbcc32",
+    "sha256": "620e4a0210f0ec12248c2bd9e60bc86209e426fd8b77c870bbc497f8aa143bea",
+    "bytes": 3728,
+    "width": 256,
+    "height": 252
   },
   "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/黄凯.png": {
     "local_path": "/portraits/chinasoft2026/c7776a9601c3626d7d2f.webp",

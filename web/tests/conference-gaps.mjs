@@ -27,12 +27,12 @@ try {
     await page.locator(selector).first().waitFor();
   };
   await go("/chinasoft2026", ".frow");
-  assert.equal(await page.locator(".frow").count(), 64);
+  assert.equal(await page.locator(".frow").count(), 65);
   const pending = page.locator(".dashday").filter({ has: page.locator("h2", { hasText: "日期待公布" }) });
-  assert.equal(await pending.locator(".frow").count(), 29);
+  assert.equal(await pending.locator(".frow").count(), 21);
   await page.locator(".daypill").filter({ hasText: "日期待公布" }).click();
-  await page.waitForFunction(() => document.querySelectorAll(".frow").length === 29);
-  assert.equal(await page.locator(".frow").count(), 29);
+  await page.waitForFunction(() => document.querySelectorAll(".frow").length === 21);
+  assert.equal(await page.locator(".frow").count(), 21);
   await page.locator(".search__input").fill("软件工程智能体创新论坛");
   await page.waitForFunction(() => document.querySelectorAll(".frow").length === 1);
   assert.equal(await page.locator(".frow").count(), 1);
@@ -79,11 +79,11 @@ try {
   await page.locator(".spcard").filter({ has: page.locator(".spcard__aff", { hasText: "清华大学" }) }).locator(".star").click();
   assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem("chinasoft2026:followed.speakers"))), ["R4:李佳"]);
   await page.evaluate(() => localStorage.removeItem("chinasoft2026:followed.speakers"));
-  await go("/chinasoft2026/forum/E6", ".followbtn");
+  await go("/chinasoft2026/forum/E7", ".followbtn");
   await page.locator(".followbtn").click();
   await go("/chinasoft2026/schedule?v=mine-day", ".daytab");
   await page.locator(".daytab").nth(2).click();
-  await page.locator('a[href="/chinasoft2026/forum/E6"]').waitFor();
+  await page.locator('a[href="/chinasoft2026/forum/E7"]').waitFor();
   assert.equal(await page.locator(".myday__empty").count(), 0);
   assert((await page.locator(".block--myday").textContent()).includes("14:10"));
   if (server) {
@@ -93,16 +93,16 @@ try {
       const { buildLiveView } = await import("/src/lib/live.ts");
       const { default: raw } = await import("/src/data/conferences/chinasoft2026.json");
       const views = buildConferenceViews(raw);
-      const items = collectFollowedItems({ forums: new Set(["E6", "C5"]), speakers: new Set(), talks: new Set() }, views);
+      const items = collectFollowedItems({ forums: new Set(["E7", "C5"]), speakers: new Set(), talks: new Set() }, views);
       const live = (date, minutes) => buildLiveView(views, { todayStr: date, nowMin: minutes });
       return { items, ics: toICS(items, "2026-10-14T00:00:00Z", views),
         morning: live("2026-11-06", 10 * 60), afternoon: live("2026-11-06", 14 * 60),
-        beforeE6: live("2026-11-07", 14 * 60), duringE6: live("2026-11-07", 14 * 60 + 30),
-        afterE6: live("2026-11-07", 15 * 60 + 11), lateReport: live("2026-11-06", 12 * 60 + 5),
+        beforeE7: live("2026-11-07", 14 * 60), duringE7: live("2026-11-07", 14 * 60 + 30),
+        afterE7: live("2026-11-07", 15 * 60 + 11), lateReport: live("2026-11-06", 12 * 60 + 5),
       };
     });
     assert.equal(result.items.length, 2);
-    const forum = result.items.find((x) => x.code === "E6");
+    const forum = result.items.find((x) => x.code === "E7");
     assert.equal(forum.approx, false);
     assert.equal(forum.talkIndex, undefined);
     assert(result.ics.includes("20261107T061000Z"));
@@ -111,11 +111,11 @@ try {
     assert(!result.morning.nowRooms.some((r) => r.code === "R32"));
     assert(!result.afternoon.nowRooms.some((r) => r.code === "R14"));
     assert(result.afternoon.nowRooms.some((r) => r.code === "R32"));
-    assert(!result.beforeE6.nowRooms.some((r) => r.code === "E6"));
-    assert.equal(result.beforeE6.next.start, "14:10");
-    assert(result.duringE6.nowRooms.some((r) => r.code === "E6"));
-    assert(!result.afterE6.nowRooms.some((r) => r.code === "E6"));
-    assert(!result.duringE6.nowRooms.some((r) => r.code === "C5" || r.code === "C6"));
+    assert(!result.beforeE7.nowRooms.some((r) => r.code === "E7"));
+    assert.equal(result.beforeE7.next.start, "14:10");
+    assert(result.duringE7.nowRooms.some((r) => r.code === "E7"));
+    assert(!result.afterE7.nowRooms.some((r) => r.code === "E7"));
+    assert(!result.duringE7.nowRooms.some((r) => r.code === "C5" || r.code === "C2"));
     assert(result.lateReport.nowRooms.some((r) => r.code === "E4"));
   }
 
