@@ -1,20 +1,19 @@
 # ChinaSoft 2026: source gaps and refresh checklist
 
-Last imported source review: **2026-10-16**. This is the conference-specific
+Last imported source review: **2026-10-17**. This is the conference-specific
 checklist for every subsequent refresh, not a claim that the official programme
 is complete. Talk numbers below are **one-based**, matching `#talk-N` links.
 
-The [October 16 observation](../source/chinasoft2026/checks/20261016T064546591524Z/REVIEW.md)
-is incorporated: P3/R22/R26/R31/S2/S6/S7/S8/I3, overview renumbering,
-committee ordering, corrected R13 affiliation/room and updated portraits.
-The accessible R16 programme is retained despite its withdrawn navigation entry.
-Original snapshots stay separate from the curated importer input.
+The [October 17 observation](../source/chinasoft2026/checks/20261017T043624685311Z/REVIEW.md)
+is incorporated: two new pending industrial forums (I7/I8), I6 organizer
+information and the S8 title. The October 16 programmes and curated corrections
+remain intact. Original snapshots stay separate from curated importer input.
 
 Sources: [official site](https://chinasoft.ccf.org.cn/2026/),
 [overview](https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index).
 The official navigation exposes 66 importer-scope HTML pages and 40 detailed
 programmes. Curated input retains R16, giving 67 HTML pages and 41 programmes.
-The dataset contains 65 forum/competition entries, 334 programme items, 44
+The dataset contains 67 forum/competition entries, 334 programme items, 44
 breaks, 289 attached source abstracts and 429 downloaded portrait resources.
 One further abstract is retained in an unmatched profile, separately displayed.
 
@@ -25,12 +24,12 @@ One further abstract is retained in an unmatched profile, separately displayed.
 | Academic | 25 / 35 | R2, R5, R9, R19, R25, R27, R29, R33, R34, R35 |
 | Regular | 4 / 4 | None |
 | Education | 2 / 7 | E1, E3, E5, E6, E7 |
-| Industry | 5 / 6 | I5 |
+| Industry | 5 / 8 | I5, I7, I8 |
 | Special issue | 5 / 8 | S1, S3, S4 |
 | Competition | 0 / 5 | C1, C2, C3, C4, C5 |
 
-- 24 programmes are unpublished. Of the 65 entries, 21 have no date, 23 no
-  room and 23 no clock window. These sets overlap; do not add the counts.
+- 26 programmes are unpublished. Of the 67 entries, 23 have no date, 25 no
+  room and 25 no clock window. These sets overlap; do not add the counts.
 - E7 has a November 7, 14:10–15:10 window and a room in the overview. C5/C2
   have November 7 final dates in their announcements, but no clock times or
   rooms. Keep these partial facts without inventing reports or participants.
@@ -142,6 +141,18 @@ One further abstract is retained in an unmatched profile, separately displayed.
   and 武延军. The last was previously referenced only by retained R16, so it
   appears as an added active reference but a changed imported resource.
 
+## October 17 refresh details to recheck
+
+- I7 软件研发体系与工程实践论坛 and I8 智能系统底座与应用实践论坛 appear in
+  the overview only. Preserve their pending status; no date, window, room or
+  participants have been published in the checked pages.
+- I6's organizer-list affiliation for 李晓锋 now retains only 航天科技集团502所.
+  陈睿's biography adds two honors. The report programme is unchanged.
+- S8's navigation/detail title now matches the overview:
+  智能化软硬件供应链安全分析技术. Its reports and schedules are unchanged.
+- All 444 active portrait references are unchanged, including the 22 broken
+  URLs. Existing prepared assets remain valid; no portrait refresh is needed.
+
 ## Deliberate data-only correction: R32 biographies
 
 At the user's explicit request, remove the four standalone role paragraphs
@@ -192,8 +203,8 @@ generated JSON copies must come from the same rebuilt source.
 
 ## Resolved display defects tracked by regression checks
 
-- All 65 forum entries are reachable in the normal dashboard, including the
-  21 entries under the pending-date section; filtering works there too.
+- All 67 forum entries are reachable in the normal dashboard, including the
+  23 entries under the pending-date section; filtering works there too.
 - Long committee rosters reveal when entering the viewport. A fractional
   visibility threshold hid the 195-member programme committee on mobile;
   independent 400-member fixtures now cover both desktop and mobile.

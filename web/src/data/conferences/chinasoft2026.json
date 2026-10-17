@@ -15275,7 +15275,7 @@
     {
       "code": "S8",
       "title": {
-        "zh": "智能软硬件供应链安全分析",
+        "zh": "智能化软硬件供应链安全分析技术",
         "en": null
       },
       "start": "15:20",
@@ -15668,8 +15668,7 @@
         "published_window": {
           "start": "15:20",
           "end": "18:20"
-        },
-        "overview_title": "智能化软硬件供应链安全分析技术"
+        }
       },
       "description": "随着开放软件生态、开放硬件体系结构以及大模型技术的快速发展，软件、硬件及智能化组件之间的关联日益紧密，供应链对象正由传统的软件组件和硬件模块不断扩展至模型、智能体、AI基础设施及其运行环境等新型对象。不同类型对象之间通过依赖、调用、集成和协同运行等方式形成复杂关联关系，共同构成支撑现代信息系统开发、部署与运行的软硬件供应链体系。供应链已成为影响系统安全性、可靠性和自主可控能力的重要因素，其安全问题受到学术界和工业界的广泛关注。然而，供应链对象类型的持续扩展和依赖关系的不断复杂化，在提升系统能力与开发效率的同时，也带来了新的安全挑战。软件缺陷与漏洞、开源生态投毒、硬件设计缺陷与后门，以及模型、工具服务等新型对象中的安全风险，均可能沿供应链路径传播并影响上层应用系统。与此同时，多类型供应链对象在描述方式、运行机制和依赖关系等方面存在显著差异，风险传播呈现跨层次、跨对象和动态演化等特点，给供应关系识别、风险检测分析以及风险影响评估带来了新的挑战。如何面向软件、硬件与智能化组件构成的复杂供应链体系开展系统化分析，揭示风险传播机理并准确评估其影响，已成为当前供应链安全领域的重要研究课题。",
       "category": {
@@ -17759,7 +17758,7 @@
           "affiliation_raw": "航天科技集团502所，北京轩宇信息技术有限公司",
           "chair_role": "论坛组委会",
           "title": "研究员",
-          "bio": "陈睿，博士，航天科技集团502所研究员，轩宇信息董事长，CCF形式化方法专委会常务委员，CICC智能测评专委会委员。长期从事嵌入式软件可信保障技术以及相关工具软件的研制。主持多个国家级省部级项目，在ISSTA、FSE等发表高水平论文20余篇，获发明专利20余项。负责研制了覆盖嵌入式软件测试全过程的完整工具链，推动软件工程和形式化等技术产业化，广泛应用于载人飞船和空间站、嫦娥系列探测器、北斗导航卫星等航天器软件的开发和测试中。获北京市科技进步一等奖，航天贡献奖等。",
+          "bio": "陈睿，博士，航天科技集团502所研究员，轩宇信息董事长，CCF形式化方法专委会常务委员，CICC智能测评专委会委员。长期从事嵌入式软件可信保障技术以及相关工具软件的研制。主持多个国家级省部级项目，在ISSTA、FSE等发表高水平论文20余篇，获发明专利20余项。负责研制了覆盖嵌入式软件测试全过程的完整工具链，推动软件工程和形式化等技术产业化，广泛应用于载人飞船和空间站、嫦娥系列探测器、北斗导航卫星等航天器软件的开发和测试中。入选首都科技创新领军人才，获北京市杰出青年中关村奖、北京市科技进步一等奖，航天贡献奖等。",
           "photo": {
             "local_path": "/portraits/chinasoft2026/f42109b73784e138f480.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%B7%A5%E4%B8%9A%E8%AE%BA%E5%9D%9B/%E9%99%88%E7%9D%BF.png"
@@ -17767,7 +17766,7 @@
         },
         {
           "name": "李晓锋",
-          "affiliation_raw": "航天科技集团502所，北京轩宇信息技术有限公司",
+          "affiliation_raw": "航天科技集团502所",
           "chair_role": "论坛组委会",
           "title": "研究员",
           "bio": "李晓锋，研究员，现任中国空间技术研究院软件技术专业学术技术带头人、北京控制工程研究所软件中心主任，兼任航天科技集团软件专业组成员、CCF软件工程专委会执行委员、CCF 嵌入式系统专委会执行委员。长期从事航天器高可信嵌入式软件领域的科学研究与工程实践，具有深厚的理论基础和丰富的型号研制经验。作为项目负责人，主持完成了嫦娥系列探测器、星网星座等十余项国家重大航天工程型号嵌入式控制软件的研制任务；先后主持或参与核高基重大专项、国防基础科研预研、国家自然科学基金等国家级科研项目二十余项。主要研究方向涵盖可信软件、软件自动化、软件自适应演化等前沿领域。曾获北京市科学技术进步一等奖、军队科技进步奖、国际发明展览会金奖等多项重要奖励；累计发表学术论文五十余篇，获授权发明专利四十余项。",
@@ -18020,6 +18019,54 @@
         }
       },
       "description": "嵌入式软件在航天、航空、轨交、汽车、核能等领域广泛应用，是重大装备关键功能的主要实现载体。随着人工智能技术的飞速发展，嵌入式软件开发测试方法正发生深刻的变革。一方面，嵌入式软件自身正在成为人工智能的实现载体，另一方面，智能化软件工程新方法也成为高可信、高效率研制嵌入式软件的重要支撑。\n\n本论坛由航天科技集团502所高可信嵌入式软件工程专业实验室和北京轩宇信息技术有限公司发起，旨在加强工业需求和学术前沿融合，为工业界现实问题凝练和学术界成果更好服务国家重大需求架起桥梁，至今已在CCF ChinaSoft 举办 6 届，致力于成为学术界和工业界探讨可信嵌入式软件的交流平台。\n\n本届论坛聚焦智能化高可信嵌入式软件开发、测试方向，将邀请来自工业界和学术界的多位专家在相关方向共同探讨工业界挑战和学术研究前沿。",
+      "category": {
+        "key": "industry-forum",
+        "name": {
+          "zh": "工业论坛",
+          "en": null
+        }
+      }
+    },
+    {
+      "code": "I7",
+      "title": {
+        "zh": "软件研发体系与工程实践论坛",
+        "en": null
+      },
+      "day_date": null,
+      "start": null,
+      "end": null,
+      "room": null,
+      "chairs": [],
+      "talks": [],
+      "detail_extracted": false,
+      "agenda_status": "not_published",
+      "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
+      "flags": [],
+      "category": {
+        "key": "industry-forum",
+        "name": {
+          "zh": "工业论坛",
+          "en": null
+        }
+      }
+    },
+    {
+      "code": "I8",
+      "title": {
+        "zh": "智能系统底座与应用实践论坛",
+        "en": null
+      },
+      "day_date": null,
+      "start": null,
+      "end": null,
+      "room": null,
+      "chairs": [],
+      "talks": [],
+      "detail_extracted": false,
+      "agenda_status": "not_published",
+      "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
+      "flags": [],
       "category": {
         "key": "industry-forum",
         "name": {
@@ -18298,8 +18345,8 @@
   },
   "extraction": {
     "source": "https://chinasoft.ccf.org.cn/2026/",
-    "content_sha256": "76329426561d3f87339b4354f56200c9366a331587d9a94bb9430dd0ebeeb129",
-    "forums_total": 65,
+    "content_sha256": "7d4379cd10bfbe88372e7c1b0f7ce99edde56ff2638b085af39eb1bcce1de266",
+    "forums_total": 67,
     "forums_detail_extracted": 41,
     "notes": "Active navigation and explicitly reviewed accessible withdrawn pages are captured. Unpublished programmes remain unscheduled. Timetable titles and affiliations are retained verbatim; profiles supplement abstracts and biographies."
   }

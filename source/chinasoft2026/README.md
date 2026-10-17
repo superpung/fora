@@ -28,7 +28,7 @@ uv run python source/validate.py
 uv run python -m unittest discover -s source/chinasoft2026
 ```
 
-The overview supplies 65 forum/competition entries and 13 conference timetable
+The overview supplies 67 forum/competition entries and 13 conference timetable
 rows across November 5–8. The 40 linked detail pages and retained accessible R16 programme supply
 334 programme items and 44 breaks. Conference meetings are retained separately from technical forums.
 The homepage advertises November 6–8; the dataset includes November 5 check-in

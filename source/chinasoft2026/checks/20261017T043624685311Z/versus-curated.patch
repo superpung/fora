@@ -1,0 +1,1264 @@
+--- before/pages/agenda/academic-forum/index.html
++++ after/pages/agenda/academic-forum/index.html
+@@ -55,7 +55,8 @@
+                                         onclick="loadAgenda('academic-forum', 'attack-attribution-analysis')">攻击溯源、推理与安全分析</a></li>
+                         <li><a href="#agenda/academic-forum/ai-os-security" class="sidebar-item"
+                                         onclick="loadAgenda('academic-forum', 'ai-os-security')">AI时代的操作系统安全技术</a></li>
+-                       
++                       <li><a href="#agenda/academic-forum/ai-os-security" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'ai-os-security')">AI时代的操作系统安全技术</a></li>
+                       <li><a href="#agenda/academic-forum/quantum-computing-software" class="sidebar-item"
+                                         onclick="loadAgenda('academic-forum', 'quantum-computing-software')">量子计算软件和算法</a></li>
+                         <li><a href="#agenda/academic-forum/eda-frontier" class="sidebar-item"
+--- before/pages/agenda/academic-forum/templates/distributed-resilience.html
++++ after/pages/agenda/academic-forum/templates/distributed-resilience.html
+@@ -1,186 +1,186 @@
+-<div class="container">
+-
+-    <h2 class="section-title">分布式软件系统韧性保障论坛</h2>
+-    <div class="section-title-en">学术论坛 R17</div>
+-
+-    <section class="forum-section">
+-        <h3>一、论坛介绍</h3>
+-        <p>随着云计算、大模型、智能计算、物联网及卫星互联网等新型信息基础设施快速发展，分布式软件系统正持续向超大规模、高复杂度、强异构和智能化方向演进。系统组件之间的依赖关系日益复杂，软硬件故障、资源波动、环境变化与安全风险相互交织，传统保障手段已难以充分适应复杂动态场景。如何提升系统在异常、故障和不确定环境下的感知、抵御、恢复与持续运行能力，已成为分布式系统研究与产业实践中的重要问题。</p>
+-        <p>本论坛以分布式软件系统韧性保障为主题，围绕复杂分布式系统中的韧性评估、故障预防、异常检测、容错恢复、可信保障与智能运维等关键问题展开交流，重点关注软件分析与缺陷检测、智能合约安全、低开销容错、大模型训练与推理系统稳健性、AI基础设施稳定性以及大规模智算系统智能运维等前沿方向。论坛将探讨程序分析、编码与冗余、近似容错、数据驱动方法、大模型与智能体等技术在韧性保障中的应用，研究如何在系统性能、资源开销与持续稳定运行之间实现有效平衡。</p>
+-        <p>通过汇聚软件工程、分布式系统、计算机体系结构、人工智能与智能运维等领域的学术界和产业界专家，本论坛旨在促进不同技术路线与应用场景的交叉融合，探索面向下一代分布式软件系统的可感知、可评估、可防护、可恢复、自适应韧性保障体系，推动相关技术从理论方法与系统创新进一步走向大规模工程实践。</p>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>二、论坛组织委员会</h3>
+-        <ul class="committee-list">
+-            <li><span class="member-name">孙永谦</span><span class="member-unit">（南开大学）</span></li>
+-            <li><span class="member-name">张圣林</span><span class="member-unit">（南开大学）</span></li>
+-            <li><span class="member-name">辜文蔚</span><span class="member-unit">（南开大学）</span></li>
+-        </ul>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>三、论坛安排</h3>
+-        <h4>日程安排：</h4>
+-        <p><strong>时间：</strong>2026年11月7日，15:20-18:20</p>
+-        <p><strong>地点：</strong>天津市社会山国际会议中心酒店，二层13号会议室</p>
+-
+-        <h4>论坛议程：</h4>
+-        <table class="forum-table">
+-            <thead>
+-                <tr><th>时间</th><th>题目</th><th>报告嘉宾</th></tr>
+-            </thead>
+-            <tbody>
+-                <tr><td style="white-space: nowrap;">15:20-15:40</td><td>静态分析误报消除方法研究</td><td>王林章<br>南京大学</td></tr>
+-                <tr><td style="white-space: nowrap;">15:40-16:00</td><td>面向物联网应用的联邦学习与推理优化关键技术研究</td><td>杜军朝<br>西安电子科技大学</td></tr>
+-                <tr><td style="white-space: nowrap;">16:00-16:20</td><td>大规模超智融合系统智能监控运维实践</td><td>韩锦恒<br>中科曙光高端计算产品部</td></tr>
+-                <tr><td style="white-space: nowrap;">16:20-16:40</td><td>大模型系统下可靠性技术研究</td><td>胡燏翀<br>华中科技大学</td></tr>
+-                <tr><td style="white-space: nowrap;">16:40-17:00</td><td>茶歇</td><td>-</td></tr>
+-                <tr><td style="white-space: nowrap;">17:00-17:20</td><td>智能合约视角下的分布式系统韧性保障</td><td>张鹏程<br>河海大学</td></tr>
+-                <tr><td style="white-space: nowrap;">17:20-17:40</td><td>智能时代AI Infra可靠性保障技术与实践</td><td>杨任宇<br>北京航空航天大学</td></tr>
+-                <tr><td style="white-space: nowrap;">17:40-18:00</td><td>面向典型应用的近似容错技术研究</td><td>岳恒山<br>吉林大学</td></tr>
+-                <tr><td style="white-space: nowrap;">18:00-18:20</td><td>星座智能自主运行研究与实践</td><td>李晴<br>北京邮电大学</td></tr>
+-            </tbody>
+-        </table>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>四、论坛报告嘉宾简介</h3>
+-        <div class="speaker-member">
+-            <h4>1. 报告人：王林章 教授</h4>
+-            <div class="speaker-profile">
+-                <div class="speaker-image">
+-                    
+-                </div>
+-                <div class="speaker-content">
+-                    <p><strong>题目：</strong>静态分析误报消除方法研究</p>
+-                    <p><strong>摘要：</strong>静态程序分析是软件可信保障的重要手段之一。随着软件系统的规模和复杂度不断增长，大规模复杂软件的静态分析可能产生大量的警告，且误报比例居高不下，严重降低了可信保障效能。本报告介绍通过提升静态分析精度减少误报，以及基于符号执行、输入无关性分析、大模型与智能体等方法对静态分析产生的警报进行甄别，从发掘缺陷存在证据的角度实现消除误报，从而提升静态分析结果的可用性。</p>
+-                    <p><strong>简介：</strong>王林章，南京大学计算机学院至诚特聘教授、中国计算机学会会士，担任全国信息技术标准化技术委员会委员、中国计算机学会理事。科研与教学主要关注系统软件、软件工程、智能化基础软件可信保障。</p>
+-                </div>
+-            </div>
+-        </div>
+-        <div class="speaker-member">
+-            <h4>2. 报告人：杜军朝 教授</h4>
+-            <div class="speaker-profile">
+-                <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/杜军朝.png" alt="杜军朝头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <div class="speaker-content">
+-                    <p><strong>题目：</strong>面向物联网应用的联邦学习与推理优化关键技术研究</p>
+-                    <p><strong>摘要：</strong>随着物联网应用、大模型、边缘智能技术的迅猛发展，联邦学习技术与推理优化技术成为研究的热点。本报告主要探讨面向物联网应用的联邦学习技术，如联邦大小模型协同、异构模型的联邦训练、联邦学习公平性。同时，讨论源受限下智能推理技术、模型压缩技术、语音／图像信息处理技术等。</p>
+-                    <p><strong>简介：</strong>杜军朝，西安电子科技大学"华山学者"领军教授、西电二级教授、国家级人才，教育部区块链技术应用与测评工程研究中心副主任，陕西省智能人机交互与可穿戴技术重点实验室骨干，陕西省科技创新团队负责人，陕西省秦创原科学家+工程师团队首席科学家，ACM西安分会副主席，ACM中国图灵大会组委，CCF杰出会员，CCF物联网、嵌入式专委常务委员，分布式计算与系统、区块链专委委员。以第一完成人获：2022教育部技术发明二等奖、2021/2019陕西省高等学校科学技术特等奖/一等奖。出版国家重点图书出版规划教材《ZigBee技术原理与实战》。承担国家自然基金重点基金项目、陕西省科研项目等多项。在国际旗舰会议ACM Ubicomp、ACM Mobisys、IEEE/ACM期刊等发表论文多篇，获得2017 ACM Ubicomp杰出论文奖（CCF A类）。</p>
+-                </div>
+-            </div>
+-        </div>
+-        <div class="speaker-member">
+-            <h4>3. 报告人：韩锦恒 中科院工程师</h4>
+-            <div class="speaker-profile">
+-                <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/韩锦恒.png" alt="韩锦恒头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <div class="speaker-content">
+-                    <p><strong>题目：</strong>大规模超智融合系统智能监控运维实践</p>
+-                    <p><strong>摘要：</strong>HPC与AI的融合发展推动计算系统向E级算力、万卡乃至十万卡规模演进。计算、存储、高速网络、液冷与动环基础设施紧密耦合，使系统复杂度和故障影响范围显著增加，也对监控覆盖、故障诊断和运维自动化提出了更高要求。本报告面向大规模超智融合系统，提出以可观测数据、CMDB、运维知识库和智能体为基础的一体化智能运维架构Gridview。该架构统一采集指标、日志、事件和追踪数据，整合芯片级、节点级、单元级和系统级RAS能力，通过时序分析、异常检测、关联分析以及大模型技术，实现指标异常识别、BMC日志解析、跨系统故障根因定位和处置建议生成。在此基础上，结合数字孪生构建多层级、多维度的集群运行视图，并通过MCP连接配置检查、系统部署、性能检测和故障处理工具，使智能体能够根据运维意图自主规划和执行任务。相关能力进一步延伸至科学计算领域，由专业智能体完成任务拆解、环境检查、计算软件调用、结果分析和报告生成。实践表明，该方案能够缩短故障分析与科研计算流程，提高大规模超智融合系统的可观测性、稳定性和运维效率。</p>
+-                    <p><strong>简介：</strong>韩锦恒，工学硕士，中国科学院工程师，现任中科曙光高端计算产品部工程师，负责管理子系统Gridview的产品研发与架构设计，构建了覆盖芯片级、节点级、单元级和集群级的全方位可观测体系。参与中国首个全国产十万卡AI超集群——曙光8000（登峰）系统建设，通过资源管理、智能调度与全链路监控能力，实现超智融合集群监控运维的数据化、可视化和专业化管理，为超大规模算力集群稳定运行提供支撑。</p>
+-                </div>
+-            </div>
+-        </div>
+-        <div class="speaker-member">
+-            <h4>4. 报告人：胡燏翀 教授</h4>
+-            <div class="speaker-profile">
+-                <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/胡燏翀.png" alt="胡燏翀头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <div class="speaker-content">
+-                    <p><strong>题目：</strong>大模型系统下可靠性技术研究</p>
+-                    <p><strong>摘要：</strong>大规模智算系统已成为关键基础设施，但故障频发与传统容错高开销制约其发展。本研究以编码技术为核心，构建低开销可靠性保障范式，覆盖智算与智存两大方向。智算方面：面向推理，提出SpotCC抢占式编码计算方法，利用解码不对称性与抢占不均匀性将P99尾延迟降低83.9%；提出ECPrefix纠删码前缀缓存技术，以自适应条带与流水线解码将首Token时延降低52.3%；智存方面：面向训练，提出AsymCheck非对称分区检查点机制，利用前反向传播通信空闲差异将训练时间缩短20.1%–48.2%；提出COAR计算感知纠删码修复技术，综合节点计算与网络资源调度修复任务，修复时间最多降低59.8%。相关成果发表于HPCA、DAC、HPDC等CCF A类会议，并应用至新华三、海康威视等企业产品。</p>
+-                    <p><strong>简介：</strong>胡燏翀，华中科技大学计算机科学与技术学院教授、博导、院长助理，国家级青年人才，国家重点研发计划项目青年科学家。研究聚焦智能存储系统"冗余高、修复慢、搬运多"三大痛点，锚定极低开销、高效修复、快速传输三大核心科学问题开展系统性攻关，近五年发表高水平论文近50篇，以第一/通讯作者发表FAST、HPCA、SC、DAC、ICDE、HPDC等CCF A会，获国家科技进步二等奖、国家级教学成果二等奖、湖北省科技进步一等奖、日内瓦发明展金奖、华为奥林帕斯先锋奖等。成果已落地新华三、海康威视、华为等国内头部IT企业。</p>
+-                </div>
+-            </div>
+-        </div>
+-        <div class="speaker-member">
+-            <h4>5. 报告人：张鹏程 教授</h4>
+-            <div class="speaker-profile">
+-                <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/张鹏程.png" alt="张鹏程头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <div class="speaker-content">
+-                    <p><strong>题目：</strong>智能合约视角下的分布式系统韧性保障</p>
+-                    <p><strong>摘要：</strong>智能合约作为区块链的核心基础设施，因其可编程性与不可篡改性而得到广泛应用，其安全能力已成为分布式系统韧性保障的重要基础。本报告以智能合约为视角，围绕分布式系统的韧性评估、韧性加固与韧性感知三个方面展开：在韧性评估方面，通过智能合约漏洞注入构建测试场景，支撑安全测试与防护能力评估；在韧性加固方面，探索智能合约代码混淆与代码生成方法，提升合约保护能力与代码安全性；在韧性感知方面，研究智能合约漏洞检测方法，识别潜在缺陷与安全风险。报告进一步讨论三者的联系与互补性，为分布式系统韧性保障提供智能合约层面的技术支撑，并展望跨链安全等方面的潜在问题，为构建可评估、可加固、可感知的分布式系统韧性保障体系提供参考。</p>
+-                    <p><strong>简介：</strong>张鹏程，河海大学计算机与软件学院副院长、教授、博士生导师、CCF服务计算专委常委、CCF软件工程和系统软件专委执委、江苏省计算机学会软件专委副主任。主要研究方向为软件工程和服务计算等，主持国家自然科学基金4项、国家自然科学基金联合基金课题1项（合作单位负责人）、国家重点研发计划子课题、江苏省自然科学基金等纵横向课题20余项。在TSE、TOSEM、TIFS、TSC、TMC、TKDE、TCC、TR等IEEE/ACM汇刊、ESEC/FSE、ASE、ICML、AAAI、ICWS、ICSOC等国内外期刊和会议上发表论文100余篇。担任CCF A类期刊TSC副编辑，担任IEEE AITest 2019、CCF ICSS 2025、IEEE EDGE 2026等程序委员会主席，担任CCF A类会议ACM MM、NeurIPS、AAAI，CCF B类会议ICWS、ICSOC、ICDM等程序委员会委员。曾获东南大学优秀博士论文、中国博士后特别资助、湖北省科技进步一等奖、教育部科技进步一等奖、电力建设企业学会科技进步二等奖、江苏省优秀计算机科技工作者和CCF服务计算专委"青年才俊"奖和"青年科技奖"等。</p>
+-                </div>
+-            </div>
+-        </div>
+-        <div class="speaker-member">
+-            <h4>6. 报告人：杨任宇 副教授</h4>
+-            <div class="speaker-profile">
+-                <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/杨任宇.png" alt="杨任宇头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <div class="speaker-content">
+-                    <p><strong>题目：</strong>智能时代AI Infra可靠性保障技术与实践</p>
+-                    <p><strong>摘要：</strong>智能化浪潮下，万卡级异构算力集群已成为关键的AI基础设施，但AI基础设施故障频率高、恢复慢、损失大，亟需构建"检测—定位—诊断—恢复"全链路可靠性保障体系。本报告将介绍我们近期技术探索与实践：异常检测与定位方面，多模态异常识别与GraphRAG根因分析、动态环境KPI异常检测；模型训练稳定性观测与诊断方面，构建ETPR端到端可观测指标与稳定性闭环治理框架，实现中断、挂起故障诊断与慢节点快速定位；模型训练失效恢复方面，热度感知自适应检查点与多级异步增量检查点优化等关键技术。</p>
+-                    <p><strong>简介：</strong>杨任宇，博士，北京航空航天大学软件学院副教授，博士生导师，国家级青年人才。北航可靠智能分布式系统实验室（RAIDSLab）联合负责人，复杂关键软件环境全国重点实验室、计算智能新技术北京市重点实验室核心成员，关键软件重点学科与技术研究中心办公室主任，曾担任英国利兹大学研究员、爱丁堡大学访问学者。目前研究方向为大规模AI基础设施资源管理、训练与推理加速优化、AI Infra稳定性与可靠性、智能运维等。主持国家重点研发计划课题、国家自然科学基金青年项目、北京市自然科学基金项目、头部企业-校企合作项目等项目课题十余项。在TPDS、TC、EuroSys、SC、SoCC、ICPP、ASE、VLDB、KDD、AAAI等分布式计算、人工智能、综合交叉等领域国际期刊、会议发表学术论文90余篇，谷歌学术引用5000余次，牵头研制云原生领域国家标准工作2项、行标1项。曾获2017年中国电子学会科技进步特等奖、2022年英国阿兰图灵博士后拓展奖、2024年中国商业联合会科技进步一等奖、2025年度关键软件技术创新成果、2024年快手优秀科研合作奖等。</p>
+-                </div>
+-            </div>
+-        </div>
+-        <div class="speaker-member">
+-            <h4>7. 报告人：岳恒山 副教授</h4>
+-            <div class="speaker-profile">
+-                <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/岳恒山.png" alt="岳恒山头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <div class="speaker-content">
+-                    <p><strong>题目：</strong>面向典型应用的近似容错技术研究</p>
+-                    <p><strong>摘要：</strong>随着计算平台集成度不断提升、系统规模持续扩大，硬件故障风险日益突出。与此同时，复杂应用中广泛存在的数据依赖关系进一步加剧了故障传播与影响累积，对系统可靠性构成严峻挑战。传统容错方法主要依赖硬件加固、冗余执行及检查点回滚等机制，往往引入较高的性能与资源开销。本报告面向计算系统高效能、高可靠运行需求，介绍近似容错的设计思想，通过挖掘应用固有的误差容忍特性，适度放宽容错约束、简化容错机制，以降低系统容错开销。重点介绍面向高性能计算、人工智能及图计算等典型应用的可靠性分析方法与高效近似容错技术，探索系统可靠性与容错开销之间的有效平衡方法，为构建高效能、高可靠的计算系统提供技术支撑。</p>
+-                    <p><strong>简介：</strong>岳恒山，吉林大学准聘副教授、研究员，吉林省省域D类人才。主要研究方向为计算机体系结构与系统可靠性。近年来，以负责人身份主持国家自然科学基金、国家重点研发计划子课题、中国博士后科学基金面上资助、吉林省自然科学基金（面上）、华为胡杨林基金等多项项目；以责任作者（一作/通讯）在SC、DAC、TCAD、TACO、TMM、ICCD、Cluster、DATE、JSA等期刊/会议共发表学术论文近30篇；曾入选"吉林省博士后科研人员择优资助计划"及"吉林大学鼎新学者支持计划"。博士论文获"吉林省优秀博士论文"及"ACM中国优秀博士论文奖（长春）"。</p>
+-                </div>
+-            </div>
+-        </div>
+-        <div class="speaker-member">
+-            <h4>8. 报告人：李晴 副教授</h4>
+-            <div class="speaker-profile">
+-                <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/李晴.png" alt="李晴头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <div class="speaker-content">
+-                    <p><strong>题目：</strong>星座智能自主运行研究与实践</p>
+-                    <p><strong>摘要：</strong>随着低轨卫星星座规模持续扩大，传统依赖地面集中控制和人工决策的运控模式，面临响应时延高、协同复杂、资源受限和扩展能力不足等挑战。本报告围绕星座智能自主运行体系，从安全、健康、高效和进化四个方面，介绍轨道预测与自主避碰、真实在轨数据分析与动态评测、能源与任务协同调度、分布式训练和在轨模型更新等研究工作，并结合算网能热联合仿真平台和真实实验卫星系统，探讨如何构建数据、算法、评测、仿真与硬件协同支撑的闭环技术体系，推动卫星星座由地面控制走向自主感知、自主决策、协同运行与持续进化。</p>
+-                    <p><strong>简介：</strong>李晴，北京邮电大学计算机学院（国家示范性软件学院）预聘副教授，研究领域包括卫星计算系统优化、卫星智能运控、新型卫星计算应用、卫星网络安全等，相关工作发表在Usenix Security/ACM MobiCom/Usenix ATC/IEEE RTSS/IEEE TMC/IEEE TSC/IEEE ToN等国际会议和期刊。主持国家自然科学基金面上/青年项目、博士后面上基金项目，入选2023年博新计划，曾获IEEE TSC 2024 Best Paper Award、USENIX Security 2026 Distinguished Paper Award、ACM Mobicom 2025 Best Demo Runner-up Award、ICSOC 2023 Distinguished Paper Award、IEEE EDGE 2021 Best Paper Award等奖项。</p>
+-                </div>
+-            </div>
+-        </div>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>五、论坛组织委员会简介</h3>
+-        <div class="committee-member">
+-            <h4>1. 论坛组委会：孙永谦 南开大学副教授</h4>
+-            <div class="committee-profile">
+-                <div class="committee-image">
+-                    <img src="./images/academic-forum/学术论坛/孙永谦.png" alt="孙永谦头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <p><strong>简介：</strong>孙永谦，南开大学软件学院副教授、博导，曾任图书馆副馆长。清华大学计算机系博士毕业，CCF高级会员。从事智能运维（AIOps）领域研究，近期专注于基于LLM、多智能体等方法研究面向多模态数据的故障识别、诊断与预防等，在JSAC、WWW、ASE、FSE、TC、TSC、TOSEM等国际会议/期刊发表论文70余篇，获得CCF A类会议FSE2026的杰出论文奖（工业赛道唯一），ISSRE2024最佳论文和最佳工业论文奖。主持国家科技重大专项课题1项、国家自然基金与天津市自然基金各1项，与华为、字节跳动、阿里、腾讯、快手等头部IT企业合作校企共研项目20余项。获得中国电子学会科技进步一等奖（4/15）、南开大学"良师益友"荣誉称号，天津市"131"创新型人才培养工程第三层次、教育部-华为智能基座"栋梁之师"等荣誉。</p>
+-            </div>
+-        </div>
+-        <div class="committee-member">
+-            <h4>2. 论坛组委会：张圣林 南开大学教授</h4>
+-            <div class="committee-profile">
+-                <div class="committee-image">
+-                    <img src="./images/academic-forum/学术论坛/张圣林.png" alt="张圣林头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <p><strong>简介：</strong>张圣林，南开大学教授，博士生、硕士生导师，软件学院副院长，先进计算与关键软件（信创）海河实验室研究员。清华大学计算机系博士毕业。入选南开大学"百青计划"。以第一或唯一通讯作者在CCF A类会议或期刊发表论文40余篇。谷歌学术被引4700余次。主持国家自然科学基金项目2项，横向项目30余项（与华为、字节跳动、腾讯、阿里巴巴、蚂蚁金服、中兴等合作）。荣获CCF A类会议FSE 2026唯一杰出工业论文奖，并三次荣获CCF B类会议ISSRE最佳论文奖。获中国电子学会科技进步一等奖（第3完成人）、天津市科技进步一等奖、华为"最佳技术合作教授奖"、南开大学"良师益友"称号、麒麟软件"校企合作突出贡献奖"等荣誉。指导的研究生获得南开大学优秀硕士学位论文4项，南开大学研究生优秀毕业生1项。现任CCF互联网专委常务委员，CCF 2026中国软件大会程序委员会共同主席、CCF 2025中国网络大会竞赛委员会共同主席，CCF软件工程专委、服务计算专委执行委员，曾担任CCF 2025中国网络大会宣传委员会主席，CCF青年计算机科技论坛（YOCSEF）天津学术委员会副主席（2023–2024）。</p>
+-            </div>
+-        </div>
+-        <div class="committee-member">
+-            <h4>3. 论坛组委会：辜文蔚 南开大学讲师</h4>
+-            <div class="committee-profile">
+-                <div class="committee-image">
+-                    <img src="./images/academic-forum/学术论坛/辜文蔚.png" alt="辜文蔚头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <p><strong>简介：</strong>辜文蔚，南开大学软件学院讲师。于2025年从香港中文大学计算机系获得博士学位，师从吕荣聪教授。在ICSE、FSE、ASE、TOSEM、TSE、ATC等CCF A/B国际顶尖会议和期刊发表高水平论文33篇，获得FSE 26杰出论文奖，ISSRE 25最佳论文奖提名。主持CCF-蚂蚁科研基金、阿里巴巴校企合作项目等科研项目，并参与多项华为、美团、字节跳动等企业合作项目。担任ISSRE 26、QRS 26、SANER 27程序委员会委员，2026中国软件大会宣传委员会主席，第九届CCF国际智能运维挑战赛技术委员会主席。</p>
+-            </div>
+-        </div>
+-    </section>
+-
++<div class="container">
++
++    <h2 class="section-title">分布式软件系统韧性保障论坛</h2>
++    <div class="section-title-en">学术论坛 R17</div>
++
++    <section class="forum-section">
++        <h3>一、论坛介绍</h3>
++        <p>随着云计算、大模型、智能计算、物联网及卫星互联网等新型信息基础设施快速发展，分布式软件系统正持续向超大规模、高复杂度、强异构和智能化方向演进。系统组件之间的依赖关系日益复杂，软硬件故障、资源波动、环境变化与安全风险相互交织，传统保障手段已难以充分适应复杂动态场景。如何提升系统在异常、故障和不确定环境下的感知、抵御、恢复与持续运行能力，已成为分布式系统研究与产业实践中的重要问题。</p>
++        <p>本论坛以分布式软件系统韧性保障为主题，围绕复杂分布式系统中的韧性评估、故障预防、异常检测、容错恢复、可信保障与智能运维等关键问题展开交流，重点关注软件分析与缺陷检测、智能合约安全、低开销容错、大模型训练与推理系统稳健性、AI基础设施稳定性以及大规模智算系统智能运维等前沿方向。论坛将探讨程序分析、编码与冗余、近似容错、数据驱动方法、大模型与智能体等技术在韧性保障中的应用，研究如何在系统性能、资源开销与持续稳定运行之间实现有效平衡。</p>
++        <p>通过汇聚软件工程、分布式系统、计算机体系结构、人工智能与智能运维等领域的学术界和产业界专家，本论坛旨在促进不同技术路线与应用场景的交叉融合，探索面向下一代分布式软件系统的可感知、可评估、可防护、可恢复、自适应韧性保障体系，推动相关技术从理论方法与系统创新进一步走向大规模工程实践。</p>
++    </section>
++
++    <section class="forum-section">
++        <h3>二、论坛组织委员会</h3>
++        <ul class="committee-list">
++            <li><span class="member-name">孙永谦</span><span class="member-unit">（南开大学）</span></li>
++            <li><span class="member-name">张圣林</span><span class="member-unit">（南开大学）</span></li>
++            <li><span class="member-name">辜文蔚</span><span class="member-unit">（南开大学）</span></li>
++        </ul>
++    </section>
++
++    <section class="forum-section">
++        <h3>三、论坛安排</h3>
++        <h4>日程安排：</h4>
++        <p><strong>时间：</strong>2026年11月7日，15:20-18:20</p>
++        <p><strong>地点：</strong>天津市社会山国际会议中心酒店，二层13号会议室</p>
++
++        <h4>论坛议程：</h4>
++        <table class="forum-table">
++            <thead>
++                <tr><th>时间</th><th>题目</th><th>报告嘉宾</th></tr>
++            </thead>
++            <tbody>
++                <tr><td style="white-space: nowrap;">15:20-15:40</td><td>静态分析误报消除方法研究</td><td>王林章<br>南京大学</td></tr>
++                <tr><td style="white-space: nowrap;">15:40-16:00</td><td>面向物联网应用的联邦学习与推理优化关键技术研究</td><td>杜军朝<br>西安电子科技大学</td></tr>
++                <tr><td style="white-space: nowrap;">16:00-16:20</td><td>大规模超智融合系统智能监控运维实践</td><td>韩锦恒<br>中科曙光高端计算产品部</td></tr>
++                <tr><td style="white-space: nowrap;">16:20-16:40</td><td>大模型系统下可靠性技术研究</td><td>胡燏翀<br>华中科技大学</td></tr>
++                <tr><td style="white-space: nowrap;">16:40-17:00</td><td>茶歇</td><td>-</td></tr>
++                <tr><td style="white-space: nowrap;">17:00-17:20</td><td>智能合约视角下的分布式系统韧性保障</td><td>张鹏程<br>河海大学</td></tr>
++                <tr><td style="white-space: nowrap;">17:20-17:40</td><td>智能时代AI Infra可靠性保障技术与实践</td><td>杨任宇<br>北京航空航天大学</td></tr>
++                <tr><td style="white-space: nowrap;">17:40-18:00</td><td>面向典型应用的近似容错技术研究</td><td>岳恒山<br>吉林大学</td></tr>
++                <tr><td style="white-space: nowrap;">18:00-18:20</td><td>星座智能自主运行研究与实践</td><td>李晴<br>北京邮电大学</td></tr>
++            </tbody>
++        </table>
++    </section>
++
++    <section class="forum-section">
++        <h3>四、论坛报告嘉宾简介</h3>
++        <div class="speaker-member">
++            <h4>1. 报告人：王林章 教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/王林章.png" alt="王林章头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>静态分析误报消除方法研究</p>
++                    <p><strong>摘要：</strong>静态程序分析是软件可信保障的重要手段之一。随着软件系统的规模和复杂度不断增长，大规模复杂软件的静态分析可能产生大量的警告，且误报比例居高不下，严重降低了可信保障效能。本报告介绍通过提升静态分析精度减少误报，以及基于符号执行、输入无关性分析、大模型与智能体等方法对静态分析产生的警报进行甄别，从发掘缺陷存在证据的角度实现消除误报，从而提升静态分析结果的可用性。</p>
++                    <p><strong>简介：</strong>王林章，南京大学计算机学院至诚特聘教授、中国计算机学会会士，担任全国信息技术标准化技术委员会委员、中国计算机学会理事。科研与教学主要关注系统软件、软件工程、智能化基础软件可信保障。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>2. 报告人：杜军朝 教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/杜军朝.png" alt="杜军朝头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>面向物联网应用的联邦学习与推理优化关键技术研究</p>
++                    <p><strong>摘要：</strong>随着物联网应用、大模型、边缘智能技术的迅猛发展，联邦学习技术与推理优化技术成为研究的热点。本报告主要探讨面向物联网应用的联邦学习技术，如联邦大小模型协同、异构模型的联邦训练、联邦学习公平性。同时，讨论源受限下智能推理技术、模型压缩技术、语音／图像信息处理技术等。</p>
++                    <p><strong>简介：</strong>杜军朝，西安电子科技大学"华山学者"领军教授、西电二级教授、国家级人才，教育部区块链技术应用与测评工程研究中心副主任，陕西省智能人机交互与可穿戴技术重点实验室骨干，陕西省科技创新团队负责人，陕西省秦创原科学家+工程师团队首席科学家，ACM西安分会副主席，ACM中国图灵大会组委，CCF杰出会员，CCF物联网、嵌入式专委常务委员，分布式计算与系统、区块链专委委员。以第一完成人获：2022教育部技术发明二等奖、2021/2019陕西省高等学校科学技术特等奖/一等奖。出版国家重点图书出版规划教材《ZigBee技术原理与实战》。承担国家自然基金重点基金项目、陕西省科研项目等多项。在国际旗舰会议ACM Ubicomp、ACM Mobisys、IEEE/ACM期刊等发表论文多篇，获得2017 ACM Ubicomp杰出论文奖（CCF A类）。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>3. 报告人：韩锦恒 中科院工程师</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/韩锦恒.png" alt="韩锦恒头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>大规模超智融合系统智能监控运维实践</p>
++                    <p><strong>摘要：</strong>HPC与AI的融合发展推动计算系统向E级算力、万卡乃至十万卡规模演进。计算、存储、高速网络、液冷与动环基础设施紧密耦合，使系统复杂度和故障影响范围显著增加，也对监控覆盖、故障诊断和运维自动化提出了更高要求。本报告面向大规模超智融合系统，提出以可观测数据、CMDB、运维知识库和智能体为基础的一体化智能运维架构Gridview。该架构统一采集指标、日志、事件和追踪数据，整合芯片级、节点级、单元级和系统级RAS能力，通过时序分析、异常检测、关联分析以及大模型技术，实现指标异常识别、BMC日志解析、跨系统故障根因定位和处置建议生成。在此基础上，结合数字孪生构建多层级、多维度的集群运行视图，并通过MCP连接配置检查、系统部署、性能检测和故障处理工具，使智能体能够根据运维意图自主规划和执行任务。相关能力进一步延伸至科学计算领域，由专业智能体完成任务拆解、环境检查、计算软件调用、结果分析和报告生成。实践表明，该方案能够缩短故障分析与科研计算流程，提高大规模超智融合系统的可观测性、稳定性和运维效率。</p>
++                    <p><strong>简介：</strong>韩锦恒，工学硕士，中国科学院工程师，现任中科曙光高端计算产品部工程师，负责管理子系统Gridview的产品研发与架构设计，构建了覆盖芯片级、节点级、单元级和集群级的全方位可观测体系。参与中国首个全国产十万卡AI超集群——曙光8000（登峰）系统建设，通过资源管理、智能调度与全链路监控能力，实现超智融合集群监控运维的数据化、可视化和专业化管理，为超大规模算力集群稳定运行提供支撑。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>4. 报告人：胡燏翀 教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/胡燏翀.png" alt="胡燏翀头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>大模型系统下可靠性技术研究</p>
++                    <p><strong>摘要：</strong>大规模智算系统已成为关键基础设施，但故障频发与传统容错高开销制约其发展。本研究以编码技术为核心，构建低开销可靠性保障范式，覆盖智算与智存两大方向。智算方面：面向推理，提出SpotCC抢占式编码计算方法，利用解码不对称性与抢占不均匀性将P99尾延迟降低83.9%；提出ECPrefix纠删码前缀缓存技术，以自适应条带与流水线解码将首Token时延降低52.3%；智存方面：面向训练，提出AsymCheck非对称分区检查点机制，利用前反向传播通信空闲差异将训练时间缩短20.1%–48.2%；提出COAR计算感知纠删码修复技术，综合节点计算与网络资源调度修复任务，修复时间最多降低59.8%。相关成果发表于HPCA、DAC、HPDC等CCF A类会议，并应用至新华三、海康威视等企业产品。</p>
++                    <p><strong>简介：</strong>胡燏翀，华中科技大学计算机科学与技术学院教授、博导、院长助理，国家级青年人才，国家重点研发计划项目青年科学家。研究聚焦智能存储系统"冗余高、修复慢、搬运多"三大痛点，锚定极低开销、高效修复、快速传输三大核心科学问题开展系统性攻关，近五年发表高水平论文近50篇，以第一/通讯作者发表FAST、HPCA、SC、DAC、ICDE、HPDC等CCF A会，获国家科技进步二等奖、国家级教学成果二等奖、湖北省科技进步一等奖、日内瓦发明展金奖、华为奥林帕斯先锋奖等。成果已落地新华三、海康威视、华为等国内头部IT企业。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>5. 报告人：张鹏程 教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/张鹏程.png" alt="张鹏程头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>智能合约视角下的分布式系统韧性保障</p>
++                    <p><strong>摘要：</strong>智能合约作为区块链的核心基础设施，因其可编程性与不可篡改性而得到广泛应用，其安全能力已成为分布式系统韧性保障的重要基础。本报告以智能合约为视角，围绕分布式系统的韧性评估、韧性加固与韧性感知三个方面展开：在韧性评估方面，通过智能合约漏洞注入构建测试场景，支撑安全测试与防护能力评估；在韧性加固方面，探索智能合约代码混淆与代码生成方法，提升合约保护能力与代码安全性；在韧性感知方面，研究智能合约漏洞检测方法，识别潜在缺陷与安全风险。报告进一步讨论三者的联系与互补性，为分布式系统韧性保障提供智能合约层面的技术支撑，并展望跨链安全等方面的潜在问题，为构建可评估、可加固、可感知的分布式系统韧性保障体系提供参考。</p>
++                    <p><strong>简介：</strong>张鹏程，河海大学计算机与软件学院副院长、教授、博士生导师、CCF服务计算专委常委、CCF软件工程和系统软件专委执委、江苏省计算机学会软件专委副主任。主要研究方向为软件工程和服务计算等，主持国家自然科学基金4项、国家自然科学基金联合基金课题1项（合作单位负责人）、国家重点研发计划子课题、江苏省自然科学基金等纵横向课题20余项。在TSE、TOSEM、TIFS、TSC、TMC、TKDE、TCC、TR等IEEE/ACM汇刊、ESEC/FSE、ASE、ICML、AAAI、ICWS、ICSOC等国内外期刊和会议上发表论文100余篇。担任CCF A类期刊TSC副编辑，担任IEEE AITest 2019、CCF ICSS 2025、IEEE EDGE 2026等程序委员会主席，担任CCF A类会议ACM MM、NeurIPS、AAAI，CCF B类会议ICWS、ICSOC、ICDM等程序委员会委员。曾获东南大学优秀博士论文、中国博士后特别资助、湖北省科技进步一等奖、教育部科技进步一等奖、电力建设企业学会科技进步二等奖、江苏省优秀计算机科技工作者和CCF服务计算专委"青年才俊"奖和"青年科技奖"等。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>6. 报告人：杨任宇 副教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/杨任宇.png" alt="杨任宇头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>智能时代AI Infra可靠性保障技术与实践</p>
++                    <p><strong>摘要：</strong>智能化浪潮下，万卡级异构算力集群已成为关键的AI基础设施，但AI基础设施故障频率高、恢复慢、损失大，亟需构建"检测—定位—诊断—恢复"全链路可靠性保障体系。本报告将介绍我们近期技术探索与实践：异常检测与定位方面，多模态异常识别与GraphRAG根因分析、动态环境KPI异常检测；模型训练稳定性观测与诊断方面，构建ETPR端到端可观测指标与稳定性闭环治理框架，实现中断、挂起故障诊断与慢节点快速定位；模型训练失效恢复方面，热度感知自适应检查点与多级异步增量检查点优化等关键技术。</p>
++                    <p><strong>简介：</strong>杨任宇，博士，北京航空航天大学软件学院副教授，博士生导师，国家级青年人才。北航可靠智能分布式系统实验室（RAIDSLab）联合负责人，复杂关键软件环境全国重点实验室、计算智能新技术北京市重点实验室核心成员，关键软件重点学科与技术研究中心办公室主任，曾担任英国利兹大学研究员、爱丁堡大学访问学者。目前研究方向为大规模AI基础设施资源管理、训练与推理加速优化、AI Infra稳定性与可靠性、智能运维等。主持国家重点研发计划课题、国家自然科学基金青年项目、北京市自然科学基金项目、头部企业-校企合作项目等项目课题十余项。在TPDS、TC、EuroSys、SC、SoCC、ICPP、ASE、VLDB、KDD、AAAI等分布式计算、人工智能、综合交叉等领域国际期刊、会议发表学术论文90余篇，谷歌学术引用5000余次，牵头研制云原生领域国家标准工作2项、行标1项。曾获2017年中国电子学会科技进步特等奖、2022年英国阿兰图灵博士后拓展奖、2024年中国商业联合会科技进步一等奖、2025年度关键软件技术创新成果、2024年快手优秀科研合作奖等。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>7. 报告人：岳恒山 副教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/岳恒山.png" alt="岳恒山头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>面向典型应用的近似容错技术研究</p>
++                    <p><strong>摘要：</strong>随着计算平台集成度不断提升、系统规模持续扩大，硬件故障风险日益突出。与此同时，复杂应用中广泛存在的数据依赖关系进一步加剧了故障传播与影响累积，对系统可靠性构成严峻挑战。传统容错方法主要依赖硬件加固、冗余执行及检查点回滚等机制，往往引入较高的性能与资源开销。本报告面向计算系统高效能、高可靠运行需求，介绍近似容错的设计思想，通过挖掘应用固有的误差容忍特性，适度放宽容错约束、简化容错机制，以降低系统容错开销。重点介绍面向高性能计算、人工智能及图计算等典型应用的可靠性分析方法与高效近似容错技术，探索系统可靠性与容错开销之间的有效平衡方法，为构建高效能、高可靠的计算系统提供技术支撑。</p>
++                    <p><strong>简介：</strong>岳恒山，吉林大学准聘副教授、研究员，吉林省省域D类人才。主要研究方向为计算机体系结构与系统可靠性。近年来，以负责人身份主持国家自然科学基金、国家重点研发计划子课题、中国博士后科学基金面上资助、吉林省自然科学基金（面上）、华为胡杨林基金等多项项目；以责任作者（一作/通讯）在SC、DAC、TCAD、TACO、TMM、ICCD、Cluster、DATE、JSA等期刊/会议共发表学术论文近30篇；曾入选"吉林省博士后科研人员择优资助计划"及"吉林大学鼎新学者支持计划"。博士论文获"吉林省优秀博士论文"及"ACM中国优秀博士论文奖（长春）"。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>8. 报告人：李晴 副教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/李晴.png" alt="李晴头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>星座智能自主运行研究与实践</p>
++                    <p><strong>摘要：</strong>随着低轨卫星星座规模持续扩大，传统依赖地面集中控制和人工决策的运控模式，面临响应时延高、协同复杂、资源受限和扩展能力不足等挑战。本报告围绕星座智能自主运行体系，从安全、健康、高效和进化四个方面，介绍轨道预测与自主避碰、真实在轨数据分析与动态评测、能源与任务协同调度、分布式训练和在轨模型更新等研究工作，并结合算网能热联合仿真平台和真实实验卫星系统，探讨如何构建数据、算法、评测、仿真与硬件协同支撑的闭环技术体系，推动卫星星座由地面控制走向自主感知、自主决策、协同运行与持续进化。</p>
++                    <p><strong>简介：</strong>李晴，北京邮电大学计算机学院（国家示范性软件学院）预聘副教授，研究领域包括卫星计算系统优化、卫星智能运控、新型卫星计算应用、卫星网络安全等，相关工作发表在Usenix Security/ACM MobiCom/Usenix ATC/IEEE RTSS/IEEE TMC/IEEE TSC/IEEE ToN等国际会议和期刊。主持国家自然科学基金面上/青年项目、博士后面上基金项目，入选2023年博新计划，曾获IEEE TSC 2024 Best Paper Award、USENIX Security 2026 Distinguished Paper Award、ACM Mobicom 2025 Best Demo Runner-up Award、ICSOC 2023 Distinguished Paper Award、IEEE EDGE 2021 Best Paper Award等奖项。</p>
++                </div>
++            </div>
++        </div>
++    </section>
++
++    <section class="forum-section">
++        <h3>五、论坛组织委员会简介</h3>
++        <div class="committee-member">
++            <h4>1. 论坛组委会：孙永谦 南开大学副教授</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/学术论坛/孙永谦.png" alt="孙永谦头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>孙永谦，南开大学软件学院副教授、博导，曾任图书馆副馆长。清华大学计算机系博士毕业，CCF高级会员。从事智能运维（AIOps）领域研究，近期专注于基于LLM、多智能体等方法研究面向多模态数据的故障识别、诊断与预防等，在JSAC、WWW、ASE、FSE、TC、TSC、TOSEM等国际会议/期刊发表论文70余篇，获得CCF A类会议FSE2026的杰出论文奖（工业赛道唯一），ISSRE2024最佳论文和最佳工业论文奖。主持国家科技重大专项课题1项、国家自然基金与天津市自然基金各1项，与华为、字节跳动、阿里、腾讯、快手等头部IT企业合作校企共研项目20余项。获得中国电子学会科技进步一等奖（4/15）、南开大学"良师益友"荣誉称号，天津市"131"创新型人才培养工程第三层次、教育部-华为智能基座"栋梁之师"等荣誉。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>2. 论坛组委会：张圣林 南开大学教授</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/学术论坛/张圣林.png" alt="张圣林头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>张圣林，南开大学教授，博士生、硕士生导师，软件学院副院长，先进计算与关键软件（信创）海河实验室研究员。清华大学计算机系博士毕业。入选南开大学"百青计划"。以第一或唯一通讯作者在CCF A类会议或期刊发表论文40余篇。谷歌学术被引4700余次。主持国家自然科学基金项目2项，横向项目30余项（与华为、字节跳动、腾讯、阿里巴巴、蚂蚁金服、中兴等合作）。荣获CCF A类会议FSE 2026唯一杰出工业论文奖，并三次荣获CCF B类会议ISSRE最佳论文奖。获中国电子学会科技进步一等奖（第3完成人）、天津市科技进步一等奖、华为"最佳技术合作教授奖"、南开大学"良师益友"称号、麒麟软件"校企合作突出贡献奖"等荣誉。指导的研究生获得南开大学优秀硕士学位论文4项，南开大学研究生优秀毕业生1项。现任CCF互联网专委常务委员，CCF 2026中国软件大会程序委员会共同主席、CCF 2025中国网络大会竞赛委员会共同主席，CCF软件工程专委、服务计算专委执行委员，曾担任CCF 2025中国网络大会宣传委员会主席，CCF青年计算机科技论坛（YOCSEF）天津学术委员会副主席（2023–2024）。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>3. 论坛组委会：辜文蔚 南开大学讲师</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/学术论坛/辜文蔚.png" alt="辜文蔚头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>辜文蔚，南开大学软件学院讲师。于2025年从香港中文大学计算机系获得博士学位，师从吕荣聪教授。在ICSE、FSE、ASE、TOSEM、TSE、ATC等CCF A/B国际顶尖会议和期刊发表高水平论文33篇，获得FSE 26杰出论文奖，ISSRE 25最佳论文奖提名。主持CCF-蚂蚁科研基金、阿里巴巴校企合作项目等科研项目，并参与多项华为、美团、字节跳动等企业合作项目。担任ISSRE 26、QRS 26、SANER 27程序委员会委员，2026中国软件大会宣传委员会主席，第九届CCF国际智能运维挑战赛技术委员会主席。</p>
++            </div>
++        </div>
++    </section>
++
+ </div>--- before/pages/agenda/academic-forum/templates/hw-sw-collaborative-security.html
++++ after/pages/agenda/academic-forum/templates/hw-sw-collaborative-security.html
+@@ -221,6 +221,7 @@
+                 <div class="committee-image">
+                     <img src="./images/academic-forum/学术论坛/吕勇强.png" alt="吕勇强头像" onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
++                <p><strong>角色：</strong>论坛主席（唯一主负责人）</p>
+                 <p><strong>简介：</strong>吕勇强，天津大学讲席教授、网络安全学院执行院长，教育部长江学者、CCF杰出会员。长期从事处理器芯片安全研究，作为主要贡献人之一发现并披露了 Intel、ARM 可信执行环境中密码实现模块的安全漏洞"骑士"（CVE-2019-11157）及 Nvidia GPU 漏洞"闪电"等。担任 IEEE TCAD、ACM IMUT 期刊副主编；担任 CCF 网络与系统安全专委会执委、集成电路设计专委会执委、体系结构专委会执委等。</p>
+             </div>
+         </div>
+@@ -230,6 +231,7 @@
+                 <div class="committee-image">
+                     <img src="./images/academic-forum/学术论坛/何家骥.png" alt="何家骥头像" onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
++                <p><strong>角色：</strong>论坛主持人、组委会成员</p>
+                 <p><strong>简介：</strong>天津大学教授、博导，院长助理，国家重点研发计划青年科学家项目首席，中国计算机学会网络与系统安全专委会执行委员，中国密码学会密码芯片专委会委员，天津市企业科技特派员、"科技副总"。主要研究领域为数字集成电路（全流程）设计、处理器漏洞挖掘、硬件形式化验证、密码芯片设计与安全分析。</p>
+             </div>
+         </div>
+@@ -239,6 +241,7 @@
+                 <div class="committee-image">
+                     <img src="./images/academic-forum/学术论坛/胡强.png" alt="胡强头像" onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
++                <p><strong>角色：</strong>论坛主持人、组委会成员</p>
+                 <p><strong>简介：</strong>胡强，天津大学英才副教授/特聘研究员，博士生导师，主要研究方向为可信人工智能、软件安全以及智能软件工程。在ICSE、S&amp;P等会议和TOSEM、TSE等期刊发表论文60余篇，获得ICSE 2025杰出论文奖，ML4CS最佳论文奖。主持科技部重点研发计划课题、国自然青年C类等项目。长期担任ICSE、ASE、ISSTA等CCF A类会议程序委员会委员。</p>
+             </div>
+         </div>
+@@ -248,6 +251,7 @@
+                 <div class="committee-image">
+                     <img src="./images/academic-forum/学术论坛/张瑶.png" alt="张瑶头像" onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
++                <p><strong>角色：</strong>论坛主持人、组委会成员</p>
+                 <p><strong>简介：</strong>于天津大学获得工学硕士和工学博士学位。研究方向包括程序分析、程序测试、大模型安全，以及智慧软件工程等。在上述领域国际高水平期刊与会议上发表论文30余篇，包括ASE、NDSS、FSE、TSE、TMC、TPDS、AAAI等CCF-A类期刊和会议。曾在CCF-A类会议ASE上以第一作者身份获得杰出论文奖、并获得ACM天津分会优秀博士论文奖。担任TSE、TDSC、TIFS、TMC等期刊审稿人，并在AAAI、NeurIPS、IJCAI等国际顶级会议担任PC。同时，主持了国家青年基金并参与了多项国家自然科学基金面上项目以及国家重点研发项目。</p>
+             </div>
+         </div>
+--- before/pages/agenda/academic-forum/templates/intelligent-open-source.html
++++ after/pages/agenda/academic-forum/templates/intelligent-open-source.html
+@@ -1,201 +0,0 @@
+-<div class="container">
+-
+-    <h2 class="section-title">智能软件与开源生态论坛</h2>
+-    <div class="section-title-en">学术论坛 R16</div>
+-
+-    <section class="forum-section">
+-        <h3>一、论坛介绍</h3>
+-        <p>当前，开源创新已成为当前最具活力的科技创新模式，凭借开源丰富多元的生态体系，能够有效应对技术发展的不确定性，是我国在新一轮科技竞争中实现赶超引领的重要路径。人工智能大模型技术的快速发展对软件开发模式、供应链安全管理以及开源生态构建都带来变革性影响。本论坛聚焦智能时代开源创新模式如何助力智能软件快速迭代和技术共享，以及如何实现开源软件供应链的安全可信，通过主题报告分享及圆桌会议等形式组织研讨交流，探索智能时代的开源生态建设。</p>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>二、论坛组织委员会</h3>
+-        <ul class="committee-list">
+-            <li>
+-                <span class="member-name">李光杰</span>
+-                <span class="member-unit">（红山开源平台 技术总体负责人/副研究员）</span>
+-            </li>
+-            <li>
+-                <span class="member-name">王涛</span>
+-                <span class="member-unit">（国防科技大学 副研究员）</span>
+-            </li>
+-            <li>
+-                <span class="member-name">张宇霞</span>
+-                <span class="member-unit">（北京理工大学 副教授）</span>
+-            </li>
+-            <li>
+-                <span class="member-name">刘杨</span>
+-                <span class="member-unit">（南洋理工大学 网络安全研究中心主任/终身教授）</span>
+-            </li>
+-        </ul>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>三、论坛安排</h3>
+-        <h4>日程安排：</h4>
+-        <p><strong>时间：</strong>2026年11月8日，09:00-12:00</p>
+-        <p><strong>地点：</strong>天津市社会山国际会议中心酒店，二层15号会议厅</p>
+-
+-        <h4>论坛议程：</h4>
+-        <table class="forum-table">
+-            <thead>
+-                <tr>
+-                    <th>时间</th>
+-                    <th>题目</th>
+-                    <th>报告嘉宾</th>
+-                </tr>
+-            </thead>
+-            <tbody>
+-                <tr>
+-                    <td style="white-space: nowrap;">09:00-09:20</td>
+-                    <td>主持开场/致辞</td>
+-                    <td></td>
+-                </tr>
+-                <tr>
+-                    <td style="white-space: nowrap;">09:20-09:40</td>
+-                    <td>"如意"RISC-V原生社区：构建基础软件新生态</td>
+-                    <td>武延军（所长）<br>中国科学院软件研究所</td>
+-                </tr>
+-                <tr>
+-                    <td style="white-space: nowrap;">09:40-10:00</td>
+-                    <td>Community over Code：开源社区的演化挑战与智能体驱动维护</td>
+-                    <td>周明辉（副院长）<br>北京大学</td>
+-                </tr>
+-                <tr>
+-                    <td style="white-space: nowrap;">10:00-10:20</td>
+-                    <td>从智能算力中心到算力网：筑牢智能软件生态底座</td>
+-                    <td>余跃（所长）<br>鹏城实验室高效能云计算研究所</td>
+-                </tr>
+-                <tr>
+-                    <td style="white-space: nowrap;">10:20-10:40</td>
+-                    <td>茶歇</td>
+-                    <td>-</td>
+-                </tr>
+-                <tr>
+-                    <td style="white-space: nowrap;">10:40-11:00</td>
+-                    <td>华为开源发展历程及实践</td>
+-                    <td>任旭东（首席开源联络官）<br>华为技术有限公司</td>
+-                </tr>
+-                <tr>
+-                    <td style="white-space: nowrap;">11:00-11:20</td>
+-                    <td>开源卫星研究进展</td>
+-                    <td>王尚广（院长）<br>北京邮电大学</td>
+-                </tr>
+-                <tr>
+-                    <td style="white-space: nowrap;">11:20-12:00</td>
+-                    <td>Panel</td>
+-                    <td>刘杨（主持）、武延军、周明辉、余跃、任旭东、王尚广</td>
+-                </tr>
+-            </tbody>
+-        </table>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>四、论坛报告嘉宾简介</h3>
+-        <div class="speaker-member">
+-            <h4>1. 报告人：武延军 中国科学院软件研究所副所长</h4>
+-            <div class="speaker-profile">
+-                <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/武延军.png" alt="武延军头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <div class="speaker-content">
+-                    <p><strong>题目：</strong>"如意"RISC-V原生社区：构建基础软件新生态</p>
+-                    <p><strong>摘要：</strong>基础软件从赠品到商品，从闭源到开源，从PC、互联网时代到智能体时代，始终与指令集架构（ISA）紧密结合，共同构成生态基石。RISC-V指令集凭借其开放、模块化、可深度定制的特点，满足了AI时代算力多样性的需求，也使得软件生态面临碎片化、重复建设的挑战，也面临着x86/ARM既有生态带来的桎梏。如何以RISC-V为"一等公民"，率先满足其标准、IP核、SoC等高速发展需求，是"如意"社区的使命，并因此汇聚了中兴、阿里、进迭、超睿、蓝芯等企业的积极贡献。本报告将面向AI时代的软硬件生态挑战，介绍如意RISC-V原生社区的建设初衷和发展现状，重点介绍openRuyi操作系统、RuyiSDK开发工具集，以及RuyiAI人工智能软件栈，并对AI基础软硬件生态的未来趋势进行展望。</p>
+-                    <p><strong>简介：</strong>中国科学院软件研究所所长、研究员，CCF杰出会员，中电标协RISC-V工委会（RVEI）轮值会长。长期从事基础软件前沿研究，带领团队开展了多项开源基础软件生态建设实践，包括"源图"开源基础设施、软件供应链"点亮计划"、"如意"RISC-V原生社区等。曾担任openEuler副理事长、OpenAtom开源安全委员会主席。入选国家级科技领军人才计划，曾获北京市科技新星、中国科学院青年创新促进会优秀会员等荣誉称号。</p>
+-                </div>
+-            </div>
+-        </div>
+-        <div class="speaker-member">
+-            <h4>2. 报告人：周明辉 北京大学计算机学院副院长</h4>
+-            <div class="speaker-profile">
+-                <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/周明辉.png" alt="周明辉头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <div class="speaker-content">
+-                    <p><strong>题目：</strong>Community over Code：开源社区的演化挑战与智能体驱动维护</p>
+-                    <p><strong>摘要：</strong>开源领域有一句名言——Community over code，它揭示了一个根本事实：决定开源项目存亡与发展的，并非代码本身，而是贡献者协作所形成的社区。然而，社区如何有效成形、规则如何固化和演化、贡献者如何有效贡献，这些问题尚缺乏精细探索；与此同时，卓有成效的自动化维护一直难以实现。本报告聚焦开源社区治理，通过挖掘典型开源项目，识别协作角色、流程、决策与激励机制，揭示规则如何随社区发展而调整，并探索智能体驱动的社区规则维护与演化，目标是部贡献者知道如何进入、如何协作、如何成长。</p>
+-                    <p><strong>简介：</strong>北京大学博雅特聘教授，计算机学院副院长，中国计算机学会开源发展委员会副主任。主要研究兴趣是开源数字社会学、智能系统和人机交互。在软件工程和人机交互国际顶级期刊和会议TSE、TOSEM、ICSE、FSE和CSCW等发表100多篇论文。多次获国际ACM SIGSOFT杰出论文奖。开源生态度量和开源软件供应链合规性治理的相关研究成果在产业界和开源社区有广泛应用，主持开发的木兰宽松开源许可证MulanPSL被33万+开源项目采纳。曾获杰青项目"开源软件开发"，2024年获北京市科技进步奖一等奖。曾担任软件工程国际会议ASE 2024和SANER 2020的PC Co-Chair等；是国际顶级会议ASE Steering Committee成员，国际顶级期刊TSE和EMSE、ASE Journal等的编委。国家网络空间安全国家重大专项专家组专家。</p>
+-                </div>
+-            </div>
+-        </div>
+-        <div class="speaker-member">
+-            <h4>3. 报告人：余跃 鹏城实验室高效能云计算研究所所长</h4>
+-            <div class="speaker-profile">
+-                <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/余跃.png" alt="余跃头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <div class="speaker-content">
+-                    <p><strong>题目：</strong>从智能算力中心到算力网：筑牢智能软件生态底座</p>
+-                    <p><strong>摘要：</strong>智能时代，算力需求呈爆发式增长，全国一体化算力网作为新一代社会基础设施意义重大。本报告将结合中国算力网（C2Net）研究计划的实践经验，介绍算力网云际计算软件栈核心思想与设计架构，并结合技术生态网演化规律阐述人工智能时代开源开放的发展路线。</p>
+-                    <p><strong>简介：</strong>余跃，鹏城实验室研究员、博导，入选国家级青年人才计划，聚焦分布式智能计算与系统平台方面开展研究，在软件工程与人工智能国际顶级会议或期刊发表论文100余篇，获得国家科技进步一等奖、广东省科技进步特等奖等科技奖励，担任IEEE P3404算力网标准工作组组长，牵头建设新一代人工智能OpenI启智社区。</p>
+-                </div>
+-            </div>
+-        </div>
+-        <div class="speaker-member">
+-            <h4>4. 报告人：任旭东 华为技术有限公司首席开源联络官</h4>
+-            <div class="speaker-profile">
+-                <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/任旭东.png" alt="任旭东头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <div class="speaker-content">
+-                    <p><strong>题目：</strong>华为开源发展历程及实践</p>
+-                    <p><strong>简介：</strong>华为首席开源联络官，CNCF基金会董事，OpenWallet(开放钱包)基金会董事，开放原子开源基金会开源安全委员会副主席。任旭东先生于上海交通大学获得计算机学士学位，在北京大学汇丰商学院获得高级工商管理学硕士(EMBA)学位，并于2026年获得清华大学国际研究生院创新领军工程博士学位。他于2000年加入华为，历任智能网络研发工程师、印度分部产品经理和架构师、商业OSS领域总经理、网络OSS副总裁、网络OSS战略与MKT副总裁，以及解决方案MKTG副总裁等职位。他在研发、市场营销及产品管理等领域积累了丰富的经验。目前，任旭东先生担任华为首席开源联络官。他还兼任CNCF董事、OWF董事及开放原子开源基金会开源安全委员会副主席等职务。在社区中，他参与了多个开源项目的创立、整合与治理工作，包括ONAP、OPNFV、Akraino、OPEN-O、EdgeGallery等项目。全面负责通过开源手段构建产业生态，扩大产业空间，并致力于构建一个健康和谐的产业环境。同时著有《ONAP技术详解与应用实践》，《ONAPTechnical Essentials》，《5G时代边缘计算》和《开源心法》等多本开源相关专业书籍。</p>
+-                </div>
+-            </div>
+-        </div>
+-        <div class="speaker-member">
+-            <h4>5. 报告人：王尚广 北京邮电大学院长</h4>
+-            <div class="speaker-profile">
+-                <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/王尚广.png" alt="王尚广头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <div class="speaker-content">
+-                    <p><strong>题目：</strong>开源卫星研究进展</p>
+-                    <p><strong>摘要：</strong>我的中国梦是"让卫星成为带翅膀的计算机"，在这个梦想的驱动下，我们正在开展开源卫星的研究，报告首先分析开源卫星现状；然后介绍我们在卫星操作系统、姿轨控系统、星务系统等方面的进展，同时给出我们的部分文档和开源计划；最后给大家分享如何组装一颗开源卫星，目的是让普通人都能组装属于你自己的一颗卫星。</p>
+-                    <p><strong>简介：</strong>王尚广、北京邮电大学计算机学院（国家示范性软件学院）院长、空天科学与技术学院执行院长、北京太空算力创新中心主任、天算星座发起人。研究方向包括：太空计算、卫星计算等，先后主持/完成包括国家重点研发计划、国家自然科学基金重点/优青/杰青项目在内的各类项目50余项，获得USENIX ATC、USENIX Security、IEEE TSC等CCF A类会议/期刊的最佳/杰出论文奖。先后获得中国电子学会科技进步一等奖、CCF技术发明一等奖等奖励。</p>
+-                </div>
+-            </div>
+-        </div>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>五、论坛组织委员会简介</h3>
+-        <div class="committee-member">
+-            <h4>1. 论坛组委会：李光杰 红山开源平台 技术总体负责人/副研究员</h4>
+-            <div class="committee-profile">
+-                <div class="committee-image">
+-                    <img src="./images/academic-forum/学术论坛/李光杰.png" alt="李光杰头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <p><strong>简介：</strong>红山开源平台技术总体负责人，北京大数据先进技术研究院副研究员，CCF软件工程专委会委员、开源发展技术委员会委员；长期从事软件工程与开源创新方面的研究与实践工作，策划组织红山开源创新大赛、红山开源高校行、红山开源大会等系列品牌活动，联合共青团中央和电子学会等举办全国大学生挑战杯大赛、世界机器人大赛等。</p>
+-            </div>
+-        </div>
+-        <div class="committee-member">
+-            <h4>2. 论坛组委会：王涛 国防科技大学 副研究员</h4>
+-            <div class="committee-profile">
+-                <div class="committee-image">
+-                    <img src="./images/academic-forum/学术论坛/王涛.png" alt="王涛头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <p><strong>简介：</strong>国防科技大学计算机学院PDL实验室副研究员，CCF开源发展技术委员会副秘书长，开放原子开源基金会和木兰开源社区技术委员会委员。长期从事群智软件工程、开源生态相关技术研究以及新型开源平台建设与实践，大力推动科研成果在开源平台的应用实践，是群体化创新实践科教平台Trustie以及CCF开源创新服务平台GitLink研发负责人，并为木兰开源社区、红山开源社区等提供平台和技术支撑。</p>
+-            </div>
+-        </div>
+-        <div class="committee-member">
+-            <h4>3. 论坛组委会：张宇霞 北京理工大学 副教授</h4>
+-            <div class="committee-profile">
+-                <div class="committee-image">
+-                    <img src="./images/academic-forum/学术论坛/张宇霞.png" alt="张宇霞头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <p><strong>简介：</strong>北京理工大学计算机学院副教授，博士生导师，主要聚焦于可持续开源软件生态，累计发表了CCF-A类推荐会议或期刊论文30余篇，主持包括国家自然科学基金多项项目，担任ASE期刊副主编、以及多项CCF-A类国际会议的程序委员会委员，获得ICSE 2022、ESEC/FSE 2023、ICSE2026杰出论文奖等，并入选了中国科协青年人才托举工程计划。</p>
+-            </div>
+-        </div>
+-        <div class="committee-member">
+-            <h4>4. 论坛组委会：刘杨 南洋理工大学 网络安全研究中心主任/终身教授</h4>
+-            <div class="committee-profile">
+-                <div class="committee-image">
+-                    <img src="./images/academic-forum/学术论坛/刘杨.png" alt="刘杨头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <p><strong>简介：</strong>现任南洋理工大学终身教授，南洋理工大学网络安全研究中心主任，以及新加坡网络安全研发计划办公室主任。2019年，他荣获南洋理工大学大学领导论坛冠名教授席位，并于2024年获任校长讲席教授。刘杨博士专精于软件工程、网络安全和人工智能领域。他的研究致力于弥合程序分析、数据分析和人工智能在理论与实际应用之间的鸿沟，以评估软件的设计与实现，确保其高度可靠与安全，多项研究成果已成功实现商业化。截至目前，刘杨博士已在顶级会议和期刊上发表超过700篇论文，获得30项最佳论文奖以及一项顶级软件工程会议最具影响力系统奖。刘杨博士还领导着多个重要的研究中心和项目，包括Cysren、新加坡网络安全研发计划办公室、南洋理工大学可信人工智能中心，以及与国际计算实验室合作建立的医疗设备安全CREATE中心。刘杨博士获得了众多享有盛誉的奖项，包括微软亚洲研究院奖学金、泰国研究基金奖学金、南洋助理教授、陈振传基金奖学金、南洋研究奖、ACM杰出演讲者、新加坡国家研究基金会研究奖学金和南洋理工大学创新者奖。</p>
+-            </div>
+-        </div>
+-    </section>
+-
+-</div>
+--- before/pages/agenda/agenda-overview/index.html
++++ after/pages/agenda/agenda-overview/index.html
+@@ -443,6 +443,24 @@
+                     <td>I6</td>
+                     <td>智能化高可信嵌入式软件工程论坛</td>
+                 </tr>
++                   <tr>
++                    <td>工业论坛</td>
++                    <td>I7</td>
++                    <td>软件研发体系与工程实践论坛</td>
++                </tr>
++                   <tr>
++                    <td>工业论坛</td>
++                    <td>I8</td>
++                    <td>智能系统底座与应用实践论坛</td>
++                </tr>
++
++
++
++
++
++
++
++
+                 <tr>
+                     <td>竞赛论坛</td>
+                     <td>C1</td>
+--- before/pages/agenda/industry-forum/templates/compiler-tech-ai.html
++++ after/pages/agenda/industry-forum/templates/compiler-tech-ai.html
+@@ -90,7 +90,8 @@
+             <h4>1. 报告人：陈相廷 华为编译器与编程语言实验室技术专家</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    
++                    <img src="./images/academic-forum/工业论坛/陈相廷.png" alt="陈相廷头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>AscendNPU-IR：开源编译底座，多语言无缝接入昇腾生态</p>
+@@ -103,7 +104,8 @@
+             <h4>2. 报告人：狄鹏 昆仑芯AI Infra负责人</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    
++                    <img src="./images/academic-forum/工业论坛/狄鹏.png" alt="狄鹏头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>AI辅助的IR编程与编译优化</p>
+@@ -116,7 +118,8 @@
+             <h4>3. 报告人：金鑫 荣耀高级工程师</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    
++                    <img src="./images/academic-forum/工业论坛/金鑫.png" alt="金鑫头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>荣耀多维感知编译及虚拟机技术介绍</p>
+@@ -129,7 +132,8 @@
+             <h4>4. 报告人：李建军 地平线编译器研发负责人</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    
++                    <img src="./images/academic-forum/工业论坛/李建军.png" alt="李建军头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>从编译AI到AI辅助编译：地平线的实践与挑战</p>
+@@ -142,7 +146,8 @@
+             <h4>5. 报告人：翁长成 华为编译器技术专家</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    
++                    <img src="./images/academic-forum/工业论坛/翁长成.png" alt="翁长成头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>从语言规范到代码质量：AI Skill驱动的生态构建路径</p>
+@@ -155,7 +160,8 @@
+             <h4>6. 报告人：周谦 字节跳动技术专家</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    
++                    <img src="./images/academic-forum/工业论坛/周谦.png" alt="周谦头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>AI驱动的虚拟机与编译器优化探索</p>
+@@ -172,7 +178,8 @@
+             <h4>1. 论坛组委会：左志强 副教授</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+-                    
++                    <img src="./images/academic-forum/工业论坛/左志强.png" alt="左志强头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <p><strong>简介：</strong>左志强，南京大学计算机学院长聘副教授、特聘研究员，国家级青年人才、江苏省杰出青年基金获得者。新加坡国立大学博士，美国加州大学博士后。主要研究领域为智能软件、编译技术与程序分析等。发表包括PLDI、OOPSLA、OSDI等一系列高水平论文，获ACM SIGPLAN Distinguished Paper Award，多项研究成果已在华为、阿里、荣耀等企业实现转化与应用，助力国产芯片、手机、云计算等产业发展与生态建设。多次担任包括PLDI、ASPLOS、OOPSLA等编程语言与编译器相关领域国际会议程序委员。</p>
+             </div>
+@@ -181,7 +188,8 @@
+             <h4>2. 论坛组委会：高耀清 首席专家</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+-                    
++                    <img src="./images/academic-forum/工业论坛/高耀清.png" alt="高耀清头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <p><strong>简介：</strong>高耀清，现任华为公司编译器与编程语言实验室首席专家及科学家，主要研究领域包括编程模型、编译优化、并行与分布式计算、计算机体系结构以及人工智能。其研究成果已在语言编译器产品中规模商用，并在ACM TOPLAS、ACM TACO、ACM TSE、OOPSLA、CGO等一系列顶级学术会议与期刊上发表。拥有四十余项已获授权的国际专利，并出版了三部与编程语言及编译器相关的专著。曾担任多个国际会议（MLSys, MICRO, CGO, ISC)的组织委员会主席或程序委员会成员。</p>
+             </div>
+--- before/pages/agenda/industry-forum/templates/trusted-embedded.html
++++ after/pages/agenda/industry-forum/templates/trusted-embedded.html
+@@ -34,7 +34,7 @@
+             </li>
+             <li>
+                 <span class="member-name">李晓锋</span>
+-                <span class="member-unit">（航天科技集团502所，北京轩宇信息技术有限公司）</span>
++                <span class="member-unit">（航天科技集团502所）</span>
+             </li>
+         </ul>
+     </section>
+@@ -224,7 +224,7 @@
+                     <img src="./images/academic-forum/工业论坛/陈睿.png" alt="陈睿头像"
+                         onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+-                <p><strong>简介：</strong>陈睿，博士，航天科技集团502所研究员，轩宇信息董事长，CCF形式化方法专委会常务委员，CICC智能测评专委会委员。长期从事嵌入式软件可信保障技术以及相关工具软件的研制。主持多个国家级省部级项目，在ISSTA、FSE等发表高水平论文20余篇，获发明专利20余项。负责研制了覆盖嵌入式软件测试全过程的完整工具链，推动软件工程和形式化等技术产业化，广泛应用于载人飞船和空间站、嫦娥系列探测器、北斗导航卫星等航天器软件的开发和测试中。获北京市科技进步一等奖，航天贡献奖等。
++                <p><strong>简介：</strong>陈睿，博士，航天科技集团502所研究员，轩宇信息董事长，CCF形式化方法专委会常务委员，CICC智能测评专委会委员。长期从事嵌入式软件可信保障技术以及相关工具软件的研制。主持多个国家级省部级项目，在ISSTA、FSE等发表高水平论文20余篇，获发明专利20余项。负责研制了覆盖嵌入式软件测试全过程的完整工具链，推动软件工程和形式化等技术产业化，广泛应用于载人飞船和空间站、嫦娥系列探测器、北斗导航卫星等航天器软件的开发和测试中。入选首都科技创新领军人才，获北京市杰出青年中关村奖、北京市科技进步一等奖，航天贡献奖等。
+                 </p>
+             </div>
+         </div>
+--- before/pages/agenda/regular-forum/templates/top-venues.html
++++ after/pages/agenda/regular-forum/templates/top-venues.html
+@@ -117,7 +117,7 @@
+             <h4>1. 报告人：熊英飞 教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    
++                    <img src="./images/academic-forum/常设论坛/熊英飞.png" alt="熊英飞头像" onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>五个图灵奖获得者的故事</p>
+@@ -130,7 +130,7 @@
+             <h4>2. 报告人：彭鑫 教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    
++                    <img src="./images/academic-forum/常设论坛/彭鑫.png" alt="彭鑫头像" onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>智能化软件发展的机遇与挑战</p>
+@@ -143,7 +143,7 @@
+             <h4>3. 报告人：吴荣鑫 教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    
++                    <img src="./images/academic-forum/常设论坛/吴荣鑫.png" alt="吴荣鑫头像" onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>基于蜕变测试的数据库逻辑缺陷检测技术的研究</p>
+@@ -156,7 +156,7 @@
+             <h4>4. 报告人：杨洲 助理教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    
++                    <img src="./images/academic-forum/常设论坛/杨洲.png" alt="杨洲头像" onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>可信代码模型生态研究</p>
+@@ -169,7 +169,7 @@
+             <h4>5. 报告人：曲南江 博士后</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    
++                    <img src="./images/academic-forum/常设论坛/曲南江.png" alt="曲南江头像" onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>基于因式分解形式共享的并行组合等价性检查</p>
+@@ -182,7 +182,7 @@
+             <h4>6. 报告人：张洪宇 教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    
++                    <img src="./images/academic-forum/常设论坛/张洪宇.png" alt="张洪宇头像" onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>Deep API Learning and Beyond</p>
+@@ -195,7 +195,7 @@
+             <h4>7. 报告人：范铭 副教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    
++                    <img src="./images/academic-forum/常设论坛/范铭.png" alt="范铭头像" onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>大模型驱动的移动应用隐私合规检测实践</p>
+@@ -208,7 +208,7 @@
+             <h4>8. 报告人：彭昀 助理教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    
++                    <img src="./images/academic-forum/常设论坛/彭昀.png" alt="彭昀头像" onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>从低效定位到多层次优化：大模型驱动的代码性能提升</p>
+@@ -221,7 +221,7 @@
+             <h4>9. 报告人：张煜群 研究员</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    
++                    <img src="./images/academic-forum/常设论坛/张煜群.png" alt="张煜群头像" onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>高效动态分析赋能自主调试智能体</p>
+@@ -234,7 +234,7 @@
+             <h4>10. 报告人：沈博 副教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    
++                    <img src="./images/academic-forum/常设论坛/沈博.png" alt="沈博头像" onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>从猜测到看见：让大模型发现程序如何出错</p>
+@@ -251,7 +251,7 @@
+             <h4>1. 论坛组委会：张静宣 副教授</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+-                    
++                    <img src="./images/academic-forum/常设论坛/张静宣.png" alt="张静宣头像" onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <p><strong>简介：</strong>张静宣，南京航空航天大学计算机科学与技术学院副教授，博士生导师。入选江苏省科协青年科技人才托举工程、南京航空航天大学长空学者。获得国防科技进步奖、南京航空航天大学科学技术一等奖、南京航空航天大学开源人才培养贡献奖。从事软件工程研究，主要研究方向为智能软件工程、软件仓库挖掘和经验软件工程。在TOSEM、TSE等期刊及ICSE等国际会议发表论文50余篇。目前主持10余项研究课题，包括国家自然科学基金面上基金和青年基金、军委科技委创新特区项目。作为主要成员，参与国家重点研发计划课题、中央军委装发预研项目3项。</p>
+             </div>
+@@ -260,7 +260,7 @@
+             <h4>2. 论坛组委会：刘名威 副教授</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+-                    
++                    <img src="./images/academic-forum/常设论坛/刘名威.png" alt="刘名威头像" onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <p><strong>简介：</strong>刘名威，中山大学软件工程学院副教授、博士生导师，"逸仙学者计划"新锐学者。2024年加入中山大学，先后于复旦大学获学士（2017）、博士（2022）学位，并完成博士后研究。研究聚焦软件工程与人工智能交叉，方向包括软件开发知识图谱与知识增强的智能开发与维护。近年在TSE、TOSEM、ICSE、FSE、ASE等国际顶级期刊与会议发表论文三十余篇，获ACM SIGSOFT杰出论文奖（FSE 2023）、IEEE TCSE杰出论文奖（ICSME 2018），主持多项国家级项目，成果在华为、荣耀、腾讯等企业应用。</p>
+             </div>
+@@ -269,7 +269,7 @@
+             <h4>3. 论坛组委会：马智 副教授</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+-                    
++                    <img src="./images/academic-forum/常设论坛/马智.png" alt="马智头像" onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <p><strong>简介：</strong>马智，西安电子科技大学计算机科学与技术学院副教授。主要研究方向为嵌入式系统、操作系统与形式化验证，参与我国第四代空间操作系统SpaceOS研发，负责架构设计与验证，已应用于嫦娥、星网等重大航天工程。在ASE、FM、AAAI等学术会议和Information Fusion等国际期刊发表论文20余篇，获ASE2025杰出论文奖。目前主持10余项研究课题，包括国自然青年项目、KGJ国防重点项目、华为胡杨林基金等。作为主要成员，参与国自然重大项目研发。</p>
+             </div>
+--- before/pages/agenda/special-issue-forum/index.html
++++ after/pages/agenda/special-issue-forum/index.html
+@@ -26,7 +26,7 @@
+             <li><a href="#agenda/special-issue-forum/formal-methods" class="sidebar-item"
+                     onclick="loadAgenda('special-issue-forum', 'formal-methods')">形式化方法与应用</a></li>
+             <li><a href="#agenda/special-issue-forum/intelligent-supply-chain-security" class="sidebar-item"
+-                    onclick="loadAgenda('special-issue-forum', 'intelligent-supply-chain-security')">智能软硬件供应链安全分析</a></li>
++                    onclick="loadAgenda('special-issue-forum', 'intelligent-supply-chain-security')">智能化软硬件供应链安全分析技术</a></li>
+             <!-- <li><a href="#agenda/special-issue-forum/software-construction-supply-chain" class="sidebar-item"
+                     onclick="loadAgenda('special-issue-forum', 'software-construction-supply-chain')">智能化基础软件可信构造与供应链安全</a></li>
+             <li><a href="#agenda/special-issue-forum/riscv-ai-systems" class="sidebar-item"
+--- before/pages/agenda/special-issue-forum/templates/intelligent-supply-chain-security.html
++++ after/pages/agenda/special-issue-forum/templates/intelligent-supply-chain-security.html
+@@ -1,6 +1,6 @@
+ <div class="container">
+ 
+-    <h2 class="section-title">智能软硬件供应链安全分析</h2>
++    <h2 class="section-title">智能化软硬件供应链安全分析技术</h2>
+     <div class="section-title-en">专刊论坛 S8</div>
+ 
+     <section class="forum-section">
+--- before/pages/callforpaper.html
++++ after/pages/callforpaper.html
+@@ -0,0 +1,109 @@
++<div class="banner">
++    <img src="images/logo/banner.jpg" alt="Background" class="banner-background" />
++</div>
++
++<!--插入CSS文件-->
++<link rel="stylesheet" type="text/css" href="css/index.css">
++<link rel="stylesheet" type="text/css" href="./css/callforpaper.css">
++
++<!-- 插入js文件 -->
++<script src="./js/cfp-navi.js"></script>
++
++<!-- js route -->
++<div id="cfp-content" class="cfp-content">
++
++    <div class="cfp-intro">
++        <h2>征稿通知</h2>
++        <p>会议有多个Track，分别接受论文投稿，录用论文将由《软件学报》、《计算机学报》等期刊出版。</p>
++        <p style="color: red;"> 内容持续更新中 </p>
++    </div>
++
++    <div class="cards-container">
++
++        <a href="#callforpaper/demo" class="card card-white" onclick="loadCFP('demo')">
++            <div class="card-content">
++                <h2 class="card-title">征稿Track持续更新中</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期待定</p>
++                </div>
++            </div>
++        </a>
++        
++        <a href="#callforpaper/IRE" class="card card-white" onclick="loadCFP('IRE')">
++            <div class="card-content">
++                <h2 class="card-title">S01 智能化需求工程</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期: 2026年8月17日</p>
++                </div>
++            </div>
++        </a>
++
++
++        <a href="#callforpaper/D3LR" class="card card-white" onclick="loadCFP('D3LR')">
++            <div class="card-content">
++                <h2 class="card-title">S02 数据驱动的软件缺陷检测、定位与修复</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期: 2026年8月17日</p>
++                </div>
++            </div>
++        </a>
++
++
++        <a href="#callforpaper/AIOS" class="card card-white" onclick="loadCFP('AIOS')">
++            <div class="card-content">
++                <h2 class="card-title">S03 人工智能操作系统及其安全</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期: 2026年8月17日</p>
++                </div>
++            </div>
++        </a>
++
++
++        <a href="#callforpaper/formal-methods" class="card card-white" onclick="loadCFP('formal-methods')">
++            <div class="card-content">
++                <h2 class="card-title">S04 形式化方法与应用</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期: 2026年8月17日</p>
++                </div>
++            </div>
++        </a>
++
++
++        <a href="#callforpaper/AIOps" class="card card-white" onclick="loadCFP('AIOps')">
++            <div class="card-content">
++                <h2 class="card-title">S05 大模型驱动的智能软件系统开发运维</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期: 2026-08-30（含）</p>
++                </div>
++            </div>
++        </a>
++
++        <a href="#callforpaper/Agent" class="card card-white" onclick="loadCFP('Agent')">
++            <div class="card-content">
++                <h2 class="card-title">S06 智能体高效运行的关键技术</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期: 2026年9月1日</p>
++                </div>
++            </div>
++        </a>
++
++        <a href="#callforpaper/supply-chain-security" class="card card-white" onclick="loadCFP('supply-chain-security')">
++            <div class="card-content">
++                <h2 class="card-title">S07 智能化软硬件供应链安全分析技术</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期: 2026年9月11日</p>
++                </div>
++            </div>
++        </a>
++
++        <a href="#callforpaper/industrial-software-engineering-cfp" class="card card-white" onclick="loadCFP('industrial-software-engineering-cfp')">
++            <div class="card-content">
++                <h2 class="card-title">S08 智能化工业软件工程：大模型驱动的开发、保障与治理</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期: 2026年9月1日</p>
++                </div>
++            </div>
++        </a>
++
++    </div>
++</div>--- before/pages/history.html
++++ after/pages/history.html
+@@ -0,0 +1,258 @@
++<!--插入CSS文件-->
++<link rel="stylesheet" type="text/css" href="css/index.css">
++<link rel="stylesheet" type="text/css" href="./css/history.css">
++
++
++<!-- Banner -->
++<div class="banner">
++    <img src="images/logo/banner.jpg" alt="Background" class="banner-background" />
++</div>
++
++<div class="container">
++
++    <!-- 历届主办高校 -->
++    <div class="history-title">
++        <h2>历届 CCF ChinaSoft FMAC 承办高校</h2>
++
++        <!-- <p style="text-align: center; font-weight: bold; color: #003a70; text-indent: 0em; margin-bottom: 1rem;"> “江城多山，珞珈独秀；山上有黉，武汉大学。” </p> -->
++
++        <p>CCF ChinaSoft/Chinasoft/FMAC 历届大会均由系统软件、软件工程或计算机科学领域的知名高校承办，包括北京大学、南京大学、国防科技大学、中国科学院、浙江大学、上海交通大学、哈尔滨工业大学等。</p>
++        <p>2026年，CCF ChinaSoft 大会在天津大学举办，依托其深厚的学术底蕴和优美的校园环境，汇聚国内外软件领域的专家学者，共同探讨软件技术的发展前沿，促进学术交流与合作。</p>
++    </div>
++
++    <div class="university-grid">
++        <!-- 第一行学校 -->
++
++        <!-- Peking University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/北京大学.png" alt="北京大学">
++            <div class="university-name">Chinasoft'02-04<br>北京大学</div>
++        </div>
++
++        <!-- Nanjing University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/南京大学.png" alt="南京大学">
++            <div class="university-name">Chinasoft'05<br>南京大学</div>
++        </div>
++
++        <!-- National University of Defense Technology -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/国防科技大学.png" alt="国防科技大学">
++            <div class="university-name">Chinasoft'06<br>国防科技大学</div>
++        </div>
++
++        <!-- Xi'an Jiaotong University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/西安交通大学.png" alt="西安交通大学">
++            <div class="university-name">Chinasoft'07<br>西安交通大学</div>
++        </div>
++
++        <!-- 华南理工大学 -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/华南理工大学.png" alt="华南理工大学">
++            <div class="university-name">Chinasoft'08<br>华南理工大学</div>
++        </div>
++
++        <!-- Northeastern University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/东北大学.png" alt="东北大学">
++            <div class="university-name">Chinasoft'09<br>东北大学</div>
++        </div>
++
++        <!-- Suzhou University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/苏州大学.png" alt="苏州大学">
++            <div class="university-name">Chinasoft'10<br>苏州大学</div>
++        </div>
++
++        <!-- Jilin University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/吉林大学.png" alt="吉林大学">
++            <div class="university-name">Chinasoft'11<br>吉林大学</div>
++        </div>
++
++        <!-- Nanjing University of Aeronautics and Astronautics -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/南航.png" alt="南京航空航天大学">
++            <div class="university-name">Chinasoft'12<br>南京航空航天大学</div>
++        </div>
++
++        <!-- Tianjin University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/天津大学.png" alt="天津大学">
++            <div class="university-name">Chinasoft'13<br>天津大学</div>
++        </div>
++
++        <!-- Guangxi Normal University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/广西师大.png" alt="广西师范大学">
++            <div class="university-name">Chinasoft'14<br>广西师范大学</div>
++        </div>
++
++        <!-- Huazhong University of Science and Technology -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/华中科大.png" alt="华中科技大学">
++            <div class="university-name">Chinasoft'15<br>华中科技大学</div>
++        </div>
++
++        <!-- Yunnan University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/云南大学.png" alt="云南大学">
++            <div class="university-name">Chinasoft'16<br>云南大学</div>
++        </div>
++
++        <!-- Chinese Academy of Sciences -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/中科院软件所.png" alt="中科院">
++            <div class="university-name">FMAC'16<br>中科院软件所</div>
++        </div>
++
++        <!-- Harbin Institute of Technology -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/哈工大.png" alt="哈尔滨工业大学">
++            <div class="university-name">Chinasoft'17<br>哈尔滨工业大学</div>
++        </div>
++
++        <!-- National University of Defense Technology -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/国防科技大学.png" alt="国防科技大学">
++            <div class="university-name">FMAC'17<br>国防科技大学</div>
++        </div>
++
++        <!-- Shenzhen University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/深圳大学.png" alt="深圳大学">
++            <div class="university-name">Chinasoft'18<br>深圳大学</div>
++        </div>
++
++        <!-- Southwest University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/西南大学.png" alt="西南大学">
++            <div class="university-name">FMAC'18<br>西南大学</div>
++        </div>
++
++        <!-- Zhejiang University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/浙江大学.png" alt="浙江大学">
++            <div class="university-name">Chinasoft'19<br>浙江大学</div>
++        </div>
++
++        <!-- East China Normal University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/华东师大.png" alt="华东师范大学">
++            <div class="university-name">FMAC'19<br>华东师范大学</div>
++        </div>
++
++        <!-- Shanghai Jiao Tong University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/上海交通大学.png" alt="上海交通大学">
++            <div class="university-name">FMAC'19<br>上海交通大学</div>
++        </div>
++
++        <!-- Chongqing University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/重庆大学.png" alt="重庆大学">
++            <div class="university-name">ChinaSoft'20<br>重庆大学</div>
++        </div>
++
++        <!-- Xidian University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/西安电子科技大学.png" alt="西安电子科技大学">
++            <div class="university-name">ChinaSoft'21<br>西安电子科技大学</div>
++        </div>
++
++        <!-- Fudan University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/复旦大学.png" alt="复旦大学">
++            <div class="university-name">ChinaSoft'22&23<br>复旦大学</div>
++        </div>
++
++        <!-- Xidian University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/西安电子科技大学.png" alt="西安电子科技大学">
++            <div class="university-name">ChinaSoft'24<br>西安电子科技大学</div>
++        </div>
++
++        <!-- Wuhan University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/武汉大学.png" alt="武汉大学">
++            <div class="university-name">ChinaSoft'25<br>武汉大学</div>
++        </div>
++
++        <div class="university-item  highlight">
++            <img class="university-logo" src="images/history/university/天津大学.png" alt="天津大学">
++            <div class="university-name">Chinasoft'26<br>天津大学</div>
++        </div>
++        <div class="university-item  highlight">
++            <img class="university-logo" src="images/history/university/南开大学.png" alt="南开大学">
++            <div class="university-name">Chinasoft'26<br>南开大学</div>
++        </div>
++    </div>
++
++    <!-- 历届回顾 -->
++    <div class="section-title">历届 CCF ChinaSoft Chinasoft FMAC 回顾 </div>
++
++    <div class="photo-grid">
++
++        <div class="photo-item">
++            <img src="images/history/photos/photo-13.jpg" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-14.jpg" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-15.jpg" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-18.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-19.jpg" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-20.jpg" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-21.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-22.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-23.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-24.jpg" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-25.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-26.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-27.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-28.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-29.jpg" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-30.jpg" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-31.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-32.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-33.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-34.png" alt="历届会议照片">
++        </div>
++    </div>
++</div>

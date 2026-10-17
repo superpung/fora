@@ -27,12 +27,12 @@ try {
     await page.locator(selector).first().waitFor();
   };
   await go("/chinasoft2026", ".frow");
-  assert.equal(await page.locator(".frow").count(), 65);
+  assert.equal(await page.locator(".frow").count(), 67);
   const pending = page.locator(".dashday").filter({ has: page.locator("h2", { hasText: "日期待公布" }) });
-  assert.equal(await pending.locator(".frow").count(), 21);
+  assert.equal(await pending.locator(".frow").count(), 23);
   await page.locator(".daypill").filter({ hasText: "日期待公布" }).click();
-  await page.waitForFunction(() => document.querySelectorAll(".frow").length === 21);
-  assert.equal(await page.locator(".frow").count(), 21);
+  await page.waitForFunction(() => document.querySelectorAll(".frow").length === 23);
+  assert.equal(await page.locator(".frow").count(), 23);
   await page.locator(".search__input").fill("软件工程智能体创新论坛");
   await page.waitForFunction(() => document.querySelectorAll(".frow").length === 1);
   assert.equal(await page.locator(".frow").count(), 1);
