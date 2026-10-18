@@ -27,16 +27,16 @@ try {
     await page.locator(selector).first().waitFor();
   };
   await go("/chinasoft2026", ".frow");
-  assert.equal(await page.locator(".frow").count(), 67);
+  assert.equal(await page.locator(".frow").count(), 68);
   const pending = page.locator(".dashday").filter({ has: page.locator("h2", { hasText: "日期待公布" }) });
-  assert.equal(await pending.locator(".frow").count(), 23);
+  assert.equal(await pending.locator(".frow").count(), 19);
   await page.locator(".daypill").filter({ hasText: "日期待公布" }).click();
-  await page.waitForFunction(() => document.querySelectorAll(".frow").length === 23);
-  assert.equal(await page.locator(".frow").count(), 23);
-  await page.locator(".search__input").fill("软件工程智能体创新论坛");
+  await page.waitForFunction(() => document.querySelectorAll(".frow").length === 19);
+  assert.equal(await page.locator(".frow").count(), 19);
+  await page.locator(".search__input").fill("Rust与系统软件论坛");
   await page.waitForFunction(() => document.querySelectorAll(".frow").length === 1);
   assert.equal(await page.locator(".frow").count(), 1);
-  assert.equal(await page.locator(".frow__code").textContent(), "R2");
+  assert.equal(await page.locator(".frow__code").textContent(), "R19");
 
   await go("/chinasoft2026/forum/R14", "#talk-4 .person__name");
   assert.equal(await page.locator("#talk-4 .person__name").textContent(), "廖楠");

@@ -29,8 +29,8 @@ uv run python -m unittest discover -s source/chinasoft2026
 ```
 
 The overview supplies 67 forum/competition entries and 13 conference timetable
-rows across November 5–8. The 40 linked detail pages and retained accessible R16 programme supply
-334 programme items and 44 breaks. Conference meetings are retained separately from technical forums.
+rows across November 5–8. The 44 linked detail pages and retained accessible R16 programme supply
+371 programme items and 50 breaks. Conference meetings are retained separately from technical forums.
 The homepage advertises November 6–8; the dataset includes November 5 check-in
 as published in the overview and introduction, as a normal schedule event.
 
@@ -49,7 +49,7 @@ overview block locations omit the known venue prefixes, while `extra.location_ra
 retains the full source wording. The conference venue remains available for
 the page header, calendar exports and standalone share posters.
 
-All 429 available portrait URLs have been downloaded and decoded. The 22 unavailable
+All 460 available portrait URLs have been downloaded and decoded. The 25 unavailable
 URLs in the latest check return 404; their image tags are omitted from curated input and tracked in the
 gap checklist, with the original preserved in the check archive.
 `fetch_photos.py` and `web/scripts/prepare-portraits.mjs` prepare 256px WebP
@@ -88,10 +88,10 @@ remain valid followed agenda items before individual reports are announced.
 Explicit `person.extra.identity_key` values separate distinct same-name
 source records; the viewer never infers identity from affiliation alone.
 
-`enrichment.json` supplies 305 AI summaries/topic classifications, covering all
+`enrichment.json` supplies 341 AI summaries/topic classifications, covering all
 substantive reports and meaningful panels. They live only in `enrichment` and
 respect the global AI switch. Each entry records its source title so an agenda
-reordering cannot silently attach annotations to the wrong report. The 289
+reordering cannot silently attach annotations to the wrong report. The 316
 source abstracts remain separate and unchanged.
 
 The source fingerprint covers every captured page, the portrait manifest and
@@ -116,3 +116,10 @@ text is matched so future changed discrepancies still need review. Pending
 committee rosters and collective credits remain normal content; committee flags
 are scoped to their own group. See the applied inventory in
 [`data/CHINASOFT2026_GAPS.md`](../../data/CHINASOFT2026_GAPS.md).
+
+The October 18 R2 programme spans November 6–7. Per-day `sessions` record
+programme envelopes, and each report/break has an explicit `day_date`. Daily
+boards project that one forum without renumbering its canonical report list.
+R8 swaps two reports; their guarded enrichment moves with their source titles.
+S1 has eight source titles but no published abstracts; its summaries are derived
+from titles only. See the gap checklist for recovered and still-broken portraits.

@@ -51,7 +51,9 @@ try {
   const forbidden = new Set(["华为", "百度", "昆仑芯", "院士", "校长", "待更新", "待定", "所有嘉宾"]);
   for (const forum of data.forums.filter((f) => f.detail_extracted)) {
     await goto(`/chinasoft2026/forum/${forum.code}`, "[id^=talk-]");
-    assert((await page.locator(".fd__meta").textContent()).includes(`${forum.start}–${forum.end}`), `${forum.code}: published forum window`);
+    for (const window of forum.sessions ?? [forum]) {
+      assert((await page.locator(".fd__meta").textContent()).includes(`${window.start}–${window.end}`), `${forum.code}: published forum window`);
+    }
     const result = await page.locator("[id^=talk-]").evaluateAll((nodes) => nodes.map((node) => ({
       title: node.querySelector(".talk__title")?.textContent.trim(),
       people: [...node.querySelectorAll(".person__name,.authorchip__name")].filter((el) => !el.closest(".talk__hosts")).map((el) => el.textContent.trim()),
@@ -68,7 +70,7 @@ try {
         .map((p) => `${p.name}:${p.photo.local_path}`).sort(), `${forum.code}#${i}: portraits`);
     });
     console.log(`PASS ${forum.code}: ${result.length} programme rows and speaker identities`);
-    if (["P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].includes(forum.code)) {
+    if (["R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].includes(forum.code)) {
       await page.waitForTimeout(600);
       await page.screenshot({ path: `${screenshots}/desktop-${forum.code}.png` });
     }
@@ -102,11 +104,11 @@ try {
   await goto("/chinasoft2026/schedule?v=all", ".daytab");
   for (let i = 0; i < data.days.length; i++) {
     await page.locator(".daytab").nth(i).click();
-    await page.waitForTimeout(450);
+    const expected = data.forums.reduce((n, f) => n + f.talks.filter(t => (t.day_date ?? f.day_date) === data.days[i].date).length, 0);
+    await page.waitForFunction(expected => document.querySelectorAll(".tgrid__talk[href]").length === expected, expected);
     const starts = await page.locator(".block__head .time").allTextContents();
     assert.deepEqual(starts.map((s) => s.slice(0, 5)), starts.map((s) => s.slice(0, 5)).sort(), `Unsorted schedule on ${data.days[i].date}`);
     const links = await page.locator(".tgrid__talk[href]").count();
-    const expected = data.forums.filter((f) => f.day_date === data.days[i].date).reduce((n, f) => n + f.talks.length, 0);
     assert.equal(links, expected, `Missing timeline talks on ${data.days[i].date}`);
     if (i === 1) {
       await page.waitForTimeout(1200);
@@ -142,7 +144,7 @@ try {
   phone.on("pageerror", (error) => errors.push(error.message));
   for (const path of ["forum/R32#talk-5", "committee", "schedule", "topics", "speakers", "plan",
     "forum/R6#talk-1", "forum/R7#talk-5", "forum/R7#talk-7", "forum/R8#talk-10", "forum/R11#talk-1", "forum/R17#talk-1",
-    ...["P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].map(code => `forum/${code}#talk-2`)]) {
+    ...["R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].map(code => `forum/${code}#talk-2`)]) {
     // Assert application readiness, independent of the preview's analytics requests.
     await phone.goto(`${base}/chinasoft2026/${path}`, { waitUntil: "domcontentloaded" });
     const ready = path.startsWith("forum/") ? `#${path.split("#")[1]}` : {

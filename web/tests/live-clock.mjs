@@ -15,9 +15,13 @@ const snapshots = [], errors = [];
 let browser;
 function active(start,end,time) { return !!start && !!end && start <= time && time < end; }
 function expectedRooms(day,time) {
- const forums = data.forums.filter(f=>f.day_date===day && active(
-  [f.start,...f.talks.map(t=>t.start)].filter(Boolean).sort()[0],
-  [f.end,...f.talks.map(t=>t.end)].filter(Boolean).sort().at(-1),time)).map(f=>f.title.zh);
+ const forums = data.forums.filter(f => {
+  const session = f.sessions?.find(s => s.date === day);
+  if (f.day_date !== day && !session) return false;
+  const talks = f.talks.filter(t => (t.day_date ?? f.day_date) === day);
+  return active([session?.start ?? f.start,...talks.map(t=>t.start)].filter(Boolean).sort()[0],
+   [session?.end ?? f.end,...talks.map(t=>t.end)].filter(Boolean).sort().at(-1),time);
+ }).map(f=>f.title.zh);
  const events = (data.days.find(d=>d.date===day)?.blocks??[]).filter(b=>b.kind!=='forums'&&active(b.start,b.end,time)).map(b=>b.title.zh);
  return [...forums,...events].sort();
 }

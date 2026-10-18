@@ -1776,8 +1776,16 @@
               "room": "一层1号大宴会厅"
             },
             {
+              "forum_code": "R2",
+              "room": "二层，16号会议室"
+            },
+            {
               "forum_code": "R3",
               "room": "二层17号会议室"
+            },
+            {
+              "forum_code": "R5",
+              "room": "三层接见厅"
             },
             {
               "forum_code": "R8",
@@ -1810,6 +1818,10 @@
             {
               "forum_code": "R32",
               "room": "二层1号会议室"
+            },
+            {
+              "forum_code": "S1",
+              "room": "二层13号会议室"
             },
             {
               "forum_code": "S2",
@@ -1940,6 +1952,10 @@
             {
               "forum_code": "R1",
               "room": "一层1号大宴会厅"
+            },
+            {
+              "forum_code": "R2",
+              "room": "二层，16号会议室"
             },
             {
               "forum_code": "R6",
@@ -2116,6 +2132,10 @@
             {
               "forum_code": "R20",
               "room": "四层6号多功能厅"
+            },
+            {
+              "forum_code": "R27",
+              "room": "三层1号多功能厅"
             },
             {
               "forum_code": "S5",
@@ -4103,16 +4123,800 @@
         "zh": "软件工程智能体创新论坛",
         "en": null
       },
-      "day_date": null,
       "start": null,
       "end": null,
-      "room": null,
-      "chairs": [],
-      "talks": [],
-      "detail_extracted": false,
-      "agenda_status": "not_published",
-      "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
+      "day_date": null,
+      "room": "二层，16号会议室",
+      "session_period": null,
+      "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/academic-forum/se-agent-innovation",
+      "chairs": [
+        {
+          "name": "王千祥",
+          "affiliation_raw": "华为",
+          "chair_role": "论坛组委会",
+          "title": "华为云智能化软件研发领域资深专家",
+          "bio": "主导华为公司的智能化软件研发，结合AI技术与软件分析技术，带领团队探索研发领域的大模型系统，相关成果包括：PanguCoder, PanguCoder2, CodeR等，并赋能华为的软件研发工具 CodeArts。",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/2f53c40a9b8e6115292e.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E7%8E%8B%E5%8D%83%E7%A5%A5.png"
+          }
+        },
+        {
+          "name": "李戈",
+          "affiliation_raw": "北京大学",
+          "chair_role": "论坛组委会",
+          "title": "北京大学教授",
+          "bio": "李戈，北京大学计算机学院长聘教授，博士生导师，教育部长江学者，CCF软件工程专委会秘书长。长期聚焦于程序理解、程序生成、深度学习等技术的研究，是国际上最早从事\"基于深度学习的程序理解与生成\"研究并取得代表性成果的研究者，在多个国内外顶级会议与期刊发表相关论文200余篇，多篇论文被国际学者认是\"首创成果\"并被广泛引用，多次获ACM杰出论文奖。在软件与人工智能领域的多个国际会议担任程序委员会共同主席与PC。曾获教育部科技进步一等奖，CCF科技发明一等奖，北京市科技发明二等奖，中创软件人才奖。教学课程被首批认定为\"国家级一流线下课程\"和\"国家级一流线上课程\"，并多次获省部级教学奖。科研转化成果aiXcoder为航天领域的重大工程、金融与IT领域的多家大型企业及数十万国际开发者提供服务。",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/805f6879ce1fe2cc13ed.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E6%9D%8E%E6%88%88.png"
+          }
+        },
+        {
+          "name": "夏鑫",
+          "affiliation_raw": "浙江大学",
+          "chair_role": "论坛组委会",
+          "title": "浙江大学教授",
+          "bio": "夏鑫，浙江大学求是特聘教授，ACM 杰出会员。加入浙江大学之前，他曾任华为技术有限公司软件工程应用技术实验室首席专家及主任。主要研究方向包括AI与软件工程、以及经验软件工程。夏鑫荣获 19 项最佳论文奖或杰出论文奖，其中包括9 项顶会杰出论文奖（ASE 2018-2021、2025、2026， ICSE 2024和2026， FSE 2025）以及两项十年最有影响论文奖（ICSME 2026和QRS 2025）。因在职业生涯早期取得的突出成果，他于 2022 年获得 ACM SIGSOFT 早期职业研究者奖（Early Career Researcher Award）。",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/476dfc971bf4397b462d.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E5%A4%8F%E9%91%AB.png"
+          }
+        },
+        {
+          "name": "高翠芸",
+          "affiliation_raw": "哈尔滨工业大学（深圳）",
+          "chair_role": "论坛组委会",
+          "title": "哈尔滨工业大学（深圳）教授",
+          "bio": "高翠芸，哈尔滨工业大学（深圳）教授，哈工大青年拔尖人才。入选第九届中国科协青年人才托举工程，ACM TOSEM Associate Editor，获得2026 IEEE CS TCSE新星奖。主要研究领域包括：智能化软件工程和软件可靠性，近年来在相关领域的顶级会议和期刊如TSE、TOSEM、ICSE、FSE、ASE等上发表论文100余篇，荣获CCF A类会议ICSE 2025杰出论文奖、ICSE 2024杰出论文奖和ASE 2023杰出论文奖。",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/8141f7959c6b895cc6cf.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E9%AB%98%E7%BF%A0%E8%8A%B8.png"
+          }
+        },
+        {
+          "name": "梁广泰",
+          "affiliation_raw": "华为",
+          "chair_role": "论坛组委会",
+          "title": "华为云CodeArts工具技术创新lab主任",
+          "bio": "14年初获得北京大学计算系博士学位，之后入职IBM中国研究院担任研究员职位。16年5月加入华为工作至今，带领团队先后围绕代码缺陷检测与修复、开源成分分析与治理、代码智能同步/重构/移植/生成等方向成功孵化多项智能化开发服务并规模化落地。至今已发表技术专利50+及学术论文40+（含ICSE/FSE/ASE/OOPSLA等），曾获FSE最佳论文奖/ISSTA最佳论文奖等，先后担任一系列软工Top国际会议PC Member/Chair等角色（含ICSE/OOPSLA/WWW/ISSRE等）。",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/d582f14ec7574b0d7626.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E6%A2%81%E5%B9%BF%E6%B3%B0.png"
+          }
+        },
+        {
+          "name": "周建祎",
+          "affiliation_raw": "华为",
+          "chair_role": "论坛组委会",
+          "title": "华为云CodeArts工具技术创新Lab-代码智能生成及测试团队Leader",
+          "bio": "22年6月获得北京大学计算机软件与理论博士学位，同期入职华为工作至今，主要研究领域为智能化代码生成及测试、代码智能体自进化。已发表技术专利10+及顶会论文20+，曾获ASE25杰出论文奖。",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/c32fb0dddd428d516524.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E5%91%A8%E5%BB%BA%E7%A5%8E.png"
+          }
+        },
+        {
+          "name": "刘逵",
+          "affiliation_raw": "华为",
+          "chair_role": "论坛组委会",
+          "title": "华为-智能化软件工程技术专家",
+          "bio": "刘逵博士，华为2012可信软件工程与开源实验室智能化软件工程技术专家。2019年毕业于卢森堡大学获得博士学位，期间专注于缺陷自动修复技术研究，后入职南京航空航天大学，主持/参与过国家级研究项目3项，后入职华为一直带领团队负责智能化软件工程技术的研究与落地推广，在相关领域累计发票高水平研究论文60余篇，其中CCF A类论文30余篇，多个智能化软件开发技术（项目级代码生成、测试生成、代码检视等）在华为公司落地推广使用。",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/38bb7131bcd51fa9e5c7.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E5%88%98%E9%80%B5.png"
+          }
+        }
+      ],
+      "talks": [
+        {
+          "title": {
+            "zh": "是驾驭先进生产力的利器还是束缚生产力围栏",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "09:00",
+          "end": "09:30",
+          "speakers": [
+            {
+              "name": "潘瑞琪",
+              "affiliation_raw": "华为软件工程实验室",
+              "bio": "潘瑞琪，现任华为2012实验室软件工程应用技术实验室主任，长期致力于企业级软件工程方法的研究与规模化落地，拥有超大规模软件开发协作的一线实战经验。他深谙大规模、长生命周期复杂软件工程面临的核心挑战，对智能化浪潮下软件工程的重塑有着深刻洞见。近年来，他重点聚焦AI辅助研发及研发范式升级，在SPEC驱动开发、代码Agent质量保障与评测、领域知识工程等方向取得了深入的研究成果和扎实的落地实践。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/fe114d819d625b815458.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E6%BD%98%E7%91%9E%E7%90%AA.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "潘瑞琪 华为软件工程实验室",
+            "section_title": "可信代码智能体创新（11月6日）"
+          },
+          "day_date": "2026-11-06",
+          "abstract": "各类围绕应用大模型进行开发而产生的智能体平台如雨后春笋应运而生，一方面这些平台让大家更容易，更大范围的使用好智能化，另一方面，又有各类现实风险让我们必须建立好护栏控制使用，那么作为一个智能化开发平台应该如何平衡呢。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "讨论代码智能体平台的生产力价值与应用风险",
+              "en": null
+            },
+            "topics": [
+              "智能体",
+              "AI4SE"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "Qoder：不止编程，无限创造",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "09:30",
+          "end": "10:00",
+          "speakers": [
+            {
+              "name": "谢吉宝",
+              "affiliation_raw": "Qoder 技术负责人",
+              "bio": "谢吉宝（花名唐三），阿里巴巴资深技术专家，Qoder 技术负责人，统筹 Qoder 全系列产品的技术体系与研发。深耕大型分布式系统十余年，曾主导中间件核心组件、异地多活容灾及双 11 全链路稳定性保障。近年他聚焦 AI 编程与智能体（Agent）方向：一条主线持续突破 Agent 在长程任务规划与自主执行、上下文工程和工具调用等方面的能力边界；另一条主线构建以能力评测、安全沙箱、权限与审计为核心的可信体系，让组织敢于将复杂任务真正交给 Agent。两条主线最终收敛为统一的 Agent 内核，支撑终端、桌面与云端多种产品形态。他认为，AI 编程的下一步，不是让用户多写几行代码，而是让编程成为每个人都能调用的通用能力。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/fd5aa985d6d824f030a2.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E8%B0%A2%E5%90%89%E5%AE%9D.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "谢吉宝 Qoder 技术负责人",
+            "section_title": "可信代码智能体创新（11月6日）"
+          },
+          "day_date": "2026-11-06",
+          "abstract": "过去，开发者坐在 IDE 前逐行编写、补全、编译和调试代码；今天，越来越多的人只需说清目标，剩下的拆解与执行都可以交给智能体，人的核心工作变成了计划、委派和验收。Qoder 的使用数据印证了这一转变：三成以上用户不是专业开发者，一半以上任务已不是传统编程，八成以上编程任务交由智能体执行。代码正在从交付物变成数字世界的通用能力，Qoder 因此定位为\"Agentic Coding Platform for Everyone\"。本次分享将展示：人如何与多个 Agent 围绕同一个任务共同讨论、分工协作，不必再在聊天群和多个终端之间来回搬运上下文；如何通过语音、手机等随身入口随时委派和验收，让任务在云端持续运行、不再依赖人全程在线。Qoder 的起点是编程，但目标从来不只是多写几行代码，而是让每个人都能借助 AI，把想法真正变成结果。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "介绍面向任务委托的 Qoder 编程智能体",
+              "en": null
+            },
+            "topics": [
+              "智能体",
+              "代码生成"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "AgentSwarm 在软件工程中的应用",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "10:40",
+          "end": "11:10",
+          "speakers": [
+            {
+              "name": "王龙",
+              "affiliation_raw": "微信专家研究员",
+              "bio": "王龙，腾讯微信支付瓦特实验室研究负责人，专家研究员，长期从事AI4SE的研究及其在金融级软件工程场景中的落地。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/5974c3ec6c872cc05605.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E7%8E%8B%E9%BE%99.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "王龙 微信专家研究员",
+            "section_title": "可信代码智能体创新（11月6日）"
+          },
+          "day_date": "2026-11-06",
+          "abstract": "大模型驱动的智能体（Agent）正在从\"单点辅助\"走向\"群体协作\"。本报告围绕两个方向展开：（一）AgentSwarm 在软件工程中的应用。介绍 AgentSwarm 多智能体协作体系在微信支付软件工程场景中的落地实践，包括任务分解、组网、智能体间的通信与冲突仲裁机制，以及在真实研发流水线中的典型应用（软件设计，数字孪生）。（二）基于 AgentSwarm的复杂代码仓库逆向数字孪生。面对遗留系统与超大代码仓库中\"文档缺失、知识散落、依赖隐晦\"的现实困境，介绍如何以增强型UML为载体，通过多智能体协同对代码仓库进行系统性逆向解析，将隐性的架构决策、业务语义与依赖关系抽取为结构化、可演进的知识资产，并做双向锚定，实现从\"代码\"到\"知识\"的逆向工程与工程化沉淀，为系统的可维护性、可迁移性与智能研发提供基础设施。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "探索智能体集群在软件工程中的协同应用",
+              "en": null
+            },
+            "topics": [
+              "智能体",
+              "AI4SE"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "从「可用」到「可交付」：AiWork 的 Agent Harness 工程与企业级研发实践",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "11:10",
+          "end": "11:40",
+          "speakers": [
+            {
+              "name": "魏长征",
+              "affiliation_raw": "蚂蚁集团",
+              "bio": "魏长征，蚂蚁数科技术总监、资深技术专家，上海市数字技术领域高级工程师，在蚂蚁数科工作超 7 年，长期从事智能体工程、区块链、隐私计算与软硬件结合等方向的研发。具备长期的软件工程研发经验，领导团队完成多个商业化平台的建设与落地，并推动团队向 AGI 研发范式转型。曾发表 10 余篇 CCF A 类国际会议和期刊论文，拥有国内外授权专利 50 余项，并主导或参与多项国内外技术标准制定。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/237bed65e266f5bc7a46.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E9%AD%8F%E9%95%BF%E5%BE%81.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "魏长征 蚂蚁集团",
+            "section_title": "可信代码智能体创新（11月6日）"
+          },
+          "day_date": "2026-11-06",
+          "abstract": "大模型智能体正从\"辅助补全\"走向\"在后台独立完成真实仓库与业务任务\"，软件工程的核心问题也随之从\"能不能生成代码\"转向\"需求是否对齐、测试是否充分、证据是否可复查、长任务与多智能体并行是否可控、交付能否被验收\"。本报告以蚂蚁数科 AiWork通用智能体与工程实践为线索，介绍如何把需求澄清、契约先行、测试、评审、CI/CD、回滚与复盘等经典软件工程经验，重构为智能体可执行、团队可验收的运行时能力。报告将拆解 AiWork 的核心技术：面向长任务的上下文工程（分层组装、按需加载、分级压缩与断点续作）、以子智能体委派为核心的规划编排，以及\"运行状态 / 结果契约 / 任务验收\"三层分离的交付验证与整棵委派树的开销核算。在此基础上，报告进一步落到 AiWork 的企业级能力：以统一内核为底座，按研发、办公与业务场景组合 Code / Work / Space，用模型路由、审批、沙箱与审计覆盖智能体全生命周期，帮助企业把 AI 研发从\"可用\"做成可控、可运营、可规模化落地的生产级能力。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "分享企业级研发中智能体从可用到可交付的工程实践",
+              "en": null
+            },
+            "topics": [
+              "智能体",
+              "AI4SE"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "长时运行智能体建设方法与挑战",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "11:40",
+          "end": "12:10",
+          "speakers": [
+            {
+              "name": "张克驰",
+              "affiliation_raw": "腾讯",
+              "bio": "张克驰，目前在腾讯混元大模型团队负责Agent Harness算法研究，核心参与Hy3、Hy4模型训练和Agent协同设计。博士毕业于北京大学计算机学院，导师为金芝教授和李戈教授，本科毕业于北京大学信息科学技术学院，研究方向为代码智能体、代码大模型与智能化软件工程。他曾以第一作者在自然语言处理、软件工程等领域的国际会议上发表多篇论文。其代表工作 CodeAgent 发表于 ACL 2024，是较早系统性研究代码智能体的工作之一。一作论文先后获得 2023 年 ACM 杰出论文奖（ACM SIGSOFT Distinguished Paper Award in ICPC）和 2026 年 ACM 杰出论文奖（ACM SIGSOFT Distinguished Paper Award in ICSE）。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/ff7ff3343818d30a294c.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E5%BC%A0%E5%85%8B%E9%A9%B0.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "张克驰 腾讯",
+            "section_title": "可信代码智能体创新（11月6日）"
+          },
+          "day_date": "2026-11-06",
+          "abstract": "近年来，大语言模型在代码生成、软件测试、程序修复、知识检索和复杂任务求解等领域快速发展，推动智能软件工具从一次性的问答辅助和代码补全，逐步走向能够持续规划、执行、验证和迭代的智能体（Agent）系统。与传统代码生成技术相比，长时运行 Agent 不再只关注单次输出的正确性，而是需要在更长时间尺度上理解目标、拆解任务，并根据反馈不断修正执行路径，从而完成复杂工程任务。与此同时，长时运行 Agent 的工程化落地也带来了新的挑战：受限于模型上下文，Agent 在长任务中容易出现目标漂移等问题；由于缺乏可靠的外部校验机制，也容易出现过早宣布完成或隐蔽错误等现象。ProgramBench、SWE-Marathon 等长时程基准的实践也进一步表明，当前智能体在长时间跨度的复杂软件任务上仍远未可靠。本报告将围绕长时运行 Agent 的方法展开，探讨流程编排、任务分解等核心方法，并分析仍需解决的关键挑战。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "讨论长时运行智能体的构建方法与挑战",
+              "en": null
+            },
+            "topics": [
+              "智能体",
+              "AI4SE"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "暗知识驱动的可信代码智能体构建",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "14:00",
+          "end": "14:25",
+          "speakers": [
+            {
+              "name": "石琳",
+              "affiliation_raw": "北京航空航天大学",
+              "bio": "石琳，北京航空航天大学软件学院教授，院长助理，空天软件智能测试北京重点实验室副主任。研究方向为智能软件工程，包括仓库级代码智能、智能需求工程、开源软件、可信AI等。在软件工程、人工智能领域的高水平国际会议ICSE，FSE，ASE等发表论文70余篇，获CCF软件工程青年科技奖，三次获杰出论文奖。主持GF基金重点项目、多项国家自然科学基金项目、企业合作项目20余项。研究成果落地华为、阿里、中国航空工业集团、招商银行等知名企业。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/fe519725ea8e99741303.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E7%9F%B3%E7%90%B3.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "石琳 北京航空航天大学",
+            "section_title": "软件工程全场景智能体产业实践（11月6日）"
+          },
+          "day_date": "2026-11-06",
+          "abstract": "软件开发过程中包含大量暗知识。所谓暗知识，是无法仅通过阅读最终代码获取，来源于开发行为、排障调试、设计取舍、失败教训等过程的经验性知识，涵盖设计动机、隐式契约、失败模式、隐式依赖、排障方案、开发者画像等多类信息。当前业界主流的代码 RAG、分层记忆智能体大多只利用显性、半显性结构化信息，对暗知识挖掘复用不足，这也是智能体产生幻觉、不合规、输出不可落地的重要根源。本次报告介绍暗知识的获取、结构化与复用技术路径，分享 VirtualME、DevSkill、DevBrain、CREDIT 评估体系等系列研究成果：通过 IDE 采集开发者行为轨迹，构建开发者画像实现个性化研发问答；从真实开发轨迹中提取可迁移的任务求解 Skill，提升复杂开发任务的规划与执行正确率；进一步解构任务技能，基于过程知识图谱实现任务方案的动态组装，突破简单步骤模仿，向最优解搜索跃迁；同时提出人机协作可信度量化评估框架 CREDIT，实现 AI 辅助开发过程的可度量、可问责。为构建真正可用、可控、可追溯的生产级可信代码智能体提供新思路与实践参考。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "利用研发暗知识构建可信代码智能体",
+              "en": null
+            },
+            "topics": [
+              "智能体",
+              "代码生成"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "经验、记忆与技能：从持续学习到自进化Agent",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "14:25",
+          "end": "14:50",
+          "speakers": [
+            {
+              "name": "冯涛",
+              "affiliation_raw": "清华大学",
+              "bio": "冯涛，清华大学助理教授，曾在清华大学计算机系担任博后/助理研究员、于阿里巴巴-达摩院从事研究工作；研究方向为人工智能、多模态、自进化智能体等。主持及参与国家自然科学基金重大项目、中央引导地方专项、面上项目等，在CVPR、ICML、NeurIPS、ICLR、IJCV等人工智能会议及期刊发表论文40余篇，多次入选会议亮点论文，GitHub累计星标5千余次；参与多项国际、国家人工智能标准编制工作，涵盖基础模型、智能体、具身智能等。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/23fcab5d5e88f05ffdfd.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E5%86%AF%E6%B6%9B.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "冯涛 清华大学",
+            "section_title": "软件工程全场景智能体产业实践（11月6日）"
+          },
+          "day_date": "2026-11-06",
+          "abstract": "随着大语言模型和智能体的发展，能力不再局限于模型参数，还可以存储在外部记忆、可复用技能和交互规则中，持续学习也因此从模型训练问题扩展为整个智能体系统的能力演化问题。本次报告介绍持续学习在模型生命周期、能力存储载体和更新机制上的最新发展，探讨从参数更新到记忆积累、技能进化与推理时学习的技术路径，并进一步讨论主动遗忘、自主反馈闭环和长程任务评估等关键挑战，展望能够从自身经验中持续学习、积累并迁移能力的下一代 Agent。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "探索持续学习、经验记忆与技能驱动的智能体自进化",
+              "en": null
+            },
+            "topics": [
+              "智能体",
+              "大模型"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "面向长程软件开发任务的大模型强化学习方法",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "14:50",
+          "end": "15:15",
+          "speakers": [
+            {
+              "name": "董益宏",
+              "affiliation_raw": "上海交通大学",
+              "bio": "董益宏，上海交通大学计算机学院PI（长聘轨助理教授，博导），研究聚焦于智能化软件工程、大语言模型以及多智能体协同，发表CCF-A类学术论文40余篇，其中一作论文引用2200余次，且多项学术成果转化为实际应用落地，提出最早的多智能体协同软件开发框架Self-collaboration，曾获通义阿里星、字节 TikTok、京东 TGT、腾讯青云、美团北斗等顶尖人才计划，以及CCF软工专委博士学位论文激励计划、北京大学优秀博士学位论文、北京大学计算机学院\"学术十杰\"、中国科协博士青托计划、CCF青年开源专项基金种子计划、ACL Best Paper Candidate、ACL SAC Highlight Award等10余项荣誉奖项。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/7dd5d98d82f6f0d6ec43.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E8%91%A3%E7%9B%8A%E5%AE%8F.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "董益宏 上海交通大学",
+            "section_title": "软件工程全场景智能体产业实践（11月6日）"
+          },
+          "day_date": "2026-11-06",
+          "abstract": "大模型驱动的软件智能体正从单次代码生成走向涉及多轮决策与环境交互的长程软件开发。然而，长程任务探索成本高且成功轨迹稀缺，使强化学习面临训练开销过大和有效学习信号不足的挑战。本报告围绕\"如何拓展模型探索能力，并高效地从长程交互中学习\"这一问题，介绍相关研究进展。首先，结合混合策略优化方法 RL-PLUS，讨论强化学习中的能力边界收缩现象，以及融合外部示例与自主探索、拓展模型推理能力的方法。随后，重点介绍面向长程软件开发的强化学习框架 SPROUT：通过同步保存和恢复智能体上下文与执行环境，复用失败尝试中已有的有效进展；利用验证反馈驱动失败分析、回溯位置选择与分支探索，获得更多可用于学习的成功轨迹；进一步通过策略优化，将纠错探索经验转化为模型自身的任务执行能力。报告将结合代码库问题修复与终端交互任务的实验，展示 SPROUT 在任务解决率与训练效率方面的改进，并讨论面向复杂软件开发的软件智能体训练方法与未来研究方向。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "研究面向长程软件开发任务的大模型强化学习方法",
+              "en": null
+            },
+            "topics": [
+              "大模型",
+              "AI4SE"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "真实世界中的 Agentic Skills：建模、检索、评估与演进",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "15:30",
+          "end": "15:55",
+          "speakers": [
+            {
+              "name": "曹嘉伦",
+              "affiliation_raw": "帝国理工大学",
+              "bio": "曹嘉伦博士是帝国理工计算机系的助理教授。她的研究重点是利用先进的人工智能技术实现软件开发、测试和程序验证的自动化，旨在实现从构建之初就具备可靠性的软件的自动化生产。她在ICSE、ESEC/FSE、CAV、ASE、ACL、AAAI、USENIX Security和TOSEM等顶级会议和期刊上发表了30余篇论文。她担任ICSE、FSE、ISSTA和ASE等顶级会议的程序委员，并担任ESEC/FSE 2025和ASE 2024的分会主席。她获得了2024年杰出论文奖，2025年ACM SIGSOFT杰出博士论文奖、2025年工程科学领域青年科学家奖等。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/42adc8a8abfaaf537452.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E6%9B%B9%E5%98%89%E4%BC%A6.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "曹嘉伦 帝国理工大学",
+            "section_title": "软件工程全场景智能体产业实践（11月6日）"
+          },
+          "day_date": "2026-11-06",
+          "abstract": "随着 Agentic AI 加速走向真实世界的应用，Agentic Skills（智能体技能）正逐渐成为将 AI 能力转化为可复用专业知识的关键层。本次演讲将探讨真实场景中的技能是什么、开发者正在将哪些能力封装为技能，以及如何系统地理解、评估和改进这些技能。基于对公开可用技能的实证分析，我们将剖析其功能特征、对软件开发生命周期的覆盖情况及潜在安全风险，并介绍一套系统化框架，支持技能建模、相似技能检索、自动化质量评估，以及面向技能评测的基准测试推荐。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "讨论真实场景中智能体技能的建模、检索与评估",
+              "en": null
+            },
+            "topics": [
+              "智能体",
+              "AI4SE"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "智能化软件工程的进展与挑战",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "15:55",
+          "end": "16:20",
+          "speakers": [
+            {
+              "name": "张洪宇",
+              "affiliation_raw": "重庆大学",
+              "bio": "重庆大学大数据与软件学院教授、院长、弘深杰出学者，IEEE Fellow。主要研究方向是智能化软件工程，软件数据挖掘和软件维护。在国际著名会议和期刊上发表了300多篇论文，获得过10多次ACM杰出论文奖和最佳论文奖，1次FSE时间检验奖，以及2次ICSE 最有影响力实践论文奖。长期担任多个国际顶级学术会议的程序委员会委员以及国际期刊的编委。他也是ACM杰出会员，CCF杰出会员，澳洲工程师协会会士和David Parnas Fellow。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/d96f3b0b4f6bc82a06c3.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E5%BC%A0%E6%B4%AA%E5%AE%87.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "张洪宇 重庆大学",
+            "section_title": "软件工程全场景智能体产业实践（11月6日）"
+          },
+          "day_date": "2026-11-06",
+          "abstract": "在人工智能时代，我们的目标是实现智能化软件工程。在前期工作中，我们通过挖掘软件相关的数据构建基于机器学习模型，来自动化编程、测试、故障诊断和运行维护等任务，从而提高软件开发的生产效率，减少维护工作。近年来，大语言模型和智能体技术也被广泛应用于智能化软件工程，改变了软件开发与运维方式，推动了\"AI原生\"新模式新业态。本次报告将回顾智能化软件工程的发展历程, 讨论当前智能化软件工程工作面临的挑战和可能的研究方向。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "梳理智能化软件工程的进展与挑战",
+              "en": null
+            },
+            "topics": [
+              "AI4SE"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "软件工程全场景智能体产业实践Panel",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "16:20",
+          "end": "17:00",
+          "speakers": [],
+          "type": "other",
+          "abstract_status": "unknown",
+          "extra": {
+            "speaker_raw": "主持人：梁广泰 华为",
+            "section_title": "软件工程全场景智能体产业实践（11月6日）",
+            "hosts_raw": "梁广泰 华为",
+            "hosts": [
+              {
+                "name": "梁广泰",
+                "affiliation_raw": "华为",
+                "chair_role": "主持",
+                "photo": {
+                  "local_path": "/portraits/chinasoft2026/d582f14ec7574b0d7626.webp",
+                  "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E6%A2%81%E5%B9%BF%E6%B3%B0.png"
+                }
+              }
+            ]
+          },
+          "day_date": "2026-11-06",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "交流软件工程全流程中的智能体产业实践",
+              "en": null
+            },
+            "topics": [
+              "智能体",
+              "AI4SE",
+              "产业生态"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "iCode的设计理念:面向企业和组织的智能化平台",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "15:20",
+          "end": "15:50",
+          "speakers": [
+            {
+              "name": "潘瑞琪",
+              "affiliation_raw": "华为",
+              "bio": "潘瑞琪，现任华为2012实验室软件工程应用技术实验室主任，长期致力于企业级软件工程方法的研究与规模化落地，拥有超大规模软件开发协作的一线实战经验。他深谙大规模、长生命周期复杂软件工程面临的核心挑战，对智能化浪潮下软件工程的重塑有着深刻洞见。近年来，他重点聚焦AI辅助研发及研发范式升级，在SPEC驱动开发、代码Agent质量保障与评测、领域知识工程等方向取得了深入的研究成果和扎实的落地实践。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/fe114d819d625b815458.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E6%BD%98%E7%91%9E%E7%90%AA.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "潘瑞琪 华为",
+            "section_title": "iCode：智能化软件工程平台前沿技术论坛（11月7日）"
+          },
+          "day_date": "2026-11-07",
+          "abstract": "业界已经有大量的codeagent存在，为什么我们需要重复造轮子产生一套新的智能开发平台？如何提高用户对agent的粘性和忠诚度，关键抓手有哪些？",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "介绍面向企业与组织的 iCode 智能化研发平台",
+              "en": null
+            },
+            "topics": [
+              "AI4SE",
+              "智能体"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "系统工程视角下的软件Spec模式及语言",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "15:50",
+          "end": "16:20",
+          "speakers": [
+            {
+              "name": "金芝",
+              "affiliation_raw": "教授 武汉大学",
+              "bio": "金芝，IEEE / CCF / CAAI会士，北京大学教授，武汉大学弘毅客座特聘教授，武汉大学特色化示范性软件学院院长，高可信软件技术教育部重点实验室常务副主任。研究方向为软件需求工程方法学、智能化软件工程和知识工程。曾获高等学校科学研究优秀成果奖（科学技术）科技进步奖一等奖，CCF科学技术奖技术发明一等奖，CCF夏培肃奖，中创软件人才奖等，多次获ACM SIGSOFT杰出论文奖。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/4003da49d7a34ebe4ea8.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E9%87%91%E8%8A%9D.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "金芝 教授 武汉大学",
+            "section_title": "iCode：智能化软件工程平台前沿技术论坛（11月7日）"
+          },
+          "day_date": "2026-11-07",
+          "abstract": "信息物理融合系统的开发面临系统成分异构、系统组成复杂和领域知识鸿沟带来的难题，关键挑战之一是如何根据系统任务需求推断出软件Spec。本报告结合航天控制嵌入式系统实践，探讨以系统工程理论为指导的软件问题定位、软件问题解耦、以及软件模式抽象的方法，包括（1）引入物理设备及其所关联领域实体的统一抽象；（2）建立以可异步发生交互为原则的能力解耦策略；等，据此提出面向航天控制嵌入式系统的软件Spec语言。本报告将展示从系统任务需求到Spec语言的推演过程及工具，并对Spec驱动软件开发进行展望。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "从系统工程视角讨论软件规约模式及语言",
+              "en": null
+            },
+            "topics": [
+              "需求工程",
+              "形式化方法"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "智能体时代的软件工程再认识",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "16:20",
+          "end": "16:50",
+          "speakers": [
+            {
+              "name": "江贺",
+              "affiliation_raw": "教授 大连理工大学",
+              "bio": "江贺，国家万人领军人才，教授、博导，大连理工大学人工智能大连研究院院长，大连理工大学网信中心主任。毕业于中国科大少年班，研究兴趣为智能系统开发与应用，成果在航空航天、自动驾驶等领域广泛应用。主持国家自然科学基金重点项目、重点研发课题等10多项课题，在国际著名期刊及国际会议发表论文100余篇。先后获得大连市五一特等奖章，国际软件工程大会杰出论文奖等。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/ec171ea70f9861c12257.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E6%B1%9F%E8%B4%BA.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "江贺 教授 大连理工大学",
+            "section_title": "iCode：智能化软件工程平台前沿技术论坛（11月7日）"
+          },
+          "day_date": "2026-11-07",
+          "abstract": "大模型引领的智能体给软件工程带来了前所未有的挑战和机遇。软件工程新的范式是否真正到来？软件工程研究又该何去何从？本次报告试图通过回望软件工程的发展历史，探索在这场新的技术革命下，软件工程的新赛道和软件产业的新方向。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "讨论智能体时代软件工程的变化",
+              "en": null
+            },
+            "topics": [
+              "智能体",
+              "AI4SE"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "智能体驱动的形式化程序规约生成与代码验证",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "17:00",
+          "end": "17:30",
+          "speakers": [
+            {
+              "name": "卜磊",
+              "affiliation_raw": "教授 南京大学",
+              "bio": "卜磊，教授，博士生导师，现任南京大学软件学院副院长，兼任 CCF 系统软件专委副主任（执行）；主要研究领域涉及可信软件、软件工程、形式化方法等方面，部分创新性工作发表在相关领域重要期刊与会议如《中国科学》、TCAD、TC、TOSEM、TDSC、CAV、RTSS、ICSE、DAC等上；入选高校计算机专业优秀教师奖励计划、CCF-IEEE CS青年科学家奖、中创软件人才奖、NASAC青年软件创新奖等奖项，主持基金委青A、重点、国际合作等项目多项。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/bf390ee239af30d75397.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E5%8D%9C%E7%A3%8A.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "卜磊 教授 南京大学",
+            "section_title": "iCode：智能化软件工程平台前沿技术论坛（11月7日）"
+          },
+          "day_date": "2026-11-07",
+          "abstract": "代码验证是保障软件可靠性的重要技术。对于复杂软件系统，验证往往需要借助循环不变式、函数契约等辅助规约，为程序行为提供精确的语义描述，支撑验证任务的分解与组合。大语言模型为辅助规约的自动构造与程序验证任务的自动化提供了新机遇，但现有方法在过程间规约依赖处理以及验证失败的根因定位与针对性修复等方面仍存在不足。本报告介绍一种智能体驱动的形式化程序规约生成与代码验证方法。该方法将智能体的决策能力与程序验证任务相结合，通过规划、生成、修复与评估等智能体的协同工作，迭代构造和完善辅助规约，并利用检索增强生成、验证反馈与质量评估机制，提升规约对程序验证的支撑能力。基于多个实际复杂项目的实验结果表明，通过生成可验证的辅助规约，该方法能够有效支撑复杂程序的安全性质验证，为复杂软件的自动化验证提供了新的技术途径。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "利用智能体生成形式化程序规约并验证代码",
+              "en": null
+            },
+            "topics": [
+              "智能体",
+              "形式化方法"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "构建可信代码智能体：从供应链安全到内生质量治理",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "17:30",
+          "end": "18:00",
+          "speakers": [
+            {
+              "name": "夏鑫",
+              "affiliation_raw": "教授 浙江大学",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/476dfc971bf4397b462d.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E5%A4%8F%E9%91%AB.png"
+              },
+              "bio": "夏鑫，浙江大学求是特聘教授，ACM 杰出会员。加入浙江大学之前，他曾任华为技术有限公司软件工程应用技术实验室首席专家及主任。主要研究方向包括AI与软件工程、以及经验软件工程。夏鑫荣获 19 项最佳论文奖或杰出论文奖，其中包括9 项顶会杰出论文奖（ASE 2018-2021、2025、2026， ICSE 2024和2026， FSE 2025）以及两项十年最有影响论文奖（ICSME 2026和QRS 2025）。因在职业生涯早期取得的突出成果，他于 2022 年获得 ACM SIGSOFT 早期职业研究者奖（Early Career Researcher Award）。"
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "夏鑫 教授 浙江大学",
+            "section_title": "iCode：智能化软件工程平台前沿技术论坛（11月7日）"
+          },
+          "day_date": "2026-11-07",
+          "abstract": "随着AI Coding向自主智能体演进，其面临输入侧供应链投毒与输出侧幻觉漏洞的\"可信鸿沟\"。本分享提出贯穿输入—输出的系统工程框架：第一层\"输入可信\"，聚焦模型测试修复、鲁棒性提升与Coding Skill投毒检测；第二层\"输出可信\"，涵盖实际场景能力评估、生态迁移（借UI/测试/方案）及Agent技能选择测试。旨在推动代码智能体从\"能用\"走向\"靠谱\"。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "结合供应链安全与内生质量治理构建可信代码智能体",
+              "en": null
+            },
+            "topics": [
+              "智能体",
+              "软件安全"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "AI-Native安卓应用鸿蒙化实践与思考",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "18:00",
+          "end": "18:30",
+          "speakers": [
+            {
+              "name": "贾岩涛",
+              "affiliation_raw": "华为",
+              "bio": "贾岩涛博士，研究方向包括智能化软件工程与工具、知识图谱、智能搜索与问答等。曾任中科院计算所副研究员。围绕信息检索、知识图谱、自然语言处理、软件工程与应用等方向，在SIGIR/ACL/WWW/ AAAI/IEEE TKDE/ACM TIST等顶会顶刊发表论文80+，围绕知识计算出版学术专著一部。加入华为后，做为搜索领域首席架构师，带领团队打造了花瓣地图/搜索等一系列产品，同时负责华为嵌入式系统数字化软件工程项目，公司级AI辅助研发平台建设，以及AICoding先锋团队与智能化研发模式打造等工作。出版数字化软件工程专著一部。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/5c6117884c9d562aa07a.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E8%B4%BE%E5%B2%A9%E6%B6%9B.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "贾岩涛 华为",
+            "section_title": "iCode：智能化软件工程平台前沿技术论坛（11月7日）"
+          },
+          "day_date": "2026-11-07",
+          "abstract": "AI技术的快速发展，给传统代码迁移任务带来了新的机遇。相比传统的模块级人工迁移的方式，整仓级自动化的迁移方式是否可行，是一个值得深入研究与探索的开放问题。本报告将围绕中长尾应用，从安卓应用出发，使用一系列的AICoding技术，打造了零人工编码的安卓应用迁移鸿蒙的工具HMBot。支持包括iCode、DevEco Code/CLI等多款agent框架与模型，同时也对迁移过程中的挑战进行系统性总结与讨论。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "分享 AI 原生安卓应用迁移至鸿蒙的实践",
+              "en": null
+            },
+            "topics": [
+              "AI4SE",
+              "代码生成"
+            ]
+          }
+        }
+      ],
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:20",
+          "end": "10:40",
+          "day_date": "2026-11-06"
+        },
+        {
+          "name": "茶歇",
+          "start": "15:15",
+          "end": "15:30",
+          "day_date": "2026-11-06"
+        },
+        {
+          "name": "茶歇",
+          "start": "16:50",
+          "end": "17:00",
+          "day_date": "2026-11-07"
+        }
+      ],
+      "detail_extracted": true,
       "flags": [],
+      "extra": {
+        "schedule_raw": "2026年11月6日-2026年11月7日",
+        "location_raw": "天津市社会山国际会议中心酒店二层，16号会议室",
+        "published_window": {
+          "start": null,
+          "end": null
+        }
+      },
+      "description": "随着大语言模型与智能体技术的持续发展，软件研发正从AI辅助编程迈向智能体驱动的全流程协作新阶段。“软件工程智能体创新论坛”旨在汇聚学术界与产业界专家，围绕AI原生软件工程的关键技术、研发范式与产业实践展开深入探讨。\n\n本次论坛聚焦Spec驱动开发、多智能体协同、长程任务执行、智能体训练与自进化、研发技能与知识体系构建，以及代码理解、测试验证与可信质量保障等方向，交流最新研究成果与工程经验。结合企业级智能研发平台建设、复杂软件开发及跨平台代码迁移等真实场景，探讨软件智能体从能力提升到工程落地的关键挑战，推动智能体技术在软件研发全场景中的应用，促进学术研究与产业创新的协同发展。",
+      "sessions": [
+        {
+          "date": "2026-11-06",
+          "start": "09:00",
+          "end": "17:00"
+        },
+        {
+          "date": "2026-11-07",
+          "start": "15:20",
+          "end": "18:30"
+        }
+      ],
       "category": {
         "key": "academic-forum",
         "name": {
@@ -4211,7 +5015,7 @@
               "affiliation_raw": "华为",
               "bio": "华为CodeArts工具技术创新Lab主任，代码可信生成与验证技术专家，华为可信领域科学家委员会成员。梁广泰带领团队持续围绕软件质量可信保障、智能化研发等场景长期聚焦核心技术创新孵化与产品落地工作（10年+），成功孵化一系列智能化研发核心技术，在华为内部研发工具体系及华为云对外软件开发生产线 CodeArts 服务中有效落地并规模化应用。至今已发表65+技术专利（含华为云潜在高价值专利10+篇及45+学术论文（含ICSE/FSE/ASE/OOPSLA等CCF A类论文16篇），曾获FSE 2021、ISSTA 2023等杰出论文奖等。",
               "photo": {
-                "local_path": "/portraits/chinasoft2026/9fbd2a0888686350d11f.webp",
+                "local_path": "/portraits/chinasoft2026/d582f14ec7574b0d7626.webp",
                 "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E6%A2%81%E5%B9%BF%E6%B3%B0.png"
               }
             }
@@ -4538,7 +5342,7 @@
               "affiliation_raw": "北京大学",
               "bio": "李戈，CCF杰出会员，CCF软件工程专委会副主任委员，北京大学博雅特聘教授，教育部长江学者。国际上\"基于深度学习的程序理解与生成\"研究的早期贡献者。迄今为止，发表相关论文200余篇，多项成果被国际学者认为是\"首创性成果\"并被广泛引用，所带领的研究团队在软件工程与人工智能领域的多项研究中保持领先状态。科研转化成果为航天、金融、IT领域的多家企业提供智能化研发支撑。",
               "photo": {
-                "local_path": "/portraits/chinasoft2026/e6a3d7725ef1b3154251.webp",
+                "local_path": "/portraits/chinasoft2026/805f6879ce1fe2cc13ed.webp",
                 "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E6%9D%8E%E6%88%88.png"
               }
             }
@@ -4785,16 +5589,287 @@
         "zh": "编程语言前沿技术论坛",
         "en": null
       },
-      "day_date": null,
-      "start": null,
-      "end": null,
-      "room": null,
-      "chairs": [],
-      "talks": [],
-      "detail_extracted": false,
-      "agenda_status": "not_published",
-      "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
+      "start": "09:00",
+      "end": "12:00",
+      "day_date": "2026-11-06",
+      "room": "三层接见厅",
+      "session_period": "morning",
+      "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/academic-forum/programming-language-frontier",
+      "chairs": [
+        {
+          "name": "陈俊洁",
+          "affiliation_raw": "天津大学",
+          "chair_role": "论坛组委会",
+          "title": "教授",
+          "bio": "陈俊洁，天津大学教授、博导、软件学院副院长，软件工程团队(TJU-WISE Lab)负责人，主持国家优青、重点研发计划青年科学家等项目；博士毕业于北京大学；研究方向主要为基础软件质量保障、代码智能体等；入选中国科协青年人才托举工程、斯坦福大学发布的全球前2%顶尖科学家榜单，荣获CCF优博、电子学会自然科学一等奖、十项最佳/杰出论文奖等奖项；成果在华为、字节等多家知名企业落地；担任CCF系统软件专委常委，AUSE、FCS、JCST、JSEP等期刊编委/青年编委，ICSE、FSE、ASE、ISSTA等顶会PC。",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/051ea2b63a5ae6952420.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9Bv2/%E9%99%88%E4%BF%8A%E6%B4%81.png"
+          }
+        },
+        {
+          "name": "冯新宇",
+          "affiliation_raw": "南京大学",
+          "chair_role": "论坛组委会",
+          "title": "教授",
+          "bio": "冯新宇，南京大学教授，华为编程语言首席专家，仓颉编程语言首席架构师。主要研究方向为程序设计语言的设计与实现、程序设计语言理论、以及形式化程序验证。主要工作包括仓颉编程语言、安全系统编程、操作系统内核验证、编译器验证、以及细粒度/无锁并发算法验证等。",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/54c223f3b313f01db6c0.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9Bv2/%E5%86%AF%E6%96%B0%E5%AE%87.png"
+          }
+        },
+        {
+          "name": "贺飞",
+          "affiliation_raw": "清华大学",
+          "chair_role": "论坛组委会",
+          "title": "副教授",
+          "bio": "贺飞，清华大学长聘副教授、博士生导师，软件系统与工程研究所所长。长期从事程序验证、模型检验与自动推理研究，在程序终止性证明、并发程序验证及面向验证的SMT理论方面取得成果。开发的程序验证工具四次获国际软件验证大赛并发安全赛道冠军。发表论文百余篇，入选国家特支计划青年人才，获\"中创软件人才奖\"。",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/19dd57e036a9c04d20fb.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9Bv2/%E8%B4%BA%E9%A3%9E.png"
+          }
+        }
+      ],
+      "talks": [
+        {
+          "title": {
+            "zh": "安全编程语言Trust C若干进展",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "09:00",
+          "end": "09:25",
+          "speakers": [
+            {
+              "name": "王戟",
+              "affiliation_raw": "国防科技大学",
+              "bio": "王戟，国防科技大学教授，复杂关键软件环境全国重点实验室副主任，中国计算机学会会士。从事可信、智能与新兴软件技术研究，在复杂关键软件高可信保证、神经符号融合系统、虚拟计算环境等方面取得了重要进展，在国家和国防重大重点工程发挥了重要作用。获国家和省部级奖励6项，发表论文200余篇。曾获国务院政府特殊津贴、国家杰出青年科学基金、教育部长江学者特聘教授。历任中国计算机学会理事、形式化方法专委主任、软件工程专委副主任。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/fadc8f4d386cc2fdfd32.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9Bv2/%E7%8E%8B%E6%88%9F.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "王戟 国防科技大学"
+          },
+          "abstract": "本报告将安全编程语言视为程序构造与形式验证的统一载体，将安全编程可信保证梳理为三种主要模式：语言内生的自动保证、规约驱动的自动验证、显式证明构造与交互式定理证明。以此为基础，介绍安全编程语言Trust C的若干进展：它是基于C的渐进式安全编程语言；安全保证思路是利用内生机制排除普遍且可结构化的错误、规约驱动验证处理程序特定要求、显式证明构造承担功能正确和功能安全的语义论证；这些安全保证内嵌于Trust C的验译器之中，并通过其IDE与外部分析、验证工具和AI辅助工具集成。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "介绍安全编程语言 Trust C 的构造与验证方法",
+              "en": null
+            },
+            "topics": [
+              "编译器",
+              "形式化方法"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "大模型时代的编程语言设计初探",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "09:25",
+          "end": "09:50",
+          "speakers": [
+            {
+              "name": "王迪",
+              "affiliation_raw": "北京大学",
+              "bio": "王迪是北京大学计算机学院的助理教授。他于2022年在美国卡内基梅隆大学获得博士学位，于2017年在北京大学获得学士学位。他的研究兴趣包括形式化验证、程序分析、类型系统以及概率编程，目前的研究项目涉及资源安全的系统编程、可编程贝叶斯推断、量化程序分析以及面向证明的编程语言。他获得了国家优秀青年科学基金项目（海外）资助，多项研究成果发表于编程语言领域的顶级会议POPL、PLDI、OOPSLA、ICFP等。他是中国计算机学会形式化方法专委会执行委员。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/0eb7d5d18f2ac76dc9ca.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9Bv2/%E7%8E%8B%E8%BF%AA.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "王迪 北京大学"
+          },
+          "abstract": "大模型正在成为代码的作者，如何检查其生成程序的正确性，成为编程语言设计的重要问题。本报告从表达能力与可检查性的关系回顾编程语言的演化，讨论作者角色的变化如何推动语言设计转向\"大模型可生成、机器可检查\"的协同目标：由人明确意图、审查规约，大模型生成实现与证明，机器检查实现是否满足规约。围绕这一目标，报告介绍面向系统软件的C*语言探索：沿用C的语法编写实现与证明，将实现、规约和证明就近组织在同一份源码中，通过符号执行与证明执行交替推进验证，并为智能体提供增量检查与状态反馈。这些设计将语言的熟悉度、推理的局部性和检查的及时性结合起来，探索开发与证明一体化的编程方式。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "探索面向大模型生成与机器检查的编程语言设计",
+              "en": null
+            },
+            "topics": [
+              "编译器",
+              "大模型"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "仓颉编程语言 Modal Type 特性简介",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "09:50",
+          "end": "10:15",
+          "speakers": [
+            {
+              "name": "傅荣枭",
+              "affiliation_raw": "华为编程语言实验室",
+              "bio": "傅荣枭，华为编程语言实验室高级工程师。电子科技大学与格拉斯哥大学本科毕业，爱丁堡大学硕士与博士毕业。研究方向包括编程语言设计，类型系统等。目前主要关注仓颉编程语言的语言设计。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/d94018b2bfa149ae991c.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9Bv2/%E5%82%85%E8%8D%A3%E6%9E%AD.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "傅荣枭 华为编程语言实验室"
+          },
+          "abstract": "基于类型系统提供的静态约束改善程序安全性与提升运行性能，一直是学术界与工业界共同关注和探索的重要方向。本次报告将会介绍在仓颉编程语言中的 Modal Type 特性的设计和工程实践的进展。为了更高效的内存管理，更精细安全的资源管理，以及更安全的并发等目标，我们参考 OxCaml 等现有工作，在仓颉编程语言中引入了 Modal Type 特性。此特性作为对仓颉现有类型系统的增强，允许使用附加在数据类型上的 Mode 标记表示使用该类型的对象时会受到的一系列约束，并在此基础上提供相应的保证或执行相关的优化。当前我们的设计涵盖了用于约束对象生命周期的 Local Mode，用于表达所有权的 Unique Mode，以及用于控制可变性的 Immutable Mode。同时，本次报告将结合典型应用场景，探讨 Local Mode 在降低内存峰值、减少 GC 压力等方面的应用价值。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "介绍仓颉语言的 Modal Type 特性",
+              "en": null
+            },
+            "topics": [
+              "编译器"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "骑河：面向硬件的通用型静态分析框架",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "10:45",
+          "end": "11:10",
+          "speakers": [
+            {
+              "name": "谭添",
+              "affiliation_raw": "南京大学",
+              "bio": "谭添，南京大学计算机学院助理教授，博士生导师。2017年博士毕业于澳大利亚新南威尔士大学，2017至2019年于丹麦奥胡斯大学从事博士后研究工作。研究方向为程序分析与程序设计语言。研究成果发表在TOPLAS、PLDI、POPL、OOPSLA、TOSEM、TSE、ICSE、FSE、ISSTA等相关领域的重要国际期刊与会议。曾获NASAC青年软件创新奖（2024）、ICSE 2025最佳软件制品奖、ICSE 2025 杰出论文奖、OOPSLA 2023杰出软件制品奖、ECOOP 2016杰出论文奖等奖项。主导设计并开发程序分析框架\"太阿\"。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/524d401410b0a4e1daf2.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9Bv2/%E8%B0%AD%E6%B7%BB.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "谭添 南京大学"
+          },
+          "abstract": "静态程序分析是公认提升软件质量的有效技术，可支撑软件缺陷检测、安全分析与程序理解等复杂任务。其中，通用型静态分析框架是各类先进软件分析技术的关键基座，能显著降低新分析的研发门槛。然而在硬件设计领域，尽管同样使用程序设计语言（Verilog等）进行开发，但硬件静态分析技术尚未得到充分发展和应用。针对这一问题，我们认为长期缺乏通用型硬件静态分析框架是限制该领域发展的主要原因之一。但面向硬件构建此类框架极具挑战：一方面，硬件静态分析并非软件分析技术的简单移植，而需针对硬件固有的并发语义、寄存器同步机制和位向量运算等特性进行专门设计；另一方面，硬件领域缺乏可参考的通用框架先例，针对硬件设计语言，通用型静态分析框架应提供哪些功能以支撑分析硬件分析技术的研发与应用，本身也是我们需要探索的问题。为挖掘硬件静态分析技术的潜力，我们设计并实现了国际首个通用型 Verilog 静态分析框架\"骑河\"。该框架代码规模超过 10 万行，现已连同配套文档一并开源发布。本报告将介绍骑河面向硬件特性的框架设计，并展示基于该框架在硬件缺陷检测、硬件安全分析和硬件设计理解三类应用上的初步探索。实验结果验证了静态分析技术在硬件设计领域的有效性，展现出良好的应用前景；同时，骑河也显著降低了相关分析应用的开发成本。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "介绍面向硬件的骑河静态分析框架",
+              "en": null
+            },
+            "topics": [
+              "程序分析",
+              "硬件安全"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "Typed and Staged Tile-Based GPU Programming",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "11:10",
+          "end": "11:35",
+          "speakers": [
+            {
+              "name": "叶文佳",
+              "affiliation_raw": "布里斯托大学",
+              "bio": "叶文佳主要从事程序语言理论、类型系统与形式化方法研究，重点关注渐进类型理论及其在高可信软件系统中的应用。曾在新加坡国立大学从事博士后研究，后任英国布里斯托大学高级副研究员。近五年以唯一第一作者发表多篇CORE A类论文，研究成果发表于PLDI、OOPSLA、TOPLAS等国际顶级会议和期刊，成果荣获PLDI杰出论文奖。相关研究成果已应用于微软Koka编程语言。未来将聚焦高可信AI编译器的渐进式语义与类型方法，致力于提升人工智能基础软件的可靠性与安全性。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/a547486a72dbf03b6bbe.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9Bv2/%E5%8F%B6%E6%96%87%E4%BD%B3.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "叶文佳 布里斯托大学"
+          },
+          "abstract": "High-performance GPU programming today relies heavily on Python-based meta-programming systems like TileLang and Triton. These systems offer flexibility by allowing users to programmatically generate intermediate representations (IR) for the GPU. However, this flexibility comes at a cost: the meta-logic—defining layouts, schedules, and tile sizes—is opaque to the compiler, residing in a dynamic runtime environment (Python) rather than the static type system. Errors in kernel configuration are often detected late, and cross-stage optimizations are missed. In this talk, we argue for a new class of GPU Domain Specific Languages (DSLs) that incorporate static meta-programming features directly into the surface language. Drawing on the success of the P4 programming language in networking, we propose lifting GPU memory hierarchy concepts—such as layouts and tile sizes—into a dependent type system, supported by first-class multi-stage programming primitives. This approach preserves the generative power of Python while enabling compile-time verification and deep, whole-program optimization.",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "探讨类型与分阶段机制支持的 GPU 分块编程",
+              "en": null
+            },
+            "topics": [
+              "编译器",
+              "体系结构"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "从证明失效到可信修复：形式化证明维护的分析与自动化",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "11:35",
+          "end": "12:00",
+          "speakers": [
+            {
+              "name": "栾晓坤",
+              "affiliation_raw": "新加坡国立大学",
+              "bio": "栾晓坤，新加坡国立大学计算机学院研究员，博士毕业于北京大学应用数学专业。主要从事可信人工智能与形式化方法的交叉研究，重点关注 AI 智能体的可靠性与安全性、人工智能辅助形式化推理，以及形式化证明的自动化与维护。研究成果发表于 FSE、ICSE、POPL、NDSS、ICML、ICLR 等国际学术会议，曾获 ACM SIGSOFT 杰出论文奖（FSE 2025）和最佳论文奖（ICFEM 2025）。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/3d7934c7e2caacbfe3d7.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9Bv2/%E6%A0%BE%E6%99%93%E5%9D%A4.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "栾晓坤 新加坡国立大学"
+          },
+          "abstract": "随着形式化验证技术的发展和应用，形式化证明代码与证明库的规模不断增长，相应的维护需求也日益增加。证明器版本、依赖库及上下文环境的演化，可能使原本有效的证明失效，即使待证命题本身并未改变。如何理解这些失效，并高效、可信地完成修复，成为证明工程中的重要问题。本报告以 Isabelle 证明器及 Archive of Formal Proofs（AFP）的真实版本演化为背景，分析证明兼容性问题的典型表现、根本原因和常见修复方式，并讨论相关发现对证明开发与维护的启示。在此基础上，进一步探讨如何结合大语言模型与交互式证明工具自动修复失效的证明，如何构建贴近真实维护场景的评测基准，以及如何通过独立验证与证明信任检查，确保修复结果的有效性与可信性。最后，讨论 AI 辅助形式化证明维护面临的挑战与机遇。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "研究形式化证明失效的分析与可信自动修复",
+              "en": null
+            },
+            "topics": [
+              "形式化方法"
+            ]
+          }
+        }
+      ],
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:15",
+          "end": "10:45"
+        }
+      ],
+      "detail_extracted": true,
       "flags": [],
+      "extra": {
+        "schedule_raw": "2026年11月6日，9:00~12:00",
+        "location_raw": "天津市社会山国际会议中心酒店，三层接见厅",
+        "published_window": {
+          "start": "09:00",
+          "end": "12:00"
+        }
+      },
+      "description": "编程语言前沿技术论坛聚焦编程语言、编译器、程序分析和验证等领域的最新理论和技术成果，论坛将邀请来自学术界及产业界专家，通过分享最新研究与实践的进展，帮助编程语言领域的广大学术研究者及开发者了解、学习和交流最前沿的编程语言理论和技术。欢迎计算机科学、软件工程、编译器与编程语言等相关学科专家和学者前来参加。",
       "category": {
         "key": "academic-forum",
         "name": {
@@ -4832,7 +5907,7 @@
           "affiliation_raw": "复旦大学",
           "chair_role": "论坛组委会",
           "title": "副教授",
-          "bio": "复旦大学计算与智能创新学院副教授，博士生导师，CCF软件工程专委会执行委员，上海市计算机学会软件工程专委会副主任。主要研究方向为软件演化分析、智能化软件开发、缺陷库构建和缺陷分析、软件开发质量与效能分析等。",
+          "bio": "复旦大学计算与智能创新学院副教授，博士生导师，CCF软件工程专委会执行委员，上海市计算机学会软件工程专委会副主任。主要研究方向为软件演化分析、智能化软件开发、缺陷库构建和缺陷分析、软件开发质量与效能分析等。曾作为负责人承担国家863、973子课题、国家自然科学基金青年和面上项目、全军共用信息系统装备专用技术预研项目子课题、上海市科技计划项目子课题等多项国家级及省部级科研任务，承担多项企业合作研究项目，并开展成果应用。相关研究成果发表在ICSE、ISSTA、ASE、FSE、中国科学、软件学报等软件工程领域重要国际国内会议和期刊上。曾获CCF科学技术奖技术发明二等奖（2021）、ACM SIGSOFT杰出论文奖（ICPC 2022）和上海市教学成果二等奖（2009）。",
           "photo": {
             "local_path": "/portraits/chinasoft2026/f75f378eecb97a3df92d.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E5%90%B4%E6%AF%85%E5%9D%9A.png"
@@ -4941,7 +6016,7 @@
               "affiliation_raw": "北京航空航天大学",
               "bio": "石琳，北京航空航天大学软件学院教授，院长助理，空天软件智能测试北京重点实验室副主任。研究方向为智能软件工程，包括仓库级代码智能、智能需求工程、开源软件、可信AI等。在软件工程、人工智能领域的高水平国际会议ICSE，FSE，ASE等发表论文70余篇，获CCF软件工程青年科技奖，三次获杰出论文奖。主持GF基金重点项目、多项国家自然科学基金项目、企业合作项目20余项。研究成果落地华为、阿里、中国航空工业集团、招商银行等知名企业。",
               "photo": {
-                "local_path": "/portraits/chinasoft2026/ae26b2fab8e99121794d.webp",
+                "local_path": "/portraits/chinasoft2026/fe519725ea8e99741303.webp",
                 "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E7%9F%B3%E7%90%B3.png"
               }
             }
@@ -5013,7 +6088,7 @@
           "speakers": [
             {
               "name": "王翀",
-              "affiliation_raw": "南洋理工大学",
+              "affiliation_raw": "新加坡南洋理工大学",
               "bio": "王翀，新加坡南洋理工大学博士后研究员，2018年和2023年分别于复旦大学获得学士和博士学位。主要从事智能化软件工程研究，致力于将大模型、智能体与知识工程等技术应用于软件开发与维护，研究成果发表于ICSE、FSE、TSE、TOSEM等软件工程领域国际顶级会议和期刊。现为《Journal of Software: Evolution and Process》编委，并多次担任ICSE、FSE等国际会议程序委员会委员。曾获ACM SIGSOFT杰出论文奖、上海市计算机学会优秀博士论文奖。",
               "photo": {
                 "local_path": "/portraits/chinasoft2026/4b85b3c847e3fa61d13a.webp",
@@ -5024,7 +6099,7 @@
           "type": "talk",
           "abstract_status": "confirmed",
           "extra": {
-            "speaker_raw": "王翀 南洋理工大学"
+            "speaker_raw": "王翀 新加坡南洋理工大学"
           },
           "abstract": "基于大模型的开发智能体在 SWE-bench 等基准上表现快速提升，但软件开发的核心挑战不只是功能正确，更在于驾驭软件系统的本质复杂性。长期演化的软件中积累了大量设计约束与权衡取舍，这些知识往往隐含在代码评审和社区讨论中。只看测试通过率的评测很难反映智能体是否真正理解并遵循了这些设计知识。本报告将从软件复杂性的视角出发，重新审视开发智能体的评测问题。报告将介绍我们近期在这一方向上的一些探索，即如何将设计权衡与决策知识引入开发智能体的评测，从而在功能正确性之外考察智能体的设计意识与设计能力。在此基础上，报告还将分享我们对基于智能体的开发能力评测的一些思考。",
           "enrichment": {
@@ -5096,7 +6171,7 @@
           "end": "18:20"
         }
       },
-      "description": "本论坛围绕大模型辅助软件开发能力评测体系建设，系统研讨代码生成补全、代码转换、单测生成、缺陷修复与工程问答等关键任务的评测方法，重点探索评测框架设计、指标体系构建、自动化与人工协同机制以及高质量评测数据集与动态演进机制建设。",
+      "description": "软件开发是大模型应用范围最广、最具价值应用方向之一，大模型辅助开发能力评测技术是推动模型能力提升和产业健康发展的关键一环。科学规范的评测体系不仅能够发现各类模型和工具在复杂工程场景中的能力边界与薄弱环节，指导模型优化方向，减少算力资源浪费，还能够防止“唯排行榜”论导致指标失真的问题，促进模型能力的真实对比与良性竞争。\n\n本论坛邀请了来自中国信通院、华为公司、北航、中科院计算机网络信息中心、新加坡南洋理工大学、北京硅心科技有限公司从事大模型能力评测和智能化软件开发运维的专家学者，分享AI开发能力评测体系设计、最新大模型评测结果洞察，以及在智能化软件开发运维的多种任务上对大模型和Agent进行科学评测的方法、技术以及思考。",
       "category": {
         "key": "academic-forum",
         "name": {
@@ -5123,9 +6198,9 @@
           "affiliation_raw": "大连理工大学",
           "chair_role": "论坛组织委员会",
           "title": "教授",
-          "bio": "江贺，教授、博导，国家高层次人才、大连理工大学人工智能大连研究院院长，大连理工大学未来技术学院副院长，全国编译技术虚拟教研室副主任委员。研究兴趣为软件开发工具和环境，面向通用、内嵌式和场景编译系统开展了设计、实现、优化、测试等系列工作，在航空航天、自动驾驶等领域广泛应用。主持国家自然科学基金重点项目、重点研发课题等10多项课题，在ACM/IEEE汇刊，中国科学等期刊及ICSE、FSE等国际会议发表论文70余篇。获国家高层次人才、国家优青、CCF优博指导教师、NASAC青年软件奖、辽宁省自然科学二等奖、国际软件工程大会ACM SIGSOFT杰出论文奖等。",
+          "bio": "江贺，国家领军人才，教授、博导，大连理工大学人工智能大连研究院院长，大连理工大学网信中心主任。毕业于中国科大少年班，研究兴趣为智能系统开发与应用，成果在航空航天、自动驾驶等领域广泛应用。主持国家自然科学基金重点项目、重点研发课题等10多项课题，在国际著名期刊及国际会议发表论文100余篇。先后获得大连市五一特等奖章，国际软件工程大会杰出论文奖等。",
           "photo": {
-            "local_path": "/portraits/chinasoft2026/76644cb06fa69541a29e.webp",
+            "local_path": "/portraits/chinasoft2026/ec171ea70f9861c12257.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E6%B1%9F%E8%B4%BA.png"
           }
         },
@@ -5134,7 +6209,7 @@
           "affiliation_raw": "国防科技大学",
           "chair_role": "论坛组织委员会",
           "title": "教授",
-          "bio": "李姗姗，国防科技大学计算机学院教授、教育部长江学者。研究兴趣包括高可信软件和代码智能等，研究成果发表于ICSE、FSE、ASE、ISSTA、VLDB、TOSEM、TSE等高水平刊物，获ICSE'23杰出论文奖等论文奖励6次。曾荣获湖南省科技创新领军人才、中创软件人才奖、CCF NASAC青年软件创新奖，国家科技进步奖二等奖、军队科技进步奖一等奖、湖南省技术发明一等奖等。",
+          "bio": "李姗姗，国防科技大学计算机学院教授、博导，国家级青年人才。研究兴趣包括高可信软件和代码智能等，研究成果发表于ICSE、FSE、ASE、ISSTA等高水平刊物，获ICSE杰出论文奖等论文奖励11次。获湖南省科技创新领军人才、中创软件人才奖、CCF NASAC青年软件创新奖，国家科技进步奖二等奖、军事科技进步奖一等奖、湖南省技术发明一等奖等。",
           "photo": {
             "local_path": "/portraits/chinasoft2026/7da171a8f25160a84510.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E6%9D%8E%E5%A7%97%E5%A7%97.png"
@@ -5541,7 +6616,7 @@
         },
         {
           "name": "张鹏程",
-          "affiliation_raw": "河海大学计算机与软件学院",
+          "affiliation_raw": "河海大学",
           "chair_role": "论坛组委会",
           "bio": "张鹏程，针对新型软件的特点进行广泛而深入的创新研究，引入模糊测试、后门鲁棒性等测试方法，解决了智能软件测试中鲁棒性、脆弱性等特定挑战；提出服务质量保障技术，保证用户数据的隐私安全；提出智能合约代码混淆技术，为基于区块链的软件系统提供高水平的质量保障。已主持国家自然科学基金3项、国家自然科学基金联合基金课题1项（合作单位负责人）、国家重点研发计划子课题、河南省重点研发课题、江苏省自然科学基金、中国博士后特别资助等纵横向课题20余项。申请人在TSE、TOSEM、TIFS、TSC、TMC、TKDE、TCC、TR等IEEE/ACM汇刊、ESEC/FSE、ASE、ICML、AAAI、ICWS、ICSOC等会议上发表论文100余篇，被浙江大学、中山大学、麻省理工学院、牛津大学等国内外知名高校和研究团队广泛引用。",
           "photo": {
@@ -5680,7 +6755,7 @@
         },
         {
           "title": {
-            "zh": "人机交互视角下的物联网安全研究",
+            "zh": "泛在智能系统新型漏洞精准检测及利用",
             "en": null
           },
           "title_status": "confirmed",
@@ -5688,31 +6763,31 @@
           "end": "10:45",
           "speakers": [
             {
-              "name": "孟岩",
-              "affiliation_raw": "上海交通大学 副研究员",
-              "bio": "孟岩，上海交通大学副研究员，2021年于上海交通大学取得博士学位。主要研究方向是智能物联网安全，发表论文60余篇，包括ACM CCS、USENIX Security、NDSS、TIFS、TDSC、TMC等顶级期刊会议。担任ACM CCS 2024，2026、USENIX Security 2024-2026等安全\"四大\"会议的TPC成员。曾获得2022年度ACM中国优博奖，IEEE TCSC早期职业成就奖，并入选第九届中国科协青年人才托举工程项目。",
+              "name": "康梓峰",
+              "affiliation_raw": "北京邮电大学 副研究员",
+              "bio": "康梓峰，北京邮电大学网络空间安全学院副研究员，入选北京市科协青年人才托举工程。任CCF网络与系统专委会执行委员，任USENIX Security、NDSS、WWW等多个CCF-A类会议的PC委员。研究方向为漏洞检测与利用、大模型安全、具身智能安全等。发表多篇安全四大顶会论文，以一作身份获IEEE S&P 2025【杰出论文奖】；另获USENIX Security 2025杰出奖提名。他的研究发现了超过3000个零日漏洞，漏洞被谷歌、微软、Meta等知名公司评为最高和高危风险等级，获多项漏洞赏金和百余个CVE漏洞编号，成果被多家国际主流媒体报道，论文被ACM Fellow团队等一流研究团队引用。",
               "photo": {
-                "local_path": "/portraits/chinasoft2026/a4579b1bd011da292f5e.webp",
-                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E5%AD%9F%E5%B2%A9.png"
+                "local_path": "/portraits/chinasoft2026/36c0173a385a86a93a4b.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E5%BA%B7%E6%A2%93%E5%B3%B0.png"
               }
             }
           ],
           "type": "talk",
           "abstract_status": "confirmed",
           "extra": {
-            "speaker_raw": "孟岩 上海交通大学 副研究员"
+            "speaker_raw": "康梓峰 北京邮电大学 副研究员"
           },
-          "abstract": "物联网系统正由\"万物互联\"向\"万物智联\"加速演进，其关键特征体现为人机交互维度的深刻拓展——例如智能网联汽车集成了丰富的车载交互接口，虚拟现实终端实现了多模态感知数据的高频采集。然而，交互能力的显著提升也显著拓宽了攻击面，给物联网系统带来了更为复杂的安全威胁与隐私挑战。本报告将重点介绍我们在交互安全领域的最新研究进展，涵盖跨域隐私攻防、多模态用户认证以及生成式内容的检测与治理。",
+          "abstract": "随着泛在智能系统的快速发展和深入应用，新型漏洞的精准检测与利用验证已成为安全研究的重要前沿问题。本次报告将围绕\"泛在智能系统新型漏洞精准检测及利用\"主题，以Web应用、大模型智能体、具身智能等典型泛在智能系统为对象，针对未知机理建模难、潜伏污染检测难、链式利用验证难三大挑战，介绍我们在理论模型、关键方法和技术验证等方面取得的突破与创新。",
           "enrichment": {
             "generated_by": "ai",
             "summary": {
-              "zh": "研究物联网交互中的隐私攻防、多模态认证与生成内容治理",
+              "zh": "研究Web应用、大模型智能体与具身系统的新型漏洞检测和验证",
               "en": null
             },
             "topics": [
-              "物联网",
+              "缺陷检测",
               "软件安全",
-              "隐私计算"
+              "智能体"
             ]
           }
         },
@@ -6084,7 +7159,7 @@
         },
         {
           "title": {
-            "zh": "泛在智能系统新型漏洞精准检测及利用",
+            "zh": "人机交互视角下的物联网安全研究",
             "en": null
           },
           "title_status": "confirmed",
@@ -6092,31 +7167,31 @@
           "end": "17:15",
           "speakers": [
             {
-              "name": "康梓峰",
-              "affiliation_raw": "北京邮电大学 副研究员",
-              "bio": "康梓峰，北京邮电大学网络空间安全学院副研究员，入选北京市科协青年人才托举工程。任CCF网络与系统专委会执行委员，任USENIX Security、NDSS、WWW等多个CCF-A类会议的PC委员。研究方向为漏洞检测与利用、大模型安全、具身智能安全等。发表多篇安全四大顶会论文，以一作身份获IEEE S&P 2025【杰出论文奖】；另获USENIX Security 2025杰出奖提名。他的研究发现了超过3000个零日漏洞，漏洞被谷歌、微软、Meta等知名公司评为最高和高危风险等级，获多项漏洞赏金和百余个CVE漏洞编号，成果被多家国际主流媒体报道，论文被ACM Fellow团队等一流研究团队引用。",
+              "name": "孟岩",
+              "affiliation_raw": "上海交通大学 副研究员",
+              "bio": "孟岩，上海交通大学副研究员，2021年于上海交通大学取得博士学位。主要研究方向是智能物联网安全，发表论文60余篇，包括ACM CCS、USENIX Security、NDSS、TIFS、TDSC、TMC等顶级期刊会议。担任ACM CCS 2024，2026、USENIX Security 2024-2026等安全\"四大\"会议的TPC成员。曾获得2022年度ACM中国优博奖，IEEE TCSC早期职业成就奖，并入选第九届中国科协青年人才托举工程项目。",
               "photo": {
-                "local_path": "/portraits/chinasoft2026/36c0173a385a86a93a4b.webp",
-                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E5%BA%B7%E6%A2%93%E5%B3%B0.png"
+                "local_path": "/portraits/chinasoft2026/a4579b1bd011da292f5e.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E5%AD%9F%E5%B2%A9.png"
               }
             }
           ],
           "type": "talk",
           "abstract_status": "confirmed",
           "extra": {
-            "speaker_raw": "康梓峰 北京邮电大学 副研究员"
+            "speaker_raw": "孟岩 上海交通大学 副研究员"
           },
-          "abstract": "随着泛在智能系统的快速发展和深入应用，新型漏洞的精准检测与利用验证已成为安全研究的重要前沿问题。本次报告将围绕\"泛在智能系统新型漏洞精准检测及利用\"主题，以Web应用、大模型智能体、具身智能等典型泛在智能系统为对象，针对未知机理建模难、潜伏污染检测难、链式利用验证难三大挑战，介绍我们在理论模型、关键方法和技术验证等方面取得的突破与创新。",
+          "abstract": "物联网系统正由\"万物互联\"向\"万物智联\"加速演进，其关键特征体现为人机交互维度的深刻拓展——例如智能网联汽车集成了丰富的车载交互接口，虚拟现实终端实现了多模态感知数据的高频采集。然而，交互能力的显著提升也显著拓宽了攻击面，给物联网系统带来了更为复杂的安全威胁与隐私挑战。本报告将重点介绍我们在交互安全领域的最新研究进展，涵盖跨域隐私攻防、多模态用户认证以及生成式内容的检测与治理。",
           "enrichment": {
             "generated_by": "ai",
             "summary": {
-              "zh": "研究Web应用、大模型智能体与具身系统的新型漏洞检测和验证",
+              "zh": "研究物联网交互中的隐私攻防、多模态认证与生成内容治理",
               "en": null
             },
             "topics": [
-              "缺陷检测",
+              "物联网",
               "软件安全",
-              "智能体"
+              "隐私计算"
             ]
           }
         },
@@ -6159,7 +7234,7 @@
         },
         "overview_title": "具身智能机器人与系统软件"
       },
-      "description": "论坛内容：具身智能成为人工智能前沿焦点之一。通过赋予机器人以感知、行动、学习的闭环能力，具身智能正在重塑算法、系统和应用之间的关系，推动从虚拟仿真到实体执行的全方位技术跃迁。本论坛，汇聚多位高校与企业专家，分享具身智能技术的前沿进展与创新实践，探索大规模数据训练、高效模型优化与具身系统设计，研究从虚拟到真实环境的迁移方法，讨论硬件与算法的协同进化及未来趋势，展望具身智能机器的应用潜能。\n\n重要性和意义：具身智能标志着AI从\"虚拟智能\"迈向\"物理智能\"，系统软件是连接算法、硬件与场景的\"神经中枢\"。当前正值技术爆发期，亟需跨学科协作以突破软硬件协同瓶颈。",
+      "description": "具身智能成为人工智能前沿焦点之一。通过赋予机器人以感知、行动、学习的闭环能力，具身智能正在重塑算法、系统和应用之间的关系，推动从虚拟仿真到实体执行的全方位技术跃迁。本论坛，汇聚多位高校与企业专家，分享具身智能技术的前沿进展与创新实践，探索大规模数据训练、高效模型优化与具身系统设计，研究从虚拟到真实环境的迁移方法，讨论硬件与算法的协同进化及未来趋势，展望具身智能机器的应用潜能。\n\n具身智能标志着AI从\"虚拟智能\"迈向\"物理智能\"，系统软件是连接算法、硬件与场景的\"神经中枢\"。当前正值技术爆发期，亟需跨学科协作以突破软硬件协同瓶颈。",
       "category": {
         "key": "academic-forum",
         "name": {
@@ -6605,7 +7680,7 @@
           "title": "教授",
           "bio": "石琳，北京航空航天大学软件学院教授，研究方向为智能软件工程，包括代码智能、智能需求工程、经验软件工程、开源社区挖掘与开源软件安全。研究成果发表于ICSE、FSE、ASE、IJCAI等会议，曾获ACM SIGSOFT杰出论文奖及国际需求工程大会杰出论文奖。",
           "photo": {
-            "local_path": "/portraits/chinasoft2026/ae26b2fab8e99121794d.webp",
+            "local_path": "/portraits/chinasoft2026/fe519725ea8e99741303.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E7%9F%B3%E7%90%B3.png"
           }
         },
@@ -6673,7 +7748,7 @@
               "affiliation_raw": "哈尔滨工业大学（深圳）",
               "bio": "高翠芸，哈尔滨工业大学（深圳）教授，哈工大青年拔尖人才。入选第九届中国科协青年人才托举工程，ACM TOSEM Associate Editor，获得2026 IEEE CS TCSE新星奖。主要研究领域包括：智能化软件工程和软件可靠性，近年来在相关领域的顶级会议和期刊如TSE、TOSEM、ICSE、FSE、ASE等上发表论文100余篇，荣获CCF A类会议ICSE 2025杰出论文奖、ICSE 2024杰出论文奖和ASE 2023杰出论文奖。",
               "photo": {
-                "local_path": "/portraits/chinasoft2026/95b8cb96d9b8eb1b5777.webp",
+                "local_path": "/portraits/chinasoft2026/8141f7959c6b895cc6cf.webp",
                 "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E9%AB%98%E7%BF%A0%E8%8A%B8.png"
               }
             }
@@ -7196,7 +8271,7 @@
               "affiliation_raw": "北京大学",
               "bio": "李戈，CCF杰出会员，CCF软件工程专委会副主任委员，北京大学博雅特聘教授，教育部长江学者。国际上\"基于深度学习的程序理解与生成\"研究的早期贡献者。迄今为止，发表相关论文200余篇，多项成果被国际学者认为是\"首创性成果\"并被广泛引用，所带领的研究团队在软件工程与人工智能领域的多项研究中保持领先状态。科研转化成果为航天、金融、IT领域的多家企业提供智能化研发支撑。",
               "photo": {
-                "local_path": "/portraits/chinasoft2026/e6a3d7725ef1b3154251.webp",
+                "local_path": "/portraits/chinasoft2026/805f6879ce1fe2cc13ed.webp",
                 "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E6%9D%8E%E6%88%88.png"
               }
             }
@@ -7345,7 +8420,7 @@
               "affiliation_raw": "哈尔滨工业大学（深圳）",
               "bio": "高翠芸，哈尔滨工业大学（深圳）教授，哈工大青年拔尖人才。入选第九届中国科协青年人才托举工程，ACM TOSEM Associate Editor，获得2026 IEEE CS TCSE新星奖。主要研究领域包括：智能化软件工程和软件可靠性，近年来在相关领域的顶级会议和期刊如TSE、TOSEM、ICSE、FSE、ASE等上发表论文100余篇，荣获CCF A类会议ICSE 2025杰出论文奖、ICSE 2024杰出论文奖和ASE 2023杰出论文奖。",
               "photo": {
-                "local_path": "/portraits/chinasoft2026/95b8cb96d9b8eb1b5777.webp",
+                "local_path": "/portraits/chinasoft2026/8141f7959c6b895cc6cf.webp",
                 "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E9%AB%98%E7%BF%A0%E8%8A%B8.png"
               }
             }
@@ -7595,7 +8670,7 @@
               "affiliation_raw": "教授 武汉大学/北京大学",
               "bio": "金芝，IEEE / CCF / CAAI会士，武汉大学弘毅特聘教授，武汉大学特色化示范性软件学院院长，北京大学教授，高可信软件技术教育部重点实验室常务副主任。研究方向为软件需求工程方法学、智能化软件工程和知识工程。曾获高等学校科学研究优秀成果奖（科学技术）科技进步奖一等奖，CCF科学技术奖技术发明一等奖，CCF夏培肃奖，中创软件人才奖等，并多次获得ACM SIGSOFT杰出论文奖。",
               "photo": {
-                "local_path": "/portraits/chinasoft2026/5cfe73015e5c90ce2104.webp",
+                "local_path": "/portraits/chinasoft2026/4003da49d7a34ebe4ea8.webp",
                 "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E9%87%91%E8%8A%9D.png"
               }
             }
@@ -7664,7 +8739,28 @@
           "abstract_status": "confirmed",
           "extra": {
             "speaker_raw": "刘杨 教授 南洋理工大学",
-            "profile_report_title": "从人类智能到机器智能：一种受脑启发的智能体计算架构"
+            "profile_report_title": "从人类智能到机器智能：一种受脑启发的智能体计算架构",
+            "hosts_raw": "孙伟松，南洋理工大学研究员 杨波，北京林业大学教授",
+            "hosts": [
+              {
+                "name": "孙伟松",
+                "affiliation_raw": "南洋理工大学研究员",
+                "chair_role": "主持",
+                "photo": {
+                  "local_path": "/portraits/chinasoft2026/28b3abf4806728d42468.webp",
+                  "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E5%AD%99%E4%BC%9F%E6%9D%BE.png"
+                }
+              },
+              {
+                "name": "杨波",
+                "affiliation_raw": "北京林业大学教授",
+                "chair_role": "主持",
+                "photo": {
+                  "local_path": "/portraits/chinasoft2026/aaaf611a122b7bd7113d.webp",
+                  "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E6%9D%A8%E6%B3%A2.png"
+                }
+              }
+            ]
           },
           "abstract": "尽管人工智能发展迅速，但当今的系统本质上仍处于\"反应式\"阶段：它们擅长模式识别，却在推理、记忆、抽象和自我反思方面显得脆弱。如果智能不仅仅在于规模，更在于结构，那么核心问题就不再是如何构建更大的模型，而是如何构建认知架构。在本次演讲中，我将介绍一种受大脑启发的智能体计算架构，该架构将智能视为一种可执行的认知系统。我们借鉴神经科学、心理学和计算系统设计的理念，将智能体建模为分层认知架构，集成了记忆巩固、结构化知识形成、因果推理、元认知以及目标导向的问题解决能力。我们构建的不是简单的工具链，而是认知基础设施。为了将这些理念具体化，我们展示了如何将复杂的网络安全专业知识——涵盖软件漏洞发现、诊断、漏洞利用生成及自动修复——编码为结构化的认知工作流。这为实现更宏大的愿景奠定了原型：即在自主编程、医学分析、材料科学乃至科学发现等领域，实现专家级推理过程的自动化。最后，我将概述一条通往通用人工智能（AGI）的跨学科路径，该路径融合了神经科学、心理学、社会科学和计算机科学的见解。人工智能的未来不应仅仅源于更大规模的模型，而应源于那些能够映射大脑组织原理、在结构层面内嵌对齐机制，并将智能扩展为一种数字认知基础设施的架构。我们的目标不仅仅是制造更智能的机器，而是实现可计算的认知。",
           "flags": [],
@@ -7703,7 +8799,28 @@
           "abstract_status": "confirmed",
           "extra": {
             "speaker_raw": "许福 教授 北京林业大学",
-            "profile_report_title": "林草智能软件研究与典型应用"
+            "profile_report_title": "林草智能软件研究与典型应用",
+            "hosts_raw": "孙伟松，南洋理工大学研究员 杨波，北京林业大学教授",
+            "hosts": [
+              {
+                "name": "孙伟松",
+                "affiliation_raw": "南洋理工大学研究员",
+                "chair_role": "主持",
+                "photo": {
+                  "local_path": "/portraits/chinasoft2026/28b3abf4806728d42468.webp",
+                  "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E5%AD%99%E4%BC%9F%E6%9D%BE.png"
+                }
+              },
+              {
+                "name": "杨波",
+                "affiliation_raw": "北京林业大学教授",
+                "chair_role": "主持",
+                "photo": {
+                  "local_path": "/portraits/chinasoft2026/aaaf611a122b7bd7113d.webp",
+                  "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E6%9D%A8%E6%B3%A2.png"
+                }
+              }
+            ]
           },
           "abstract": "针对生态文明建设、国土科学绿化、绿色发展与双碳战略、生态安全保障、生态产品价值转化等我国林草行业智能软件重大需求，介绍人工智能如何赋能林草科技创新与人才培养改革，结合野生动物监测、古树智慧保护等林业智能软件案例，介绍了人工智能在林草行业的典型应用，并展望了未来发展趋势。",
           "flags": [],
@@ -7802,7 +8919,28 @@
           "abstract_status": "confirmed",
           "extra": {
             "speaker_raw": "张悦 教授 山东大学",
-            "profile_report_title": "机无所恶，伤有所至：具身智能时代的软件的可靠性危机"
+            "profile_report_title": "机无所恶，伤有所至：具身智能时代的软件的可靠性危机",
+            "hosts_raw": "吕培卓，南洋理工大学研究员 梁瑞刚，中科院信工所高级工程师",
+            "hosts": [
+              {
+                "name": "吕培卓",
+                "affiliation_raw": "南洋理工大学研究员",
+                "chair_role": "主持",
+                "photo": {
+                  "local_path": "/portraits/chinasoft2026/e74de2d8b61877372b07.webp",
+                  "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E5%90%95%E5%9F%B9%E5%8D%93.png"
+                }
+              },
+              {
+                "name": "梁瑞刚",
+                "affiliation_raw": "中科院信工所高级工程师",
+                "chair_role": "主持",
+                "photo": {
+                  "local_path": "/portraits/chinasoft2026/1004f14ae0fea77bf192.webp",
+                  "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E6%A2%81%E7%91%9E%E5%88%9A.png"
+                }
+              }
+            ]
           },
           "abstract": "随着人工智能与机器人技术快速融合，软件正在从信息处理工具演化为能够直接影响物理世界的智能执行体。由此，软件可靠性的边界也从传统的程序正确性与服务可用性，进一步扩展到现实行为的安全、可控与可验证。本报告围绕这一\"从数字可靠性到物理可靠性\"的范式转变，探讨具身智能软件生态中的新型可靠性问题。以快速发展的机器人动作软件与第三方动作市场为例，分析软件代码、动作模型和数字内容如何被进一步转化为真实世界中的运动、碰撞和人机交互行为，并揭示数字表示、机器人实际执行状态与现实物理后果之间存在的可靠性鸿沟。在此基础上，介绍我们在大规模机器人动作审计方面的探索，通过软件侧分析、代表性真机测量以及物理后果评估，将传统的软件分析进一步延伸至真实物理世界。最后，本报告讨论面向具身智能时代的软件可靠性研究新方向，包括软件—模型—执行体跨层可靠性、第三方智能行为供应链、数字与物理状态一致性，以及面向现实后果的软件测试与验证，为构建安全、可信、可规模化部署的新一代智能软件系统提供思考。",
           "flags": [],
@@ -7841,7 +8979,28 @@
           "abstract_status": "confirmed",
           "extra": {
             "speaker_raw": "郑恩昊 研究员 中国科学院自动化研究所",
-            "profile_report_title": "生-机-电系统融合：从感知到生成"
+            "profile_report_title": "生-机-电系统融合：从感知到生成",
+            "hosts_raw": "吕培卓，南洋理工大学研究员 梁瑞刚，中科院信工所高级工程师",
+            "hosts": [
+              {
+                "name": "吕培卓",
+                "affiliation_raw": "南洋理工大学研究员",
+                "chair_role": "主持",
+                "photo": {
+                  "local_path": "/portraits/chinasoft2026/e74de2d8b61877372b07.webp",
+                  "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E5%90%95%E5%9F%B9%E5%8D%93.png"
+                }
+              },
+              {
+                "name": "梁瑞刚",
+                "affiliation_raw": "中科院信工所高级工程师",
+                "chair_role": "主持",
+                "photo": {
+                  "local_path": "/portraits/chinasoft2026/1004f14ae0fea77bf192.webp",
+                  "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E6%A2%81%E7%91%9E%E5%88%9A.png"
+                }
+              }
+            ]
           },
           "abstract": "生-机-电系统及融合技术旨在构建生物系统与机电系统的功能融合体，实现人-机深度交互与高效协同，是仿生肢体、可穿戴机器人等智能载体的核心环节，对专用任务、康复医疗、特种制造等领域发展有重要支撑作用。美国DARPA、北约战略司令部ACT等机构均持续布局，资助生-机-电系统融合技术发展，将其作为国家战略性支撑技术；我国多个国家重点专项，也均将该技术列为核心攻关技术之一。本报告针对生-机-电系统融合中的信号采集、特征表达和人机融合优化等三个关键卡点，介绍了近年研究进展，报告人提出基于肌肉形态学特征的生机接口、人机一体化识别模型和机器人生成式设计等技术和方法，取得了理论和技术突破成果，在国家重大需求领域得到成功应用。",
           "flags": [],
@@ -9081,7 +10240,11 @@
             {
               "name": "王林章",
               "affiliation_raw": "南京大学",
-              "bio": "王林章，南京大学计算机学院至诚特聘教授、中国计算机学会会士，担任全国信息技术标准化技术委员会委员、中国计算机学会理事。科研与教学主要关注系统软件、软件工程、智能化基础软件可信保障。"
+              "bio": "王林章，南京大学计算机学院至诚特聘教授、中国计算机学会会士，担任全国信息技术标准化技术委员会委员、中国计算机学会理事。科研与教学主要关注系统软件、软件工程、智能化基础软件可信保障。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/21170fbb1abb235aec65.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E7%8E%8B%E6%9E%97%E7%AB%A0.png"
+              }
             }
           ],
           "type": "talk",
@@ -11625,19 +12788,266 @@
     {
       "code": "R27",
       "title": {
-        "zh": "韧性软件",
+        "zh": "韧性软件论坛",
         "en": null
       },
-      "day_date": null,
-      "start": null,
-      "end": null,
-      "room": null,
-      "chairs": [],
-      "talks": [],
-      "detail_extracted": false,
-      "agenda_status": "not_published",
-      "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
+      "start": "09:00",
+      "end": "12:00",
+      "day_date": "2026-11-08",
+      "room": "三层1号多功能厅",
+      "session_period": "morning",
+      "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/academic-forum/resilient-software",
+      "chairs": [
+        {
+          "name": "陈明帅",
+          "affiliation_raw": "浙江大学",
+          "chair_role": "论坛组委会",
+          "title": "研究员",
+          "bio": "陈明帅，浙江大学研究员、博士生导师、启真学者，CCF形式化方法专委执行委员、系统软件专委通讯委员，国家优秀青年基金（海外）获得者。2019年于中国科学院软件研究所获博士学位，此后于德国RWTH Aachen从事为期3年的博士后研究工作，2023年初加入浙江大学。主要研究方向包括形式验证、程序理论、概率系统、信息物理融合系统、AI4FM等，与合作者一起，提出新型安全攸关系统形式验证理论，解决了概率程序不动点估计、微分系统可达性判定、时滞系统高效控制生成等若干软件理论难题，研究成果应用于我国月球探测和卫星姿轨控制等重大工程，在Inf. Comput.、CAV、FM、OOPSLA、TACAS等领域旗舰期刊/会议上发表学术论文50余篇，曾获中科院院长特别奖、ATVA杰出论文奖、FMAC最佳论文奖。担任ICFEM 2027与QEST+FORMATS 2026程序委员会联合主席。",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/6664b2f59739e9caec1a.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9Bv2/%E9%99%88%E6%98%8E%E5%B8%85.png"
+          }
+        },
+        {
+          "name": "任志磊",
+          "affiliation_raw": "大连理工大学",
+          "chair_role": "论坛组委会",
+          "title": "教授",
+          "bio": "任志磊，大连理工大学软件学院教授，先进工业软件与软件工程研究所所长。CCF系统软件专委会执行委员。主要研究方向为智能软件工程，包括工业软件智能测试、故障定位与自动修复、程序动态追踪等。在多个国内外知名学术期刊会议上发表论文60余篇，包括CCF A类国际会议与期刊（ICSE、ASE、ISSTA、IEEE TSE、ACM TOSEM、中国科学、软件学报等）。获得软件工程顶级会议杰出论文奖（ICSE 2018、ISSTA 2025）。2021年获辽宁省自然科学二等奖。相关成果在知名企业软件产品线、航天等场景实现应用。",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/d2f82b1a551380d16079.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9Bv2/%E4%BB%BB%E5%BF%97%E7%A3%8A.png"
+          }
+        },
+        {
+          "name": "玄跻峰",
+          "affiliation_raw": "武汉大学",
+          "chair_role": "论坛组委会",
+          "title": "教授",
+          "bio": "玄跻峰，武汉大学教授、博士生导师，计算机学院副院长。中国计算机学会（CCF）杰出会员，武汉计算机软件工程学会常务理事，武汉市开源创新中心（软件工程）主任。主要研究领域为软件分析与测试。在软件工程权威期刊会议发表论文100余篇。担任全国演化计算与学习会议（ECOLE）2021主席，CCF中国软件大会（ChinaSoft）2025本地主席。论文获ACM SIGSOFT、IEEE TCSE等杰出论文奖。入选IEEE ICSME杰出服务奖、武汉大学查全性教授1977奖教金、华为开发者布道师、首批中国科协青年人才托举工程；获CCF NASAC青年软件创新奖、CCF优秀博士论文奖。",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/7eabf60178af84170472.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9Bv2/%E7%8E%84%E8%B7%BB%E5%B3%B0.png"
+          }
+        },
+        {
+          "name": "尹建伟",
+          "affiliation_raw": "浙江大学",
+          "chair_role": "论坛组委会",
+          "title": "教授",
+          "bio": "尹建伟，浙江大学求是特聘教授，计算机科学与技术学院院长、软件学院院长、宁波国际科创中心主任、全省数智服务技术重点实验室主任。担任国家重点研发计划\"文化科技与现代服务业\"专家组副组长，国家自然科学基金杰出青年基金项目、国家重点研发计划项目、国家重大专项项目负责人，国家示范性软件联盟副理事长、中国计算机学会服务计算专委原主任委员。长期从事服务计算、软件工程、量子软件等领域的研究。牵头制定2项ISO国际标准、2项国家标准，出版国家重点规划教材、101计划教材、6部专著，获国家科技进步二等奖1项、省部级及国家级学会科技进步一等奖8项、中国专利银奖1项、国际会议最佳论文或杰出论文奖12项，2024年获IEEE TCSVC专委授予的服务计算全球杰出领导力奖。",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/e8405b0c2b6b4d8a5950.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9Bv2/%E5%B0%B9%E5%BB%BA%E4%BC%9F.png"
+          }
+        }
+      ],
+      "talks": [
+        {
+          "title": {
+            "zh": "智能化软件生态的成长式构建",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "09:00",
+          "end": "09:30",
+          "speakers": [
+            {
+              "name": "周明辉",
+              "affiliation_raw": "北京大学",
+              "bio": "周明辉，北京大学博雅特聘教授，计算机学院副院长，中国计算机学会开源发展委员会副主任。主要研究兴趣是开源数字社会学、智能系统和人机交互。在软件工程、人机交互、AI等国际顶级会议和期刊发表100多篇论文。多次获国际ACM SIGSOFT杰出论文奖。开源生态度量和开源软件供应链合规性治理的相关研究成果在产业界和开源社区有广泛应用，主持开发的木兰宽松开源许可证MulanPSL被33万+开源项目采纳。曾获杰青项目\"开源软件开发\"，2024年获北京市科技进步奖一等奖。曾担任软件工程国际会议ASE 2024和SANER 2020的PC Co-Chair等；是国际顶级会议ASE Steering Committee成员，国际顶级期刊TSE和EMSE、ASE Journal等的编委。国家网络空间安全国家重大专项专家组专家。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/7a576cf7af784a014aab.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9Bv2/%E5%91%A8%E6%98%8E%E8%BE%89.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "周明辉 北京大学"
+          },
+          "abstract": "智能化软件正在成为智能时代的新型基础设施，构建成长演化韧性生态是实现全球创新的重要路径。本报告探讨智能化软件及其生态区别于经典软件和生态的关键特征，围绕如何理解智能化软件生态中的人机协作关系、制品依赖关系以及主体利益关系，探讨如何采用多学科交叉融合方法，研究人机混合异构群体协作链构建与引导、复杂智能化软件供应链建模与风险应对、社区多元价值链构建与治理的机理和方法，打通人际-人机群体协作链、软件制品可信供应链、开源社区价值链，形成面向智能化软件韧性生态的成长式构建关键技术和平台。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "讨论智能化软件生态的协作链与供应链治理",
+              "en": null
+            },
+            "topics": [
+              "开源治理",
+              "AI4SE"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "国产开源操作系统软件质量保障",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "09:30",
+          "end": "10:00",
+          "speakers": [
+            {
+              "name": "施鹤远",
+              "affiliation_raw": "中南大学",
+              "bio": "施鹤远，中南大学电子信息学院教授、博导，研究方向为软件质量保障，主持国家自然科学基金面上项目、国家自然科学基金青年项目、国家重点研发项目子课题、长沙市科技重大专项、阿里巴巴创新研究计划等项目，入选中国科协青年人才托举工程、中国电子学会青年人才托举工程、湖南省科技人才托举工程，获北京市科技进步一等奖，发表CCF-A类论文30余篇，授权国家发明专利10余项。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/ae96835b0f2e4437a13d.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9Bv2/%E6%96%BD%E9%B9%A4%E8%BF%9C.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "施鹤远 中南大学"
+          },
+          "abstract": "本报告围绕国产开源操作系统软件生态的软件质量保障相关研究与应用实践展开，针对国产开源操作系统社区存在的内核测试能力不足、缺陷检测效率受限、漏洞管理成本高等挑战，探索缺陷测试与缺陷处理等方面的技术优化与工业实践。报告介绍的内核模糊测试、漏洞风险评估、稳定补丁识别、BaseOS兼容性测试等工具已在国产开源操作系统生态得到应用，为国产操作系统软件生态的安全可靠发展提供了技术支撑。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "分享国产开源操作系统的软件质量保障实践",
+              "en": null
+            },
+            "topics": [
+              "软件测试",
+              "操作系统"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "智能混成软件的可信构造与演化",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "10:00",
+          "end": "10:30",
+          "speakers": [
+            {
+              "name": "董威",
+              "affiliation_raw": "国防科技大学",
+              "bio": "董威，国防科技大学计算机学院教授，主要研究方向为高可信软件技术、智能化软件开发方法，中国计算机学会形式化方法专委会副主任、软件工程专委会执行委员。入选教育部新世纪优秀人才支持计划，曾获中国计算机学会首届NASAC青年软件创新奖、霍英东基金会高校青年教师奖等。先后主持国家和国防课题20余项，发表学术论文100余篇，出版国家级规划教材3部，相关成果应用于航空航天、装备控制、自主基础软件等关键领域。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/1a0cbfab1d73a2904f3e.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9Bv2/%E8%91%A3%E5%A8%81.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "董威 国防科技大学"
+          },
+          "abstract": "随着智能技术在各种人机物融合场景中应用，作为控制核心的软件系统构成也发生变化，神经控制、连续控制、离散控制紧密融合在一起形成新型的智能混成软件（Intelligent Hybrid Software），使得原本就面临众多挑战的混成系统（Hybrid System）软件变得更加复杂，在开发和演化过程中确保可信性越发困难。该报告探讨如何将智能化开发、形式化开发、运行时保证等理论与方法有效结合，同时提升智能混成软件构造与演化的自动化和可信性。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "探索智能混成软件的可信构造与演化",
+              "en": null
+            },
+            "topics": [
+              "形式化方法",
+              "可靠性容错"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "形式化方法在韧性系统软件中的应用",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "11:00",
+          "end": "11:30",
+          "speakers": [
+            {
+              "name": "王肇国",
+              "affiliation_raw": "上海交通大学",
+              "bio": "王肇国，上海交通大学教授，博士生导师，重点研发计划项目负责人，国家优秀青年科学基金获得者。从事系统软件研究，成果被Nature, OSDI、SIGMOD、PODC等相国际权威期刊和会议录用和发表。发表ACM通讯（Commmunications of the ACM） 亮点论文和封面文章，并获2023 ACM SIGMOD研究亮点奖、SIGMOD 2022最佳论文优胜奖、CCF青年科技奖、ACM ChinaSys新星奖、华为奥林帕斯先锋奖，以及两次华为火花奖。学术兼职包括OpenHarmony技术指导委员会智能数据管理TSG负责人、ACM ChinaSys秘书长、CCF学术工作委员会委员等。曾受邀担任MLSys 2026、EuroSys 2026/2025、NSDI 2024、SoCC 2024/2023等国际会议的程序委员会成员，以及第22期秀湖论坛联合主席等。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/83ae5466d06581b7ca6a.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9Bv2/%E7%8E%8B%E8%82%87%E5%9B%BD.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "王肇国 上海交通大学"
+          },
+          "abstract": "高可靠性是韧性软件的重要基础，本报告将分别从共识协议、分布式系统、数据库系统等不同维度，介绍团队如何使用形式化方法提高大规模系统软件的可靠性，并在保障正确性的基础上实现性能优化。此外，还将分享如何通过大模型等人工智能技术赋能形式化验证，有效降低形式化验证的人力成本，实现大规模代码的一键审查。以上工作发表在PODC，OSDI，SIGMOD等会议上，并已被用于提高多个商业系统软件的可靠性。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "讨论形式化方法在韧性系统软件中的应用",
+              "en": null
+            },
+            "topics": [
+              "形式化方法",
+              "可靠性容错"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "硬件的启示：如何构造韧性软件",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "11:30",
+          "end": "12:00",
+          "speakers": [
+            {
+              "name": "顾斌",
+              "affiliation_raw": "北京控制工程研究所",
+              "bio": "顾斌，男，北京控制工程研究所研究员，博士生导师。长期从事空间飞行器控制技术和高可信嵌入式软件研究和工程研制。主持和参与国家自然科学基金重点、集成和重大项目等。获国防科技进步一等奖、北京市科技进步一等奖等多项，主要研究领域包括高可信嵌入式软件、智能软件开发等。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/4b3ce34a8de22d27fdee.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9Bv2/%E9%A1%BE%E6%96%8C.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "顾斌 北京控制工程研究所"
+          },
+          "abstract": "软件韧性的重要性日益凸显，如何构造韧性软件目前还处于探索阶段，面临着诸多挑战。航天器控制系统对可靠性、安全性要求极高，本报告介绍了我们的相关实践，希望这些经验能为韧性软件的构造提供一些启发，也期待与同行共同探讨这一充满挑战的方向。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "从硬件设计经验思考韧性软件的构造",
+              "en": null
+            },
+            "topics": [
+              "可靠性容错"
+            ]
+          }
+        }
+      ],
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "10:30",
+          "end": "11:00"
+        }
+      ],
+      "detail_extracted": true,
       "flags": [],
+      "extra": {
+        "schedule_raw": "2026年11月8日，09:00-12:00",
+        "location_raw": "天津市社会山国际会议中心酒店，三层1号多功能厅",
+        "published_window": {
+          "start": "09:00",
+          "end": "12:00"
+        },
+        "overview_title": "韧性软件"
+      },
+      "description": "在万物智联、生态依存的新时代，社会、经济与应用系统发展的韧性需求日益迫切。软件作为国家关键基础设施的核心载体，其韧性特质——尤其是应对\"未知\"的能力——正面临前所未有的挑战。发展面向未知的韧性软件新范式，成为解决这一挑战的关键路径。开展韧性软件相关的前瞻布局与产业实践，对于推动社会经济韧性发展、形成中国特色软件创新引领新路径具有重要意义。\n\n本论坛以\"面向未知的韧性软件新范式\"为主题，探讨人机物融合泛在计算时代下韧性软件的免疫内生机理与成长演化机制，重点关注韧性软件的数理基础与软件定义方法，及智能技术在软件韧性内生中的应用。论坛邀请相关领域的专家学者，分享学术界理论前沿与工业界需求痛点，助力参会者把握韧性软件研究的前沿动态与技术趋势，拓宽研究视野，促进产学研用深度融合。",
       "category": {
         "key": "academic-forum",
         "name": {
@@ -12180,7 +13590,7 @@
               "affiliation_raw": "帝国理工学院",
               "bio": "曹嘉伦博士是帝国理工计算机系的助理教授。她的研究重点是利用先进的人工智能技术实现软件开发、测试和程序验证的自动化，旨在实现从构建之初就具备可靠性的软件的自动化生产。她在ICSE、ESEC/FSE、CAV、ASE、ACL、AAAI、USENIX Security和TOSEM等顶级会议和期刊上发表了30余篇论文。她担任ICSE、FSE、ISSTA和ASE等顶级会议的程序委员，并担任ESEC/FSE 2025和ASE 2024的分会主席。她获得了2024年杰出论文奖，2025年ACM SIGSOFT杰出博士论文奖、2025年工程科学领域青年科学家奖等。",
               "photo": {
-                "local_path": "/portraits/chinasoft2026/9b4cfb875bb430eaee27.webp",
+                "local_path": "/portraits/chinasoft2026/42adc8a8abfaaf537452.webp",
                 "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E6%9B%B9%E5%98%89%E4%BC%A6.png"
               }
             }
@@ -13095,19 +14505,327 @@
     {
       "code": "S1",
       "title": {
-        "zh": "大模型驱动的智能软件系统开发运维",
+        "zh": "大模型驱动的智能软件系统开发运维论坛",
         "en": null
       },
-      "day_date": null,
-      "start": null,
-      "end": null,
-      "room": null,
-      "chairs": [],
-      "talks": [],
-      "detail_extracted": false,
-      "agenda_status": "not_published",
-      "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index",
+      "start": "14:00",
+      "end": "17:40",
+      "day_date": "2026-11-06",
+      "room": "二层13号会议室",
+      "session_period": "afternoon",
+      "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/special-issue-forum/llm-driven-intelligent-devops",
+      "chairs": [
+        {
+          "name": "魏峻",
+          "affiliation_raw": "中国科学院软件研究所",
+          "chair_role": "论坛组委会",
+          "title": "中国科学院软件研究所",
+          "bio": "魏峻，中国科学院软件研究所研究员，博士研究生导师，所学术/学位委员会委员，中国科学院大学岗位教授。兼任中国计算机学会软件工程和服务计算专业委员会委员，《软件学报》责任编委、《计算机科学与探索》执行编委、《计算机集成制造系统》编委。近年来主要研究软件工程方法与技术在云计算与大数据、人工智能、物联网、区块链等分布式系统中的应用，解决正确性、可靠性、性能、安全等方面的问题。在TSE, TKDE, JSS, ICSE, FSE, ASE, ISSTA, VLDB, ICDCS, IPDPS, SC, Middleware等国内外重要学术刊物和国际会议上发表学术论文200余篇，获发明专利授权30多项，获得国家技术发明奖二等奖、国家科学技术进步奖二等奖、湖南省技术发明一等奖、中国电子学会电子信息科学技术一等奖、北京市科学技术一等奖。"
+        },
+        {
+          "name": "吴国全",
+          "affiliation_raw": "中国科学院软件研究所",
+          "chair_role": "论坛组委会",
+          "title": "中国科学院软件研究所",
+          "bio": "吴国全，博士，中国科学院软件研究所研究员、中国科学院特聘研究岗研究员、中国科学院大学岗位教授。主要研究方向为软件工程、软件测试与维护、软件可靠性保障等。主持、参与多项国家重点研发计划项目、国家自然科学基金、国家863高技术计划、中科院先导A类专项、工信部高质量项目等。在TOSEM、TSC、ICSE、FSE、ASE、ISSTA等国内外重要学术期刊和会议发表论文70余篇，获ACM SIGSOFT杰出论文奖，授权专利20余项。研究成果应用于交通、电力、互联网等重要领域和行业，获北京市科技进步奖二等奖、中国电力企业联合会电力科技创新一等奖。"
+        },
+        {
+          "name": "陈鹏飞",
+          "affiliation_raw": "中山大学",
+          "chair_role": "论坛组委会",
+          "title": "中山大学",
+          "bio": "陈鹏飞，中山大学计算机学院教授，博士生导师，量子计算与软件研究所副所长，广东省大数据分析与处理重点实验室副主任， 广东省杰出青年基金获得者。曾获2020年陕西省计算机学会首届优秀博士论文，ACM FSE 2024 (CCF A类会议)杰出论文奖，IEEE ISSRE 2022大会唯一最佳论文。主要方向为：分布式系统、操作系统、计算机网络、软件可靠性等。近年来在国际会议如FSE、ICSE、ASE、WWW、IEEE INFOCOM、IEEE DSN等和期刊如IEEE TON、TPDS、TOSEM、IEEE TNNLS、IEEE TDSC等发表100余篇论文。共承担了30余项项目包括国家重点研发计划课题、国家自然基金面上、青年项目、广东省、广州市科技项目。此外，还与阿里巴巴、华为、腾讯、微信、深信服等企业开展了校企合作项目，并且将部分研究成果在企业落地。"
+        },
+        {
+          "name": "杨任宇",
+          "affiliation_raw": "北京航空航天大学",
+          "chair_role": "论坛组委会",
+          "title": "北京航空航天大学",
+          "bio": "杨任宇，博士，北京航空航天大学软件学院副教授，博士生导师，国家级青年人才。北航可靠智能分布式系统实验室联合负责人，复杂关键软件环境全国重点实验室、计算智能新技术北京市重点实验室核心成员。长期从事大规模可靠计算基础设施关键技术与理论的研究。主持国家海外引才青年项目、国家重点研发计划课题、国家自然科学基金青年项目、北京市自然科学基金项目、头部企业-校企合作项目等项目课题十余项。在TPDS、TC、EuroSys、SC、SoCC、ASE、VLDB、KDD、WWW、AAAI 等分布式计算、人工智能、综合交叉等领域国际期刊、会议发表学术论文80余篇，谷歌学术引用近4,500次。获2017年中国电子学会科技进步特等奖、2022年英国阿兰图灵博士后拓展奖、2024年中国商业联合会科技进步一等奖、2025年度关键软件技术创新成果奖等。"
+        }
+      ],
+      "talks": [
+        {
+          "title": {
+            "zh": "论坛开幕",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "14:00",
+          "end": "14:05",
+          "speakers": [],
+          "type": "opening",
+          "abstract_status": "unknown",
+          "extra": {
+            "speaker_raw": "-"
+          }
+        },
+        {
+          "title": {
+            "zh": "面向开发运维一体化的人与多智能体综合集成参考架构",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "14:05",
+          "end": "14:30",
+          "speakers": [
+            {
+              "name": "王瑞",
+              "affiliation_raw": "北京航空航天大学"
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "unknown",
+          "extra": {
+            "speaker_raw": "王瑞 北京航空航天大学"
+          },
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "提出开发运维中人与多智能体协作的参考架构",
+              "en": null
+            },
+            "topics": [
+              "智能体",
+              "软件架构"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "基于eBPF的云原生运行时安全：行为监测、异常检测与响应处置",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "14:30",
+          "end": "14:55",
+          "speakers": [
+            {
+              "name": "刘锦样",
+              "affiliation_raw": "国防科技大学"
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "unknown",
+          "extra": {
+            "speaker_raw": "刘锦样 国防科技大学"
+          },
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "利用 eBPF 监测云原生运行时行为并响应安全异常",
+              "en": null
+            },
+            "topics": [
+              "云计算",
+              "软件安全"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "故障经验驱动的微服务根因分析智能体研究",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "14:55",
+          "end": "15:20",
+          "speakers": [
+            {
+              "name": "周格林",
+              "affiliation_raw": "中国科学院软件研究所"
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "unknown",
+          "extra": {
+            "speaker_raw": "周格林 中国科学院软件研究所"
+          },
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "研究故障经验驱动的微服务根因分析智能体",
+              "en": null
+            },
+            "topics": [
+              "智能体",
+              "智能运维"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "面向高通量智能计算场景的性能评测指标与方法",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "15:20",
+          "end": "15:45",
+          "speakers": [
+            {
+              "name": "张园",
+              "affiliation_raw": "中国科学院计算技术研究所"
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "unknown",
+          "extra": {
+            "speaker_raw": "张园 中国科学院计算技术研究所"
+          },
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "讨论高通量智能计算的性能评测指标与方法",
+              "en": null
+            },
+            "topics": [
+              "机器学习系统"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "面向运行时状态约束的微服务流量控制建模与仿真",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "16:00",
+          "end": "16:25",
+          "speakers": [
+            {
+              "name": "杨溢龙",
+              "affiliation_raw": "北京航空航天大学"
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "unknown",
+          "extra": {
+            "speaker_raw": "杨溢龙 北京航空航天大学"
+          },
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "通过建模与仿真研究运行时约束下的微服务流量控制",
+              "en": null
+            },
+            "topics": [
+              "云计算",
+              "数字孪生"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "面向深度学习云平台的细粒度GPU共享与弹性管控方法研究",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "16:25",
+          "end": "16:50",
+          "speakers": [
+            {
+              "name": "李俊艺",
+              "affiliation_raw": "中山大学"
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "unknown",
+          "extra": {
+            "speaker_raw": "李俊艺 中山大学"
+          },
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "研究深度学习云平台的细粒度 GPU 共享与弹性管控",
+              "en": null
+            },
+            "topics": [
+              "云计算",
+              "体系结构"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "基于语义增强的ROS应用程序模糊测试初始种子生成方法",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "16:50",
+          "end": "17:15",
+          "speakers": [
+            {
+              "name": "陶乐",
+              "affiliation_raw": "北京信息科技大学"
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "unknown",
+          "extra": {
+            "speaker_raw": "陶乐 北京信息科技大学"
+          },
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "研究语义增强的 ROS 模糊测试初始种子生成",
+              "en": null
+            },
+            "topics": [
+              "缺陷检测",
+              "软件测试"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "约束引导的REST API 自动化测试方法",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "17:15",
+          "end": "17:40",
+          "speakers": [
+            {
+              "name": "武雅琛",
+              "affiliation_raw": "复旦大学"
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "unknown",
+          "extra": {
+            "speaker_raw": "武雅琛 复旦大学"
+          },
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "研究约束引导的 REST API 自动化测试",
+              "en": null
+            },
+            "topics": [
+              "软件测试"
+            ]
+          }
+        }
+      ],
+      "breaks": [
+        {
+          "name": "茶歇",
+          "start": "15:45",
+          "end": "16:00"
+        }
+      ],
+      "detail_extracted": true,
       "flags": [],
+      "extra": {
+        "schedule_raw": "2026年11月6日，14:00-17:40",
+        "location_raw": "天津市社会山国际会议中心酒店，二层13号会议室",
+        "published_window": {
+          "start": "14:00",
+          "end": "17:40"
+        },
+        "overview_title": "大模型驱动的智能软件系统开发运维"
+      },
+      "description": "随着AI技术的迅猛发展，以智能体系统为代表的智能软件系统呈爆发式增长。云原生与AI技术深度融合，通过云原生方式开发、训练、部署、运维，促进了智能软件系统的快速落地及价值转化。与传统通算软件不同，智能软件系统的开发构建、可信保障和运行维护面临新的挑战。例如，基于大模型的复杂智能体系统对基础设施提出了全新的稳定性需求；传统以CPU为中心的通用软件运维方法难以适用于复杂智能化软件系统；大规模、高复杂度的云原生服务化系统迫切需要智能化的技术手段增强其韧性保障。\n\n本专刊论坛聚焦大模型驱动的智能软件系统开发运维方法、技术和实践，探讨面向智能软件系统的开发构建、可信保障和运行维护方法和关键技术，以及相关实证研究方法等创新成果。",
       "category": {
         "key": "special-issue-forum",
         "name": {
@@ -18345,9 +20063,9 @@
   },
   "extraction": {
     "source": "https://chinasoft.ccf.org.cn/2026/",
-    "content_sha256": "7d4379cd10bfbe88372e7c1b0f7ce99edde56ff2638b085af39eb1bcce1de266",
+    "content_sha256": "f7a69a1b9730df256d5bd5940faf1c65de871476de9f6e919d8a73b6d1a7b4db",
     "forums_total": 67,
-    "forums_detail_extracted": 41,
+    "forums_detail_extracted": 45,
     "notes": "Active navigation and explicitly reviewed accessible withdrawn pages are captured. Unpublished programmes remain unscheduled. Timetable titles and affiliations are retained verbatim; profiles supplement abstracts and biographies."
   }
 }

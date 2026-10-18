@@ -312,6 +312,14 @@ pnpm preview    # serve the production build
   timezones and notification delivery through a mock. It captures desktop/mobile
   pages plus a gallery under `LIVE_AUDIT_DIR` (default:
   `/tmp/chinasoft2026-live-audit/after`). `AUDIT_BASE_URL` can target a preview.
+- **Multi-day forums:** optional `forum.sessions` contains dated programme
+  envelopes; each talk/break carries `day_date`. Keep one canonical forum and
+  report list. `talkDate()` resolves a report's explicit date; `forumOnDate()`
+  projects daily slots while preserving report object identity. Dashboard and
+  timeline links/follows use canonical indices, never the filtered list index.
+  Exports, reminders, speaker lists, planning, topics and related talks use the
+  report date. `web/tests/multiday.mjs` checks both dates on desktop/mobile and
+  accepts `AUDIT_BASE_URL`; independent fixtures live in `conference-core.mjs`.
 - **The resolved agenda:** `lib/export.ts`'s `collectFollowedItems()` is the one
   place that turns follows (talks + forums + speakers) into a sorted list of
   `ExportItem`. My Day, the live card, the reminders and every export format

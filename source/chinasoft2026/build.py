@@ -234,12 +234,14 @@ def detail(category, slug):
             match = re.match(label + r"[：:]\s*(.+)", txt(p))
             if match:
                 fields[label] = match[1]
-    window = time_range(fields["时间"], flags)
+    dates = sorted({date(m[0]) for m in DATE.finditer(fields["时间"])})
+    multi_day = len(dates) > 1
+    window = [None, None] if multi_day else time_range(fields["时间"], flags)
     forum = {
         "code": code[0], "title": i18n(title),
         "start": window[0], "end": window[1],
-        "day_date": date(fields["时间"]), "room": room_name(fields["地点"]),
-        "session_period": (None if window[0] < "12:00" and window[1] >= "13:00"
+        "day_date": None if multi_day else dates[0], "room": room_name(fields["地点"]),
+        "session_period": (None if multi_day or window[0] < "12:00" and window[1] >= "13:00"
                            else "morning" if window[0] < "12:00" else "afternoon"),
         "source_url": f"{BASE}#agenda/{category}/{slug}",
         "chairs": [], "talks": [], "breaks": [], "detail_extracted": True,
@@ -277,11 +279,16 @@ def detail(category, slug):
         if "时间" not in headers or "题目" not in headers:
             raise ValueError(f"Unexpected table in {code[0]}: {headers}")
         section_title = None
+        section_date = None
         for cells, heading in rows[1:]:
             if heading:
                 continue
             if cells[0] and not any(cells[1:]) and not TIME.search(cells[0]):
                 section_title = cells[0]
+                if multi_day:
+                    section_date = date(section_title)
+                    if section_date not in dates:
+                        raise ValueError(f"Section date outside published range: {section_title}")
                 continue
             if not TIME.search(cells[0]):
                 raise ValueError(f"Unrecognized row in {code[0]}: {cells}")
@@ -289,12 +296,22 @@ def detail(category, slug):
             row_flags = []
             start, end = time_range(row["时间"], row_flags)
             title = row["题目"]
+            if multi_day and not section_date:
+                raise ValueError(f"Missing section date in {code[0]}: {cells}")
             if re.match(r"茶歇|午休|午餐", title):
-                forum["breaks"].append({"name": title, "start": start, "end": end})
+                pause = {"name": title, "start": start, "end": end}
+                if multi_day:
+                    pause["day_date"] = section_date
+                forum["breaks"].append(pause)
                 flags.extend(row_flags)
                 continue
             speaker_raw = row.get("报告嘉宾", row.get("讲者", ""))
-            speakers = people(speaker_raw, row_flags, known_names=known_names)
+            if re.match(r"主持人[：:]", speaker_raw):
+                row["主持"] = re.sub(r"^主持人[：:]\s*", "", speaker_raw)
+                speaker_credit = ""
+            else:
+                speaker_credit = speaker_raw
+            speakers = people(speaker_credit, row_flags, known_names=known_names)
             talk = {
                 "title": i18n(title), "title_status": "tbd" if "待定" in title else "confirmed",
                 "start": start, "end": end, "speakers": speakers,
@@ -304,6 +321,8 @@ def detail(category, slug):
             }
             if section_title:
                 talk["extra"]["section_title"] = section_title
+            if multi_day:
+                talk["day_date"] = section_date
             for speaker in speakers:
                 chair = chairs_by_name.get(speaker["name"])
                 if chair and chair.get("photo"):
@@ -343,7 +362,7 @@ def detail(category, slug):
                         host["photo"] = chair["photo"]
                     if chair and chair.get("affiliation_raw"):
                         host.setdefault("affiliation_raw", chair["affiliation_raw"])
-            if start < window[0] or end > window[1]:
+            if not multi_day and (start < window[0] or end > window[1]):
                 row_flags.append(f"时间不一致：本报告为 {start}–{end}，超出论坛标注的 {window[0]}–{window[1]}，均按原文保留。")
             if row_flags:
                 talk["flags"] = row_flags
@@ -354,6 +373,14 @@ def detail(category, slug):
         flags.append("以下报告资料未能与日程表署名明确对应，单独保留：" + "、".join(unmatched))
     if not forum["talks"]:
         raise ValueError(f"Published detail has no parsed programme: {code[0]}")
+    if multi_day:
+        forum["sessions"] = []
+        for day in dates:
+            items = [item for item in forum["talks"] + forum["breaks"] if item["day_date"] == day]
+            if not items:
+                raise ValueError(f"No programme for published date: {code[0]} {day}")
+            forum["sessions"].append({"date": day, "start": min(t["start"] for t in items),
+                                      "end": max(t["end"] for t in items)})
     return forum
 
 
@@ -562,20 +589,21 @@ def build():
     # Preserve overview placeholders in metadata instead of displaying them a
     # second time above the actual programme.
     for day, record in days.items():
-        entries = [{"forum_code": f["code"], "room": f["room"]} for f in forums if f["day_date"] == day]
+        dated = [f for f in forums if f["day_date"] == day or any(s["date"] == day for s in f.get("sessions", []))]
+        entries = [{"forum_code": f["code"], "room": f["room"]} for f in dated]
         if entries:
-            dated = [f for f in forums if f["day_date"] == day]
             overview_rows = [b for b in record["blocks"] if b["title"]["zh"] == "分领域论坛"
                              or any(f["title"]["zh"] == b["title"]["zh"] for f in dated)]
             record["blocks"] = [b for b in record["blocks"] if b not in overview_rows]
-            starts = [f["start"] for f in dated if f["start"]] + [t["start"] for f in dated for t in f["talks"] if t.get("start")]
-            ends = [f["end"] for f in dated if f["end"]] + [t["end"] for f in dated for t in f["talks"] if t.get("end")]
+            starts = [f["start"] for f in dated if f["start"]] + [t["start"] for f in dated for t in f["talks"] if t.get("start") and t.get("day_date", day) == day]
+            ends = [f["end"] for f in dated if f["end"]] + [t["end"] for f in dated for t in f["talks"] if t.get("end") and t.get("day_date", day) == day]
             record["blocks"].append({"kind": "forums", "title": i18n("论坛"), "forum_entries": entries,
                                      "start": min(starts) if starts else None, "end": max(ends) if ends else None,
                                      "extra": {"overview_rows": overview_rows}})
         record["blocks"].sort(key=lambda b: b.get("start") or "99:99")
     for forum in forums:
-        if forum["day_date"] and forum["day_date"] not in days:
+        forum_dates = [s["date"] for s in forum.get("sessions", [])] or [forum["day_date"]]
+        if any(day and day not in days for day in forum_dates):
             raise ValueError(f"Forum date outside overview: {forum['code']}")
     organization_roles = {"主办单位": "host", "承办单位": "co_host", "协办单位": "support"}
     organizations = []

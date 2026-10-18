@@ -1,35 +1,36 @@
 # ChinaSoft 2026: source gaps and refresh checklist
 
-Last imported source review: **2026-10-17**. This is the conference-specific
+Last imported source review: **2026-10-18**. This is the conference-specific
 checklist for every subsequent refresh, not a claim that the official programme
 is complete. Talk numbers below are **one-based**, matching `#talk-N` links.
 
-The [October 17 observation](../source/chinasoft2026/checks/20261017T043624685311Z/REVIEW.md)
-is incorporated: two new pending industrial forums (I7/I8), I6 organizer
-information and the S8 title. The October 16 programmes and curated corrections
-remain intact. Original snapshots stay separate from curated importer input.
+The [October 18 observation](../source/chinasoft2026/checks/20261018T053641432592Z/REVIEW.md)
+is incorporated: R2/R5/R27/S1 programmes, R8 report order, R6/R30 prose,
+R13 host-table corrections and portrait changes. R2 spans two dates; one forum
+identity and canonical report indices are retained across both daily views.
+Original snapshots remain separate from curated importer input.
 
 Sources: [official site](https://chinasoft.ccf.org.cn/2026/),
 [overview](https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index).
-The official navigation exposes 66 importer-scope HTML pages and 40 detailed
-programmes. Curated input retains R16, giving 67 HTML pages and 41 programmes.
-The dataset contains 67 forum/competition entries, 334 programme items, 44
-breaks, 289 attached source abstracts and 429 downloaded portrait resources.
+The official navigation exposes 70 importer-scope HTML pages and 44 detailed
+programmes. Curated input retains R16, giving 71 HTML pages and 45 programmes.
+The dataset contains 67 forum/competition entries, 371 programme items, 50
+breaks, 316 attached source abstracts and 460 downloaded portrait resources.
 One further abstract is retained in an unmatched profile, separately displayed.
 
 ## Unpublished programmes
 
 | Category | Detailed / listed | Codes still without a detailed programme |
 | --- | --- | --- |
-| Academic | 25 / 35 | R2, R5, R9, R19, R25, R27, R29, R33, R34, R35 |
+| Academic | 28 / 35 | R9, R19, R25, R29, R33, R34, R35 |
 | Regular | 4 / 4 | None |
 | Education | 2 / 7 | E1, E3, E5, E6, E7 |
 | Industry | 5 / 8 | I5, I7, I8 |
-| Special issue | 5 / 8 | S1, S3, S4 |
+| Special issue | 6 / 8 | S3, S4 |
 | Competition | 0 / 5 | C1, C2, C3, C4, C5 |
 
-- 26 programmes are unpublished. Of the 67 entries, 23 have no date, 25 no
-  room and 25 no clock window. These sets overlap; do not add the counts.
+- 22 programmes are unpublished. Of the 67 entries, 19 have no date, 21 no
+  room and 21 no clock window. These sets overlap; do not add the counts.
 - E7 has a November 7, 14:10–15:10 window and a room in the overview. C5/C2
   have November 7 final dates in their announcements, but no clock times or
   rooms. Keep these partial facts without inventing reports or participants.
@@ -45,7 +46,7 @@ One further abstract is retained in an unmatched profile, separately displayed.
 
 ## Missing abstracts and unresolved credits
 
-- The source has no abstract for R16#5 (任旭东) or S5#3–#10 (eight papers).
+- The source has no abstract for R16#5 (任旭东) or S5#3–#10 (eight papers), and none for the eight S1 reports.
   Opening ceremonies, collective panels and closing remarks are counted
   separately; an absent abstract there is not automatically an extraction gap.
 - **E2#4:** source credit `彭蓉-张颖` does not establish speaker/host roles.
@@ -153,6 +154,38 @@ One further abstract is retained in an unmatched profile, separately displayed.
 - All 444 active portrait references are unchanged, including the 22 broken
   URLs. Existing prepared assets remain valid; no portrait refresh is needed.
 
+## October 18 refresh details to recheck
+
+- R2 now publishes 17 programme items (16 reports and one hosted panel) across
+  November 6 (09:00–17:00) and November 7 (15:20–18:30), with three breaks.
+  Per-day windows are envelopes of published programme rows, not independent
+  forum-wide clock announcements. Keep `sessions` and explicit talk/break dates.
+  The November 6 gap from 10:00 to 10:20 is unassigned in the source; do not
+  invent a report or extend a neighbouring slot. 梁广泰 is the panel host,
+  not a separately announced speaker; preserve that explicit role.
+- R5 publishes six reports on November 6, 09:00–12:00; R27 publishes five on
+  November 8, 09:00–12:00. All 27 new R2/R5/R27 reports have source abstracts.
+  S1 publishes an opening and eight reports on November 6, 14:00–17:40, but
+  no report abstracts or speaker profiles. Its four organizer biographies remain.
+- R8 swaps 康梓峰 to 10:20–10:45 and 孟岩 to 16:50–17:15. Profiles follow
+  their reports; the two guarded enrichment entries move with their titles.
+  Existing positional `R8#4` / `R8#16` follows and `#talk-5` / `#talk-17`
+  links now refer to the newly published positions; no migration is applied.
+  张鹏程's organizer affiliation is shortened to 河海大学; introductory labels
+  are removed without changing the underlying descriptive text.
+- R6 replaces its introduction, expands 吴毅坚's biography and specifies
+  新加坡南洋理工大学 for 王翀. R30 replaces 江贺 and 李姗姗's biographies.
+- R13 removes redundant placeholder cells that previously interrupted host
+  rowspans. The published hosts now cover all six afternoon reports; no report,
+  speaker or clock is changed. The duplicate R22 navigation link is fixed upstream.
+- Portraits: 34 new active references, of which S1's four organizer URLs return
+  404; seven existing images are replaced (曹嘉伦, 李戈, 梁广泰, 江贺, 石琳,
+  金芝, 高翠芸). 王林章's exact previously broken URL now works and is restored.
+  There are now 25 broken active URLs (P3: 13; I3: 8; S1: 4). Their original
+  tags/statuses remain archived; omit only those image tags in curated input.
+- The R27/S1 overview/detail names differ only by the 论坛 suffix. Two exact
+  dismissals avoid decorative warnings; the ten substantive source notes remain.
+
 ## Deliberate data-only correction: R32 biographies
 
 At the user's explicit request, remove the four standalone role paragraphs
@@ -180,8 +213,8 @@ generated JSON copies must come from the same rebuilt source.
    versus curated input. Then fetch live pages and compare added, changed and removed links. A withdrawn
    link is not evidence of a cancelled event. Review this document's pending
    codes, identities, title differences and source rosters against the new pages.
-2. Apply the documented R32 data correction, remove the repeated R22 link, and
-   recheck all 22 broken portrait URLs;
+2. Apply the documented R32 data correction, check for repeated navigation links, and
+   recheck all 25 currently broken portrait URLs;
    do not generalize one-off source edits into shared parsing code. Review
    `curation.json` against the source and update this document when upstream fixes gaps.
 3. Refresh portrait assets if image references/content changed. Check identities
@@ -203,14 +236,14 @@ generated JSON copies must come from the same rebuilt source.
 
 ## Resolved display defects tracked by regression checks
 
-- All 67 forum entries are reachable in the normal dashboard, including the
-  23 entries under the pending-date section; filtering works there too.
+- All 67 forum entries are reachable in the normal dashboard (68 daily rows), including the
+  19 entries under the pending-date section; filtering works there too.
 - Long committee rosters reveal when entering the viewport. A fractional
   visibility threshold hid the 195-member programme committee on mobile;
   independent 400-member fixtures now cover both desktop and mobile.
-- R13's two host-bearing rows and E4's seven host-bearing rows display their
+- R13's six host-bearing rows and E4's seven host-bearing rows display their
   hosts separately from speakers, with portraits from each forum's own chair
-  profiles. Forum details include all 44 source breaks,
+  profiles. Forum details include all 50 source breaks,
   without changing report anchor numbering.
 - R14's confirmed speaker, profile and new abstract paragraph are imported;
   凌祥's updated biography and M1's updated title are synchronized.
@@ -232,7 +265,7 @@ generated JSON copies must come from the same rebuilt source.
 
 The original cleanup removed 84 of 93 notes. October 15 added two exact
 forum-title dismissals; October 16 adds 16 equivalent title/collective-credit
-messages to the exact-text review list. These are not new source warnings.
+messages to the exact-text review list; October 18 adds two forum-suffix differences. These are not new source warnings.
 R13's affiliation and the publicity roster discrepancy are now resolved.
 Ten substantive notes remain: three timing conflicts (R1/E4/I4), four report
 title conflicts (R14/R23/S2#4/S2#5), two ambiguous E2 credits, and the R22#3

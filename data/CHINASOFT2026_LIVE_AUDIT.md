@@ -16,6 +16,15 @@ The complete web suite also passes, including all 41 published forum pages,
 429 portraits, mobile routes, source-gap checks and the revised E7 timed forum.
 New-forum screenshots are under `/tmp/chinasoft2026-oct16-source/`.
 
+Rerun: **2026-10-18**, after importing four programmes (371 items total),
+including the two-date R2 forum and R8's report swap. All 61 clock captures and
+assertions pass under `/tmp/chinasoft2026-oct18-live/`. The independent multi-day
+browser audit captures 12 desktop/mobile views under
+`/tmp/chinasoft2026-oct18-multiday/`, covering both daily timelines, canonical
+report links/follows, current-report highlighting and My Day. Finite animations
+are completed before captures and target opacity is asserted; preliminary
+fixed-clock animation captures were discarded.
+
 ## Method
 
 Run `cd web && pnpm test`, or run `node tests/live-clock.mjs` independently.

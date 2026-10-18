@@ -2,7 +2,7 @@ import type { Conference } from "../types";
 import type { Lang } from "./i18n-store";
 import { topicLabel, topicMapLabel, topicCategory } from "./topic-labels";
 import { ownTitle, titleLine } from "./talk-title";
-import { speakerNames } from "./data";
+import { talkDate, speakerNames } from "./data";
 
 // "Conference at a glance": the topic landscape of one program, built from the
 // AI-derived `talk.enrichment.topics` tags (a controlled vocabulary — see
@@ -435,7 +435,7 @@ export function buildTopicMap(
         titleTbd: !ownTitle(talk),
         speakers: speakerNames(talk) || undefined,
         room: f.room,
-        date: f.day_date,
+        date: talkDate(f, talk),
         period: f.session_period,
         start: talk.start,
         end: talk.end,

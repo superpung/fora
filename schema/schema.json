@@ -175,6 +175,7 @@
             "type": "object",
             "properties": {
               "name": { "type": "string" },
+              "day_date": { "type": ["string", "null"], "format": "date" },
               "start": { "type": ["string", "null"] },
               "end": { "type": ["string", "null"] }
             },
@@ -239,6 +240,15 @@
         "sponsor": { "type": ["string", "null"], "description": "Session sponsor, e.g. 知存科技/阿里巴巴达摩院" },
         "series_part": { "type": ["string", "null"], "description": "Series-part marker, e.g. （一）/（二）" },
         "day_date": { "type": ["string", "null"], "format": "date" },
+        "sessions": {
+          "description": "Per-day programme envelopes for forums spanning several dates. Talks and breaks carry their explicit day_date.",
+          "type": "array", "minItems": 1,
+          "items": { "type": "object", "required": ["date"], "properties": {
+            "date": { "type": "string", "format": "date" },
+            "start": { "type": ["string", "null"] },
+            "end": { "type": ["string", "null"] }
+          }, "additionalProperties": false }
+        },
         "start": { "type": ["string", "null"], "description": "The forum's own published start time. Explicit null means unknown, not the enclosing day's shared window." },
         "end": { "type": ["string", "null"], "description": "The forum's own published end time; may differ from a talk's recorded time." },
         "session_period": { "type": ["string", "null"], "enum": ["morning", "afternoon", "evening", null] },
@@ -256,6 +266,7 @@
             "type": "object",
             "properties": {
               "name": { "type": "string" },
+              "day_date": { "type": ["string", "null"], "format": "date" },
               "start": { "type": ["string", "null"] },
               "end": { "type": ["string", "null"] }
             },
@@ -280,6 +291,7 @@
       "description": "A single talk. Used for keynotes (timed) and forum talks (usually untimed).",
       "type": "object",
       "properties": {
+        "day_date": { "type": ["string", "null"], "format": "date" },
         "order": { "type": ["integer", "null"] },
         "title": { "$ref": "#/$defs/i18n" },
         "title_status": { "$ref": "#/$defs/status" },

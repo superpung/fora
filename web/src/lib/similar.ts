@@ -1,6 +1,6 @@
 import type { Conference } from "../types";
 import { ownTitle, titleLine } from "./talk-title";
-import { speakerNames } from "./data";
+import { talkDate, speakerNames } from "./data";
 
 // "If you liked this, you might also want" — related talks for one open talk.
 //
@@ -118,7 +118,7 @@ function buildCorpus(conference: Conference): Corpus {
         titleTbd: !ownTitle(talk),
         speakers: speakerNames(talk) || undefined,
         room: f.room,
-        date: f.day_date,
+        date: talkDate(f, talk),
         period: f.session_period,
         start: talk.start,
         end: talk.end,

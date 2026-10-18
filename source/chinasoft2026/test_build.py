@@ -48,6 +48,27 @@ class ProgrammeTests(unittest.TestCase):
                     self.assertTrue(talk["enrichment"]["topics"], (forum["code"], talk["title"]))
                     self.assertEqual(talk["enrichment"]["generated_by"], "ai")
 
+    def test_multiday_sections_and_updated_report_order(self):
+        forums = {f["code"]: f for f in json.loads((ROOT / "data/chinasoft2026.json").read_text())["forums"]}
+        forum = forums["R2"]
+        self.assertIsNone(forum["day_date"])
+        self.assertEqual(forum["sessions"], [
+            {"date": "2026-11-06", "start": "09:00", "end": "17:00"},
+            {"date": "2026-11-07", "start": "15:20", "end": "18:30"},
+        ])
+        self.assertEqual([t["day_date"] for t in forum["talks"]], ["2026-11-06"] * 11 + ["2026-11-07"] * 6)
+        self.assertFalse(forum["talks"][10]["speakers"])
+        self.assertEqual(forum["talks"][10]["extra"]["hosts"][0]["name"], "梁广泰")
+        self.assertEqual([b["day_date"] for b in forum["breaks"]], ["2026-11-06"] * 2 + ["2026-11-07"])
+        self.assertEqual([len(forums[c]["talks"]) for c in ("R5", "R27", "S1")], [6, 5, 9])
+        self.assertTrue(all(t.get("abstract") for c in ("R2", "R5", "R27") for t in forums[c]["talks"] if t["type"] == "talk"))
+        self.assertTrue(all(not t.get("abstract") for t in forums["S1"]["talks"]))
+        for index, name, clock in [(4, "康梓峰", "10:20"), (16, "孟岩", "16:50")]:
+            talk = forums["R8"]["talks"][index]
+            self.assertEqual(talk["speakers"][0]["name"], name)
+            self.assertEqual(talk["start"], clock)
+            self.assertTrue(talk["enrichment"]["topics"])
+
     def test_every_timed_source_row_is_retained(self):
         categories = ("academic-forum", "industry-forum", "education-forum",
                       "regular-forum", "special-issue-forum")
@@ -189,7 +210,7 @@ class ProgrammeTests(unittest.TestCase):
         self.assertEqual(forums["R6"]["end"], "18:20")
         self.assertTrue(forums["R16"]["talks"])
         self.assertEqual(forums["R16"]["extra"]["source_navigation_status"], "link_withdrawn")
-        self.assertNotIn("photo", forums["R17"]["talks"][0]["speakers"][0])
+        self.assertIn("photo", forums["R17"]["talks"][0]["speakers"][0])
         committee = next(g for g in data["committees"] if g["role"]["zh"] == "程序委员会委员")
         self.assertEqual(len(committee["members"]), 195)
         self.assertEqual([p["name"] for p in committee["members"] if not p.get("affiliation_raw")],
