@@ -70,7 +70,7 @@ try {
         .map((p) => `${p.name}:${p.photo.local_path}`).sort(), `${forum.code}#${i}: portraits`);
     });
     console.log(`PASS ${forum.code}: ${result.length} programme rows and speaker identities`);
-    if (["R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].includes(forum.code)) {
+    if (["R19", "E4", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].includes(forum.code)) {
       await page.waitForTimeout(600);
       await page.screenshot({ path: `${screenshots}/desktop-${forum.code}.png` });
     }
@@ -88,9 +88,19 @@ try {
   members.forEach((name) => assert(!forbidden.has(name), `Committee pseudo-person: ${name}`));
   const roles = await page.locator(".cmt__role").allTextContents();
   assert.equal(new Set(roles).size, roles.length, "Duplicate committee groups");
+  for (const name of ["财务委员会", "宣传委员会", "赞助委员会", "出版委员会", "志愿者组织委员会"]) {
+    assert(roles.includes(`${name}负责人`));
+    assert(!roles.includes(`${name}主席`), `Stale duplicate role: ${name}`);
+  }
   assert.equal(await page.locator(".cmt").filter({ has: page.locator(".cmt__role", { hasText: "荣誉主席" }) }).locator(".member").count(), 5);
   const programmeCommittee = page.locator(".cmt").filter({ has: page.locator(".cmt__role", { hasText: "程序委员会委员" }) });
   assert.equal(await programmeCommittee.locator(".member").count(), 195);
+  for (const name of ["任晗", "谢筱恒", "许文强"]) {
+    const member = programmeCommittee.locator(".member").filter({
+      has: page.locator(".member__name", { hasText: name }),
+    });
+    assert.equal(await member.locator(".member__aff").textContent(), "华为有限公司");
+  }
   await programmeCommittee.locator(".cmt__role").scrollIntoViewIfNeeded();
   await page.waitForFunction(() => [...document.querySelectorAll('.cmt')]
     .filter(el => el.querySelector('.cmt__role')?.textContent === '程序委员会委员')
@@ -144,7 +154,7 @@ try {
   phone.on("pageerror", (error) => errors.push(error.message));
   for (const path of ["forum/R32#talk-5", "committee", "schedule", "topics", "speakers", "plan",
     "forum/R6#talk-1", "forum/R7#talk-5", "forum/R7#talk-7", "forum/R8#talk-10", "forum/R11#talk-1", "forum/R17#talk-1",
-    ...["R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].map(code => `forum/${code}#talk-2`)]) {
+    ...["R19", "E4", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].map(code => `forum/${code}#talk-2`)]) {
     // Assert application readiness, independent of the preview's analytics requests.
     await phone.goto(`${base}/chinasoft2026/${path}`, { waitUntil: "domcontentloaded" });
     const ready = path.startsWith("forum/") ? `#${path.split("#")[1]}` : {

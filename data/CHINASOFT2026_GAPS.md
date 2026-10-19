@@ -1,8 +1,12 @@
 # ChinaSoft 2026: source gaps and refresh checklist
 
-Last imported source review: **2026-10-18**. This is the conference-specific
+Last imported source review: **2026-10-19**. This is the conference-specific
 checklist for every subsequent refresh, not a claim that the official programme
 is complete. Talk numbers below are **one-based**, matching `#talk-N` links.
+
+The [October 19 observation](../source/chinasoft2026/checks/20261019T064331528893Z/REVIEW.md)
+adds R19, committee affiliations/role labels and S5 room wording, and records
+the new E4 biography defect.
 
 The [October 18 observation](../source/chinasoft2026/checks/20261018T053641432592Z/REVIEW.md)
 is incorporated: R2/R5/R27/S1 programmes, R8 report order, R6/R30 prose,
@@ -12,25 +16,25 @@ Original snapshots remain separate from curated importer input.
 
 Sources: [official site](https://chinasoft.ccf.org.cn/2026/),
 [overview](https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index).
-The official navigation exposes 70 importer-scope HTML pages and 44 detailed
-programmes. Curated input retains R16, giving 71 HTML pages and 45 programmes.
-The dataset contains 67 forum/competition entries, 371 programme items, 50
-breaks, 316 attached source abstracts and 460 downloaded portrait resources.
+The official navigation exposes 71 importer-scope HTML pages and 45 detailed
+programmes. Curated input retains R16, giving 72 HTML pages and 46 programmes.
+The dataset contains 67 forum/competition entries, 376 programme items, 51
+breaks, 321 attached source abstracts and 468 downloaded portrait resources.
 One further abstract is retained in an unmatched profile, separately displayed.
 
 ## Unpublished programmes
 
 | Category | Detailed / listed | Codes still without a detailed programme |
 | --- | --- | --- |
-| Academic | 28 / 35 | R9, R19, R25, R29, R33, R34, R35 |
+| Academic | 29 / 35 | R9, R25, R29, R33, R34, R35 |
 | Regular | 4 / 4 | None |
 | Education | 2 / 7 | E1, E3, E5, E6, E7 |
 | Industry | 5 / 8 | I5, I7, I8 |
 | Special issue | 6 / 8 | S3, S4 |
 | Competition | 0 / 5 | C1, C2, C3, C4, C5 |
 
-- 22 programmes are unpublished. Of the 67 entries, 19 have no date, 21 no
-  room and 21 no clock window. These sets overlap; do not add the counts.
+- 21 programmes are unpublished. Of the 67 entries, 18 have no date, 20 no
+  room and 20 no clock window. These sets overlap; do not add the counts.
 - E7 has a November 7, 14:10–15:10 window and a room in the overview. C5/C2
   have November 7 final dates in their announcements, but no clock times or
   rooms. Keep these partial facts without inventing reports or participants.
@@ -38,8 +42,8 @@ One further abstract is retained in an unmatched profile, separately displayed.
   individual confirmed talk programme. Tentatively attending guests in
   `extra.planned_guests` are not confirmed keynote speakers.
 - The local organizing committee's member list remains pending. The programme
-  committee now has 195 members; 任晗, 谢筱恒 and 许文强 have no published
-  affiliations. Keep those affiliations absent.
+  committee has 195 members. On October 19, 任晗, 谢筱恒 and 许文强 each
+  gained the published affiliation 华为有限公司; none now lack affiliations.
 - Other meeting names M1–M3 and T1 lack dated programme entries and remain in
   `extra.other_meetings`; the three A1–A3 annual meetings have timed day blocks.
   Do not assign the undated meetings to a day by analogy.
@@ -186,6 +190,30 @@ One further abstract is retained in an unmatched profile, separately displayed.
 - The R27/S1 overview/detail names differ only by the 论坛 suffix. Two exact
   dismissals avoid decorative warnings; the ten substantive source notes remain.
 
+## October 19 refresh details to recheck
+
+- R19 now has five reports and one break on November 6, 09:00–12:00,
+  四层5号多功能厅, with all five abstracts and eight portraits. The final report
+  ends at 11:50; no extra item or extended report is inferred.
+- E4#2 (刘万伟): the source replaces the personal biography with report prose.
+  It resembles the abstract but has a different ending. Preserve both fields;
+  `curation.json` guards one source-content note. Recheck for a restored biography.
+- Committee role reconciliation is a deliberate data-only correction: dedicated
+  finance/publicity/sponsorship/publication/volunteer pages now say 负责人,
+  while `committee-chair.html` still says 主席. In curated HTML, prefix the
+  five dedicated headings with their committee names and update the five
+  corresponding overview headings to 负责人. This merges unchanged duplicate
+  rosters without combining unrelated committees. Original labels stay archived;
+  recheck before reapplying after a fetch. No decorative discrepancy note is added.
+- The three previously missing programme-committee affiliations are now all
+  华为有限公司. Membership remains unchanged at 195.
+- R24's 许思源 heading is now 高级研究员; R28's 薛磊 heading is now 教授.
+  S5's room is 二层11号会议室. I2 corrects biography punctuation and ISSTA's
+  spelling. P4's navigation label now matches its existing detail title.
+- Eight R19 portrait URLs are new and available. All 478 previous active URLs
+  are unchanged, including the same 25 broken references. Prepared resources
+  increase to 468. Eleven substantive source notes remain, including E4#2.
+
 ## Deliberate data-only correction: R32 biographies
 
 At the user's explicit request, remove the four standalone role paragraphs
@@ -213,7 +241,8 @@ generated JSON copies must come from the same rebuilt source.
    versus curated input. Then fetch live pages and compare added, changed and removed links. A withdrawn
    link is not evidence of a cancelled event. Review this document's pending
    codes, identities, title differences and source rosters against the new pages.
-2. Apply the documented R32 data correction, check for repeated navigation links, and
+2. Apply the documented R32 and October 19 committee-label data corrections,
+   check for repeated navigation links, and
    recheck all 25 currently broken portrait URLs;
    do not generalize one-off source edits into shared parsing code. Review
    `curation.json` against the source and update this document when upstream fixes gaps.
@@ -237,13 +266,13 @@ generated JSON copies must come from the same rebuilt source.
 ## Resolved display defects tracked by regression checks
 
 - All 67 forum entries are reachable in the normal dashboard (68 daily rows), including the
-  19 entries under the pending-date section; filtering works there too.
+  18 entries under the pending-date section; filtering works there too.
 - Long committee rosters reveal when entering the viewport. A fractional
   visibility threshold hid the 195-member programme committee on mobile;
   independent 400-member fixtures now cover both desktop and mobile.
 - R13's six host-bearing rows and E4's seven host-bearing rows display their
   hosts separately from speakers, with portraits from each forum's own chair
-  profiles. Forum details include all 50 source breaks,
+  profiles. Forum details include all 51 source breaks,
   without changing report anchor numbering.
 - R14's confirmed speaker, profile and new abstract paragraph are imported;
   凌祥's updated biography and M1's updated title are synchronized.
@@ -267,9 +296,9 @@ The original cleanup removed 84 of 93 notes. October 15 added two exact
 forum-title dismissals; October 16 adds 16 equivalent title/collective-credit
 messages to the exact-text review list; October 18 adds two forum-suffix differences. These are not new source warnings.
 R13's affiliation and the publicity roster discrepancy are now resolved.
-Ten substantive notes remain: three timing conflicts (R1/E4/I4), four report
+Eleven substantive notes remain: three timing conflicts (R1/E4/I4), four report
 title conflicts (R14/R23/S2#4/S2#5), two ambiguous E2 credits, and the R22#3
-institution discrepancy. No uncertainty notes were added for known distinct
+institution discrepancy, plus the October 19 E4#2 biography-content defect. No uncertainty notes were added for known distinct
 same-name people. The historical inventory below retains its original status.
 
 The conference-specific `source/chinasoft2026/note_review.json` records exact

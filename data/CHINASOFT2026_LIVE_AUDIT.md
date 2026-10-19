@@ -25,6 +25,14 @@ report links/follows, current-report highlighting and My Day. Finite animations
 are completed before captures and target opacity is asserted; preliminary
 fixed-clock animation captures were discarded.
 
+Rerun: **2026-10-19**, after adding R19 (376 items total). The complete web
+suite passes, including 46 programme pages, 468 portrait resources, updated
+committee roles/affiliations and source-note checks. All 61 clock captures and
+assertions pass under `/tmp/chinasoft2026-oct19-live/`; 12 multi-day captures
+are under `/tmp/chinasoft2026-oct19-multiday/`. Forty source-audit screenshots
+are under `/tmp/chinasoft2026-oct19-source/`, with desktop/mobile R19, E4 and S5
+captures included. No shared application or parser changes are needed.
+
 ## Method
 
 Run `cd web && pnpm test`, or run `node tests/live-clock.mjs` independently.

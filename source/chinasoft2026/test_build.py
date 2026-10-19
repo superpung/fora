@@ -214,7 +214,10 @@ class ProgrammeTests(unittest.TestCase):
         committee = next(g for g in data["committees"] if g["role"]["zh"] == "程序委员会委员")
         self.assertEqual(len(committee["members"]), 195)
         self.assertEqual([p["name"] for p in committee["members"] if not p.get("affiliation_raw")],
-                         ["任晗", "谢筱恒", "许文强"])
+                         [])
+        for person in committee["members"]:
+            if person["name"] in {"任晗", "谢筱恒", "许文强"}:
+                self.assertEqual(person["affiliation_raw"], "华为有限公司")
 
     def test_namesakes_in_the_same_forum_keep_the_correct_reports_and_follows(self):
         data = json.loads((ROOT / "data/chinasoft2026.json").read_text())
