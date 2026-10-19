@@ -16,6 +16,17 @@ const server = process.env.AUDIT_BASE_URL ? null : spawn(
 );
 let browser;
 const errors = [];
+async function capture(page, options) {
+  // A fresh mobile context can reach the anchor before its lazy portraits decode.
+  await page.evaluate(async () => {
+    const visible = [...document.images].filter((img) => {
+      const rect = img.getBoundingClientRect();
+      return rect.bottom > 0 && rect.top < innerHeight && rect.right > 0 && rect.left < innerWidth;
+    });
+    await Promise.all(visible.map((img) => img.decode()));
+  });
+  await page.screenshot(options);
+}
 try {
   if (server) {
     for (let attempt = 0; ; attempt++) {
@@ -72,14 +83,14 @@ try {
     console.log(`PASS ${forum.code}: ${result.length} programme rows and speaker identities`);
     if (["R19", "E4", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].includes(forum.code)) {
       await page.waitForTimeout(600);
-      await page.screenshot({ path: `${screenshots}/desktop-${forum.code}.png` });
+      await capture(page, { path: `${screenshots}/desktop-${forum.code}.png` });
     }
   }
   await goto("/chinasoft2026/forum/R32#talk-5", "#talk-5 .person__name");
   assert.deepEqual(await page.locator("#talk-5 .person__name").allTextContents(), ["金意儿"]);
   assert.equal(await page.locator("#talk-5 .person__aff").textContent(), "华为");
   await page.waitForTimeout(1200);
-  await page.screenshot({ path: "/tmp/chinasoft2026-r32.png" });
+  await capture(page, { path: "/tmp/chinasoft2026-r32.png" });
   await page.locator("#talk-5 .talk__star").click();
   assert.equal(await page.locator("#talk-5 .talk__star").getAttribute("aria-pressed"), "true");
 
@@ -107,9 +118,9 @@ try {
     .every(el => Number(getComputedStyle(el).opacity) >= 0.99
       && [...el.querySelectorAll('.member')].every(member => Number(getComputedStyle(member).opacity) >= 0.99)));
   await page.waitForTimeout(650);
-  await page.screenshot({ path: `${screenshots}/desktop-programme-committee.png` });
+  await capture(page, { path: `${screenshots}/desktop-programme-committee.png` });
   await page.waitForTimeout(1200);
-  await page.screenshot({ path: "/tmp/chinasoft2026-committee.png" });
+  await capture(page, { path: "/tmp/chinasoft2026-committee.png" });
 
   await goto("/chinasoft2026/schedule?v=all", ".daytab");
   for (let i = 0; i < data.days.length; i++) {
@@ -122,7 +133,7 @@ try {
     assert.equal(links, expected, `Missing timeline talks on ${data.days[i].date}`);
     if (i === 1) {
       await page.waitForTimeout(1200);
-      await page.screenshot({ path: "/tmp/chinasoft2026-schedule.png" });
+      await capture(page, { path: "/tmp/chinasoft2026-schedule.png" });
     }
     if (data.days[i].date === "2026-11-07") {
       for (const code of ["E7", "C5", "C2"]) {
@@ -137,7 +148,7 @@ try {
   await goto("/chinasoft2026/topics", ".tmap__node");
   assert(await page.locator(".tmap__node").count() > 10, "Topic map is empty");
   await page.waitForTimeout(1200);
-  await page.screenshot({ path: "/tmp/chinasoft2026-topics.png" });
+  await capture(page, { path: "/tmp/chinasoft2026-topics.png" });
   await page.locator(".tmap__node").first().click();
   await page.locator(".tmaptalk").first().waitFor();
   assert(await page.locator(".tmaptalk__spk").count() > 0, "Topic talks have no speakers");
@@ -174,13 +185,13 @@ try {
         .every(el => Number(getComputedStyle(el).opacity) >= 0.99
           && [...el.querySelectorAll('.member')].every(member => Number(getComputedStyle(member).opacity) >= 0.99)));
       await phone.waitForTimeout(650);
-      await phone.screenshot({ path: `${screenshots}/mobile-programme-committee.png` });
+      await capture(phone, { path: `${screenshots}/mobile-programme-committee.png` });
     }
     if (path.startsWith("forum/") && !path.includes("R32")) {
       const target = phone.locator(`#${path.split("#")[1]}`);
       const box = await target.boundingBox();
       assert(box && box.y >= 0 && box.y < 844, `Report anchor is not visible: ${path}`);
-      await phone.screenshot({ path: `${screenshots}/mobile-${path.replaceAll("/", "-").replaceAll("#", "-")}.png` });
+      await capture(phone, { path: `${screenshots}/mobile-${path.replaceAll("/", "-").replaceAll("#", "-")}.png` });
     }
   }
   assert.deepEqual(errors, [], "Browser runtime errors");

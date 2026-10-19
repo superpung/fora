@@ -66,3 +66,9 @@ suite pass: 34 core cases, eight shared UI cases, eight permalinks, all 46
 programmes and 468 portrait resources, source gaps, both dates of R2 and 61
 clock captures. Existing report titles/times/abstracts and committee membership
 are unchanged. Every imported active portrait hash matches this observation.
+
+The deployed preview passes programme, portrait and source-gap checks. Initial
+mobile screenshots raced lazy portrait loading in a fresh browser context;
+explicit image decoding confirms the images load correctly. The shared source
+audit now waits for visible images to decode before capturing. Incomplete
+preview captures are regenerated; no application change is required.

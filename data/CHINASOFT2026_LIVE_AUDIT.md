@@ -31,7 +31,9 @@ committee roles/affiliations and source-note checks. All 61 clock captures and
 assertions pass under `/tmp/chinasoft2026-oct19-live/`; 12 multi-day captures
 are under `/tmp/chinasoft2026-oct19-multiday/`. Forty source-audit screenshots
 are under `/tmp/chinasoft2026-oct19-source/`, with desktop/mobile R19, E4 and S5
-captures included. No shared application or parser changes are needed.
+captures included. Preview source-audit screenshots wait for visible images to
+decode, avoiding incomplete captures while lazy portraits load. No shared
+application or parser changes are needed.
 
 ## Method
 
