@@ -10,6 +10,49 @@ from people import read_person, person_problem
 
 
 class ProgrammeTests(unittest.TestCase):
+    def test_october_20_programmes_renumbering_and_partial_competition_dates(self):
+        data = json.loads((ROOT / "data/chinasoft2026.json").read_text())
+        forums = {f["code"]: f for f in data["forums"]}
+        self.assertEqual(len(forums), 66)
+        for code, count, day, start, room in (
+            ("R29", 5, "2026-11-08", "08:50", "三层2号多功能厅"),
+            ("S4", 14, "2026-11-07", "15:20", "二层18号会议室"),
+        ):
+            forum = forums[code]
+            self.assertEqual((len(forum["talks"]), forum["day_date"], forum["start"], forum["room"]),
+                             (count, day, start, room))
+            for talk in forum["talks"]:
+                self.assertTrue(talk["enrichment"]["topics"])
+                self.assertTrue(all(p.get("photo") for p in talk["speakers"]))
+                if talk["type"] == "talk":
+                    self.assertTrue(talk["abstract"])
+                self.assertFalse(talk.get("flags"))
+        self.assertNotIn("E7", forums)
+        self.assertEqual(forums["E1"]["talks"][3]["extra"]["speaker_raw"], "彭蓉-张颖")
+        self.assertTrue(forums["E3"]["talks"][1]["flags"])
+        self.assertEqual(forums["E6"]["start"], "14:10")
+        self.assertIsNone(forums["E5"]["day_date"])
+        self.assertTrue(any(m["code"] == "M5" and "原软件基础教育论坛" in m["title"]
+                            for m in data["extra"]["other_meetings"]))
+        self.assertEqual(forums["C1"]["sessions"], [
+            {"date": "2026-11-07", "start": None, "end": None},
+            {"date": "2026-11-08", "start": None, "end": None},
+        ])
+        self.assertIn("拟议日程", forums["C1"]["description"])
+        self.assertIsNone(forums["C4"]["day_date"])
+        self.assertIn("2026年11月6-8日", forums["C4"]["description"])
+        for day in data["days"][2:]:
+            entries = [e["forum_code"] for b in day["blocks"] for e in b.get("forum_entries", [])]
+            self.assertEqual(entries.count("C1"), 1)
+        dinner = next(b for d in data["days"] for b in d["blocks"] if b["title"]["zh"] == "大会晚餐")
+        self.assertEqual(dinner["kind"], "banquet")
+        report = forums["R23"]["talks"][5]
+        self.assertEqual(report["title"]["zh"], "Quafu 量子计算云平台介绍")
+        self.assertIn("Quafu", report["enrichment"]["summary"]["zh"])
+        self.assertFalse(report.get("flags"))
+        self.assertIn("执行过程与交付结果", forums["P4"]["talks"][3]["abstract"])
+        self.assertEqual(forums["R13"]["room"], "三层1号会议室")
+
     def test_every_profile_retains_its_identity_and_portrait(self):
         for page in RAW.rglob("*.html"):
             soup = load(page.relative_to(RAW))
@@ -38,7 +81,7 @@ class ProgrammeTests(unittest.TestCase):
         forums = {f["code"]: f for f in data["forums"]}
         for code in ("R10", "R13"):
             self.assertIsNone(forums[code]["session_period"], "A full-day programme is not a morning-only forum")
-        self.assertEqual((forums["E7"]["start"], forums["E7"]["end"]), ("14:10", "15:10"))
+        self.assertEqual((forums["E6"]["start"], forums["E6"]["end"]), ("14:10", "15:10"))
         for code in ("C5", "C2"):
             self.assertIsNone(forums[code]["start"])
             self.assertIsNone(forums[code]["end"])
@@ -153,8 +196,8 @@ class ProgrammeTests(unittest.TestCase):
         self.assertNotIn("C6", forums)
         self.assertEqual(forums["C2"]["title"]["zh"], "AI辅助研发创新大赛（鸿蒙杯）")
         self.assertEqual(forums["C2"]["day_date"], "2026-11-07")
-        self.assertIsNone(forums["E6"]["day_date"])
-        self.assertEqual(forums["E7"]["start"], "14:10")
+        self.assertIsNone(forums["E5"]["day_date"])
+        self.assertEqual(forums["E6"]["start"], "14:10")
         for code, index, name in (("I3", 3, "金鑫"), ("R22", 5, "黄冕")):
             talk = forums[code]["talks"][index]
             self.assertEqual(talk["speakers"][0]["name"], name)

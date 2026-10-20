@@ -557,6 +557,31 @@ def build():
         forum["extra"] = {"announcement_title": txt(announcement.find(["h1", "h2"])),
                           "milestones": milestones}
         forum["flags"].append("竞赛通知已公布决赛日期，具体时间、会场和参赛议程尚未公布。")
+    for code, slug in (("C1", "theorem-proving"), ("C4", "auto-software-repair")):
+        announcement = load(f"pages/competition/{slug}.html")
+        forum = next(f for f in forums if f["code"] == code)
+        forum["source_url"] = BASE + f"#competition/{slug}"
+        forum["extra"] = {"announcement_title": txt(announcement.find(["h1", "h2"]))}
+        if code == "C1":
+            # The source marks these stages provisional and gives periods only.
+            # Keep one date-only session per day, without invented clock times.
+            milestones = [cells for cells, header in table_rows(announcement.find("table"))
+                          if not header and re.search(r"11月\d+日", cells[1])]
+            if len(milestones) != 3:
+                raise ValueError("Expected three provisional theorem-proving stages")
+            forum["sessions"] = [{"date": day, "start": None, "end": None}
+                                 for day in sorted({date(cells[1]) for cells in milestones})]
+            forum["extra"].update(milestones=milestones, schedule_status="provisional")
+            forum["description"] = "拟议日程安排（正式日程以组委会赛前发布为准）：\n\n" + "\n\n".join(
+                f"{cells[0]}：{cells[1]}（{cells[2]}）" for cells in milestones)
+        else:
+            schedule = [txt(item) for item in announcement.select("li")
+                        if txt(item).startswith("决赛和颁奖日期")]
+            if len(schedule) != 1:
+                raise ValueError("Expected one automatic-repair final date range")
+            # A conference-wide date range does not specify a final's day.
+            forum["description"] = schedule[0]
+            forum["extra"]["schedule_raw"] = schedule[0]
     days = {}
     for cells, header in table_rows(tables[0]):
         if header:
@@ -566,7 +591,7 @@ def build():
         day = date(day_raw)
         flags = []
         start, end = time_range(time_raw, flags)
-        kind = "registration" if "签到" in event else "banquet" if "晚宴" in event else "committee_meetings" if "年会" in event else "other"
+        kind = "registration" if "签到" in event else "banquet" if re.search(r"晚宴|晚餐", event) else "committee_meetings" if "年会" in event else "other"
         block = {"kind": kind, "title": i18n(event), "start": start, "end": end,
                  "location": room, "extra": {"source_url": BASE + "#agenda/agenda-overview/index",
                                                "location_raw": location_raw}}
@@ -574,9 +599,9 @@ def build():
             block["extra"]["flags"] = flags
         if kind == "committee_meetings":
             block["meetings"] = [{"name": i18n(event), "start": start, "end": end, "room": room}]
-        # E7 is named explicitly in the overview despite having no detail link.
+        # Pending forums can be named in the overview without the forum suffix.
         for forum in forums:
-            if forum["title"]["zh"] == event and not forum["detail_extracted"]:
+            if forum["title"]["zh"].removesuffix("论坛") == event.removesuffix("论坛") and not forum["detail_extracted"]:
                 forum["day_date"] = day
                 forum["room"] = room
                 forum["session_period"] = "morning" if start < "12:00" else "afternoon"
@@ -593,7 +618,7 @@ def build():
         entries = [{"forum_code": f["code"], "room": f["room"]} for f in dated]
         if entries:
             overview_rows = [b for b in record["blocks"] if b["title"]["zh"] == "分领域论坛"
-                             or any(f["title"]["zh"] == b["title"]["zh"] for f in dated)]
+                             or any(f["title"]["zh"].removesuffix("论坛") == b["title"]["zh"].removesuffix("论坛") for f in dated)]
             record["blocks"] = [b for b in record["blocks"] if b not in overview_rows]
             starts = [f["start"] for f in dated if f["start"]] + [t["start"] for f in dated for t in f["talks"] if t.get("start") and t.get("day_date", day) == day]
             ends = [f["end"] for f in dated if f["end"]] + [t["end"] for f in dated for t in f["talks"] if t.get("end") and t.get("day_date", day) == day]

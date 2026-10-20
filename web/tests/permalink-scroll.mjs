@@ -24,7 +24,7 @@ const TARGETS = process.env.PERMA_CONF || process.env.PERMA_FORUMS
       { conf: "chinasoft2025", code: "U1" },
       { conf: "chinasoft2025", code: "S8" },
       { conf: "chinasoft2026", code: "R13" },
-      { conf: "chinasoft2026", code: "E4" },
+      { conf: "chinasoft2026", code: "E3" },
     ];
 const TOL = 14; // px tolerance around the intended resting offset
 

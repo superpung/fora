@@ -81,7 +81,7 @@ try {
         .map((p) => `${p.name}:${p.photo.local_path}`).sort(), `${forum.code}#${i}: portraits`);
     });
     console.log(`PASS ${forum.code}: ${result.length} programme rows and speaker identities`);
-    if (["R19", "E4", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].includes(forum.code)) {
+    if (["R29", "S4", "R23", "R13", "P4", "R19", "E1", "E3", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].includes(forum.code)) {
       await page.waitForTimeout(600);
       await capture(page, { path: `${screenshots}/desktop-${forum.code}.png` });
     }
@@ -136,7 +136,7 @@ try {
       await capture(page, { path: "/tmp/chinasoft2026-schedule.png" });
     }
     if (data.days[i].date === "2026-11-07") {
-      for (const code of ["E7", "C5", "C2"]) {
+      for (const code of ["E6", "C5", "C2", "C1"]) {
         assert(await page.locator(`.tgrid__chead[href="/chinasoft2026/forum/${code}"]`).count(), `Missing pending forum ${code}`);
       }
     }
@@ -163,9 +163,21 @@ try {
   const mobile = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, locale: "zh-CN" });
   const phone = await mobile.newPage();
   phone.on("pageerror", (error) => errors.push(error.message));
+  for (const [label, target] of [["desktop", page], ["mobile", phone]]) {
+    for (const code of ["C1", "C4"]) {
+      await target.goto(`${base}/chinasoft2026/forum/${code}`, { waitUntil: "domcontentloaded" });
+      await target.locator(".fd__desc").waitFor();
+      const text = await target.locator(".fd__desc").textContent();
+      assert(text.includes(code === "C1" ? "11月8日上午" : "2026年11月6-8日"));
+      assert(!(await target.locator(".fd__meta").textContent()).includes("00:00"));
+      await target.waitForTimeout(600);
+      assert(await target.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
+      await capture(target, { path: `${screenshots}/${label}-${code}.png` });
+    }
+  }
   for (const path of ["forum/R32#talk-5", "committee", "schedule", "topics", "speakers", "plan",
     "forum/R6#talk-1", "forum/R7#talk-5", "forum/R7#talk-7", "forum/R8#talk-10", "forum/R11#talk-1", "forum/R17#talk-1",
-    ...["R19", "E4", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].map(code => `forum/${code}#talk-2`)]) {
+    ...["R29", "S4", "R23", "R13", "P4", "R19", "E1", "E3", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].map(code => `forum/${code}#talk-2`)]) {
     // Assert application readiness, independent of the preview's analytics requests.
     await phone.goto(`${base}/chinasoft2026/${path}`, { waitUntil: "domcontentloaded" });
     const ready = path.startsWith("forum/") ? `#${path.split("#")[1]}` : {

@@ -29,10 +29,10 @@ try {
   await go("/chinasoft2026", ".frow");
   assert.equal(await page.locator(".frow").count(), 68);
   const pending = page.locator(".dashday").filter({ has: page.locator("h2", { hasText: "日期待公布" }) });
-  assert.equal(await pending.locator(".frow").count(), 18);
+  assert.equal(await pending.locator(".frow").count(), 14);
   await page.locator(".daypill").filter({ hasText: "日期待公布" }).click();
-  await page.waitForFunction(() => document.querySelectorAll(".frow").length === 18);
-  assert.equal(await page.locator(".frow").count(), 18);
+  await page.waitForFunction(() => document.querySelectorAll(".frow").length === 14);
+  assert.equal(await page.locator(".frow").count(), 14);
   await page.locator(".search__input").fill("R9");
   await page.waitForFunction(() => document.querySelectorAll(".frow").length === 1);
   assert.equal(await page.locator(".frow").count(), 1);
@@ -47,7 +47,7 @@ try {
   const sequence = await page.locator(".tline").first().locator(":scope > *").evaluateAll((es) => es.map((e) => e.id || e.textContent));
   assert(sequence[sequence.indexOf("talk-4") + 1].includes("茶歇"));
 
-  await go("/chinasoft2026/forum/E4", ".talk__hosts");
+  await go("/chinasoft2026/forum/E3", ".talk__hosts");
   assert.equal(await page.locator(".talk__hosts").count(), 7);
   assert.equal(await page.locator(".talk__hosts img.avatar").count(), 7);
   assert.equal(await page.locator("#talk-1 .talk__hosts .person__name").textContent(), "邓玉欣");
@@ -79,11 +79,11 @@ try {
   await page.locator(".spcard").filter({ has: page.locator(".spcard__aff", { hasText: "清华大学" }) }).locator(".star").click();
   assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem("chinasoft2026:followed.speakers"))), ["R4:李佳"]);
   await page.evaluate(() => localStorage.removeItem("chinasoft2026:followed.speakers"));
-  await go("/chinasoft2026/forum/E7", ".followbtn");
+  await go("/chinasoft2026/forum/E6", ".followbtn");
   await page.locator(".followbtn").click();
   await go("/chinasoft2026/schedule?v=mine-day", ".daytab");
   await page.locator(".daytab").nth(2).click();
-  await page.locator('a[href="/chinasoft2026/forum/E7"]').waitFor();
+  await page.locator('a[href="/chinasoft2026/forum/E6"]').waitFor();
   assert.equal(await page.locator(".myday__empty").count(), 0);
   assert((await page.locator(".block--myday").textContent()).includes("14:10"));
   if (server) {
@@ -93,16 +93,22 @@ try {
       const { buildLiveView } = await import("/src/lib/live.ts");
       const { default: raw } = await import("/src/data/conferences/chinasoft2026.json");
       const views = buildConferenceViews(raw);
-      const items = collectFollowedItems({ forums: new Set(["E7", "C5"]), speakers: new Set(), talks: new Set() }, views);
+      const items = collectFollowedItems({ forums: new Set(["E6", "C5"]), speakers: new Set(), talks: new Set() }, views);
+      const competition = collectFollowedItems({ forums: new Set(["C1", "C4"]), speakers: new Set(), talks: new Set() }, views);
       const live = (date, minutes) => buildLiveView(views, { todayStr: date, nowMin: minutes });
-      return { items, ics: toICS(items, "2026-10-14T00:00:00Z", views),
+      return { items, competition, competitionICS: toICS(competition, "2026-10-20T00:00:00Z", views),
+        ics: toICS(items, "2026-10-14T00:00:00Z", views),
         morning: live("2026-11-06", 10 * 60), afternoon: live("2026-11-06", 14 * 60),
-        beforeE7: live("2026-11-07", 14 * 60), duringE7: live("2026-11-07", 14 * 60 + 30),
-        afterE7: live("2026-11-07", 15 * 60 + 11), lateReport: live("2026-11-06", 12 * 60 + 5),
+        beforeE6: live("2026-11-07", 14 * 60), duringE6: live("2026-11-07", 14 * 60 + 30),
+        afterE6: live("2026-11-07", 15 * 60 + 11), lateReport: live("2026-11-06", 12 * 60 + 5),
       };
     });
     assert.equal(result.items.length, 2);
-    const forum = result.items.find((x) => x.code === "E7");
+    assert.deepEqual(result.competition.map(x => [x.code, x.date, x.start ?? null, x.end ?? null]),
+      [["C1", "2026-11-07", null, null], ["C1", "2026-11-08", null, null]]);
+    assert(result.competitionICS.includes("DTSTART;VALUE=DATE:20261107"));
+    assert(result.competitionICS.includes("DTSTART;VALUE=DATE:20261108"));
+    const forum = result.items.find((x) => x.code === "E6");
     assert.equal(forum.approx, false);
     assert.equal(forum.talkIndex, undefined);
     assert(result.ics.includes("20261107T061000Z"));
@@ -111,12 +117,21 @@ try {
     assert(!result.morning.nowRooms.some((r) => r.code === "R32"));
     assert(!result.afternoon.nowRooms.some((r) => r.code === "R14"));
     assert(result.afternoon.nowRooms.some((r) => r.code === "R32"));
-    assert(!result.beforeE7.nowRooms.some((r) => r.code === "E7"));
-    assert.equal(result.beforeE7.next.start, "14:10");
-    assert(result.duringE7.nowRooms.some((r) => r.code === "E7"));
-    assert(!result.afterE7.nowRooms.some((r) => r.code === "E7"));
-    assert(!result.duringE7.nowRooms.some((r) => r.code === "C5" || r.code === "C2"));
-    assert(result.lateReport.nowRooms.some((r) => r.code === "E4"));
+    assert(!result.beforeE6.nowRooms.some((r) => r.code === "E6"));
+    assert.equal(result.beforeE6.next.start, "14:10");
+    assert(result.duringE6.nowRooms.some((r) => r.code === "E6"));
+    assert(!result.afterE6.nowRooms.some((r) => r.code === "E6"));
+    assert(!result.duringE6.nowRooms.some((r) => r.code === "C5" || r.code === "C2"));
+    assert(result.lateReport.nowRooms.some((r) => r.code === "E3"));
+  }
+  await go("/chinasoft2026/forum/C1", ".followbtn");
+  assert((await page.locator(".fd__desc").textContent()).includes("拟议日程"));
+  await page.locator(".followbtn").click();
+  await go("/chinasoft2026/schedule?v=mine-day", ".daytab");
+  for (const day of [2, 3]) {
+    await page.locator(".daytab").nth(day).click();
+    await page.locator('a[href="/chinasoft2026/forum/C1"]').waitFor();
+    assert.equal(await page.locator('a[href="/chinasoft2026/forum/C4"]').count(), 0);
   }
 
   // Generic behavior also exposes an existing undated forum in another dataset.
@@ -125,7 +140,7 @@ try {
   assert(await page.locator('.frow__code').getByText("C3", { exact: true }).count());
 
   await page.setViewportSize({ width: 390, height: 844 });
-  await go("/chinasoft2026/forum/E2", ".source-notes__toggle");
+  await go("/chinasoft2026/forum/E1", ".source-notes__toggle");
   const note = page.locator("#talk-4 .source-notes__toggle");
   await note.focus();
   await page.keyboard.press("Enter");
