@@ -80,6 +80,22 @@ class UpdateCheckTests(unittest.TestCase):
                 self.assertEqual(archived["index.html"], live)
                 self.assertIn("withdrawn/pages/withdrawn.html", archived)
                 self.assertEqual((raw / "index.html").read_bytes(), original)
+                def broken_page_request(url, expected_type, allow_missing=False):
+                    if url.endswith("pages/introduction.html"):
+                        return b"", {"url": url, "status": 404}
+                    return request(url, expected_type, allow_missing)
+                with patch.object(checker, "request", side_effect=broken_page_request):
+                    with self.assertRaisesRegex(ValueError, "1 active HTML pages unavailable"):
+                        checker.check(root)
+                failed = max(root.iterdir())
+                failed_manifest = json.loads((failed / "manifest.json").read_text())
+                failed_report = json.loads((failed / "report.json").read_text())
+                self.assertEqual(failed_manifest["status"], "failed")
+                self.assertEqual(failed_report["broken_pages"]["pages/introduction.html"]["status"], 404)
+                self.assertIn(checker.BASE + "photo.jpg", failed_manifest["portraits"])
+                self.assertEqual(checker.read_archive(failed, failed_manifest)["index.html"], live)
+                self.assertNotIn("pages/introduction.html", (failed / "since-previous.patch").read_text())
+                self.assertEqual(checker.previous_snapshot(root)[1], second)
                 with patch.object(checker, "request", side_effect=TimeoutError("offline")):
                     with self.assertRaises(TimeoutError):
                         checker.check(root)

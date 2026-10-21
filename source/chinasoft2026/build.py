@@ -135,6 +135,11 @@ def table_rows(table):
         yield [cells.get(i, "") for i in range(max(cells, default=-1) + 1)], bool(row.find("th"))
 
 
+@lru_cache(maxsize=1)
+def collective_credits():
+    return frozenset(json.loads((HERE / "note_review.json").read_text())["collective_credits"])
+
+
 def people(value, flags, role=None, known_names=(), single=False):
     """Split explicit lists, preserving punctuation inside affiliations."""
     if value in {"", "-", "—", "/"}:
@@ -151,6 +156,11 @@ def people(value, flags, role=None, known_names=(), single=False):
         parts = value.split()
     result = []
     for part in parts:
+        # Reviewed collective credits are data, never person identities. Use
+        # the same vocabulary that retains these credits after note review.
+        if part.strip() in collective_credits():
+            flags.append(f"原文署名为“{part.strip()}”，未明确具体人物。")
+            continue
         # Explicit title tokens separate a complete name from a job title.
         # Without this split, two-character titles can resemble a spaced name.
         titled = re.match(r"^([一-鿿]{2,4})\s+((?:教授|研究员|副教授|高级工程师|正高级工程师|求是特聘教授|专职研究员|博士).*)$", part)
@@ -324,8 +334,8 @@ def detail(category, slug):
                 flags.extend(row_flags)
                 continue
             speaker_raw = row.get("报告嘉宾", row.get("讲者", ""))
-            if re.match(r"主持人[：:]", speaker_raw):
-                row["主持"] = re.sub(r"^主持人[：:]\s*", "", speaker_raw)
+            if re.match(r"主持人?[：:]", speaker_raw):
+                row["主持"] = re.sub(r"^主持人?[：:]\s*", "", speaker_raw)
                 speaker_credit = ""
             else:
                 speaker_credit = speaker_raw
@@ -334,7 +344,7 @@ def detail(category, slug):
                 "title": i18n(title), "title_status": "tbd" if "待定" in title else "confirmed",
                 "start": start, "end": end, "speakers": speakers,
                 "type": "opening" if re.search(r"开场|开幕|致辞|论坛介绍|论坛情况介绍|论坛引导发言", title) else
-                        "other" if re.search(r"圆桌|[Pp]an+el|交流与总结|论坛总结|论坛闭幕|结语|专题研讨", title) else "talk",
+                        "other" if re.search(r"圆桌|[Pp]an+el|交流讨论|交流与总结|论坛总结|论坛闭幕|结语|专题研讨", title) else "talk",
                 "abstract_status": "unknown", "extra": {"speaker_raw": speaker_raw},
             }
             if section_title:
@@ -380,6 +390,19 @@ def detail(category, slug):
                         host["photo"] = chair["photo"]
                     if chair and chair.get("affiliation_raw"):
                         host.setdefault("affiliation_raw", chair["affiliation_raw"])
+                    matches = [(key, info) for key, info in bios.items()
+                               if info["person"]["name"] == host["name"]]
+                    if len(matches) > 1:
+                        raise ValueError(f"Ambiguous host profile in {code[0]}: {host['name']}")
+                    if matches:
+                        key, info = matches[0]
+                        used_bios.add(key)
+                        if info.get("bio"):
+                            host["bio"] = info["bio"]
+                        if info["person"].get("photo"):
+                            host["photo"] = info["person"]["photo"]
+                        if info.get("report_title"):
+                            talk["extra"]["host_profile_title"] = info["report_title"]
             if not multi_day and (start < window[0] or end > window[1]):
                 row_flags.append(f"时间不一致：本报告为 {start}–{end}，超出论坛标注的 {window[0]}–{window[1]}，均按原文保留。")
             if row_flags:
@@ -603,6 +626,28 @@ def build():
             # A conference-wide date range does not specify a final's day.
             forum["description"] = schedule[0]
             forum["extra"]["schedule_raw"] = schedule[0]
+    # This competition notice has a timed final, but no team-by-team programme.
+    rust = load("pages/competition/rust-prototype-competition.html")
+    rust_fields = {}
+    for paragraph in rust.find_all("p"):
+        for label in ("决赛时间", "决赛地点"):
+            match = re.match(label + r"[：:]\s*(.+)", txt(paragraph))
+            if match:
+                rust_fields[label] = match[1]
+    final_rows = [cells for table in rust.find_all("table") for cells, header in table_rows(table)
+                  if not header and cells[0] == "现场决赛"]
+    if len(final_rows) != 1 or set(rust_fields) != {"决赛时间", "决赛地点"}:
+        raise ValueError("Missing Rust final announcement fields")
+    forum = next(f for f in forums if f["code"] == "C3")
+    forum["day_date"] = date(rust_fields["决赛时间"])
+    forum["start"], forum["end"] = time_range(rust_fields["决赛时间"], forum["flags"])
+    forum["room"] = room_name(rust_fields["决赛地点"])
+    forum["source_url"] = BASE + "#competition/rust-prototype-competition"
+    forum["extra"] = {"schedule_raw": rust_fields["决赛时间"],
+                      "location_raw": rust_fields["决赛地点"], "milestones": final_rows,
+                      "announcement_title": txt(rust.find(["h1", "h2"]))}
+    if "二层15号会议室" in rust_fields["决赛地点"] and "三层多功能厅" in final_rows[0][2]:
+        forum["flags"].append("地点不一致：通知顶部为二层15号会议室，赛事安排表为会议中心三层多功能厅（C3）；此处显示顶部地点，均按原文保留。")
     days = {}
     for cells, header in table_rows(tables[0]):
         if header:

@@ -29,8 +29,8 @@ uv run python -m unittest discover -s source/chinasoft2026
 ```
 
 The overview supplies 66 forum/competition entries and 13 conference timetable
-rows across November 5–8. The 48 linked published programmes (including restored R16) supply
-395 programme items and 53 breaks. Conference meetings are retained separately from technical forums.
+rows across November 5–8. The 52 linked published programmes (including restored R16) supply
+429 programme items and 57 breaks. Conference meetings are retained separately from technical forums.
 The homepage advertises November 6–8; the dataset includes November 5 check-in
 as published in the overview and introduction, as a normal schedule event.
 
@@ -49,7 +49,7 @@ overview block locations omit the known venue prefixes, while `extra.location_ra
 retains the full source wording. The conference venue remains available for
 the page header, calendar exports and standalone share posters.
 
-All 517 available portrait URLs have been downloaded and decoded. The October 21
+All 549 available portrait URLs have been downloaded and decoded. The October 21
 check replaces two P3/R19 speaker portraits; seven formerly retained-only R16
 resources are active again. All previously recovered P3/I3/S1 images remain
 available. No broken portrait references remain.
@@ -61,10 +61,11 @@ local file. Forum profiles, chairs and committee cards supply the identity;
 no image is assigned by filename or guessed across unrelated people. The
 service worker caches portraits on demand instead of precaching every photo.
 
-Unpublished programmes have `agenda_status: not_published`. Twelve newly linked
-October 21 pages explicitly contain only a pending-content notice. The adapter
-recognizes that template without inventing a programme. A guarded association
-retains E2's mismatched source code E1 without overwriting the published E1 forum.
+Unpublished programmes have `agenda_status: not_published`. Nine linked pages
+still contain only a pending-content notice after the October 21 evening update.
+The adapter recognizes that template without inventing a programme. E2 now
+publishes its correct code; its old mismatched placeholder association remains
+in resolved curation history without a displayed warning.
 The overview's four mislabeled table-header cells are corrected directly in
 curated HTML; original bytes remain in the observation archive. C5/C2 final dates
 come from their competition announcements. E6's date, room and window come
@@ -95,7 +96,7 @@ remain valid followed agenda items before individual reports are announced.
 Explicit `person.extra.identity_key` values separate distinct same-name
 source records; the viewer never infers identity from affiliation alone.
 
-`enrichment.json` supplies 365 AI summaries/topic classifications, covering all
+`enrichment.json` supplies 395 AI summaries/topic classifications, covering all
 substantive reports and meaningful panels. They live only in `enrichment` and
 respect the global AI switch. Each entry records its source title so an agenda
 reordering cannot silently attach annotations to the wrong report. The 339
@@ -141,3 +142,15 @@ abstracts), competition announcements, the education-code changes, updated
 R23/P4 report content and restored portraits. The adapter recognizes the source's
 new dinner wording and forum-suffix variations; no shared application code is
 changed. See the latest review for exact changes and provisional competition dates.
+
+The October 21 evening import adds R34/E2/I5/S3 (34 programme items, four
+breaks, 19 abstracts, 32 portraits) and C3's timed final with its source room
+conflict. There are now 52 published programmes, 429 items and 549 portraits.
+The new committee-meeting index is unavailable; the check is recorded as
+incomplete without advancing the successful baseline. Explicit moderator cards
+now attach to hosts, and reviewed collective credits are excluded before person
+parsing. One-off table typography is corrected only in curated HTML.
+
+[Daily host automation](automation/README.md) runs at 18:00 Asia/Shanghai using
+isolated worktrees and branches, preserves snapshots, updates the open PR, and
+saves a Chinese report. No merge or release is automated.

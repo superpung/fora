@@ -1,0 +1,1736 @@
+--- before/index.html
++++ after/index.html
+@@ -61,15 +61,16 @@
+           <li class="has-submenu">
+             <a href="javascript:void(0)">竞赛通知</a>
+             <ul class="submenu">
+-              <!-- <li><a href="#" onclick="loadPage('competition/demo')">竞赛信息持续更新中</a></li> -->
++              <li><a href="#" onclick="loadPage('competition/theorem-proving')">定理证明竞赛</a></li>
++              <li><a href="#" onclick="loadPage('competition/harmony-ai')">AI辅助研发创新大赛（鸿蒙杯）</a></li>
++              <li><a href="#" onclick="loadPage('competition/rust-prototype-competition')">Rust软件原型开发竞赛</a></li>
+               <li><a href="#" onclick="loadPage('competition/auto-software-repair')">软件自动修复竞赛</a></li>
+-              <!-- <li><a href="#" onclick="loadPage('competition/heterogeneous-systems-programming')">基于异构算力的系统编程竞赛</a></li>
+-              <li><a href="#" onclick="loadPage('competition/theorem-proving')">定理证明竞赛</a></li> -->
+-              <li><a href="#" onclick="loadPage('competition/cangjie')">2026“仓颉杯”智能编程大赛</a></li>
+-              <li><a href="#" onclick="loadPage('competition/harmony-ai')">2026 AI辅助研发创新大赛（鸿蒙杯）</a></li>
+-              <li><a href="#" onclick="loadPage('competition/theorem-proving')">ChinaSoft2026定理证明竞赛</a></li>
+-
+-              <!-- <li><a href="#" onclick="loadPage('competition/auto-software-repair')">第三届软件自动修复竞赛</a></li> -->
++              <li><a href="#" onclick="loadPage('competition/cangjie')">仓颉杯智能编程大赛</a></li>
++
++
++
++
++
+ 
+             </ul>
+           </li>
+@@ -85,8 +86,9 @@
+               <li><a href="#" onclick="loadPage('agenda/industry-forum/index')">工业论坛</a></li>
+               <li><a href="#" onclick="loadPage('agenda/education-forum/index')">教育论坛</a></li>
+               <li><a href="#" onclick="loadPage('agenda/regular-forum/index')">常设论坛</a></li>
+-              <!-- <li><a href="#" onclick="loadPage('agenda/joint-events/index')">联合活动</a></li>
+-              <li><a href="#" onclick="loadPage('agenda/competition/index')">竞赛</a></li> -->
++              <li><a href="#" onclick="loadPage('agenda/committee-meeting/index')">专委会议</a></li>
++              <li><a href="#" onclick="loadPage('agenda/competition/index')">竞赛</a></li>
++              <!-- <li><a href="#" onclick="loadPage('agenda/joint-events/index')">联合活动</a></li> -->
+             </ul>
+           </li>
+ 
+--- before/pages/agenda/academic-forum/index.html
++++ after/pages/agenda/academic-forum/index.html
+@@ -120,7 +120,7 @@
+                                         onclick="loadAgenda('academic-forum', 'super-intelligence-software-stack')">超智融合时代的软件栈重构与生态共建</a>
+                         </li>
+                         <li><a href="#agenda/academic-forum/ubiquitous-os-open-source" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'ubiquitous-os-open-source')">泛在操作系统开源应用</a>
++                                        onclick="loadAgenda('academic-forum', 'ubiquitous-os-open-source')">泛在操作系统应用发展论坛</a>
+                         </li>
+                         <li><a href="#agenda/academic-forum/harmonyos-talent" class="sidebar-item"
+                                         onclick="loadAgenda('academic-forum', 'harmonyos-talent')">鸿蒙高校人才发展</a>
+--- before/pages/agenda/academic-forum/templates/neuro-symbolic-fusion.html
++++ after/pages/agenda/academic-forum/templates/neuro-symbolic-fusion.html
+@@ -23,7 +23,7 @@
+         <h3>三、论坛安排</h3>
+         <h4>日程安排：</h4>
+         <p><strong>时间：</strong>2026年11月08日，08:50~12:00</p>
+-        <p><strong>地点：</strong>天津市社会山国际会议中心酒店，三层2号多功能厅</p>
++        <p><strong>地点：</strong>天津市社会山国际会议中心酒店三层2号多功能厅</p>
+ 
+         <h4>论坛议程：</h4>
+         <table class="forum-table">
+@@ -157,7 +157,8 @@
+                     <img src="./images/academic-forum/学术论坛v2/卜磊.png" alt="卜磊头像"
+                         onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+-                <p><strong>简介：</strong>卜磊，教授，博士生导师，现任南京大学软件学院副院长，兼任CCF系统软件专委副主任（执行）；主要研究领域涉及可信软件、软件工程、形式化方法等方面，部分创新性工作发表在相关领域重要期刊与会议如《中国科学》、TCAD、TC、TOSEM、TDSC、CAV、RTSS、ICSE、DAC等上；入选高校计算机专业优秀教师奖励计划、CCF-IEEE
++                <p><strong>简介：</strong>卜磊，教授，博士生导师，现任南京大学软件学院副院长，兼任 CCF
++                    系统软件专委副主任（执行）；主要研究领域涉及可信软件、软件工程、形式化方法等方面，部分创新性工作发表在相关领域重要期刊与会议如《中国科学》、TCAD、TC、TOSEM、TDSC、CAV、RTSS、ICSE、DAC等上；入选高校计算机专业优秀教师奖励计划、CCF-IEEE
+                     CS青年科学家奖、中创软件人才奖、NASAC青年软件创新奖等奖项，主持基金委青A、重点、国际合作等项目多项。</p>
+             </div>
+         </div>
+@@ -168,7 +169,8 @@
+                     <img src="./images/academic-forum/学术论坛v2/陈立前.png" alt="陈立前头像"
+                         onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+-                <p><strong>简介：</strong>陈立前，国防科技大学计算机学院教授、博士生导师，CCF形式化方法专委会常务委员。主要研究方向为软件分析验证、软件自动修复、神经网络验证。研究成果发表在TOSEM、TSE、TDSC、TCAD、POPL、OOPSLA、CAV、FSE、ICSE、ASE、ISSTA、CCS等程序语言与软件工程领域重要国际期刊和会议上，获ACM
++                <p><strong>简介：</strong>陈立前，国防科技大学计算机学院教授、博士生导师，CCF
++                    形式化方法专委会常务委员。主要研究方向为软件分析验证、软件自动修复、神经网络验证。研究成果发表在TOSEM、TSE、TDSC、TCAD、POPL、OOPSLA、CAV、FSE、ICSE、ASE、ISSTA、CCS等程序语言与软件工程领域重要国际期刊和会议上，获ACM
+                     SIGSOFT杰出论文奖2次，获省部级科技进步一等奖2项，部分成果已在航天、国防等领域重大工程中应用。</p>
+             </div>
+         </div>
+--- before/pages/agenda/academic-forum/templates/ubiquitous-os-open-source.html
++++ after/pages/agenda/academic-forum/templates/ubiquitous-os-open-source.html
+@@ -1,10 +1,195 @@
+ <div class="container">
+ 
+-    <h2 class="section-title">泛在操作系统开源应用</h2>
++    <h2 class="section-title">泛在操作系统应用发展论坛</h2>
+     <div class="section-title-en">学术论坛 R34</div>
+ 
+-    <div class="update-notice" style="text-align: center; margin: 40px 0;">
+-        <p>内容正在更新中，敬请关注。</p>
+-    </div>
++    <section class="forum-section">
++        <h3>一、论坛介绍</h3>
++        <p>本论坛由CCF泛在操作系统开放社区与CCF系统软件专委会联合主办，CCF泛在操作系统开放社区技术委员会承办，中电标协工委会等协办。主要围绕泛在操作系统的技术演进趋势，结合社区孵化项目与应用，探讨泛在操作系统的技术演进、开源项目孵化、应用案例、人才培养等话题，关注人工智能技术对操作系统技术和人才培养的影响，促进泛在操作系统的发展与应用。
++        </p>
++    </section>
++
++    <section class="forum-section">
++        <h3>二、论坛组织委员会</h3>
++        <ul class="committee-list">
++            <li><span class="member-name">郭耀</span><span class="member-unit">（北京大学计算机学院）</span></li>
++            <li><span class="member-name">刘志宏</span><span class="member-unit">（中国电子技术标准化研究院）</span></li>
++        </ul>
++    </section>
++
++    <section class="forum-section">
++        <h3>三、论坛安排</h3>
++        <h4>日程安排：</h4>
++        <p><strong>时间：</strong>2026年11月7日，15:20-18:20</p>
++        <p><strong>地点：</strong>天津市社会山国际会议中心酒店，三层29号会议室</p>
++
++        <h4>论坛议程：</h4>
++        <table class="forum-table">
++            <thead>
++                <tr>
++                    <th>时间</th>
++                    <th>议 题</th>
++                    <th>报告嘉宾</th>
++                </tr>
++            </thead>
++            <tbody>
++                <tr>
++                    <td style="white-space: nowrap;">15:20-15:30</td>
++                    <td>论坛开场、致辞</td>
++                    <td>金海 副理事长<br>梅宏 院士</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">15:30-15:50</td>
++                    <td>工作报告：CCF泛在操作系统开放社区工作进展</td>
++                    <td>郭耀<br>北京大学</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">15:50-16:10</td>
++                    <td>技术报告：Robonix：一种智能体式具身智能操作系统</td>
++                    <td>韩喻泷<br>北京大学</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">16:10-16:30</td>
++                    <td>技术报告：分布式异构多机协同机器人操作系统M-Robots</td>
++                    <td>吴依伦<br>深开鸿</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">16:30-16:50</td>
++                    <td>茶歇</td>
++                    <td>-</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">16:50-17:10</td>
++                    <td>技术报告：物模型白皮书：面向 AI 时代的泛在物联网标准实践</td>
++                    <td>蔺冰<br>小米</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">17:10-17:30</td>
++                    <td>技术报告：矽璓工业物联操作系统在习酒生产数字化中的应用实践</td>
++                    <td>刘振君<br>习酒集团</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">17:30-18:20</td>
++                    <td>圆桌讨论：人工智能+操作系统</td>
++                    <td>主持人：李震宁<br>麒麟软件</td>
++                </tr>
++            </tbody>
++        </table>
++    </section>
++
++    <section class="forum-section">
++        <h3>四、论坛报告嘉宾简介</h3>
++        <div class="speaker-member">
++            <h4>1. 报告人：蔺冰 小米科技有限责任公司</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛v2/蔺冰.png" alt="蔺冰头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>物模型白皮书：面向 AI 时代的泛在物联网标准实践</p>
++                    <p><strong>摘要：</strong>随着大语言模型与智能体技术的发展，物联网正从"规模连接"走向"价值创造"，但设备异构、协议碎片化、生态不互通等问题长期制约着全屋智能的体验与开发效率，也让海量设备难以被机器与
++                        AI 直接发现和调用。本报告聚焦作为"软件定义物"核心抓手的物模型（Thing Model）：它以标准化方式描述设备的身份、属性、方法与事件，并通过
++                        Product-Module-Service-属性/方法/事件（P/A/E）分层架构与动态服务设计，解决设备异构与交互不统一问题，使异构设备能够被操作系统、大模型与 AI
++                        智能体安全可信地发现、理解、调用与编排。报告将结合小米米家生态超十亿台设备、覆盖 200 余品类、3000
++                        余项功能的工程实践，分享《智能家居互联互通》物模型国家强制性标准的制定进展（小米为主笔单位），并展望物模型从静态设备描述演进为面向泛在操作系统与 AI
++                        智能体可直接消费的"能力契约"的技术趋势，探讨其在支撑跨行业、跨场景全域协同与群智涌现中的关键作用。</p>
++                    <p><strong>简介：</strong>蔺冰，小米 IoT
++                        平台研发负责人，长期从事物联网平台、设备互联互通与物模型体系的研发与工程落地，主导小米米家生态超十亿台设备的接入架构与物模型标准化工作。深度参与《智能家居互联互通》物模型国家强制性标准的制定，以及
++                        CCF 泛在操作系统开放社区《物联网设备模型（Thing Model）技术白皮书》的编写。主要关注方向包括物联网平台架构、设备能力建模，以及面向 AI 智能体的设备互操作与能力编排。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>2. 报告人：吴依伦 深开鸿</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛v2/吴依伦.png" alt="吴依伦头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>分布式异构多机协同机器人操作系统M-Robots</p>
++                    <p><strong>摘要：</strong>随着机器人从单体智能走向群体智能、从固定任务执行迈向物理AI，传统以本体为中心的感知与计算方式面临功耗较高、资源受限及异构设备协同困难等挑战。本报告介绍基于开源鸿蒙（OpenHarmony）的分布式异构多机协同机器人操作系统M-Robots：以"空间柔性机器人"为设计理念，旨在通过确定性实时互联、异构设备时空参考系统及分布式资源调度，实现机器人与周边设备间的感知、计算、存储和执行资源共享，探索"空间感知、空间计算与轻量本体"相结合的物理AI实现路径。报告还将介绍M-Robots的系统架构、混合部署与硬实时保障等关键技术方向，以及与ROS、Dora等开源生态的兼容、技术SIG布局和社区共建计划。
++                    </p>
++                    <p><strong>简介：</strong>吴依伦，深开鸿未来研究院研究工程师，博士毕业于圣彼得堡国立大学，主要研究非线性系统、微分博弈、VLA、边缘计算、轻量世界模型的表征与规划控制。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>3. 报告人：韩喻泷 北京大学计算机学院博士生</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛v2/韩喻泷.png" alt="韩喻泷头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>Robonix：一种智能体式具身智能操作系统</p>
++                    <p><strong>摘要：</strong>近年来，具身智能主要依靠视觉-语言-动作（VLA）模型等大模型驱动硬件，现有模型多面向短时、单一用途的技能训练，推广至长时、多用途任务所需的数据与算力难以承受；所学技能亦依赖特定本体的传感器、执行器与控制接口，跨硬件迁移成本较高。本报告介绍矽望（Syswonder）社区开源的具身智能操作系统Robonix：硬件原语、技能与服务均通过标准化能力接口对外提供功能；大语言模型（LLM）依据用户的自然语言任务生成机器人任务描述语言（RTDL）程序，操作系统按能力约定对程序进行校验后执行，并检验执行结果。报告还将介绍Robonix在多种机器人与仿真环境中的适配实践、生态建设及后续研究计划。
++                    </p>
++                    <p><strong>简介：</strong>韩喻泷，北京大学计算机学院博士生，矽望（Syswonder）泛在操作系统社区成员，《具身智能操作系统技术白皮书》作者之一。主要研究具身智能操作系统与智能体操作系统（Agent
++                        OS），关注资源隔离、系统抽象与运行时调度。现负责具身智能操作系统Robonix的架构设计与实现，并担任矽望社区开源Type-1虚拟机监控器hvisor的龙芯（LoongArch）架构核心维护者。
++                    </p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>4. 报告人：刘振君 习酒集团</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛v2/刘振君.png" alt="刘振君头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>矽璓工业物联操作系统在习酒生产数字化中的应用实践</p>
++                    <p><strong>摘要：</strong>针对酱香型白酒生产数据采集难、关联分析不足等问题，贵州习酒联合北京大学，基于矽璓工业物联操作系统（XiUOS），在制酒、制曲、基酒贮存等环节部署智能感知设备，实现发酵温度、环境参数等生产数据的自动采集、实时监测与可视化分析。本报告将结合实际生产场景，分享系统建设与应用成效，并探讨生产数据在工艺优化、安全预警及生产预测大模型等方面的应用前景，为传统酿造产业智能化转型提供实践参考。
++                    </p>
++                    <p><strong>简介：</strong>刘振君，北京大学在读博士，贵州省"百千万人才引进计划"优秀（青年）人才，贵州省制造业数字化转型专家。现任贵州习酒股份有限公司数字与信息化中心副主任、贵州习酒投资控股集团有限责任公司数字与信息化管理部副主管，曾任职于百度、迅雷网心、腾讯音乐等互联网企业，兼具互联网技术研发与大型制造企业数字化转型实践经验，长期致力于智能制造、工业互联网、人工智能、大数据、云计算等方向技术研究与产业应用。
++                    </p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>5. 圆桌论坛主持人：李震宁 麒麟软件</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛v2/李震宁.png" alt="李震宁头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>圆桌论坛：人工智能时代，操作系统的挑战和机遇</p>
++                    <p><strong>主持人简介：</strong>李震宁，麒麟软件教授级高级工程师、上海市基础软件工程中心主任、主要研究方向：操作系统、开源软件等。中国基础软件领域服务25年，具有丰富的操作系统实施部署和社区运营经验。CCF系统软件专委会委员、
++                        CCF开源发展技术委员会执行委员、泛在操作系统开放社区应用发展工作组组长、IEEE电力安全专委会供应链组长、开放原子开源基金会TOC导师。</p>
++                </div>
++            </div>
++        </div>
++    </section>
++
++    <section class="forum-section">
++        <h3>五、论坛组织委员会简介</h3>
++        <div class="committee-member">
++            <h4>1. 论坛组委会：郭耀 教授</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/学术论坛v2/郭耀.png" alt="郭耀头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>郭耀， 北京大学博雅特聘教授， 计算机学院副院长，CCF泛在操作系统开放社区技术委员会主任。 主要研究方向包括操作系统、移动计算、 隐私保护与系统安全等。
++                    主持和承担了国家重点研发计划、 国家自然科学基金重点和面上项目、 国家重点研发计划课题、 863 等 10 余项项国家级科研项目。 2021 年起， 担任" 101 计划"
++                    工作组秘书长和课程建设组负责人。 在CCF A 类等重要会议期刊发表论文 100 余篇。 曾获 ISSTA 2023 杰出论文奖、 WWW 2020 最佳学生论文奖、 UbiComp 2016
++                    最佳论文提名奖、 国家技术发明一等奖、 电子学会技术发明特等奖、 教育部科技进步一等奖、 北京市教学成果一等奖等。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>2. 论坛组委会：刘志宏 高级工程师</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/学术论坛v2/刘志宏.png" alt="刘志宏头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>刘志宏，中国电子技术标准化研究院高级工程师，CCF泛在操作系统开放社区副秘书长，中国电子工业标准化技术协会信息技术服务分会执行会长。曾长期担任中电标协秘书长，深耕电子信息领域标准研究、标准化管理及行业支撑服务，具有丰富的社会团体运营管理和产业生态培育发展经验。
++                </p>
++            </div>
++        </div>
++    </section>
+ 
+ </div>--- before/pages/agenda/competition/index.html
++++ after/pages/agenda/competition/index.html
+@@ -0,0 +1,42 @@
++<div class="banner">
++    <img src="images/logo/banner.jpg" alt="Background" class="banner-background" />
++</div>
++
++<!--插入CSS文件-->
++<link rel="stylesheet" type="text/css" href="css/index.css">
++<link rel="stylesheet" type="text/css" href="./css/agenda.css">
++
++<!-- 插入JavaScript文件 -->
++<script src="./js/agenda.js"></script>
++
++
++<div class="forum-container">
++    <!-- 左侧导航栏 -->
++    <div class="sidebar">
++        <ul>
++         
++            <li><a href="#agenda/competition/rust-prototype-competition" class="sidebar-item"
++                    onclick="loadAgenda('competition', 'rust-prototype-competition')">2026年Rust软件原型开发竞赛</a></li>
++        </ul>
++    </div>
++
++    <!-- 右侧内容区 -->
++    <div id="agenda-content" class="agenda-content">
++
++
++        <div class="container">
++            <h2 class="section-title">竞赛</h2>
++            <div class="section-title-en">Competition</div>
++
++            <p>请从左侧选择感兴趣的分论坛主题查看详情。</p>
++
++
++        </div>
++
++    </div>
++
++
++
++</div>
++
++<p style="margin-bottom: 10rem;"></p>--- before/pages/agenda/competition/templates/rust-prototype-competition.html
++++ after/pages/agenda/competition/templates/rust-prototype-competition.html
+@@ -0,0 +1,276 @@
++<div class="container">
++
++    <h2 class="section-title">2026年Rust软件原型开发竞赛</h2>
++    <div class="section-title-en">竞赛通知及日程安排</div>
++
++    <section class="forum-section">
++        <p>为促进Rust语言在高校教学、科研训练和工程实践中的应用，推动高校学生参与软件开发与开源协作，举办2026年Rust软件原型开发竞赛。竞赛以可构建、可运行、可演示的软件原型为主要成果，面向大专院校在读本科生和研究生开放。有关事项通知如下。
++        </p>
++        <p style="text-indent: 0;"><strong>决赛时间：</strong>2026年11月7日 15:20—18:20</p>
++        <p style="text-indent: 0;"><strong>决赛地点：</strong>天津社会山国际会议中心酒店，二层15号会议室</p>
++    </section>
++
++    <section class="forum-section">
++        <h3>一 竞赛内容</h3>
++        <p>参赛者以Rust为主要开发语言，自主选题开展软件原型设计、实现与展示。项目方向包括基础软件、系统工具、开发者工具、云原生组件、嵌入式与物联网、数据处理、安全可信软件、教育科研工具及行业应用等。成果可以是应用、库、框架、插件、命令行工具、系统服务，也可以是已有开源项目的功能扩展或工程优化。
++        </p>
++        <p>Rust须在核心功能、关键性能路径、可靠性保障或安全边界中发挥实质作用。允许合理使用其他语言组件，但仅以少量Rust代码包装其他语言项目的作品，原则上不符合竞赛定位。评审重点关注技术实现、工程质量、运行验证及应用价值。
++        </p>
++    </section>
++
++    <section class="forum-section">
++        <h3>二 赛制设置</h3>
++        <p>竞赛分为初赛与决赛。初赛根据参赛稿件、项目仓库、文档及运行结果进行评审，确定决赛入围名单。决赛根据最终提交版本，通过现场项目陈述、运行演示和问答进行评审。
++        </p>
++        <p>初赛与决赛均采用百分制，由客观评分50分和评委综合评分50分组成。初赛成绩仅用于入围，不带入决赛。决赛允许在初赛基础上完善项目，并提交主要改动说明。
++        </p>
++    </section>
++
++    <section class="forum-section">
++        <h3>三 赛事安排</h3>
++        <p>以下日期均为2026年，时间均为北京时间。</p>
++        <table class="forum-table">
++            <thead>
++                <tr>
++                    <th>阶段</th>
++                    <th>时间</th>
++                    <th>安排</th>
++                </tr>
++            </thead>
++            <tbody>
++                <tr>
++                    <td>启动发布</td>
++                    <td style="white-space: nowrap;">9月1日</td>
++                    <td>发布竞赛通知，开放报名。</td>
++                </tr>
++                <tr>
++                    <td>报名与开发</td>
++                    <td style="white-space: nowrap;">9月1日至10月31日</td>
++                    <td>提交报名信息，开展项目开发。</td>
++                </tr>
++                <tr>
++                    <td>初赛投稿截止</td>
++                    <td style="white-space: nowrap;">10月31日24:00</td>
++                    <td>通过邮件提交完整初赛材料。</td>
++                </tr>
++                <tr>
++                    <td>初赛评审</td>
++                    <td style="white-space: nowrap;">11月1日至3日</td>
++                    <td>审查材料，评审项目及运行结果。</td>
++                </tr>
++                <tr>
++                    <td>入围通知</td>
++                    <td style="white-space: nowrap;">11月4日</td>
++                    <td>通知入围队伍及决赛准备事项。</td>
++                </tr>
++                <tr>
++                    <td>决赛准备</td>
++                    <td style="white-space: nowrap;">11月4日至5日</td>
++                    <td>提交最终版本及演示材料，确认到场人员与设备需求。</td>
++                </tr>
++                <tr>
++                    <td>现场决赛</td>
++                    <td style="white-space: nowrap;">11月7日<br>15:20—18:20</td>
++                    <td>在天津社会山国际会议中心酒店会议中心三层多功能厅（C3）举行路演与答辩。</td>
++                </tr>
++                <tr>
++                    <td>颁奖活动</td>
++                    <td style="white-space: nowrap;">11月8日下午</td>
++                    <td>拟在ChinaSoft 2026闭幕式举行。</td>
++                </tr>
++                <tr>
++                    <td>结果公示</td>
++                    <td style="white-space: nowrap;">评审完成后</td>
++                    <td>拟获奖名单及成绩公示不少于3个工作日。</td>
++                </tr>
++            </tbody>
++        </table>
++        <p>决赛材料提交截止时刻、签到时间及出场顺序以组委会通知为准。颁奖时尚未完成公示或争议复核的，相关证书和奖励待结果确认后发放。
++        </p>
++    </section>
++
++    <section class="forum-section">
++        <h3>四 报名参赛</h3>
++        <p>每支队伍由1至6名在读学生组成，鼓励个人独立参赛，允许跨学校、跨专业、跨年级组队。每队可配备0—2名指导教师，指导教师不计入队员人数，教师不能作为队员参赛。每名学生只能加入一支队伍。队员名单在初赛投稿截止时确定，此后不得新增或替换队员。
++        </p>
++        <p>队长按要求提交队伍及项目名称、学生成员名单、学籍、联系方式和分工等信息，并填写指导教师信息（如有）。报名表与参赛材料统一通过邮件提交。跨校队伍在邮件主题中使用队长所在学校名称，报名表中注明各成员所在学校。
++        </p>
++        <p style="text-indent: 0;">报名表：<a href="https://docs.qq.com/sheet/DVHFCcXZDcVdscEpW?tab=000002" target="_blank">Rust原型竞赛报名表</a></p>
++        <p>每支入围队伍须至少有1名队员到决赛现场参加路演与答辩。
++        </p>
++    </section>
++
++    <section class="forum-section">
++        <h3>五 开发要求及提交材料</h3>
++        <h4>必交材料与格式</h4>
++        <p>初赛通过邮件投稿，至少提交以下三项。项目URL写入邮件正文，PDF稿件和报名表作为邮件附件提交。
++        </p>
++        <table class="forum-table">
++            <thead>
++                <tr>
++                    <th>必交材料</th>
++                    <th>内容与格式</th>
++                </tr>
++            </thead>
++            <tbody>
++                <tr>
++                    <td style="white-space: nowrap;">参赛PDF稿件</td>
++                    <td>中文，不少于6页，尽可能不多于12页。包括项目简介、研发背景、核心功能、技术实现、效果评估、相关工作及Rust核心作用。提交可正常阅读的PDF文件，避免大量堆放源代码。</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">项目URL地址</td>
++                    <td>提供可访问的项目代码仓库URL，并注明用于评审的完整commit ID或固定版本标签。项目主页、在线演示地址可另附，不能替代代码仓库地址。</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">报名表</td>
++                    <td>使用上述报名表填写本队信息，将本队报名内容导出或另存为PDF或XLSX附件。邮件附件应包含本队完整报名信息。</td>
++                </tr>
++            </tbody>
++        </table>
++        <p>项目仓库须提供与评审版本一致的源码、README、开源许可证及第三方来源说明、设计和使用说明、贡献指南、开发提交历史，以及至少1个覆盖核心功能的最小运行用例。README应列明环境与依赖、构建运行命令、用例入口、输入及预期输出或断言；上述技术材料通过仓库提供，无须重复作为邮件附件。
++        </p>
++        <h4>邮件提交规范</h4>
++        <p style="text-indent: 0;"><strong>收件邮箱：</strong>Rust_China_Contest@163.com</p>
++        <p style="text-indent: 0;"><strong>初赛邮件主题：</strong>【Rust竞赛投稿】学校名称-队伍名称-项目名称</p>
++        <p style="text-indent: 0;"><strong>决赛邮件主题：</strong>【Rust竞赛决赛材料】学校名称-队伍名称-项目名称</p>
++        <p>邮件正文依次写明：学校、队伍名称、项目名称、学生成员名单、指导教师（如有）、联系人姓名、联系电话、联系邮箱、项目仓库URL、评审版本（commit ID或固定版本标签）、附件清单；有特殊运行需求或未开源部分的，另作简要说明。
++        </p>
++        <p style="text-indent: 0;"><strong>附件命名：</strong><br>
++            学校名称_队伍名称_项目名称_参赛稿件.pdf<br>
++            学校名称_队伍名称_项目名称_报名表.pdf（或.xlsx）
++        </p>
++        <p>截止前更新材料时，在原邮件主题末尾加“【更新】”，重新发送完整材料，并在正文注明更新内容。以截止前最后一次完整提交的版本为准。
++        </p>
++        <h4>决赛补充材料</h4>
++        <p>入围队伍通过邮件提交最终版PDF稿件、项目URL及固定版本、路演PPT（PPTX或PDF格式），并在正文说明主要改动、到场队员姓名及演示设备需求。附件沿用上述命名方式，以“决赛稿件”或“路演PPT”标明材料类型。报名信息未变化的，无须重复提交报名表。
++        </p>
++    </section>
++
++    <section class="forum-section">
++        <h3>六 考核实施与决赛流程</h3>
++        <p>组委会审核参赛资格及材料完整性，依据项目文档、代码和运行结果开展初赛评审。入围队伍按通知完成决赛材料提交与现场准备。
++        </p>
++        <p>决赛每队共15分钟，其中项目陈述与演示10分钟，评委问答5分钟。每队至少1名队员现场参加路演与答辩。
++        </p>
++        <table class="forum-table">
++            <thead>
++                <tr>
++                    <th>环节</th>
++                    <th>时长</th>
++                    <th>主要内容</th>
++                </tr>
++            </thead>
++            <tbody>
++                <tr>
++                    <td>项目陈述与演示</td>
++                    <td style="white-space: nowrap;">每队10分钟</td>
++                    <td>介绍项目目标、技术方案及Rust核心作用，展示核心功能的真实运行过程。</td>
++                </tr>
++                <tr>
++                    <td>评委问答</td>
++                    <td style="white-space: nowrap;">每队5分钟</td>
++                    <td>围绕技术实现、工程验证及应用价值进行答辩。</td>
++                </tr>
++            </tbody>
++        </table>
++        <p>到场队员按公布的顺序参加路演与答辩。评委结合最终版本、现场展示及问答独立评分，由组委会汇总结果。涉及离线演示或特殊设备的，应在决赛前向组委会说明。
++        </p>
++    </section>
++
++    <section class="forum-section">
++        <h3>七 考核标准与成绩计算</h3>
++        <p>初赛与决赛采用相同的评分维度和分值，满分100分。</p>
++        <table class="forum-table">
++            <thead>
++                <tr>
++                    <th>评分类型</th>
++                    <th>评价维度</th>
++                    <th>分值</th>
++                </tr>
++            </thead>
++            <tbody>
++                <tr>
++                    <td rowspan="4">客观评分<br>50分</td>
++                    <td>开源说明文档完整性</td>
++                    <td>10分</td>
++                </tr>
++                <tr>
++                    <td>项目维护与提交历史</td>
++                    <td>10分</td>
++                </tr>
++                <tr>
++                    <td>最小运行用例</td>
++                    <td>20分</td>
++                </tr>
++                <tr>
++                    <td>README清晰完整</td>
++                    <td>10分</td>
++                </tr>
++                <tr>
++                    <td rowspan="4">评委综合评分<br>50分</td>
++                    <td>Rust技术深度与实现质量</td>
++                    <td>20分</td>
++                </tr>
++                <tr>
++                    <td>核心功能与工程验证</td>
++                    <td>15分</td>
++                </tr>
++                <tr>
++                    <td>技术方案与新增贡献</td>
++                    <td>10分</td>
++                </tr>
++                <tr>
++                    <td>应用场景与使用价值</td>
++                    <td>5分</td>
++                </tr>
++            </tbody>
++        </table>
++        <p>总成绩＝客观评分＋有效评委综合评分的算术平均值。
++        </p>
++        <p>每个项目由不少于3名无利益冲突的有效评委独立评分，成绩保留两位小数。决赛重新评分；同分时依次比较客观评分、最小运行用例、项目维护与提交历史得分，仍相同的列为并列。
++        </p>
++    </section>
++
++    <section class="forum-section">
++        <h3>八 人工智能工具使用及过程真实性</h3>
++        <p>允许合理使用AI工具。队伍须在稿件或仓库中简要说明所用工具、使用范围及人工审查方式；未使用的明确注明。参赛队伍对提交成果及演示内容负责，开发记录、测试数据和实验结果须真实，不得伪造或冒用。
++        </p>
++    </section>
++
++    <section class="forum-section">
++        <h3>九 奖项设置及结果公示</h3>
++        <p>竞赛设置一等奖、二等奖、三等奖和优胜奖，具体名额及奖励形式在决赛前公布。拟于2026年11月8日下午ChinaSoft 2026闭幕式开展颁奖活动，并结合实际资源为优秀项目提供社区孵化、技术指导、展示交流等支持。
++        </p>
++        <p>拟获奖名单及成绩公示不少于3个工作日。队伍如有异议，可通过投稿与咨询邮箱提交事实与依据，由组委会组织复核；公示无异议或复核完成后确认获奖结果并发放证书和奖励。
++        </p>
++    </section>
++
++    <section class="forum-section">
++        <h3>十 成果权益与学术诚信</h3>
++        <p>参赛者保留作品著作权，授予组委会非独占的评审、展示和宣传使用权。成果原则上开源；确有合理原因不能全部开源的，应事先说明并提供可供评审的材料。使用第三方代码、数据或素材的，须注明来源并遵守相应许可；基于既有项目开发的，须说明本次新增内容。
++        </p>
++        <p>参赛材料应与实际成果一致，不得抄袭、代做、冒用成果或伪造开发及运行记录。对涉嫌违规的情况，组委会将听取说明并组织复核；查实严重违规的，可取消参赛或获奖资格。
++        </p>
++    </section>
++
++    <section class="forum-section">
++        <h3>十一 竞赛组织</h3>
++        <p style="text-indent: 0;"><strong>主办单位：</strong>曙光信息产业股份有限公司（中科曙光）</p>
++        <p style="text-indent: 0;"><strong>承办单位：</strong>南京大学计算机学院</p>
++        <p style="text-indent: 0;"><strong>协办单位：</strong>华为2012软件工程与开源实验室、Rust编程语言与应用虚拟教研室、开放原子开源基金会旋武社区教育工作组</p>
++        <p>组委会统筹赛事组织、材料收集、现场安排与结果公示，评审委员会负责竞赛评审。评审实行利益冲突回避。
++        </p>
++    </section>
++
++    <section class="forum-section">
++        <h3>十二 报名渠道及联系方式</h3>
++        <p style="text-indent: 0;">报名表：<a href="https://docs.qq.com/sheet/DVHFCcXZDcVdscEpW?tab=000002" target="_blank">Rust原型竞赛报名表</a></p>
++        <p style="text-indent: 0;"><strong>投稿与咨询邮箱：</strong>Rust_China_Contest@163.com</p>
++        <p style="text-indent: 0;"><strong>联系人：</strong>燕老师</p>
++        <p style="text-indent: 0;"><strong>参赛选手交流QQ群：</strong>1044822438</p>
++        <p>报名和参赛材料统一通过邮件提交。后续赛事通知、决赛安排及公示信息通过邮件和参赛选手交流QQ群发布。未尽事宜由组委会另行通知。
++        </p>
++        <p style="text-indent: 0;"><strong>Rust软件原型开发竞赛组委会</strong></p>
++    </section>
++
++</div>--- before/pages/agenda/education-forum/index.html
++++ after/pages/agenda/education-forum/index.html
+@@ -25,13 +25,15 @@
+     <div class="sidebar">
+         <ul>
+ 
+-            <li><a href="#agenda/education-forum/system-software-education" class="sidebar-item"
+-                    onclick="loadAgenda('education-forum', 'system-software-education')">系统软件教育</a>
+-            </li>
+-
+             <li><a href="#agenda/education-forum/software-engineering" class="sidebar-item"
+                     onclick="loadAgenda('education-forum', 'software-engineering')">软件工程教育</a>
+             </li>
++
++            <li><a href="#agenda/education-forum/system-software-education" class="sidebar-item"
++                    onclick="loadAgenda('education-forum', 'system-software-education')">系统软件教育论坛</a>
++            </li>
++
++
+ 
+             <li><a href="#agenda/education-forum/formal-methods" class="sidebar-item"
+                     onclick="loadAgenda('education-forum', 'formal-methods')">形式化方法教育</a></li>
+--- before/pages/agenda/education-forum/templates/formal-methods.html
++++ after/pages/agenda/education-forum/templates/formal-methods.html
+@@ -13,7 +13,8 @@
+ 
+     <section class="forum-section">
+         <h3>一、论坛背景</h3>
+-        <p>形式化方法教育论坛是专注于形式化方法教学改革的核心特色论坛，本次论坛汇聚国内多所高校的教育工作者，围绕形式化方法课程的抽象内容难点、工程思维融合、数理逻辑教学体系重构等核心议题，通过主题报告和经验分享等形式，交流课程设计、工具开发、人才培养的一线实践成果。该论坛的重要性在于直面当前信息类学科中形式化方法学习曲线陡、学生应用能力薄弱的普遍痛点，精准对接关键软件领域对高可信技术人才的迫切需求，促进国内同行对形式化方法系统化教学的深入交流。其长远意义在于持续推动国内计算机、软件工程学科完善形式化方法教育体系，打通理论教学与产业落地的壁垒，培养更多兼具严谨数学推理能力与工程实践能力的核心人才，助力软件产业高质量发展。</p>
++        <p>形式化方法教育论坛是专注于形式化方法教学改革的核心特色论坛，本次论坛汇聚国内多所高校的教育工作者，围绕形式化方法课程的抽象内容难点、工程思维融合、数理逻辑教学体系重构等核心议题，通过主题报告和经验分享等形式，交流课程设计、工具开发、人才培养的一线实践成果。该论坛的重要性在于直面当前信息类学科中形式化方法学习曲线陡、学生应用能力薄弱的普遍痛点，精准对接关键软件领域对高可信技术人才的迫切需求，促进国内同行对形式化方法系统化教学的深入交流。其长远意义在于持续推动国内计算机、软件工程学科完善形式化方法教育体系，打通理论教学与产业落地的壁垒，培养更多兼具严谨数学推理能力与工程实践能力的核心人才，助力软件产业高质量发展。
++        </p>
+     </section>
+ 
+     <section class="forum-section">
+@@ -33,7 +34,7 @@
+     </section>
+ 
+     <section class="forum-section">
+-        <h3>四、论坛日程</h3>
++        <h4>论坛日程</h4>
+         <table class="forum-table formal-methods-table">
+             <thead>
+                 <tr>
+@@ -119,9 +120,13 @@
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>论 AI 时代形式化方法课程教学的挑战与机遇</p>
+-                    <p><strong>摘要：</strong>形式化方法课程具有理论抽象、逻辑严密、实践性强的特点。随着人工智能尤其是大模型技术快速普及，计算机类课程的教学范式、学生学习方式与行业人才需求发生深刻变革，传统形式化方法教学模式的局限性日益凸显。本报告从 AI 时代形式化方法方向的特点出发，分析大语言模型对于形式化方法课程的学习以及科学研究的影响，讨论 AI 时代对教师在本科生教学、研究生科研指导带来的挑战及应对建议。
+-                    </p>
+-                    <p><strong>简介：</strong>刘万伟，国防科技大学计算机学院教授、博士生导师，主要研究方向为形式化方法、高可信软件、智能软件可靠性。近年相关研究成果发表在 TOSEM、TSE、TPAMI、TKDE、JSCP、NN、Sci-China、JCST、IPL 等国际/国内期刊以及 ICSE、CAV、ASE、ISSTA、NeurIPS、IJCAI、TACAS、ACM MM、ICME、ATVA 等国际会议上。长期躬耕教学一线，为本科生、研究生讲授计算机程序设计、计算理论、抽象代数、数理逻辑等课程；著有《高级范畴论》等三部教材，并译著一部教材。
++                    <p><strong>摘要：</strong>形式化方法课程具有理论抽象、逻辑严密、实践性强的特点。随着人工智能尤其是大模型技术快速普及，计算机类课程的教学范式、学生学习方式与行业人才需求发生深刻变革，传统形式化方法教学模式的局限性日益凸显。本报告从
++                        AI 时代形式化方法方向的特点出发，分析大语言模型对于形式化方法课程的学习以及科学研究的影响，讨论 AI 时代对教师在本科生教学、研究生科研指导带来的挑战及应对建议。
++                    </p>
++                    <p><strong>简介：</strong>刘万伟，国防科技大学计算机学院教授、博士生导师，主要研究方向为形式化方法、高可信软件、智能软件可靠性。近年相关研究成果发表在
++                        TOSEM、TSE、TPAMI、TKDE、JSCP、NN、Sci-China、JCST、IPL 等国际/国内期刊以及
++                        ICSE、CAV、ASE、ISSTA、NeurIPS、IJCAI、TACAS、ACM MM、ICME、ATVA
++                        等国际会议上。长期躬耕教学一线，为本科生、研究生讲授计算机程序设计、计算理论、抽象代数、数理逻辑等课程；著有《高级范畴论》等三部教材，并译著一部教材。
+                     </p>
+                 </div>
+             </div>
+--- before/pages/agenda/education-forum/templates/system-software-education.html
++++ after/pages/agenda/education-forum/templates/system-software-education.html
+@@ -1,10 +1,293 @@
++<style>
++    .system-software-education-table th:first-child,
++    .system-software-education-table td:first-child {
++        width: 18%;
++        white-space: nowrap;
++    }
++</style>
++
+ <div class="container">
+ 
+-    <h2 class="section-title">系统软件教育</h2>
+-    <div class="section-title-en">教育论坛 E1</div>
+-
+-    <div class="update-notice" style="text-align: center; margin: 40px 0;">
+-        <p>内容正在更新中，敬请关注。</p>
+-    </div>
++    <h2 class="section-title">系统软件教育论坛</h2>
++    <div class="section-title-en">教育论坛 E2</div>
++
++    <section class="forum-section">
++        <h3>一、论坛介绍</h3>
++        <p>面向人工智能快速演进带来的教育变革，本论坛聚焦编程语言、编译、操作系统等系统软件核心课程，交流课程体系、教学内容、实践教学与评价机制的创新探索。重点研讨大模型、智能体等新技术与系统软件教育的深度融合，以及开源实践、项目驱动、竞赛育人等模式创新，探索AI时代系统能力培养的新路径。
++        </p>
++        <p>人工智能正在深刻改变软件构造和知识学习方式，传统以知识传授和代码实现为中心的教学模式面临新的挑战。AI降低了编程门槛，却提高了系统门槛，对人才的系统理解、架构设计、分析优化、工程实践和创新能力提出了更高要求。系统软件教育需要主动适应这一变化，从"教知识、教编程"进一步转向"育能力、育系统"，重新思考智能时代计算机人才的核心能力结构。
++        </p>
++        <p>本论坛旨在汇聚高校、科研机构、产业界和开源社区力量，交流AI时代系统软件教育改革的前沿理念与实践，推动教学、科研、产业、开源和竞赛协同育人，探索从知识学习、代码实现向系统理解、构造、优化与验证转变的人才培养范式，对培养能够驾驭AI并构建复杂软件与智能系统的人才具有重要意义。同时欢迎软件分析、软件工程、系统软件、系统安全、智能系统等方向的专家学者参会交流。
++        </p>
++    </section>
++
++    <section class="forum-section">
++        <h3>二、论坛组织委员会</h3>
++        <ul class="committee-list">
++            <li>
++                <span class="member-name">张昱</span>
++                <span class="member-unit">（中国科学技术大学）</span>
++            </li>
++            <li>
++                <span class="member-name">陈渝</span>
++                <span class="member-unit">（清华大学）</span>
++            </li>
++        </ul>
++    </section>
++
++    <section class="forum-section">
++        <h3>三、论坛安排</h3>
++        <h4>日程安排：</h4>
++        <p><strong>时间：</strong>2026年11月6日，9:00-12:00</p>
++        <p><strong>地点：</strong>天津市社会山国际会议中心酒店，二层13号会议室</p>
++
++        <h4>论坛议程：</h4>
++        <table class="forum-table system-software-education-table">
++            <thead>
++                <tr>
++                    <th>时间</th>
++                    <th>题目</th>
++                    <th>报告嘉宾</th>
++                </tr>
++            </thead>
++            <tbody>
++                <tr>
++                    <td>9:00-9:05</td>
++                    <td>论坛开场与报告嘉宾介绍</td>
++                    <td>论坛组织委员会</td>
++                </tr>
++                <tr>
++                    <td>9:05-9:20</td>
++                    <td>从代码智能到系统智能：AI时代系统软件人才培养探究</td>
++                    <td>杨威<br>复旦大学</td>
++                </tr>
++                <tr>
++                    <td>9:20-9:35</td>
++                    <td>当AI能写代码写论文，系统软件教育该做什么？</td>
++                    <td>翟恩南<br>阿里云计算有限公司</td>
++                </tr>
++                <tr>
++                    <td>9:35-9:50</td>
++                    <td>人工智能冲击下的编译课程教育——竞赛、课堂与研究生培养的观察与对策</td>
++                    <td>刘先华<br>北京大学</td>
++                </tr>
++                <tr>
++                    <td>9:50-10:05</td>
++                    <td>大模型背景下操作系统课程面临的挑战与对策</td>
++                    <td>翟高寿<br>北京交通大学</td>
++                </tr>
++                <tr>
++                    <td>10:05-10:20</td>
++                    <td>生成式AI时代操作系统核心能力培养方式的思考</td>
++                    <td>宫晓利<br>南开大学</td>
++                </tr>
++                <tr>
++                    <td>10:20-10:40</td>
++                    <td>茶歇</td>
++                    <td>—</td>
++                </tr>
++                <tr>
++                    <td>10:40-10:55</td>
++                    <td>操作系统实践教学新变化与AI教学工具运用</td>
++                    <td>张羽<br>西北工业大学</td>
++                </tr>
++                <tr>
++                    <td>10:55-11:10</td>
++                    <td>九源智能计算系统的开源生态建设与人才培养实践</td>
++                    <td>王豪杰<br>清华大学/启元实验室</td>
++                </tr>
++                <tr>
++                    <td>11:10-11:25</td>
++                    <td>基于AI追问机制的操作系统实验教学改革与探索</td>
++                    <td>赵霞<br>北京工商大学</td>
++                </tr>
++                <tr>
++                    <td>11:25-12:00</td>
++                    <td>交流讨论：AI时代系统软件教育的能力培养与范式变革</td>
++                    <td>主持：陈向群<br>北京大学<br>全体报告嘉宾及参会者</td>
++                </tr>
++            </tbody>
++        </table>
++    </section>
++
++    <section class="forum-section">
++        <h3>四、论坛报告嘉宾简介</h3>
++        <div class="speaker-member">
++            <h4>1. 报告人：杨威 教授（复旦大学）</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/教育论坛/杨威.png" alt="杨威头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>从代码智能到系统智能：AI时代系统软件人才培养探究</p>
++                    <p><strong>摘要：</strong>人工智能技术的快速发展正在深刻改变软件开发范式，也对系统软件人才培养提出了新的挑战与要求。大模型和智能体技术显著降低了代码生成与程序实现的门槛，但复杂系统的架构设计、性能优化、软硬件协同与正确性验证仍然高度依赖深入的系统理解和工程创新能力。传统以知识传授和代码实现为核心的教学模式，需向以系统思维、工程实践和创新能力培养为导向的新范式转变。
++                    </p>
++                    <p>本报告结合大模型驱动的智能软件工程、AI编译优化、RISC-V与AI软硬件协同等研究实践，探讨人工智能与系统软件的双向赋能关系，以及由此带来的系统软件教育变革机遇。一方面，利用大模型、智能体和自动化程序分析技术赋能系统软件的开发、优化与验证；另一方面，以AI系统软件栈为实践载体，贯通编程语言、编译原理、操作系统和计算机体系结构等核心知识，探索面向真实系统问题的跨层次、综合性实践教学模式。
++                    </p>
++                    <p>报告进一步探讨如何依托开放软硬件平台、开源生态、科研项目和学科竞赛，推动课程教学与前沿科研深度融合，构建从代码实现到系统理解、从单点优化到软硬协同、从功能验证到综合评价的能力培养体系，为培养能够驾驭AI技术、构建和优化复杂智能系统的新一代系统软件人才提供思路与参考。
++                    </p>
++                    <p><strong>简介：</strong>复旦大学特聘教授，国家级领军人才，现任复旦大学先进计算系统研究院常务副院长、上海市开放计算系统研究院副院长。现任软件工程领域国际权威期刊 ACM
++                        Transactions on Software Engineering and Methodology（TOSEM）副主编、Software Testing, Verification
++                        and Reliability（STVR）编委。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>2. 报告人：翟恩南 正高级工程师（阿里云计算有限公司）</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/教育论坛/翟恩南.png" alt="翟恩南头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>当AI能写代码写论文，系统软件教育该做什么？</p>
++                    <p><strong>摘要：</strong>AI 正在重塑系统软件教育与科研，传统以代码实现和论文发表衡量能力的方式面临挑战。本报告结合我在美国耶鲁大学分布式系统课程的教学经历以及阿里云 AI
++                        Infra 研发实践，回顾编程密集型课程的培养逻辑，分析AI对学生编程、科研与写作的影响及产学界的焦虑。进而讨论：构建扎实系统是否仍是核心能力，超越
++                        SOTA、应用创新与创业应如何进入博士评价，论文又应处于何种位置。最后提出以问题定义、系统验证、原创贡献与责任意识为核心的培养思路。</p>
++                    <p><strong>简介：</strong>翟恩南，阿里云技术总监，正高级工程师，国家级海外引进领军人才。2015 年于美国耶鲁大学计算机系获博士学位，随后担任耶鲁大学研究型助理教授，2018
++                        年加入阿里巴巴。研究领域包括人工智能与分布式系统等，在这些领域发表国际顶级会议/期刊论文 80 余篇，近五年在计算机网络两大国际顶会 SIGCOMM 和 NSDI
++                        发表论文总数全球第一。常年担任 SIGCOMM、NSDI 等国际顶级网络系统学术会议程序委员会委员。获中国电子学会青年科学家奖、电子学会技术发明一等奖、通信学会技术发明一等奖、SIGCOMM
++                        2024 最佳论文提名奖、观察者网年度科创人物等奖项。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>3. 报告人：刘先华 教授（北京大学）</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/教育论坛/刘先华.png" alt="刘先华头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>人工智能冲击下的编译课程教育——竞赛、课堂与研究生培养的观察与对策</p>
++                    <p><strong>摘要：</strong>生成式人工智能与智能编程助手正在深刻冲击系统软件教育。编译课程强调底层抽象、性能、并发、可靠性与软硬协同，其教育长期依赖"写代码—调性能—排故障—造系统"的训练链条。人工智能可以自动生成代码、解释内核机制、辅助调试与实验分析，降低了入门门槛、提升了反馈效率，但也使竞赛区分度、课程评价效度和研究生创新能力培养面临更多挑战。为此，教育的培养和考察目标应从"写出代码"转向"解释、调试、优化、验证和创造系统"。系统软件教育必将回归系统思维、工程判断与创新能力的培养。
++                    </p>
++                    <p><strong>简介：</strong>刘先华，北京大学计算机学院教授/博士生导师、计算机科学与工程系副主任，微处理器及系统教育部工程研究中心副主任。长期从事微处理器设计及系统软件相关科研教学工作，作为核心骨干参与北京大学自主CPU及配套软硬件系统的研发及产业化工作。兼任工信部信创工委会技术委员会委员、北交所行业咨询委员会委员等。曾获北京市民进70周年优秀会员、首届全国高校计算机专业优秀教师奖励、宝钢优秀教师奖、教育部-华为"智能基座"优秀教师奖、北京大学教学卓越奖等荣誉。
++                    </p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>4. 报告人：翟高寿 副教授（北京交通大学）</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/教育论坛/翟高寿.png" alt="翟高寿头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>大模型背景下操作系统课程面临的挑战与对策</p>
++                    <p><strong>摘要：</strong>人工智能热潮如火如荼，特别是近年来高性能算力资源推波助澜下大语言模型的爆发式发展，给《操作系统》课程教学带来了巨大的挑战。本文从学校教育初心暨课程教学目标出发，深刻剖析了课程教学过程组成框架，围绕大模型对教师和学生两类主体形成的赋能助力与革新要求、大模型背景下课程教学过程存在的问题和痛点尤其是学生作业AI生成、人工智能暨大模型技术的优势以及可为解决有关问题提供帮助的着力点、课程教学现有相关问题的认识误区与正确对策等，进行深入的分析和广泛的讨论。
++                    </p>
++                    <p><strong>简介：</strong>翟高寿，博士，北京交通大学计算机学院副教授。《操作系统》国家级一流本科课程负责人、北京高等学校优秀专业课主讲教师，北京高校优秀本科毕业设计（论文）优秀指导教师、北京高校高水平人才交叉培养"实培计划"成果指导教师，教育部-华为智能基座栋梁之师，计算机学会杰出会员，华为云与计算先锋教师，麒麟软件校企合作突出贡献教师，软件评测国家认可实验室技术负责人，电子商会信息工程测试专委会副理事长，新工科联盟系统能力推进工委会成员，三次被本科毕业生评为我最敬爱的老师。主要从事操作系统、系统安全与测试、系统软件方面的研究工作。主持科研项目30余项，发表科研学术论文60余篇。
++                    </p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>5. 报告人：宫晓利 教授（南开大学）</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/教育论坛/宫晓利.png" alt="宫晓利头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>生成式AI时代操作系统核心能力培养方式的思考</p>
++                    <p><strong>摘要：</strong>生成式AI编程能力的跃升，使传统操作系统教学中以"代码正确性"为核心的验证机制面临严峻挑战。学生现可通过提示词快速生成系统模块甚至完整内核，这迫使教育者重新审视教学内容的边界：在AI时代，哪些底层原理仍需坚守，哪些表层实现可交由机器代劳。本报告基于AI能力现状，探讨智能时代学生应具备的核心能力，探索教育重心如何从低阶代码编写转向系统抽象、批判性审查及人机协同等高阶工程思维的培养。同时，报告也试图探讨构建多维过程性评价体系，通过引入项目制考核、口头答辩及AI协作反思日志等模式，以期找到既能深刻理解底层逻辑又能熟练驾驭AI工具的新型人才的培养模式。
++                    </p>
++                    <p><strong>简介：</strong>宫晓利，南开大学计算机学院、密码与网络空间安全学院教授，博士生导师，物联网工程系主任，系统与网络研究所副所长，主要研究方向为操作系统、物联网、人工智能计算系统等，入选高校计算机专业优秀教师奖励计划，教育部华为"智能基座"优秀教师奖励计划，获天津市教学成果特等奖，天津市课程思政教学名师，国家级一流本科课程等荣誉，发表高水平论文
++                        20 余篇，获天津市科技进步二等奖 5 次。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>6. 报告人：张羽 教授（西北工业大学）</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/教育论坛/张羽.png" alt="张羽头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>操作系统实践教学新变化与AI教学工具运用</p>
++                    <p><strong>摘要：</strong>智能体大模型对操作系统实践教学带来深刻影响，以赛促学、以赛促教面临新挑战。如何通过AI教学工具打开AI时代操作系统实践教学的新局面，促进学生深度思考能力、深度系统能力和抗挫折能力的形成，是操作系统教改的一个重要研究方向，本报告将以西工大计算机学院操作系统拔尖班教学实践为例，介绍AI教学工具运用的新探索。
++                    </p>
++                    <p><strong>简介：</strong>张羽，西北工业大学计算机学院教授／博士生导师、智能计算系统系主任。研究方向泛在操作系统与边缘智能。带领团队研发的NPUcore、iS2ROS、Loongvisor、hyperAMP等基于能力的运行时感算资源管理基础软件及支持LoongArch、ARM、RISC-V跨指令集架构的端侧多内核泛在操作系统，在无人集群空-地协同侦查和生态环境修复治理等重大军民场景中实现应用落地、并已通过国防科技中心测评认证。"101计划"西北工作组秘书长兼操作系统课程建设组组长、全国大学生计算机系统能力大赛操作系统设计赛区域赛委员会主任、矽望泛在操作系统开源社区技术委员会主任、教育部第五轮学科评估评审专家。
++                    </p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>7. 报告人：王豪杰 助理研究员（清华大学计算机系 / 启元实验室）</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/教育论坛/王豪杰.png" alt="王豪杰头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>九源智能计算系统的开源生态建设与人才培养实践</p>
++                    <p><strong>摘要：</strong>面向国产智能芯片"一芯一栈"、模型应用难适配、难优化的问题，九源构建统一智能计算软件栈，支撑"一套代码、无需修改、多平台运行"，降低国产算力开发与使用门槛。本报告介绍九源的核心技术与开源生态建设实践，重点分享依托高校课程、训练营和技术竞赛开展人才培养的经验，将真实系统研发任务融入教学与竞赛，引导学生从原理学习走向工程实践与开源贡献，在技术共建中培养系统软件人才，推动国产智能计算生态发展。
++                    </p>
++                    <p><strong>简介：</strong>王豪杰，启元实验室智能计算研究部/清华大学计算机系助理研究员，主要研究方向包括人工智能系统、高性能计算等，相关成果发表于OSDI、ATC、PPoPP、SC、PLDI、TC、TPDS等相关领域内顶级国际会议和期刊。曾获清华大学"水木学者"、ACM
++                        SIGHPC China优博奖等荣誉，获国家自然科学基金青年科学基金等项目资助，入选北京市青年人才托举工程。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>8. 报告人：赵霞 副教授（北京工商大学）</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/教育论坛/赵霞.png" alt="赵霞头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>基于AI追问机制的操作系统实验教学改革与探索</p>
++                    <p><strong>摘要：</strong>人工智能技术和大语言模型的迅猛发展，使操作系统实验教学面临深刻挑战，理论抽象度高与实验关联不足、AI代写代码导致教学诊断失效。本报告提出以TRACE五元架构模型为指导框架，系统性地设计并实现基于AI追问机制的操作系统实验教学方案。报告简介五元架构元模型的理论思路、核心定义、动力学机制，以及与操作系统实验教学内容设计、教学框架、学生过程评估的深度融合，逐层映射到xv6-ai-labs实验教学系统的设计与实现中，形成从课程宏观目标到检查点微观操作的约束传递，以及逆向反馈引导达成教学目标。本报告是对操作系统实验教学的探索，期待与同行交流共同进步。
++                    </p>
++                    <p><strong>简介：</strong>赵霞，博士，北京工商大学计算机与人工智能学院人工智能系副教授，硕士生导师。北京大学计算机软件与理论理学博士，博士后。中国计算机学会系统软件专委会委员，美国俄亥俄州立大学访问学者。长期承担操作系统、Python语言程序设计、智能计算系统、大数据处理技术等课程教学工作。主要从事操作系统、高效能系统软件、人工智能、大数据处理等方面的研究工作。主持及参与科研项目30余项，获国家发明专利授权30余项。
++                    </p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>9. 圆桌论坛主持人：陈向群 教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/教育论坛/陈向群.png" alt="陈向群头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>简介：</strong>陈向群，北京大学计算机学院、高可信软技术教育部重点实验室，教授，博士生导师。北京计算机学会理事长，中国计算机学会教育专委会常务理事，教育部计算机教学指导委员会"系统能力培养教学改革"专家组成员。长期担任北京大学"操作系统"、"计算机系统导论"本科课程教学工作。获第七届北京市高等教育教学成果一等奖，获中国教师发展基金会高校计算机专业优秀教师奖励，"操作系统原理"课获国家精品在线开放课程，"计算机系统导论"课获教育部线下一流课程，北京市教学名师。101计划"操作系统"课程负责人，101计划"操作系统"虚拟教研室负责人。编著及翻译教材若干本。
++                    </p>
++                </div>
++            </div>
++        </div>
++    </section>
++
++    <section class="forum-section">
++        <h3>五、论坛组织委员会简介</h3>
++        <div class="committee-member">
++            <h4>1. 论坛组委会：张昱 教授（中国科学技术大学）</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/教育论坛/张昱.png" alt="张昱头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>张昱，中国科学技术大学教授、博导，中国计算机学会杰出会员、系统软件专委和教育专委常务委员，ACM中国操作系统分会副主席。主要研究方向为面向智能、数据和量子等新兴计算领域的编程系统设计、分析与优化。在国内外发表论文150余篇，出版编译原理和程序设计语言原理相关的教材和配套参考书10部、译著2部，主持国家级一流本科课程"编译原理和技术"。曾获教育部-华为"智能基座"优秀教师奖(2023年)、系统能力培养突出贡献奖(2023年)、宝钢优秀教师奖(2021年)、中国高校计算机专业优秀教师奖(2020年)等。
++                </p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>2. 论坛组委会：陈渝 副教授（清华大学）</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/教育论坛/陈渝.png" alt="陈渝头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>陈渝，清华大学长聘副教授、博导、MIT EECS
++                    访问学者、中国计算机学会系统软件专委常务委员，中国汽车工程学会基础软件分会副主任委员。主要研究方向为操作系统与新型硬件、编程语言相结合的系统架构、性能优化与安全分析等。承担了国家863/核高基/重点研发/自然科学基金等项目，曾获得国家科技进步二等奖1次，省部级一等奖3次。在国内外发表论文60余篇，出版操作系统等相关教材和配套参考书3本、译著2本。曾获教育部-华为"智能基座"优秀教师奖、中国高校计算机专业优秀教师奖等。
++                </p>
++            </div>
++        </div>
++    </section>
+ 
+ </div>--- before/pages/agenda/industry-forum/templates/riscv-software-hw-collaboration.html
++++ after/pages/agenda/industry-forum/templates/riscv-software-hw-collaboration.html
+@@ -1,10 +1,256 @@
++<style>
++    .riscv-software-hw-collaboration-table th:first-child,
++    .riscv-software-hw-collaboration-table td:first-child {
++        width: 18%;
++        white-space: nowrap;
++    }
++</style>
++
+ <div class="container">
+ 
+     <h2 class="section-title">RISC-V系统软件及软硬协同前沿展望</h2>
+     <div class="section-title-en">工业论坛 I5</div>
+ 
+-    <div class="update-notice" style="text-align: center; margin: 40px 0;">
+-        <p>内容正在更新中，敬请关注。</p>
+-    </div>
++    <section class="forum-section">
++        <h3>一、论坛介绍</h3>
++        <p>RISC-V是遵循统一开放标准、模块化设计的指令集架构，支持灵活扩展，覆盖各种计算场景。经过十几年的快速发展，RISC-V已从嵌入式领域全面迈入高性能、人工智能等领域，正成为继x86、Arm之外新的主流指令集架构。
++        </p>
++        <p>RISC-V的开放性及其在全球开源社区的快速发展对于我国信息产业发展有着非常重要的意义。2025年，我国RISC-V芯片出货量突破30亿颗，约占全球一半，为全球最大单一市场；国内多所高校已经引入RISC-V作为教学内容；中国科学院等国内科研机构也在加大投入，支持RISC-V的IP、SoC、基础软件以及应用示范场景。RISC-V正在成为中国信息产业重要的支柱之一。
++        </p>
++        <p>本论坛旨在召集RISC-V产业界的商业、教育及技术领袖人物、开源社区专家、独立软件商代表，深入交流对未来三至五年的RISC-V系统软件及软硬协同的发展趋势、科研挑战、技术难点、商业机遇、正在和即将面对的共性问题，促进RISC-V在国内的发展。
++        </p>
++    </section>
++
++    <section class="forum-section">
++        <h3>二、论坛组织委员会</h3>
++        <ul class="committee-list">
++            <li>
++                <span class="member-name">谢涛</span>
++                <span class="member-unit">（北京大学讲席教授、北京通明湖信息技术创新中心主任）</span>
++            </li>
++            <li>
++                <span class="member-name">吴国伟</span>
++                <span class="member-unit">（大连理工大学教授）</span>
++            </li>
++            <li>
++                <span class="member-name">邢明杰</span>
++                <span class="member-unit">（中国科学院软件研究所高级工程师）</span>
++            </li>
++            <li>
++                <span class="member-name">王青山</span>
++                <span class="member-unit">（合肥工业大学教授）</span>
++            </li>
++            <li>
++                <span class="member-name">吴伟</span>
++                <span class="member-unit">（上海苦芽科技有限公司联合创始人）</span>
++            </li>
++        </ul>
++    </section>
++
++    <section class="forum-section">
++        <h3>三、论坛安排</h3>
++        <h4>日程安排：</h4>
++        <p> <strong>时间：</strong>2026年11月8日，9:00-12:00</p>
++        <p> <strong>地点：</strong>天津市社会山国际会议中心酒店，2层19号会议室</p>
++
++        <h4>论坛议程：</h4>
++        <table class="forum-table riscv-software-hw-collaboration-table">
++            <thead>
++                <tr>
++                    <th>时间</th>
++                    <th>题目</th>
++                    <th>报告嘉宾</th>
++                </tr>
++            </thead>
++            <tbody>
++                <tr>
++                    <td>09:00-09:30</td>
++                    <td>从开放指令集到 AI 软件栈：RISC-V 算子生成框架探索</td>
++                    <td>杨威 教授<br>复旦大学</td>
++                </tr>
++                <tr>
++                    <td>09:30-10:00</td>
++                    <td>Rowhammer研究现状与发展趋势</td>
++                    <td>吴国伟 教授<br>大连理工大学</td>
++                </tr>
++                <tr>
++                    <td>10:00-10:30</td>
++                    <td>面向RISC-V的可靠高效代码生成：大模型评测、智能体协作与解码优化</td>
++                    <td>王青山 教授<br>合肥工业大学</td>
++                </tr>
++                <tr>
++                    <td>10:30-11:00</td>
++                    <td>茶歇</td>
++                    <td>-</td>
++                </tr>
++                <tr>
++                    <td>11:00-11:20</td>
++                    <td>基于协同搜索空间的高效编译器自动调优</td>
++                    <td>潘浩林 博士研究生<br>中国科学院软件研究所</td>
++                </tr>
++                <tr>
++                    <td>11:20-11:40</td>
++                    <td>RISC-V 在具身智能领域的发展展望</td>
++                    <td>吴伟 联合创始人<br>苦芽科技</td>
++                </tr>
++            </tbody>
++        </table>
++    </section>
++
++    <section class="forum-section">
++        <h3>四、论坛报告嘉宾简介</h3>
++        <div class="speaker-member">
++            <h4>1. 报告人：杨威 复旦大学 教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/工业论坛/杨威.png" alt="杨威头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>从开放指令集到AI软件栈：RISC-V算子生成框架探索</p>
++                    <p><strong>摘要：</strong>随着 AI 应用对高性能算子的需求不断增长，RISC-V 需要的不仅是开放指令集和硬件扩展，更需要面向 AI 工作负载的系统软件栈。TileLang
++                        作为一种面向高性能 AI kernel 的 tile-level 编程框架，为构建跨硬件的算子生成系统提供了新的抽象基础。本报告将从设计规划角度讨论 TileLang 面向 RISC-V
++                        后端的可能路径，并探讨代码大模型和 agentic 编程方法如何参与算子生成、优化和测试，形成面向 RISC-V AI 生态的自动化系统构建流程。</p>
++                    <p><strong>简介：</strong>杨威，复旦大学特聘教授，国家级领军人才，现任复旦大学先进计算系统研究院常务副院长、上海开放计算系统研究院副院长。长期从事可信智能软件、智能软件测试与分析、AI
++                        系统软件栈及软件安全研究，并在国际学术共同体中担任重要职务，现任软件工程领域国际权威期刊 ACM Transactions on Software Engineering and
++                        Methodology（TOSEM）副主编、Software Testing, Verification and Reliability（STVR）编委等。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>2. 报告人：吴国伟 大连理工大学 教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/工业论坛/吴国伟.png" alt="吴国伟头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>Rowhammer研究现状与发展趋势</p>
++                    <p><strong>摘要：</strong>本报告将系统梳理 Rowhammer 的基本原理、典型攻击方法及国内外研究现状。报告将结合 RISC-V 等新兴处理器架构上的安全评估实践，分析
++                        Rowhammer 从传统 x86
++                        平台向多架构、多设备环境扩展的发展趋势，并展望面向异构硬件的自动化攻击评估、精细化内存行为分析、软硬件协同防御及可信计算平台构建等研究方向，为新型计算平台的内存安全评估与防护设计提供参考。
++                    </p>
++                    <p><strong>简介：</strong>吴国伟，教授，博士生导师，教育部新世纪优秀人才、辽宁省教学名师、辽宁省百千万工程千人层次、大连市高端人才、连续六年入选斯坦福大学发布的全球前2%顶尖科学家榜单。
++                    </p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>3. 报告人：王青山 合肥工业大学 教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/工业论坛/王青山.png" alt="王青山头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>面向RISC-V的可靠高效代码生成：大模型评测、智能体协作与解码优化</p>
++                    <p><strong>摘要：</strong>大模型代码生成正推动软件开发方式变革，但生成程序的功能正确性与推理开销仍是实际应用中的关键挑战。本报告围绕如何在有限计算预算下生成更可靠的代码，介绍可执行评测、智能体协作与扩散解码三个层面的研究探索。首先，面向RISC-V汇编生成，介绍ExecRV评测基准及汇编、链接、运行一体化验证流程，并探讨利用执行反馈改进模型训练的方法。其次，介绍执行反馈引导的多智能体协作框架EFLAC，通过自适应角色调度、潜在表示通信和基于测试结果的候选程序保留，提升生成质量并降低协作开销。最后，介绍扩散语言模型解码框架PACER，通过区分完整计算与缓存预测的决策权限，协调并行生成与缓存同步，在降低解码计算开销的同时兼顾功能正确性。结合相关实验，报告将讨论验证依据、推理决策与计算资源的协同设计，为可靠高效的智能化软件开发提供方法参考。
++                    </p>
++                    <p><strong>简介：</strong>王青山，合肥工业大学数学学院教授，博士生导师。研究方向为AI在RISC-V中应用、具身智能等，是中国残疾人康复协会康复工程与辅助技术专委会常务委员、长三角科技助残指导专家等，研究成果发表在IEEE
++                        TMC/TMM/TWC/THMS/TAFFC/TNSM/IoTJ、ACM TOMM/TALLIP等相关领域的重要期刊与会议上。获得IEEE Transactions on Affective
++                        Computing期刊2024年度唯一最佳论文奖，指导的博士生获2025年度ACM SIGCHI中国优秀博士论文奖。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>4. 报告人：潘浩林 中国科学院软件研究所 博士研究生</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/工业论坛/潘浩林.png" alt="潘浩林头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>基于协同搜索空间的高效编译器自动调优</p>
++                    <p><strong>摘要：</strong>编译优化的效果不仅取决于优化变换的选择，还受到其执行顺序与相互作用的影响。面对庞大的优化序列搜索空间，如何降低搜索开销、提升调优效率，是编译器自动调优的重要挑战。报告第一部分介绍一种基于协同搜索空间的高效自动调优方法：通过挖掘优化变换之间的协同关系，构建精简且可复用的搜索空间，并结合程序聚类与搜索空间预测，为不同程序选择合适的搜索范围，在此基础上搜索有效的优化序列，提升代码体积优化效果与调优效率。报告第二部分介绍
++                        RuyiTuner 面向 RISC-V 的工程化进展，涵盖 LLVM
++                        多版本适配、文件级与项目级调优，以及从源码输入到目标文件生成与代码体积评估的一体化流程。结合真实程序案例，分享自动调优方法在 RISC-V 平台上的应用实践与工程经验。</p>
++                    <p><strong>简介：</strong>潘浩林，中国科学院软件研究所博士研究生，主要研究方向为编译器优化，聚焦智能化技术在编译优化中的应用。曾以第一作者身份在
++                        NeurIPS、ICLR、ICML、ASE、CGO 等国际会议发表论文，作为第一发明人获得两项发明专利，并获中国科学院院长优秀奖。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>5. 报告人：吴伟 苦芽科技 联合创始人</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/工业论坛/吴伟.png" alt="吴伟头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>RISC-V 在具身智能领域的发展展望</p>
++                    <p><strong>摘要：</strong>出于实时性和隐私性等方面的需求，具身智能机器人对于本地AI算力的需求是快速增长的，RISC-V在具身智能（AI机器人）领域有着巨大的发展潜力。目前，国内外机器人的"大脑"主要由英伟达CUDA生态主导；而机器人比传统桌面PC和智能手机更加强调功能安全和供应链安全，因此基于
++                        RISC-V 开放指令集架构的软硬件生态在具身智能机器人领域正在快速得到关注。RISC-V 作为指令集开放标准，正在成为 AI
++                        领域的通用架构，并且开始在具身智能机器人领域逐步得到应用。汇报人将会报告 RISC-V + Embodied AI 的最新进展，以及将 RISC-V
++                        开放软硬件体系部署到具身智能机器人场景的最新尝试。</p>
++                    <p><strong>简介：</strong>吴伟，苦芽科技联合创始人，在开源编译器和RISC-V社区有着多年的经验。目前担任LLVM基金会理事、RISC-V国际基金会技术委员会委员、CCF系统软件专委RISC-V基础软件工作组组长等职务。在加入苦芽科技之前，吴伟于2019年创建并领导着PLCT实验室，推动了全球RISC-V的软件生态的发展。2024年除夕，吴伟联合多家机构联合发起"甲辰计划"，致力于在2036年之前，实现RISC-V软件生态的全面繁荣。
++                    </p>
++                </div>
++            </div>
++        </div>
++    </section>
++
++    <section class="forum-section">
++        <h3>五、论坛组织委员会简介</h3>
++        <div class="committee-member">
++            <h4>1. 论坛组委会：谢涛 北京大学 教授</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/工业论坛/谢涛.png" alt="谢涛头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>谢涛，北京大学讲席教授，复旦大学先进计算系统研究院院长，北京大学计算机学院软件科学与工程系主任，欧洲科学院外籍院士，ACM/IEEE/AAAS/CIE/CCF会士。任北京通明湖信息技术应用创新中心理事长、主任，上海开放计算系统研究院院长，上海开放处理器产业创新中心秘书长，北京开源芯片研究院首席科学家，国家高等学校学科创新引智基地负责人。曾任美国伊利诺伊大学香槟分校（UIUC）计算机系正教授。包揽国际计算机学会软件工程领域（ACM
++                    SIGSOFT）三大国际奖项（杰出研究奖，有影响力教育工作者奖，杰出服务奖；每个奖项全球通常只有一名年度获奖人），成为全球第三位大满贯得主。曾获科学探索奖，国家海外杰青，美国国家自然科学基金青年职业奖等。任中国计算机学会系统软件专委会主任，RISC-V
++                    AI算力生态（RACE）委员会主席，RISC-V国际基金会人工智能与机器学习专委会（AI/ML
++                    SIG）主席，2020年中国计算机大会程序委员会主席，2021年国际软件工程大会ICSE程序委员会共同主席，2024年RISC-V中国峰会共同主席等。主持国家自然科学基金重大研究计划集成项目、区域创新发展联合基金集成项目、海外及港澳学者合作研究基金及其延续资助项目（海外杰青），国家外国专家项目（"111学科创新引智基地"），国家实验室先导项目，北京市高精尖产业发展资金重大项目等。主持的项目产出TileLang、星绽等高影响力的开源系统。主要研究领域包括软件工程，系统软件，可信人工智能，RISC-V基础软件。
++                    自2024年2月初与PLCT实验室、算能联合发起甲辰计划，使命是在下一个丙辰年（2036龙年）之前，基于 RISC-V
++                    实现从数据中心到桌面办公、从移动穿戴到智能物联网全信息产业覆盖的开放标准体系及开源系统软件栈，使RISC-V软硬件生态的成熟度达到或超过其它主流架构的生态成熟度。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>2. 论坛组委会：吴国伟 大连理工大学 教授</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/工业论坛/吴国伟.png" alt="吴国伟头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>吴国伟，大连理工大学教授，博士生导师，教育部新世纪优秀人才，辽宁省教学名师，大连市高端人才，辽宁省海洋智能系统与高端芯片工程中心主任。在硬件代码规则检测、开源软件供应链安全、软硬件协同仿真验证等方面具有多年研究经验。成功主导了30余项国家级及行业领先企业和顶尖研究所的科研合作项目，涵盖了工信部高质量专项项目、核高基项目子课题、重点研发计划项目课题、国家自然科学基金等，所研发的算法、软件、工具和系统等成果已在自主可控软件专项、核高基专项、中科院战略先导科技专项等关键科研项目中实际应用。在包括CCF
++                    A/B类国内外顶级学术期刊和国际会议上发表论文100余篇，连续5年入选斯坦福大学发布的全球前2%顶尖科学家榜单。获得授权发明专利17项，软件著作权6项。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>3. 论坛组委会：邢明杰 中国科学院软件研究所 高级工程师</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/工业论坛/邢明杰.png" alt="邢明杰头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>邢明杰，中国科学院软件研究所高级工程师，长期从事编译工具链和开源社区工作。作为负责人累计主持国家及科学院课题3项、企业合作项目多项，涉及到的工作内容包括：RISC-V指令集架构支持、程序优化、并行编程模型、异构编译框架、领域专用编程语言及编译系统等。近年来在面向RISC-V指令集架构的编译优化、人工智能相结合的编译优化等方向开展研究，在国内外期刊及会议上发表论文30余篇，授权专利10余项，出版译著《编译器设计（第3版）》。
++                </p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>4. 论坛组委会：王青山 合肥工业大学 教授</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/工业论坛/王青山.png" alt="王青山头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>王青山，合肥工业大学数学学院教授、博士生导师，中国残疾人康复协会康复工程与辅助技术专委会常务委员、中国计算机学会物联网专委会执行委员和长三角科技助残指导专家，主要研究领域包括AI在RISC-V中应用、手语翻译和边缘计算等，以第一作者/通讯作者发表论文70多篇，其中IEEE/ACM
++                    Trans论文14篇，获得IEEE Transactions on Affective Computing期刊2024年度唯一最佳论文奖，指导的博士生荣获2025年度ACM
++                    SIGCHI中国"优博奖"，论文多次入选ESI高被引论文。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>5. 论坛组委会：吴伟 苦芽科技 联合创始人</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/工业论坛/吴伟.png" alt="吴伟头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>吴伟是苦芽科技联合创始人，在开源编译器和RISC-V社区有着多年的经验。目前担任LLVM基金会理事、RISC-V国际基金会技术委员会委员等职务。在加入苦芽科技之前，吴伟于2019年创建并领导了PLCT实验室，推动了全球RISC-V的软件生态的发展。2024年除夕，吴伟联合多家机构联合发起"甲辰计划"并担任主理人，致力于在2036年之前，实现RISC-V软件生态的全面繁荣。
++                </p>
++            </div>
++        </div>
++    </section>
+ 
+ </div>--- before/pages/agenda/special-issue-forum/index.html
++++ after/pages/agenda/special-issue-forum/index.html
+@@ -20,6 +20,10 @@
+ 
+             <li><a href="#agenda/special-issue-forum/intelligent-requirement-engineering" class="sidebar-item"
+                     onclick="loadAgenda('special-issue-forum', 'intelligent-requirement-engineering')">智能化需求工程</a></li>
++
++            <li><a href="#agenda/special-issue-forum/data-driven-defect-detection" class="sidebar-item"
++                    onclick="loadAgenda('special-issue-forum', 'data-driven-defect-detection')">数据驱动的软件缺陷检测、定位与修复</a>
++            </li>
+ 
+             <li><a href="#agenda/special-issue-forum/intelligent-industrial-software" class="sidebar-item"
+                     onclick="loadAgenda('special-issue-forum', 'intelligent-industrial-software')">智能化工业软件工程：大模型驱动的开发、保障与治理</a>
+--- before/pages/agenda/special-issue-forum/templates/data-driven-defect-detection.html
++++ after/pages/agenda/special-issue-forum/templates/data-driven-defect-detection.html
+@@ -0,0 +1,207 @@
++<div class="container">
++
++    <h2 class="section-title">数据驱动的软件缺陷检测、定位与修复论坛</h2>
++    <div class="section-title-en">专刊论坛 S3</div>
++
++    <section class="forum-section">
++        <h3>一、论坛介绍</h3>
++        <p>本专刊旨在汇聚学术界与工业界在数据科学、机器学习及人工智能技术驱动下的软件缺陷治理最新研究成果。我们诚邀探讨软件缺陷全生命周期自动化技术的原创性论文，涵盖的主题从高质量、标注完善的公开数据集建设及基于缺陷库的经验软件工程研究出发，延伸至智能化的缺陷检测、定位与修复技术。在缺陷检测方面，重点关注基于深度学习的静态分析、测试用例自动化生成与排序、测试预言生成、针对特定类型漏洞的数据驱动模型，以及大语言模型在零/小样本场景下的应用；在缺陷定位领域，涵盖基于大模型的定位技术、缺陷报告自动复现、智能化改进的SBFL/MBFL方法、多模态数据融合定位及基于因果推断的根因分析；在自动化修复方面，则聚焦于基于生成式AI与数据驱动的补丁生成、候选补丁排序、结合静态分析的修复技术及相关经验分析。
++        </p>
++    </section>
++
++    <section class="forum-section">
++        <h3>二、论坛组织委员会</h3>
++        <ul class="committee-list">
++            <li><span class="member-name">姜艳杰</span><span class="member-unit">（天津大学）</span></li>
++            <li><span class="member-name">刘辉</span><span class="member-unit">（北京理工大学）</span></li>
++            <li><span class="member-name">窦文生</span><span class="member-unit">（中国科学院软件研究所）</span></li>
++            <li><span class="member-name">钟浩</span><span class="member-unit">（上海交通大学）</span></li>
++            <li><span class="member-name">张路</span><span class="member-unit">（北京大学）</span></li>
++        </ul>
++    </section>
++
++    <section class="forum-section">
++        <h3>三、论坛安排</h3>
++        <h4>日程安排：</h4>
++        <p><strong>时间：</strong>2026年11月7日，15:20~18:20</p>
++        <p><strong>地点：</strong>天津市社会山国际会议中心酒店，四层3号多功能厅</p>
++
++        <h4>论坛议程：</h4>
++        <table class="forum-table">
++            <thead>
++                <tr>
++                    <th>时间</th>
++                    <th>题目</th>
++                    <th>报告嘉宾</th>
++                </tr>
++            </thead>
++            <tbody>
++                <tr>
++                    <td style="white-space: nowrap;">15:20-15:45</td>
++                    <td>数据驱动的鸿蒙静态告警修复方法实践</td>
++                    <td>张颖<br>北京大学</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">15:45-16:10</td>
++                    <td>面向新兴编程语言的缺陷检测：实践与思考</td>
++                    <td>玄跻峰<br>武汉大学</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">16:10-16:20</td>
++                    <td>茶歇</td>
++                    <td>-</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">16:20-16:32</td>
++                    <td>面向跨域漏洞检测的目标域感知多空间数据选择方法</td>
++                    <td>吴雨濛<br>大数据技术与系统国家地方联合工程研究中心(华中科技大学)</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">16:32-16:44</td>
++                    <td>CWEFix:修复模式驱动的软件缺陷数据集构建方法</td>
++                    <td>薛志鹏<br>国防科技大学</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">16:44-16:56</td>
++                    <td>DISTINCT：基于函数意图和分支一致性分析提升自动化测试的逻辑缺陷揭示能力</td>
++                    <td>薛鹏宇<br>山东大学</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">16:56-17:08</td>
++                    <td>面向金融大语言模型的质量保障方法综述</td>
++                    <td>沈庆超<br>天津大学</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">17:08-17:20</td>
++                    <td>基于自适应特征融合与双曲判别的成对代码缺陷检测方法</td>
++                    <td>周百顺<br>北京理工大学</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">17:20-17:32</td>
++                    <td>Path-Refiner：面向漏洞关联的攻击路径推理方法</td>
++                    <td>曹明生<br>电子科技大学</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">17:32-17:44</td>
++                    <td>图数据库管理系统逻辑缺陷检测技术研究综述</td>
++                    <td>谢永俊<br>中南大学</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">17:44-17:56</td>
++                    <td>MultiRepair：面向多语言自动程序修复的专家混合低秩适配方法</td>
++                    <td>李国昌<br>浙江大学</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">17:56-18:08</td>
++                    <td>大语言模型缺陷复现智能体失效行为的实证研究</td>
++                    <td>李智超<br>北京邮电大学</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">18:08-18:20</td>
++                    <td>面向RISC-V架构KVM内核模块的跨侧模糊测试方法</td>
++                    <td>许佳凯<br>中国科学院软件研究所</td>
++                </tr>
++            </tbody>
++        </table>
++    </section>
++
++    <section class="forum-section">
++        <h3>四、论坛报告嘉宾简介</h3>
++        <div class="speaker-member">
++            <h4>1. 报告人：张颖 研究员</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/专刊论坛/张颖.png" alt="张颖头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>数据驱动的鸿蒙静态告警修复方法实践</p>
++                    <p><strong>摘要：</strong>鸿蒙是面向万物互联的重要新兴软件生态，其700余个代码仓库涉及多语言协同、跨文件依赖与平台特有语义，为大语言模型和编程智能体的应用带来了新的挑战。本报告围绕鸿蒙静态告警修复，介绍从真实软件数据出发、以实证发现驱动方法设计的研究与实践。首先，我们构建了面向鸿蒙的仓库级跨语言告警修复基准OH-Bench，提供可复现的评测环境，通过系统性评测揭示现有模型与智能体在跨文件修复、平台语义理解等方面的瓶颈，以及不同模型之间的能力互补性。基于这些发现，我们进一步设计多智能体协作修复系统OH-MAS，通过修复契约约束补丁生成，将类型化诊断反馈累积为后续修复约束，并利用同一诊断信号自适应选择模型，提升复杂告警的自动修复能力，在OH-Bench评测中取得SOTA结果。本报告将分享从数据集建设、修复能力分析到智能修复方法设计的实践经验，为鸿蒙社区提供可复用的评测基准与修复技术，也为其他新兴软件生态的自动化缺陷治理提供参考。
++                    </p>
++                    <p><strong>简介：</strong>张颖，北京大学正研究员、博士生导师、软件研究所所长助理，国家某领域高层次人才、中国科协首批“青年托举人才”、CCF优博。长期从事大数据与人工智能领域研究，创新提出反射式互操作方法，构建接口生成、数据共享与智能协同的一体化技术体系，实现异构系统间无需源码的高效业务协同与数据共享。近年来主持国家重点研发计划等重大项目10项，获中美发明专利36项，发表论文30余篇，科研成果获国家技术发明一等奖、教育部科技进步一等奖、国家某部委科技进步二等奖、中国电子学会（CIE）技术发明特等奖及中国计算机学会（CCF）青年软件创新奖。牵头研发的“API互操作平台”已在部委、地方政府及企业广泛部署，支撑“最多跑一次”等国家数字治理改革，高效提升业务系统协作效率和数据可信流通水平，产生显著社会经济效益。
++                    </p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>2. 报告人：玄跻峰 教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/专刊论坛/玄跻峰.png" alt="玄跻峰头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>面向新兴编程语言的缺陷检测：实践与思考</p>
++                    <p><strong>摘要：</strong>新兴编程语言提供了便捷和安全的语言特性。随着应用场景逐步广泛，传统编程语言的缺陷发现日益复杂，而新兴编程语言特性和传统语言特性更新带来了新的软件缺陷场景。本报告围绕新兴编程语言，介绍面向新语言特性、跨语言特性的缺陷检测场景，简述近期的一些缺陷检测实践与思考。
++                    </p>
++                    <p><strong>简介：</strong>玄跻峰，武汉大学教授、博士生导师，计算机学院副院长。CCF杰出会员，武汉计算机软件工程学会常务理事，武汉市开源创新中心（软件工程）主任。主要研究领域为软件分析与测试，在软件工程权威期刊会议发表论文100余篇。担任全国演化计算与学习会议（ECOLE）2021主席，CCF中国软件大会（ChinaSoft）2025本地主席。论文获ACM
++                        SIGSOFT、IEEE TCSE等杰出论文奖。入选IEEE
++                        ICSME杰出服务奖、武汉大学查全性教授1977奖教金、华为开发者布道师、首批中国科协青年人才托举工程、CCF教师助推计划；获CCF NASAC青年软件创新奖、CCF优秀博士论文奖。</p>
++                </div>
++            </div>
++        </div>
++    </section>
++
++    <section class="forum-section">
++        <h3>五、论坛组织委员会简介</h3>
++        <div class="committee-member">
++            <h4>1. 论坛组委会：姜艳杰 副教授</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/专刊论坛/姜艳杰.png" alt="姜艳杰头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>姜艳杰，天津大学副教授，博士生导师。研究方向主要包括人工智能（大语言模型）、数据挖掘、智能软件开发、软件安全、隐私保护。获得CCF科学技术奖、ACM
++                    SIGSOFT杰出论文奖、百度学术新星奖、入选“博士后创新人才支持计划”。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>2. 论坛组委会：刘辉 教授</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/专刊论坛/刘辉.png" alt="刘辉头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>刘辉，北京理工大学计算机学院教授，CCF软件工程专委会副主任委员（执行），长期从事软件质量保障和智能软件开发方面的研究和教学工作。发表CCF
++                    A类论文五十余篇，曾获得IET Premium Award、RE 最佳论文奖、ICSE 杰出论文奖（2022、2026）以及 ESEC/FSE 杰出论文奖、CCF
++                    自然科学二等奖、北京市技术发明二等奖。智能化软件重构的部分研究成果被 Eclipse采纳集成。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>3. 论坛组委会：窦文生 研究员</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/专刊论坛/窦文生.png" alt="窦文生头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>窦文生，中国科学院软件研究所研究员。研究方向为软件分析与测试，重点关注数据库系统、分布式系统、智能体系统等基础软件的质量保障技术。在TSE、TOSEM、ICSE、FSE、ASE、VLDB、ICDE、EuroSys等高水平期刊与会议上发表论文70余篇，多次获得ACM
++                    SIGSOFT杰出论文奖、软件学报高影响力论文奖。入选中国科学院青年创新促进会优秀会员、微软亚洲研究院铸星计划学者，曾获得CCF优秀博士学位论文奖、NASAC青年软件创新奖、中创软件人才奖等荣誉。
++                </p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>4. 论坛组委会：钟浩 研究员</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/专刊论坛/钟浩.png" alt="钟浩头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>钟浩，上海交通大学研究员，博士毕业于北京大学。主要研究软件缺陷检测、软件演化和经验软件工程。发表论文80余篇，包括在软工顶会ICSE和ASE发表的3篇单独作者论文。12篇论文谷歌学术引用过百，其中7篇为第一作者论文，1篇获得ACM
++                    SIGSOFT杰出论文奖和ASE最佳论文奖。多次担任ICSE、FSE和ICSE等知名会议的程序委员会委员。获得SANER和ICSME的最佳评审人奖。现为IEEE Transaction on
++                    Software Engineering的副编辑。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>5. 论坛组委会：张路 教授</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/专刊论坛/张路.png" alt="张路头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>张路，北京大学计算机学院教授，2000年获北京大学计算机科学技术博士学位。主要研究领域是软件分析与测试，在软件工程领域重要期刊和会议上发表论文100余篇。现任《Science
++                    China: Information Science》、《软件学报》编委，曾任2017年ICSME程序委员会共同主席和FSE、OOPSLA、ASE、ISSTA等重要国际会议的程序委员会委员。</p>
++            </div>
++        </div>
++    </section>
++
++</div>--- before/pages/competition/rust-prototype-competition.html
++++ after/pages/competition/rust-prototype-competition.html
+@@ -0,0 +1,285 @@
++<div class="banner">
++    <img src="images/logo/banner.jpg" alt="Background" class="banner-background" />
++</div>
++<!--插入CSS文件-->
++<link rel="stylesheet" type="text/css" href="./css/index.css">
++<link rel="stylesheet" type="text/css" href="./css/competition.css">
++<!--插入JS文件 -->
++<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
++
++<div class="container">
++    <h2 class="section-title">2026年Rust软件原型开发竞赛</h2>
++    <!-- <div class="section-title-en">竞赛通知及日程安排</div> -->
++
++    <section class="competition-section">
++        <p>为促进Rust语言在高校教学、科研训练和工程实践中的应用，推动高校学生参与软件开发与开源协作，举办2026年Rust软件原型开发竞赛。竞赛以可构建、可运行、可演示的软件原型为主要成果，面向大专院校在读本科生和研究生开放。有关事项通知如下。
++        </p>
++        <p><strong>决赛时间：</strong>2026年11月7日 15:20—18:20</p>
++        <p><strong>决赛地点：</strong>天津社会山国际会议中心酒店，二层15号会议室</p>
++    </section>
++
++    <section class="competition-section">
++        <h3>一、竞赛内容</h3>
++        <p>参赛者以Rust为主要开发语言，自主选题开展软件原型设计、实现与展示。项目方向包括基础软件、系统工具、开发者工具、云原生组件、嵌入式与物联网、数据处理、安全可信软件、教育科研工具及行业应用等。成果可以是应用、库、框架、插件、命令行工具、系统服务，也可以是已有开源项目的功能扩展或工程优化。
++        </p>
++        <p>Rust须在核心功能、关键性能路径、可靠性保障或安全边界中发挥实质作用。允许合理使用其他语言组件，但仅以少量Rust代码包装其他语言项目的作品，原则上不符合竞赛定位。评审重点关注技术实现、工程质量、运行验证及应用价值。
++        </p>
++    </section>
++
++    <section class="competition-section">
++        <h3>二、赛制设置</h3>
++        <p>竞赛分为初赛与决赛。初赛根据参赛稿件、项目仓库、文档及运行结果进行评审，确定决赛入围名单。决赛根据最终提交版本，通过现场项目陈述、运行演示和问答进行评审。
++        </p>
++        <p>初赛与决赛均采用百分制，由客观评分50分和评委综合评分50分组成。初赛成绩仅用于入围，不带入决赛。决赛允许在初赛基础上完善项目，并提交主要改动说明。
++        </p>
++    </section>
++
++    <section class="competition-section">
++        <h3>三、赛事安排</h3>
++        <p>以下日期均为2026年，时间均为北京时间。</p>
++        <table class="competition-table">
++            <thead>
++                <tr>
++                    <th>阶段</th>
++                    <th>时间</th>
++                    <th>安排</th>
++                </tr>
++            </thead>
++            <tbody>
++                <tr>
++                    <td>启动发布</td>
++                    <td style="white-space: nowrap;">9月1日</td>
++                    <td>发布竞赛通知，开放报名。</td>
++                </tr>
++                <tr>
++                    <td>报名与开发</td>
++                    <td style="white-space: nowrap;">9月1日至10月31日</td>
++                    <td>提交报名信息，开展项目开发。</td>
++                </tr>
++                <tr>
++                    <td>初赛投稿截止</td>
++                    <td style="white-space: nowrap;">10月31日24:00</td>
++                    <td>通过邮件提交完整初赛材料。</td>
++                </tr>
++                <tr>
++                    <td>初赛评审</td>
++                    <td style="white-space: nowrap;">11月1日至3日</td>
++                    <td>审查材料，评审项目及运行结果。</td>
++                </tr>
++                <tr>
++                    <td>入围通知</td>
++                    <td style="white-space: nowrap;">11月4日</td>
++                    <td>通知入围队伍及决赛准备事项。</td>
++                </tr>
++                <tr>
++                    <td>决赛准备</td>
++                    <td style="white-space: nowrap;">11月4日至5日</td>
++                    <td>提交最终版本及演示材料，确认到场人员与设备需求。</td>
++                </tr>
++                <tr>
++                    <td>现场决赛</td>
++                    <td style="white-space: nowrap;">11月7日<br>15:20—18:20</td>
++                    <td>在天津社会山国际会议中心酒店会议中心三层多功能厅（C3）举行路演与答辩。</td>
++                </tr>
++                <tr>
++                    <td>颁奖活动</td>
++                    <td style="white-space: nowrap;">11月8日下午</td>
++                    <td>拟在ChinaSoft 2026闭幕式举行。</td>
++                </tr>
++                <tr>
++                    <td>结果公示</td>
++                    <td style="white-space: nowrap;">评审完成后</td>
++                    <td>拟获奖名单及成绩公示不少于3个工作日。</td>
++                </tr>
++            </tbody>
++        </table>
++        <p>决赛材料提交截止时刻、签到时间及出场顺序以组委会通知为准。颁奖时尚未完成公示或争议复核的，相关证书和奖励待结果确认后发放。
++        </p>
++    </section>
++
++    <section class="competition-section">
++        <h3>四、报名参赛</h3>
++        <p>每支队伍由1至6名在读学生组成，鼓励个人独立参赛，允许跨学校、跨专业、跨年级组队。每队可配备0—2名指导教师，指导教师不计入队员人数，教师不能作为队员参赛。每名学生只能加入一支队伍。队员名单在初赛投稿截止时确定，此后不得新增或替换队员。
++        </p>
++        <p>队长按要求提交队伍及项目名称、学生成员名单、学籍、联系方式和分工等信息，并填写指导教师信息（如有）。报名表与参赛材料统一通过邮件提交。跨校队伍在邮件主题中使用队长所在学校名称，报名表中注明各成员所在学校。
++        </p>
++        <p>报名表：<a href="https://docs.qq.com/sheet/DVHFCcXZDcVdscEpW?tab=000002" target="_blank">Rust原型竞赛报名表</a></p>
++        <p>每支入围队伍须至少有1名队员到决赛现场参加路演与答辩。
++        </p>
++    </section>
++
++    <section class="competition-section">
++        <h3>五、开发要求及提交材料</h3>
++        <h4>必交材料与格式</h4>
++        <p>初赛通过邮件投稿，至少提交以下三项。项目URL写入邮件正文，PDF稿件和报名表作为邮件附件提交。
++        </p>
++        <table class="competition-table">
++            <thead>
++                <tr>
++                    <th>必交材料</th>
++                    <th>内容与格式</th>
++                </tr>
++            </thead>
++            <tbody>
++                <tr>
++                    <td style="white-space: nowrap;">参赛PDF稿件</td>
++                    <td>中文，不少于6页，尽可能不多于12页。包括项目简介、研发背景、核心功能、技术实现、效果评估、相关工作及Rust核心作用。提交可正常阅读的PDF文件，避免大量堆放源代码。</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">项目URL地址</td>
++                    <td>提供可访问的项目代码仓库URL，并注明用于评审的完整commit ID或固定版本标签。项目主页、在线演示地址可另附，不能替代代码仓库地址。</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">报名表</td>
++                    <td>使用上述报名表填写本队信息，将本队报名内容导出或另存为PDF或XLSX附件。邮件附件应包含本队完整报名信息。</td>
++                </tr>
++            </tbody>
++        </table>
++        <p>项目仓库须提供与评审版本一致的源码、README、开源许可证及第三方来源说明、设计和使用说明、贡献指南、开发提交历史，以及至少1个覆盖核心功能的最小运行用例。README应列明环境与依赖、构建运行命令、用例入口、输入及预期输出或断言；上述技术材料通过仓库提供，无须重复作为邮件附件。
++        </p>
++        <h4>邮件提交规范</h4>
++        <p><strong>收件邮箱：</strong>Rust_China_Contest@163.com</p>
++        <p><strong>初赛邮件主题：</strong>【Rust竞赛投稿】学校名称-队伍名称-项目名称</p>
++        <p><strong>决赛邮件主题：</strong>【Rust竞赛决赛材料】学校名称-队伍名称-项目名称</p>
++        <p>邮件正文依次写明：学校、队伍名称、项目名称、学生成员名单、指导教师（如有）、联系人姓名、联系电话、联系邮箱、项目仓库URL、评审版本（commit
++            ID或固定版本标签）、附件清单；有特殊运行需求或未开源部分的，另作简要说明。
++        </p>
++        <p><strong>附件命名：</strong><br>
++            学校名称_队伍名称_项目名称_参赛稿件.pdf<br>
++            学校名称_队伍名称_项目名称_报名表.pdf（或.xlsx）
++        </p>
++        <p>截止前更新材料时，在原邮件主题末尾加“【更新】”，重新发送完整材料，并在正文注明更新内容。以截止前最后一次完整提交的版本为准。
++        </p>
++        <h4>决赛补充材料</h4>
++        <p>入围队伍通过邮件提交最终版PDF稿件、项目URL及固定版本、路演PPT（PPTX或PDF格式），并在正文说明主要改动、到场队员姓名及演示设备需求。附件沿用上述命名方式，以“决赛稿件”或“路演PPT”标明材料类型。报名信息未变化的，无须重复提交报名表。
++        </p>
++    </section>
++
++    <section class="competition-section">
++        <h3>六、考核实施与决赛流程</h3>
++        <p>组委会审核参赛资格及材料完整性，依据项目文档、代码和运行结果开展初赛评审。入围队伍按通知完成决赛材料提交与现场准备。
++        </p>
++        <p>决赛每队共15分钟，其中项目陈述与演示10分钟，评委问答5分钟。每队至少1名队员现场参加路演与答辩。
++        </p>
++        <table class="competition-table">
++            <thead>
++                <tr>
++                    <th>环节</th>
++                    <th>时长</th>
++                    <th>主要内容</th>
++                </tr>
++            </thead>
++            <tbody>
++                <tr>
++                    <td>项目陈述与演示</td>
++                    <td style="white-space: nowrap;">每队10分钟</td>
++                    <td>介绍项目目标、技术方案及Rust核心作用，展示核心功能的真实运行过程。</td>
++                </tr>
++                <tr>
++                    <td>评委问答</td>
++                    <td style="white-space: nowrap;">每队5分钟</td>
++                    <td>围绕技术实现、工程验证及应用价值进行答辩。</td>
++                </tr>
++            </tbody>
++        </table>
++        <p>到场队员按公布的顺序参加路演与答辩。评委结合最终版本、现场展示及问答独立评分，由组委会汇总结果。涉及离线演示或特殊设备的，应在决赛前向组委会说明。
++        </p>
++    </section>
++
++    <section class="competition-section">
++        <h3>七、考核标准与成绩计算</h3>
++        <p>初赛与决赛采用相同的评分维度和分值，满分100分。</p>
++        <table class="competition-table">
++            <thead>
++                <tr>
++                    <th>评分类型</th>
++                    <th>评价维度</th>
++                    <th>分值</th>
++                </tr>
++            </thead>
++            <tbody>
++                <tr>
++                    <td rowspan="4">客观评分<br>50分</td>
++                    <td>开源说明文档完整性</td>
++                    <td>10分</td>
++                </tr>
++                <tr>
++                    <td>项目维护与提交历史</td>
++                    <td>10分</td>
++                </tr>
++                <tr>
++                    <td>最小运行用例</td>
++                    <td>20分</td>
++                </tr>
++                <tr>
++                    <td>README清晰完整</td>
++                    <td>10分</td>
++                </tr>
++                <tr>
++                    <td rowspan="4">评委综合评分<br>50分</td>
++                    <td>Rust技术深度与实现质量</td>
++                    <td>20分</td>
++                </tr>
++                <tr>
++                    <td>核心功能与工程验证</td>
++                    <td>15分</td>
++                </tr>
++                <tr>
++                    <td>技术方案与新增贡献</td>
++                    <td>10分</td>
++                </tr>
++                <tr>
++                    <td>应用场景与使用价值</td>
++                    <td>5分</td>
++                </tr>
++            </tbody>
++        </table>
++        <p>总成绩＝客观评分＋有效评委综合评分的算术平均值。
++        </p>
++        <p>每个项目由不少于3名无利益冲突的有效评委独立评分，成绩保留两位小数。决赛重新评分；同分时依次比较客观评分、最小运行用例、项目维护与提交历史得分，仍相同的列为并列。
++        </p>
++    </section>
++
++    <section class="competition-section">
++        <h3>八、人工智能工具使用及过程真实性</h3>
++        <p>允许合理使用AI工具。队伍须在稿件或仓库中简要说明所用工具、使用范围及人工审查方式；未使用的明确注明。参赛队伍对提交成果及演示内容负责，开发记录、测试数据和实验结果须真实，不得伪造或冒用。
++        </p>
++    </section>
++
++    <section class="competition-section">
++        <h3>九、奖项设置及结果公示</h3>
++        <p>竞赛设置一等奖、二等奖、三等奖和优胜奖，具体名额及奖励形式在决赛前公布。拟于2026年11月8日下午ChinaSoft 2026闭幕式开展颁奖活动，并结合实际资源为优秀项目提供社区孵化、技术指导、展示交流等支持。
++        </p>
++        <p>拟获奖名单及成绩公示不少于3个工作日。队伍如有异议，可通过投稿与咨询邮箱提交事实与依据，由组委会组织复核；公示无异议或复核完成后确认获奖结果并发放证书和奖励。
++        </p>
++    </section>
++
++    <section class="competition-section">
++        <h3>十、成果权益与学术诚信</h3>
++        <p>参赛者保留作品著作权，授予组委会非独占的评审、展示和宣传使用权。成果原则上开源；确有合理原因不能全部开源的，应事先说明并提供可供评审的材料。使用第三方代码、数据或素材的，须注明来源并遵守相应许可；基于既有项目开发的，须说明本次新增内容。
++        </p>
++        <p>参赛材料应与实际成果一致，不得抄袭、代做、冒用成果或伪造开发及运行记录。对涉嫌违规的情况，组委会将听取说明并组织复核；查实严重违规的，可取消参赛或获奖资格。
++        </p>
++    </section>
++
++    <section class="competition-section">
++        <h3>十一、竞赛组织</h3>
++        <p><strong>主办单位：</strong>曙光信息产业股份有限公司（中科曙光）</p>
++        <p><strong>承办单位：</strong>南京大学计算机学院</p>
++        <p><strong>协办单位：</strong>华为2012软件工程与开源实验室、Rust编程语言与应用虚拟教研室、开放原子开源基金会旋武社区教育工作组</p>
++        <p>组委会统筹赛事组织、材料收集、现场安排与结果公示，评审委员会负责竞赛评审。评审实行利益冲突回避。
++        </p>
++    </section>
++
++    <section class="competition-section">
++        <h3>十二、报名渠道及联系方式</h3>
++        <p>报名表：<a href="https://docs.qq.com/sheet/DVHFCcXZDcVdscEpW?tab=000002" target="_blank">Rust原型竞赛报名表</a></p>
++        <p><strong>投稿与咨询邮箱：</strong>Rust_China_Contest@163.com</p>
++        <p><strong>联系人：</strong>燕老师</p>
++        <p><strong>参赛选手交流QQ群：</strong>1044822438</p>
++        <p>报名和参赛材料统一通过邮件提交。后续赛事通知、决赛安排及公示信息通过邮件和参赛选手交流QQ群发布。未尽事宜由组委会另行通知。
++        </p>
++        <p><strong>Rust软件原型开发竞赛组委会</strong></p>
++    </section>
++
++</div>

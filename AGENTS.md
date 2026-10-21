@@ -351,6 +351,13 @@ pnpm preview    # serve the production build
   `source/chinasoft2026/curation.json`; do not derive identities from affiliation.
   Committee reveal animations trigger on intersection, not a fraction of the
   roster's height, so long lists remain visible on short viewports.
+- **Daily ChinaSoft maintenance:** `source/chinasoft2026/automation/` contains
+  the host cron runner and task contract. The user requested 18:00 Asia/Shanghai
+  on a continuously online host. Runs use distinct branches/worktrees, a lock,
+  the existing Codex login and `~/.ghtoken`; they update a PR, never merge it.
+  Reports live under ignored `.automation/chinasoft2026/`. Active-page 404/410
+  responses produce incomplete check evidence without advancing the successful
+  baseline; read the automation README for runtime requirements and pausing.
 - **Search (`lib/search.ts` + `lib/bm25.ts`):** one palette over the whole
   program — talk titles/abstracts, speakers, affiliations, forums, committee
   members, organizations — ranked by BM25 in the browser over the already-loaded

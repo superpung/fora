@@ -14,8 +14,8 @@ class ProgrammeTests(unittest.TestCase):
         data = json.loads((ROOT / "data/chinasoft2026.json").read_text())
         forums = {f["code"]: f for f in data["forums"]}
         self.assertEqual(len(forums), 66)
-        self.assertEqual(sum(f["detail_extracted"] for f in forums.values()), 48)
-        for code in ("R9", "R25", "R33", "R34", "R35", "E2", "E4", "E5", "E6", "I5", "I7", "I8"):
+        self.assertEqual(sum(f["detail_extracted"] for f in forums.values()), 52)
+        for code in ("R9", "R25", "R33", "R35", "E4", "E5", "E6", "I7", "I8"):
             forum = forums[code]
             self.assertEqual(forum["agenda_status"], "not_published")
             self.assertFalse(forum["talks"])
@@ -23,8 +23,8 @@ class ProgrammeTests(unittest.TestCase):
             if code != "E6":
                 self.assertIsNone(forum["day_date"])
                 self.assertIsNone(forum["start"])
-        self.assertEqual(forums["E2"]["extra"]["source_code"], "E1")
-        self.assertEqual(len(forums["E2"]["flags"]), 1)
+        self.assertFalse(forums["E2"]["flags"])
+        self.assertTrue(forums["E2"]["talks"])
         self.assertTrue(forums["E1"]["talks"])
         self.assertNotIn("source_navigation_status", forums["R16"]["extra"])
         for code, index, name, title, time in (
@@ -48,6 +48,37 @@ class ProgrammeTests(unittest.TestCase):
                       if b["title"]["zh"] == "CCF系统软件专委会年会")
         self.assertEqual(annual["end"], "21:30")
         self.assertTrue(any("颁奖典礼" in b["title"]["zh"] for d in data["days"] for b in d["blocks"]))
+
+    def test_october_21_evening_programmes_hosts_and_competition_conflict(self):
+        forums = {f["code"]: f for f in json.loads((ROOT / "data/chinasoft2026.json").read_text())["forums"]}
+        for code, count, day, start, room in (
+            ("R34", 7, "2026-11-07", "15:20", "三层29号会议室"),
+            ("S3", 12, "2026-11-07", "15:20", "四层3号多功能厅"),
+            ("E2", 10, "2026-11-06", "09:00", "二层13号会议室"),
+            ("I5", 5, "2026-11-08", "09:00", "2层19号会议室"),
+        ):
+            forum = forums[code]
+            self.assertEqual((len(forum["talks"]), forum["day_date"], forum["start"], forum["room"]),
+                             (count, day, start, room))
+            self.assertNotIn("unmatched_profiles", forum["extra"])
+        for code, index, name in (("R34", 6, "李震宁"), ("E2", 9, "陈向群")):
+            talk = forums[code]["talks"][index]
+            self.assertEqual(talk["type"], "other")
+            self.assertFalse(talk["speakers"])
+            self.assertEqual([p["name"] for p in talk["extra"]["hosts"]], [name])
+            self.assertTrue(talk["extra"]["hosts"][0]["photo"])
+            self.assertTrue(talk["extra"]["hosts"][0]["bio"])
+        self.assertEqual([p["name"] for p in forums["R34"]["talks"][0]["speakers"]], ["金海", "梅宏"])
+        self.assertEqual(forums["E2"]["talks"][0]["extra"]["collective_credit"], "论坛组织委员会")
+        for credit in ("论坛组织委员会", "全体报告嘉宾及参会者"):
+            flags = []
+            self.assertEqual(people(credit, flags), [])
+        final = forums["C3"]
+        self.assertEqual((final["day_date"], final["start"], final["end"], final["room"]),
+                         ("2026-11-07", "15:20", "18:20", "二层15号会议室"))
+        self.assertFalse(final["talks"])
+        self.assertIn("三层多功能厅", final["flags"][0])
+        self.assertEqual(sum(bool(t.get("abstract")) for t in forums["S3"]["talks"]), 2)
 
     def test_october_20_programmes_renumbering_and_partial_competition_dates(self):
         data = json.loads((ROOT / "data/chinasoft2026.json").read_text())

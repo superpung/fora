@@ -1,0 +1,156 @@
+{
+  "baseline": "20261021T020913151864Z",
+  "since_previous_check": {
+    "pages": {
+      "added": [
+        "pages/agenda/committee-meeting/index.html",
+        "pages/agenda/competition/index.html",
+        "pages/agenda/competition/templates/rust-prototype-competition.html",
+        "pages/agenda/special-issue-forum/templates/data-driven-defect-detection.html",
+        "pages/competition/rust-prototype-competition.html"
+      ],
+      "removed": [],
+      "changed": [
+        "index.html",
+        "pages/agenda/academic-forum/index.html",
+        "pages/agenda/academic-forum/templates/neuro-symbolic-fusion.html",
+        "pages/agenda/academic-forum/templates/ubiquitous-os-open-source.html",
+        "pages/agenda/education-forum/index.html",
+        "pages/agenda/education-forum/templates/formal-methods.html",
+        "pages/agenda/education-forum/templates/system-software-education.html",
+        "pages/agenda/industry-forum/templates/riscv-software-hw-collaboration.html",
+        "pages/agenda/special-issue-forum/index.html"
+      ],
+      "unchanged_count": 81
+    },
+    "portraits": {
+      "added": [
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/刘辉.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/姜艳杰.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/张路.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/张颖.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/玄跻峰.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/窦文生.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/钟浩.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛v2/刘志宏.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛v2/刘振君.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛v2/吴依伦.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛v2/李震宁.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛v2/蔺冰.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛v2/郭耀.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛v2/韩喻泷.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/工业论坛/吴伟.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/工业论坛/吴国伟.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/工业论坛/杨威.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/工业论坛/潘浩林.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/工业论坛/王青山.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/工业论坛/谢涛.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/工业论坛/邢明杰.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/教育论坛/刘先华.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/教育论坛/宫晓利.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/教育论坛/张昱.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/教育论坛/张羽.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/教育论坛/杨威.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/教育论坛/王豪杰.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/教育论坛/翟恩南.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/教育论坛/翟高寿.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/教育论坛/赵霞.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/教育论坛/陈向群.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/教育论坛/陈渝.png"
+      ],
+      "removed": [],
+      "changed": [],
+      "unchanged_count": 517
+    }
+  },
+  "versus_curated_input": {
+    "pages": {
+      "added": [
+        "pages/agenda/committee-meeting/index.html",
+        "pages/agenda/competition/index.html",
+        "pages/agenda/competition/templates/rust-prototype-competition.html",
+        "pages/agenda/special-issue-forum/templates/data-driven-defect-detection.html",
+        "pages/callforpaper.html",
+        "pages/competition/rust-prototype-competition.html",
+        "pages/history.html"
+      ],
+      "removed": [],
+      "changed": [
+        "index.html",
+        "pages/agenda/academic-forum/index.html",
+        "pages/agenda/academic-forum/templates/hw-sw-collaborative-security.html",
+        "pages/agenda/academic-forum/templates/neuro-symbolic-fusion.html",
+        "pages/agenda/academic-forum/templates/ubiquitous-os-open-source.html",
+        "pages/agenda/agenda-overview/index.html",
+        "pages/agenda/education-forum/index.html",
+        "pages/agenda/education-forum/templates/formal-methods.html",
+        "pages/agenda/education-forum/templates/system-software-education.html",
+        "pages/agenda/industry-forum/templates/riscv-software-hw-collaboration.html",
+        "pages/agenda/special-issue-forum/index.html",
+        "pages/intro/committee-chair.html",
+        "pages/intro/committee-finance.html",
+        "pages/intro/committee-publication.html",
+        "pages/intro/committee-publicity.html",
+        "pages/intro/committee-sponsorship.html",
+        "pages/intro/committee-volunteer.html"
+      ],
+      "unchanged_count": 71
+    },
+    "portraits": {
+      "added": [
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/刘辉.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/姜艳杰.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/张路.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/张颖.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/玄跻峰.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/窦文生.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专刊论坛/钟浩.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛v2/刘志宏.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛v2/刘振君.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛v2/吴依伦.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛v2/李震宁.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛v2/蔺冰.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛v2/郭耀.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛v2/韩喻泷.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/工业论坛/吴伟.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/工业论坛/吴国伟.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/工业论坛/杨威.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/工业论坛/潘浩林.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/工业论坛/王青山.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/工业论坛/谢涛.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/工业论坛/邢明杰.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/教育论坛/刘先华.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/教育论坛/宫晓利.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/教育论坛/张昱.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/教育论坛/张羽.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/教育论坛/杨威.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/教育论坛/王豪杰.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/教育论坛/翟恩南.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/教育论坛/翟高寿.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/教育论坛/赵霞.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/教育论坛/陈向群.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/教育论坛/陈渝.png"
+      ],
+      "removed": [],
+      "changed": [],
+      "unchanged_count": 517
+    }
+  },
+  "withdrawn_pages": {},
+  "broken_pages": {
+    "pages/agenda/committee-meeting/index.html": {
+      "url": "https://chinasoft.ccf.org.cn/2026/pages/agenda/committee-meeting/index.html",
+      "status": 404,
+      "checked_at": "2026-10-21T12:43:21.454405+00:00",
+      "attempts": 1
+    }
+  },
+  "broken_portraits": {},
+  "withdrawn_page_changes": {
+    "added": [],
+    "removed": [],
+    "changed": [],
+    "unchanged_count": 0
+  },
+  "coverage_note": "The checker includes callforpaper/history; the curated importer excludes them. Their first appearance establishes coverage, not evidence of recent publication. HTML is archived verbatim; portraits have content hashes, not archived originals. CSS, JavaScript, other images, attachments and external sites are outside this check. A withdrawn navigation link is not evidence of cancellation. R32 curated role-paragraph removals are documented in CHINASOFT2026_GAPS.md."
+}

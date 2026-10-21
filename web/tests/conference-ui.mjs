@@ -99,6 +99,8 @@ try {
   assert.equal(await migrationPage.locator('.spcard .star[aria-pressed="true"]').count(), 2);
   assert.equal(await migrationPage.locator('.spcard').filter({ hasText: 'Unit A' }).locator('.star').getAttribute('aria-pressed'), 'false');
   await migrationPage.goto(base + '/chinasoft2025/schedule?v=mine-day', { waitUntil: 'networkidle' });
+  // Network quiescence does not guarantee that the lazy route has rendered.
+  await migrationPage.locator('.talkrow__title').first().waitFor();
   const titles = await migrationPage.locator('.talkrow__title').allTextContents();
   assert.deepEqual(titles.sort(), ['Keynote', 'Report 1']);
   const cached = await migrationPage.evaluate(() => JSON.parse(localStorage.getItem('chinasoft2025:reminder.items')));

@@ -81,7 +81,7 @@ try {
         .map((p) => `${p.name}:${p.photo.local_path}`).sort(), `${forum.code}#${i}: portraits`);
     });
     console.log(`PASS ${forum.code}: ${result.length} programme rows and speaker identities`);
-    if (["R29", "S4", "R23", "R13", "P4", "R19", "E1", "E3", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].includes(forum.code)) {
+    if (["R34", "S3", "E2", "I5", "R29", "S4", "R23", "R13", "P4", "R19", "E1", "E3", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].includes(forum.code)) {
       await page.waitForTimeout(600);
       await capture(page, { path: `${screenshots}/desktop-${forum.code}.png` });
     }
@@ -136,7 +136,7 @@ try {
       await capture(page, { path: "/tmp/chinasoft2026-schedule.png" });
     }
     if (data.days[i].date === "2026-11-07") {
-      for (const code of ["E6", "C5", "C2", "C1"]) {
+      for (const code of ["E6", "C5", "C2", "C1", "C3"]) {
         assert(await page.locator(`.tgrid__chead[href="/chinasoft2026/forum/${code}"]`).count(), `Missing pending forum ${code}`);
       }
     }
@@ -164,6 +164,14 @@ try {
   const phone = await mobile.newPage();
   phone.on("pageerror", (error) => errors.push(error.message));
   for (const [label, target] of [["desktop", page], ["mobile", phone]]) {
+    await target.goto(`${base}/chinasoft2026/forum/C3`, { waitUntil: "domcontentloaded" });
+    await target.locator(".fd__meta").waitFor();
+    assert((await target.locator(".fd__meta").innerText()).includes("15:20–18:20"));
+    assert((await target.locator(".fd__meta").innerText()).includes("二层15号会议室"));
+    await target.locator(".source-notes__toggle").first().click();
+    await target.getByText(/地点不一致：通知顶部/).waitFor();
+    await target.waitForTimeout(600);
+    await capture(target, { path: `${screenshots}/${label}-C3.png` });
     for (const code of ["C1", "C4"]) {
       await target.goto(`${base}/chinasoft2026/forum/${code}`, { waitUntil: "domcontentloaded" });
       await target.locator(".fd__desc").waitFor();
@@ -177,7 +185,7 @@ try {
   }
   for (const path of ["forum/R32#talk-5", "committee", "schedule", "topics", "speakers", "plan",
     "forum/R6#talk-1", "forum/R7#talk-5", "forum/R7#talk-7", "forum/R8#talk-10", "forum/R11#talk-1", "forum/R17#talk-1",
-    ...["R29", "S4", "R23", "R13", "P4", "R19", "E1", "E3", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].map(code => `forum/${code}#talk-2`)]) {
+    ...["R34", "S3", "E2", "I5", "R29", "S4", "R23", "R13", "P4", "R19", "E1", "E3", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].map(code => `forum/${code}#talk-2`)]) {
     // Assert application readiness, independent of the preview's analytics requests.
     await phone.goto(`${base}/chinasoft2026/${path}`, { waitUntil: "domcontentloaded" });
     const ready = path.startsWith("forum/") ? `#${path.split("#")[1]}` : {

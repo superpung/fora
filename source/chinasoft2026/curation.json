@@ -77,14 +77,16 @@
       "resolution": "The original-source comparison now supplies Liu Wanwei's actual biography. Keep the old note here for history; do not display the obsolete defect."
     }
   },
-  "placeholder_codes": {
+  "resolved_placeholder_codes": {
     "system-software-education": {
       "title": "系统软件教育",
       "source_code": "E1",
       "code": "E2",
       "flags": [
         "编号不一致：系统软件教育占位页标为 E1，总表标为 E2；此处按总表收录。"
-      ]
+      ],
+      "resolved_on": "2026-10-21",
+      "resolution": "The evening source now publishes the full E2 programme with the correct code and title. The old association is retained only as history."
     }
   }
 }

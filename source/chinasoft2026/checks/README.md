@@ -8,7 +8,8 @@ uv run python source/chinasoft2026/check_updates.py
 
 Each UTC timestamp directory is an independent observation, not an upstream
 publication date. Keep these artifacts in version control with the checker.
-No scheduler is installed. `--output PATH` selects a different history root.
+Daily host maintenance runs at 18:00 Asia/Shanghai; see [automation](../automation/README.md).
+`--output PATH` selects a different history root.
 
 - `html.tar.gz`: exact response bytes of active HTML pages and directly checked
   withdrawn pages under `withdrawn/`. Reading the archive requires no extraction.
@@ -52,4 +53,13 @@ unexpected response types fail the run. A failed run is not a "no changes" resul
 First complete observation:
 [2026-10-15 review](20261015T055445155743Z/REVIEW.md).
 
-Latest imported observation: [2026-10-21 review](20261021T020913151864Z/REVIEW.md).
+Latest complete observation: [2026-10-21 morning review](20261021T020913151864Z/REVIEW.md).
+
+Latest reviewed accessible-content import:
+[October 21 evening](20261021T124314880733Z/REVIEW.md). Its committee-meeting
+index is HTTP 404, so the check is incomplete and the last complete baseline
+remains the October 21 morning observation. The checker now records confirmed
+active-page 404/410 responses in `broken_pages`, finishes accessible HTML and
+portrait evidence, writes the report/archive, then exits unsuccessfully. Missing
+HTML is never represented as deleted content in patches. Transport/server errors
+still fail; no incomplete observation advances the comparison baseline.

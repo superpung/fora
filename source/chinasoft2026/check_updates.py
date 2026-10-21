@@ -170,16 +170,20 @@ def check(root):
         while pending:
             path = min(pending)
             pending.remove(path)
-            if path in bodies:
+            if path in manifest["pages"]:
                 continue
-            body, metadata = request(BASE + path, "text/html")
+            body, metadata = request(BASE + path, "text/html", allow_missing=True)
+            manifest["pages"][path] = metadata
+            if metadata["status"] != 200:
+                print(f"Missing active page: HTTP {metadata['status']} {BASE + path}",
+                      file=sys.stderr, flush=True)
+                continue
             body.decode("utf-8")
             bodies[path] = body
-            manifest["pages"][path] = metadata
-            pending.update(links(body) - bodies.keys())
+            pending.update(links(body) - manifest["pages"].keys())
         print(f"Fetched {len(bodies)} active HTML pages", flush=True)
         watched = (baseline["pages"].keys() | baseline.get("withdrawn_pages", {}).keys()
-                   | imported["pages"].keys()) - bodies.keys()
+                   | imported["pages"].keys()) - manifest["pages"].keys()
         withdrawn_bodies = {}
         for path in sorted(watched):
             body, metadata = request(BASE + path, "text/html", allow_missing=True)
@@ -205,6 +209,8 @@ def check(root):
         print(f"Checked {len(urls)} active portrait URLs", flush=True)
         report = {"baseline": manifest["baseline"], "since_previous_check": {},
                   "versus_curated_input": {}, "withdrawn_pages": manifest["withdrawn_pages"],
+                  "broken_pages": {path: entry for path, entry in manifest["pages"].items()
+                                   if entry["status"] != 200},
                   "broken_portraits": {url: entry for url, entry in manifest["portraits"].items()
                                        if entry["status"] != 200}}
         old_withdrawn = baseline["pages"] | baseline.get("withdrawn_pages", {})
@@ -221,9 +227,16 @@ def check(root):
             "CSS, JavaScript, other images, attachments and external sites are outside this check. "
             "A withdrawn navigation link is not evidence of cancellation. "
             "R32 curated role-paragraph removals are documented in CHINASOFT2026_GAPS.md.")
-        write_diff(directory / "since-previous.patch", previous_pages, bodies)
-        write_diff(directory / "versus-curated.patch", curated, bodies)
+        # A failed response has no source body; never present it as deleted content.
+        missing = report["broken_pages"]
+        write_diff(directory / "since-previous.patch",
+                   {p: body for p, body in previous_pages.items() if p not in missing}, bodies)
+        write_diff(directory / "versus-curated.patch",
+                   {p: body for p, body in curated.items() if p not in missing}, bodies)
         dump(directory / "report.json", report)
+        if missing:
+            raise ValueError(f"Incomplete source check: {len(missing)} active HTML pages unavailable; "
+                             f"accessible pages and portrait results saved in {directory}")
         manifest.update(status="complete", completed_at=now())
         dump(directory / "manifest.json", manifest)
         print(directory)
