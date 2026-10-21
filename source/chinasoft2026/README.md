@@ -29,7 +29,7 @@ uv run python -m unittest discover -s source/chinasoft2026
 ```
 
 The overview supplies 66 forum/competition entries and 13 conference timetable
-rows across November 5–8. The 47 linked detail pages and retained accessible R16 programme supply
+rows across November 5–8. The 48 linked published programmes (including restored R16) supply
 395 programme items and 53 breaks. Conference meetings are retained separately from technical forums.
 The homepage advertises November 6–8; the dataset includes November 5 check-in
 as published in the overview and introduction, as a normal schedule event.
@@ -49,9 +49,10 @@ overview block locations omit the known venue prefixes, while `extra.location_ra
 retains the full source wording. The conference venue remains available for
 the page header, calendar exports and standalone share posters.
 
-All 517 available portrait URLs have been downloaded and decoded. The October 20
-check confirms all 25 previously broken P3/I3/S1 resources have recovered; their
-original image tags are restored. No broken portrait references remain.
+All 517 available portrait URLs have been downloaded and decoded. The October 21
+check replaces two P3/R19 speaker portraits; seven formerly retained-only R16
+resources are active again. All previously recovered P3/I3/S1 images remain
+available. No broken portrait references remain.
 `fetch_photos.py` and `web/scripts/prepare-portraits.mjs` prepare 256px WebP
 assets under `web/public/portraits/chinasoft2026/`; install web dependencies
 before refreshing portraits. `raw/portraits.json` records original URLs,
@@ -60,7 +61,12 @@ local file. Forum profiles, chairs and committee cards supply the identity;
 no image is assigned by filename or guessed across unrelated people. The
 service worker caches portraits on demand instead of precaching every photo.
 
-Unpublished programmes have `agenda_status: not_published`. C5/C2 final dates
+Unpublished programmes have `agenda_status: not_published`. Twelve newly linked
+October 21 pages explicitly contain only a pending-content notice. The adapter
+recognizes that template without inventing a programme. A guarded association
+retains E2's mismatched source code E1 without overwriting the published E1 forum.
+The overview's four mislabeled table-header cells are corrected directly in
+curated HTML; original bytes remain in the observation archive. C5/C2 final dates
 come from their competition announcements. E6's date, room and window come
 from its title in the overview, allowing the optional 论坛 suffix. No guessed clock times or people are
 assigned. The October 20 overview shifts education codes E2–E7 to E1–E6;

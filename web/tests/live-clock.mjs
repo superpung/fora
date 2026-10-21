@@ -111,7 +111,9 @@ try {
  if(!process.env.REMINDERS_ONLY) {
  const moments=[['preconference','04','12:00'],['registration','05','13:00'],['first-report','06','08:55'],
   ['morning','06','10:00'],['break','06','10:25'],['overrun','06','12:05'],['afternoon','06','14:00'],
-  ['annual-meeting','06','19:40'],['opening','07','09:00'],['keynote','07','13:45'],['before-e6','07','14:09'],
+  ['annual-meeting','06','19:40'],['annual-extended','06','21:25'],['annual-end','06','21:30'],
+  ['opening','07','09:00'],['opening-extended','07','12:00'],['opening-end','07','12:10'],
+  ['keynote','07','13:45'],['before-e6','07','14:09'],
   ['e6-running','07','14:30'],['e6-end','07','15:10'],['late-report','07','18:25'],['banquet','07','18:30'],
   ['evening-meeting','07','20:45'],['day-ended','07','23:00'],['last-morning','08','09:30'],
   ['closing','08','14:00'],['last-meeting','08','17:00'],['programme-ended','08','19:00'],['postconference','09','09:00']];
@@ -174,7 +176,7 @@ try {
   if(name==='now-dark-mobile') assert((await page.locator('.nowstar--live').innerText()).includes('智能化时代软件人才培养特别大会论坛'));
   if(name==='unknown-only') assert.equal((await page.locator('.nowstar__when').innerText()).trim(),'时间待定');
   if(name==='myday-unknown') assert.equal(await page.locator('.myday__move').count(),1);
-  if(name==='opening-highlight') assert((await page.locator('.block--other .is-now').first().innerText()).includes('08:30–11:45'));
+  if(name==='opening-highlight') assert((await page.locator('.block--other .is-now').first().innerText()).includes('08:30–12:10'));
   if(name==='now-overseas') assert.equal(await page.locator('.nowclock__time').innerText(),'09:00');
   if(name==='schedule-overseas') assert.equal(await page.locator('.tgrid__nowpill').innerText(),'10:00');
   if(name==='forum-overseas') assert.equal(await page.locator('#talk-4.tlrow--now').count(),1);

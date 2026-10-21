@@ -1,8 +1,14 @@
 # ChinaSoft 2026: source gaps and refresh checklist
 
-Last imported source review: **2026-10-20**. This is the conference-specific
+Last imported source review: **2026-10-21**. This is the conference-specific
 checklist for every subsequent refresh, not a claim that the official programme
 is complete. Talk numbers below are **one-based**, matching `#talk-N` links.
+
+The [October 21 observation](../source/chinasoft2026/checks/20261021T020913151864Z/REVIEW.md)
+updates two reports, overview event times, registration deadlines and source
+profiles. Twelve new links are explicit pending-content pages, not published
+programmes. R16 returns to active navigation with unchanged content. E3's
+biography defect is resolved; E2's placeholder has an inconsistent source code.
 
 The [October 20 observation](../source/chinasoft2026/checks/20261020T083547166350Z/REVIEW.md)
 adds R29/S4, two competition announcements and 24 portraits, restores all 25
@@ -22,8 +28,9 @@ Original snapshots remain separate from curated importer input.
 
 Sources: [official site](https://chinasoft.ccf.org.cn/2026/),
 [overview](https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index).
-The official navigation exposes 75 importer-scope HTML pages and 47 detailed
-programmes. Curated input retains R16, giving 76 HTML pages and 48 programmes.
+The official navigation exposes 88 importer-scope HTML pages, including 48
+published programmes and 12 explicit placeholders. R16 is active again; no
+additional withdrawn page is needed for the current inventory.
 The dataset contains 66 forum/competition entries, 395 programme items, 53
 breaks, 339 attached source abstracts and 517 downloaded portrait resources.
 One further abstract is retained in an unmatched profile, separately displayed.
@@ -107,7 +114,8 @@ One further abstract is retained in an unmatched profile, separately displayed.
 
 - R16's navigation link was withdrawn, but its direct official page remains
   accessible and byte-identical. `curation.json` explicitly retains the programme;
-  `fetch.py` continues fetching that URL. Recheck its status on the next refresh.
+  `fetch.py` continues fetching that URL. On October 21, active navigation is
+  restored with byte-identical content; the historical retention entry remains.
 - R17 now explicitly prints its code (October 16). The previously reviewed
   exact-title association remains recorded in `curation.json`.
 - R17's 王林章 portrait URL returned HTTP 404. Remove only that `<img>` from
@@ -206,7 +214,8 @@ One further abstract is retained in an unmatched profile, separately displayed.
   ends at 11:50; no extra item or extended report is inferred.
 - E4#2 (刘万伟): the source replaces the personal biography with report prose.
   It resembles the abstract but has a different ending. Preserve both fields;
-  `curation.json` guards one source-content note. Recheck for a restored biography.
+  `curation.json` guarded one source-content note. Resolved on October 21, now
+  E3#2: the source restores the biography; its old note is retained as history.
 - Committee role reconciliation is a deliberate data-only correction: dedicated
   finance/publicity/sponsorship/publication/volunteer pages now say 负责人,
   while `committee-chair.html` still says 主席. In curated HTML, prefix the
@@ -259,6 +268,55 @@ One further abstract is retained in an unmatched profile, separately displayed.
   No broken portraits remain. Existing R32 role removals and October 19
   committee-label reconciliation are still necessary and remain unchanged.
 
+## October 21 refresh details to recheck
+
+- Twelve newly linked pages explicitly say `内容正在更新中，敬请关注。`:
+  R9/R25/R33/R34/R35, E2/E4/E5/E6 and I5/I7/I8. Preserve their official links
+  and pending status; none supplies a report, clock time, room or participant.
+  E6 still inherits its previously published overview window. Counts remain
+  48 detailed and 18 unpublished programmes, with 395 programme items.
+- The system-software education placeholder prints E1, while the overview
+  assigns this title E2 and the software-engineering education detail remains
+  E1. `curation.json.placeholder_codes` guards the exact title and original code,
+  associates it with E2, and retains the original code plus one substantive note.
+  Do not overwrite E1, silently renumber the source, or add suffix-only notes.
+- R16's navigation returns; its programme and seven previously retained-only
+  portrait URLs are byte-identical. Its historical retention record remains,
+  while the active dataset no longer marks the navigation link withdrawn.
+- P3#7 changes from Fan Ming's mobile privacy-compliance report to Niu Xintao's
+  `Datalog程序的自动故障定位` (南京大学), retaining 14:45–15:15.
+  R19#5 changes from Han Xiaoyang's BrewFS report to Ma Quanyi's
+  `基于 Rust 的 Monorepo 架构体系实现`, retaining 11:20–11:50. Import both
+  new abstracts, biographies and portraits and replace the guarded AI annotations.
+  Existing report-index follows continue to follow the replaced programme slot;
+  there is no new migration or assumption that the old speaker still attends it.
+- E3#2 restores Liu Wanwei's actual biography and changes the abstract ending
+  to `挑战及应对建议`. Move the obsolete active note to historical resolved notes.
+  E3's organizers now explicitly list their institutions, also shown for hosts.
+  I1 adds four introduction paragraphs and explicit organizer cards for Peng Xin
+  and Wang Haofen. Peng Xin's biography remains on his organizer card after the
+  source moves it there. R26 updates Wu Zhilin's formal-methods committee role
+  from secretary-general to executive deputy director; no talk times change.
+- Overview: November 6 forum windows become 08:00–12:00 and 14:00–17:00;
+  these overview envelopes never replace individual published forum/report times.
+  The systems-software annual meeting ends at 21:30, formerly 21:20. November 7
+  opening/keynotes/academician block ends at 12:10, formerly 11:45. November 8
+  afternoon adds `颁奖典礼` to its title, retaining 13:30–16:30. Annual-meeting
+  room prefixes change, but their normalized room labels remain unchanged.
+- Early registration extends to October 25; the later price period starts
+  October 26. The price values are unchanged. Contact details add accommodation
+  contact Liu Ying, `yingzi (at) kailimice.cn`. These complete pages are archived
+  in curated input; the viewer continues linking to official registration/hotel
+  pages rather than introducing a new fees/contact UI.
+- All 517 active portrait URLs are available and match the imported hashes.
+  Nine appear newly active: seven belong to restored R16, two replace the old
+  P3/R19 references. There are only two new portrait assets versus our dataset.
+- One data-only markup correction is needed in the overview: its literal
+  `日期 / 时间 / 会议安排 / 地点` header cells changed from `th` to `td`.
+  Restore only those four cells to `th` in curated HTML so they are not parsed
+  as an event. Keep the original response in the check archive. This is not a
+  general parser relaxation. Recheck before reapplying after a fetch.
+
 ## Deliberate data-only correction: R32 biographies
 
 At the user's explicit request, remove the four standalone role paragraphs
@@ -286,7 +344,8 @@ generated JSON copies must come from the same rebuilt source.
    versus curated input. Then fetch live pages and compare added, changed and removed links. A withdrawn
    link is not evidence of a cancelled event. Review this document's pending
    codes, identities, title differences and source rosters against the new pages.
-2. Apply the documented R32 and October 19 committee-label data corrections,
+2. Apply the documented R32, October 19 committee-label and October 21
+   overview-header data corrections,
    check for repeated navigation links, and
    recheck portrait availability (all previously broken URLs recovered on October 20);
    do not generalize one-off source edits into shared parsing code. Review
@@ -343,7 +402,8 @@ messages to the exact-text review list; October 18 adds two forum-suffix differe
 R13's affiliation and the publicity roster discrepancy are now resolved.
 Ten substantive notes remain: three timing conflicts (R1/E3/I4), three report
 title conflicts (R14/S2#4/S2#5), two ambiguous E1 credits, the R22#3
-institution discrepancy, and the E3#2 biography-content defect. October 20 adds
+institution discrepancy, and the E2 placeholder-code mismatch. October 21 resolves
+the E3#2 biography defect, with its old note retained only in curation history. October 20 adds
 seven exact formatting/prefix/suffix dismissals and resolves the R23 conflict. No uncertainty notes were added for known distinct
 same-name people. The historical inventory below retains its original status.
 

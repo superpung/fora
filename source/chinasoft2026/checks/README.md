@@ -52,4 +52,4 @@ unexpected response types fail the run. A failed run is not a "no changes" resul
 First complete observation:
 [2026-10-15 review](20261015T055445155743Z/REVIEW.md).
 
-Latest imported observation: [2026-10-20 review](20261020T083547166350Z/REVIEW.md).
+Latest imported observation: [2026-10-21 review](20261021T020913151864Z/REVIEW.md).

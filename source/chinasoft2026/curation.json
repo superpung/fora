@@ -11,7 +11,7 @@
       "category": "academic-forum",
       "slug": "intelligent-open-source",
       "code": "R16",
-      "reason": "Navigation entry withdrawn on 2026-10-15; the direct official page still returns the unchanged published programme. No cancellation has been announced."
+      "reason": "Navigation entry withdrawn on 2026-10-15; the direct official page still returns the unchanged published programme. No cancellation has been announced. Navigation restored on 2026-10-21 with byte-identical content; retained here as historical evidence, with the active link taking precedence."
     }
   ],
   "person_identities": {
@@ -62,7 +62,9 @@
       "flags": [
         "单位信息不一致：日程表为中科院计算所，个人简介为中国科学院软件研究所，均按原文保留。"
       ]
-    },
+    }
+  },
+  "resolved_talk_notes": {
     "E3#1": {
       "source_title": "论 AI 时代形式化方法课程教学的挑战与机遇",
       "name": "刘万伟",
@@ -70,6 +72,18 @@
       "bio_excerpt": "形式化方法课程具有理论抽象、逻辑严密、实践性强的特点。",
       "flags": [
         "官网“个人简介”栏填写的是报告内容，按原文保留。"
+      ],
+      "resolved_on": "2026-10-21",
+      "resolution": "The original-source comparison now supplies Liu Wanwei's actual biography. Keep the old note here for history; do not display the obsolete defect."
+    }
+  },
+  "placeholder_codes": {
+    "system-software-education": {
+      "title": "系统软件教育",
+      "source_code": "E1",
+      "code": "E2",
+      "flags": [
+        "编号不一致：系统软件教育占位页标为 E1，总表标为 E2；此处按总表收录。"
       ]
     }
   }

@@ -228,6 +228,24 @@ def detail(category, slug):
     if not title or not code:
         raise ValueError(f"Missing forum identity: {category}/{slug}")
     flags = []
+    notice = soup.select_one(".update-notice")
+    if notice and txt(notice) == "内容正在更新中，敬请关注。":
+        if soup.select(".forum-table, .speaker-member, .committee-member"):
+            raise ValueError(f"Pending notice mixed with programme content: {code[0]}")
+        pending_code = code[0]
+        if association := curation().get("placeholder_codes", {}).get(slug):
+            if title != association["title"] or code[0] != association["source_code"]:
+                raise ValueError(f"Reviewed placeholder identity changed: {slug}")
+            pending_code = association["code"]
+            flags.extend(association["flags"])
+        return {
+            "code": pending_code, "title": i18n(title), "day_date": None,
+            "start": None, "end": None, "room": None,
+            "chairs": [], "talks": [], "breaks": [], "detail_extracted": False,
+            "agenda_status": "not_published", "flags": flags,
+            "source_url": f"{BASE}#agenda/{category}/{slug}",
+            "extra": {"source_notice": txt(notice), "source_code": code[0]},
+        }
     fields = {}
     for p in soup.find_all("p"):
         for label in ("时间", "地点"):
@@ -533,6 +551,9 @@ def build():
                      "room": None, "chairs": [], "talks": [], "detail_extracted": False,
                      "agenda_status": "not_published", "source_url": BASE + "#agenda/agenda-overview/index",
                      "flags": ["总体日程已列出此论坛，官网尚未公布详细议程。"]}
+        elif not forum["detail_extracted"]:
+            forum["extra"]["placeholder_title"] = forum["title"]["zh"]
+            forum["title"] = i18n(title)
         elif forum["title"]["zh"] != title:
             forum["extra"]["overview_title"] = title
             forum["flags"].append(f"论坛名称不一致：总表为“{title}”，此处使用详情页名称。")
