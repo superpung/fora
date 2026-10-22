@@ -609,6 +609,7 @@
       "members": [
         {
           "name": "李克秋",
+          "affiliation_raw": "天津大学",
           "photo": {
             "local_path": "/portraits/chinasoft2026/2575e277ac52011798d8.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E6%9D%8E%E5%85%8B%E7%A7%8B.png"
@@ -616,6 +617,7 @@
         },
         {
           "name": "张玉志",
+          "affiliation_raw": "南开大学",
           "photo": {
             "local_path": "/portraits/chinasoft2026/80841297c994496e53a4.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E5%BC%A0%E7%8E%89%E5%BF%97.png"
@@ -639,6 +641,7 @@
       "members": [
         {
           "name": "张加万",
+          "affiliation_raw": "天津大学",
           "photo": {
             "local_path": "/portraits/chinasoft2026/0d298add2e1ab5955534.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E5%BC%A0%E5%8A%A0%E4%B8%87.png"
@@ -646,6 +649,7 @@
         },
         {
           "name": "魏建国",
+          "affiliation_raw": "天津大学",
           "photo": {
             "local_path": "/portraits/chinasoft2026/887e6b5a461728e6762d.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E9%AD%8F%E5%BB%BA%E5%9B%BD.png"
@@ -653,6 +657,7 @@
         },
         {
           "name": "胡清华",
+          "affiliation_raw": "天津大学",
           "photo": {
             "local_path": "/portraits/chinasoft2026/cb2eb21d0e4e4189032e.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E8%83%A1%E6%B8%85%E5%8D%8E.png"
@@ -660,6 +665,7 @@
         },
         {
           "name": "吕勇强",
+          "affiliation_raw": "天津大学",
           "photo": {
             "local_path": "/portraits/chinasoft2026/bc12b36debefdc5f1aff.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E5%90%95%E5%8B%87%E5%BC%BA.png"
@@ -667,6 +673,7 @@
         },
         {
           "name": "冯伟",
+          "affiliation_raw": "天津大学",
           "photo": {
             "local_path": "/portraits/chinasoft2026/61b7f7140aeed2fd7b96.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E5%86%AF%E4%BC%9F.png"
@@ -674,6 +681,7 @@
         },
         {
           "name": "刘哲理",
+          "affiliation_raw": "南开大学",
           "photo": {
             "local_path": "/portraits/chinasoft2026/87f17867904e9a75eb1b.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E5%88%98%E5%93%B2%E7%90%86.png"
@@ -681,6 +689,7 @@
         },
         {
           "name": "冯志勇",
+          "affiliation_raw": "天津大学",
           "photo": {
             "local_path": "/portraits/chinasoft2026/9f66f8f7f16fea451c01.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E5%86%AF%E5%BF%97%E5%8B%87.png"
@@ -688,6 +697,7 @@
         },
         {
           "name": "李晓红",
+          "affiliation_raw": "天津大学",
           "photo": {
             "local_path": "/portraits/chinasoft2026/086039074a4dfbf54c46.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E6%9D%8E%E6%99%93%E7%BA%A2.png"
@@ -695,6 +705,7 @@
         },
         {
           "name": "许静",
+          "affiliation_raw": "南开大学",
           "photo": {
             "local_path": "/portraits/chinasoft2026/14b46086ec4528a5983b.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E8%AE%B8%E9%9D%99.png"
@@ -702,6 +713,7 @@
         },
         {
           "name": "许光全",
+          "affiliation_raw": "南开大学",
           "photo": {
             "local_path": "/portraits/chinasoft2026/3af84b389abf93c9fb32.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E8%AE%B8%E5%85%89%E5%85%A8.png"
@@ -709,6 +721,7 @@
         },
         {
           "name": "程明明",
+          "affiliation_raw": "南开大学",
           "photo": {
             "local_path": "/portraits/chinasoft2026/2dd8f979fa53c2eb4291.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E7%A8%8B%E6%98%8E%E6%98%8E.png"
@@ -716,9 +729,58 @@
         },
         {
           "name": "汪定",
+          "affiliation_raw": "南开大学",
           "photo": {
             "local_path": "/portraits/chinasoft2026/bd49c35aa17ad423faa0.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E6%B1%AA%E5%AE%9A.png"
+          }
+        },
+        {
+          "name": "杨亮",
+          "affiliation_raw": "河北工业大学",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/3aadede6be0799ec131f.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E6%9D%A8%E4%BA%AE.png"
+          }
+        },
+        {
+          "name": "赵子平",
+          "affiliation_raw": "天津师范大学",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/05be6b860682c3bc07a9.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E8%B5%B5%E5%AD%90%E5%B9%B3.png"
+          }
+        },
+        {
+          "name": "王赜",
+          "affiliation_raw": "天津工业大学",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/ad2f5329c25353fbb03c.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E7%8E%8B%E8%B5%9C.png"
+          }
+        },
+        {
+          "name": "王劲松",
+          "affiliation_raw": "天津职业技术师范大学",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/87cf3b82aba231737608.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E7%8E%8B%E5%8A%B2%E6%9D%BE.png"
+          }
+        },
+        {
+          "name": "刘祥颖",
+          "affiliation_raw": "天津市大学软件学院",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/e43171ddc6443e4bee89.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E5%88%98%E7%A5%A5%E9%A2%96.png"
+          }
+        },
+        {
+          "name": "李海丰",
+          "affiliation_raw": "中国民航大学",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/66ac78f5bb850a833d6b.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E6%9D%8E%E6%B5%B7%E4%B8%B0.png"
           }
         }
       ],
@@ -736,7 +798,13 @@
             "许静",
             "许光全",
             "程明明",
-            "汪定"
+            "汪定",
+            "杨亮",
+            "赵子平",
+            "王赜",
+            "王劲松",
+            "刘祥颖",
+            "李海丰"
           ]
         ]
       }
@@ -1735,10 +1803,173 @@
         "zh": "本地组织委员会委员",
         "en": null
       },
-      "members": [],
+      "members": [
+        {
+          "name": "陈海永",
+          "affiliation_raw": "河北工业大学"
+        },
+        {
+          "name": "杨亮",
+          "affiliation_raw": "河北工业大学"
+        },
+        {
+          "name": "郝小可",
+          "affiliation_raw": "河北工业大学"
+        },
+        {
+          "name": "董永峰",
+          "affiliation_raw": "河北工业大学"
+        },
+        {
+          "name": "侯向丹",
+          "affiliation_raw": "河北工业大学"
+        },
+        {
+          "name": "朱叶",
+          "affiliation_raw": "河北工业大学"
+        },
+        {
+          "name": "陈鹏",
+          "affiliation_raw": "河北工业大学"
+        },
+        {
+          "name": "孙昊",
+          "affiliation_raw": "河北工业大学"
+        },
+        {
+          "name": "张健楠",
+          "affiliation_raw": "河北工业大学"
+        },
+        {
+          "name": "李林昊",
+          "affiliation_raw": "河北工业大学"
+        },
+        {
+          "name": "赵子平",
+          "affiliation_raw": "天津师范大学"
+        },
+        {
+          "name": "张玉波",
+          "affiliation_raw": "天津工业大学"
+        },
+        {
+          "name": "杨嘉琛",
+          "affiliation_raw": "天津工业大学"
+        },
+        {
+          "name": "贾彦军",
+          "affiliation_raw": "天津工业大学"
+        },
+        {
+          "name": "李静东",
+          "affiliation_raw": "天津工业大学"
+        },
+        {
+          "name": "石洛宜",
+          "affiliation_raw": "天津工业大学"
+        },
+        {
+          "name": "白裕德",
+          "affiliation_raw": "天津工业大学"
+        },
+        {
+          "name": "陈德盛",
+          "affiliation_raw": "天津工业大学"
+        },
+        {
+          "name": "孙连坤",
+          "affiliation_raw": "天津工业大学"
+        },
+        {
+          "name": "乔思波",
+          "affiliation_raw": "天津工业大学"
+        },
+        {
+          "name": "金日泽",
+          "affiliation_raw": "天津工业大学"
+        },
+        {
+          "name": "王铁钢",
+          "affiliation_raw": "天津职业技术师范大学"
+        },
+        {
+          "name": "刘建卿",
+          "affiliation_raw": "天津职业技术师范大学"
+        },
+        {
+          "name": "孙维昆",
+          "affiliation_raw": "天津职业技术师范大学"
+        },
+        {
+          "name": "李昭政",
+          "affiliation_raw": "天津职业技术师范大学"
+        },
+        {
+          "name": "张航",
+          "affiliation_raw": "天津职业技术师范大学"
+        },
+        {
+          "name": "吕垛斌",
+          "affiliation_raw": "天津职业技术师范大学"
+        },
+        {
+          "name": "王湘懿",
+          "affiliation_raw": "天津职业技术师范大学"
+        },
+        {
+          "name": "刘军利",
+          "affiliation_raw": "天津市大学软件学院"
+        },
+        {
+          "name": "李海丰",
+          "affiliation_raw": "中国民航大学"
+        },
+        {
+          "name": "惠康华",
+          "affiliation_raw": "中国民航大学"
+        },
+        {
+          "name": "刘才华",
+          "affiliation_raw": "中国民航大学"
+        }
+      ],
       "extra": {
-        "members_status": "not_published",
-        "status_raw": "待定"
+        "source_rosters": [
+          [
+            "陈海永",
+            "杨亮",
+            "郝小可",
+            "董永峰",
+            "侯向丹",
+            "朱叶",
+            "陈鹏",
+            "孙昊",
+            "张健楠",
+            "李林昊",
+            "赵子平",
+            "张玉波",
+            "杨嘉琛",
+            "贾彦军",
+            "李静东",
+            "石洛宜",
+            "白裕德",
+            "陈德盛",
+            "孙连坤",
+            "乔思波",
+            "金日泽",
+            "王铁钢",
+            "刘建卿",
+            "孙维昆",
+            "李昭政",
+            "张航",
+            "吕垛斌",
+            "王湘懿",
+            "刘军利",
+            "李海丰",
+            "惠康华",
+            "刘才华"
+          ]
+        ]
       }
     }
   ],
@@ -6663,7 +6894,7 @@
         },
         {
           "name": "赵斌",
-          "affiliation_raw": "西北工业大学/浦江实验室",
+          "affiliation_raw": "西北工业大学",
           "chair_role": "论坛组委会",
           "bio": "赵斌，西北工业大学光电与智能研究院副院长，博导。从事面向异构智能体的具身智能大模型研究，在国际期刊和会议发表学术论文50余篇，包括TPAMI/CVPR/ICCV/RSS/ICRA/CoRL等，国家发明专利10余项，PCT国际专利1项。获中国科协青年托举人才工程、陕西省高校优秀青年人才，获国家自然科学基金面上/青年项目、军口国家级项目、陕西省特支项目等资助。相关成果应用于航空、航天任务中，公开技术被Asia Times、South China Morning Post、The SUN、人民日报、新华网、科学网等国内外媒体广泛报道。",
           "photo": {
@@ -15894,7 +16125,7 @@
         },
         {
           "title": {
-            "zh": "跨项目需求分类中的检索增强上下文学习与工业验证",
+            "zh": "跨项目需求分类中检索增强上下文学习的实证研究",
             "en": null
           },
           "title_status": "confirmed",
@@ -15914,13 +16145,9 @@
           "type": "talk",
           "abstract_status": "confirmed",
           "extra": {
-            "speaker_raw": "吴云环 中国人民解放军陆军工程大学",
-            "profile_report_title": "跨项目需求分类中检索增强上下文学习的实证研究"
+            "speaker_raw": "吴云环 中国人民解放军陆军工程大学"
           },
           "abstract": "跨项目需求分类面临数据分布偏移与目标项目标注缺失的双重挑战。已有研究表明，利用检索相关示例构造上下文能够提升大语言模型的任务适应能力，但在跨项目需求分类场景下，检索增强上下文学习的有效性以及示例来源对分类性能的影响仍缺乏系统研究。为此，开展跨项目需求分类中检索增强上下文学习的实证研究，采用留一项目交叉验证协议在PROMISE公开数据和航天FPGA工业需求数据上开展实验。在PROMISE非功能需求10分类任务上，基于5个开源大语言模型和13种上下文示例构造配置的结果表明，检索式示例选择在各模型上的总体表现优于随机示例选取。在航天FPGA测试类型分类任务中，对不同来源需求文本作为上下文示例的影响进行分析，结果表明，同领域历史需求构造的示例能够取得更好的分类效果，公开需求文本作为外部上下文来源时也表现出一定帮助。研究结果表明，检索增强上下文学习能够为跨项目需求分类提供有效支持，示例文本与目标任务之间的领域一致性可能是影响上下文示例有效性的重要因素。",
-          "flags": [
-            "报告题目不一致：日程表为“跨项目需求分类中的检索增强上下文学习与工业验证”，报告资料为“跨项目需求分类中检索增强上下文学习的实证研究”，均按原文保留。"
-          ],
           "enrichment": {
             "generated_by": "ai",
             "summary": {
@@ -15935,7 +16162,7 @@
         },
         {
           "title": {
-            "zh": "面向SLO工程的运行时质量需求候选证据治理方法",
+            "zh": "面向SLO工程的运行时质量需求候选证据检查与责任分流方法",
             "en": null
           },
           "title_status": "confirmed",
@@ -15955,17 +16182,13 @@
           "type": "talk",
           "abstract_status": "confirmed",
           "extra": {
-            "speaker_raw": "谢华澄 同济大学",
-            "profile_report_title": "面向SLO工程的运行时质量需求候选证据检查与责任分流方法"
+            "speaker_raw": "谢华澄 同济大学"
           },
           "abstract": "服务团队在制定服务级目标（Service Level Objective，SLO）时，常根据运行时延迟和错误率数据提出候选值，但候选能否进入目标选择，还取决于历史数据是否充分、测量含义是否清楚及运行背景。现有数值生成方法主要提供阈值或预测值，仅保存这些结果难以说明证据缺口、补证责任及补证后的重新判断。本文将数值生成与证据检查分开，提出候选证据检查与责任分流方法。通过候选卡记录数值、来源资料和待办任务，检查历史、测量和上下文证据，将缺项交给相应责任人，并在补证校验后重新检查候选、保留前后版本。实验基于AIOps Challenge 2025数据构造8,668个分析单元，结合规则分析、人员评价和构造用例验证方法。历史规则下，51.1%的候选存在待处理证据任务，首次隐藏输出评价与对应规则的一致率为60.4%。另一组评价者在受控测量情景下与修订规则的一致率为94.4%，9个构造场景的检查结果均符合预期。结果表明，在所测数据和受控任务中，该方法能够保留候选依据、明确补证责任并记录重新判断过程，为SLO目标选择前的审查提供可追溯材料。",
-          "flags": [
-            "报告题目不一致：日程表为“面向SLO工程的运行时质量需求候选证据治理方法”，报告资料为“面向SLO工程的运行时质量需求候选证据检查与责任分流方法”，均按原文保留。"
-          ],
           "enrichment": {
             "generated_by": "ai",
             "summary": {
-              "zh": "研究运行时质量需求的候选证据治理与责任分流",
+              "zh": "研究运行时质量需求的候选证据检查与责任分流",
               "en": null
             },
             "topics": [
@@ -22790,7 +23013,7 @@
   },
   "extraction": {
     "source": "https://chinasoft.ccf.org.cn/2026/",
-    "content_sha256": "f1bc81cd72c6c5259a7b4ebb34cb4204382e63d6825f155ef045507e9eb45dba",
+    "content_sha256": "ee2f0f5423f917d6b1b893cb4c8564dd9bbb987e1bdee2a899f8d06aa0178d73",
     "forums_total": 66,
     "forums_detail_extracted": 52,
     "notes": "Active navigation and explicitly reviewed accessible withdrawn pages are captured. Unpublished programmes remain unscheduled. Timetable titles and affiliations are retained verbatim; profiles supplement abstracts and biographies."

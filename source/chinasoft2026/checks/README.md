@@ -55,7 +55,7 @@ First complete observation:
 
 Latest complete observation: [2026-10-21 morning review](20261021T020913151864Z/REVIEW.md).
 
-Latest reviewed accessible-content import:
+Previous reviewed accessible-content import:
 [October 21 evening](20261021T124314880733Z/REVIEW.md). Its committee-meeting
 index is HTTP 404, so the check is incomplete and the last complete baseline
 remains the October 21 morning observation. The checker now records confirmed
@@ -63,3 +63,14 @@ active-page 404/410 responses in `broken_pages`, finishes accessible HTML and
 portrait evidence, writes the report/archive, then exits unsuccessfully. Missing
 HTML is never represented as deleted content in patches. Transport/server errors
 still fail; no incomplete observation advances the comparison baseline.
+
+Latest reviewed accessible-content import:
+[October 22 daily check](20261022T100053520657Z/REVIEW.md). Twelve accessible
+pages changed since the October 21 evening import; six portrait URLs are new.
+The same committee-meeting index remains HTTP 404, so this observation is also
+incomplete and does not advance the October 21 morning complete baseline.
+
+Latest observation: [October 22, 23:03–23:04](20261022T150357302340Z/REVIEW.md).
+All accessible HTML and portrait hashes match the daily observation. Its import
+was recovered and validated interactively after the scheduled CLI exhausted its
+usage allowance before pushing; the failed run's evidence remains available.

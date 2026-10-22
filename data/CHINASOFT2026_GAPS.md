@@ -1,8 +1,17 @@
 # ChinaSoft 2026: source gaps and refresh checklist
 
-Last imported source review: **2026-10-21, evening**. This is the conference-specific
+Last imported source review: **2026-10-22, rechecked at 23:03–23:04 Asia/Shanghai**. This is the conference-specific
 checklist for every subsequent refresh, not a claim that the official programme
 is complete. Talk numbers below are **one-based**, matching `#talk-N` links.
+
+The [October 22 observation](../source/chinasoft2026/checks/20261022T100053520657Z/REVIEW.md)
+publishes 32 local organizing members, adds six local advisory members and their
+portraits, supplies advisory affiliations, and resolves both S2 title conflicts.
+The committee-meeting index still returns HTTP 404. The check remains incomplete;
+the last complete baseline is still October 21 morning.
+The [evening recheck](../source/chinasoft2026/checks/20261022T150357302340Z/REVIEW.md)
+confirms unchanged HTML and portraits since 18:00. The scheduled CLI exhausted
+its usage allowance before pushing; this import was completed interactively.
 
 The [October 21 evening observation](../source/chinasoft2026/checks/20261021T124314880733Z/REVIEW.md)
 adds R34/E2/I5/S3 programmes and the timed C3 final. The newly linked committee
@@ -40,7 +49,7 @@ published programmes and nine explicit placeholders. One further newly linked
 committee-meeting index is unavailable (HTTP 404). R16 is active again; no
 additional withdrawn page is needed for the current inventory.
 The dataset contains 66 forum/competition entries, 429 programme items, 57
-breaks, 358 attached source abstracts and 549 downloaded portrait resources.
+breaks, 358 attached source abstracts and 555 downloaded portrait resources.
 One further abstract is retained in an unmatched profile, separately displayed.
 
 ## Unpublished programmes
@@ -65,8 +74,9 @@ One further abstract is retained in an unmatched profile, separately displayed.
 - Main-conference keynote/academician sessions have overview windows but no
   individual confirmed talk programme. Tentatively attending guests in
   `extra.planned_guests` are not confirmed keynote speakers.
-- The local organizing committee's member list remains pending. The programme
-  committee has 195 members. On October 19, 任晗, 谢筱恒 and 许文强 each
+- The local organizing committee now lists 32 members with affiliations. The local
+  advisory committee lists two chairs and 18 members, all with affiliations. The
+  programme committee has 195 members. On October 19, 任晗, 谢筱恒 and 许文强 each
   gained the published affiliation 华为有限公司; none now lack affiliations.
 - Other meeting names M1–M6 and T1 lack dated programme entries and remain in
   `extra.other_meetings`; the three A1–A3 annual meetings have timed day blocks.
@@ -86,8 +96,9 @@ One further abstract is retained in an unmatched profile, separately displayed.
   matching the biography. The previous discrepancy note is gone.
 - **R22#3 / 武延军:** timetable says 中科院计算所, biography says
   中国科学院软件研究所. Both are retained with a guarded data note.
-- **S2#4 and #5:** timetable/profile titles differ substantively. Both original
-  titles and a note are retained; compare the next source update.
+- **S2#4 and #5:** resolved on October 22. Both timetable titles now match their
+  existing profile titles; obsolete conflict notes are removed and guarded AI
+  titles are refreshed. Source abstracts, speakers and times are unchanged.
 - **S2#10 / 朱煜琪:** the timetable literally prints 事科学院战争研究院.
   Keep it verbatim; do not silently expand it from the biography.
 - **R14#4:** the timetable now explicitly names 廖楠; its previous unmatched
@@ -365,6 +376,33 @@ One further abstract is retained in an unmatched profile, separately displayed.
   conflicts, plus R34's changed forum title and C3's room conflict, minus the
   resolved E2 code note. Technical-report prefixes, spacing and the I5 forum
   suffix are reviewed data differences without warning flags.
+
+## October 22 refresh details to recheck
+
+- The local organizing committee publishes 32 names and affiliations. The local
+  advisory committee adds 杨亮, 赵子平, 王赜, 王劲松, 刘祥颖 and 李海丰 with six
+  new portraits; its two chairs and all 18 members now have explicit affiliations.
+  Do not infer identity associations or copy photos onto unrelated source cards.
+- S2#4 now reads `跨项目需求分类中检索增强上下文学习的实证研究`; S2#5 now reads
+  `面向SLO工程的运行时质量需求候选证据检查与责任分流方法`. Both match their
+  profiles. Remove their obsolete warnings; retain all source abstracts and
+  refresh guarded enrichment. Nine substantive notes remain.
+- R8 shortens Zhao Bin's organizer affiliation to 西北工业大学. It swaps the
+  fourth/fourteenth profile cards, but not the timetable: 康梓峰 still starts at
+  10:20 and 孟岩 at 16:50. Match profiles by identity, not card order; keep their
+  existing canonical indices and enrichment. No programme item is added.
+- E3 corrects section numbering; navigation labels gain forum suffixes. The
+  footer changes 赞助单位 to 合作单位, still with no organizations listed. The
+  homepage removes the old January 1 date on its conference announcement.
+- Twelve of 94 accessible pages changed since the October 21 evening import;
+  82 are byte-identical. All 549 previous portrait resources are unchanged and
+  the six additions work. The unavailable committee-meeting index remains 404.
+  The successful baseline does not advance. All ten deliberate curated-page
+  differences remain necessary and unchanged, including R32's role removals.
+- The flat committee grid now occurs on two kinds of committee page, and card
+  affiliations are newly published. The adapter handles grids per heading and
+  retains `.committee-unit` values. Independent mixed-format fixtures prevent
+  losing chair sections or labeling a committee merely 委员.
 
 ## Deliberate data-only correction: R32 biographies
 

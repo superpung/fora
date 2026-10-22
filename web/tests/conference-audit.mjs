@@ -27,6 +27,28 @@ async function capture(page, options) {
   });
   await page.screenshot(options);
 }
+async function checkLocalCommittees(page, label) {
+  for (const [role, code, count] of [
+    ["本地咨询委员会主席", "advisory-chairs", 2],
+    ["本地咨询委员会委员", "advisory-members", 18],
+    ["本地组织委员会委员", "organizing-members", 32],
+  ]) {
+    const expected = data.committees.find((group) => group.role.zh === role).members;
+    assert.equal(expected.length, count);
+    const roster = page.locator(".cmt").filter({ has: page.getByRole("heading", { name: role, exact: true }) });
+    assert.equal(await roster.locator(".cmt__count").textContent(), String(count));
+    assert.deepEqual(await roster.locator(".member__name").allTextContents(), expected.map((person) => person.name));
+    assert.deepEqual(await roster.locator(".member__aff").allTextContents(), expected.map((person) => person.affiliation_raw));
+    assert.deepEqual(await roster.locator("img.avatar").evaluateAll((nodes) => nodes.map((img) => img.getAttribute("src"))),
+      expected.filter((person) => person.photo).map((person) => person.photo.local_path));
+    for (const edge of ["first", "last"]) {
+      await roster.locator(".member")[edge]().scrollIntoViewIfNeeded();
+      await page.waitForTimeout(1400);
+      assert(await roster.locator(".member")[edge]().evaluate((node) => Number(getComputedStyle(node).opacity) >= 0.99));
+      await capture(page, { path: `${screenshots}/${label}-${code}-${edge}.png` });
+    }
+  }
+}
 try {
   if (server) {
     for (let attempt = 0; ; attempt++) {
@@ -121,6 +143,7 @@ try {
   await capture(page, { path: `${screenshots}/desktop-programme-committee.png` });
   await page.waitForTimeout(1200);
   await capture(page, { path: "/tmp/chinasoft2026-committee.png" });
+  await checkLocalCommittees(page, "desktop");
 
   await goto("/chinasoft2026/schedule?v=all", ".daytab");
   for (let i = 0; i < data.days.length; i++) {
@@ -206,6 +229,7 @@ try {
           && [...el.querySelectorAll('.member')].every(member => Number(getComputedStyle(member).opacity) >= 0.99)));
       await phone.waitForTimeout(650);
       await capture(phone, { path: `${screenshots}/mobile-programme-committee.png` });
+      await checkLocalCommittees(phone, "mobile");
     }
     if (path.startsWith("forum/") && !path.includes("R32")) {
       const target = phone.locator(`#${path.split("#")[1]}`);

@@ -4,12 +4,74 @@ Run with: uv run python -m unittest discover -s source/chinasoft2026
 """
 import unittest
 import json
+from unittest.mock import patch
+
+from bs4 import BeautifulSoup
 
 from build import detail, load, people, table_rows, committees, profiles, RAW, ROOT
 from people import read_person, person_problem
 
 
 class ProgrammeTests(unittest.TestCase):
+    def test_committee_grid_formats_preserve_roles_units_and_sections(self):
+        pages = {
+            "pages/introduction.html": """
+                <a onclick="loadIntroPage('local')">Local committee</a>
+                <a onclick="loadIntroPage('programme')">Programme committee</a>
+            """,
+            "pages/intro/local.html": """
+                <div class="section-title">主席</div>
+                <div class="committee-grid"><div class="committee-item">
+                    <div class="committee-name">李克秋</div>
+                    <div class="committee-unit">天津大学</div>
+                </div></div>
+                <div class="section-title">委员</div>
+                <div class="program-grid">
+                    <div class="program-item"><strong>杨亮</strong> 河北工业大学</div>
+                </div>
+            """,
+            "pages/intro/programme.html": """
+                <div class="section-title">程序委员会委员</div>
+                <p class="program-note">Sorted by name</p>
+                <div class="program-grid">
+                    <div class="program-item"><strong>张三</strong> 天津大学</div>
+                </div>
+            """,
+        }
+        with patch("build.load", side_effect=lambda path: BeautifulSoup(pages[path], "html.parser")):
+            groups, flags = committees()
+        self.assertFalse(flags)
+        self.assertEqual([(g["role"]["zh"], g["members"]) for g in groups], [
+            ("Localcommittee主席", [{"name": "李克秋", "affiliation_raw": "天津大学"}]),
+            ("Localcommittee委员", [{"name": "杨亮", "affiliation_raw": "河北工业大学"}]),
+            ("程序委员会委员", [{"name": "张三", "affiliation_raw": "天津大学"}]),
+        ])
+
+    def test_october_22_committee_publication_and_resolved_titles(self):
+        data = json.loads((ROOT / "data/chinasoft2026.json").read_text())
+        groups = {g["role"]["zh"]: g for g in data["committees"]}
+        self.assertEqual(len(groups["本地组织委员会委员"]["members"]), 32)
+        self.assertEqual(len(groups["本地咨询委员会委员"]["members"]), 18)
+        self.assertNotIn("委员", groups)
+        for role in ("本地组织委员会委员", "本地咨询委员会委员", "本地咨询委员会主席"):
+            self.assertTrue(all(p.get("affiliation_raw") for p in groups[role]["members"]))
+            self.assertNotIn("members_status", groups[role].get("extra", {}))
+        advisory = {p["name"]: p for p in groups["本地咨询委员会委员"]["members"]}
+        for name in ("杨亮", "赵子平", "王赜", "王劲松", "刘祥颖", "李海丰"):
+            self.assertTrue(advisory[name].get("photo"))
+        forums = {f["code"]: f for f in data["forums"]}
+        for index, title in ((3, "跨项目需求分类中检索增强上下文学习的实证研究"),
+                             (4, "面向SLO工程的运行时质量需求候选证据检查与责任分流方法")):
+            talk = forums["S2"]["talks"][index]
+            self.assertEqual(talk["title"]["zh"], title)
+            self.assertFalse(talk.get("flags"))
+            self.assertTrue(talk.get("abstract"))
+            self.assertTrue(talk.get("enrichment"))
+        for index, name, start in ((4, "康梓峰", "10:20"), (16, "孟岩", "16:50")):
+            talk = forums["R8"]["talks"][index]
+            self.assertEqual((talk["speakers"][0]["name"], talk["start"]), (name, start))
+            self.assertTrue(talk.get("abstract"))
+
     def test_october_21_placeholders_replacements_and_resolved_biography(self):
         data = json.loads((ROOT / "data/chinasoft2026.json").read_text())
         forums = {f["code"]: f for f in data["forums"]}

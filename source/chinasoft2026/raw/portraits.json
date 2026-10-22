@@ -4039,6 +4039,14 @@
     "width": 192,
     "height": 256
   },
+  "https://chinasoft.ccf.org.cn/2026/images/people/committee/刘祥颖.png": {
+    "local_path": "/portraits/chinasoft2026/e43171ddc6443e4bee89.webp",
+    "source_sha256": "04f35c74629fe0c4aca20382770a7f5482890497cb4c7fec7a98f65fda379153",
+    "sha256": "e43171ddc6443e4bee89107716a3da7382d4e3d1768d6a2fca889c0f53022ff9",
+    "bytes": 5380,
+    "width": 183,
+    "height": 256
+  },
   "https://chinasoft.ccf.org.cn/2026/images/people/committee/吕勇强.png": {
     "local_path": "/portraits/chinasoft2026/bc12b36debefdc5f1aff.webp",
     "source_sha256": "c617c9e102090199c609fb18db633466dddbe122418cd31a6a0c0a72d0cfe455",
@@ -4135,6 +4143,22 @@
     "width": 197,
     "height": 256
   },
+  "https://chinasoft.ccf.org.cn/2026/images/people/committee/李海丰.png": {
+    "local_path": "/portraits/chinasoft2026/66ac78f5bb850a833d6b.webp",
+    "source_sha256": "a3e6eab0b5a5fb636f4c60b0876e2370bdeb2c976bf56a0d062b43abae079696",
+    "sha256": "66ac78f5bb850a833d6bafafa5d467b9080d5da8d70801b1d6938c687c3d7364",
+    "bytes": 5906,
+    "width": 179,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/people/committee/杨亮.png": {
+    "local_path": "/portraits/chinasoft2026/3aadede6be0799ec131f.webp",
+    "source_sha256": "5a196f5682901f1a629477865189848ec74b9f854cf7b0b35b13c663678a42bb",
+    "sha256": "3aadede6be0799ec131f0938d86e097ea5881ae5409a6e7b6c7870f957f7625e",
+    "bytes": 3918,
+    "width": 179,
+    "height": 256
+  },
   "https://chinasoft.ccf.org.cn/2026/images/people/committee/汪定.png": {
     "local_path": "/portraits/chinasoft2026/bd49c35aa17ad423faa0.webp",
     "source_sha256": "7d848b2f7dd03db6e54707bff7a608550974b78133346b7b72e4c7dacb591f13",
@@ -4151,12 +4175,28 @@
     "width": 207,
     "height": 256
   },
+  "https://chinasoft.ccf.org.cn/2026/images/people/committee/王劲松.png": {
+    "local_path": "/portraits/chinasoft2026/87cf3b82aba231737608.webp",
+    "source_sha256": "d5570e44d056e269b1c17acf825bb7c4f949cb3918f17bfdaf9f17afc9c5daae",
+    "sha256": "87cf3b82aba231737608d3fb22f3dc7aaaf86fd9b4a4db729e31871fead23f59",
+    "bytes": 4500,
+    "width": 183,
+    "height": 256
+  },
   "https://chinasoft.ccf.org.cn/2026/images/people/committee/王栋.png": {
     "local_path": "/portraits/chinasoft2026/788ed78729add3dd3157.webp",
     "source_sha256": "29255267033f29a5f2c48bb23d6fae85b932b29f77868215f1df6e0230c5253e",
     "sha256": "788ed78729add3dd31574d3d4918a7d09e9eb2d195d165f43fc88fd6b2698ff7",
     "bytes": 3514,
     "width": 192,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/people/committee/王赜.png": {
+    "local_path": "/portraits/chinasoft2026/ad2f5329c25353fbb03c.webp",
+    "source_sha256": "15329014024b9b5004d9a0f30bb4d54ac88df0ee93460bf365a3aa1441f22179",
+    "sha256": "ad2f5329c25353fbb03c13834ef64d297eb6b9d5c711b8e2f19d0f876f6074ce",
+    "bytes": 4218,
+    "width": 182,
     "height": 256
   },
   "https://chinasoft.ccf.org.cn/2026/images/people/committee/王赞.png": {
@@ -4197,6 +4237,14 @@
     "sha256": "14b46086ec4528a5983bcf6dc0ae70cf70bacfcd338b30c6dc032a7cd4ccb634",
     "bytes": 6844,
     "width": 243,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/people/committee/赵子平.png": {
+    "local_path": "/portraits/chinasoft2026/05be6b860682c3bc07a9.webp",
+    "source_sha256": "7597de397d1cd5436e59e30f4b8ba38e05a0b873e4d7dbaa6e1a9c4738015d2e",
+    "sha256": "05be6b860682c3bc07a9475aa3706586c4ea6736bd05739341e69a3c35c9f10b",
+    "bytes": 4310,
+    "width": 199,
     "height": 256
   },
   "https://chinasoft.ccf.org.cn/2026/images/people/committee/赵英全.png": {

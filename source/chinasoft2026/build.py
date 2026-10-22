@@ -434,26 +434,28 @@ def committees():
             continue
         name = txt(link)
         soup = load(f"pages/intro/{match[1]}.html")
-        # The published programme committee uses a flat grid after a sorting note.
-        if items := soup.select(".program-grid .program-item"):
-            members = []
-            for item in items:
-                person_name = txt(item.find("strong"))
-                affiliation = txt(item).removeprefix(person_name).strip()
-                person, problem = read_person(person_name, affiliation or None)
-                if problem:
-                    raise ValueError(f"Invalid programme committee member: {txt(item)}")
-                members.append(person)
-            result.append({"role": i18n(txt(soup.select_one('.section-title'))), "members": members})
-            continue
         for heading in soup.select(".section-title"):
             group = heading.find_next_sibling()
+            # Both programme and local committees use flat grids; the former
+            # places a sorting note between its heading and member list.
+            if group and "program-note" in group.get("class", []):
+                group = group.find_next_sibling()
             if not group:
                 continue
             members = []
-            if "committee-grid" in group.get("class", []):
+            if "program-grid" in group.get("class", []):
+                for item in group.select(".program-item"):
+                    person_name = txt(item.find("strong"))
+                    affiliation = txt(item).removeprefix(person_name).strip()
+                    person, problem = read_person(person_name, affiliation or None)
+                    if problem:
+                        raise ValueError(f"Invalid committee member: {txt(item)}")
+                    members.append(person)
+            elif "committee-grid" in group.get("class", []):
                 for item in group.select(".committee-name"):
                     parsed = people(txt(item), flags, single=True)
+                    if parsed and (unit := txt(item.parent.select_one(".committee-unit"))):
+                        parsed[0]["affiliation_raw"] = unit
                     if parsed and (portrait := photo(item.parent)):
                         parsed[0]["photo"] = portrait
                     members.extend(parsed)

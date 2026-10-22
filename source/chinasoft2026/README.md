@@ -49,7 +49,7 @@ overview block locations omit the known venue prefixes, while `extra.location_ra
 retains the full source wording. The conference venue remains available for
 the page header, calendar exports and standalone share posters.
 
-All 549 available portrait URLs have been downloaded and decoded. The October 21
+All 555 available portrait URLs have been downloaded and decoded. The October 21
 check replaces two P3/R19 speaker portraits; seven formerly retained-only R16
 resources are active again. All previously recovered P3/I3/S1 images remain
 available. No broken portrait references remain.
@@ -77,7 +77,7 @@ in the description. C4 only names the overall conference range and stays undated
 announcement remains withdrawn; no unpublished schedule is inferred from it.
 
 Source inconsistencies are retained in `flags` and `extra`: R1/E3/I4 talks
-outlast their forum's printed window; R14/S2 have differing timetable/profile
+outlast their forum's printed window; R14 has differing timetable/profile
 titles; E1 has ambiguous hyphenated speaker credits. R14 now explicitly names
 廖楠, so his profile is attached. Unmatched profiles remain separately visible
 under `extra.unmatched_profiles`. Planned academician guests are stored
@@ -99,7 +99,7 @@ source records; the viewer never infers identity from affiliation alone.
 `enrichment.json` supplies 395 AI summaries/topic classifications, covering all
 substantive reports and meaningful panels. They live only in `enrichment` and
 respect the global AI switch. Each entry records its source title so an agenda
-reordering cannot silently attach annotations to the wrong report. The 339
+reordering cannot silently attach annotations to the wrong report. The 358 attached
 source abstracts remain separate and unchanged.
 
 The source fingerprint covers every captured page, the portrait manifest and
@@ -118,7 +118,7 @@ associations and retained pages; it preserves the two known 李佳 identities
 across R7 and their original P4/R4 appearances without changing follow keys.
 
 The reviewed note cleanup is stored in `note_review.json`: exact non-substantive
-messages are removed from generated data, leaving ten substantive notes. Exact reviewed
+messages are removed from generated data, leaving nine substantive notes. Exact reviewed
 text is matched so future changed discrepancies still need review. Pending
 committee rosters and collective credits remain normal content; committee flags
 are scoped to their own group. See the applied inventory in
@@ -150,6 +150,16 @@ The new committee-meeting index is unavailable; the check is recorded as
 incomplete without advancing the successful baseline. Explicit moderator cards
 now attach to hosts, and reviewed collective credits are excluded before person
 parsing. One-off table typography is corrected only in curated HTML.
+
+The October 22 daily import adds 32 local organizing committee members and six
+local advisory members with portraits. All advisory affiliations are now explicit.
+The adapter reads flat grids per section and card units, with independent
+regressions for mixed card/grid sections. S2's two timetable titles now match
+their profiles; their conflict notes are removed and guarded enrichment updated.
+R8 changes one organizer affiliation and profile-card order without changing its
+programme. Counts remain 52 programmes and 429 items, with 555 portraits and nine
+substantive notes. The committee-meeting index remains HTTP 404; the observation
+is incomplete and the last complete baseline remains October 21 morning.
 
 [Daily host automation](automation/README.md) runs at 18:00 Asia/Shanghai using
 isolated worktrees and branches, preserves snapshots, updates the open PR, and
