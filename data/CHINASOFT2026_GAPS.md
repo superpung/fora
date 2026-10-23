@@ -4,6 +4,12 @@ Last imported source review: **2026-10-22, rechecked at 23:03–23:04 Asia/Shang
 checklist for every subsequent refresh, not a claim that the official programme
 is complete. Talk numbers below are **one-based**, matching `#talk-N` links.
 
+Latest check: [October 23, 14:52–14:53 Asia/Shanghai](../source/chinasoft2026/checks/20261023T065259587808Z/REVIEW.md).
+All 94 accessible pages and 555 portrait hashes are unchanged since October 22.
+The committee-meeting index remains HTTP 404; existing information is retained.
+No import or gap inventory changes are needed. The observation remains incomplete
+and the last complete baseline remains October 21 morning.
+
 The [October 22 observation](../source/chinasoft2026/checks/20261022T100053520657Z/REVIEW.md)
 publishes 32 local organizing members, adds six local advisory members and their
 portraits, supplies advisory affiliations, and resolves both S2 title conflicts.
