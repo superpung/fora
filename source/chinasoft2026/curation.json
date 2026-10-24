@@ -44,13 +44,22 @@
       "source_title": "DiffHallu：基于差分测试的长文本生成幻觉风险量化方法",
       "name": "陈子涵",
       "identity_key": "S6:陈子涵"
+    },
+    "R9#1": {
+      "source_title": "强对抗环境下智能车载嵌入式基础软件挑战与实践",
+      "name": "王博",
+      "identity_key": "R9:王博"
     }
   },
-  "identity_evidence": "R7's first Li Jia shares P4's report title and biography (Tsinghua assistant professor, 2025 Peking University PhD, DevEval/EvoCodeBench). Its second shares R4's biography (Wuhan Hongyi postdoc, CCF dissertation nomination, Hubei postdoctoral talent programme). The user already confirmed P4 and R4 are different people. Preserve their existing follow keys without uncertainty notes. S2 chair Li Jia shares the R4/R7 Hongyi postdoctoral biography and research history. S2 and S6 Chen Zihan profiles describe different graduate programmes and research fields; preserve their separately sourced identities without a UI uncertainty note.",
+  "identity_evidence": "R7's first Li Jia shares P4's report title and biography (Tsinghua assistant professor, 2025 Peking University PhD, DevEval/EvoCodeBench). Its second shares R4's biography (Wuhan Hongyi postdoc, CCF dissertation nomination, Hubei postdoctoral talent programme). The user already confirmed P4 and R4 are different people. Preserve their existing follow keys without uncertainty notes. S2 chair Li Jia shares the R4/R7 Hongyi postdoctoral biography and research history. S2 and S6 Chen Zihan profiles describe different graduate programmes and research fields; preserve their separately sourced identities without a UI uncertainty note. R9 Wang Bo is a vehicle-electronics deputy director and researcher whose biography focuses on defense platforms. C4 Wang Bo is a compiler-testing researcher with a separate university degree history. Keep these explicitly different biographies separate without a displayed warning.",
   "chair_identities": {
     "S2:chair:李佳": {
       "bio_excerpt": "武汉大学弘毅博士后（20人/批次）",
       "identity_key": "R4:李佳"
+    },
+    "C4:chair:王博": {
+      "bio_excerpt": "分别于北京大学、中国科学技术大学和中南大学获得博士、硕士和学士学位",
+      "identity_key": "C4:王博"
     }
   },
   "talk_notes": {

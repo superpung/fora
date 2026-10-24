@@ -1,10 +1,217 @@
 <div class="container">
 
-    <h2 class="section-title">软件研究成果原型系统案例</h2>
+    <h2 class="section-title">软件研究成果原型系统案例论坛</h2>
     <div class="section-title-en">教育论坛 E5</div>
 
-    <div class="update-notice" style="text-align: center; margin: 40px 0;">
-        <p>内容正在更新中，敬请关注。</p>
-    </div>
+    <section class="forum-section">
+        <h3>一、论坛介绍</h3>
+        <p>学术论文是软件领域科研成果传播与学术交流的重要载体，但大量创新研究成果还会进一步形成可实际运行的软件系统、工具平台和原型系统。与单纯的论文交流相比，运行系统能够更加直观地展示研究成果的技术原理、实现路径和实际效果，也是推动科研成果向产业应用转化的重要载体。该论坛邀请学术界和工业界的学者与专家共同探讨如何将学术论文与原型成果落地相结合，推动软件工程研究成果的发展。
+        </p>
+    </section>
+
+    <section class="forum-section">
+        <h3>二、论坛组织委员会</h3>
+        <ul class="committee-list">
+            <li><span class="member-name">胡星</span><span class="member-unit">（浙江大学）</span></li>
+            <li><span class="member-name">潘瑞琪</span><span class="member-unit">（华为技术有限公司）</span></li>
+            <li><span class="member-name">梁广泰</span><span class="member-unit">（华为技术有限公司）</span></li>
+        </ul>
+    </section>
+
+    <section class="forum-section">
+        <h3>三、论坛安排</h3>
+        <h4>日程安排：</h4>
+        <p><strong>时间：</strong>2026年11月6日，14:00~17:00</p>
+        <p><strong>地点：</strong>天津市社会山国际会议中心酒店 二层15号会议室</p>
+
+        <h4>论坛议程：</h4>
+        <table class="forum-table">
+            <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>题目</th>
+                    <th>报告嘉宾</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="white-space: nowrap;">14:00-14:30</td>
+                    <td>Lingxi：基于过程性知识引导的仓库级代码生成</td>
+                    <td>刘逵<br>华为技术有限公司</td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">14:30-15:00</td>
+                    <td>ARC-Bench：面向智能体软件工程的评测基准与教学竞赛平台</td>
+                    <td>林云<br>上海交通大学</td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">15:00-15:30</td>
+                    <td>茶歇</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">15:30-16:00</td>
+                    <td>历史缺陷引导的智能化重构引擎测试方法</td>
+                    <td>姜艳杰<br>天津大学</td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">16:00-16:30</td>
+                    <td>Kea2: 基于性质的移动应用功能正确性测试工具</td>
+                    <td>梁锡贤<br>腾讯</td>
+                </tr>
+                <tr>
+                    <td style="white-space: nowrap;">16:30-17:00</td>
+                    <td>从交互到智能：面向复杂GUI场景的智能测试方法</td>
+                    <td>刘哲<br>中国科学院软件研究所</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="forum-section">
+        <h3>四、论坛报告嘉宾简介</h3>
+        <div class="speaker-member">
+            <h4>1. 报告人：刘逵 华为-智能化软件工程技术专家</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/教育论坛/刘逵.png" alt="刘逵头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>Lingxi：基于过程性知识引导的仓库级代码生成</p>
+                    <p><strong>摘要：</strong>针对大模型 的Coding Agent
+                        基于需求生产代码时只学“问题-答案”对，缺乏解题逻辑，且严重依赖暴力穷举采样（TTS）的痛点，本报告提出了新方案——Lingxi：基于过程性知识引导的仓库级代码生成。该方案分两步：（1）离线阶段，利用
+                        LLM 从历史代码变更中逆向推理，将具体修复过程抽象为 14
+                        类“可迁移知识”（如架构定位、根因分析、修复模式）。（2）在线阶段，针对新 Bug 检索相似历史知识，指派多个 Agent
+                        进行多视角并行分析，融合去噪后生成修复计划。实验表明，该框架在权威基准 SWE-bench Verified 上 Pass@1 达
+                        74.6%，超越 5 个主流 SOTA 框架（提升 5.4%-14.9%）。消融实验证实，若无知识引导，单纯堆叠算力进行采样几乎零提升（67.74%
+                        vs 67.43%）。研究还发现“设计模式与编码实践”是最具价值的知识类型。该方案不仅大幅降低了推理算力成本，还提供了高可解释性的“分析-计划-修复”链路，为自动化研发落地提供了新范式。
+                    </p>
+                    <p><strong>简介：</strong>刘逵博士，华为2012可信软件工程与开源实验室智能化软件工程技术专家。2019年毕业于卢森堡大学获得博士学位，期间专注于缺陷自动修复技术研究，后入职南京航空航天大学，主持/参与过国家级研究项目3项，后入职华为一直带领团队负责智能化软件工程技术的研究与落地推广，在相关领域累计发表高水平研究论文60余篇，其中CCF
+                        A类论文30余篇，多个智能化软件开发技术（项目级代码生成、测试生成、代码检视等）在华为公司落地推广使用。</p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>2. 报告人：林云 副教授</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/教育论坛/林云.png" alt="林云头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>ARC-Bench：面向智能体软件工程的评测基准与教学竞赛平台</p>
+                    <p><strong>摘要：</strong>大语言模型驱动的编程智能体正在改变软件开发方式，但如何客观评价智能体从复杂需求出发构建完整软件系统的能力，仍然是智能体软件工程面临的重要挑战。本报告介绍
+                        ARC-Bench，一个面向复杂软件需求的软件生成与智能体评测基准。ARC-Bench将多模态需求、层次化需求场景和可执行测试相结合，系统性评估编程智能体在需求理解、软件构建、功能正确性及智能体构建成本等方面的能力。报告将介绍
+                        ARC-Bench 的设计理念、任务构建方法、评测机制以及基于不同智能体的实验发现。在此基础上，报告进一步探讨如何将 ARC-Bench
+                        建设为连接科研、教学与黑客松竞赛的公共基础设施。在教学中，通过真实需求建模、智能体编程与自动化测试培养学生的软件系统构建能力；在黑客松竞赛中，通过统一任务与客观评测支持不同智能体方案的公平竞争；在科研中，通过开放任务、实验数据和失败案例推动需求工程、智能体架构与自动化软件测试等方向的持续创新。报告旨在探索一种以
+                        Benchmark 为纽带、促进科研创新、人才培养与开放竞赛相互支撑的智能体软件工程发展模式。</p>
+                    <p><strong>简介：</strong>林云，上海交通大学计算机科学与技术系副教授，系副主任，博士生导师，原新加坡国立大学助理教授（研究岗），入选国家海外高层次青年人才计划、华为x-explore人才计划。研究方向包括自动编程、可解释AI、网络反诈等，获ICSE2018杰出论文奖，及多次中国软件大会原型研究奖。ICSE、FSE、USENIX
+                        Security等重要国际会议的程序委员会委员。主持国家自然科学基金委海外优青项目及面上项目和多项校企合作。自动编程技术落地于豆包代码模型以及Trae
+                        IDE，GUI测试相关研究入选信通院优秀案例等。</p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>3. 报告人：姜艳杰 副教授</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/教育论坛/姜艳杰.png" alt="姜艳杰头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>历史缺陷引导的智能化重构引擎测试方法</p>
+                    <p><strong>摘要：</strong>软件重构是提高软件质量的有效手段，重构引擎则已成为IDE不可或缺的关键部件。重构引擎作为一种复杂软件系统，也和其他软件系统一样面临软件缺陷的困扰。有缺陷的重构引擎可能导致错误的重构操作，进而导致被重构的软件系统发生故障。因此，保证重构引擎的正确性和可靠性对IDE以及整个软件行业都有重要意义。为此，本项目分析重构引擎的缺陷报告以及真实的重构行为，研究提出创新性的重构引擎测试方法。
+                    </p>
+                    <p><strong>简介：</strong>姜艳杰，天津大学副教授，博士生导师。研究方向主要包括人工智能（大语言模型）、数据挖掘、智能软件开发、软件安全、隐私保护。获得CCF科学技术奖、ACM
+                        SIGSOFT杰出论文奖、百度学术新星奖、入选“博士后创新人才支持计划”（博新）。</p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>4. 报告人：梁锡贤 腾讯测试工程师</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/教育论坛/梁锡贤.png" alt="梁锡贤头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>Kea2: 基于性质的移动应用功能正确性测试工具</p>
+                    <p><strong>摘要：</strong>以 Monkey
+                        为代表的移动应用自动化遍历测试技术自问世以来，由于缺乏对特定应用的业务知识，始终面临两大难题：1）难以对应用进行深度探索；2）擅长发现崩溃错误，却难以检测与应用业务密切相关的功能错误。为此，我们提出了面向移动应用的性质测试技术，并将其实现为性质测试工具
+                        Kea2。Kea2
+                        不仅保留了传统自动遍历工具发现崩溃错误、探索应用页面的能力，还允许测试人员使用 Python
+                        语言编写应用性质，将业务知识注入测试过程，从而实现更高效的探索性测试，并通过断言发现功能错误。Kea2 的相关工作发表于会议 FSE
+                        2026，其所依赖的理论研究及相关工业应用成果分别发表于会议
+                        ASE 2024 和 ASE 2026 上。目前，我们已与多家企业达成合作，并成功将 Kea2 应用于腾讯、华为、小米等企业的产品中，发现并拦截了微信客户端、微信支付、小米
+                        HyperOS 等产品中的多项错误。同时，Kea2 相关技术已集成至华为开发者工具中，持续为鸿蒙应用开发者提供服务。目前，Kea2 已在 GitHub
+                        上开源（<a href="https://github.com/ecnusse/Kea2"
+                            target="_blank">https://github.com/ecnusse/Kea2</a>），并获得近 300
+                        个 Star，在学术界和工业界均受到了一定关注。</p>
+                    <p><strong>简介：</strong>梁锡贤，华东师范大学智能化软件与智能化软件工程实验室毕业生，腾讯微信测试开发工程师，主要专注于移动端自动化测试技术的探索与应用。其相关学术成果发表于FSE、ASE、TSE等软件工程领域国际顶会及期刊，并在华为、微信、小米、Opay等多家企业落地应用。
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="speaker-member">
+            <h4>5. 报告人：刘哲 副研究员</h4>
+            <div class="speaker-profile">
+                <div class="speaker-image">
+                    <img src="./images/academic-forum/教育论坛/刘哲.png" alt="刘哲头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <div class="speaker-content">
+                    <p><strong>题目：</strong>从交互到智能：面向复杂GUI场景的智能测试方法</p>
+                    <p><strong>摘要：</strong>随着大语言模型和多模态模型的发展，GUI自动测试正在由基于随机探索和状态建模的传统方法，逐步向具备语义理解、记忆和推理能力的测试智能体演进。然而，真实软件测试中的交互过程往往具有较强的上下文依赖性和长程特征，现有方法在历史经验复用、跨应用协同以及多步骤复杂操作执行等方面仍面临明显挑战。本报告将介绍我们近期围绕复杂GUI交互开展的三项研究与原型工作：首先，通过动态记忆机制使测试智能体能够积累和复用历史测试经验，提升测试决策的连续性；其次，通过记忆植入与推理机制支持跨应用功能测试，实现多App协同场景下的状态跟踪与连续探索；最后，面向需要多个GUI组件协同操作的复杂功能，研究基于规划与双重记忆的组合交互测试方法，实现多步操作的自动执行。相关方法均可与现有GUI测试工具集成，并在真实移动应用中提升复杂功能执行、测试覆盖和缺陷发现能力。报告最后将讨论GUI测试从单步状态探索向长程复杂交互与自主测试智能体演进的未来方向。
+                    </p>
+                    <p><strong>简介：</strong>刘哲，中国科学院软件研究所副研究员、硕士生导师。主要从事智能化软件工程、软件测试、人机交互与大模型智能体等方向研究。已在
+                        ICSE、FSE、ICML 等国际重要会议和期刊发表 CCF-A 类论文30余篇，其中以第一作者发表 CCF-A 类论文15篇，Google
+                        Scholar累计引用2400余次。主持国家自然科学基金青年基金项目，作为项目骨干参与国家重点研发计划、中国科学院先导专项等科研项目。曾获
+                        ACM学生研究竞赛全球总决赛冠军、ACM杰出审稿人、ACM杰出论文荣誉提名奖、CCF软件工程专委优秀博士论文激励计划、中国科学院优秀博士学位论文、中国科学院院长奖等荣誉。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="forum-section">
+        <h3>五、论坛组织委员会简介</h3>
+        <div class="committee-member">
+            <h4>1. 论坛组委会：胡星 副教授</h4>
+            <div class="committee-profile">
+                <div class="committee-image">
+                    <img src="./images/academic-forum/教育论坛/胡星.png" alt="胡星头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <p><strong>简介：</strong>胡星，浙江大学软件学院副教授，CCF高级会员。主要研究方向为智能化软件工程，程序理解，软件仓库挖掘。在TOSEM、TSE、ICSE、ASE、和FSE等高水平会议和期刊上发表论文50余篇。担任TOSEM，JSEP期刊编委。主持国家自然科学基金专项培育项目，国家重点研发计划等多个科研项目。获得FSE
+                    2025, ICSE 2024，MSR 2024，ICPC
+                    2018杰出论文奖。担任FORGE2025大会主席、FORGE2024和Internetware2023程序委员会主席，担任国际级顶级期刊（TSE、TOSEM）审稿人，受邀担任国际会议ASE，ICSE、FSE、ISSTA的程序委员会成员。
+                </p>
+            </div>
+        </div>
+        <div class="committee-member">
+            <h4>2. 论坛组委会：潘瑞琪 华为技术有限公司技术专家</h4>
+            <div class="committee-profile">
+                <div class="committee-image">
+                    <img src="./images/academic-forum/教育论坛/潘瑞琪.png" alt="潘瑞琪头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <p><strong>简介：</strong>潘瑞琪，华为软件工程应用技术实验室主任，10+年产品软件开发和软件工程经验，长期负责软件工程能力提升和研发效率体验工作，在研发效能和数字化等领域有丰富应用落地经验，专注于流水线、代码保障、构建、精益看板等实践的理论研究和工程化实践。近两年来主导公司内AI辅助研发的相关技术突破工作，支撑了多个产品线通过AI技术实现效能提升。
+                </p>
+            </div>
+        </div>
+        <div class="committee-member">
+            <h4>3. 论坛组委会：梁广泰 代码可信生成与验证技术专家</h4>
+            <div class="committee-profile">
+                <div class="committee-image">
+                    <img src="./images/academic-forum/教育论坛/梁广泰.png" alt="梁广泰头像"
+                        onerror="this.src='./images/academic-forum/default.png'">
+                </div>
+                <p><strong>简介：</strong>华为CodeArts工具技术创新Lab主任，代码可信生成与验证技术专家，华为可信领域科学家委员会成员。梁广泰带领团队持续围绕软件质量可信保障、智能化研发等场景长期聚焦核心技术创新孵化与产品落地工作（10年+），成功孵化一系列智能化研发核心技术，在华为内部研发工具体系及华为云对外软件开发生产线
+                    CodeArts
+                    服务中有效落地并规模化应用。至今已发表65+技术专利（含华为云潜在高价值专利10+篇及45+学术论文（含ICSE/FSE/ASE/OOPSLA等CCF
+                    A类论文16篇），曾获FSE 2021、ISSTA 2023等杰出论文奖等。</p>
+            </div>
+        </div>
+    </section>
 
 </div>

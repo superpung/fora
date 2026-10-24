@@ -75,7 +75,14 @@ All accessible HTML and portrait hashes match the daily observation. Its import
 was recovered and validated interactively after the scheduled CLI exhausted its
 usage allowance before pushing; the failed run's evidence remains available.
 
-Latest observation: [October 23, 14:52–14:53](20261023T065259587808Z/REVIEW.md).
+Previous observation: [October 23, 14:52–14:53](20261023T065259587808Z/REVIEW.md).
 All 94 accessible pages and 555 portrait fingerprints match the October 22
 evening observation. The same committee-meeting index remains HTTP 404. No
 import changes are needed; this incomplete check does not advance the baseline.
+
+Latest observation: [October 24, 15:42](20261024T074205242195Z/REVIEW.md).
+Four new forum programmes, two timed C4 stages, one R30 report replacement and
+nine committee members are imported. One HTML reference is new and 15 pages
+changed. There are 596 portrait references, including eight new HTTP 404 images;
+588 accessible portraits are prepared. The committee-meeting index remains
+HTTP 404; the check is incomplete and does not advance the complete baseline.

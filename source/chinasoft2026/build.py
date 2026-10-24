@@ -192,13 +192,16 @@ def profiles(soup, flags):
         # Each profile card describes one person. Punctuation in their roles
         # or affiliations is not a delimiter between multiple speakers.
         persons = people(who, flags, single=True)
-        if len(persons) != 1:
+        unnamed = who in collective_credits()
+        if len(persons) != 1 and not unnamed:
             flags.append(f"Profile has no unique person identity: {heading!r}")
             continue
-        person = persons[0]
-        if portrait := photo(card):
+        person = persons[0] if persons else None
+        if person and (portrait := photo(card)):
             person["photo"] = portrait
         info = {"person": person, "heading_raw": heading}
+        if unnamed:
+            info["credit_raw"] = who
         field = None
         for paragraph in card.find_all("p"):
             strong = paragraph.find("strong")
@@ -217,7 +220,7 @@ def profiles(soup, flags):
                 field = "report_title"
             if field:
                 info[field] = value
-        name = person["name"]
+        name = person["name"] if person else f"credit:{who}"
         if name in result:
             name = f"{name} / {info.get('report_title', '')}"
             if not info.get("report_title") or name in result:
@@ -299,7 +302,7 @@ def detail(category, slug):
             forum["description"] = "\n\n".join(txt(p) for p in section.find_all("p"))
             break
     bios = profiles(soup, flags)
-    known_names = {info["person"]["name"] for info in bios.values()} | {p["name"] for p in forum["chairs"]}
+    known_names = {info["person"]["name"] for info in bios.values() if info["person"]} | {p["name"] for p in forum["chairs"]}
     used_bios = set()
     for table in soup.select(".forum-table"):
         rows = list(table_rows(table))
@@ -356,7 +359,7 @@ def detail(category, slug):
                 if chair and chair.get("photo"):
                     speaker["photo"] = chair["photo"]
                 candidates = [(key, info) for key, info in bios.items()
-                              if info["person"]["name"] == speaker["name"]]
+                              if info["person"] and info["person"]["name"] == speaker["name"]]
                 if len(candidates) > 1:
                     candidates = [(key, info) for key, info in candidates if info.get("report_title") == title]
                     if len(candidates) != 1:
@@ -376,6 +379,22 @@ def detail(category, slug):
                 if info.get("report_title") and talk["type"] == "talk" and info["report_title"] != title:
                     talk["extra"]["profile_report_title"] = info["report_title"]
                     row_flags.append(f"报告题目不一致：日程表为“{title}”，报告资料为“{info['report_title']}”，均按原文保留。")
+            # An explicitly unnamed role can still have a report abstract.
+            # Match both the reviewed credit and title, never create a person.
+            if not speakers and speaker_raw in collective_credits():
+                title_key = lambda value: re.sub(r"[\W_]+", "", value)
+                candidates = [(key, info) for key, info in bios.items()
+                              if info.get("credit_raw") == speaker_raw
+                              and title_key(info.get("report_title", "")) == title_key(title)]
+                if len(candidates) > 1:
+                    raise ValueError(f"Ambiguous unnamed profile: {code[0]} / {title}")
+                if candidates:
+                    key, info = candidates[0]
+                    used_bios.add(key)
+                    talk["extra"]["unnamed_profile"] = info
+                    if info.get("abstract") and talk["type"] == "talk":
+                        talk["abstract"] = info["abstract"]
+                        talk["abstract_status"] = "tbd" if "待定" in info["abstract"] else "confirmed"
             if row.get("主持") not in {None, "", "-"}:
                 host_raw = row["主持"]
                 talk["extra"]["hosts_raw"] = host_raw
@@ -391,7 +410,7 @@ def detail(category, slug):
                     if chair and chair.get("affiliation_raw"):
                         host.setdefault("affiliation_raw", chair["affiliation_raw"])
                     matches = [(key, info) for key, info in bios.items()
-                               if info["person"]["name"] == host["name"]]
+                               if info["person"] and info["person"]["name"] == host["name"]]
                     if len(matches) > 1:
                         raise ValueError(f"Ambiguous host profile in {code[0]}: {host['name']}")
                     if matches:
@@ -409,6 +428,8 @@ def detail(category, slug):
                 talk["flags"] = row_flags
             forum["talks"].append(talk)
     unmatched = {name: info for name, info in bios.items() if name not in used_bios}
+    if any(not info["person"] for info in unmatched.values()):
+        raise ValueError(f"Unmatched unnamed report profile: {code[0]}")
     if unmatched:
         forum["extra"]["unmatched_profiles"] = unmatched
         flags.append("以下报告资料未能与日程表署名明确对应，单独保留：" + "、".join(unmatched))
@@ -603,7 +624,7 @@ def build():
         forum["extra"] = {"announcement_title": txt(announcement.find(["h1", "h2"])),
                           "milestones": milestones}
         forum["flags"].append("竞赛通知已公布决赛日期，具体时间、会场和参赛议程尚未公布。")
-    for code, slug in (("C1", "theorem-proving"), ("C4", "auto-software-repair")):
+    for code, slug in (("C1", "theorem-proving"),):
         announcement = load(f"pages/competition/{slug}.html")
         forum = next(f for f in forums if f["code"] == code)
         forum["source_url"] = BASE + f"#competition/{slug}"
@@ -620,14 +641,49 @@ def build():
             forum["extra"].update(milestones=milestones, schedule_status="provisional")
             forum["description"] = "拟议日程安排（正式日程以组委会赛前发布为准）：\n\n" + "\n\n".join(
                 f"{cells[0]}：{cells[1]}（{cells[2]}）" for cells in milestones)
-        else:
-            schedule = [txt(item) for item in announcement.select("li")
-                        if txt(item).startswith("决赛和颁奖日期")]
-            if len(schedule) != 1:
-                raise ValueError("Expected one automatic-repair final date range")
-            # A conference-wide date range does not specify a final's day.
-            forum["description"] = schedule[0]
-            forum["extra"]["schedule_raw"] = schedule[0]
+    # The new repair announcement supplies two timed stages, but no team slots.
+    repair = load("pages/agenda/competition/templates/software-repair-competition.html")
+    forum = next(f for f in forums if f["code"] == "C4")
+    milestones = [cells for cells, header in table_rows(repair.find("table")) if not header]
+    finals = [cells for cells in milestones if cells[0].startswith("现场决赛")]
+    defense = next(section for section in repair.select(".forum-section")
+                   if "竞赛答辩" in txt(section.find("h3")))
+    fields = {txt(p.find("strong")).rstrip("：:"): txt(p).split("：", 1)[1].strip()
+              for p in defense.find_all("p") if p.find("strong")}
+    if len(finals) != 1 or set(fields) != {"时间", "地点"}:
+        raise ValueError("Missing automatic-repair competition stages")
+    final_raw = finals[0][0]
+    final_room = final_raw[TIME.search(final_raw).end():].strip()
+    if room_name(final_room) != room_name(fields["地点"]):
+        raise ValueError("Repair competition stages need separate rooms")
+    forum["sessions"] = []
+    for schedule in (final_raw, fields["时间"]):
+        start, end = time_range(schedule, forum["flags"])
+        forum["sessions"].append({"date": date(schedule), "start": start, "end": end})
+    forum["room"] = room_name(fields["地点"])
+    forum["source_url"] = BASE + "#agenda/competition/software-repair-competition"
+    forum["description"] = "\n\n".join([
+        *(txt(p) for p in repair.select_one(".forum-section").find_all("p")),
+        "决赛（现场竞赛）：" + final_raw, "竞赛答辩：" + fields["时间"] + "，" + fields["地点"],
+    ])
+    forum["extra"] = {"milestones": milestones, "defense_schedule_raw": fields["时间"],
+                      "location_raw": fields["地点"],
+                      "previous_announcement_url": BASE + "#competition/auto-software-repair"}
+    for member in parse_chairs(repair):
+        person, problem = read_person(member.pop("name"), member.pop("affiliation_raw", None), **member)
+        if problem:
+            raise ValueError(f"Invalid repair committee member: {problem}")
+        forum["chairs"].append(person)
+    for card in repair.select(".committee-member"):
+        name = people(re.sub(r"^.*?[：:]", "", txt(card.find("h4"))), [], single=True)[0]["name"]
+        person = next(p for p in forum["chairs"] if p["name"] == name)
+        person["photo"] = photo(card)
+    for roster in repair.select(".committee-list"):
+        role = txt(roster.find_previous_sibling("h4"))
+        for entry in roster.select(".member-name"):
+            person = next(p for p in forum["chairs"] if p["name"] == txt(entry))
+            if "秘书" in role:
+                person["chair_role"] = role
     # This competition notice has a timed final, but no team-by-team programme.
     rust = load("pages/competition/rust-prototype-competition.html")
     rust_fields = {}

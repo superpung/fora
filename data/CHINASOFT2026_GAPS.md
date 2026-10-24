@@ -1,14 +1,20 @@
 # ChinaSoft 2026: source gaps and refresh checklist
 
-Last imported source review: **2026-10-22, rechecked at 23:03–23:04 Asia/Shanghai**. This is the conference-specific
+Last imported source review: **2026-10-24, checked at 15:42 Asia/Shanghai**. This is the conference-specific
 checklist for every subsequent refresh, not a claim that the official programme
 is complete. Talk numbers below are **one-based**, matching `#talk-N` links.
 
-Latest check: [October 23, 14:52–14:53 Asia/Shanghai](../source/chinasoft2026/checks/20261023T065259587808Z/REVIEW.md).
-All 94 accessible pages and 555 portrait hashes are unchanged since October 22.
-The committee-meeting index remains HTTP 404; existing information is retained.
-No import or gap inventory changes are needed. The observation remains incomplete
-and the last complete baseline remains October 21 morning.
+Latest check: [October 24, 15:42 Asia/Shanghai](../source/chinasoft2026/checks/20261024T074205242195Z/REVIEW.md).
+R9/R35/E5/I8 publish 25 programme items and 20 abstracts. R9 is renamed;
+R30 replaces its fourth speaker/report. C4 publishes two timed competition
+stages. Three committees add nine members. One new HTML reference and 15 changed
+pages are archived. Of 596 portrait references, eight new I8 images are HTTP 404;
+588 accessible resources are prepared. Existing content is retained. The
+committee-meeting index remains HTTP 404, so the observation is incomplete
+and the successful baseline remains October 21 morning.
+
+The [October 23 observation](../source/chinasoft2026/checks/20261023T065259587808Z/REVIEW.md)
+had no source changes compared with October 22 evening.
 
 The [October 22 observation](../source/chinasoft2026/checks/20261022T100053520657Z/REVIEW.md)
 publishes 32 local organizing members, adds six local advisory members and their
@@ -50,32 +56,33 @@ Original snapshots remain separate from curated importer input.
 
 Sources: [official site](https://chinasoft.ccf.org.cn/2026/),
 [overview](https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index).
-The official navigation exposes 92 accessible importer-scope HTML pages, including 52
-published programmes and nine explicit placeholders. One further newly linked
+The official navigation exposes 93 accessible importer-scope HTML pages, including 56
+published programmes and five explicit placeholders. One further newly linked
 committee-meeting index is unavailable (HTTP 404). R16 is active again; no
 additional withdrawn page is needed for the current inventory.
-The dataset contains 66 forum/competition entries, 429 programme items, 57
-breaks, 358 attached source abstracts and 555 downloaded portrait resources.
+The dataset contains 66 forum/competition entries, 454 programme items, 60
+breaks, 378 attached source abstracts and 588 downloaded portrait resources.
 One further abstract is retained in an unmatched profile, separately displayed.
 
 ## Unpublished programmes
 
 | Category | Detailed / listed | Codes still without a detailed programme |
 | --- | --- | --- |
-| Academic | 31 / 35 | R9, R25, R33, R35 |
+| Academic | 33 / 35 | R25, R33 |
 | Regular | 4 / 4 | None |
-| Education | 3 / 6 | E4, E5, E6 |
-| Industry | 6 / 8 | I7, I8 |
+| Education | 4 / 6 | E4, E6 |
+| Industry | 7 / 8 | I7 |
 | Special issue | 8 / 8 | None |
 | Competition | 0 / 5 | C1, C2, C3, C4, C5 |
 
-- 14 programmes are unpublished. Of the 66 entries, nine have no date, 12 no
-  room and 12 no clock window (including the date-only C1 sessions). These sets overlap; do not add the counts.
+- 10 programmes are unpublished. Of the 66 entries, four have no date, seven no
+  room and seven no clock window (including the date-only C1 sessions). These sets overlap; do not add the counts.
 - E6 has a November 7, 14:10–15:10 window and a room in the overview. C5/C2
   have November 7 final dates in their announcements, but no clock times or
   rooms. C1 has provisional date-only sessions on November 7–8; the published
-  afternoon/morning/afternoon stages remain in its description. C4 only gives
-  the overall conference range November 6–8 and remains undated. Keep these
+  afternoon/morning/afternoon stages remain in its description. C4 now gives November 7, 15:20–18:30 for its live final and November 8,
+  09:00–12:00 for its defense, both in second-floor room 5; individual team
+  slots remain unpublished. Keep these
   partial facts without inventing reports, precise clocks or participants.
 - Main-conference keynote/academician sessions have overview windows but no
   individual confirmed talk programme. Tentatively attending guests in
@@ -87,6 +94,39 @@ One further abstract is retained in an unmatched profile, separately displayed.
 - Other meeting names M1–M6 and T1 lack dated programme entries and remain in
   `extra.other_meetings`; the three A1–A3 annual meetings have timed day blocks.
   Do not assign the undated meetings to a day by analogy.
+
+## October 24 source details to recheck
+
+- R9 is now named 智能嵌入式系统基础软件论坛 in both overview and detail.
+  Its eight items include an unnamed host opening and collective closing;
+  six technical reports have abstracts. Its November 6 afternoon room is
+  三层1号多功能厅. This is a room name, not the separate 三层1号会议室.
+- R35 publishes a 09:00–12:00 forum window but its first item starts at 09:30.
+  Preserve both without inventing a missing opening half hour. Its final report
+  credits only 鸿蒙生态高级布道师. Match the explicit credit and normalized report
+  title to retain the abstract, without creating a person or attaching the
+  role-card portrait to an invented identity. The role biography remains under
+  `talk.extra.unnamed_profile`; the original card/image remains archived.
+- I8's eight portrait references return HTTP 404: 刘振宇, 刘爽, 岳赟, 张卿,
+  柳义利, 王子谋, 肖涛 and 郭威俊. Remove only those image tags from curated
+  HTML; preserve all names, biographies and abstracts. Restore the tags if the
+  exact URLs recover. None had a previously imported I8 photo to retain.
+- The I8 table separates 岳赟 and 蚂蚁 with a line break. Curated HTML makes the
+  existing name/affiliation boundary explicit as 岳赟（蚂蚁） to avoid interpreting
+  the two two-character strings as a spaced four-character name. R30's two chair
+  headings gain a space before parenthetical job/affiliation text so they merge
+  with their existing short-list names. These are data-only typography edits.
+- R30's 16:50–17:20 report now belongs to 王培新 (华东师范大学), titled
+  形式化之后，可信之前：大模型辅助的建模与推断, replacing 王竟亦's report.
+  The abstract, biography, portrait and guarded enrichment have been refreshed.
+- C4's seven organizers include three secretaries. Preserve these roles; the
+  four explicit portrait cards belong only to the named chairs. Its earlier
+  conference-wide announcement remains archived and linked in metadata.
+- P3 corrects 杨洲's abstract wording and expands his profile heading. I5 adds
+  the forum suffix to its heading. I7 remains a pending page. Publication,
+  publicity and volunteer committees add 2/3/4 members, all at 天津大学.
+- 林云's existing education-portrait URL changes bytes; refresh every explicit
+  association, including the existing E3 report, without inferring other photos.
 
 ## Missing abstracts and unresolved credits
 

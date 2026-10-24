@@ -27,16 +27,16 @@ try {
     await page.locator(selector).first().waitFor();
   };
   await go("/chinasoft2026", ".frow");
-  assert.equal(await page.locator(".frow").count(), 68);
+  assert.equal(await page.locator(".frow").count(), 69);
   const pending = page.locator(".dashday").filter({ has: page.locator("h2", { hasText: "日期待公布" }) });
-  assert.equal(await pending.locator(".frow").count(), 9);
+  assert.equal(await pending.locator(".frow").count(), 4);
   await page.locator(".daypill").filter({ hasText: "日期待公布" }).click();
-  await page.waitForFunction(() => document.querySelectorAll(".frow").length === 9);
-  assert.equal(await page.locator(".frow").count(), 9);
-  await page.locator(".search__input").fill("R9");
+  await page.waitForFunction(() => document.querySelectorAll(".frow").length === 4);
+  assert.equal(await page.locator(".frow").count(), 4);
+  await page.locator(".search__input").fill("R25");
   await page.waitForFunction(() => document.querySelectorAll(".frow").length === 1);
   assert.equal(await page.locator(".frow").count(), 1);
-  assert.equal(await page.locator(".frow__code").textContent(), "R9");
+  assert.equal(await page.locator(".frow__code").textContent(), "R25");
 
   await go("/chinasoft2026/forum/R14", "#talk-4 .person__name");
   assert.equal(await page.locator("#talk-4 .person__name").textContent(), "廖楠");
@@ -99,6 +99,7 @@ try {
       const live = (date, minutes) => buildLiveView(views, { todayStr: date, nowMin: minutes });
       return { items, competition, rust, rustICS: toICS(rust, "2026-10-21T00:00:00Z", views),
         rustLive: live("2026-11-07", 16 * 60),
+        repairDefense: live("2026-11-08", 10 * 60),
         competitionICS: toICS(competition, "2026-10-20T00:00:00Z", views),
         ics: toICS(items, "2026-10-14T00:00:00Z", views),
         morning: live("2026-11-06", 10 * 60), afternoon: live("2026-11-06", 14 * 60),
@@ -113,9 +114,16 @@ try {
     assert(result.rustICS.includes("20261107T102000Z"));
     assert(result.rustLive.nowRooms.some(r => r.code === "C3"));
     assert.deepEqual(result.competition.map(x => [x.code, x.date, x.start ?? null, x.end ?? null]),
-      [["C1", "2026-11-07", null, null], ["C1", "2026-11-08", null, null]]);
+      [["C1", "2026-11-07", null, null], ["C4", "2026-11-07", "15:20", "18:30"],
+       ["C1", "2026-11-08", null, null], ["C4", "2026-11-08", "09:00", "12:00"]]);
     assert(result.competitionICS.includes("DTSTART;VALUE=DATE:20261107"));
     assert(result.competitionICS.includes("DTSTART;VALUE=DATE:20261108"));
+    assert(result.competitionICS.includes("20261107T072000Z"));
+    assert(result.competitionICS.includes("20261107T103000Z"));
+    assert(result.competitionICS.includes("20261108T010000Z"));
+    assert(result.competitionICS.includes("20261108T040000Z"));
+    assert(result.rustLive.nowRooms.some(r => r.code === "C4"));
+    assert(result.repairDefense.nowRooms.some(r => r.code === "C4"));
     const forum = result.items.find((x) => x.code === "E6");
     assert.equal(forum.approx, false);
     assert.equal(forum.talkIndex, undefined);

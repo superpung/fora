@@ -29,8 +29,8 @@ uv run python -m unittest discover -s source/chinasoft2026
 ```
 
 The overview supplies 66 forum/competition entries and 13 conference timetable
-rows across November 5–8. The 52 linked published programmes (including restored R16) supply
-429 programme items and 57 breaks. Conference meetings are retained separately from technical forums.
+rows across November 5–8. The 56 linked published programmes (including restored R16) supply
+454 programme items and 60 breaks. Conference meetings are retained separately from technical forums.
 The homepage advertises November 6–8; the dataset includes November 5 check-in
 as published in the overview and introduction, as a normal schedule event.
 
@@ -49,10 +49,11 @@ overview block locations omit the known venue prefixes, while `extra.location_ra
 retains the full source wording. The conference venue remains available for
 the page header, calendar exports and standalone share posters.
 
-All 555 available portrait URLs have been downloaded and decoded. The October 21
+All 588 available portrait URLs have been downloaded and decoded. The October 21
 check replaces two P3/R19 speaker portraits; seven formerly retained-only R16
 resources are active again. All previously recovered P3/I3/S1 images remain
-available. No broken portrait references remain.
+available. Eight newly published I8 portrait references return HTTP 404 and are omitted
+from curated HTML; all people and text remain, with exact URLs in the check archive.
 `fetch_photos.py` and `web/scripts/prepare-portraits.mjs` prepare 256px WebP
 assets under `web/public/portraits/chinasoft2026/`; install web dependencies
 before refreshing portraits. `raw/portraits.json` records original URLs,
@@ -61,8 +62,8 @@ local file. Forum profiles, chairs and committee cards supply the identity;
 no image is assigned by filename or guessed across unrelated people. The
 service worker caches portraits on demand instead of precaching every photo.
 
-Unpublished programmes have `agenda_status: not_published`. Nine linked pages
-still contain only a pending-content notice after the October 21 evening update.
+Unpublished programmes have `agenda_status: not_published`. Five linked pages
+still contain only a pending-content notice after the October 24 update.
 The adapter recognizes that template without inventing a programme. E2 now
 publishes its correct code; its old mismatched placeholder association remains
 in resolved curation history without a displayed warning.
@@ -73,7 +74,8 @@ from its title in the overview, allowing the optional 论坛 suffix. No guessed 
 assigned. The October 20 overview shifts education codes E2–E7 to E1–E6;
 the old E1 is now closed meeting M5. Current official codes are retained.
 C1 has provisional date-only sessions on November 7–8; its period labels remain
-in the description. C4 only names the overall conference range and stays undated. The older code-less prototype
+in the description. C4 now has a November 7 timed final and November 8 timed defense in one room,
+represented as two sessions without invented team slots. The older code-less prototype
 announcement remains withdrawn; no unpublished schedule is inferred from it.
 
 Source inconsistencies are retained in `flags` and `extra`: R1/E3/I4 talks
@@ -96,10 +98,10 @@ remain valid followed agenda items before individual reports are announced.
 Explicit `person.extra.identity_key` values separate distinct same-name
 source records; the viewer never infers identity from affiliation alone.
 
-`enrichment.json` supplies 395 AI summaries/topic classifications, covering all
+`enrichment.json` supplies 415 AI summaries/topic classifications, covering all
 substantive reports and meaningful panels. They live only in `enrichment` and
 respect the global AI switch. Each entry records its source title so an agenda
-reordering cannot silently attach annotations to the wrong report. The 358 attached
+reordering cannot silently attach annotations to the wrong report. The 378 attached
 source abstracts remain separate and unchanged.
 
 The source fingerprint covers every captured page, the portrait manifest and
@@ -164,3 +166,11 @@ is incomplete and the last complete baseline remains October 21 morning.
 [Daily host automation](automation/README.md) runs at 18:00 Asia/Shanghai using
 isolated worktrees and branches, preserves snapshots, updates the open PR, and
 saves a Chinese report. No merge or release is automated.
+
+The October 24 refresh adds R9/R35/E5/I8 (25 programme items, three breaks,
+20 abstracts), C4's two timed stages and seven organizers, nine committee
+members, a R30 speaker/report replacement, and a P3 wording correction.
+R9 changes its name in both official inventory and detail. The adapter now
+matches an explicitly unnamed profile by its reviewed role credit and normalized
+report title; it retains the abstract without inventing a person. An independent
+fixture rejects mismatched titles. No shared web application code changes.

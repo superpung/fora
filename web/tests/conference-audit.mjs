@@ -199,7 +199,7 @@ try {
       await target.goto(`${base}/chinasoft2026/forum/${code}`, { waitUntil: "domcontentloaded" });
       await target.locator(".fd__desc").waitFor();
       const text = await target.locator(".fd__desc").textContent();
-      assert(text.includes(code === "C1" ? "11月8日上午" : "2026年11月6-8日"));
+      assert(text.includes(code === "C1" ? "11月8日上午" : "2026年11月8日"));
       assert(!(await target.locator(".fd__meta").textContent()).includes("00:00"));
       await target.waitForTimeout(600);
       assert(await target.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
@@ -208,7 +208,7 @@ try {
   }
   for (const path of ["forum/R32#talk-5", "committee", "schedule", "topics", "speakers", "plan",
     "forum/R6#talk-1", "forum/R7#talk-5", "forum/R7#talk-7", "forum/R8#talk-10", "forum/R11#talk-1", "forum/R17#talk-1",
-    ...["R34", "S3", "E2", "I5", "R29", "S4", "R23", "R13", "P4", "R19", "E1", "E3", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].map(code => `forum/${code}#talk-2`)]) {
+    ...["R9", "R35", "E5", "I8", "R30", "R34", "S3", "E2", "I5", "R29", "S4", "R23", "R13", "P4", "R19", "E1", "E3", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].map(code => `forum/${code}#talk-2`)]) {
     // Assert application readiness, independent of the preview's analytics requests.
     await phone.goto(`${base}/chinasoft2026/${path}`, { waitUntil: "domcontentloaded" });
     const ready = path.startsWith("forum/") ? `#${path.split("#")[1]}` : {
