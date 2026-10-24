@@ -4,7 +4,13 @@ Last imported source review: **2026-10-24, checked at 15:42 Asia/Shanghai**. Thi
 checklist for every subsequent refresh, not a claim that the official programme
 is complete. Talk numbers below are **one-based**, matching `#talk-N` links.
 
-Latest check: [October 24, 15:42 Asia/Shanghai](../source/chinasoft2026/checks/20261024T074205242195Z/REVIEW.md).
+Latest check: [October 24, 18:00–18:01 Asia/Shanghai](../source/chinasoft2026/checks/20261024T100040420152Z/REVIEW.md).
+All 95 accessible HTML pages and all 596 portrait status/fingerprint records
+match the 15:42 observation. No source additions, replacements or corrections
+are needed. The committee-meeting index and eight I8 portrait URLs still return
+HTTP 404. The check remains incomplete; the successful baseline is unchanged.
+
+Last content import: [October 24, 15:42 Asia/Shanghai](../source/chinasoft2026/checks/20261024T074205242195Z/REVIEW.md).
 R9/R35/E5/I8 publish 25 programme items and 20 abstracts. R9 is renamed;
 R30 replaces its fourth speaker/report. C4 publishes two timed competition
 stages. Three committees add nine members. One new HTML reference and 15 changed
