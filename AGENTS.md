@@ -307,6 +307,19 @@ pnpm preview    # serve the production build
   independently of any newly imported conference. `conference-ui.mjs` checks
   empty-forum boards on desktop/mobile and speaker-follow migration across
   reloads. `permalink-scroll.mjs` checks browser anchors against existing data.
+- **Clock regression:** `web/tests/live-clock.mjs` controls browser clocks and
+  checks event boundaries, current-report highlights, midnight, foreign device
+  timezones and notification delivery through a mock. It captures desktop/mobile
+  pages plus a gallery under `LIVE_AUDIT_DIR` (default:
+  `/tmp/chinasoft2026-live-audit/after`). `AUDIT_BASE_URL` can target a preview.
+- **Multi-day forums:** optional `forum.sessions` contains dated programme
+  envelopes; each talk/break carries `day_date`. Keep one canonical forum and
+  report list. `talkDate()` resolves a report's explicit date; `forumOnDate()`
+  projects daily slots while preserving report object identity. Dashboard and
+  timeline links/follows use canonical indices, never the filtered list index.
+  Exports, reminders, speaker lists, planning, topics and related talks use the
+  report date. `web/tests/multiday.mjs` checks both dates on desktop/mobile and
+  accepts `AUDIT_BASE_URL`; independent fixtures live in `conference-core.mjs`.
 - **The resolved agenda:** `lib/export.ts`'s `collectFollowedItems()` is the one
   place that turns follows (talks + forums + speakers) into a sorted list of
   `ExportItem`. My Day, the live card, the reminders and every export format
@@ -327,7 +340,24 @@ pnpm preview    # serve the production build
 - **Source gaps:** `SourceNotes.tsx` exposes flags through an animated,
   keyboard/touch-accessible disclosure. Forum details display hosts from
   `talk.extra.hosts`, chronological breaks, and separately retained
-  `forum.extra.unmatched_profiles`.
+  `forum.extra.unmatched_profiles`. Before refreshing ChinaSoft 2026, read
+  `data/CHINASOFT2026_GAPS.md`, including its deliberate data-only correction.
+  `source/chinasoft2026/check_updates.py` archives original HTML and portrait
+  hashes under `source/chinasoft2026/checks/` without changing curated input.
+  Its reports compare both the previous successful check and the imported
+  snapshot; failed checks do not advance the baseline. See `checks/README.md`
+  for coverage and the treatment of broken source references.
+  Reviewed code/identity associations and retained accessible pages live in
+  `source/chinasoft2026/curation.json`; do not derive identities from affiliation.
+  Committee reveal animations trigger on intersection, not a fraction of the
+  roster's height, so long lists remain visible on short viewports.
+- **Daily ChinaSoft maintenance:** `source/chinasoft2026/automation/` contains
+  the host cron runner and task contract. The user requested 18:00 Asia/Shanghai
+  on a continuously online host. Runs use distinct branches/worktrees, a lock,
+  the existing Codex login and `~/.ghtoken`; they update a PR, never merge it.
+  Reports live under ignored `.automation/chinasoft2026/`. Active-page 404/410
+  responses produce incomplete check evidence without advancing the successful
+  baseline; read the automation README for runtime requirements and pausing.
 - **Search (`lib/search.ts` + `lib/bm25.ts`):** one palette over the whole
   program — talk titles/abstracts, speakers, affiliations, forums, committee
   members, organizations — ranked by BM25 in the browser over the already-loaded
@@ -345,6 +375,12 @@ pnpm preview    # serve the production build
   vocabulary keys and are shown through `topicLabel()`, never as raw text.
   Enrichment entries may include `source_title`; the merge fails if that title
   changes, preventing stale index-based annotations after programme edits.
+- **Portraits:** ChinaSoft 2026 snapshots explicit person-card images with
+  `source/chinasoft2026/fetch_photos.py`. `scripts/prepare-portraits.mjs` uses
+  Sharp to make 256px WebP files under `public/portraits/chinasoft2026/`.
+  Source URLs and input/output hashes live in `raw/portraits.json`; the offline
+  adapter verifies assets before attaching `person.photo`. Browser regression
+  checks decode every portrait and verify its association with the talk's person.
 - **Reminders:** opt-in local notifications for starred items
   (`lib/reminder-store.ts` prefs, `lib/reminder.tsx` provider,
   `lib/reminder-schedule.ts` scheduling). Nothing schedules and no OS permission

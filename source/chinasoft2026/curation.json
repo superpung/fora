@@ -1,0 +1,101 @@
+{
+  "_about": "Reviewed source associations, not inferred from affiliation alone. Recheck title guards after programme changes.",
+  "detail_codes": {
+    "distributed-resilience": {
+      "title": "分布式软件系统韧性保障论坛",
+      "code": "R17"
+    }
+  },
+  "retained_details": [
+    {
+      "category": "academic-forum",
+      "slug": "intelligent-open-source",
+      "code": "R16",
+      "reason": "Navigation entry withdrawn on 2026-10-15; the direct official page still returns the unchanged published programme. No cancellation has been announced. Navigation restored on 2026-10-21 with byte-identical content; retained here as historical evidence, with the active link taking precedence."
+    }
+  ],
+  "person_identities": {
+    "P4#3": {
+      "source_title": "迈向可信Coding Agent：挑战与实践",
+      "name": "李佳",
+      "identity_key": "P4:李佳"
+    },
+    "R4#5": {
+      "source_title": "基于需求的安全代码生成：理解、约束与补全",
+      "name": "李佳",
+      "identity_key": "R4:李佳"
+    },
+    "R7#4": {
+      "source_title": "迈向可信Coding Agent：挑战与实践",
+      "name": "李佳",
+      "identity_key": "P4:李佳"
+    },
+    "R7#6": {
+      "source_title": "代码智能体执行轨迹与安全性分析",
+      "name": "李佳",
+      "identity_key": "R4:李佳"
+    },
+    "S2#8": {
+      "source_title": "面向需求变更的机载软件需求增量一致性验证方法",
+      "name": "陈子涵",
+      "identity_key": "S2:陈子涵"
+    },
+    "S6#14": {
+      "source_title": "DiffHallu：基于差分测试的长文本生成幻觉风险量化方法",
+      "name": "陈子涵",
+      "identity_key": "S6:陈子涵"
+    },
+    "R9#1": {
+      "source_title": "强对抗环境下智能车载嵌入式基础软件挑战与实践",
+      "name": "王博",
+      "identity_key": "R9:王博"
+    }
+  },
+  "identity_evidence": "R7's first Li Jia shares P4's report title and biography (Tsinghua assistant professor, 2025 Peking University PhD, DevEval/EvoCodeBench). Its second shares R4's biography (Wuhan Hongyi postdoc, CCF dissertation nomination, Hubei postdoctoral talent programme). The user already confirmed P4 and R4 are different people. Preserve their existing follow keys without uncertainty notes. S2 chair Li Jia shares the R4/R7 Hongyi postdoctoral biography and research history. S2 and S6 Chen Zihan profiles describe different graduate programmes and research fields; preserve their separately sourced identities without a UI uncertainty note. R9 Wang Bo is a vehicle-electronics deputy director and researcher whose biography focuses on defense platforms. C4 Wang Bo is a compiler-testing researcher with a separate university degree history. Keep these explicitly different biographies separate without a displayed warning.",
+  "chair_identities": {
+    "S2:chair:李佳": {
+      "bio_excerpt": "武汉大学弘毅博士后（20人/批次）",
+      "identity_key": "R4:李佳"
+    },
+    "C4:chair:王博": {
+      "bio_excerpt": "分别于北京大学、中国科学技术大学和中南大学获得博士、硕士和学士学位",
+      "identity_key": "C4:王博"
+    }
+  },
+  "talk_notes": {
+    "R22#2": {
+      "source_title": "基于RISC-V软硬协同的智能体内生安全方案",
+      "name": "武延军",
+      "affiliation_raw": "中科院计算所",
+      "bio_excerpt": "中国科学院软件研究所所长",
+      "flags": [
+        "单位信息不一致：日程表为中科院计算所，个人简介为中国科学院软件研究所，均按原文保留。"
+      ]
+    }
+  },
+  "resolved_talk_notes": {
+    "E3#1": {
+      "source_title": "论 AI 时代形式化方法课程教学的挑战与机遇",
+      "name": "刘万伟",
+      "affiliation_raw": "国防科技大学",
+      "bio_excerpt": "形式化方法课程具有理论抽象、逻辑严密、实践性强的特点。",
+      "flags": [
+        "官网“个人简介”栏填写的是报告内容，按原文保留。"
+      ],
+      "resolved_on": "2026-10-21",
+      "resolution": "The original-source comparison now supplies Liu Wanwei's actual biography. Keep the old note here for history; do not display the obsolete defect."
+    }
+  },
+  "resolved_placeholder_codes": {
+    "system-software-education": {
+      "title": "系统软件教育",
+      "source_code": "E1",
+      "code": "E2",
+      "flags": [
+        "编号不一致：系统软件教育占位页标为 E1，总表标为 E2；此处按总表收录。"
+      ],
+      "resolved_on": "2026-10-21",
+      "resolution": "The evening source now publishes the full E2 programme with the correct code and title. The old association is retained only as history."
+    }
+  }
+}

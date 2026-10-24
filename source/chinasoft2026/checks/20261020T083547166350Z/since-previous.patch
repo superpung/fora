@@ -1,0 +1,2724 @@
+--- before/index.html
++++ after/index.html
+@@ -62,13 +62,13 @@
+             <a href="javascript:void(0)">竞赛通知</a>
+             <ul class="submenu">
+               <!-- <li><a href="#" onclick="loadPage('competition/demo')">竞赛信息持续更新中</a></li> -->
+-              <!-- <li><a href="#" onclick="loadPage('competition/auto-software-repair')">软件自动修复竞赛</a></li>
+-              <li><a href="#" onclick="loadPage('competition/heterogeneous-systems-programming')">基于异构算力的系统编程竞赛</a></li>
++              <li><a href="#" onclick="loadPage('competition/auto-software-repair')">软件自动修复竞赛</a></li>
++              <!-- <li><a href="#" onclick="loadPage('competition/heterogeneous-systems-programming')">基于异构算力的系统编程竞赛</a></li>
+               <li><a href="#" onclick="loadPage('competition/theorem-proving')">定理证明竞赛</a></li> -->
+               <li><a href="#" onclick="loadPage('competition/cangjie')">2026“仓颉杯”智能编程大赛</a></li>
+               <li><a href="#" onclick="loadPage('competition/harmony-ai')">2026 AI辅助研发创新大赛（鸿蒙杯）</a></li>
+-              <!-- <li><a href="#" onclick="loadPage('competition/theorem-proving')">ChinaSoft2026定理证明竞赛</a></li> -->
+-              <!-- <li><a href="#" onclick="loadPage('competition/prototype-systems-forum')">软件研究成果原型系统案例论坛</a></li> -->
++              <li><a href="#" onclick="loadPage('competition/theorem-proving')">ChinaSoft2026定理证明竞赛</a></li>
++
+               <!-- <li><a href="#" onclick="loadPage('competition/auto-software-repair')">第三届软件自动修复竞赛</a></li> -->
+ 
+             </ul>
+--- before/pages/agenda/academic-forum/index.html
++++ after/pages/agenda/academic-forum/index.html
+@@ -13,88 +13,115 @@
+         <!-- 左侧导航栏 -->
+         <div class="sidebar">
+                 <ul>
+-                       
++
+                         <li><a href="#agenda/academic-forum/agentic-ai-testing" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'agentic-ai-testing')">Agentic AI分析与测试</a></li>
+-                           <li><a href="#agenda/academic-forum/se-agent-innovation" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'se-agent-innovation')">软件工程智能体创新论坛</a></li>
++                                        onclick="loadAgenda('academic-forum', 'agentic-ai-testing')">Agentic AI分析与测试</a>
++                        </li>
++                        <li><a href="#agenda/academic-forum/se-agent-innovation" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'se-agent-innovation')">软件工程智能体创新论坛</a>
++                        </li>
+                         <li><a href="#agenda/academic-forum/ai-architecture-governance" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'ai-architecture-governance')">AI赋能架构治理与维护</a></li>
++                                        onclick="loadAgenda('academic-forum', 'ai-architecture-governance')">AI赋能架构治理与维护</a>
++                        </li>
+                         <li><a href="#agenda/academic-forum/secure-code-generation" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'secure-code-generation')">安全代码生成与软件可信构建</a></li>
++                                        onclick="loadAgenda('academic-forum', 'secure-code-generation')">安全代码生成与软件可信构建</a>
++                        </li>
+ 
+-                                         <li><a href="#agenda/academic-forum/programming-language-frontier" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'programming-language-frontier')">编程语言前沿技术论坛</a></li>
+-                                              <li><a href="#agenda/academic-forum/llm-dev-evaluation" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'llm-dev-evaluation')">大模型辅助软件开发能力评测</a></li>
++                        <li><a href="#agenda/academic-forum/programming-language-frontier" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'programming-language-frontier')">编程语言前沿技术论坛</a>
++                        </li>
++                        <li><a href="#agenda/academic-forum/llm-dev-evaluation" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'llm-dev-evaluation')">大模型辅助软件开发能力评测</a>
++                        </li>
+                         <li><a href="#agenda/academic-forum/young-talent-growth" class="sidebar-item"
+                                         onclick="loadAgenda('academic-forum', 'young-talent-growth')">青年人才成长</a></li>
+-                                           <li><a href="#agenda/academic-forum/embodied-intelligence-robot" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'embodied-intelligence-robot')">具身智能机器人与系统软件</a></li>
++                        <li><a href="#agenda/academic-forum/embodied-intelligence-robot" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'embodied-intelligence-robot')">具身智能机器人与系统软件</a>
++                        </li>
+ 
+-                                           <li><a href="#agenda/academic-forum/software-frontier-tutorial" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'software-frontier-tutorial')">软件前沿技术导引</a></li>
++
+                         <li><a href="#agenda/academic-forum/formal-engineering" class="sidebar-item"
+                                         onclick="loadAgenda('academic-forum', 'formal-engineering')">软件形式化工程方法</a></li>
++
++                        <li><a href="#agenda/academic-forum/software-frontier-tutorial" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'software-frontier-tutorial')">软件前沿技术导引</a>
++                        </li>
++
+                         <li><a href="#agenda/academic-forum/forse-defect-detection" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'forse-defect-detection')">软件全方位缺陷检测技术</a></li>
+-                                          <li><a href="#agenda/academic-forum/intelligent-software-dev" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'intelligent-software-dev')">智能化软件开发、维护与安全</a></li>
+-                       
+-                    
+-                    
+-                     
+-                                           <li><a href="#agenda/academic-forum/supply-chain-security" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'supply-chain-security')">智能驱动供应链安全分析</a></li>
+-
+-                                            <li><a href="#agenda/academic-forum/trusted-blockchain" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'trusted-blockchain')">可信区块链</a></li>
+-                                        
+-                        <!-- <li><a href="#agenda/academic-forum/intelligent-open-source" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'intelligent-open-source')">智能软件与开源生态</a></li> -->
+-                                            <li><a href="#agenda/academic-forum/distributed-resilience" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'distributed-resilience')">分布式软件系统韧性保障</a></li>
+-                        <li><a href="#agenda/academic-forum/mobile-software-engineering" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'mobile-software-engineering')">移动软件工程</a></li>
+-                                         <li><a href="#agenda/academic-forum/rust-system-software" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'rust-system-software')">Rust与系统软件论坛</a></li>
+-                        <li><a href="#agenda/academic-forum/llm-reliability-security" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'llm-reliability-security')">大模型可靠性与安全性</a></li>
+-                        <li><a href="#agenda/academic-forum/attack-attribution-analysis" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'attack-attribution-analysis')">攻击溯源、推理与安全分析</a></li>
+-                      
+-                       <li><a href="#agenda/academic-forum/ai-os-security" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'ai-os-security')">AI时代的操作系统安全技术</a></li>
+-                      <li><a href="#agenda/academic-forum/quantum-computing-software" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'quantum-computing-software')">量子计算软件和算法</a></li>
+-                        <li><a href="#agenda/academic-forum/eda-frontier" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'eda-frontier')">EDA前沿技术</a></li>
+-                                          <li><a href="#agenda/academic-forum/basic-software-trust" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'basic-software-trust')">基础软件可信保障技术</a></li>
+-                                           <li><a href="#agenda/academic-forum/resilient-software" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'resilient-software')">韧性软件论坛</a></li>
+-                       
+-                        <li><a href="#agenda/academic-forum/software-analysis-security" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'software-analysis-security')">软件分析与软件安全新技术</a></li>
+-                        <li><a href="#agenda/academic-forum/formal-methods-llm" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'formal-methods-llm')">形式化方法与大模型技术</a></li>
+-                                           <li><a href="#agenda/academic-forum/constraint-solving" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'constraint-solving')">约束求解技术与应用</a></li>
+-
+-                                        <li><a href="#agenda/academic-forum/hw-sw-collaborative-security" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'hw-sw-collaborative-security')">软硬件协同安全</a></li>
+-                       
+-                     
++                                        onclick="loadAgenda('academic-forum', 'forse-defect-detection')">软件全方位缺陷检测技术</a>
++                        </li>
++                        <li><a href="#agenda/academic-forum/intelligent-software-dev" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'intelligent-software-dev')">智能化软件开发、维护与安全</a>
++                        </li>
+ 
+ 
+ 
+ 
+-                    
+-                     
+-                    
+-                      
+-                      
+-                     
++                        <li><a href="#agenda/academic-forum/supply-chain-security" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'supply-chain-security')">智能驱动供应链安全分析</a>
++                        </li>
++
++                        <li><a href="#agenda/academic-forum/trusted-blockchain" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'trusted-blockchain')">可信区块链</a></li>
++
++                        <!-- <li><a href="#agenda/academic-forum/intelligent-open-source" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'intelligent-open-source')">智能软件与开源生态</a></li> -->
++                        <li><a href="#agenda/academic-forum/distributed-resilience" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'distributed-resilience')">分布式软件系统韧性保障</a>
++                        </li>
++                        <li><a href="#agenda/academic-forum/mobile-software-engineering" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'mobile-software-engineering')">移动软件工程</a>
++                        </li>
++                        <li><a href="#agenda/academic-forum/rust-system-software" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'rust-system-software')">Rust与系统软件论坛</a>
++                        </li>
++                        <li><a href="#agenda/academic-forum/llm-reliability-security" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'llm-reliability-security')">大模型可靠性与安全性</a>
++                        </li>
++                        <li><a href="#agenda/academic-forum/attack-attribution-analysis" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'attack-attribution-analysis')">攻击溯源、推理与安全分析</a>
++                        </li>
++
++                        <li><a href="#agenda/academic-forum/ai-os-security" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'ai-os-security')">AI时代的操作系统安全技术</a></li>
++                        <li><a href="#agenda/academic-forum/quantum-computing-software" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'quantum-computing-software')">量子计算软件和算法</a>
++                        </li>
++                        <li><a href="#agenda/academic-forum/eda-frontier" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'eda-frontier')">EDA前沿技术</a></li>
++                        <li><a href="#agenda/academic-forum/basic-software-trust" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'basic-software-trust')">基础软件可信保障技术</a>
++                        </li>
++                        <li><a href="#agenda/academic-forum/resilient-software" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'resilient-software')">韧性软件论坛</a></li>
++
++                        <li><a href="#agenda/academic-forum/software-analysis-security" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'software-analysis-security')">软件分析与软件安全新技术</a>
++                        </li>
++                        <li><a href="#agenda/academic-forum/neuro-symbolic-fusion" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'neuro-symbolic-fusion')">神经符号融合软件的前沿理论和方法</a>
++                        </li>
++                        <li><a href="#agenda/academic-forum/formal-methods-llm" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'formal-methods-llm')">形式化方法与大模型技术</a>
++                        </li>
++                        <li><a href="#agenda/academic-forum/constraint-solving" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'constraint-solving')">约束求解技术与应用</a></li>
++
++                        <li><a href="#agenda/academic-forum/hw-sw-collaborative-security" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'hw-sw-collaborative-security')">软硬件协同安全</a>
++                        </li>
++
++
++
++
++
++
++
++
++
++
++
++
+                 </ul>
+         </div>
+ 
+--- before/pages/agenda/academic-forum/templates/forse-defect-detection.html
++++ after/pages/agenda/academic-forum/templates/forse-defect-detection.html
+@@ -5,7 +5,8 @@
+ 
+     <section class="forum-section">
+         <h3>一、论坛介绍</h3>
+-        <p>软件工程历经近六十年发展，其核心始终聚焦于提升软件能力与质量、提高开发与运行维护效率、降低开发与运行维护成本。这些目标的实现，均有赖于软件全方位检测能力。为此，我们发起软件全方位检测技术论坛（FORSE），并于2018、2019、2020、2022年在南京成功举办四届，衷心感谢各界长期支持。FORSE致力于加强软件全方位检测理论、方法与技术的前沿探索，促进学术界与工业界交流合作，推动技术创新与产业化。2026年11月8日，第五届软件全方位检测技术论坛（FORSE 2026）将依托中国软件大会（ChinaSoft）平台在天津举行。</p>
++        <p>软件工程历经近六十年发展，其核心始终聚焦于提升软件能力与质量、提高开发与运行维护效率、降低开发与运行维护成本。这些目标的实现，均有赖于软件全方位检测能力。为此，我们发起软件全方位检测技术论坛（FORSE），并于2018、2019、2020、2022年在南京成功举办四届，衷心感谢各界长期支持。FORSE致力于加强软件全方位检测理论、方法与技术的前沿探索，促进学术界与工业界交流合作，推动技术创新与产业化。2026年11月8日，第五届软件全方位检测技术论坛（FORSE
++            2026）将依托中国软件大会（ChinaSoft）平台在天津举行。</p>
+     </section>
+ 
+     <section class="forum-section">
+@@ -91,12 +92,16 @@
+             <h4>1. 报告人：陈翔 副教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/陈翔.png" alt="陈翔头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/陈翔.png" alt="陈翔头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>代码智能驱动的软件漏洞分析：从检测到理解</p>
+-                    <p><strong>摘要：</strong>软件漏洞分析需判定漏洞存在性，并识别漏洞类型、定位关键语句、评估安全风险。然而，漏洞标注稀缺、程序语义复杂及分析结果可靠性不足，仍制约智能化方法在真实场景中的应用。本报告结合团队在软件漏洞检测与理解方面的研究，介绍代码预训练模型与大语言模型驱动的漏洞分析方法，重点探讨程序语义理解、漏洞识别与定位、风险评估等进展，并讨论数据利用、知识融合与分析可靠性面临的挑战。最后，结合软件安全分析实际需求，展望漏洞分析技术发展方向，为构建可信软件安全分析工具提供思路。</p>
+-                    <p><strong>简介：</strong>陈翔，南通大学副教授，CCF系统软件专委会、软件工程专委会执行委员。主要研究智能化软件工程与软件质量保障，重点聚焦软件漏洞检测与理解、软件测试与维护。相关成果发表于TSE、TOSEM、ICSE、FSE、ASE、ISSTA、IST、JSS等国内外期刊与会议，获ICSE 2021、ICPC 2023 ACM SIGSOFT杰出论文奖，入选斯坦福大学全球前2%顶尖科学家榜单。主持国家自然科学基金及多项省市级、重点实验室开放课题。现任Information and Software Technology期刊编委，并担任多个软件工程领域重要期刊与会议审稿人。</p>
++                    <p><strong>摘要：</strong>软件漏洞分析需判定漏洞存在性，并识别漏洞类型、定位关键语句、评估安全风险。然而，漏洞标注稀缺、程序语义复杂及分析结果可靠性不足，仍制约智能化方法在真实场景中的应用。本报告结合团队在软件漏洞检测与理解方面的研究，介绍代码预训练模型与大语言模型驱动的漏洞分析方法，重点探讨程序语义理解、漏洞识别与定位、风险评估等进展，并讨论数据利用、知识融合与分析可靠性面临的挑战。最后，结合软件安全分析实际需求，展望漏洞分析技术发展方向，为构建可信软件安全分析工具提供思路。
++                    </p>
++                    <p><strong>简介：</strong>陈翔，南通大学副教授，CCF系统软件专委会、软件工程专委会执行委员。主要研究智能化软件工程与软件质量保障，重点聚焦软件漏洞检测与理解、软件测试与维护。相关成果发表于TSE、TOSEM、ICSE、FSE、ASE、ISSTA、IST、JSS等国内外期刊与会议，获ICSE
++                        2021、ICPC 2023 ACM SIGSOFT杰出论文奖，入选斯坦福大学全球前2%顶尖科学家榜单。主持国家自然科学基金及多项省市级、重点实验室开放课题。现任Information and
++                        Software Technology期刊编委，并担任多个软件工程领域重要期刊与会议审稿人。</p>
+                 </div>
+             </div>
+         </div>
+@@ -104,12 +109,17 @@
+             <h4>2. 报告人：崔展齐 教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/崔展齐.png" alt="崔展齐头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/崔展齐.png" alt="崔展齐头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>智能模型鲁棒性测试研究与实践</p>
+-                    <p><strong>摘要：</strong>如何有效测试智能模型、及时发现潜在缺陷，已成为软件工程与人工智能领域的重要问题。本报告简要介绍我们近期的相关探索。首先，针对卷积神经网络，提出基于解释分析的可迁移测试生成方法，通过定位测试数据关键区域，结合反向传播优化与扰动掩膜迭代生成针对性扰动，提高测试迁移能力。其次，针对大语言模型（LLM）内部信息难以访问、测试成本高的问题，提出基于集成的迁移测试方法，利用多个白盒替代模型替代目标模型参与对抗样本生成，以减少目标模型查询并增强对抗样本迁移性。最后，面向视觉语言模型多模态信息交互复杂的问题，提出基于协同注意力解释的测试方法，通过分析图像与文本的跨模态语义关联，引导生成图像与文本扰动，提高多模态对抗测试的针对性。</p>
+-                    <p><strong>简介：</strong>崔展齐，北京信息科技大学计算机学院教授、博士生导师、软件工程研究中心主任，CCF高级会员、系统软件专业委员会执行委员、秘书处成员。南京大学学士、博士，曾赴University of Virginia、北京大学访问学习。主要研究智能软件工程与可信人工智能。主持国家自然科学基金、江苏省前沿引领技术基础研究专项子课题、北京市教委科技计划项目等横纵向项目20余项，获北京信息科技大学"勤信拔尖人才""勤信英才"培育计划资助。在TOSEM、TSE、JCST、IST、JSS、《计算机学报》《软件学报》《电子学报》等权威期刊和会议发表论文50余篇，出版译著《软件工程：实践者的研究方法》《伯克利软件工程教程》《软件工程导论》，授权发明专利10余项。</p>
++                    <p><strong>摘要：</strong>如何有效测试智能模型、及时发现潜在缺陷，已成为软件工程与人工智能领域的重要问题。本报告简要介绍我们近期的相关探索。首先，针对卷积神经网络，提出基于解释分析的可迁移测试生成方法，通过定位测试数据关键区域，结合反向传播优化与扰动掩膜迭代生成针对性扰动，提高测试迁移能力。其次，针对大语言模型（LLM）内部信息难以访问、测试成本高的问题，提出基于集成的迁移测试方法，利用多个白盒替代模型替代目标模型参与对抗样本生成，以减少目标模型查询并增强对抗样本迁移性。最后，面向视觉语言模型多模态信息交互复杂的问题，提出基于协同注意力解释的测试方法，通过分析图像与文本的跨模态语义关联，引导生成图像与文本扰动，提高多模态对抗测试的针对性。
++                    </p>
++                    <p><strong>简介：</strong>崔展齐，北京信息科技大学计算机学院教授、博士生导师、软件工程研究中心主任，CCF高级会员、系统软件专业委员会执行委员、秘书处成员。南京大学学士、博士，曾赴University
++                        of
++                        Virginia、北京大学访问学习。主要研究智能软件工程与可信人工智能。主持国家自然科学基金、江苏省前沿引领技术基础研究专项子课题、北京市教委科技计划项目等横纵向项目20余项，获北京信息科技大学"勤信拔尖人才""勤信英才"培育计划资助。在TOSEM、TSE、JCST、IST、JSS、《计算机学报》《软件学报》《电子学报》等权威期刊和会议发表论文50余篇，出版译著《软件工程：实践者的研究方法》《伯克利软件工程教程》《软件工程导论》，授权发明专利10余项。
++                    </p>
+                 </div>
+             </div>
+         </div>
+@@ -117,12 +127,19 @@
+             <h4>3. 报告人：辛奇 副教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/辛奇.png" alt="辛奇头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/辛奇.png" alt="辛奇头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>基于优化的软件功能消胀</p>
+-                    <p><strong>摘要：</strong>数字化时代，软件地位日益凸显，功能日趋复杂。特定用户往往仅频繁使用少量功能，导致大量功能闲置，形成代码膨胀（code bloat）。该现象普遍存在，不仅损害软件安全与性能，也造成资源浪费与维护成本增加。软件功能消胀（feature-based debloating）旨在识别并去除冗余功能，缓解上述影响。基于优化的功能消胀方法通过建模代码删减量、软件通用性等多维因素，以优化策略去除冗余功能，力求实现多因素平衡。本报告首先介绍代码膨胀与消胀背景，继而重点阐述基于优化的软件功能消胀的动机与核心思想，最后汇报两项具体工作：基于输入样例和输入子域的功能消胀。</p>
+-                    <p><strong>简介：</strong>辛奇，武汉大学计算机学院副教授、博士生导师。研究方向为软件测试与调试、软件优化与程序分析，致力于研发智能化技术以提升软件质量与安全，近期聚焦软件漏洞修复、利用链分析及软件消胀（software debloating）。入选湖北省创新人才计划、武汉市青年朝阳计划，获ACM-Wuhan新星、ACM SIGSOFT杰出论文奖、武汉英才等奖项。担任CCF系统软件专委会、软件工程专委会执行委员，CCF中国软件大会论坛主席与出版主席，ICSE、FSE等会议程序委员会成员，以及TSE、TOSEM等期刊审稿人。</p>
++                    <p><strong>摘要：</strong>数字化时代，软件地位日益凸显，功能日趋复杂。特定用户往往仅频繁使用少量功能，导致大量功能闲置，形成代码膨胀（code
++                        bloat）。该现象普遍存在，不仅损害软件安全与性能，也造成资源浪费与维护成本增加。软件功能消胀（feature-based
++                        debloating）旨在识别并去除冗余功能，缓解上述影响。基于优化的功能消胀方法通过建模代码删减量、软件通用性等多维因素，以优化策略去除冗余功能，力求实现多因素平衡。本报告首先介绍代码膨胀与消胀背景，继而重点阐述基于优化的软件功能消胀的动机与核心思想，最后汇报两项具体工作：基于输入样例和输入子域的功能消胀。
++                    </p>
++                    <p><strong>简介：</strong>辛奇，武汉大学计算机学院副教授、博士生导师。研究方向为软件测试与调试、软件优化与程序分析，致力于研发智能化技术以提升软件质量与安全，近期聚焦软件漏洞修复、利用链分析及软件消胀（software
++                        debloating）。入选湖北省创新人才计划、武汉市青年朝阳计划，获ACM-Wuhan新星、ACM
++                        SIGSOFT杰出论文奖、武汉英才等奖项。担任CCF系统软件专委会、软件工程专委会执行委员，CCF中国软件大会论坛主席与出版主席，ICSE、FSE等会议程序委员会成员，以及TSE、TOSEM等期刊审稿人。
++                    </p>
+                 </div>
+             </div>
+         </div>
+@@ -130,12 +147,16 @@
+             <h4>4. 报告人：钟陈星 副教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/钟陈星.png" alt="钟陈星头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/钟陈星.png" alt="钟陈星头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>架构依赖视角下的软件缺陷检测：从传统开发到智能化软件工程</p>
+-                    <p><strong>摘要：</strong>随着软件规模扩大、架构日趋复杂，尤其智能化软件快速发展，软件缺陷已不局限于单一代码单元，而与模块、服务及功能间的复杂依赖密切相关。架构依赖反映软件要素间的交互、耦合与演化联系，是关联系统结构与缺陷表现的重要线索。本报告围绕架构依赖如何支持软件缺陷检测，从传统软件开发、AI赋能软件开发及智能化软件系统开发三种视角，探讨通过架构依赖分析揭示不合理依赖与缺陷的潜在关联，辅助确定重点检测的模块及依赖组合。报告结合软件工程最新研究，分析架构信息在拓展检测视角、增强检测针对性及支撑智能化软件质量分析中的作用，为构建覆盖代码与架构层面的全方位缺陷检测方法提供思路。</p>
+-                    <p><strong>简介：</strong>钟陈星，南京理工大学计算机科学与技术学院副教授，南京大学软件工程博士，曾访问荷兰格罗宁根大学。主要研究软件体系结构、软件维护与演化及经验软件工程，重点关注架构依赖、模块化异味、微服务耦合及其对软件质量的影响。在IEEE TSE、ICSE、ASE、JSS等软件工程重要期刊与会议发表论文二十余篇，获ICSE颁发的ACM SIGSOFT杰出论文奖。主持国家自然科学基金青年科学基金项目，为智能化软件架构分析、质量评估与持续演化提供实证依据与方法支持。</p>
++                    <p><strong>摘要：</strong>随着软件规模扩大、架构日趋复杂，尤其智能化软件快速发展，软件缺陷已不局限于单一代码单元，而与模块、服务及功能间的复杂依赖密切相关。架构依赖反映软件要素间的交互、耦合与演化联系，是关联系统结构与缺陷表现的重要线索。本报告围绕架构依赖如何支持软件缺陷检测，从传统软件开发、AI赋能软件开发及智能化软件系统开发三种视角，探讨通过架构依赖分析揭示不合理依赖与缺陷的潜在关联，辅助确定重点检测的模块及依赖组合。报告结合软件工程最新研究，分析架构信息在拓展检测视角、增强检测针对性及支撑智能化软件质量分析中的作用，为构建覆盖代码与架构层面的全方位缺陷检测方法提供思路。
++                    </p>
++                    <p><strong>简介：</strong>钟陈星，南京理工大学计算机科学与技术学院副教授，南京大学软件工程博士，曾访问荷兰格罗宁根大学。主要研究软件体系结构、软件维护与演化及经验软件工程，重点关注架构依赖、模块化异味、微服务耦合及其对软件质量的影响。在IEEE
++                        TSE、ICSE、ASE、JSS等软件工程重要期刊与会议发表论文二十余篇，获ICSE颁发的ACM
++                        SIGSOFT杰出论文奖。主持国家自然科学基金青年科学基金项目，为智能化软件架构分析、质量评估与持续演化提供实证依据与方法支持。</p>
+                 </div>
+             </div>
+         </div>
+@@ -143,12 +164,15 @@
+             <h4>5. 报告人：胡英杰 研究院副院长</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/胡英杰.png" alt="胡英杰头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/胡英杰.png" alt="胡英杰头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>AI驱动的工业软件缺陷智能检测与质量闭环管理实践</p>
+-                    <p><strong>摘要：</strong>工业软件广泛应用于设备故障诊断、生产安全管控等关键场景，缺陷流入现场易造成实际损失，对其发现与治理要求更高。相较通用软件，工业软件缺陷具有强场景耦合、高可靠要求、多工况适配和长周期运行等特点，传统以功能对错为目标的测试难以覆盖。本报告结合团队在钢铁、电力、煤矿等行业的质量实践，介绍AI在缺陷检测全链路的落地思路：面向工业协议与领域规则的静态代码缺陷智能扫描，功能测试异常的自动识别与归并，以及关联告警、代码变更与历史测试记录的现场缺陷根因智能定位。在此基础上，提出"缺陷识别—知识库匹配—修复建议—验证回归—经验沉淀"的质量闭环机制，并讨论工业知识注入、缺陷数据积累及分析结果可靠性等挑战。最后，结合工业现场质量保障需求，展望缺陷智能检测与闭环治理方向，为构建可信工业软件质量保障体系提供实践参考。</p>
+-                    <p><strong>简介：</strong>胡杰英，朗坤智慧工业互联网研究院副院长，专注工业数据智能化技术研发与应用。拥有15年工业软件架构设计、研发与测试经验，致力于将人工智能融入产品质量管理。主导研发《TrendDB时序数据库》《天池数据中台》《天玑数据智能平台》《瑶光大模型》等产品，广泛应用于煤炭、电力、钢铁、化工等行业，获用户高度认可及多项行业奖项。参与《时序数据库评测标准》等5项国标制定，拥有大模型等数据智能相关专利十余项。</p>
++                    <p><strong>摘要：</strong>工业软件广泛应用于设备故障诊断、生产安全管控等关键场景，缺陷流入现场易造成实际损失，对其发现与治理要求更高。相较通用软件，工业软件缺陷具有强场景耦合、高可靠要求、多工况适配和长周期运行等特点，传统以功能对错为目标的测试难以覆盖。本报告结合团队在钢铁、电力、煤矿等行业的质量实践，介绍AI在缺陷检测全链路的落地思路：面向工业协议与领域规则的静态代码缺陷智能扫描，功能测试异常的自动识别与归并，以及关联告警、代码变更与历史测试记录的现场缺陷根因智能定位。在此基础上，提出"缺陷识别—知识库匹配—修复建议—验证回归—经验沉淀"的质量闭环机制，并讨论工业知识注入、缺陷数据积累及分析结果可靠性等挑战。最后，结合工业现场质量保障需求，展望缺陷智能检测与闭环治理方向，为构建可信工业软件质量保障体系提供实践参考。
++                    </p>
++                    <p><strong>简介：</strong>胡英杰，朗坤智慧工业互联网研究院副院长，专注工业数据智能化技术研发与应用。拥有15年工业软件架构设计、研发与测试经验，致力于将人工智能融入产品质量管理。主导研发《TrendDB时序数据库》《天池数据中台》《天玑数据智能平台》《瑶光大模型》等产品，广泛应用于煤炭、电力、钢铁、化工等行业，获用户高度认可及多项行业奖项。参与《时序数据库评测标准》等5项国标制定，拥有大模型等数据智能相关专利十余项。
++                    </p>
+                 </div>
+             </div>
+         </div>
+@@ -160,36 +184,45 @@
+             <h4>1. 论坛组委会主负责人：李必信 教授</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+-                    <img src="./images/academic-forum/学术论坛/李必信.png" alt="李必信头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <p><strong>简介：</strong>东南大学计算机科学与工程学院二级教授、博士生导师，东南大学软件工程研究所所长。2006年入选教育部新世纪人才培养计划、2011年度中创软件人才奖获得者、两次次获得教育部科学技术奖（自然科学奖）二等奖。入选江苏省"青蓝工程"、"333工程"、"六大人才高峰"等人才计划。研究方向为智能软件开发与运维、软件缺陷检测与质量提升、软件安全与可信保障。从1999年开始，先后主持国家级、省部级项目以及大型企业合作项目40多项, 在中国科学、软件学报、计算机学报、TOSEM、TSE、TDSC、TIFS、FSE、ASE等国内外著名期刊和重要国际会议发表学术论文200余篇，出版专著/教材4部，获得授权发明专利60余项。</p>
++                    <img src="./images/academic-forum/学术论坛/李必信.png" alt="李必信头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>东南大学计算机科学与工程学院二级教授、博士生导师，东南大学软件工程研究所所长。2006年入选教育部新世纪人才培养计划、2011年度中创软件人才奖获得者、两次次获得教育部科学技术奖（自然科学奖）二等奖。入选江苏省"青蓝工程"、"333工程"、"六大人才高峰"等人才计划。研究方向为智能软件开发与运维、软件缺陷检测与质量提升、软件安全与可信保障。从1999年开始，先后主持国家级、省部级项目以及大型企业合作项目40多项,
++                    在中国科学、软件学报、计算机学报、TOSEM、TSE、TDSC、TIFS、FSE、ASE等国内外著名期刊和重要国际会议发表学术论文200余篇，出版专著/教材4部，获得授权发明专利60余项。</p>
+             </div>
+         </div>
+         <div class="committee-member">
+             <h4>2. 论坛组委会委员：孙小兵 教授</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+-                    <img src="./images/academic-forum/学术论坛/孙小兵.png" alt="孙小兵头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <p><strong>简介：</strong>扬州大学教授、博士生导师，任扬州大学研究生院常务副院长兼卓越工程师学院院长。主要从事智能软件工程、软件与智能安全研究。担任ICSE、FSE、AAAI等国际会议AC/SPC/PC。主持国家及部省级课题10余项，在ICSE、S&amp;P、TOSEM、TSE等期刊与会议发表论文100余篇；出版学术专著/译著3部；授权发明专利30余件（含美国授权6件）。成果获教育部自然科学奖、蚂蚁集团科研成果优秀应用项目奖、ICSE杰出论文奖、江苏省教学成果奖等。主持国家一流课程《软件项目管理》，出版教材3部。</p>
++                    <img src="./images/academic-forum/学术论坛/孙小兵.png" alt="孙小兵头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>扬州大学教授、博士生导师，任扬州大学研究生院常务副院长兼卓越工程师学院院长。主要从事智能软件工程、软件与智能安全研究。担任ICSE、FSE、AAAI等国际会议AC/SPC/PC。主持国家及部省级课题10余项，在ICSE、S&amp;P、TOSEM、TSE等期刊与会议发表论文100余篇；出版学术专著/译著3部；授权发明专利30余件（含美国授权6件）。成果获教育部自然科学奖、蚂蚁集团科研成果优秀应用项目奖、ICSE杰出论文奖、江苏省教学成果奖等。主持国家一流课程《软件项目管理》，出版教材3部。
++                </p>
+             </div>
+         </div>
+         <div class="committee-member">
+             <h4>3. 论坛组委会委员：裴玉 副教授</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+-                    <img src="./images/academic-forum/学术论坛/裴玉.png" alt="裴玉头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <p><strong>简介：</strong>中国香港理工大学电子计算学系的副教授。裴教授的研究旨在通过推进对主流编程语言所开发软件进行自动分析、测试和修复的技术，并为其实际应用提供工具支持，从而促进现实世界中高质量软件系统的生产。他当前的研究兴趣包括自动化软件测试、自动化程序修复、AI4SE 和 SE4AI。裴教授已在 ICSE、FSE、ISSTA、ASE 等国际会议以及 TOSEM、TSE 等存档期刊上发表 50 余篇同行评审学术论文。他荣获了 ICSE 2025杰出论文奖。</p>
++                    <img src="./images/academic-forum/学术论坛/裴玉.png" alt="裴玉头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>中国香港理工大学电子计算学系的副教授。裴教授的研究旨在通过推进对主流编程语言所开发软件进行自动分析、测试和修复的技术，并为其实际应用提供工具支持，从而促进现实世界中高质量软件系统的生产。他当前的研究兴趣包括自动化软件测试、自动化程序修复、AI4SE
++                    和 SE4AI。裴教授已在 ICSE、FSE、ISSTA、ASE 等国际会议以及 TOSEM、TSE 等存档期刊上发表 50 余篇同行评审学术论文。他荣获了 ICSE 2025杰出论文奖。</p>
+             </div>
+         </div>
+         <div class="committee-member">
+             <h4>4. 论坛组委会委员：王璐璐 副教授</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+-                    <img src="./images/academic-forum/学术论坛/王璐璐.png" alt="王璐璐头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <p><strong>简介：</strong>东南大学计算机软件与人工智能学院副教授、博士生导师，CCF系统软件专委委员，江苏省计算机学会软件专委委员。长期从事软件分析与测试教学与研究，主要方向包括软件安全智能分析、软件架构知识图谱、微服务系统。先后主持及参与国家自然科学基金、国家重点研发计划、军内研究课题等多项。在TSE、TCAD、TR、Science China: Information Science、IST、JSS、《软件学报》《计算机学报》等国内外重要期刊与会议发表论文20余篇，参与编写软件工程教材《软件架构理论与实践》《软件全方位缺陷检测技术》。</p>
++                    <img src="./images/academic-forum/学术论坛/王璐璐.png" alt="王璐璐头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>东南大学计算机软件与人工智能学院副教授、博士生导师，CCF系统软件专委委员，江苏省计算机学会软件专委委员。长期从事软件分析与测试教学与研究，主要方向包括软件安全智能分析、软件架构知识图谱、微服务系统。先后主持及参与国家自然科学基金、国家重点研发计划、军内研究课题等多项。在TSE、TCAD、TR、Science
++                    China: Information
++                    Science、IST、JSS、《软件学报》《计算机学报》等国内外重要期刊与会议发表论文20余篇，参与编写软件工程教材《软件架构理论与实践》《软件全方位缺陷检测技术》。</p>
+             </div>
+         </div>
+     </section>
+--- before/pages/agenda/academic-forum/templates/intelligent-software-dev.html
++++ after/pages/agenda/academic-forum/templates/intelligent-software-dev.html
+@@ -5,7 +5,8 @@
+ 
+     <section class="forum-section">
+         <h3>一、论坛介绍</h3>
+-        <p>本论坛聚焦"软件智能化开发、维护与安全"，围绕大语言模型、代码大模型和软件开发智能体在需求分析、架构设计、代码生成、测试验证、缺陷修复、软件维护、智能运维与安全治理中的应用与挑战展开交流。论坛也关注模型幻觉、生成代码漏洞、模型鲁棒性、智能体权限边界、行为审计、可验证与可追溯等问题，通过报告和圆桌讨论，促进软件工程、人工智能安全、网络安全与产业界交流，凝练可信软件开发的研究与实践路径。</p>
++        <p>本论坛聚焦"软件智能化开发、维护与安全"，围绕大语言模型、代码大模型和软件开发智能体在需求分析、架构设计、代码生成、测试验证、缺陷修复、软件维护、智能运维与安全治理中的应用与挑战展开交流。论坛也关注模型幻觉、生成代码漏洞、模型鲁棒性、智能体权限边界、行为审计、可验证与可追溯等问题，通过报告和圆桌讨论，促进软件工程、人工智能安全、网络安全与产业界交流，凝练可信软件开发的研究与实践路径。
++        </p>
+     </section>
+ 
+     <section class="forum-section">
+@@ -25,42 +26,128 @@
+         <h3>三、论坛安排</h3>
+         <h4>日程安排：</h4>
+         <p><strong>时间：</strong>2026年11月6日，09:00-18:20</p>
+-        <p><strong>地点：</strong>天津市社会山国际会议中心酒店，三层1号会议厅</p>
++        <p><strong>地点：</strong>天津市社会山国际会议中心酒店，三层1号会议室</p>
+ 
+         <h4>论坛议程（上午）：</h4>
+         <table class="forum-table">
+             <thead>
+-                <tr><th>时间</th><th>题目</th><th>报告嘉宾</th></tr>
++                <tr>
++                    <th>时间</th>
++                    <th>题目</th>
++                    <th>报告嘉宾</th>
++                </tr>
+             </thead>
+             <tbody>
+-                <tr><td style="white-space: nowrap;">09:00–09:05</td><td>主持人开场致辞</td><td>主持人</td></tr>
+-                <tr><td style="white-space: nowrap;">09:05–09:20</td><td>基于大模型的软件自动化 – 进展与问题（V10.1）</td><td>李戈<br>北京大学</td></tr>
+-                <tr><td style="white-space: nowrap;">09:20–09:35</td><td>Agent 驱动的 XPU Kernel 生成与 Compiler IR 协同优化演进</td><td>狄鹏<br>昆仑芯</td></tr>
+-                <tr><td style="white-space: nowrap;">09:35–09:50</td><td>从轨迹分析到可靠驾驭：大模型智能体失效定位与能力提升</td><td>王俊杰<br>中国科学院软件研究所</td></tr>
+-                <tr><td style="white-space: nowrap;">09:50–10:05</td><td>需求编译与约束工程</td><td>林云<br>上海交通大学</td></tr>
+-                <tr><td style="white-space: nowrap;">10:05–10:20</td><td>迈向可信的软件智能：大模型驱动的代码审查</td><td>高翠芸<br>哈尔滨工业大学（深圳）</td></tr>
+-                <tr><td style="white-space: nowrap;">10:20–10:35</td><td>可审计代码生成初探：从责任保持到有界修复</td><td>吕晨<br>山东师范大学</td></tr>
+-                <tr><td style="white-space: nowrap;">10:35–10:50</td><td>FaaS系统运维中的资源治理：从函数服务到函数工作流</td><td>徐悦甡<br>西安电子科技大学</td></tr>
+-                <tr><td style="white-space: nowrap;">10:50–11:05</td><td>大模型辅助的低资源编程语言缺陷分析</td><td>陈嘉弛<br>浙江大学</td></tr>
+-                <tr><td style="white-space: nowrap;">11:05–11:20</td><td>大模型时代的智能程序修复：范式与演进</td><td>张建<br>北京航空航天大学</td></tr>
+-                <tr><td style="white-space: nowrap;">11:20–11:35</td><td>鸿蒙模型增训经验分享</td><td>岳崇建<br>华为</td></tr>
+-                <tr><td style="white-space: nowrap;">11:35–12:00</td><td>圆桌对话、观众提问与总结</td><td>主持人及报告嘉宾</td></tr>
++                <tr>
++                    <td style="white-space: nowrap;">09:00–09:05</td>
++                    <td>主持人开场致辞</td>
++                    <td>主持人</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">09:05–09:20</td>
++                    <td>基于大模型的软件自动化 – 进展与问题（V10.1）</td>
++                    <td>李戈<br>北京大学</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">09:20–09:35</td>
++                    <td>Agent 驱动的 XPU Kernel 生成与 Compiler IR 协同优化演进</td>
++                    <td>狄鹏<br>昆仑芯</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">09:35–09:50</td>
++                    <td>从轨迹分析到可靠驾驭：大模型智能体失效定位与能力提升</td>
++                    <td>王俊杰<br>中国科学院软件研究所</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">09:50–10:05</td>
++                    <td>需求编译与约束工程</td>
++                    <td>林云<br>上海交通大学</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">10:05–10:20</td>
++                    <td>迈向可信的软件智能：大模型驱动的代码审查</td>
++                    <td>高翠芸<br>哈尔滨工业大学（深圳）</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">10:20–10:35</td>
++                    <td>可审计代码生成初探：从责任保持到有界修复</td>
++                    <td>吕晨<br>山东师范大学</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">10:35–10:50</td>
++                    <td>FaaS系统运维中的资源治理：从函数服务到函数工作流</td>
++                    <td>徐悦甡<br>西安电子科技大学</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">10:50–11:05</td>
++                    <td>大模型辅助的低资源编程语言缺陷分析</td>
++                    <td>陈嘉弛<br>浙江大学</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">11:05–11:20</td>
++                    <td>大模型时代的智能程序修复：范式与演进</td>
++                    <td>张建<br>北京航空航天大学</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">11:20–11:35</td>
++                    <td>鸿蒙模型增训经验分享</td>
++                    <td>岳崇建<br>华为</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">11:35–12:00</td>
++                    <td>圆桌对话、观众提问与总结</td>
++                    <td>主持人及报告嘉宾</td>
++                </tr>
+             </tbody>
+         </table>
+ 
+         <h4>论坛议程（下午）：</h4>
+         <table class="forum-table">
+             <thead>
+-                <tr><th>时间</th><th>题目</th><th>讲者</th><th>主持</th></tr>
++                <tr>
++                    <th>时间</th>
++                    <th>题目</th>
++                    <th>讲者</th>
++                    <th>主持</th>
++                </tr>
+             </thead>
+             <tbody>
+-                <tr><td style="white-space: nowrap;">14:00–14:40</td><td>特邀报告1：《人机物融合软件系统的设计方法——探索和挑战》</td><td>金芝 教授<br>武汉大学/北京大学</td><td rowspan="3">孙伟松，南洋理工大学研究员<br>杨波，北京林业大学教授</td></tr>
+-                <tr><td style="white-space: nowrap;">14:40–15:20</td><td>特邀报告2：《从人类智能到机器智能：一种受脑启发的智能体计算架构》</td><td>刘杨 教授<br>南洋理工大学</td></tr>
+-                <tr><td style="white-space: nowrap;">15:20–16:00</td><td>特邀报告3：《林草智能软件研究与典型应用》</td><td>许福 教授<br>北京林业大学</td></tr>
+-                <tr><td style="white-space: nowrap;">16:00–16:20</td><td colspan="3">茶歇</td></tr>
+-                <tr><td style="white-space: nowrap;">16:20–17:00</td><td>特邀报告4：《面向数据安全保护场景的系统性能优化》</td><td>赵路坦 研究员<br>中科院信息工程研究所</td><td rowspan="3">吕培卓，南洋理工大学研究员<br>梁瑞刚，中科院信工所高级工程师</td></tr>
+-                <tr><td style="white-space: nowrap;">17:00–17:40</td><td>特邀报告5：《机无所恶，伤有所至：具身智能时代的软件的可靠性危机》</td><td>张悦 教授<br>山东大学</td></tr>
+-                <tr><td style="white-space: nowrap;">17:40–18:20</td><td>特邀报告6：《生-机-电系统融合：从感知到生成》</td><td>郑恩昊 研究员<br>中国科学院自动化研究所</td></tr>
++                <tr>
++                    <td style="white-space: nowrap;">14:00–14:40</td>
++                    <td>特邀报告1：《人机物融合软件系统的设计方法——探索和挑战》</td>
++                    <td>金芝 教授<br>武汉大学/北京大学</td>
++                    <td rowspan="3">孙伟松，南洋理工大学研究员<br>杨波，北京林业大学教授</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">14:40–15:20</td>
++                    <td>特邀报告2：《从人类智能到机器智能：一种受脑启发的智能体计算架构》</td>
++                    <td>刘杨 教授<br>南洋理工大学</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">15:20–16:00</td>
++                    <td>特邀报告3：《林草智能软件研究与典型应用》</td>
++                    <td>许福 教授<br>北京林业大学</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">16:00–16:20</td>
++                    <td colspan="3">茶歇</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">16:20–17:00</td>
++                    <td>特邀报告4：《面向数据安全保护场景的系统性能优化》</td>
++                    <td>赵路坦 研究员<br>中科院信息工程研究所</td>
++                    <td rowspan="3">吕培卓，南洋理工大学研究员<br>梁瑞刚，中科院信工所高级工程师</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">17:00–17:40</td>
++                    <td>特邀报告5：《机无所恶，伤有所至：具身智能时代的软件的可靠性危机》</td>
++                    <td>张悦 教授<br>山东大学</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">17:40–18:20</td>
++                    <td>特邀报告6：《生-机-电系统融合：从感知到生成》</td>
++                    <td>郑恩昊 研究员<br>中国科学院自动化研究所</td>
++                </tr>
+             </tbody>
+         </table>
+     </section>
+@@ -71,12 +158,15 @@
+             <h4>1. 报告人：李戈 北京大学博雅特聘教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/李戈.png" alt="李戈头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/李戈.png" alt="李戈头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>基于大模型的软件自动化 – 进展与问题（V10.1）</p>
+-                    <p><strong>摘要：</strong>当前，大语言模型与智能体技术迅速发展，软件开发的工具和模式正在发生变革。本报告讨论这两个互相关联的问题：当前基于大模型的软件开发智能体工作发展到了什么状态？其技术发展和产业应用中遇到了哪些问题？这些问题能否被解决以及有哪些潜在的解决方案？支撑智能体的大模型技术的能力边界在哪里？未来的智能化软件开发技术具有怎样的发展趋势或规律？对软件开发有何意义？以期引发大家的思考与讨论。本报告与11月8日"安全代码生成与软件可信构建"论坛的报告组合为上下篇，本报告为上篇。</p>
+-                    <p><strong>简介：</strong>李戈，CCF杰出会员，CCF软件工程专委会副主任委员，北京大学博雅特聘教授，教育部长江学者。国际上"基于深度学习的程序理解与生成"研究的早期贡献者。迄今为止，发表相关论文200余篇，多项成果被国际学者认为是"首创性成果"并被广泛引用，所带领的研究团队在软件工程与人工智能领域的多项研究中保持领先状态。科研转化成果为航天、金融、IT领域的多家企业提供智能化研发支撑。</p>
++                    <p><strong>摘要：</strong>当前，大语言模型与智能体技术迅速发展，软件开发的工具和模式正在发生变革。本报告讨论这两个互相关联的问题：当前基于大模型的软件开发智能体工作发展到了什么状态？其技术发展和产业应用中遇到了哪些问题？这些问题能否被解决以及有哪些潜在的解决方案？支撑智能体的大模型技术的能力边界在哪里？未来的智能化软件开发技术具有怎样的发展趋势或规律？对软件开发有何意义？以期引发大家的思考与讨论。本报告与11月8日"安全代码生成与软件可信构建"论坛的报告组合为上下篇，本报告为上篇。
++                    </p>
++                    <p><strong>简介：</strong>李戈，CCF杰出会员，CCF软件工程专委会副主任委员，北京大学博雅特聘教授，教育部长江学者。国际上"基于深度学习的程序理解与生成"研究的早期贡献者。迄今为止，发表相关论文200余篇，多项成果被国际学者认为是"首创性成果"并被广泛引用，所带领的研究团队在软件工程与人工智能领域的多项研究中保持领先状态。科研转化成果为航天、金融、IT领域的多家企业提供智能化研发支撑。
++                    </p>
+                 </div>
+             </div>
+         </div>
+@@ -84,12 +174,20 @@
+             <h4>2. 报告人：狄鹏 昆仑芯 AI Infra 负责人、正高级工程师</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/狄鹏.png" alt="狄鹏头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/狄鹏.png" alt="狄鹏头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>Agent 驱动的 XPU Kernel 生成与 Compiler IR 协同优化演进</p>
+-                    <p><strong>摘要：</strong>传统编译器以编程语言为输入，通过编译器中间表示（IR）进行程序分析与优化，最终生成面向硬件的可执行代码。随着大模型与 Code Agent 的发展，Agent 开始具备理解程序、生成代码、分析编译错误、调用工具以及根据性能反馈迭代优化的能力。本报告以昆仑芯XPU Kernel Optimization 为切入点，探讨 Code Agent 如何协同编程语言、编译器 IR 与 Compiler，在"代码生成—IR变换—编译—执行—Profiling—反馈"的闭环中探索更大的优化空间。同时分析 Agent 在程序语义理解、IR 优化、硬件感知和自动搜索方面的能力边界，讨论 Agent 与 Compiler 的协同关系，以及从"编译器将程序转换为机器代码"走向"Agent 协同编程语言、IR 与 Compiler 自动探索高性能可执行程序"的可能路径。</p>
+-                    <p><strong>简介：</strong>狄鹏博士，现任昆仑芯 AI Infra 负责人、正高级工程师，兼任新南威尔士大学副教授。在昆仑芯，他负责 AI Infra 建设，主导 XPU 编译器与系统软件研发。此前先后任职于华为与蚂蚁集团：在华为主导开发昇腾芯片 MindSpore 深度学习框架及 AKG 编译器；在蚂蚁集团带领智能平台工程团队，主导研发 CodeFuse、Ling-Coder-Lite 代码大模型及 OpenDeRisk 风险智能系统，相关成果获蚂蚁集团最高技术奖。他长期深耕编译器、程序分析、智能软件工程等领域，发表顶会顶刊论文数十篇，并担任中国科学院、清华大学、浙江大学等高校企业导师。</p>
++                    <p><strong>摘要：</strong>传统编译器以编程语言为输入，通过编译器中间表示（IR）进行程序分析与优化，最终生成面向硬件的可执行代码。随着大模型与 Code Agent
++                        的发展，Agent 开始具备理解程序、生成代码、分析编译错误、调用工具以及根据性能反馈迭代优化的能力。本报告以昆仑芯XPU Kernel Optimization 为切入点，探讨 Code
++                        Agent 如何协同编程语言、编译器 IR 与 Compiler，在"代码生成—IR变换—编译—执行—Profiling—反馈"的闭环中探索更大的优化空间。同时分析 Agent
++                        在程序语义理解、IR 优化、硬件感知和自动搜索方面的能力边界，讨论 Agent 与 Compiler 的协同关系，以及从"编译器将程序转换为机器代码"走向"Agent 协同编程语言、IR 与
++                        Compiler 自动探索高性能可执行程序"的可能路径。</p>
++                    <p><strong>简介：</strong>狄鹏博士，现任昆仑芯 AI Infra 负责人、正高级工程师，兼任新南威尔士大学副教授。在昆仑芯，他负责 AI Infra 建设，主导 XPU
++                        编译器与系统软件研发。此前先后任职于华为与蚂蚁集团：在华为主导开发昇腾芯片 MindSpore 深度学习框架及 AKG 编译器；在蚂蚁集团带领智能平台工程团队，主导研发
++                        CodeFuse、Ling-Coder-Lite 代码大模型及 OpenDeRisk
++                        风险智能系统，相关成果获蚂蚁集团最高技术奖。他长期深耕编译器、程序分析、智能软件工程等领域，发表顶会顶刊论文数十篇，并担任中国科学院、清华大学、浙江大学等高校企业导师。</p>
+                 </div>
+             </div>
+         </div>
+@@ -97,12 +195,17 @@
+             <h4>3. 报告人：王俊杰 中国科学院软件研究所研究员</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/王俊杰.png" alt="王俊杰头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/王俊杰.png" alt="王俊杰头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>从轨迹分析到可靠驾驭：大模型智能体失效定位与能力提升</p>
+-                    <p><strong>摘要：</strong>大模型智能体的失效往往并非源于显式的程序错误，而可能发生在任务理解、规划推理、工具调用或协作等多个环节，因此"失效发生在哪里、应如何修复"成为质量保障的核心难题。执行轨迹是探知智能体内部执行状态、还原其决策与行动过程的重要桥梁；但这类轨迹通常冗长、以自然语言和异构工具交互为主、内部推理又存在不可观测性，使得基于轨迹进行准确的失效归因与有效修复依然面临显著挑战。本报告将基于团队撰写的综述文章《LLM Agent Trajectory Analysis: From Failure Attribution to Enhancement》对大模型智能体轨迹分析领域进行介绍；同时也将介绍团队开展的研究工作，涉及失效定位基准TraceElephant，基于因果分析的失效定位方法CHIEF，基于轨迹分析的驾驭工程自动优化方法HarnessFix，基于变更历史经验提炼的Skill自演化方法VCE-Skill，以及面向工作流类型智能体的失效分析基准AgentFail和演化提升技术FlowFixer。</p>
+-                    <p><strong>简介：</strong>王俊杰，中国科学院软件研究所研究员，博士生导师，智能博弈重点实验室副主任（主持工作）。中国科学院特聘研究岗位，青年创新促进会会员。主要从事智能化软件工程、软件质量、AI安全等方面的研究。在国际著名学术期刊/会议发表70余篇高水平学术论文，荣获ICSE、CHI、ICPC等会议的杰出论文奖、ACL领域主席亮点论文奖等。主持和参与了多项国家自然科学基金项目、科技部重点研发计划、CCF-华为胡杨林基金等。担任CCF A类期刊TSE的Associate Editor，ICSE、FSE、ISSRE等的PC member，TOSEM、EMSE、AUSE等期刊的审稿人。</p>
++                    <p><strong>摘要：</strong>大模型智能体的失效往往并非源于显式的程序错误，而可能发生在任务理解、规划推理、工具调用或协作等多个环节，因此"失效发生在哪里、应如何修复"成为质量保障的核心难题。执行轨迹是探知智能体内部执行状态、还原其决策与行动过程的重要桥梁；但这类轨迹通常冗长、以自然语言和异构工具交互为主、内部推理又存在不可观测性，使得基于轨迹进行准确的失效归因与有效修复依然面临显著挑战。本报告将基于团队撰写的综述文章《LLM
++                        Agent Trajectory Analysis: From Failure Attribution to
++                        Enhancement》对大模型智能体轨迹分析领域进行介绍；同时也将介绍团队开展的研究工作，涉及失效定位基准TraceElephant，基于因果分析的失效定位方法CHIEF，基于轨迹分析的驾驭工程自动优化方法HarnessFix，基于变更历史经验提炼的Skill自演化方法VCE-Skill，以及面向工作流类型智能体的失效分析基准AgentFail和演化提升技术FlowFixer。
++                    </p>
++                    <p><strong>简介：</strong>王俊杰，中国科学院软件研究所研究员，博士生导师，智能博弈重点实验室副主任（主持工作）。中国科学院特聘研究岗位，青年创新促进会会员。主要从事智能化软件工程、软件质量、AI安全等方面的研究。在国际著名学术期刊/会议发表70余篇高水平学术论文，荣获ICSE、CHI、ICPC等会议的杰出论文奖、ACL领域主席亮点论文奖等。主持和参与了多项国家自然科学基金项目、科技部重点研发计划、CCF-华为胡杨林基金等。担任CCF
++                        A类期刊TSE的Associate Editor，ICSE、FSE、ISSRE等的PC member，TOSEM、EMSE、AUSE等期刊的审稿人。</p>
+                 </div>
+             </div>
+         </div>
+@@ -110,12 +213,17 @@
+             <h4>4. 报告人：林云 上海交通大学副教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/林云.png" alt="林云头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/林云.png" alt="林云头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>需求编译与约束工程</p>
+-                    <p><strong>摘要：</strong>在生成式AI以前所未有的速度重塑代码生成的今天，软件工程正在从代码编写转向需求定义、行为约束与智能体协同开发，软件测试也由代码完成后的质量把关，前移为驱动需求澄清、架构生成和代码验证的核心机制。本次报告将结合教学改革、科研探索与系统原型，讨论智能体软件工程与场景测试技术的演进趋势。首先，报告将回顾在上海交大IEEE试点班开展的软件工程课程改革，介绍如何通过测试驱动开发、可执行需求描述和面向智能体的领域特定语言建模，引导学生从"代码工人"转型为"智能体架构师"，指挥多智能体复现12306等复杂业务。随后，报告将围绕需求可测试化与测试左移展开，介绍如何从需求验证意图生成项目特定测试，如何扩展用例以覆盖业务场景。在此基础上，报告将通过需求编译的可视化展示，呈现如何从复杂需求文档生成代码模块，并在需求、设计、测试与代码之间建立可查询、可回溯的追踪关系，使需求编译过程从黑箱生成走向可验证、可调试的工程流水线。进一步地，针对Web与移动端复杂交互中的规格理解、Oracle推断和应用特定缺陷发现问题，报告将介绍端到端GUI测试实践，并结合测试驱动的问题定位，剖析当前AI编程中的马太效应、幻觉与调试痛点，展望大模型在工业研发测试体系中的落地路径。</p>
+-                    <p><strong>简介：</strong>林云, 上海交通大学计算机科学与技术系副教授，系副主任，博士生导师，原新加坡国立大学助理教授（研究岗），入选国家海外高层次青年人才计划、华为x-explore人才计划。研究方向包括自动编程、可解释AI、网络反诈等，获ICSE2018杰出论文奖，及多次中国软件大会原型研究奖。担任FSE'26 领域主席、ICSE、FSE、USENIX Security等重要国际会议的程序委员会委员。主持国家自然科学基金委海外优青项目及面上项目和多项校企合作。自动编程技术落地于豆包代码模型以及Trae IDE，GUI测试相关研究入选信通院优秀案例等。</p>
++                    <p><strong>摘要：</strong>在生成式AI以前所未有的速度重塑代码生成的今天，软件工程正在从代码编写转向需求定义、行为约束与智能体协同开发，软件测试也由代码完成后的质量把关，前移为驱动需求澄清、架构生成和代码验证的核心机制。本次报告将结合教学改革、科研探索与系统原型，讨论智能体软件工程与场景测试技术的演进趋势。首先，报告将回顾在上海交大IEEE试点班开展的软件工程课程改革，介绍如何通过测试驱动开发、可执行需求描述和面向智能体的领域特定语言建模，引导学生从"代码工人"转型为"智能体架构师"，指挥多智能体复现12306等复杂业务。随后，报告将围绕需求可测试化与测试左移展开，介绍如何从需求验证意图生成项目特定测试，如何扩展用例以覆盖业务场景。在此基础上，报告将通过需求编译的可视化展示，呈现如何从复杂需求文档生成代码模块，并在需求、设计、测试与代码之间建立可查询、可回溯的追踪关系，使需求编译过程从黑箱生成走向可验证、可调试的工程流水线。进一步地，针对Web与移动端复杂交互中的规格理解、Oracle推断和应用特定缺陷发现问题，报告将介绍端到端GUI测试实践，并结合测试驱动的问题定位，剖析当前AI编程中的马太效应、幻觉与调试痛点，展望大模型在工业研发测试体系中的落地路径。
++                    </p>
++                    <p><strong>简介：</strong>林云,
++                        上海交通大学计算机科学与技术系副教授，系副主任，博士生导师，原新加坡国立大学助理教授（研究岗），入选国家海外高层次青年人才计划、华为x-explore人才计划。研究方向包括自动编程、可解释AI、网络反诈等，获ICSE2018杰出论文奖，及多次中国软件大会原型研究奖。担任FSE'26
++                        领域主席、ICSE、FSE、USENIX Security等重要国际会议的程序委员会委员。主持国家自然科学基金委海外优青项目及面上项目和多项校企合作。自动编程技术落地于豆包代码模型以及Trae
++                        IDE，GUI测试相关研究入选信通院优秀案例等。</p>
+                 </div>
+             </div>
+         </div>
+@@ -123,12 +231,18 @@
+             <h4>5. 报告人：高翠芸 哈尔滨工业大学（深圳）教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/高翠芸.png" alt="高翠芸头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/高翠芸.png" alt="高翠芸头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>迈向可信的软件智能：大模型驱动的代码审查</p>
+-                    <p><strong>摘要：</strong>大语言模型正从代码生成工具演进为能够理解软件上下文、开展复杂推理并自主分析代码库的智能体。本报告将介绍我们在大模型推理与软件智能方面的近期探索。首先，介绍无监督推理方法 FREIA，利用自由能驱动奖励与自适应优势塑形，使模型在缺少标准答案时更好地平衡共识与探索。随后，结合代码审查、漏洞检测和静态分析等场景，探讨上下文建模、安全规格、仓库级探索及演化记忆如何提升模型的分析能力与可靠性。最后，总结大模型从通用推理走向真实软件工程应用所面临的关键挑战，并展望可信、自主、可持续演化的软件智能。</p>
+-                    <p><strong>简介：</strong>高翠芸，哈尔滨工业大学（深圳）教授，哈工大青年拔尖人才。入选第九届中国科协青年人才托举工程，ACM TOSEM Associate Editor，获得2026 IEEE CS TCSE新星奖。主要研究领域包括：智能化软件工程和软件可靠性，近年来在相关领域的顶级会议和期刊如TSE、TOSEM、ICSE、FSE、ASE等上发表论文100余篇，荣获CCF A类会议ICSE 2025杰出论文奖、ICSE 2024杰出论文奖和ASE 2023杰出论文奖。</p>
++                    <p><strong>摘要：</strong>大语言模型正从代码生成工具演进为能够理解软件上下文、开展复杂推理并自主分析代码库的智能体。本报告将介绍我们在大模型推理与软件智能方面的近期探索。首先，介绍无监督推理方法
++                        FREIA，利用自由能驱动奖励与自适应优势塑形，使模型在缺少标准答案时更好地平衡共识与探索。随后，结合代码审查、漏洞检测和静态分析等场景，探讨上下文建模、安全规格、仓库级探索及演化记忆如何提升模型的分析能力与可靠性。最后，总结大模型从通用推理走向真实软件工程应用所面临的关键挑战，并展望可信、自主、可持续演化的软件智能。
++                    </p>
++                    <p><strong>简介：</strong>高翠芸，哈尔滨工业大学（深圳）教授，哈工大青年拔尖人才。入选第九届中国科协青年人才托举工程，ACM TOSEM Associate
++                        Editor，获得2026 IEEE CS
++                        TCSE新星奖。主要研究领域包括：智能化软件工程和软件可靠性，近年来在相关领域的顶级会议和期刊如TSE、TOSEM、ICSE、FSE、ASE等上发表论文100余篇，荣获CCF A类会议ICSE
++                        2025杰出论文奖、ICSE 2024杰出论文奖和ASE 2023杰出论文奖。</p>
+                 </div>
+             </div>
+         </div>
+@@ -136,12 +250,15 @@
+             <h4>6. 报告人：吕晨 山东师范大学副教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/吕晨.png" alt="吕晨头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/吕晨.png" alt="吕晨头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>可审计代码生成初探：从责任保持到有界修复</p>
+-                    <p><strong>摘要：</strong>大模型驱动的代码智能体已经能够完成规划、编码、测试和修复，但程序通过测试并不能说明哪项生成决策应对哪部分代码负责，也难以据此确定后续修改的合理范围。在算法密集型、多阶段任务中，一项决策可能跨越多个代码区域，同一代码区域也可能同时承担多项算法责任。本报告围绕可审计代码生成，介绍如何在生成过程中建立决策记录、代码责任边界与外部验证证据之间的持续关联。重点讨论如何利用稳定责任标识关联生成承诺、代码责任归属、代码产物来源和验证证据，并据此开展责任定位与有界修复；最后简要介绍利用责任审计筛选执行轨迹，并据此训练代码智能体的初步探索。</p>
+-                    <p><strong>简介：</strong>吕晨，山东师范大学计算机与人工智能学院副教授。主要从事智能化软件工程与软件安全研究，近期围绕可信代码生成中的效率优化、执行反馈利用和过程审计开展研究。相关成果发表于ICSE、FSE、ASE、ISSTA、EmSE等会议和期刊。主持国家自然科学基金项目及多项企事业合作项目，曾担任TOSEM、EmSE、ASE等期刊和会议的审稿人或程序委员会委员。</p>
++                    <p><strong>摘要：</strong>大模型驱动的代码智能体已经能够完成规划、编码、测试和修复，但程序通过测试并不能说明哪项生成决策应对哪部分代码负责，也难以据此确定后续修改的合理范围。在算法密集型、多阶段任务中，一项决策可能跨越多个代码区域，同一代码区域也可能同时承担多项算法责任。本报告围绕可审计代码生成，介绍如何在生成过程中建立决策记录、代码责任边界与外部验证证据之间的持续关联。重点讨论如何利用稳定责任标识关联生成承诺、代码责任归属、代码产物来源和验证证据，并据此开展责任定位与有界修复；最后简要介绍利用责任审计筛选执行轨迹，并据此训练代码智能体的初步探索。
++                    </p>
++                    <p><strong>简介：</strong>吕晨，山东师范大学计算机与人工智能学院副教授。主要从事智能化软件工程与软件安全研究，近期围绕可信代码生成中的效率优化、执行反馈利用和过程审计开展研究。相关成果发表于ICSE、FSE、ASE、ISSTA、EmSE等会议和期刊。主持国家自然科学基金项目及多项企事业合作项目，曾担任TOSEM、EmSE、ASE等期刊和会议的审稿人或程序委员会委员。
++                    </p>
+                 </div>
+             </div>
+         </div>
+@@ -149,12 +266,17 @@
+             <h4>7. 报告人：徐悦甡 西安电子科技大学副教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/徐悦甡.png" alt="徐悦甡头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/徐悦甡.png" alt="徐悦甡头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>FaaS系统运维中的资源治理：从函数服务到函数工作流</p>
+-                    <p><strong>摘要：</strong>函数服务（FaaS）凭借高弹性和细粒度计费已成为云原生主流范式之一，但在复杂动态业务下，达到服务等级目标（SLO）与保障按需资源供给仍是智能化运维的核心挑战。本报告将分享课题组在FaaS资源治理方面的探索：在微观函数服务层面，针对负载波动与监控延迟导致的部分可观测问题，介绍基于深度循环强化学习的自适应弹性伸缩方法，实现多维指标协同优化与平滑调度；在宏观函数工作流层面，针对端到端性能与成本的权衡难题，介绍突破传统单一维度的CPU-内存协同供给框架，有效化解复杂拓扑下的配置寻优瓶颈。最后，总结从单函数运行时治理到工作流全局拓扑治理的演进思考，为Serverless软件工程与NoOps落地提供参考。</p>
+-                    <p><strong>简介：</strong>徐悦甡，西安电子科技大学副教授、博士生导师，校软工学科智能软件工程方向秘书，省智能软件工程科技创新团队骨干，CCF系统软件专委会与软件工程专委会委员，一直从事智能软件工程、网络服务治理、系统软件运维等研究。发表领域内高水平论文80余篇，包括ICSE、FSE、WWW、ACM MM、IEEE TSE、IEEE TSC、IEEE TC、IEEE TII、IEEE TITS、IEEE IoT-J、IEEE TVT、ISSRE、ICSOC等，总引用超过3500次，5篇论文进入ESI高被引；出版专著《数智化教育技术与实践》。主持国自然基金面上/青年项目、省自然基金、国重/省重基金，多项国家重点研发计划子课题，以及航天软件系统运维项目、华为大模型专项等。获2023陕西省科技进步二等奖、CCF服务计算专委会青年学者激励计划等奖励；进入"2023年全球前2%顶尖科学家"；获得领域旗舰会议ICSOC 2025最佳论文提名奖与最佳系统原型奖。</p>
++                    <p><strong>摘要：</strong>函数服务（FaaS）凭借高弹性和细粒度计费已成为云原生主流范式之一，但在复杂动态业务下，达到服务等级目标（SLO）与保障按需资源供给仍是智能化运维的核心挑战。本报告将分享课题组在FaaS资源治理方面的探索：在微观函数服务层面，针对负载波动与监控延迟导致的部分可观测问题，介绍基于深度循环强化学习的自适应弹性伸缩方法，实现多维指标协同优化与平滑调度；在宏观函数工作流层面，针对端到端性能与成本的权衡难题，介绍突破传统单一维度的CPU-内存协同供给框架，有效化解复杂拓扑下的配置寻优瓶颈。最后，总结从单函数运行时治理到工作流全局拓扑治理的演进思考，为Serverless软件工程与NoOps落地提供参考。
++                    </p>
++                    <p><strong>简介：</strong>徐悦甡，西安电子科技大学副教授、博士生导师，校软工学科智能软件工程方向秘书，省智能软件工程科技创新团队骨干，CCF系统软件专委会与软件工程专委会委员，一直从事智能软件工程、网络服务治理、系统软件运维等研究。发表领域内高水平论文80余篇，包括ICSE、FSE、WWW、ACM
++                        MM、IEEE TSE、IEEE TSC、IEEE TC、IEEE TII、IEEE TITS、IEEE IoT-J、IEEE
++                        TVT、ISSRE、ICSOC等，总引用超过3500次，5篇论文进入ESI高被引；出版专著《数智化教育技术与实践》。主持国自然基金面上/青年项目、省自然基金、国重/省重基金，多项国家重点研发计划子课题，以及航天软件系统运维项目、华为大模型专项等。获2023陕西省科技进步二等奖、CCF服务计算专委会青年学者激励计划等奖励；进入"2023年全球前2%顶尖科学家"；获得领域旗舰会议ICSOC
++                        2025最佳论文提名奖与最佳系统原型奖。</p>
+                 </div>
+             </div>
+         </div>
+@@ -162,12 +284,18 @@
+             <h4>8. 报告人：陈嘉弛 浙江大学百人计划研究员</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/陈嘉弛.png" alt="陈嘉弛头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/陈嘉弛.png" alt="陈嘉弛头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>大模型辅助的低资源编程语言缺陷分析</p>
+-                    <p><strong>摘要：</strong>随着大语言模型在代码理解与生成领域展现出强大能力，软件缺陷检测正在形成新的技术范式。然而，对于智能合约、Verilog等低资源编程语言，由于训练数据、漏洞样本和领域知识仍较为匮乏，通用大模型难以直接实现可靠的缺陷分析。本报告将介绍大模型与程序分析融合的低资源语言可靠性研究，围绕漏洞数据集自动构建、不可编译代码片段分析、自然语言描述与代码行为不一致检测、复杂项目级漏洞检测，以及安全知识增强的代码生成等问题，分享一系列缺陷定义、检测与验证方法。</p>
+-                    <p><strong>简介：</strong>浙江大学计算机科学与技术学院"百人计划"研究员，主要研究领域为软件可靠性、区块链、大模型安全等。在Usenix Security、ICSE、FSE、ASE、ISSTA、TSE、TOSEM等软件工程、安全领域高质量会议和期刊上发表CCF A类论文70余篇，曾8次获得国际会议杰出论文奖或最佳论文奖，其中5次来自CCF A类会议。是首位依托中国内地单位获得IEEE TEMS Blockchain Early Career Award的学者，并获2025年度CCF科技成果奖自然科学二等奖。入选全球前2%顶尖科学家榜单、中国电子学会2025年度"青年人才托举工程"、2025赋能中国区块链创新人物"区块链60人"等。</p>
++                    <p><strong>摘要：</strong>随着大语言模型在代码理解与生成领域展现出强大能力，软件缺陷检测正在形成新的技术范式。然而，对于智能合约、Verilog等低资源编程语言，由于训练数据、漏洞样本和领域知识仍较为匮乏，通用大模型难以直接实现可靠的缺陷分析。本报告将介绍大模型与程序分析融合的低资源语言可靠性研究，围绕漏洞数据集自动构建、不可编译代码片段分析、自然语言描述与代码行为不一致检测、复杂项目级漏洞检测，以及安全知识增强的代码生成等问题，分享一系列缺陷定义、检测与验证方法。
++                    </p>
++                    <p><strong>简介：</strong>浙江大学计算机科学与技术学院"百人计划"研究员，主要研究领域为软件可靠性、区块链、大模型安全等。在Usenix
++                        Security、ICSE、FSE、ASE、ISSTA、TSE、TOSEM等软件工程、安全领域高质量会议和期刊上发表CCF
++                        A类论文70余篇，曾8次获得国际会议杰出论文奖或最佳论文奖，其中5次来自CCF A类会议。是首位依托中国内地单位获得IEEE TEMS Blockchain Early Career
++                        Award的学者，并获2025年度CCF科技成果奖自然科学二等奖。入选全球前2%顶尖科学家榜单、中国电子学会2025年度"青年人才托举工程"、2025赋能中国区块链创新人物"区块链60人"等。
++                    </p>
+                 </div>
+             </div>
+         </div>
+@@ -175,12 +303,15 @@
+             <h4>9. 报告人：张建 北京航空航天大学准聘教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/张建.png" alt="张建头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/张建.png" alt="张建头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>大模型时代的智能程序修复：范式与演进</p>
+-                    <p><strong>摘要：</strong>大语言模型正在推动自动程序修复从传统的补丁生成范式向更加智能的修复过程演进。本报告将围绕近年来开展的大模型程序修复研究，介绍修复方法如何从依赖局部代码与直接生成补丁，逐步发展到更加关注缺陷语义、程序上下文和推理过程，并进一步面向真实软件场景提升修复的有效性与可靠性。通过相关研究实践，报告将讨论大模型为自动程序修复带来的能力提升与范式变化，并分析当前智能程序修复仍面临的关键问题及未来发展方向。</p>
+-                    <p><strong>简介：</strong>张建，北京航空航天大学准聘教授，博士生导师。入选国家海外高层次青年人才计划、北航卓越青年学者。主要研究方向为软件缺陷分析与程序修复。在软件工程领域的ICSE、FSE、ASE、ISSTA和TSE、TOSEM等CCF A类会议和期刊发表论文30余篇，获ASE杰出论文奖3项。主持国自然优秀青年科学基金（海外）等项目。长期担任软件工程顶级会议程序委员会委员和期刊审稿人，获杰出评审奖。</p>
++                    <p><strong>摘要：</strong>大语言模型正在推动自动程序修复从传统的补丁生成范式向更加智能的修复过程演进。本报告将围绕近年来开展的大模型程序修复研究，介绍修复方法如何从依赖局部代码与直接生成补丁，逐步发展到更加关注缺陷语义、程序上下文和推理过程，并进一步面向真实软件场景提升修复的有效性与可靠性。通过相关研究实践，报告将讨论大模型为自动程序修复带来的能力提升与范式变化，并分析当前智能程序修复仍面临的关键问题及未来发展方向。
++                    </p>
++                    <p><strong>简介：</strong>张建，北京航空航天大学准聘教授，博士生导师。入选国家海外高层次青年人才计划、北航卓越青年学者。主要研究方向为软件缺陷分析与程序修复。在软件工程领域的ICSE、FSE、ASE、ISSTA和TSE、TOSEM等CCF
++                        A类会议和期刊发表论文30余篇，获ASE杰出论文奖3项。主持国自然优秀青年科学基金（海外）等项目。长期担任软件工程顶级会议程序委员会委员和期刊审稿人，获杰出评审奖。</p>
+                 </div>
+             </div>
+         </div>
+@@ -188,12 +319,15 @@
+             <h4>10. 报告人：岳崇建 华为鸿蒙大模型研发工程师</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/岳崇建.png" alt="岳崇建头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/岳崇建.png" alt="岳崇建头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>鸿蒙模型增训经验分享</p>
+-                    <p><strong>摘要：</strong>本报告围绕鸿蒙场景下大模型增训实践展开，结合实际研发过程，系统分享模型增训、数据构建、训练与推理验证以及能力评测等方面的经验。报告将重点介绍鸿蒙领域数据构建与质量筛选、模型增训流程、训练效果分析及 OpenHarmony Benchmark 评测实践，并结合实际实验结果总结增训过程中遇到的典型问题与优化思路，为鸿蒙领域大模型的持续训练与能力提升提供实践参考。</p>
+-                    <p><strong>简介：</strong>岳崇建，华为鸿蒙大模型研发工程师，主要从事大模型、Agent及多模态代码生成等方向的研究与实践。曾参与大模型训练、数据构建、模型评测及鸿蒙智能体相关工作，在大模型增训、代码智能和多模态应用等方面具有实践经验。</p>
++                    <p><strong>摘要：</strong>本报告围绕鸿蒙场景下大模型增训实践展开，结合实际研发过程，系统分享模型增训、数据构建、训练与推理验证以及能力评测等方面的经验。报告将重点介绍鸿蒙领域数据构建与质量筛选、模型增训流程、训练效果分析及
++                        OpenHarmony Benchmark 评测实践，并结合实际实验结果总结增训过程中遇到的典型问题与优化思路，为鸿蒙领域大模型的持续训练与能力提升提供实践参考。</p>
++                    <p><strong>简介：</strong>岳崇建，华为鸿蒙大模型研发工程师，主要从事大模型、Agent及多模态代码生成等方向的研究与实践。曾参与大模型训练、数据构建、模型评测及鸿蒙智能体相关工作，在大模型增训、代码智能和多模态应用等方面具有实践经验。
++                    </p>
+                 </div>
+             </div>
+         </div>
+@@ -205,12 +339,16 @@
+             <h4>特邀报告1：金芝 教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/金芝.png" alt="金芝头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/金芝.png" alt="金芝头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>人机物融合软件系统的设计方法——探索和挑战</p>
+-                    <p><strong>摘要：</strong>人机物融合软件系统（HCPSs）是人类、计算以及物理组件的有机整合，它们正在成为日常生活中不可或缺的部分。这种系统的设计会面临严重挑战，主要源于人在这些复杂系统中所起的关键作用，人类行为的主观性和不确定性，以及高度异质组件之间复杂的相互作用。这次报告将探讨这种HCPSs的设计原则和可行方法。</p>
+-                    <p><strong>简介：</strong>金芝，IEEE / CCF / CAAI会士，武汉大学弘毅特聘教授，武汉大学特色化示范性软件学院院长，北京大学教授，高可信软件技术教育部重点实验室常务副主任。研究方向为软件需求工程方法学、智能化软件工程和知识工程。曾获高等学校科学研究优秀成果奖（科学技术）科技进步奖一等奖，CCF科学技术奖技术发明一等奖，CCF夏培肃奖，中创软件人才奖等，并多次获得ACM SIGSOFT杰出论文奖。</p>
++                    <p><strong>摘要：</strong>人机物融合软件系统（HCPSs）是人类、计算以及物理组件的有机整合，它们正在成为日常生活中不可或缺的部分。这种系统的设计会面临严重挑战，主要源于人在这些复杂系统中所起的关键作用，人类行为的主观性和不确定性，以及高度异质组件之间复杂的相互作用。这次报告将探讨这种HCPSs的设计原则和可行方法。
++                    </p>
++                    <p><strong>简介：</strong>金芝，IEEE / CCF /
++                        CAAI会士，武汉大学弘毅特聘教授，武汉大学特色化示范性软件学院院长，北京大学教授，高可信软件技术教育部重点实验室常务副主任。研究方向为软件需求工程方法学、智能化软件工程和知识工程。曾获高等学校科学研究优秀成果奖（科学技术）科技进步奖一等奖，CCF科学技术奖技术发明一等奖，CCF夏培肃奖，中创软件人才奖等，并多次获得ACM
++                        SIGSOFT杰出论文奖。</p>
+                 </div>
+             </div>
+         </div>
+@@ -218,12 +356,18 @@
+             <h4>特邀报告2：刘杨 教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/刘杨.png" alt="刘杨头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/刘杨.png" alt="刘杨头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>从人类智能到机器智能：一种受脑启发的智能体计算架构</p>
+-                    <p><strong>摘要：</strong>尽管人工智能发展迅速，但当今的系统本质上仍处于"反应式"阶段：它们擅长模式识别，却在推理、记忆、抽象和自我反思方面显得脆弱。如果智能不仅仅在于规模，更在于结构，那么核心问题就不再是如何构建更大的模型，而是如何构建认知架构。在本次演讲中，我将介绍一种受大脑启发的智能体计算架构，该架构将智能视为一种可执行的认知系统。我们借鉴神经科学、心理学和计算系统设计的理念，将智能体建模为分层认知架构，集成了记忆巩固、结构化知识形成、因果推理、元认知以及目标导向的问题解决能力。我们构建的不是简单的工具链，而是认知基础设施。为了将这些理念具体化，我们展示了如何将复杂的网络安全专业知识——涵盖软件漏洞发现、诊断、漏洞利用生成及自动修复——编码为结构化的认知工作流。这为实现更宏大的愿景奠定了原型：即在自主编程、医学分析、材料科学乃至科学发现等领域，实现专家级推理过程的自动化。最后，我将概述一条通往通用人工智能（AGI）的跨学科路径，该路径融合了神经科学、心理学、社会科学和计算机科学的见解。人工智能的未来不应仅仅源于更大规模的模型，而应源于那些能够映射大脑组织原理、在结构层面内嵌对齐机制，并将智能扩展为一种数字认知基础设施的架构。我们的目标不仅仅是制造更智能的机器，而是实现可计算的认知。</p>
+-                    <p><strong>简介：</strong>刘杨博士现任新加坡南洋理工大学教授、网络安全研究中心执行主任、新加坡网络安全研究办公室执行主任。2019年荣获南洋理工大学大学领袖论坛讲席教授，2024年荣获校长讲席教授。刘杨博士长期专注于软件工程、网络安全与人工智能领域研究，其工作致力于弥合理论与实践之间的鸿沟，利用程序分析、数据分析及人工智能技术，对软件的设计与实现进行高可信与高安全性的评估与优化。他的多项科研成果已实现成功转化和商业化。迄今为止，他已在国际顶级学术会议和期刊上发表论文 500 余篇，并获得 30 项最佳论文奖及 1 项国际软件工程顶会最具影响力系统奖。同时，他领导多家核心研究中心与重点项目，包括南洋理工大学网络安全研发平台、新加坡网络安全研究办公室、南洋理工可信人工智能研究中心(TAICeN)，以及与帝国理工学院（ICL）共建的 CREATE 医疗设备安全联合研究中心。刘杨博士先后斩获多项重磅学术荣誉，包括微软亚洲研究院学者奖、新加坡科技研究局青年学者基金、南洋青年教授基金、陈振传学者基金、南洋科研成就奖、ACM 杰出讲者、新加坡国家研究基金会研究员、南洋理工创新创业先锋奖等。</p>
++                    <p><strong>摘要：</strong>尽管人工智能发展迅速，但当今的系统本质上仍处于"反应式"阶段：它们擅长模式识别，却在推理、记忆、抽象和自我反思方面显得脆弱。如果智能不仅仅在于规模，更在于结构，那么核心问题就不再是如何构建更大的模型，而是如何构建认知架构。在本次演讲中，我将介绍一种受大脑启发的智能体计算架构，该架构将智能视为一种可执行的认知系统。我们借鉴神经科学、心理学和计算系统设计的理念，将智能体建模为分层认知架构，集成了记忆巩固、结构化知识形成、因果推理、元认知以及目标导向的问题解决能力。我们构建的不是简单的工具链，而是认知基础设施。为了将这些理念具体化，我们展示了如何将复杂的网络安全专业知识——涵盖软件漏洞发现、诊断、漏洞利用生成及自动修复——编码为结构化的认知工作流。这为实现更宏大的愿景奠定了原型：即在自主编程、医学分析、材料科学乃至科学发现等领域，实现专家级推理过程的自动化。最后，我将概述一条通往通用人工智能（AGI）的跨学科路径，该路径融合了神经科学、心理学、社会科学和计算机科学的见解。人工智能的未来不应仅仅源于更大规模的模型，而应源于那些能够映射大脑组织原理、在结构层面内嵌对齐机制，并将智能扩展为一种数字认知基础设施的架构。我们的目标不仅仅是制造更智能的机器，而是实现可计算的认知。
++                    </p>
++                    <p><strong>简介：</strong>刘杨博士现任新加坡南洋理工大学教授、网络安全研究中心执行主任、新加坡网络安全研究办公室执行主任。2019年荣获南洋理工大学大学领袖论坛讲席教授，2024年荣获校长讲席教授。刘杨博士长期专注于软件工程、网络安全与人工智能领域研究，其工作致力于弥合理论与实践之间的鸿沟，利用程序分析、数据分析及人工智能技术，对软件的设计与实现进行高可信与高安全性的评估与优化。他的多项科研成果已实现成功转化和商业化。迄今为止，他已在国际顶级学术会议和期刊上发表论文
++                        500 余篇，并获得 30 项最佳论文奖及 1
++                        项国际软件工程顶会最具影响力系统奖。同时，他领导多家核心研究中心与重点项目，包括南洋理工大学网络安全研发平台、新加坡网络安全研究办公室、南洋理工可信人工智能研究中心(TAICeN)，以及与帝国理工学院（ICL）共建的
++                        CREATE 医疗设备安全联合研究中心。刘杨博士先后斩获多项重磅学术荣誉，包括微软亚洲研究院学者奖、新加坡科技研究局青年学者基金、南洋青年教授基金、陈振传学者基金、南洋科研成就奖、ACM
++                        杰出讲者、新加坡国家研究基金会研究员、南洋理工创新创业先锋奖等。</p>
+                 </div>
+             </div>
+         </div>
+@@ -231,12 +375,15 @@
+             <h4>特邀报告3：许福 教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/许福.png" alt="许福头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/许福.png" alt="许福头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>林草智能软件研究与典型应用</p>
+-                    <p><strong>摘要：</strong>针对生态文明建设、国土科学绿化、绿色发展与双碳战略、生态安全保障、生态产品价值转化等我国林草行业智能软件重大需求，介绍人工智能如何赋能林草科技创新与人才培养改革，结合野生动物监测、古树智慧保护等林业智能软件案例，介绍了人工智能在林草行业的典型应用，并展望了未来发展趋势。</p>
+-                    <p><strong>简介：</strong>许福，北京林业大学教授、博导，信息学院和人工智能学院院长，国家级领军人才，国家重点研发计划项目首席科学家，国家林草局揭榜挂帅项目负责人，兼任全国林业和草原信息标准化技术委员会秘书长、河北省智慧国家公园重点实验室主任、中国林学会林业计算机应用分会副理事长、中国风景园林学会信息委员会副主任委员。主要从事林草人工智能研究，作为共同主编出版《智慧林业学》等教材3部，主持重点研发、揭榜挂帅、自然基金等项目20余项，获得省部级奖励和荣誉称号10余项。</p>
++                    <p><strong>摘要：</strong>针对生态文明建设、国土科学绿化、绿色发展与双碳战略、生态安全保障、生态产品价值转化等我国林草行业智能软件重大需求，介绍人工智能如何赋能林草科技创新与人才培养改革，结合野生动物监测、古树智慧保护等林业智能软件案例，介绍了人工智能在林草行业的典型应用，并展望了未来发展趋势。
++                    </p>
++                    <p><strong>简介：</strong>许福，北京林业大学教授、博导，信息学院和人工智能学院院长，国家级领军人才，国家重点研发计划项目首席科学家，国家林草局揭榜挂帅项目负责人，兼任全国林业和草原信息标准化技术委员会秘书长、河北省智慧国家公园重点实验室主任、中国林学会林业计算机应用分会副理事长、中国风景园林学会信息委员会副主任委员。主要从事林草人工智能研究，作为共同主编出版《智慧林业学》等教材3部，主持重点研发、揭榜挂帅、自然基金等项目20余项，获得省部级奖励和荣誉称号10余项。
++                    </p>
+                 </div>
+             </div>
+         </div>
+@@ -245,12 +392,16 @@
+             <h4>特邀报告4：赵路坦 研究员</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/赵路坦.png" alt="赵路坦头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/赵路坦.png" alt="赵路坦头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>面向数据安全保护场景的系统性能优化</p>
+-                    <p><strong>摘要：</strong>数据要素流通成为促进数据要素市场化配置，充分释放数据要素价值的重要环节。隐私保护计算为保障数据要素安全流通，实现数据"可用不可见"提供关键技术支撑。然而，严重的性能瓶颈阻碍了隐私保护计算技术的规模化应用。本报告将系统梳理隐私保护计算的性能优化路径，探讨安全协议优化、软硬件协同加速等关键技术，探索在联邦学习、隐私信息检索，大模型隐私推理等典型应用场景的系统性能优化。</p>
+-                    <p><strong>简介：</strong>赵路坦，中国科学院信息工程研究所研究员，博导，国家级青年人才，体系结构安全研究室副主任（主持工作），主要研究方向是处理器芯片安全、隐私保护计算加速。在体系结构和安全领域会议和期刊HPCA、MICRO、ASPLOS、CCS、S&amp;P等发表论文30余篇（CCF A类18篇），研究工作曾获得A类期刊IEEE TC/TPDS期刊亮点论文、APPT 2021最佳论文奖。受邀担任CCF A类会议HPCA和期刊IEEE TC/TDSC、ACM TACO等审稿人，担任《Frontiers of Computer Science》、《信息安全学报》学术期刊青年编委。</p>
++                    <p><strong>摘要：</strong>数据要素流通成为促进数据要素市场化配置，充分释放数据要素价值的重要环节。隐私保护计算为保障数据要素安全流通，实现数据"可用不可见"提供关键技术支撑。然而，严重的性能瓶颈阻碍了隐私保护计算技术的规模化应用。本报告将系统梳理隐私保护计算的性能优化路径，探讨安全协议优化、软硬件协同加速等关键技术，探索在联邦学习、隐私信息检索，大模型隐私推理等典型应用场景的系统性能优化。
++                    </p>
++                    <p><strong>简介：</strong>赵路坦，中国科学院信息工程研究所研究员，博导，国家级青年人才，体系结构安全研究室副主任（主持工作），主要研究方向是处理器芯片安全、隐私保护计算加速。在体系结构和安全领域会议和期刊HPCA、MICRO、ASPLOS、CCS、S&amp;P等发表论文30余篇（CCF
++                        A类18篇），研究工作曾获得A类期刊IEEE TC/TPDS期刊亮点论文、APPT 2021最佳论文奖。受邀担任CCF A类会议HPCA和期刊IEEE TC/TDSC、ACM
++                        TACO等审稿人，担任《Frontiers of Computer Science》、《信息安全学报》学术期刊青年编委。</p>
+                 </div>
+             </div>
+         </div>
+@@ -258,12 +409,22 @@
+             <h4>特邀报告5：张悦 教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/张悦.png" alt="张悦头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/张悦.png" alt="张悦头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>机无所恶，伤有所至：具身智能时代的软件的可靠性危机</p>
+-                    <p><strong>摘要：</strong>随着人工智能与机器人技术快速融合，软件正在从信息处理工具演化为能够直接影响物理世界的智能执行体。由此，软件可靠性的边界也从传统的程序正确性与服务可用性，进一步扩展到现实行为的安全、可控与可验证。本报告围绕这一"从数字可靠性到物理可靠性"的范式转变，探讨具身智能软件生态中的新型可靠性问题。以快速发展的机器人动作软件与第三方动作市场为例，分析软件代码、动作模型和数字内容如何被进一步转化为真实世界中的运动、碰撞和人机交互行为，并揭示数字表示、机器人实际执行状态与现实物理后果之间存在的可靠性鸿沟。在此基础上，介绍我们在大规模机器人动作审计方面的探索，通过软件侧分析、代表性真机测量以及物理后果评估，将传统的软件分析进一步延伸至真实物理世界。最后，本报告讨论面向具身智能时代的软件可靠性研究新方向，包括软件—模型—执行体跨层可靠性、第三方智能行为供应链、数字与物理状态一致性，以及面向现实后果的软件测试与验证，为构建安全、可信、可规模化部署的新一代智能软件系统提供思考。</p>
+-                    <p><strong>简介：</strong>张悦，山东大学教授，博导，国家级青年人才，可信数字经济中心陕西省高校工程研究中心的副主任，中国计算机学会区块链专委会执行委员，中国计算机学会网络与系统安全专委会执行委员。曾在美国德雷塞尔大学助理教授，2025年回国加入山东大学。在IEEE S&P，USENIX Security，ACM CCS，NDSS等安全领域顶级会议发表学术论文70余篇（安全四大顶会25篇），授权专利30余项（包括多项美国专利），谷歌引用6000余次，单篇引用量2000次。曾获ACM CCS最佳论文提名，USENIX Security 最佳论文提名，NDSS最佳审稿人，USENIX Security杰出审稿人，广东省自然科学奖一等奖、广东省省CCF最佳论文一等奖，ACM青岛分会新星奖等诸多奖项；主持国家自然科学基金优秀青年项目（海外），面上，山东省重大基础研究项目，青岛市重点技术攻关项目，以太坊基金会发展项目等多个项目。担任IEEE MASS，IEEE MSN等CCF推荐会议分论坛主席；担任NDSS，ACM CCS，USENIX Security等著名安全会议程序委员会委员20余次；担任T-IFS（CCF-A）、FCS(CCF-B)、HCC(CCF-C)等多家期刊编委。曾多次发现 Bluetooth SIG，谷歌、Apple、德州仪器、MQTT、腾讯等组织、知名公司的高危严重漏洞，获得Apple，德州仪器，以太坊，谷歌等公司公开致谢，漏洞赏金或立项支持。成果被中央电视台、新浪等媒体报道。</p>
++                    <p><strong>摘要：</strong>随着人工智能与机器人技术快速融合，软件正在从信息处理工具演化为能够直接影响物理世界的智能执行体。由此，软件可靠性的边界也从传统的程序正确性与服务可用性，进一步扩展到现实行为的安全、可控与可验证。本报告围绕这一"从数字可靠性到物理可靠性"的范式转变，探讨具身智能软件生态中的新型可靠性问题。以快速发展的机器人动作软件与第三方动作市场为例，分析软件代码、动作模型和数字内容如何被进一步转化为真实世界中的运动、碰撞和人机交互行为，并揭示数字表示、机器人实际执行状态与现实物理后果之间存在的可靠性鸿沟。在此基础上，介绍我们在大规模机器人动作审计方面的探索，通过软件侧分析、代表性真机测量以及物理后果评估，将传统的软件分析进一步延伸至真实物理世界。最后，本报告讨论面向具身智能时代的软件可靠性研究新方向，包括软件—模型—执行体跨层可靠性、第三方智能行为供应链、数字与物理状态一致性，以及面向现实后果的软件测试与验证，为构建安全、可信、可规模化部署的新一代智能软件系统提供思考。
++                    </p>
++                    <p><strong>简介：</strong>张悦，山东大学教授，博导，国家级青年人才，可信数字经济中心陕西省高校工程研究中心的副主任，中国计算机学会区块链专委会执行委员，中国计算机学会网络与系统安全专委会执行委员。曾在美国德雷塞尔大学助理教授，2025年回国加入山东大学。在IEEE
++                        S&P，USENIX Security，ACM
++                        CCS，NDSS等安全领域顶级会议发表学术论文70余篇（安全四大顶会25篇），授权专利30余项（包括多项美国专利），谷歌引用6000余次，单篇引用量2000次。曾获ACM
++                        CCS最佳论文提名，USENIX Security 最佳论文提名，NDSS最佳审稿人，USENIX
++                        Security杰出审稿人，广东省自然科学奖一等奖、广东省省CCF最佳论文一等奖，ACM青岛分会新星奖等诸多奖项；主持国家自然科学基金优秀青年项目（海外），面上，山东省重大基础研究项目，青岛市重点技术攻关项目，以太坊基金会发展项目等多个项目。担任IEEE
++                        MASS，IEEE MSN等CCF推荐会议分论坛主席；担任NDSS，ACM CCS，USENIX
++                        Security等著名安全会议程序委员会委员20余次；担任T-IFS（CCF-A）、FCS(CCF-B)、HCC(CCF-C)等多家期刊编委。曾多次发现 Bluetooth
++                        SIG，谷歌、Apple、德州仪器、MQTT、腾讯等组织、知名公司的高危严重漏洞，获得Apple，德州仪器，以太坊，谷歌等公司公开致谢，漏洞赏金或立项支持。成果被中央电视台、新浪等媒体报道。
++                    </p>
+                 </div>
+             </div>
+         </div>
+@@ -271,12 +432,17 @@
+             <h4>特邀报告6：郑恩昊 研究员</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/郑恩昊.png" alt="郑恩昊头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/郑恩昊.png" alt="郑恩昊头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>生-机-电系统融合：从感知到生成</p>
+-                    <p><strong>摘要：</strong>生-机-电系统及融合技术旨在构建生物系统与机电系统的功能融合体，实现人-机深度交互与高效协同，是仿生肢体、可穿戴机器人等智能载体的核心环节，对专用任务、康复医疗、特种制造等领域发展有重要支撑作用。美国DARPA、北约战略司令部ACT等机构均持续布局，资助生-机-电系统融合技术发展，将其作为国家战略性支撑技术；我国多个国家重点专项，也均将该技术列为核心攻关技术之一。本报告针对生-机-电系统融合中的信号采集、特征表达和人机融合优化等三个关键卡点，介绍了近年研究进展，报告人提出基于肌肉形态学特征的生机接口、人机一体化识别模型和机器人生成式设计等技术和方法，取得了理论和技术突破成果，在国家重大需求领域得到成功应用。</p>
+-                    <p><strong>简介：</strong>郑恩昊，中国科学院自动化研究所，研究员，任工信部人形机器人与具身智能标准化技术委员会委员、中国计算机学会智能机器人专委会委员等。郑恩昊长期从事智能机器人领域研究，聚焦生-机-电系统融合关键问题，打通技术链条中的人体神经信息"有效感知"、运动意图"准确表征"和人-机-环境动态耦合下的"高效融合"关键卡点，提出肌肉形态特征驱动的生机接口等独创性壁垒技术，解决可穿戴机器人、仿生肢体、专用领域传感系统在动态环境下的适应性、鲁棒性与成本之间的矛盾性瓶颈问题，为落地应用提供了系统化的理论和技术支撑。近五年作为项目/课题负责人主持国家重点项目4项，总经费4500余万元，含某委重点项目/课题2项，农业部某重点专项课题1项，中国科学院先导B专项项目1项；作为第一/通讯作者发表含机器人领域顶刊IEEE T-RO 1篇、IEEE/ASME T-MECH 4篇在内的多篇高水平学术文章，作为章节独立作者参编专著2部，以第一发明人获国家发明专利授权10余项；获中国科学院"青促会"、"特聘研究骨干"和"基础研究青年团队"，及中国电子学会-腾讯"犀牛鸟"专项等人才项目。</p>
++                    <p><strong>摘要：</strong>生-机-电系统及融合技术旨在构建生物系统与机电系统的功能融合体，实现人-机深度交互与高效协同，是仿生肢体、可穿戴机器人等智能载体的核心环节，对专用任务、康复医疗、特种制造等领域发展有重要支撑作用。美国DARPA、北约战略司令部ACT等机构均持续布局，资助生-机-电系统融合技术发展，将其作为国家战略性支撑技术；我国多个国家重点专项，也均将该技术列为核心攻关技术之一。本报告针对生-机-电系统融合中的信号采集、特征表达和人机融合优化等三个关键卡点，介绍了近年研究进展，报告人提出基于肌肉形态学特征的生机接口、人机一体化识别模型和机器人生成式设计等技术和方法，取得了理论和技术突破成果，在国家重大需求领域得到成功应用。
++                    </p>
++                    <p><strong>简介：</strong>郑恩昊，中国科学院自动化研究所，研究员，任工信部人形机器人与具身智能标准化技术委员会委员、中国计算机学会智能机器人专委会委员等。郑恩昊长期从事智能机器人领域研究，聚焦生-机-电系统融合关键问题，打通技术链条中的人体神经信息"有效感知"、运动意图"准确表征"和人-机-环境动态耦合下的"高效融合"关键卡点，提出肌肉形态特征驱动的生机接口等独创性壁垒技术，解决可穿戴机器人、仿生肢体、专用领域传感系统在动态环境下的适应性、鲁棒性与成本之间的矛盾性瓶颈问题，为落地应用提供了系统化的理论和技术支撑。近五年作为项目/课题负责人主持国家重点项目4项，总经费4500余万元，含某委重点项目/课题2项，农业部某重点专项课题1项，中国科学院先导B专项项目1项；作为第一/通讯作者发表含机器人领域顶刊IEEE
++                        T-RO 1篇、IEEE/ASME T-MECH
++                        4篇在内的多篇高水平学术文章，作为章节独立作者参编专著2部，以第一发明人获国家发明专利授权10余项；获中国科学院"青促会"、"特聘研究骨干"和"基础研究青年团队"，及中国电子学会-腾讯"犀牛鸟"专项等人才项目。
++                    </p>
+                 </div>
+             </div>
+         </div>
+@@ -288,27 +454,34 @@
+             <h4>1. 论坛组委会：张洪宇 教授（重庆大学大数据与软件学院）</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+-                    <img src="./images/academic-forum/学术论坛/张洪宇.png" alt="张洪宇头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <p><strong>简介：</strong>重庆大学二级教授、大数据与软件学院院长，国家级人才。主要研究方向为软件数据挖掘、智能化软件开发与软件维护。在国际重要会议与期刊发表论文300余篇，获ACM杰出论文奖与最佳论文奖等10余次。曾任2024年亚太软件工程会议（APSEC 2024）大会主席、2020年国际软件维护与演化会议（ICSME 2020）大会主席，现任ACM Computing Surveys等多个国际期刊编委。入选IEEE Fellow、ACM Distinguished Member、CCF杰出会员、澳洲工程师协会会士（FIEAust）及David Parnas Fellow。</p>
++                    <img src="./images/academic-forum/学术论坛/张洪宇.png" alt="张洪宇头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>重庆大学二级教授、大数据与软件学院院长，国家级人才。主要研究方向为软件数据挖掘、智能化软件开发与软件维护。在国际重要会议与期刊发表论文300余篇，获ACM杰出论文奖与最佳论文奖等10余次。曾任2024年亚太软件工程会议（APSEC
++                    2024）大会主席、2020年国际软件维护与演化会议（ICSME 2020）大会主席，现任ACM Computing Surveys等多个国际期刊编委。入选IEEE Fellow、ACM
++                    Distinguished Member、CCF杰出会员、澳洲工程师协会会士（FIEAust）及David Parnas Fellow。</p>
+             </div>
+         </div>
+         <div class="committee-member">
+             <h4>2. 论坛组委会：文俊浩 教授（重庆大学大数据与软件学院）</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+-                    <img src="./images/academic-forum/学术论坛/文俊浩.png" alt="文俊浩头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <p><strong>简介：</strong>重庆大学二级教授、大数据与软件学院党委书记。教育部软件工程教学指导委员会委员，中国计算机学会（CCF）理事。主要研究方向为智能化软件工程、服务计算与智能推荐，在国际重要期刊与会议发表论文150余篇。获重庆市自然科学二等奖2项、科技进步奖1项，国家教学成果奖3项。多次组织承办首届CCF中国软件大会（ChinaSoft 2020）、2024年亚太软件工程会议（APSEC 2024）、CCF中国开源大会及第十届CCF服务计算学术会议等重要学术会议。</p>
++                    <img src="./images/academic-forum/学术论坛/文俊浩.png" alt="文俊浩头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>重庆大学二级教授、大数据与软件学院党委书记。教育部软件工程教学指导委员会委员，中国计算机学会（CCF）理事。主要研究方向为智能化软件工程、服务计算与智能推荐，在国际重要期刊与会议发表论文150余篇。获重庆市自然科学二等奖2项、科技进步奖1项，国家教学成果奖3项。多次组织承办首届CCF中国软件大会（ChinaSoft
++                    2020）、2024年亚太软件工程会议（APSEC 2024）、CCF中国开源大会及第十届CCF服务计算学术会议等重要学术会议。</p>
+             </div>
+         </div>
+         <div class="committee-member">
+             <h4>3. 论坛组委会：王焱林 副教授（中山大学软件工程学院）</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+-                    <img src="./images/academic-forum/学术论坛/王焱林.png" alt="王焱林头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <p><strong>简介：</strong>中山大学软件工程学院副教授。加入中山大学前，曾任微软亚洲研究院高级研究员。主要研究方向为智能化软件工程，聚焦代码智能、经验软件工程与软件修复等。在软件工程与人工智能领域国际重要会议与期刊（ICSE、FSE、ISSTA、ASE、ACL等）发表学术论文50余篇，三次获得ACM SIGSOFT杰出论文奖/最佳论文奖。现担任FSE 2025、ICSE 2027组织委员会委员，并多次担任ICSE、FSE、ISSTA等国际会议程序委员会委员。</p>
++                    <img src="./images/academic-forum/学术论坛/王焱林.png" alt="王焱林头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>中山大学软件工程学院副教授。加入中山大学前，曾任微软亚洲研究院高级研究员。主要研究方向为智能化软件工程，聚焦代码智能、经验软件工程与软件修复等。在软件工程与人工智能领域国际重要会议与期刊（ICSE、FSE、ISSTA、ASE、ACL等）发表学术论文50余篇，三次获得ACM
++                    SIGSOFT杰出论文奖/最佳论文奖。现担任FSE 2025、ICSE 2027组织委员会委员，并多次担任ICSE、FSE、ISSTA等国际会议程序委员会委员。</p>
+             </div>
+         </div>
+         <!-- COMMITTEE_4_7 -->
+@@ -316,18 +489,26 @@
+             <h4>4. 论坛组委会：孙伟松 研究员（新加坡南洋理工大学）</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+-                    <img src="./images/academic-forum/学术论坛/孙伟松.png" alt="孙伟松头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <p><strong>简介：</strong>孙伟松，新加坡南洋理工大学计算与数据科学学院的研究员。他于 2023 年获得南京大学软件工程博士学位。他的研究兴趣包括智能软件工程、可信人工智能以及跨两个领域的研究（例如可信智能软件工程）。他曾主持南京大学优秀博士研究生创新能力提升计划项目、中新国际&amp;海通安恒-人工智能领域共创合作项目，参与国家重点研发计划课题、CCF-华为胡杨林基金-软件工程专项，腾讯基础平台技术犀牛鸟专项研究计划、Desey&amp;NTU-企业级复杂需求提取项目等；他已在国内外顶级会议和期刊发表超过60篇高质量论文，包括 ICSE、FSE、ASE、ISSTA、ACL、NeurIPS、TSE、TOSEM、TDSC、TIFS 等。他曾或现担任 ASE、ICSE、TSE、TOSEM、TIFS、TDSC、NeurIPS、ACL、ICLR等的审稿人。此外，他还担任国际人工智能可靠性和安全性研讨会 (AIRS 2024，AIRS 2025) 、Internetware 2026 Tool Demonstration Track、FSE 2027 Social Media联合主席。</p>
++                    <img src="./images/academic-forum/学术论坛/孙伟松.png" alt="孙伟松头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>孙伟松，新加坡南洋理工大学计算与数据科学学院的研究员。他于 2023
++                    年获得南京大学软件工程博士学位。他的研究兴趣包括智能软件工程、可信人工智能以及跨两个领域的研究（例如可信智能软件工程）。他曾主持南京大学优秀博士研究生创新能力提升计划项目、中新国际&amp;海通安恒-人工智能领域共创合作项目，参与国家重点研发计划课题、CCF-华为胡杨林基金-软件工程专项，腾讯基础平台技术犀牛鸟专项研究计划、Desey&amp;NTU-企业级复杂需求提取项目等；他已在国内外顶级会议和期刊发表超过60篇高质量论文，包括
++                    ICSE、FSE、ASE、ISSTA、ACL、NeurIPS、TSE、TOSEM、TDSC、TIFS 等。他曾或现担任
++                    ASE、ICSE、TSE、TOSEM、TIFS、TDSC、NeurIPS、ACL、ICLR等的审稿人。此外，他还担任国际人工智能可靠性和安全性研讨会 (AIRS 2024，AIRS 2025)
++                    、Internetware 2026 Tool Demonstration Track、FSE 2027 Social Media联合主席。</p>
+             </div>
+         </div>
+         <div class="committee-member">
+             <h4>5. 论坛组委会：吕培卓 研究员（新加坡南洋理工大学）</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+-                    <img src="./images/academic-forum/学术论坛/吕培卓.png" alt="吕培卓头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <p><strong>简介：</strong>吕培卓，新加坡南洋理工大学计算与数据科学学院的研究员。研究方向为人工智能安全以及人工智能赋能的传统安全。曾参与国家自然科学基金（重大研究计划-重点项目）、北京市自然科学基金（面上项目）、CCF-华为胡杨林基金等；在国内外顶级会议和期刊发表高质量论文20余篇，包括 IEEE S&amp;P、USENIX Security、CCS、NDSS、FSE、IEEE TDSC等。曾担任 CCS、EuroS&amp;P、AsiaCCS、KDD、AAAI、TDSC、TIFS等会议和期刊审稿人，以及Cybersecurity 青年编委。</p>
++                    <img src="./images/academic-forum/学术论坛/吕培卓.png" alt="吕培卓头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>吕培卓，新加坡南洋理工大学计算与数据科学学院的研究员。研究方向为人工智能安全以及人工智能赋能的传统安全。曾参与国家自然科学基金（重大研究计划-重点项目）、北京市自然科学基金（面上项目）、CCF-华为胡杨林基金等；在国内外顶级会议和期刊发表高质量论文20余篇，包括
++                    IEEE S&amp;P、USENIX Security、CCS、NDSS、FSE、IEEE TDSC等。曾担任
++                    CCS、EuroS&amp;P、AsiaCCS、KDD、AAAI、TDSC、TIFS等会议和期刊审稿人，以及Cybersecurity 青年编委。</p>
+             </div>
+         </div>
+         <!-- COMMITTEE_6_7 -->
+@@ -335,18 +516,25 @@
+             <h4>6. 论坛组委会：杨波 教授（北京林业大学）</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+-                    <img src="./images/academic-forum/学术论坛/杨波.png" alt="杨波头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <p><strong>简介：</strong>杨波，教授，毕业于北京航空航天大学，获计算机软件与理论专业博士学位。美国密西西比大学访问学者，北京大学访问学者，南洋理工大学访问学者。中国计算机学会软件工程专委会执行委员，中国计算机学会服务计算专委会执行委员，中国计算机学会教育专业委员会执行委员。研究方向为安全可信人工智能、智能软件工程等。主持国家自然科学基金、北京市教委项目、作为骨干成员参与国家重点研发计划、863计划等科研课题30余项。在TSE、TCSS、JSS、IST、SCP、IJSEKE、IET Software、FCS、《计算机学报》、《软件学报》、《计算机研究与发展》、APSEC 2024、ISSTA 2020、QRS 2020、SANER 2018等CCF推荐的期刊和会议上发表论文60余篇。获得2024年中国质量协会质量技术奖三等奖、2023年全国服务业科技创新奖一等奖。</p>
++                    <img src="./images/academic-forum/学术论坛/杨波.png" alt="杨波头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>杨波，教授，毕业于北京航空航天大学，获计算机软件与理论专业博士学位。美国密西西比大学访问学者，北京大学访问学者，南洋理工大学访问学者。中国计算机学会软件工程专委会执行委员，中国计算机学会服务计算专委会执行委员，中国计算机学会教育专业委员会执行委员。研究方向为安全可信人工智能、智能软件工程等。主持国家自然科学基金、北京市教委项目、作为骨干成员参与国家重点研发计划、863计划等科研课题30余项。在TSE、TCSS、JSS、IST、SCP、IJSEKE、IET
++                    Software、FCS、《计算机学报》、《软件学报》、《计算机研究与发展》、APSEC 2024、ISSTA 2020、QRS 2020、SANER
++                    2018等CCF推荐的期刊和会议上发表论文60余篇。获得2024年中国质量协会质量技术奖三等奖、2023年全国服务业科技创新奖一等奖。</p>
+             </div>
+         </div>
+         <div class="committee-member">
+             <h4>7. 论坛组委会：梁瑞刚 高级工程师（中国科学院信息工程研究所）</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+-                    <img src="./images/academic-forum/学术论坛/梁瑞刚.png" alt="梁瑞刚头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <p><strong>简介：</strong>梁瑞刚，中国科学院信息工程研究所网络空间安全防御全国重点实验室 高级工程师/硕导，中国计算机学会-系统软件专委会执行委员、网络与系统安全专委会执行委员。主要研究领域包括系统安全、人工智能安全。在IEEE S&amp;P、USENIX Security、ACM CCS、NDSS、ISSTA等发表论文30余篇；曾主持国家自然科学基金、国家重点研发计划等国家、部委课题10余项；曾获得2024年度北京市科学技术进步奖一等奖、2023年度中国电子学会科学技术进步奖一等奖、中国电力企业联合会电力创新奖二等奖等。</p>
++                    <img src="./images/academic-forum/学术论坛/梁瑞刚.png" alt="梁瑞刚头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>梁瑞刚，中国科学院信息工程研究所网络空间安全防御全国重点实验室
++                    高级工程师/硕导，中国计算机学会-系统软件专委会执行委员、网络与系统安全专委会执行委员。主要研究领域包括系统安全、人工智能安全。在IEEE S&amp;P、USENIX Security、ACM
++                    CCS、NDSS、ISSTA等发表论文30余篇；曾主持国家自然科学基金、国家重点研发计划等国家、部委课题10余项；曾获得2024年度北京市科学技术进步奖一等奖、2023年度中国电子学会科学技术进步奖一等奖、中国电力企业联合会电力创新奖二等奖等。
++                </p>
+             </div>
+         </div>
+     </section>
+--- before/pages/agenda/academic-forum/templates/neuro-symbolic-fusion.html
++++ after/pages/agenda/academic-forum/templates/neuro-symbolic-fusion.html
+@@ -0,0 +1,177 @@
++<div class="container">
++
++    <h2 class="section-title">神经符号融合软件的前沿理论和方法论坛</h2>
++    <div class="section-title-en">学术论坛 R29</div>
++
++    <section class="forum-section">
++        <h3>一、论坛介绍</h3>
++        <p>近年来人工智能领域在深度神经网络和以大语言模型为代表的基础模型技术方面产生的重大突破，推动信息世界、物理世界和人类社会日趋交叉融合，进一步打开了开放、动态和不确定场景下的复杂应用需求空间。有效解决开放、动态和不确定场景下的复杂应用问题，需要采用基于逻辑设计的符号计算和基于概率统计的神经计算相融合的智能化方案，这样的解决方案对应于一种新的软件形态：神经-符号融合软件。神经-符号融合软件有机结合基于逻辑设计的符号算法和数据使能的神经网络模型解决开放、动态和不确定场景下的复杂应用问题，在国防和经济建设的智能化应用领域存在广泛需求，是关键软件技术前沿领域战略性竞争的重要制高点。
++        </p>
++        <p>神经符号融合软件作为新的软件形态，承载着数据知识双驱动的复杂系统构造和运行，目前缺乏针对性和系统性的软件理论和方法，亟需发展基础性的可信理论与方法以支撑新一代软件的可信构造与保障。本论坛拟就神经符号软件的模型与语言、设计与构造、可信与演化等内容开展前沿分析，探讨研发路线。
++        </p>
++    </section>
++
++    <section class="forum-section">
++        <h3>二、论坛组织委员会</h3>
++        <ul class="committee-list">
++            <li><span class="member-name">卜磊</span><span class="member-unit">（南京大学）</span></li>
++            <li><span class="member-name">陈立前</span><span class="member-unit">（国防科技大学）</span></li>
++        </ul>
++    </section>
++
++    <section class="forum-section">
++        <h3>三、论坛安排</h3>
++        <h4>日程安排：</h4>
++        <p><strong>时间：</strong>2026年11月08日，08:50~12:00</p>
++        <p><strong>地点：</strong>天津市社会山国际会议中心酒店，三层2号多功能厅</p>
++
++        <h4>论坛议程：</h4>
++        <table class="forum-table">
++            <thead>
++                <tr>
++                    <th>时间</th>
++                    <th>题目</th>
++                    <th>报告嘉宾</th>
++                </tr>
++            </thead>
++            <tbody>
++                <tr>
++                    <td style="white-space: nowrap;">8:50-9:20</td>
++                    <td>Model-learning for Real-time and Hybrid Systems</td>
++                    <td>詹乃军<br>北京大学</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">9:20-09:50</td>
++                    <td>神经符号数据库技术及应用</td>
++                    <td>袁野<br>北京理工大学</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">09:50-10:20</td>
++                    <td>大模型时代的符号逻辑：价值与边界</td>
++                    <td>孙军<br>新加坡管理大学</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">10:20-10:40</td>
++                    <td>茶歇</td>
++                    <td>-</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">10:40-11:10</td>
++                    <td>面向问题自动抽象与形式化的神经符号学习</td>
++                    <td>戴望州<br>南京大学</td>
++                </tr>
++                <tr>
++                    <td style="white-space: nowrap;">11:10-12:00</td>
++                    <td>Panel讨论</td>
++                    <td>詹乃军、袁野、孙军、戴望州</td>
++                </tr>
++            </tbody>
++        </table>
++    </section>
++
++    <section class="forum-section">
++        <h3>四、论坛报告嘉宾简介</h3>
++        <div class="speaker-member">
++            <h4>1. 报告人：詹乃军 教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛v2/詹乃军.png" alt="詹乃军头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>Model-learning for Real-time and Hybrid Systems</p>
++                    <p><strong>摘要：</strong>In this talk, I will report our recent work on how to learning real-time
++                        system models by extending classical L* learning algorithm to timed automata, and how to
++                        identify hybrid system models by employing nonlinear autoregressive exogenous models as a
++                        unified representation to learning hybrid automata.</p>
++                    <p><strong>简介：</strong>詹乃军，男，1971年5月生，北京大学计算机学院博雅特聘教授，国家杰出青年科学基金获得者。之前，为中科院软件所研究员，中科院特聘研究员，中国科学院大学岗位教授，计算机科学国家重点实验室执行主任。分别在南京大学数学系（1989-1993）和南京大学计算机系（1993-1996）获得学士和硕士学位，在中国科学院软件研究所获得博士学位（1997-2000）。研究方向包括：形式化方法，实时、嵌入式、混成系统，程序验证等。任《Journal
++                        of Automated Reasoning》、《Formal Aspects of Computing》、《J. of Logical and Algebraic Methods in
++                        Programming》、《Research Direction: Cyber-Physical
++                        Systems》、《软件学报》、《计算机研究与发展》《电子学报》、《前瞻科技》等期刊编委，国际会议MEMOCODE和SETTA的指导委员会委员，多个国际会议程序委员会共同主席（如形式化方法旗舰会议FM
++                        2021 和验证领域顶级会议TACAS
++                        2027）和著名国际会议程序委员会委员（如CAV、RTSS、HSCC、ICCPS、EMSOFT等）；在著名国际会议和杂志发表论文170多篇，出版专著2部，编著6部，国际国内著名杂志专刊9辑等；获得ESWEEK
++                        2026 Test of Time Award。现任CCF形式化方法专委主任。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>2. 报告人：袁野 教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛v2/袁野.png" alt="袁野头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>神经符号数据库技术及应用</p>
++                    <p><strong>摘要：</strong>神经符号数据库（Neuro-Symbolic
++                        Database），作为一种新型的数据库平台，深度融合了人工智能分析、数据库查询以及大数据计算的关键技术。其突出优势在于不但能够高效地处理异构数据，包括结构化和半结构化数据，还能够有效地管理和解析非结构化数据，如图像、视频和文本等，实现对多源异构数据的深度挖掘。本报告将深入探讨神经符号数据库在处理各类复杂数据类型和模式下的应用潜力，旨在揭示其在数据密集型领域的广阔应用前景，并对神经符号数据库面临的技术挑战和我们的解决思路进行介绍，包括神经符号数据库的查询语言、处理算法和存储方案等。总体来看，本报告以剖析神经符号数据库的关键技术问题为核心，力求为该领域的进一步研究和发展提供有力的理论支撑和实践建议。
++                    </p>
++                    <p><strong>简介：</strong>袁野，北京理工大学教授、博士生导师、国家杰青和优青基金获得者。主持国家自然基金重点项目，科技部重点研发项目。曾获国家科技进步二等奖，中国电子学会自然一等奖，教育部和辽宁省科技进步一等奖、全国优秀博士论文提名奖、中国计算机学会优秀博士论文奖。袁博士是中国人工智能学会服务专委副主任、中国计算机学会数据库专业委员会副主任、IEEE、ACM高级会员。主要研究方向为人工智能、大数据。发表相关CCF
++                        A类论文200余篇。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>3. 报告人：孙军 教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛v2/孙军.png" alt="孙军头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>大模型时代的符号逻辑：价值与边界</p>
++                    <p><strong>摘要：</strong>近年来，以大语言模型为代表的人工智能技术取得了突破性进展，也让我们重新思考符号逻辑在人工智能中的角色：智能是否一定需要显式的符号推理？在数据驱动的人工智能时代，符号逻辑还能发挥什么作用？本报告将回顾符号方法在人工智能发展过程中的角色演变，探讨其在现代人工智能系统中的价值与局限。结合近年来在智能体行为约束、概率安全保障、人工智能推理与安全分析等方面的研究实践，讨论如何利用逻辑与符号方法增强人工智能系统的可控性、可靠性与可信性。同时，报告也将反思符号方法在开放、动态和不确定环境中面临的挑战，以及逻辑指导人工智能在可行性、有效性和可扩展性方面的现实边界。
++                    </p>
++                    <p><strong>简介：</strong>孙军(SUN
++                        Jun)是新加坡管理大学(SMU)的教授。他于2002年和2006年分别获得新加坡国立大学(NUS)计算机科学学士和博士学位，自2010年起担任教职。孙军的研究兴趣包括人工智能安全、软件工程、形式化方法等等。他喜欢设计算法，以解决具有实际应用的难题，也热爱生活。孙军3次获得李光耀学者称号。更多信息请见:https://sunjun.site。
++                    </p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>4. 报告人：戴望州 教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛v2/戴望州.png" alt="戴望州头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>面向问题自动抽象与形式化的神经符号学习</p>
++                    <p><strong>摘要：</strong>近年来，以大语言模型为代表的人工智能技术在复杂问题求解方面取得了显著进展，但其推理过程仍然缺乏可靠的语义约束，生成的结果往往看似合理，却难以验证、解释和调试。与之相比，符号化的形式表示不仅支持计算与推理，更使得问题的语义、求解过程及其正确性能够被明确刻画和系统分析。然而，现实世界中的概念、对象及其关系往往并非预先给定。如何通过学习从非结构化的感知数据与交互经验中构造恰当的符号表示、并实现这一抽象与形式化过程，是神经符号学习面临的重要瓶颈。本报告将围绕从感知到符号、从经验到程序的学习过程，探讨神经符号学习中的抽象与形式化问题。首先，介绍如何利用反绎学习，从环境交互与低层感知中发现抽象状态、符号概念及其转换关系，实现面向复杂任务的自动抽象；随后，以大语言模型与逻辑程序设计语言Prolog的结合为例，介绍如何利用形式化执行与算法调试，对模型生成的程序及其隐含的抽象进行验证、定位错误和迭代修正。最后，讨论学习、抽象与推理的相互关系，以及面向开放环境构建可验证、可解释、可调试的智能系统所面临的挑战。
++                    </p>
++                    <p><strong>简介：</strong>戴望州，南京大学智能科学与技术学院副院长，教授，国家级领军人才。苏州市第十届侨联委员。长期从事人工智能基础理论研究，研究兴趣是数据与知识双驱动的机器学习，代表性工作为融合逻辑推理与机器学习的反绎学习算法与理论。在人工智能与机器学习领域共发表学术论文30余篇，包括国际顶级国际会议NeurIPS、IJCAI、AAAI、ILP和期刊《Machine
++                        Learning》等。曾任第4届国际学习与推理联合会（IJCLR）程序主席并担任IJCLR指导委员会委员，曾获AAAI 2025杰出论文奖，任《Machine
++                        Learning》期刊"推理与学习"特刊编辑，长期担任AIJ、TKDE、JMLR、TKDD、IJCAI、AAAI、ICML、NeurIPS、ICLR等顶级国际期刊和会议审稿人与资深程序委员。
++                    </p>
++                </div>
++            </div>
++        </div>
++    </section>
++
++    <section class="forum-section">
++        <h3>五、论坛组织委员会简介</h3>
++        <div class="committee-member">
++            <h4>1. 论坛组委会：卜磊 教授</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/学术论坛v2/卜磊.png" alt="卜磊头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>卜磊，教授，博士生导师，现任南京大学软件学院副院长，兼任CCF系统软件专委副主任（执行）；主要研究领域涉及可信软件、软件工程、形式化方法等方面，部分创新性工作发表在相关领域重要期刊与会议如《中国科学》、TCAD、TC、TOSEM、TDSC、CAV、RTSS、ICSE、DAC等上；入选高校计算机专业优秀教师奖励计划、CCF-IEEE
++                    CS青年科学家奖、中创软件人才奖、NASAC青年软件创新奖等奖项，主持基金委青A、重点、国际合作等项目多项。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>2. 论坛组委会：陈立前 教授</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/学术论坛v2/陈立前.png" alt="陈立前头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>陈立前，国防科技大学计算机学院教授、博士生导师，CCF形式化方法专委会常务委员。主要研究方向为软件分析验证、软件自动修复、神经网络验证。研究成果发表在TOSEM、TSE、TDSC、TCAD、POPL、OOPSLA、CAV、FSE、ICSE、ASE、ISSTA、CCS等程序语言与软件工程领域重要国际期刊和会议上，获ACM
++                    SIGSOFT杰出论文奖2次，获省部级科技进步一等奖2项，部分成果已在航天、国防等领域重大工程中应用。</p>
++            </div>
++        </div>
++    </section>
++
++</div>--- before/pages/agenda/academic-forum/templates/quantum-computing-software.html
++++ after/pages/agenda/academic-forum/templates/quantum-computing-software.html
+@@ -5,7 +5,8 @@
+ 
+     <section class="forum-section">
+         <h3>一、论坛介绍</h3>
+-        <p>量子计算的发展不仅取决于量子比特数量、保真度等硬件指标，也离不开软件与算法体系的协同突破。量子软件和算法连接底层物理系统与上层计算任务，其作用主要体现在两个相辅相成的方面：一方面，面向量子计算系统的设计、管理与运行，通过量子设计自动化、编译优化、任务映射与调度、资源估算、错误缓解以及软硬件协同等技术，充分利用有限的量子资源，降低噪声和硬件约束对计算过程的影响，从而提高量子计算机的性能、可靠性和可用性；另一方面，面向材料设计、药物筛选、组合优化和人工智能等实际问题，研究适合在量子计算机上运行的模型、软件和算法，探索量子计算相对于经典计算的加速潜力、适用条件与优势边界。本报告将围绕"如何通过软件与算法提升量子计算系统能力"以及"如何利用量子计算加速实际问题求解"两条主线展开，系统介绍相关领域的研究进展、关键技术与应用探索，并探讨软硬件协同、量子-经典混合计算及跨领域融合的发展方向。通过交流与讨论，促进量子软件、算法、硬件与应用之间的协同创新，为量子计算走向实用提供新的思路。</p>
++        <p>量子计算的发展不仅取决于量子比特数量、保真度等硬件指标，也离不开软件与算法体系的协同突破。量子软件和算法连接底层物理系统与上层计算任务，其作用主要体现在两个相辅相成的方面：一方面，面向量子计算系统的设计、管理与运行，通过量子设计自动化、编译优化、任务映射与调度、资源估算、错误缓解以及软硬件协同等技术，充分利用有限的量子资源，降低噪声和硬件约束对计算过程的影响，从而提高量子计算机的性能、可靠性和可用性；另一方面，面向材料设计、药物筛选、组合优化和人工智能等实际问题，研究适合在量子计算机上运行的模型、软件和算法，探索量子计算相对于经典计算的加速潜力、适用条件与优势边界。本报告将围绕"如何通过软件与算法提升量子计算系统能力"以及"如何利用量子计算加速实际问题求解"两条主线展开，系统介绍相关领域的研究进展、关键技术与应用探索，并探讨软硬件协同、量子-经典混合计算及跨领域融合的发展方向。通过交流与讨论，促进量子软件、算法、硬件与应用之间的协同创新，为量子计算走向实用提供新的思路。
++        </p>
+     </section>
+ 
+     <section class="forum-section">
+@@ -70,7 +71,7 @@
+                 </tr>
+                 <tr>
+                     <td style="white-space: nowrap;">17:35-18:00</td>
+-                    <td>量子算法可靠实现的形式验证</td>
++                    <td>Quafu 量子计算云平台介绍</td>
+                     <td>王赵波<br>北京量子信息科学研究院</td>
+                 </tr>
+             </tbody>
+@@ -83,12 +84,18 @@
+             <h4>1. 报告人：尹建伟 教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/尹建伟.png" alt="尹建伟头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/尹建伟.png" alt="尹建伟头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>量子计算软件理论与体系结构研究及实践</p>
+-                    <p><strong>摘要：</strong>随着量子芯片工艺和量子算法的快速发展与深入研究，量子计算机体系结构与软件作为一个新兴的研究方向，在得到越来越多人的关注。报告介绍浙江大学在量子体系结构与软件领域的理论研究与工程实践进展。在介绍量子计算机基本原理与体系的基础上，报告首先介绍超导量子计算机的QRAM实现方法，及量子随机存储器深度优化、误差传播机制。设计离线矩阵解耦与在线贪心策略协同解码算法，定制化设计加速器硬件架构，实现又准又快的高性能qLDPC解码器设计；针对中性原子丢失使后续门失效并污染多个测量结果问题，提出Loss Shadow方法，把原子丢失转化为可解释、可优化的结构，实现中性原子纠错的大幅加速。提出张量积迭代分解理论与波形动态缓存库技术，大幅度提升读取精度，同时将校准时延、波形传输时延大幅降低；围绕软件编译优化，提出基于电路拓扑特征与上下文结构的分析框架，框架基于向量化的电路表征方法，能够用于各类量子电路分析优化任务，可大幅提升电路分析精度、缩短电路综合时间。同时面向可满足性问题等问题，介绍量超融合的端到端量子加速技术、量子-经典混合的工作流性能分析方法等最新成果。</p>
+-                    <p><strong>简介：</strong>浙江大学求是特聘教授，计算机学院院长、软件学院院长、宁波国际科创中心主任，国家杰出青年基金项目、国家重点研发计划项目、国家重大专项项目负责人，国家重点研发计划"文化科技与现代服务业"专项专家组副组长、"量智融合关键技术"专项专家组专家；国务院学科评议组成员、教育部软件工程教学指导委员会副主任、工信部工业互联网战略咨询委员会委员、世界数据组织（WDO）数据开源专业委员会主任委员、中国计算机学会服务计算专委原主任委员。长期从事量子计算、数智服务、软件工程等方向的研究，研制太元量子、榫卯生成式操作系统、国家高分网格平台、建木服务网络等多个大型软件及系统。牵头制定2项ISO国际标准、2项国家标准，出版学术专著5部、国家级规划教材/101教材3部、科普书1部，创办International Journal of Quantum Computer and Software期刊。获国家科技进步二等奖1项、省部级及全国学会科学技术一等奖8项、中国发明银奖1项，获10项国际会议/国际期刊的最佳/杰出论文奖，获IEEE TCSVC专委会2024年度Outstanding Leadership Award。</p>
++                    <p><strong>摘要：</strong>随着量子芯片工艺和量子算法的快速发展与深入研究，量子计算机体系结构与软件作为一个新兴的研究方向，在得到越来越多人的关注。报告介绍浙江大学在量子体系结构与软件领域的理论研究与工程实践进展。在介绍量子计算机基本原理与体系的基础上，报告首先介绍超导量子计算机的QRAM实现方法，及量子随机存储器深度优化、误差传播机制。设计离线矩阵解耦与在线贪心策略协同解码算法，定制化设计加速器硬件架构，实现又准又快的高性能qLDPC解码器设计；针对中性原子丢失使后续门失效并污染多个测量结果问题，提出Loss
++                        Shadow方法，把原子丢失转化为可解释、可优化的结构，实现中性原子纠错的大幅加速。提出张量积迭代分解理论与波形动态缓存库技术，大幅度提升读取精度，同时将校准时延、波形传输时延大幅降低；围绕软件编译优化，提出基于电路拓扑特征与上下文结构的分析框架，框架基于向量化的电路表征方法，能够用于各类量子电路分析优化任务，可大幅提升电路分析精度、缩短电路综合时间。同时面向可满足性问题等问题，介绍量超融合的端到端量子加速技术、量子-经典混合的工作流性能分析方法等最新成果。
++                    </p>
++                    <p><strong>简介：</strong>浙江大学求是特聘教授，计算机学院院长、软件学院院长、宁波国际科创中心主任，国家杰出青年基金项目、国家重点研发计划项目、国家重大专项项目负责人，国家重点研发计划"文化科技与现代服务业"专项专家组副组长、"量智融合关键技术"专项专家组专家；国务院学科评议组成员、教育部软件工程教学指导委员会副主任、工信部工业互联网战略咨询委员会委员、世界数据组织（WDO）数据开源专业委员会主任委员、中国计算机学会服务计算专委原主任委员。长期从事量子计算、数智服务、软件工程等方向的研究，研制太元量子、榫卯生成式操作系统、国家高分网格平台、建木服务网络等多个大型软件及系统。牵头制定2项ISO国际标准、2项国家标准，出版学术专著5部、国家级规划教材/101教材3部、科普书1部，创办International
++                        Journal of Quantum Computer and
++                        Software期刊。获国家科技进步二等奖1项、省部级及全国学会科学技术一等奖8项、中国发明银奖1项，获10项国际会议/国际期刊的最佳/杰出论文奖，获IEEE
++                        TCSVC专委会2024年度Outstanding Leadership Award。</p>
+                 </div>
+             </div>
+         </div>
+@@ -96,12 +103,15 @@
+             <h4>2. 报告人：诸葛晴凤 教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/诸葛晴凤.png" alt="诸葛晴凤头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/诸葛晴凤.png" alt="诸葛晴凤头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>面向复杂优化问题的高保真可重构原子阵列量子计算系统软件技术</p>
+-                    <p><strong>摘要：</strong>可重构中性原子阵列已经迈入单真空腔毫米级工作区域内实现百万级中性原子量子比特的规模，急需促成真实应用落地量子计算硬件体系的工具链，攻克这一垂直技术体系的关键难题。当前量子计算领域应用落地面临的核心瓶颈问题是：逻辑量子线路设计和量子硬件体系结构特性脱节，经典计算机系统EDA的技术路线难以处理各种量子硬件体系结构巨大的特性差异等。另一方面，产业界迫切需要各类经典计算架构难以求解的复杂优化问题的量子优势解决方案得到实现，并达到应用推广的水平。我们介绍一种高复杂度优化问题的高保真量子线路自动化探索技术QNAS和面向可重构中性原子阵列体系结构的量子线路深度优化和映射技术QuanKnight，探索高保真度中性原子量子计算应用的高效自动化解决方案。</p>
+-                    <p><strong>简介：</strong>诸葛晴凤教授、博士生导师，复旦大学电子工程系本科、硕士，2003年美国德克萨斯大学达拉斯分校(UTD)计算机科学博士、硕士。曾任湖南大学、重庆大学教授、博导，现任华东师范大学智能系统与量子计算实验室负责人。实验室目前承担上海市未来学科领域建设--量子科技（包括量子信息和量子计算）学科未来五年的重要建设任务，承担上海市"科技创新行动计划"量子科学领域基础研究重点项目，国家自然科学基金高效能量子计算模拟项目，重点研究方向包括：量子计算系统EDA、量子线路编译优化、量子机器学习、量子计算模拟、多智能体大模型系统、人工智能加速设计、存算一体化系统结构、并行与分布式系统、调度与资源分配、软/硬件协同设计等。诸葛晴凤教授在国际重要学术会议及国际核心期刊上发表学术论文220多篇，其中包括80余篇的国际期刊论文，多次在国际学术会议获得最佳论文奖或最佳论文提名。据不完全统计，论文他引次数近3200余次，其中有多篇论文被国际知名学者引用。诸葛教授的研究成果已申请技术发明专利30多项，其中，国际专利8项。诸葛教授的研究获得国家科技部863计划、国家自然科学基金、上海市科委、华为等多个国家级、省部级、工业界研究项目的支持。</p>
++                    <p><strong>摘要：</strong>可重构中性原子阵列已经迈入单真空腔毫米级工作区域内实现百万级中性原子量子比特的规模，急需促成真实应用落地量子计算硬件体系的工具链，攻克这一垂直技术体系的关键难题。当前量子计算领域应用落地面临的核心瓶颈问题是：逻辑量子线路设计和量子硬件体系结构特性脱节，经典计算机系统EDA的技术路线难以处理各种量子硬件体系结构巨大的特性差异等。另一方面，产业界迫切需要各类经典计算架构难以求解的复杂优化问题的量子优势解决方案得到实现，并达到应用推广的水平。我们介绍一种高复杂度优化问题的高保真量子线路自动化探索技术QNAS和面向可重构中性原子阵列体系结构的量子线路深度优化和映射技术QuanKnight，探索高保真度中性原子量子计算应用的高效自动化解决方案。
++                    </p>
++                    <p><strong>简介：</strong>诸葛晴凤教授、博士生导师，复旦大学电子工程系本科、硕士，2003年美国德克萨斯大学达拉斯分校(UTD)计算机科学博士、硕士。曾任湖南大学、重庆大学教授、博导，现任华东师范大学智能系统与量子计算实验室负责人。实验室目前承担上海市未来学科领域建设--量子科技（包括量子信息和量子计算）学科未来五年的重要建设任务，承担上海市"科技创新行动计划"量子科学领域基础研究重点项目，国家自然科学基金高效能量子计算模拟项目，重点研究方向包括：量子计算系统EDA、量子线路编译优化、量子机器学习、量子计算模拟、多智能体大模型系统、人工智能加速设计、存算一体化系统结构、并行与分布式系统、调度与资源分配、软/硬件协同设计等。诸葛晴凤教授在国际重要学术会议及国际核心期刊上发表学术论文220多篇，其中包括80余篇的国际期刊论文，多次在国际学术会议获得最佳论文奖或最佳论文提名。据不完全统计，论文他引次数近3200余次，其中有多篇论文被国际知名学者引用。诸葛教授的研究成果已申请技术发明专利30多项，其中，国际专利8项。诸葛教授的研究获得国家科技部863计划、国家自然科学基金、上海市科委、华为等多个国家级、省部级、工业界研究项目的支持。
++                    </p>
+                 </div>
+             </div>
+         </div>
+@@ -109,12 +119,15 @@
+             <h4>3. 报告人：岳涛 北京航空航天大学计算机学院教授、量子科技学院学术副院长</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/岳涛.png" alt="岳涛头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/岳涛.png" alt="岳涛头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>基于大语言模型智能体系统的量子应用生成</p>
+-                    <p><strong>摘要：</strong>量子应用通常涉及量子算法设计、工作流编排、程序合成与执行优化等多个阶段，其开发过程高度依赖领域知识与工程经验。大语言模型智能体系统具备任务理解、规划决策与工具调用能力，为量子应用的自动化生成与协同构建提供了新范式。模型驱动系统工程则为量子应用的工作流、系统架构及开发过程提供了一种系统化描述与组织视角。本报告围绕量子应用工作流的编排与建模、智能体应用以及智能体技能构建三个层面，提出基于大语言模型智能体系统的量子应用生成框架，并探讨相关关键技术路径。</p>
+-                    <p><strong>简介：</strong>岳涛，北京航空航天大学教授，博士生导师。主要从事量子软件工程、模型驱动系统工程及复杂系统可信开发与验证研究，现任 IEEE TSE副主编。在TSE、TOSEM、ICSE、FSE、ASE 等国际高水平期刊和会议发表论文 170 余篇。</p>
++                    <p><strong>摘要：</strong>量子应用通常涉及量子算法设计、工作流编排、程序合成与执行优化等多个阶段，其开发过程高度依赖领域知识与工程经验。大语言模型智能体系统具备任务理解、规划决策与工具调用能力，为量子应用的自动化生成与协同构建提供了新范式。模型驱动系统工程则为量子应用的工作流、系统架构及开发过程提供了一种系统化描述与组织视角。本报告围绕量子应用工作流的编排与建模、智能体应用以及智能体技能构建三个层面，提出基于大语言模型智能体系统的量子应用生成框架，并探讨相关关键技术路径。
++                    </p>
++                    <p><strong>简介：</strong>岳涛，北京航空航天大学教授，博士生导师。主要从事量子软件工程、模型驱动系统工程及复杂系统可信开发与验证研究，现任 IEEE
++                        TSE副主编。在TSE、TOSEM、ICSE、FSE、ASE 等国际高水平期刊和会议发表论文 170 余篇。</p>
+                 </div>
+             </div>
+         </div>
+@@ -122,12 +135,17 @@
+             <h4>4. 报告人：李绿周 教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/李绿周.png" alt="李绿周头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/李绿周.png" alt="李绿周头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>量子算法：量子世界的计算之法</p>
+-                    <p><strong>摘要：</strong>量子计算的有用性有赖于量子算法。量子算法的设计具有挑战性，需要在量子视角下找到有利于量子特性发挥作用的结构信息，从而到达返璞归真，大道至简的效果。基于量子计算领域的研究现状，除了要在量子计算硬件方面做出长足努力之外，还需进一步发展量子算法基础理论，拓展量子计算能力边界。本报告首先介绍一些量子计算的背景知识，然后以量子算法为核心，介绍其发展历程、研究现状以及研究团队近年来在这方面的研究工作。</p>
+-                    <p><strong>简介：</strong>李绿周，中山大学计算机学院教授、量子计算与软件研究所所长、计算机科学系主任、CCF量子计算专委副主任委员、中国网络空间安全学会量子计算安全专委副主任委员、CCF杰出会员、CCF杰出演讲者（4次）。长期从事量子计算理论研究，在量子算法方面形成一定研究特色，在SODA、ICALP、ICML、IEEE TIT/TIFS/JSAC/TCAD、Information and Computation、NPJ Quantum Information、Physical Review A/Applied等计算机、物理、量子信息领域知名学术期刊及会议发表论文110多篇，出版学术专著、教材、译著5部。研究工作得到国家重点研发计划、国家基金、广东省杰青、广东省量子科学战略专项等项目支持。</p>
++                    <p><strong>摘要：</strong>量子计算的有用性有赖于量子算法。量子算法的设计具有挑战性，需要在量子视角下找到有利于量子特性发挥作用的结构信息，从而到达返璞归真，大道至简的效果。基于量子计算领域的研究现状，除了要在量子计算硬件方面做出长足努力之外，还需进一步发展量子算法基础理论，拓展量子计算能力边界。本报告首先介绍一些量子计算的背景知识，然后以量子算法为核心，介绍其发展历程、研究现状以及研究团队近年来在这方面的研究工作。
++                    </p>
++                    <p><strong>简介：</strong>李绿周，中山大学计算机学院教授、量子计算与软件研究所所长、计算机科学系主任、CCF量子计算专委副主任委员、中国网络空间安全学会量子计算安全专委副主任委员、CCF杰出会员、CCF杰出演讲者（4次）。长期从事量子计算理论研究，在量子算法方面形成一定研究特色，在SODA、ICALP、ICML、IEEE
++                        TIT/TIFS/JSAC/TCAD、Information and Computation、NPJ Quantum Information、Physical Review
++                        A/Applied等计算机、物理、量子信息领域知名学术期刊及会议发表论文110多篇，出版学术专著、教材、译著5部。研究工作得到国家重点研发计划、国家基金、广东省杰青、广东省量子科学战略专项等项目支持。
++                    </p>
+                 </div>
+             </div>
+         </div>
+@@ -135,12 +153,18 @@
+             <h4>5. 报告人：官极 副研究员</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/官极.png" alt="官极头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/官极.png" alt="官极头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>量子算法可靠实现的形式验证</p>
+-                    <p><strong>摘要：</strong>量子算法从理论设计走向实际应用，面临程序逻辑错误、噪声扰动和隐私泄露等可靠性挑战。本报告介绍我们围绕量子算法可靠实现构建的形式化理论、方法与工具体系，涵盖量子程序模型检测、量子机器学习鲁棒性验证与增强，以及量子差分隐私验证与最优机制设计。针对量子状态空间连续无穷、测量概率性及复杂扰动等难点，我们利用量子状态结构与测量语义，将可靠性要求转化为可自动分析的数学问题，既提供具有理论依据的验证结论，也生成可复核的诊断证据，进一步指导实现改进。在此基础上，我们自主研发了量子计算形式化验证工具VeriQ，并通过软件平台接入、真实量子硬件实验与应用支撑，形成贯通"理论—方法—工具—应用"的系统性研究，为量子算法的可靠实现提供可验证、可诊断、可优化的软件技术保障。</p>
+-                    <p><strong>简介：</strong>官极，现任中国科学院软件研究所副研究员，博士生导师，入选中国科协青年人才托举工程和中国科学院青促会，获北京市高层次留学人才回国资助。主要研究方向为量子计算与形式化方法，已发表30余篇论文在领域内国际著名会议和期刊上，包括CAV、FM、ACM CCS、IEEE TIT、IEEE TCAD、SICOMP、DAC等。同时，部分研究成果被编入国际首部量子模型检测专著《Model Checking Quantum Systems: Principles and Algorithms》（剑桥大学出版社），并受邀在国际首部量子鲁棒性专著《Quantum Robustness in Artificial Intelligence》（Springer出版社）中贡献专章。此外，常年担任多个计算机国际著名会议程序委员会委员，包括CAV、USENIX Security和IEEE ICC等，主持国家自然科学基金和国家重大科技专项"量子通信与量子计算机"子课题等多个科研项目。</p>
++                    <p><strong>摘要：</strong>量子算法从理论设计走向实际应用，面临程序逻辑错误、噪声扰动和隐私泄露等可靠性挑战。本报告介绍我们围绕量子算法可靠实现构建的形式化理论、方法与工具体系，涵盖量子程序模型检测、量子机器学习鲁棒性验证与增强，以及量子差分隐私验证与最优机制设计。针对量子状态空间连续无穷、测量概率性及复杂扰动等难点，我们利用量子状态结构与测量语义，将可靠性要求转化为可自动分析的数学问题，既提供具有理论依据的验证结论，也生成可复核的诊断证据，进一步指导实现改进。在此基础上，我们自主研发了量子计算形式化验证工具VeriQ，并通过软件平台接入、真实量子硬件实验与应用支撑，形成贯通"理论—方法—工具—应用"的系统性研究，为量子算法的可靠实现提供可验证、可诊断、可优化的软件技术保障。
++                    </p>
++                    <p><strong>简介：</strong>官极，现任中国科学院软件研究所副研究员，博士生导师，入选中国科协青年人才托举工程和中国科学院青促会，获北京市高层次留学人才回国资助。主要研究方向为量子计算与形式化方法，已发表30余篇论文在领域内国际著名会议和期刊上，包括CAV、FM、ACM
++                        CCS、IEEE TIT、IEEE TCAD、SICOMP、DAC等。同时，部分研究成果被编入国际首部量子模型检测专著《Model Checking Quantum Systems:
++                        Principles and Algorithms》（剑桥大学出版社），并受邀在国际首部量子鲁棒性专著《Quantum Robustness in Artificial
++                        Intelligence》（Springer出版社）中贡献专章。此外，常年担任多个计算机国际著名会议程序委员会委员，包括CAV、USENIX Security和IEEE
++                        ICC等，主持国家自然科学基金和国家重大科技专项"量子通信与量子计算机"子课题等多个科研项目。</p>
+                 </div>
+             </div>
+         </div>
+@@ -148,12 +172,15 @@
+             <h4>6. 报告人：王赵波 高级工程师</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/王赵波.png" alt="王赵波头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/学术论坛/王赵波.png" alt="王赵波头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>Quafu量子计算云平台介绍</p>
+-                    <p><strong>摘要：</strong>随着量子信息技术的飞速发展，量子计算正在加速从实验室走向实用化。量子计算云平台已成为连接量子计算机与终端用户之间的关键桥梁。本报告全面介绍了北京量子信息科学研究院自主研发的新一代Quafu超导量子计算云平台。该平台由云平台硬件研发团队开发，为用户提供一站式的量子计算服务。报告系统地阐述了Quafu 量子云平台的技术架构、核心功能以及具体使用方式，旨在帮助用户深入了解并高效利用该平台，降低量子计算的应用门槛，推动量子计算生态建设。</p>
+-                    <p><strong>简介：</strong>北京量子信息科学研究院新一代Quafu超导量子计算云平台自2024年4月上线以来，已面向全球二十多个国家和地区免费提供量子计算服务。目前，平台全球累计注册用户近6000人，累计执行量子计算任务超千万次。硬件方面Quafu量子云平台在线量子比特总数已达700+，平均两比特门保真度高达98.7%。自平台开放以来，已基于Quafu量子云平台发表了十几篇高水平学术论文，覆盖量子态层析、本征态求解、量子纠错、量子线路编译等多个前沿方向。Quafu云平台正以其卓越的算力与稳定的性能，深度赋能全球量子计算应用生态的发展。</p>
++                    <p><strong>摘要：</strong>随着量子信息技术的飞速发展，量子计算正在加速从实验室走向实用化。量子计算云平台已成为连接量子计算机与终端用户之间的关键桥梁。本报告全面介绍了北京量子信息科学研究院自主研发的新一代Quafu超导量子计算云平台。该平台由云平台硬件研发团队开发，为用户提供一站式的量子计算服务。报告系统地阐述了Quafu
++                        量子云平台的技术架构、核心功能以及具体使用方式，旨在帮助用户深入了解并高效利用该平台，降低量子计算的应用门槛，推动量子计算生态建设。</p>
++                    <p><strong>简介：</strong>北京量子信息科学研究院新一代Quafu超导量子计算云平台自2024年4月上线以来，已面向全球二十多个国家和地区免费提供量子计算服务。目前，平台全球累计注册用户近6000人，累计执行量子计算任务超千万次。硬件方面Quafu量子云平台在线量子比特总数已达700+，平均两比特门保真度高达98.7%。自平台开放以来，已基于Quafu量子云平台发表了十几篇高水平学术论文，覆盖量子态层析、本征态求解、量子纠错、量子线路编译等多个前沿方向。Quafu云平台正以其卓越的算力与稳定的性能，深度赋能全球量子计算应用生态的发展。
++                    </p>
+                 </div>
+             </div>
+         </div>
+@@ -165,20 +192,28 @@
+             <h4>1. 论坛组委会：谭思危 研究员</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+-                    <img src="./images/academic-forum/学术论坛/谭思危.png" alt="谭思危头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <p><strong>简介：</strong>谭思危，博士生导师，浙江大学软件学院研究员。谭思危研究员围绕量子计算开展软硬件设计、人工智能应用和体系结构研究，覆盖量子计算硬件、编译、校准和验证。谭思危近三年在顶级学术会议期刊发表文章二十余篇，以一作/通讯作者身份在MICRO、ASPLOS、HPCA等会议期刊发表CCF-A类文章等会议期刊十余篇，获得CCF体系结构优博、甬江人才等荣誉称号，主持国家重点研发课题、工信部未来产业计划、国自然青基、浙江省领雁等项目。自研量子计算机软硬件，测控软件部署于多家机构和学校的上百比特超导量子计算机。发布全栈式量子计算云平台—太元一号，集成量子编译工具链、量子操作系统等核心组件。在体系结构四大会议ASPLOS、HPCA上举行量子相关Tutorial报告，在软工顶级会议FSE、信息可视化顶级会议VIS上发表量子计算相关论文，均为领域内中国大陆首次。</p>
++                    <img src="./images/academic-forum/学术论坛/谭思危.png" alt="谭思危头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>谭思危，博士生导师，浙江大学软件学院研究员。谭思危研究员围绕量子计算开展软硬件设计、人工智能应用和体系结构研究，覆盖量子计算硬件、编译、校准和验证。谭思危近三年在顶级学术会议期刊发表文章二十余篇，以一作/通讯作者身份在MICRO、ASPLOS、HPCA等会议期刊发表CCF-A类文章等会议期刊十余篇，获得CCF体系结构优博、甬江人才等荣誉称号，主持国家重点研发课题、工信部未来产业计划、国自然青基、浙江省领雁等项目。自研量子计算机软硬件，测控软件部署于多家机构和学校的上百比特超导量子计算机。发布全栈式量子计算云平台—太元一号，集成量子编译工具链、量子操作系统等核心组件。在体系结构四大会议ASPLOS、HPCA上举行量子相关Tutorial报告，在软工顶级会议FSE、信息可视化顶级会议VIS上发表量子计算相关论文，均为领域内中国大陆首次。
++                </p>
+             </div>
+         </div>
+         <div class="committee-member">
+             <h4>2. 论坛组委会：任文慧 研究员</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+-                    <img src="./images/academic-forum/学术论坛/任文慧.png" alt="任文慧头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <p><strong>简介：</strong>任文慧，博士生导师，研究方向主要包括超导量子计算硬件设计搭建、量子模拟和量子机器学习。作为主要完成人参与多个系列的国际先进超导量子芯片研发和测试，以及超导量子平台搭建，可操控上百比特和实现高保真度。近5年主要取得以下创新性成果: 1). 利用三聚体晶格等效合成菱形阵列，实现菱形系统的基态制备，相关成果成为 Applied Physical Letters 2025封面文章；2). 实现了99%准确度的量子神经网络模型，首次演示了量子对抗学习，相关成果成为Nature Computational Science 2022 封面文章；3). 首次在超导平台上实验验证了双光子激发，实现了超导量子芯片的高效光子操作。任博士目前发表SCI文章十余篇，引用达一千三百余次，包括Nature、Science和Nature Physics等，以一作/通讯发表Nature Computational Science、Physical Review Letter 和 Applied Physical Letters等多篇文章，获选深圳市优秀创新科技人才。参与科技创新2030，主持或参与国家自然科学基金、国家重点研发计划等多项科研项目。</p>
+-            </div>
+-        </div>
+-    </section>
+-
+-</div>
++                    <img src="./images/academic-forum/学术论坛/任文慧.png" alt="任文慧头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>任文慧，博士生导师，研究方向主要包括超导量子计算硬件设计搭建、量子模拟和量子机器学习。作为主要完成人参与多个系列的国际先进超导量子芯片研发和测试，以及超导量子平台搭建，可操控上百比特和实现高保真度。近5年主要取得以下创新性成果:
++                    1). 利用三聚体晶格等效合成菱形阵列，实现菱形系统的基态制备，相关成果成为 Applied Physical Letters 2025封面文章；2).
++                    实现了99%准确度的量子神经网络模型，首次演示了量子对抗学习，相关成果成为Nature Computational Science 2022 封面文章；3).
++                    首次在超导平台上实验验证了双光子激发，实现了超导量子芯片的高效光子操作。任博士目前发表SCI文章十余篇，引用达一千三百余次，包括Nature、Science和Nature
++                    Physics等，以一作/通讯发表Nature Computational Science、Physical Review Letter 和 Applied Physical
++                    Letters等多篇文章，获选深圳市优秀创新科技人才。参与科技创新2030，主持或参与国家自然科学基金、国家重点研发计划等多项科研项目。</p>
++            </div>
++        </div>
++    </section>
++
++</div>--- before/pages/agenda/academic-forum/templates/software-analysis-security.html
++++ after/pages/agenda/academic-forum/templates/software-analysis-security.html
+@@ -150,7 +150,7 @@
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>面向工业控制系统的软件安全分析</p>
+-                    <p><strong>摘要：</strong>实时操作系统是智能嵌入式设备、车载设备等载体的核心底层软件，直接关乎各类智能系统的运行安全与稳定。该类系统内核重复读取用户态内存且无法保证数据一致时，易产生双重读取漏洞，进而引发系统异常、权限泄露等安全问题。当前主流的静态、动态检测技术存在适配性不足、误报率高、运行开销大等缺陷，无法满足实时智能系统的安全检测需求。本文提出硬件辅助的商用实时操作系统漏洞检测框架，基于CPU内核隔离与缺页异常捕获技术，可精准检测系统调用中的双重读取漏洞。经款主流实时系统测试验证，该框架运行开销更低、误报率显著优于传统检测工具，可为智能系统的软件安全防护提供高效的技术支撑。
++                    <p><strong>摘要：</strong>实时操作系统是智能嵌入式设备、车载设备等载体的核心底层软件，直接关乎各类智能系统的运行安全与稳定。该类系统内核重复读取用户态内存且无法保证数据一致时，易产生双重读取漏洞，进而引发系统异常、权限泄露等安全问题。当前主流的静态、动态检测技术存在适配性不足、误报率高、运行开销大等缺陷，无法满足实时智能系统的安全检测需求。本文提出硬件辅助的商用实时操作系统漏洞检测框架，基于CPU内核隔离与缺页异常捕获技术，可精准检测系统调用中的双重读取漏洞。经多款主流实时系统测试验证，该框架运行开销更低、误报率显著优于传统检测工具，可为智能系统的软件安全防护提供高效的技术支撑。
+                     </p>
+                     <p><strong>简介：</strong>薛磊，中山大学网络空间安全学院教授、博士生导师，国家青年人才，现任学院院长助理、广东通信学会数据安全专委副主任委员。博士毕业于香港理工大学计算学系，长期深耕智能系统软件与网络安全领域，研究方向涵盖智能操作系统安全、智能网联系统安全、智能软件安全可信等，在移动智能系统智能分析方向取得多项研究成果。近年来，累计发表网络安全领域顶级会议及期刊论文六十余篇，获四项最佳论文奖等。主持国家自然科学基金国际合作重点项目、面上项目、青年项目等4项国家级项目，同时承担华为、腾讯、字节、淘天、绿盟等多企业的合作研发项目。
+                     </p>
+--- before/pages/agenda/agenda-overview/index.html
++++ after/pages/agenda/agenda-overview/index.html
+@@ -79,7 +79,7 @@
+             </tr>
+             <tr>
+                 <td>18:30-20:30</td>
+-                <td>大会晚宴</td>
++                <td>大会晚餐</td>
+                 <td>会议中心三层多功能厅</td>
+             </tr>
+             <tr>
+@@ -146,27 +146,27 @@
+                 <tr>
+                     <td>常设论坛</td>
+                     <td>P1</td>
+-                    <td>软件女性学者</td>
++                    <td>软件女性学者论坛</td>
+                 </tr>
+                 <tr>
+                     <td>常设论坛</td>
+                     <td>P2</td>
+-                    <td>青年学者</td>
++                    <td>青年学者论坛</td>
+                 </tr>
+                 <tr>
+                     <td>常设论坛</td>
+                     <td>P3</td>
+-                    <td>顶会顶刊</td>
++                    <td>顶会顶刊论坛</td>
+                 </tr>
+                 <tr>
+                     <td>常设论坛</td>
+                     <td>P4</td>
+-                    <td>优秀博士生激励计划</td>
++                    <td>博士学位论文激励计划论坛</td>
+                 </tr>
+                 <tr>
+                     <td>学术论坛</td>
+                     <td>R1</td>
+-                    <td>Agentic AI分析与测试</td>
++                    <td>Agentic AI分析与测试论坛</td>
+                 </tr>
+                 <tr>
+                     <td>学术论坛</td>
+@@ -176,12 +176,12 @@
+                 <tr>
+                     <td>学术论坛</td>
+                     <td>R3</td>
+-                    <td>AI赋能软件系统的架构治理与维护</td>
++                    <td>AI赋能软件系统的架构治理与维护论坛</td>
+                 </tr>
+                 <tr>
+                     <td>学术论坛</td>
+                     <td>R4</td>
+-                    <td>安全代码生成与软件可信构建</td>
++                    <td>安全代码生成与软件可信构建论坛</td>
+                 </tr>
+                 <tr>
+                     <td>学术论坛</td>
+@@ -201,22 +201,22 @@
+                 <tr>
+                     <td>学术论坛</td>
+                     <td>R8</td>
+-                    <td>具身智能机器人与系统软件</td>
++                    <td>具身智能机器人与系统软件论坛</td>
+                 </tr>
+                 <tr>
+                     <td>学术论坛</td>
+                     <td>R9</td>
+-                    <td>软工为核，智信双驱：工业控制与数字公共服务的可信智能软件新范式</td>
++                    <td>软工为核，智信双驱：工业控制与数字公共服务的可信智能软件新范式论坛</td>
+                 </tr>
+                 <tr>
+                     <td>学术论坛</td>
+                     <td>R10</td>
+-                    <td>软件形式化工程方法</td>
++                    <td>软件形式化工程方法论坛</td>
+                 </tr>
+                 <tr>
+                     <td>学术论坛</td>
+                     <td>R11</td>
+-                    <td>软件前沿技术导引</td>
++                    <td>软件前沿技术导引论坛</td>
+                 </tr>
+                 <tr>
+                     <td>学术论坛</td>
+@@ -226,22 +226,22 @@
+                 <tr>
+                     <td>学术论坛</td>
+                     <td>R13</td>
+-                    <td>智能化软件开发、维护与安全</td>
++                    <td>智能化软件开发、维护与安全论坛</td>
+                 </tr>
+                 <tr>
+                     <td>学术论坛</td>
+                     <td>R14</td>
+-                    <td>智能驱动供应链安全分析</td>
++                    <td>智能驱动供应链安全分析论坛</td>
+                 </tr>
+                 <tr>
+                     <td>学术论坛</td>
+                     <td>R15</td>
+-                    <td>可信区块链</td>
++                    <td>可信区块链论坛</td>
+                 </tr>
+                 <tr>
+                     <td>学术论坛</td>
+                     <td>R16</td>
+-                    <td>智能软件与开源生态</td>
++                    <td>智能软件与开源生态论坛</td>
+                 </tr>
+                 <tr>
+                     <td>学术论坛</td>
+@@ -251,7 +251,7 @@
+                 <tr>
+                     <td>学术论坛</td>
+                     <td>R18</td>
+-                    <td>移动软件工程</td>
++                    <td>移动软件工程论坛</td>
+                 </tr>
+                 <tr>
+                     <td>学术论坛</td>
+@@ -266,17 +266,17 @@
+                 <tr>
+                     <td>学术论坛</td>
+                     <td>R21</td>
+-                    <td>攻击溯源、推理与安全分析</td>
++                    <td>攻击溯源、推理与安全分析论坛</td>
+                 </tr>
+                 <tr>
+                     <td>学术论坛</td>
+                     <td>R22</td>
+-                    <td>AI时代的操作系统安全技术</td>
++                    <td>AI时代的操作系统安全技术论坛</td>
+                 </tr>
+                 <tr>
+                     <td>学术论坛</td>
+                     <td>R23</td>
+-                    <td>量子计算软件和算法</td>
++                    <td>量子计算软件和算法论坛</td>
+                 </tr>
+                 <tr>
+                     <td>学术论坛</td>
+@@ -286,37 +286,37 @@
+                 <tr>
+                     <td>学术论坛</td>
+                     <td>R25</td>
+-                    <td>安全攸关软件的智能开发与验证</td>
++                    <td>安全攸关软件的智能开发与验证论坛</td>
+                 </tr>
+                 <tr>
+                     <td>学术论坛</td>
+                     <td>R26</td>
+-                    <td>基础软件可信保障技术</td>
++                    <td>基础软件可信保障技术论坛</td>
+                 </tr>
+                 <tr>
+                     <td>学术论坛</td>
+                     <td>R27</td>
+-                    <td>韧性软件</td>
++                    <td>韧性软件论坛</td>
+                 </tr>
+                 <tr>
+                     <td>学术论坛</td>
+                     <td>R28</td>
+-                    <td>软件分析与软件安全新技术</td>
++                    <td>软件分析与软件安全新技术论坛</td>
+                 </tr>
+                 <tr>
+                     <td>学术论坛</td>
+                     <td>R29</td>
+-                    <td>神经符号融合软件的前沿理论和方法</td>
++                    <td>神经符号融合软件的前沿理论和方法论坛</td>
+                 </tr>
+                 <tr>
+                     <td>学术论坛</td>
+                     <td>R30</td>
+-                    <td>形式化方法与大模型技术</td>
++                    <td>形式化方法与大模型技术论坛</td>
+                 </tr>
+                 <tr>
+                     <td>学术论坛</td>
+                     <td>R31</td>
+-                    <td>约束求解技术与应用</td>
++                    <td>约束求解技术与应用论坛</td>
+                 </tr>
+                 <tr>
+                     <td>学术论坛</td>
+@@ -326,7 +326,7 @@
+                 <tr>
+                     <td>学术论坛</td>
+                     <td>R33</td>
+-                    <td>超智融合时代的软件栈重构与生态共建</td>
++                    <td>超智融合时代的软件栈重构与生态共建论坛</td>
+                 </tr>
+                 <tr>
+                     <td>学术论坛</td>
+@@ -341,76 +341,71 @@
+                 <tr>
+                     <td>专刊论坛</td>
+                     <td>S1</td>
+-                    <td>大模型驱动的智能软件系统开发运维</td>
++                    <td>大模型驱动的智能软件系统开发运维论坛</td>
+                 </tr>
+                 <tr>
+                     <td>专刊论坛</td>
+                     <td>S2</td>
+-                    <td>智能化需求工程</td>
++                    <td>智能化需求工程论坛</td>
+                 </tr>
+                 <tr>
+                     <td>专刊论坛</td>
+                     <td>S3</td>
+-                    <td>数据驱动的软件缺陷检测、定位与修复</td>
++                    <td>数据驱动的软件缺陷检测、定位与修复论坛</td>
+                 </tr>
+                 <tr>
+                     <td>专刊论坛</td>
+                     <td>S4</td>
+-                    <td>智能化工业软件工程：大模型驱动的开发、保障与治理</td>
++                    <td>智能化工业软件工程：大模型驱动的开发、保障与治理论坛</td>
+                 </tr>
+                 <tr>
+                     <td>专刊论坛</td>
+                     <td>S5</td>
+-                    <td>智能体高效运行的关键技术</td>
++                    <td>智能体高效运行的关键技术论坛</td>
+                 </tr>
+                 <tr>
+                     <td>专刊论坛</td>
+                     <td>S6</td>
+-                    <td>人工智能操作系统（AIOS）与软件安全</td>
++                    <td>人工智能操作系统（AIOS）与软件安全论坛</td>
+                 </tr>
+                 <tr>
+                     <td>专刊论坛</td>
+                     <td>S7</td>
+-                    <td>形式化方法与应用</td>
++                    <td>形式化方法与应用论坛</td>
+                 </tr>
+                 <tr>
+                     <td>专刊论坛</td>
+                     <td>S8</td>
+-                    <td>智能化软硬件供应链安全分析技术</td>
++                    <td>智能化软硬件供应链安全分析技术论坛</td>
+                 </tr>
+                 <tr>
+                     <td>教育论坛</td>
+                     <td>E1</td>
+-                    <td>软件基础教育</td>
++                    <td>智能浪潮下的软件工程教育教学改革论坛</td>
+                 </tr>
+                 <tr>
+                     <td>教育论坛</td>
+                     <td>E2</td>
+-                    <td>智能浪潮下的软件工程教育教学改革论坛</td>
++                    <td>系统软件教育论坛</td>
+                 </tr>
+                 <tr>
+                     <td>教育论坛</td>
+                     <td>E3</td>
+-                    <td>系统软件教育论坛</td>
++                    <td>形式化方法教育论坛</td>
+                 </tr>
+                 <tr>
+                     <td>教育论坛</td>
+                     <td>E4</td>
+-                    <td>形式化方法教育论坛</td>
++                    <td>特软学院论坛</td>
+                 </tr>
+                 <tr>
+                     <td>教育论坛</td>
+                     <td>E5</td>
+-                    <td>特软学院论坛</td>
++                    <td>软件研究成果原型系统案例论坛</td>
+                 </tr>
+                 <tr>
+                     <td>教育论坛</td>
+                     <td>E6</td>
+-                    <td>软件研究成果原型系统案例论坛</td>
+-                </tr>
+-                <tr>
+-                    <td>教育论坛</td>
+-                    <td>E7</td>
+                     <td>智能化时代软件人才培养特别大会论坛</td>
+                 </tr>
+                 <tr>
+@@ -426,41 +421,33 @@
+                 <tr>
+                     <td>工业论坛</td>
+                     <td>I3</td>
+-                    <td>智能时代编译技术研究与应用</td>
++                    <td>智能时代编译技术研究与应用论坛</td>
+                 </tr>
+                 <tr>
+                     <td>工业论坛</td>
+                     <td>I4</td>
+-                    <td>大语言模型赋能软件研发：研发效能新范式</td>
++                    <td>大语言模型赋能软件研发：研发效能新范式论坛</td>
+                 </tr>
+                 <tr>
+                     <td>工业论坛</td>
+                     <td>I5</td>
+-                    <td>RISC-V系统软件及软硬协同前沿展望</td>
++                    <td>RISC-V系统软件及软硬协同前沿展望论坛</td>
+                 </tr>
+                 <tr>
+                     <td>工业论坛</td>
+                     <td>I6</td>
+                     <td>智能化高可信嵌入式软件工程论坛</td>
+                 </tr>
+-                   <tr>
++                <tr>
+                     <td>工业论坛</td>
+                     <td>I7</td>
+                     <td>软件研发体系与工程实践论坛</td>
+                 </tr>
+-                   <tr>
++                <tr>
+                     <td>工业论坛</td>
+                     <td>I8</td>
+                     <td>智能系统底座与应用实践论坛</td>
+                 </tr>
+-
+-
+-
+-
+-
+-
+-
+-
+                 <tr>
+                     <td>竞赛论坛</td>
+                     <td>C1</td>
+@@ -494,17 +481,32 @@
+                 <tr>
+                     <td>闭门会议</td>
+                     <td>M2</td>
+-                    <td>闭门会议：胡杨林项目验收会</td>
++                    <td>闭门会议</td>
+                 </tr>
+                 <tr>
+                     <td>闭门会议</td>
+                     <td>M3</td>
++                    <td>闭门会议</td>
++                </tr>
++                <tr>
++                    <td>闭门会议</td>
++                    <td>M4</td>
++                    <td>闭门会议</td>
++                </tr>
++                <tr>
++                    <td>闭门会议</td>
++                    <td>M5</td>
++                    <td>闭门会议（原软件基础教育论坛）</td>
++                </tr>
++                <tr>
++                    <td>闭门会议</td>
++                    <td>M6</td>
+                     <td>闭门会议</td>
+                 </tr>
+                 <tr>
+                     <td>专委会议</td>
+                     <td>T1</td>
+-                    <td>名词委会议</td>
++                    <td>CCF-华为胡杨林基金系统软件专项2025年项目结题验收会议</td>
+                 </tr>
+                 <tr>
+                     <td>专委年会</td>
+@@ -521,8 +523,6 @@
+                     <td>A3</td>
+                     <td>CCF形式化方法专委年会</td>
+                 </tr>
+-
+-
+             </tbody>
+         </table>
+     </div>
+--- before/pages/agenda/education-forum/index.html
++++ after/pages/agenda/education-forum/index.html
+@@ -24,18 +24,14 @@
+     <!-- 左侧导航栏 -->
+     <div class="sidebar">
+         <ul>
+-            <!-- <li><a href="#agenda/education-forum/basic-education" class="sidebar-item active"
+-                    onclick="loadAgenda('education-forum', 'basic-education')">软件基础教育</a></li> -->
++
+             <li><a href="#agenda/education-forum/software-engineering" class="sidebar-item"
+                     onclick="loadAgenda('education-forum', 'software-engineering')">软件工程教育论坛</a>
+             </li>
+-            <!-- <li><a href="#agenda/education-forum/system-software" class="sidebar-item"
+-                    onclick="loadAgenda('education-forum', 'system-software')">系统软件教育</a></li> -->
++
+             <li><a href="#agenda/education-forum/formal-methods" class="sidebar-item"
+                     onclick="loadAgenda('education-forum', 'formal-methods')">形式化方法教育论坛</a></li>
+-            <!-- <li><a href="#agenda/education-forum/special-software-college" class="sidebar-item"
+-                    onclick="loadAgenda('education-forum', 'special-software-college')">特软学院论坛：<br>数智时代特色化软件人才培养</a>
+-            </li> -->
++
+         </ul>
+     </div>
+ 
+--- before/pages/agenda/education-forum/templates/formal-methods.html
++++ after/pages/agenda/education-forum/templates/formal-methods.html
+@@ -9,7 +9,7 @@
+ <div class="container">
+ 
+     <h2 class="section-title">形式化方法教育论坛</h2>
+-    <div class="section-title-en">教育论坛 E4</div>
++    <div class="section-title-en">教育论坛 E3</div>
+ 
+     <section class="forum-section">
+         <h3>一、论坛背景</h3>
+--- before/pages/agenda/education-forum/templates/software-engineering.html
++++ after/pages/agenda/education-forum/templates/software-engineering.html
+@@ -9,7 +9,7 @@
+ <div class="container">
+ 
+     <h2 class="section-title">智能浪潮下的软件工程教育教学改革论坛</h2>
+-    <div class="section-title-en">教育论坛 E2</div>
++    <div class="section-title-en">教育论坛 E1</div>
+ 
+     <section class="forum-section">
+         <h3>一、论坛介绍</h3>
+--- before/pages/agenda/industry-forum/index.html
++++ after/pages/agenda/industry-forum/index.html
+@@ -1,8 +1,8 @@
+ <!--
+  * @Author: HuTong 470048408@qq.com
+  * @Date: 2026-09-01 12:19:10
+- * @LastEditors: HuTong 470048408@qq.com
+- * @LastEditTime: 2026-10-09 14:49:57
++ * @LastEditors: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
++ * @LastEditTime: 2026-10-20 10:54:52
+  * @FilePath: \v2\2026\pages\agenda\industry-forum\index.html
+  * @Description: 
+  * 
+@@ -28,44 +28,17 @@
+                         </li>
+                         <li><a href="#agenda/industry-forum/key-software-ai" class="sidebar-item active"
+                                         onclick="loadAgenda('industry-forum', 'key-software-ai')">关键行业软件与AI融合发展</a></li>
++                        <li><a href="#agenda/industry-forum/compiler-tech-ai" class="sidebar-item"
++                                        onclick="loadAgenda('industry-forum', 'compiler-tech-ai')">智能时代编译技术研究与应用</a>
++                        </li>
+                         <li><a href="#agenda/industry-forum/llm-dev-paradigm" class="sidebar-item"
+                                         onclick="loadAgenda('industry-forum', 'llm-dev-paradigm')">大语言模型赋能软件研发：研发效能新范式</a>
+                         </li>
+                         <li><a href="#agenda/industry-forum/trusted-embedded" class="sidebar-item"
+                                         onclick="loadAgenda('industry-forum', 'trusted-embedded')">智能化高可信嵌入式软件工程论坛</a>
+                         </li>
+-                        <li><a href="#agenda/industry-forum/compiler-tech-ai" class="sidebar-item"
+-                                        onclick="loadAgenda('industry-forum', 'compiler-tech-ai')">智能时代编译技术研究与应用</a>
+-                        </li>
+-                        <!-- <li><a href="#agenda/industry-forum/ide" class="sidebar-item"
+-                                        onclick="loadAgenda('industry-forum', 'ide')">智能化IDE研究与实践</a></li>
+-                        <li><a href="#agenda/industry-forum/riscv" class="sidebar-item"
+-                                        onclick="loadAgenda('industry-forum', 'riscv')">RISC-V系统软件及软硬协同前沿进展</a></li>
+-                        <li><a href="#agenda/industry-forum/llm-software-dev" class="sidebar-item"
+-                                        onclick="loadAgenda('industry-forum', 'llm-software-dev')">大语言模型赋能软件研发的效能度量和改进</a>
+-                        </li>
+-                        <li><a href="#agenda/industry-forum/cloud-native" class="sidebar-item"
+-                                        onclick="loadAgenda('industry-forum', 'cloud-native')">大模型时代面向云原生软件生态的系统工程</a>
+-                        </li>
+-                        <li><a href="#agenda/industry-forum/vehicle-software" class="sidebar-item"
+-                                        onclick="loadAgenda('industry-forum', 'vehicle-software')">车载软件智能研发：从代码生成到安全保障</a>
+-                        </li>
+-                        <li><a href="#agenda/industry-forum/embedded-software" class="sidebar-item"
+-                                        onclick="loadAgenda('industry-forum', 'embedded-software')">智能嵌入式系统基础软件</a></li>
+-                        <li><a href="#agenda/industry-forum/smart-terminal" class="sidebar-item"
+-                                        onclick="loadAgenda('industry-forum', 'smart-terminal')">智能终端的基础软件技术论坛：从编程语言到端侧AI</a>
+-                        </li>
+-                        <li><a href="#agenda/industry-forum/os-security" class="sidebar-item"
+-                                        onclick="loadAgenda('industry-forum', 'os-security')">操作系统安全技术</a></li>
+-                        <li><a href="#agenda/industry-forum/heterogeneous-os" class="sidebar-item"
+-                                        onclick="loadAgenda('industry-forum', 'heterogeneous-os')">AI 时代的异构融合操作系统</a>
+-                        </li>
+-                        <li><a href="#agenda/industry-forum/trusted-embedded" class="sidebar-item"
+-                                        onclick="loadAgenda('industry-forum', 'trusted-embedded')">智能化高可信嵌入式软件工程技术</a>
+-                        </li>
+-                        <li><a href="#agenda/industry-forum/domestic-os-future" class="sidebar-item"
+-                                        onclick="loadAgenda('industry-forum', 'domestic-os-future')">国产操作系统的未来发展路径</a>
+-                        </li> -->
++
++
+                 </ul>
+         </div>
+ 
+--- before/pages/agenda/industry-forum/templates/key-software-ai.html
++++ after/pages/agenda/industry-forum/templates/key-software-ai.html
+@@ -5,7 +5,7 @@
+ 
+     <section class="forum-section">
+         <h3>一、论坛介绍</h3>
+-        <p>关键行业软件是国家信息化体系与数字经济发展的核心支撑，深度服务于制造、能源、交通、通信、金融、医疗等关键领域，肩负着保障行业运行安全、提升系统智能水平、守护国家核心基础设施自主可控的重要使命。随着人工智能、大数据、云计算等新一代信息技术的爆发式发展，关键行业软件正经历从"功能集成"到"智能融合"的深刻变革。通过AI技术赋予软件知识驱动、数据自学习与智能决策能力，将推动行业从"信息化管理"向"智能化运营"跨越，也为我国构建自主可控、安全高效的关键软件生态筑牢根基。
++        <p>关键行业软件是国家信息化体系与数字经济发展的核心支撑，深度服务于制造、能源、交通、通信、金融、医疗等关键领域，肩负着保障行业运行安全、提升系统智能水平、保障国家核心基础设施自主可控的重要使命。随着人工智能、大数据、云计算等新一代信息技术的爆发式发展，关键行业软件正经历从"功能集成"到"智能融合"的深刻变革。通过AI技术赋予软件知识驱动、数据自学习与智能决策能力，将推动行业从"信息化管理"向"智能化运营"跨越，也为我国构建自主可控、安全高效的关键软件生态筑牢根基。
+         </p>
+         <p>作为第三届"关键行业软件与AI融合发展论坛"，本届论坛延续前两届"产学研深度联动、技术与场景双向赋能"的核心定位，进一步聚焦AI技术在关键行业软件中的前沿落地与创新实践。论坛汇聚来自科研机构、高校及工业界的顶尖专家，围绕嵌入式设备软件的AI辅助测试审计、机载高安全领域的智能软件工程、工业知识驱动的制造价值落地、石油装备材料失效的智能预测、嵌入式软件智能化开发、软件与AI融合的产数实践、城市级低空GNSS智能监测等细分方向展开深度研讨，既剖析核心技术瓶颈与产业生态挑战，也分享可复制的落地经验与创新模式。通过思想的碰撞与经验的沉淀，推动AI技术与关键行业软件的深度融合和场景化落地。
+         </p>
+--- before/pages/agenda/regular-forum/index.html
++++ after/pages/agenda/regular-forum/index.html
+@@ -2,7 +2,7 @@
+  * @Author: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
+  * @Date: 2026-09-01 12:19:11
+  * @LastEditors: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
+- * @LastEditTime: 2026-10-19 11:10:56
++ * @LastEditTime: 2026-10-20 10:56:37
+  * @FilePath: \v2\2026\pages\agenda\regular-forum\index.html
+  * @Description: 
+  * 
+@@ -26,11 +26,11 @@
+             <li><a href="#agenda/regular-forum/women-scholars" class="sidebar-item active"
+                     onclick="loadAgenda('regular-forum', 'women-scholars')">软件女性学者</a></li>
+             <li><a href="#agenda/regular-forum/young-scholars" class="sidebar-item"
+-                    onclick="loadAgenda('regular-forum', 'young-scholars')">优秀青年学者</a></li>
++                    onclick="loadAgenda('regular-forum', 'young-scholars')">青年学者</a></li>
+             <li><a href="#agenda/regular-forum/top-venues" class="sidebar-item"
+                     onclick="loadAgenda('regular-forum', 'top-venues')">顶会顶刊</a></li>
+             <li><a href="#agenda/regular-forum/phd-award" class="sidebar-item"
+-                    onclick="loadAgenda('regular-forum', 'phd-award')">优秀博士生激励计划论坛</a></li>
++                    onclick="loadAgenda('regular-forum', 'phd-award')">博士学位论文激励计划</a></li>
+         </ul>
+     </div>
+ 
+--- before/pages/agenda/regular-forum/templates/phd-award.html
++++ after/pages/agenda/regular-forum/templates/phd-award.html
+@@ -1,11 +1,12 @@
+ <div class="container">
+ 
+-    <h2 class="section-title">优秀博士生激励计划论坛</h2>
++    <h2 class="section-title">博士学位论文激励计划论坛</h2>
+     <div class="section-title-en">常设论坛 P4</div>
+ 
+     <section class="forum-section">
+         <h3>一、论坛介绍</h3>
+-        <p>本论坛为ChinaSoft常设论坛，旨在推动中国计算机领域的科技进步，鼓励创新性研究，激励计算机领域的博士研究生潜心钻研、务实创新，解决计算机领域中需要解决的理论和实际问题，表彰做出优秀成果的年轻学者而设立。论坛面向软件工程、系统软件、形式化方法等领域的优秀博士生，旨在为青年科研人员提供高水平、多方向的学术交流平台，集中展示相关创新研究成果，促进不同研究方向之间的交流与交叉融合。论坛主要通过优秀博士生或青年学者学术报告、专家点评及互动交流等形式开展，已成为ChinaSoft面向优秀青年科研人才的重要交流平台。</p>
++        <p>本论坛为ChinaSoft常设论坛，旨在推动中国计算机领域的科技进步，鼓励创新性研究，激励计算机领域的博士研究生潜心钻研、务实创新，解决计算机领域中需要解决的理论和实际问题，表彰做出优秀成果的年轻学者而设立。论坛面向软件工程、系统软件、形式化方法等领域的优秀博士生，旨在为青年科研人员提供高水平、多方向的学术交流平台，集中展示相关创新研究成果，促进不同研究方向之间的交流与交叉融合。论坛主要通过优秀博士生或青年学者学术报告、专家点评及互动交流等形式开展，已成为ChinaSoft面向优秀青年科研人才的重要交流平台。
++        </p>
+     </section>
+ 
+     <section class="forum-section">
+@@ -97,12 +98,17 @@
+             <h4>1. 报告人：崔炜皞 博士后研究员</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/常设论坛/崔炜皞.png" alt="崔炜皞头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/常设论坛/崔炜皞.png" alt="崔炜皞头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>Xtrace：基于二进制指令拼接的高保真 GPU 核内追踪</p>
+-                    <p><strong>摘要：</strong>随着 GPU 内核日益复杂，传统核内追踪方法容易因探针插入干扰编译优化和运行时调度，导致追踪结果失真。Xtrace 提出二进制级指令拼接技术，在编译后直接插入探针，并结合寄存器活跃性分析与冒险感知调度降低运行扰动。Xtrace 支持 NVIDIA 和 AMD 共 19 种 GPU 架构，可保持 94–98% 的原始指令，并以较低开销实现高保真追踪，为 GPU 性能分析和智能体驱动的自动优化提供基础。</p>
+-                    <p><strong>简介：</strong>崔炜皞，新加坡国立大学与上海交通大学联合培养博士后研究员，2023 年获上海交通大学计算机科学与工程博士学位。主要从事机器学习系统研究，聚焦大模型训练与推理基础设施、GPU 性能优化及智能体驱动的系统优化。已在 OSDI、ASPLOS、NSDI、HPCA、SC 等国际会议发表多篇论文，入选 2025 年度 CCF 博士学位论文激励计划。</p>
++                    <p><strong>摘要：</strong>随着 GPU 内核日益复杂，传统核内追踪方法容易因探针插入干扰编译优化和运行时调度，导致追踪结果失真。Xtrace
++                        提出二进制级指令拼接技术，在编译后直接插入探针，并结合寄存器活跃性分析与冒险感知调度降低运行扰动。Xtrace 支持 NVIDIA 和 AMD 共 19 种 GPU 架构，可保持 94–98%
++                        的原始指令，并以较低开销实现高保真追踪，为 GPU 性能分析和智能体驱动的自动优化提供基础。</p>
++                    <p><strong>简介：</strong>崔炜皞，新加坡国立大学与上海交通大学联合培养博士后研究员，2023
++                        年获上海交通大学计算机科学与工程博士学位。主要从事机器学习系统研究，聚焦大模型训练与推理基础设施、GPU 性能优化及智能体驱动的系统优化。已在 OSDI、ASPLOS、NSDI、HPCA、SC
++                        等国际会议发表多篇论文，入选 2025 年度 CCF 博士学位论文激励计划。</p>
+                 </div>
+             </div>
+         </div>
+@@ -110,12 +116,20 @@
+             <h4>2. 报告人：柳清源 技术专家</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/常设论坛/柳清源.png" alt="柳清源头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/常设论坛/柳清源.png" alt="柳清源头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>AI 云基础设施的成本效益优化与工业实践</p>
+-                    <p><strong>摘要：</strong>在 AI 时代，随着云计算的持续演进，云服务暴露给用户的抽象层次不断提升，运维复杂性也从用户侧逐渐向云服务提供商一侧转移。AI 云基础设施需要承担编排调度、资源规划等职责，并且需要面向具体场景满足相应的服务质量要求。在高度动态的云场景下，云基础设施如何在履行这些职责的同时，提升云任务运行的成本效益，是云服务提供商最关注的问题之一。本次报告主要讲述如何通过一系列创新成果，对大模型推理等典型云计算范式的多个维度的成本效益进行优化提升。同时，报告结合阿里云百炼的技术创新，介绍生产级云（推理）基础设施效率优化的工业实践。</p>
+-                    <p><strong>简介：</strong>柳清源，阿里巴巴百炼云平台技术专家，博士期间聚焦云计算基础设施系统软件的全栈效能优化，旨在为通用计算任务与大模型推理任务提供高性能、低成本且易开发的底层支撑，在ATC, FAST, ISCA等操作系统、体系结构与云计算领域的顶会顶刊发表一作论文共 7 篇。其中，一系列工作已产生学术和工业影响力，包括：由其作为主要作者构建的相关基准ServerlessBench已获351次引用，为该领域最受关注的基准项目之一；其综合分析工业界与学术界 Serverless 研究的相关成果，成为SoCC首篇来自中国大陆的Vision Track论文；CHIME [ISCA'26] 的早期版本一周内获alphaXiv 358次点赞并进入趋势榜前五；SysSpec [FAST'26, TOS] 同获USENIX FAST Erik Riedel最佳论文奖和杰出技术成果奖，成为FAST自创办以来首个同获两奖的工作。</p>
++                    <p><strong>摘要：</strong>在 AI 时代，随着云计算的持续演进，云服务暴露给用户的抽象层次不断提升，运维复杂性也从用户侧逐渐向云服务提供商一侧转移。AI
++                        云基础设施需要承担编排调度、资源规划等职责，并且需要面向具体场景满足相应的服务质量要求。在高度动态的云场景下，云基础设施如何在履行这些职责的同时，提升云任务运行的成本效益，是云服务提供商最关注的问题之一。本次报告主要讲述如何通过一系列创新成果，对大模型推理等典型云计算范式的多个维度的成本效益进行优化提升。同时，报告结合阿里云百炼的技术创新，介绍生产级云（推理）基础设施效率优化的工业实践。
++                    </p>
++                    <p><strong>简介：</strong>柳清源，阿里巴巴百炼云平台技术专家，博士期间聚焦云计算基础设施系统软件的全栈效能优化，旨在为通用计算任务与大模型推理任务提供高性能、低成本且易开发的底层支撑，在ATC,
++                        FAST, ISCA等操作系统、体系结构与云计算领域的顶会顶刊发表一作论文共 7
++                        篇。其中，一系列工作已产生学术和工业影响力，包括：由其作为主要作者构建的相关基准ServerlessBench已获351次引用，为该领域最受关注的基准项目之一；其综合分析工业界与学术界
++                        Serverless 研究的相关成果，成为SoCC首篇来自中国大陆的Vision Track论文；CHIME [ISCA'26] 的早期版本一周内获alphaXiv
++                        358次点赞并进入趋势榜前五；SysSpec [FAST'26, TOS] 同获USENIX FAST Erik
++                        Riedel最佳论文奖和杰出技术成果奖，成为FAST自创办以来首个同获两奖的工作。</p>
+                 </div>
+             </div>
+         </div>
+@@ -123,12 +137,19 @@
+             <h4>3. 报告人：李佳 清华大学人工智能学院 助理教授/特聘研究员</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/常设论坛/李佳.png" alt="李佳头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/常设论坛/李佳.png" alt="李佳头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>迈向可信Coding Agent：挑战与实践</p>
+-                    <p><strong>摘要：</strong>基于大模型的Coding Agent显著提升了编码效率，将以往数月的开发工作压缩至数小时完成。然而，当编码效率成倍提升后，一个更加关键的问题随之出现：Coding Agent生成的代码值得信任吗？面对海量AI生成的代码，我们又该如何高效验证其可信性？本次报告将围绕以上问题展开。首先梳理当前Coding Agent面向的可信性挑战，例如Agent被挟制生成破坏生产系统的代码；并进一步提出Evidence Coding，讨论如何提升Coding Agent的可信性。</p>
+-                    <p><strong>简介：</strong>李佳，清华大学人工智能学院助理教授、特聘研究员，中国计算机学会（CCF）软件工程专业委员会委员。2025年获北京大学博士学位，师从金芝教授和李戈教授。主要从事人工智能与软件工程交叉研究，包括代码大模型与代码智能体。近五年在NeurIPS、ACL、ICSE、ASE等CCF A类会议及期刊发表论文30余篇，其中多篇入选口头报告（Oral）和Featured Article，论文累计被引用3100余次。相关研究（如aiXcoder-7B、DevEval、EvoCodeBench、结构化思维链）受到麻省理工学院、斯坦福大学等机构研究者的关注与讨论，并获中国科技网、《中国日报》等媒体报道。主持国家自然科学基金青年科学基金项目（C类）、北京市自然科学基金等科研项目，部分研究成果已实现应用转化，服务全球数百万开发者。曾获CCF软件工程专委优秀博士学位论文奖等荣誉。</p>
++                    <p><strong>摘要：</strong>基于大模型的Coding
++                        Agent正在显著提升软件开发效率，推动开发方式从辅助编码向自主完成复杂任务演进。然而，随着开发效率成倍提升，面对海量AI生成的代码，一个关键问题日益凸显：Coding
++                        Agent值得信任吗？本次报告将从执行过程与交付结果两个层面，剖析当前Coding
++                        Agent面临的可信性挑战，例如：执行过程中被恶意劫持、生成包含安全漏洞的代码、故意欺骗用户等等；并进一步讨论如何提升Coding Agent可信性的方法。</p>
++                    <p><strong>简介：</strong>李佳，清华大学人工智能学院助理教授、特聘研究员，中国计算机学会（CCF）软件工程专业委员会委员。2025年获北京大学博士学位，师从金芝教授和李戈教授。主要从事人工智能与软件工程交叉研究，包括代码大模型与代码智能体。近五年在NeurIPS、ACL、ICSE、ASE等CCF
++                        A类会议及期刊发表论文30余篇，其中多篇入选口头报告（Oral）和Featured
++                        Article，论文累计被引用3100余次。相关研究（如aiXcoder-7B、DevEval、EvoCodeBench、结构化思维链）受到麻省理工学院、斯坦福大学等机构研究者的关注与讨论，并获中国科技网、《中国日报》等媒体报道。主持国家自然科学基金青年科学基金项目（C类）、北京市自然科学基金等科研项目，部分研究成果已实现应用转化，服务全球数百万开发者。曾获CCF软件工程专委优秀博士学位论文奖等荣誉。
++                    </p>
+                 </div>
+             </div>
+         </div>
+@@ -136,12 +157,16 @@
+             <h4>4. 报告人：孙茂林 南京大学计算机学院博士研究生</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/常设论坛/孙茂林.png" alt="孙茂林头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/常设论坛/孙茂林.png" alt="孙茂林头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>约束求解器测试的探索与实践</p>
+-                    <p><strong>摘要：</strong>约束求解器是程序分析、软件验证与自动推理的重要基础设施，其正确性直接影响上层应用的可靠性。然而，求解器支持的逻辑理论多样、内部优化复杂，如何生成能够触发深层缺陷的测试输入，以及如何有效判定求解结果的正确性，仍是求解器测试面临的关键挑战。本报告将介绍我们在约束求解器测试方面的系列研究，重点讨论大语言模型辅助的测试输入生成、基于等价饱和的重写规则测试，以及面向优化求解器的跨理论近似验证。结合真实求解器中的缺陷案例，分享不同测试方法的设计思路与实践经验，并讨论相关方法向其他基础软件测试场景拓展的研究机会。</p>
+-                    <p><strong>简介：</strong>孙茂林，南京大学计算机学院博士研究生，师从杨已彪研究员和周毓明教授，隶属徐宝文教授团队。主要研究方向为软件分析与测试，重点关注约束求解器与编译工具链的缺陷检测，以及大语言模型辅助的软件质量保障。已在ASPLOS、OOPSLA、ICSE、FSE、ISSTA、TOSEM、TSE等CCF-A类会议和期刊发表论文20余篇，其中以第一作者身份发表8篇，并曾获ACM SIGSOFT Distinguished Paper Award（ISSTA 2026）。在GCC、LLVM、Z3等开源基础软件中累计报告缺陷600余个。主持国家自然科学基金青年学生基础研究项目，入选中国科协青年科技人才培育工程博士生专项计划。</p>
++                    <p><strong>摘要：</strong>约束求解器是程序分析、软件验证与自动推理的重要基础设施，其正确性直接影响上层应用的可靠性。然而，求解器支持的逻辑理论多样、内部优化复杂，如何生成能够触发深层缺陷的测试输入，以及如何有效判定求解结果的正确性，仍是求解器测试面临的关键挑战。本报告将介绍我们在约束求解器测试方面的系列研究，重点讨论大语言模型辅助的测试输入生成、基于等价饱和的重写规则测试，以及面向优化求解器的跨理论近似验证。结合真实求解器中的缺陷案例，分享不同测试方法的设计思路与实践经验，并讨论相关方法向其他基础软件测试场景拓展的研究机会。
++                    </p>
++                    <p><strong>简介：</strong>孙茂林，南京大学计算机学院博士研究生，师从杨已彪研究员和周毓明教授，隶属徐宝文教授团队。主要研究方向为软件分析与测试，重点关注约束求解器与编译工具链的缺陷检测，以及大语言模型辅助的软件质量保障。已在ASPLOS、OOPSLA、ICSE、FSE、ISSTA、TOSEM、TSE等CCF-A类会议和期刊发表论文20余篇，其中以第一作者身份发表8篇，并曾获ACM
++                        SIGSOFT Distinguished Paper Award（ISSTA
++                        2026）。在GCC、LLVM、Z3等开源基础软件中累计报告缺陷600余个。主持国家自然科学基金青年学生基础研究项目，入选中国科协青年科技人才培育工程博士生专项计划。</p>
+                 </div>
+             </div>
+         </div>
+@@ -149,12 +174,19 @@
+             <h4>5. 报告人：李博涵 助理研究员</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/常设论坛/李博涵.png" alt="李博涵头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/常设论坛/李博涵.png" alt="李博涵头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>SMT的局部搜索技术与应用</p>
+-                    <p><strong>摘要：</strong>可满足模理论 (SMT) 已广泛应用于软件分析、验证和测试。本次报告聚焦于算术理论上的 SMT 问题，目前该领域的主流求解范式是 DPLL(T) 框架。然而，DPLL(T) 高度依赖 SAT 求解器与理论求解器之间的交互，在处理复杂理论时往往会出现显著的性能退化。尽管局部搜索 (Local Search) 作为一种不完备算法在 SAT 领域取得了巨大成功，但由于固有的技术挑战，将其扩展到算术理论 SMT 领域仍有待深入探索。因此，如何将局部搜索技术有效地集成到算术理论 SMT 中，并实现与主流方法相媲美的性能，具有极高的研究价值。本报告将深入探讨SMT的局部搜索算法及其实际应用。</p>
+-                    <p><strong>简介：</strong>李博涵，中国科学院工业人工智能研究所助理研究员。于2025年在中国科学院软件研究所获得博士学位。其研究方向主要集中在满足模理论 (SMT) 的求解算法及其应用，已在 CAV、FM、ICSE、ToCL、CP等国际顶级学术会议及期刊上发表论文十余篇，并多次在国际SMT竞赛中斩获冠军，其中包括国内首次在该赛事夺冠。主持国家自然科学基金(C类)、CCF-华为胡杨林基金、江苏省重点实验室面上等多项科研项目。其曾荣获中国科学院院长奖，并入选CCF形式化方法专委会"博士学位论文激励计划"。</p>
++                    <p><strong>摘要：</strong>可满足模理论 (SMT) 已广泛应用于软件分析、验证和测试。本次报告聚焦于算术理论上的 SMT 问题，目前该领域的主流求解范式是 DPLL(T)
++                        框架。然而，DPLL(T) 高度依赖 SAT 求解器与理论求解器之间的交互，在处理复杂理论时往往会出现显著的性能退化。尽管局部搜索 (Local Search) 作为一种不完备算法在 SAT
++                        领域取得了巨大成功，但由于固有的技术挑战，将其扩展到算术理论 SMT 领域仍有待深入探索。因此，如何将局部搜索技术有效地集成到算术理论 SMT
++                        中，并实现与主流方法相媲美的性能，具有极高的研究价值。本报告将深入探讨SMT的局部搜索算法及其实际应用。</p>
++                    <p><strong>简介：</strong>李博涵，中国科学院工业人工智能研究所助理研究员。于2025年在中国科学院软件研究所获得博士学位。其研究方向主要集中在满足模理论 (SMT)
++                        的求解算法及其应用，已在
++                        CAV、FM、ICSE、ToCL、CP等国际顶级学术会议及期刊上发表论文十余篇，并多次在国际SMT竞赛中斩获冠军，其中包括国内首次在该赛事夺冠。主持国家自然科学基金(C类)、CCF-华为胡杨林基金、江苏省重点实验室面上等多项科研项目。其曾荣获中国科学院院长奖，并入选CCF形式化方法专委会"博士学位论文激励计划"。
++                    </p>
+                 </div>
+             </div>
+         </div>
+@@ -162,12 +194,17 @@
+             <h4>6. 报告人：赵韩蕊 博士后</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+-                    <img src="./images/academic-forum/常设论坛/赵韩蕊.png" alt="赵韩蕊头像" onerror="this.src='./images/academic-forum/default.png'">
++                    <img src="./images/academic-forum/常设论坛/赵韩蕊.png" alt="赵韩蕊头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+                 <div class="speaker-content">
+                     <p><strong>题目：</strong>AI赋能的安全证书综合与形式化验证方法</p>
+-                    <p><strong>摘要：</strong>随着人工智能技术逐步应用于自动驾驶、机器人等安全攸关领域，如何为具有复杂非线性动力学和神经网络控制策略的智能系统提供严格、可证明的安全保障，已成为可信人工智能与形式化方法交叉领域的重要研究问题。安全证书通过将系统性质转化为一组可验证的数学条件，为无限时间范围内的形式化验证提供了重要途径。然而，传统证书综合方法高度依赖预设模板与数值优化，在复杂、高维和强非线性系统中存在一定局限性。本报告围绕人工智能与形式化方法的深度融合，探索人工智能在表示、学习与搜索方面的能力，提升安全证书综合及复杂系统验证的自动化程度与可扩展性，同时借助形式化方法为智能系统的学习、决策与控制提供可证明的安全保障。在此基础上，进一步探讨面向感知不确定性和复杂开放环境的可信智能系统验证问题，并展望AI与形式化方法双向赋能的发展方向。</p>
+-                    <p><strong>简介：</strong>赵韩蕊，国防科技大学计算机学院博士后，CCF形式化方法专委会通讯委员，主要从事形式化验证与可信人工智能研究，研究方向包括神经网络控制系统安全验证、安全证书综合与安全强化学习等。相关成果发表于FM、EMSOFT、DAC、CVPR、ICML、IEEE TCAD、ACM TECS等形式化方法与人工智能领域重要国际会议和期刊，曾获EMSOFT 2024最佳论文提名。正在主持中国博士后科学基金面上资助项目、国家自然科学基金青年科学基金项目、湖南省自然科学基金青年科学基金项目，并参与国家自然科学基金重大研究计划等。2025年博士毕业于华东师范大学，博士学位论文获2025年CCF形式化方法专委会博士学位论文激励计划提名。曾受邀在2023年CCF优秀博士生论坛、2024年CCF软件工程女性学者论坛等作学术报告。</p>
++                    <p><strong>摘要：</strong>随着人工智能技术逐步应用于自动驾驶、机器人等安全攸关领域，如何为具有复杂非线性动力学和神经网络控制策略的智能系统提供严格、可证明的安全保障，已成为可信人工智能与形式化方法交叉领域的重要研究问题。安全证书通过将系统性质转化为一组可验证的数学条件，为无限时间范围内的形式化验证提供了重要途径。然而，传统证书综合方法高度依赖预设模板与数值优化，在复杂、高维和强非线性系统中存在一定局限性。本报告围绕人工智能与形式化方法的深度融合，探索人工智能在表示、学习与搜索方面的能力，提升安全证书综合及复杂系统验证的自动化程度与可扩展性，同时借助形式化方法为智能系统的学习、决策与控制提供可证明的安全保障。在此基础上，进一步探讨面向感知不确定性和复杂开放环境的可信智能系统验证问题，并展望AI与形式化方法双向赋能的发展方向。
++                    </p>
++                    <p><strong>简介：</strong>赵韩蕊，国防科技大学计算机学院博士后，CCF形式化方法专委会通讯委员，主要从事形式化验证与可信人工智能研究，研究方向包括神经网络控制系统安全验证、安全证书综合与安全强化学习等。相关成果发表于FM、EMSOFT、DAC、CVPR、ICML、IEEE
++                        TCAD、ACM TECS等形式化方法与人工智能领域重要国际会议和期刊，曾获EMSOFT
++                        2024最佳论文提名。正在主持中国博士后科学基金面上资助项目、国家自然科学基金青年科学基金项目、湖南省自然科学基金青年科学基金项目，并参与国家自然科学基金重大研究计划等。2025年博士毕业于华东师范大学，博士学位论文获2025年CCF形式化方法专委会博士学位论文激励计划提名。曾受邀在2023年CCF优秀博士生论坛、2024年CCF软件工程女性学者论坛等作学术报告。
++                    </p>
+                 </div>
+             </div>
+         </div>
+@@ -179,27 +216,35 @@
+             <h4>1. 论坛组委会：李明煜 副研究员</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+-                    <img src="./images/academic-forum/常设论坛/李明煜.png" alt="李明煜头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <p><strong>简介：</strong>李明煜，中国科学院软件研究所副研究员。从事操作系统、机密计算系统研究，相关成果发表于OSDI、EuroSys等计算机系统领域国际旗舰会议。团队研发大模型友好的操作系统新接口；加速国产鲲鹏服务器高斯密态数据库，代码贡献到openEuler、openGauss等国产开源项目主线。担任CCF系统软件专委会执委、AgenticOS程序委员会委员、开源鸿蒙具身智能操作系统项目管理委员会委员。</p>
++                    <img src="./images/academic-forum/常设论坛/李明煜.png" alt="李明煜头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>李明煜，中国科学院软件研究所副研究员。从事操作系统、机密计算系统研究，相关成果发表于OSDI、EuroSys等计算机系统领域国际旗舰会议。团队研发大模型友好的操作系统新接口；加速国产鲲鹏服务器高斯密态数据库，代码贡献到openEuler、openGauss等国产开源项目主线。担任CCF系统软件专委会执委、AgenticOS程序委员会委员、开源鸿蒙具身智能操作系统项目管理委员会委员。
++                </p>
+             </div>
+         </div>
+         <div class="committee-member">
+             <h4>2. 论坛组委会：印莹 副教授</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+-                    <img src="./images/academic-forum/常设论坛/印莹.png" alt="印莹头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <p><strong>简介：</strong>印莹，东北大学计算机科学与工程学院副教授、博士生导师，CCF 软件工程专委会委员。研究方向为智能软件工程、数据库、推荐系统。在 CCF A 类会议 ESEC/FSE等高水平期刊会议发表论文100余篇。提出结构-序列转换驱动的细粒度代码缺陷识别方法，面向编程教学场景，研发了可实现代码缺陷定位、可解释诊断与修复推荐的人工智能赋能的交互式一体化编程自学平台-斑码（BanMa）。主持国家自然科学基金等国家及省部级课题10项；参与 863、973子课题、国家自然科学基金等项目10余项；授权发明专利20项。指导学生在 ACM-ICPC 国际大学生程序设计竞赛、全国大学生数学建模竞赛中获奖，并斩获 CCF BigData 最佳学生论文奖等多项学术与学科竞赛荣誉。</p>
++                    <img src="./images/academic-forum/常设论坛/印莹.png" alt="印莹头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>印莹，东北大学计算机科学与工程学院副教授、博士生导师，CCF 软件工程专委会委员。研究方向为智能软件工程、数据库、推荐系统。在 CCF A 类会议
++                    ESEC/FSE等高水平期刊会议发表论文100余篇。提出结构-序列转换驱动的细粒度代码缺陷识别方法，面向编程教学场景，研发了可实现代码缺陷定位、可解释诊断与修复推荐的人工智能赋能的交互式一体化编程自学平台-斑码（BanMa）。主持国家自然科学基金等国家及省部级课题10项；参与
++                    863、973子课题、国家自然科学基金等项目10余项；授权发明专利20项。指导学生在 ACM-ICPC 国际大学生程序设计竞赛、全国大学生数学建模竞赛中获奖，并斩获 CCF BigData
++                    最佳学生论文奖等多项学术与学科竞赛荣誉。</p>
+             </div>
+         </div>
+         <div class="committee-member">
+             <h4>3. 论坛组委会：张昕荻 助理研究员</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+-                    <img src="./images/academic-forum/常设论坛/张昕荻.png" alt="张昕荻头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <p><strong>简介：</strong>张昕荻，中国科学院软件研究所，特别研究助理，主要研究SAT求解及形式化验证。他曾获得国际SAT协会"最佳博士学位论文奖"（亚洲首项）、国际SAT会议"最佳论文奖"（亚洲首项），研制的求解器于国际SAT、SMT、FLoC竞赛多次获冠军。SAT求解技术落地于国内多家EDA企业，并助力突破多个密码分析问题边界。主持或参与国自然青年基金、重点研发、中科院战略先导A等项目；于DAC、SAT、FM等领域顶会/期刊发表论文二十余篇。</p>
++                    <img src="./images/academic-forum/常设论坛/张昕荻.png" alt="张昕荻头像"
++                        onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>张昕荻，中国科学院软件研究所，特别研究助理，主要研究SAT求解及形式化验证。他曾获得国际SAT协会"最佳博士学位论文奖"（亚洲首项）、国际SAT会议"最佳论文奖"（亚洲首项），研制的求解器于国际SAT、SMT、FLoC竞赛多次获冠军。SAT求解技术落地于国内多家EDA企业，并助力突破多个密码分析问题边界。主持或参与国自然青年基金、重点研发、中科院战略先导A等项目；于DAC、SAT、FM等领域顶会/期刊发表论文二十余篇。
++                </p>
+             </div>
+         </div>
+     </section>
+--- before/pages/agenda/special-issue-forum/index.html
++++ after/pages/agenda/special-issue-forum/index.html
+@@ -14,21 +14,30 @@
+     <!-- 左侧导航栏 -->
+     <div class="sidebar">
+         <ul>
+-              <li><a href="#agenda/special-issue-forum/llm-driven-intelligent-devops" class="sidebar-item"
+-                    onclick="loadAgenda('special-issue-forum', 'llm-driven-intelligent-devops')">大模型驱动的智能软件系统开发运维</a></li>
+-          
++            <li><a href="#agenda/special-issue-forum/llm-driven-intelligent-devops" class="sidebar-item"
++                    onclick="loadAgenda('special-issue-forum', 'llm-driven-intelligent-devops')">大模型驱动的智能软件系统开发运维</a>
++            </li>
++
+             <li><a href="#agenda/special-issue-forum/intelligent-requirement-engineering" class="sidebar-item"
+                     onclick="loadAgenda('special-issue-forum', 'intelligent-requirement-engineering')">智能化需求工程</a></li>
+-                      <li><a href="#agenda/special-issue-forum/agent-efficient" class="sidebar-item"
+-                    onclick="loadAgenda('special-issue-forum', 'agent-efficient')">智能体高效运行的关键技术</a></li>
++          
++                    <li><a href="#agenda/special-issue-forum/intelligent-industrial-software" class="sidebar-item"
++                    onclick="loadAgenda('special-issue-forum', 'intelligent-industrial-software')">智能化工业软件工程：大模型驱动的开发、保障与治理论坛</a>
++            </li>
++
++           
++
++            <li><a href="#agenda/special-issue-forum/agent-efficient" class="sidebar-item"
++                    onclick="loadAgenda('special-issue-forum', 'agent-efficient')">智能体高效运行的关键技术论坛</a></li>
+             <li><a href="#agenda/special-issue-forum/aios-software-security" class="sidebar-item"
+                     onclick="loadAgenda('special-issue-forum', 'aios-software-security')">AIOS与软件安全</a></li>
+             <li><a href="#agenda/special-issue-forum/formal-methods" class="sidebar-item"
+                     onclick="loadAgenda('special-issue-forum', 'formal-methods')">形式化方法与应用</a></li>
+             <li><a href="#agenda/special-issue-forum/intelligent-supply-chain-security" class="sidebar-item"
+-                    onclick="loadAgenda('special-issue-forum', 'intelligent-supply-chain-security')">智能化软硬件供应链安全分析技术</a></li>
+-       
+-           
++                    onclick="loadAgenda('special-issue-forum', 'intelligent-supply-chain-security')">智能化软硬件供应链安全分析技术论坛</a>
++            </li>
++
++
+         </ul>
+     </div>
+ 
+@@ -42,7 +51,7 @@
+             <p>请从左侧选择感兴趣的分论坛主题查看详情。</p>
+ 
+         </div>
+-        
++
+ 
+     </div>
+ 
+--- before/pages/agenda/special-issue-forum/templates/agent-efficient.html
++++ after/pages/agenda/special-issue-forum/templates/agent-efficient.html
+@@ -1,6 +1,6 @@
+ <div class="container">
+ 
+-    <h2 class="section-title">智能体高效运行的关键技术</h2>
++    <h2 class="section-title">智能体高效运行的关键技术论坛</h2>
+     <div class="section-title-en">专刊论坛 S5</div>
+ 
+     <section class="forum-section">
+--- before/pages/agenda/special-issue-forum/templates/formal-methods.html
++++ after/pages/agenda/special-issue-forum/templates/formal-methods.html
+@@ -1,6 +1,6 @@
+ <div class="container">
+ 
+-    <h2 class="section-title">形式化方法与应用</h2>
++    <h2 class="section-title">形式化方法与应用论坛</h2>
+     <div class="section-title-en">专刊论坛 S7</div>
+ 
+     <section class="forum-section">
+--- before/pages/agenda/special-issue-forum/templates/intelligent-industrial-software.html
++++ after/pages/agenda/special-issue-forum/templates/intelligent-industrial-software.html
+@@ -0,0 +1,282 @@
++<div class="container">
++
++    <h2 class="section-title">智能化工业软件工程：大模型驱动的开发、保障与治理论坛</h2>
++    <div class="section-title-en">专刊论坛 S4</div>
++
++    <section class="forum-section">
++        <h3>一、论坛介绍</h3>
++        <p>随着大模型能力从"内容生成"快速迈向"软件工程任务执行"，大模型正在成为智能化软件开发、质量保障与工程治理的重要技术底座，推动软件工程从工具辅助走向模型增强、人机协同和全生命周期智能化。面向工业软件需求复杂、场景多变、系统耦合度高、可靠性与安全性要求严格等现实需求，大模型不仅需要在需求分析、架构设计、代码生成、文档生成等开发环节提升工程效率，还需要在测试生成、缺陷定位、可靠性分析、运行监测和故障诊断等保障环节增强软件质量与可信运行能力。同时，在大模型深度嵌入工业软件工程流程的背景下，模型幻觉、代码安全、知识产权、版本演化、合规审计、责任追踪与安全治理等问题日益突出。围绕大模型驱动的软件开发、质量保障与工程治理等关键技术开展研究，对于推动 AI4SE 与 SE4AI 深度融合、构建智能化工业软件工程方法体系、支撑工业软件高质量发展具有重要学术价值和现实意义。</p>
++        <p>所有投稿经过第一阶段评审的论文作者需要参加ChinaSoft 2026会议并到会报告，之后特约编辑和编辑部根据复审情况和会议报告情况决定文章的最终结果，专刊将在2026年出版。读者群体包括软件工程和人工智能等多个领域的研究人员和工程人员。</p>
++    </section>
++
++    <section class="forum-section">
++        <h3>二、论坛组织委员会</h3>
++        <ul class="committee-list">
++            <li><span class="member-name">刘进</span><span class="member-unit">（武汉大学）</span></li>
++            <li><span class="member-name">王军平</span><span class="member-unit">（中国科学院自动化研究所）</span></li>
++            <li><span class="member-name">王新宇</span><span class="member-unit">（浙江大学）</span></li>
++            <li><span class="member-name">董威</span><span class="member-unit">（国防科技大学）</span></li>
++            <li><span class="member-name">黄勃</span><span class="member-unit">（上海工程技术大学）</span></li>
++        </ul>
++    </section>
++
++    <section class="forum-section">
++        <h3>三、日程安排</h3>
++        <h4>日程安排：</h4>
++        <p><strong>时间：</strong>2026年11月7日，15:20-18:20</p>
++        <p><strong>地点：</strong>天津市社会山国际会议中心酒店，二层18号会议室</p>
++
++        <h4>论文论坛议程：</h4>
++        <table class="forum-table">
++            <thead>
++                <tr><th>时间</th><th>题目</th><th>报告嘉宾</th></tr>
++            </thead>
++            <tbody>
++                <tr><td style="white-space: nowrap;">15:20-15:35</td><td>嘉宾报告：从生成式设计到物理智能：AICAD基础模型的探索与实践</td><td>周平义</td></tr>
++                <tr><td style="white-space: nowrap;">15:35-15:50</td><td>嘉宾报告：规则与神经网络融合：范式演进、核心挑战与研究展望</td><td>陈刚</td></tr>
++                <tr><td style="white-space: nowrap;">15:50-16:05</td><td>嘉宾报告：产业大脑关键技术及应用研究与研发</td><td>王军平</td></tr>
++                <tr><td style="white-space: nowrap;">16:05-16:15</td><td>论文报告：面向语言模型版本演化的智能回归缺陷检测方法</td><td>尤翰墨</td></tr>
++                <tr><td style="white-space: nowrap;">16:15-16:25</td><td>论文报告：基于智能体驱动与结构化反馈的HDL Testbench自动生成方法</td><td>白如雪</td></tr>
++                <tr><td style="white-space: nowrap;">16:25-16:35</td><td>论文报告：基于大模型智能体的芯片设计程序测试功能覆盖提升方法</td><td>傅惠杰</td></tr>
++                <tr><td style="white-space: nowrap;">16:35-16:45</td><td>论文报告：星载电子系统智能辅助开发与安全论证</td><td>陈泽众</td></tr>
++                <tr><td style="white-space: nowrap;">16:45-16:55</td><td>论文报告：基于静态分析与大语言模型的Typescript仓库多粒度代码文档生成</td><td>殷宇航</td></tr>
++                <tr><td style="white-space: nowrap;">16:55-17:10</td><td>茶歇</td><td>-</td></tr>
++                <tr><td style="white-space: nowrap;">17:10-17:20</td><td>论文报告：面向软件漏洞可利用性验证的大语言模型能力测评方法研究</td><td>张顾峰</td></tr>
++                <tr><td style="white-space: nowrap;">17:20-17:30</td><td>论文报告：GHOSTMark：基于对抗学习的隐蔽性优化源代码水印嵌入方法</td><td>廖富威</td></tr>
++                <tr><td style="white-space: nowrap;">17:30-17:40</td><td>论文报告：面向工业软件COSMIC功能规模测量的错误驱动神经符号协同蒸馏方法</td><td>李锡晗</td></tr>
++                <tr><td style="white-space: nowrap;">17:40-17:50</td><td>论文报告：大语言模型与局部搜索异步协同的约束覆盖表最小化方法</td><td>温林林</td></tr>
++                <tr><td style="white-space: nowrap;">17:50-18:00</td><td>论文报告：基于大模型辅助语义恢复与语义约束变异的毕昇C编译器缺陷检测方法</td><td>瞿荣</td></tr>
++                <tr><td style="white-space: nowrap;">18:00-18:10</td><td>论文报告：面向工业用户问题的专利证据检索：从文档召回到证据定位</td><td>刘仲翔</td></tr>
++            </tbody>
++        </table>
++    </section>
++
++    <section class="forum-section">
++        <h3>四、论坛报告嘉宾简介</h3>
++        <div class="speaker-member">
++            <h4>1. 报告人：周平义 高级工程师</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/专刊论坛/周平义.png" alt="周平义头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>从生成式设计到物理智能：AICAD基础模型的探索与实践</p>
++                    <p><strong>摘要：</strong>大模型正在推动工业设计从传统的工具驱动模式向意图驱动的智能创造范式演进。不同于以视觉效果为目标的通用三维生成，面向真实物理世界的设计需要同时理解几何结构、参数约束、设计意图以及工程可实现性，这对多模态基础模型提出了全新的技术要求。本报告将介绍比特无限围绕AICAD基础模型开展的研究与实践，分享Arko系列模型在文本、图像、点云驱动的参数化三维生成，以及智能编辑、设计智能体等方向的技术进展。重点探讨多模态空间理解、结构化三维表示、可执行代码生成、几何推理与验证等核心技术，并介绍围绕数据、训练、评测和智能体构建的技术体系。在此基础上，报告将进一步讨论AICAD如何从单一模型生成走向多智能体协同设计，从几何结构生成走向物理属性理解与工程约束推理，并展望生成式设计、生成式仿真和生成式制造相互融合的发展趋势，探索以基础模型为核心的新一代物理智能创造体系。</p>
++                    <p><strong>简介：</strong>周平义，博士，比特无限（BitInf）联合创始人、首席科学家。毕业于武汉大学，获计算机软件与理论博士学位。曾任职于华为诺亚方舟实验室，深度参与华为盘古系列大模型研发，担任盘古第二代万亿参数MoE大模型研发核心负责人（2号位），在大模型架构设计、预训练及训练加速等方面具有丰富经验。现主要从事空间智能、生成式设计及AICAD基础模型研究，带领团队研发Arko系列模型，推动大模型在参数化三维生成、智能编辑和自主设计等领域的技术创新与产业应用。已发表ACL、ICASSP、ASE等国际学术会议论文25篇，获美国授权专利2项。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>2. 报告人：陈刚 教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/专刊论坛/陈刚.png" alt="陈刚头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>规则与神经网络融合：范式演进、核心挑战与研究展望</p>
++                    <p><strong>摘要：</strong>早期基于规则的专家系统是符号人工智能的典型代表，依托显式逻辑知识，拥有清晰的推理能力，但存在知识获取困难、规则库一致性校验难度大、复杂场景泛化能力不足等瓶颈，最终应用受限。深度神经网络凭借强大的数据拟合与模式感知能力推动人工智能取得巨大进步，然而该范式存在天然的黑盒特性，使其难以开展结构化逻辑推理，在医疗、金融、关键基础设施等高风险场景面临落地障碍。规则与神经网络融合范式旨在结合符号系统与神经网络各自优势，研究目标多元：既包括提升模型的逻辑推理能力、嵌入人类先验知识、降低数据依赖，也包含改善模型决策可解释性、保证输出结果符合领域硬性约束等。本报告系统梳理规则-神经网络融合范式的发展脉络，对比规则引导网络、从网络抽取规则、神经与规则协同推理等主流技术路线，总结当前研究在知识表达、联合训练、一致性校验、可扩展性等方面的核心挑战，并结合典型应用场景，探讨该方向未来的研究机遇与能力边界。</p>
++                    <p><strong>简介：</strong>武汉大学计算机软件与理论博士，武汉大学国家网络安全学院教授。曾历任武汉大学多媒体软件国家工程技术研究中心软件四部部长、出版社电子部副科长、国际软件学院软件工程系研发中心副主任。代表性科研课题包括：国家自然科学基金面上项目《基于多源条件随机场的地球物理参数预测模型研究》、国家自然科学基金面上项目《大数据环境下的测光红移估测模型研究》、中海油田服务股份有限公司《海上地震勘探质量监督平台软件开发》、湖北省数字出版基金专项《一体化MOOC服务工程》、天门市民政局《天门市地名文化专题网站》等项目。发表论文多篇，出版著作《C++高级进阶教程》和《XML开发技术教程》2部。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>3. 报告人：王军平 研究员</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/专刊论坛/王军平.png" alt="王军平头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>产业大脑关键技术及应用研究与研发</p>
++                    <p><strong>摘要：</strong>产业大脑作为类人自主智能软件系统，经过十多年的发展，赋能产业巨型网络建模与调控，初步衍生出了产业大脑等行业应用成果。成为人工智能前沿研究方向。本报告首先对人工智能发展进行分析讨论，在此基础上，介绍了产业大脑作为类人自主智能软件系统，详细阐述了产业大脑的信息感知认知、主动思维图谱、情景认知推演和物理形态精准调控等关键技术研究进展，并详细介绍了产业大脑在产业链供应链韧性监测及风险预防、能源电力调控中的应用进展情况。最后还对未来应用前景和发展趋势进行了展望。</p>
++                    <p><strong>简介：</strong>王军平，现担任中国科学院自动化研究所研究员，国家重点研发计划项目首席科学家，从事类脑智能与自主智能系统研究，推动了类脑双系统认知计算技术在产业网络自主智能系统等领域研究，研发和实践应用，主持了"产业大脑关键技术及应用研究与研发"国家重点研发计划项目，发表SCI国际期刊论文120余篇，其中JCR一区72篇，谷歌引用8900余次。研制出了产业大脑平台，以第一作者身份获授权发明专利16项，被科技部列为重大创新成果，广泛应用于天津滨海新区、郑州高新区和杭州湾国家经济开发区。</p>
++                </div>
++            </div>
++        </div>
++    </section>
++
++    <section class="forum-section">
++        <h3>五、论坛组织委员会简介</h3>
++        <div class="committee-member">
++            <h4>1. 论坛主席：刘进 教授</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/专刊论坛/刘进.png" alt="刘进头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>武汉大学计算机学院教授，博士生导师，中国计算机学会软件工程专业委员会委员，中国计算机学会服务计算专业委员会委员，中国气象服务协会人工智能技术委员会指导专家委员会委员、中国人工智能学会知识工程与分布智能专业委员会委员，人工智能-食品安全康健专家委员会常务委员,中国自动化学会计算机图形学与人机交互专委会委员，中国电子学会云计算专委会专家组织联系人，美国New Jersey Institute of Technology访问学者（IEEE Fellow 周梦初教授），中国科学院自动化研究所复杂系统与智能科学实验室博士后，中科院计算技术研究所智能信息处理实验室博士后。长期从事软件工程的基础研究工作。研究兴趣为互联网上新型软件开发、以及Web科学与服务计算。主持多项国家级项目。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>2. 论坛主席：王军平 研究员</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/专刊论坛/王军平.png" alt="王军平头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>王军平，现担任中国科学院自动化研究所研究员，国家重点研发计划项目首席科学家，从事类脑智能与自主智能系统研究，推动了类脑双系统认知计算技术在产业网络自主智能系统等领域研究，研发和实践应用，主持了"产业大脑关键技术及应用研究与研发"国家重点研发计划项目，发表SCI国际期刊论文120余篇，其中JCR一区72篇，谷歌引用8900余次。研制出了产业大脑平台，以第一作者身份获授权发明专利16项，被科技部列为重大创新成果，广泛应用于天津滨海新区、郑州高新区和杭州湾国家经济开发区。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>3. 论坛主席：王新宇 教授</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/专刊论坛/王新宇.png" alt="王新宇头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>王新宇教授，浙江大学计算机系博士，博士生导师，主要从事软件分析、智能软件工程等方向的研究。近年来发表论文CCF A、CCF B类论文30余篇，作为负责人承担国家自然科学基金、重点研发计划等国家级课题7项，省部级课题4项，产业合作课题20余项，获得教育部科技进步一等奖1项，中国电子学会科技进步特等奖1项。提出一系列软件质量检测模型与程序测试算法，多项成果发表在TSE、ICSE等Top刊物/会议。首次提出了动态符号测试领域的最优化策略，获得ICSE 2018杰出论文奖；提出一系列基于软件仓库挖掘的缺陷检测及程序文档自动化等新方法，多项成果发表在TSE、ASE等Top刊物/会议。为提交日志自动化生成领域建立了新基线，获得ASE 2018杰出论文奖。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>4. 论坛主席：董威 教授</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/专刊论坛/董威.png" alt="董威头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>国防科技大学计算机学院教授，主要研究方向为高可信软件技术、智能化软件开发方法，中国计算机学会形式化方法专委会副主任、软件工程专委会执行委员。入选教育部新世纪优秀人才支持计划，曾获中国计算机学会首届NASAC青年软件创新奖、霍英东基金会高校青年教师奖等。先后主持国家和国防课题20余项，发表学术论文100余篇，出版国家级规划教材3部，相关成果应用于航空航天、装备控制、自主基础软件等关键领域。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>5. 论坛主席：黄勃 副教授</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/专刊论坛/黄勃.png" alt="黄勃头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>黄勃，工学博士，副教授，硕士生导师。2014年毕业于武汉大学计算机学院，获得计算机软件与理论工学博士学位。目前主持结题国家自然科学基金一项，主持省部级项目若干项，作为主要成员参与到科技部科技创新2030"新一代人工智能"重大项目"工业领域知识自动构建与推理决策技术及应用"。已公开发表学术论文120余篇，其中SCI、EI检索50余篇。2011年获得湖北省科技进步奖二等奖，2014年获得湖北省科技进步奖一等奖, 2019年获得上海市科技进步奖二等奖, 2020年获得上海市科技进步奖二等奖，2024年获得上海市计算机学会科技进步奖三等奖。近年来获批专利10余项、软件著作权20余项，入选上海市科协2017年"飞翔计划"人选。现担任中国计算机学会高级会员，上海市计算机学会理事，CCF软件工程专委会执行委员，标准专委会执行委员，上海市科委专家库专家，国家自然科学基金委评审专家等，也同时担任Applied Intelligence（JCR 1区）副主编，武汉大学学报（理学版、自然科学版）特约副主编等。</p>
++            </div>
++        </div>
++    </section>
++
++    <section class="forum-section">
++        <h3>六、论坛论文报告人简介</h3>
++        <div class="speaker-member">
++            <h4>1. 报告人：尤翰墨</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/专刊论坛/尤翰墨.png" alt="尤翰墨头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>简介：</strong>尤翰墨，新加坡管理大学博士后研究员，天津大学电子信息专业博士。主要研究方向为面向AI系统的软件工程，重点聚焦深度学习系统演化相关的质量保障、缺陷检测与修复技术。在ICSE、ASE、TOSEM等软件工程领域顶会顶刊发表多篇CCF-A类论文，曾获ICSE杰出论文奖。同时担任ISSRE、MSR等国际顶级会议，以及ASEJ、TSE等权威软件工程期刊的审稿人。</p>
++                    <p><strong>摘要：</strong>针对大语言模型在软件工程场景持续演化中出现的回归缺陷问题，本报告提出智能数据驱动检测框架NRFuzz。该方法通过多粒度变异算子与预测概率差异反馈，动态生成揭示回归缺陷的测试输入，并基于对比学习与种子池策略平衡语义保真与揭错多样性，为NLP模型持续演化中的自动化质量保障提供有效方法。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>2. 报告人：白如雪</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/专刊论坛/白如雪.png" alt="白如雪头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>简介：</strong>白如雪，中国人民解放军陆军工程大学无人智能工程学院博士研究生，主要研究方向为人工智能辅助软件工程、电子设计自动化（AI for EDA）与智能验证技术，聚焦大语言模型驱动的自动化测试生成、RTL设计验证及智能硬件验证方法研究。</p>
++                    <p><strong>摘要：</strong>针对现有HDL Testbench自动生成方法中需求表示不统一、验证反馈粗粒度、流程缺乏统一调度等问题，本报告提出基于智能体驱动与结构化反馈的方法ASF-TBG。该方法设计中间测试描述语言ITDL结构化表达测试需求，构建面向HDL验证的结构化反馈知识表示，并建立调度器驱动的多智能体协作框架，协调需求分析、代码生成与验证反馈智能体完成Testbench的生成、验证与迭代修正，为HDL验证自动化提供有效方案。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>3. 报告人：傅惠杰</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/专刊论坛/傅惠杰.png" alt="傅惠杰头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>简介：</strong>傅惠杰，天津大学软件学院硕士研究生，研究方向为软件测试与芯片设计程序测试。</p>
++                    <p><strong>摘要：</strong>针对芯片验证后期末段功能点难以触达、现有方法对测试输入构造指导有限的问题，本报告提出基于大模型智能体的功能覆盖提升方法REACH。该方法联合分析验证环境代码、RTL代码与设计文档，通过静态分析与图谱构建智能体共建跨源验证知识图谱，由特征提取智能体提取变量验证价值、耦合关系和多周期取值模式，并经多特征融合生成测试输入，为末段功能覆盖与测试效率提升提供有效方案。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>4. 报告人：陈泽众</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/专刊论坛/陈泽众.png" alt="陈泽众头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>简介：</strong>陈泽众，博士，工程师，CCF专业会员。主要研究领域包括软件工程、形式化方法与安全论证，从事星载软件与星载分布式系统研发，推动AI4SE技术在高可靠航天软件工程中的落地应用。</p>
++                    <p><strong>摘要：</strong>针对星载电子系统多层技术栈耦合度高、实时性与安全可靠性要求严苛，而大语言模型工程应用缺乏可审计约束的问题，本文基于工程实践提出面向星载电子系统的智能辅助开发方法论。该方法以多角色智能体协作为核心，通过结构化工程状态、计划—执行—观测—重规划闭环和四级证据门禁，将大模型生成能力约束在可审计边界内，并引入目标结构符号GSN对开发过程及产物安全性进行结构化论证，为星载电子系统智能辅助开发提供方法参考。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>5. 报告人：殷宇航</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/专刊论坛/殷宇航.png" alt="殷宇航头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>简介：</strong>殷宇航，南京大学信息管理学院本科生，研究方向为软件工程、代码智能、静态程序分析与大模型代码理解。主持国家级大创项目、多次挑战杯、国创赛获奖。</p>
++                    <p><strong>摘要：</strong>针对TypeScript三方库文档生成中传统人工方式效率低、准确性与可扩展性不足的问题，本报告提出基于静态分析与大语言模型的多粒度代码文档生成方法。该方法利用TS-morph解析代码并构建语法树与调用图，面向函数、模块和仓库三个粒度设计差异化生成策略，分别采用自底向上依赖生成、Louvain社区发现聚类以及RAG与自迭代策略，通过大语言模型生成多层级说明文档，为TypeScript代码理解与维护提供有效支持。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>6. 报告人：张顾峰</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/专刊论坛/张顾峰.png" alt="张顾峰头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>简介：</strong>张顾峰，武汉大学国家网络安全学院在读，主要关注大模型驱动的软件安全分析、智能体能力测评与可信执行。围绕软件漏洞可利用性验证，开展大语言模型长程任务执行能力研究，探索通过细粒度过程测量定位模型在程序理解、利用实现、执行验证与迭代修正中的能力差异。参与安全智能体研发与评测实践，关注模型、工具与执行框架的协同机制，以及智能系统在多组件交互和状态演化中的安全性与可靠性。</p>
++                    <p><strong>摘要：</strong>随着大语言模型从内容生成走向软件工程任务执行，漏洞可利用性验证逐渐成为软件质量保障与安全验证的重要场景。现有测评多以最终结果或阶段完成情况衡量模型能力，难以刻画长程执行过程中的细粒度差异，也会混合基座模型与外部执行支撑的影响。针对这一问题，本报告提出POMA测评方法与平台，在统一任务输入、工具接口、执行环境、反馈形式和执行预算下，对基座大语言模型的漏洞利用过程进行细粒度测量。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>7. 报告人：廖富威</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/专刊论坛/廖富威.png" alt="廖富威头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>简介：</strong>北京信息科技大学计算机学院计算机科学与技术硕士研究生，主要研究领域为可信人工智能。</p>
++                    <p><strong>摘要：</strong>针对源代码水印依赖变量替换或语义保持变换、易形成规律性命名与结构特征而被检测破坏的问题，本报告提出基于对抗学习的隐蔽性优化水印嵌入方法GHOSTMark。该方法以变量替换与语义保持变换的双通道嵌入框架为基础，通过对抗学习优化变换选择，结合变换多样性约束、特征对齐与分布匹配减少规律性模式，并采用两阶段训练策略先提升提取准确率再优化隐蔽性，为工业软件代码知识产权保护与合规审计提供技术支撑。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>8. 报告人：李锡晗</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/专刊论坛/李锡晗.png" alt="李锡晗头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>简介：</strong>李锡晗，北京交通大学软件学院博士研究生。主要研究方向为智能软件测试、大语言模型智能体与软件工程智能化。在相关领域发表论文1篇，研究成果涉及测试报告自动生成等方向。</p>
++                    <p><strong>摘要：</strong>针对软件功能规模测量中重复上下文导致词元开销大、测量吞吐量受限的问题，本报告提出错误驱动的神经符号协同蒸馏方法ENCoD。该方法以COSMIC测量为例，通过领域适配与结构化蒸馏、子过程级规则条件微调、错误驱动偏好优化及推理阶段符号一致性校验四个阶段，将大模型语义理解能力与符号规则约束内化到小模型中，为工业软件需求规约生成与一致性校验提供轻量化方案。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>9. 报告人：温林林</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/专刊论坛/温林林.png" alt="温林林头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>简介：</strong>温林林，江西财经大学计算机与人工智能学院博士研究生，主要从事组合测试用例生成方面的研究，探索基于人工智能技术的软件测试方法。研究工作涵盖测试用例生成与覆盖表最小化，着重提升组合覆盖能力、故障检测能力及测试效率，相关成果发表于Information and Software Technology、Science of Computer Programming等国际知名期刊。提出了基于深度强化学习的成对组合测试用例生成方法，并设计了基于回滚与候选移除的覆盖数组高效生成算法。近期重点关注基于大语言模型的组合测试，试图利用模型的生成能力为测试用例的优化提供新方案。</p>
++                    <p><strong>摘要：</strong>针对约束覆盖表最小化中局部搜索易陷入局部最优、LLM同步调用造成阻塞的问题，本报告首次将大语言模型引入该问题，提出LLM与局部搜索异步协同的方法LLM-ACCA。该方法在删除测试用例后并行执行本地随机与贪心局部搜索，同时异步提交修复请求至LLM，通过覆盖检查的输出直接修复覆盖或启动LLM搜索分支，使等待响应与本地搜索重叠，避免调用阻塞，为约束覆盖表最小化提供高效方案。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>10. 报告人：瞿荣</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/专刊论坛/瞿荣.png" alt="瞿荣头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>简介：</strong>瞿荣，工程师，2019至今, 在中科院软件所基础软件与系统重点实验室张健课题组工作。CCF软件工程专委执行委员，基础软件与系统重点实验室党支部宣传委员。曾担任ISSTA2023审稿人。研究方向为软件测试、编译器测试。在多个主流编译器（GCC，LLVM，MSVC，Rustc，Pypy，Icx…）上发现了超过60个bugs。在华为方舟编译器上，发现了近百个缺陷；我们的方法和工具应用在了航天五院交叉编译器的测试中。在国际会议/期刊上发表了5篇学术论文，申请了3项专利，以及1项软著。</p>
++                    <p><strong>摘要：</strong>针对毕昇C编译器扩展语义相关缺陷难以稳定触发、历史缺陷信息分散难以复用的问题，本报告提出基于大模型辅助语义恢复与语义约束变异的缺陷检测方法。该方法利用大模型从历史缺陷报告中恢复预期编译行为、语言规则与关键触发结构，作为程序变换的语义约束，在保持关键语义条件下实施局部变异，并通过自动检查与独立语义复核筛选候选程序，比较编译行为差异以核验缺陷，为编译器测试提供实践方案。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>11. 报告人：刘仲翔</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/专刊论坛/刘仲翔.png" alt="刘仲翔头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>简介：</strong>刘仲翔，武汉大学硕士研究生。研究兴趣集中在智能代理上。</p>
++                    <p><strong>摘要：</strong>针对工业智能体RAG系统从专利等专业文档中获取可追溯证据时，文档召回不等于局部证据进入上下文这一评价偏差，本报告面向工业用户场景构造中文专利问题，在1700篇专利上比较多种切片配置与检索方法，定义聚合文档命中率、目标文档覆盖率与证据命中率，区分文档聚合预算与目标专利内部的证据定位损失，为工业场景下的检索增强生成评价提供参考。</p>
++                </div>
++            </div>
++        </div>
++    </section>
++
++</div>--- before/pages/agenda/special-issue-forum/templates/intelligent-supply-chain-security.html
++++ after/pages/agenda/special-issue-forum/templates/intelligent-supply-chain-security.html
+@@ -1,6 +1,6 @@
+ <div class="container">
+ 
+-    <h2 class="section-title">智能化软硬件供应链安全分析技术</h2>
++    <h2 class="section-title">智能化软硬件供应链安全分析技术论坛</h2>
+     <div class="section-title-en">专刊论坛 S8</div>
+ 
+     <section class="forum-section">
+--- before/pages/callforpaper.html
++++ after/pages/callforpaper.html
+@@ -28,7 +28,7 @@
+                 </div>
+             </div>
+         </a>
+-        
++
+         <a href="#callforpaper/IRE" class="card card-white" onclick="loadCFP('IRE')">
+             <div class="card-content">
+                 <h2 class="card-title">S01 智能化需求工程</h2>
+@@ -87,7 +87,8 @@
+             </div>
+         </a>
+ 
+-        <a href="#callforpaper/supply-chain-security" class="card card-white" onclick="loadCFP('supply-chain-security')">
++        <a href="#callforpaper/supply-chain-security" class="card card-white"
++            onclick="loadCFP('supply-chain-security')">
+             <div class="card-content">
+                 <h2 class="card-title">S07 智能化软硬件供应链安全分析技术</h2>
+                 <div class="date-container">
+@@ -96,7 +97,8 @@
+             </div>
+         </a>
+ 
+-        <a href="#callforpaper/industrial-software-engineering-cfp" class="card card-white" onclick="loadCFP('industrial-software-engineering-cfp')">
++        <a href="#callforpaper/industrial-software-engineering-cfp" class="card card-white"
++            onclick="loadCFP('industrial-software-engineering-cfp')">
+             <div class="card-content">
+                 <h2 class="card-title">S08 智能化工业软件工程：大模型驱动的开发、保障与治理</h2>
+                 <div class="date-container">
+--- before/pages/competition/auto-software-repair.html
++++ after/pages/competition/auto-software-repair.html
+@@ -0,0 +1,102 @@
++<div class="banner">
++    <img src="images/logo/banner.jpg" alt="Background" class="banner-background" />
++</div>
++<!--插入CSS文件-->
++<link rel="stylesheet" type="text/css" href="./css/index.css">
++<link rel="stylesheet" type="text/css" href="./css/competition.css">
++<!--插入JS文件 -->
++<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
++
++<div class="container">
++    <h2 class="section-title">中国软件大会第三届软件自动修复竞赛</h2>
++    <!-- <div class="section-title-en">正式启动</div> -->
++
++    <section class="competition-section">
++        <h3>一、简介</h3>
++        <p>软件自动修复技术旨在通过自动分析软件缺陷并生成有效补丁，降低软件调试与维护成本，提升软件开发效率与质量保障能力。近年来，随着软件工程、程序语言与人工智能技术的快速发展，特别是大语言模型在代码理解与生成领域展现出的强大能力，自动修复领域迎来了新的发展机遇。同时，如何面向真实复杂的软件缺陷提升补丁正确性、修复效率、以及修复结果的可靠性，仍是该领域的重要挑战。</p>
++        <p>2026年软件自动修复竞赛鼓励参赛团队综合运用程序分析、测试、搜索优化以及人工智能等技术，设计和实现高质量的软件缺陷自动修复方法与工具。竞赛旨在搭建一个技术交流与实践平台，通过统一的任务与评测促进不同修复技术的交流比较，探索自动修复技术的新方法与新应用，共同推动软件缺陷修复技术的发展。</p>
++    </section>
++
++    <section class="competition-section">
++        <h3>二、比赛组织</h3>
++        <p><strong>主办单位：</strong>中国计算机学会软件工程专委会、中国计算机学会系统软件专委会、中国计算机学会形式化专委会</p>
++        <p><strong>组委会：</strong>辛奇（武汉大学）、王博（北京交通大学）、姜佳君（天津大学）、玄跻峰（武汉大学）</p>
++        <p><strong>组委会秘书：</strong>王钰森（武汉大学）、李丰杰（天津大学）、罗清凡（武汉大学）</p>
++        <p><strong>评审委员会：</strong>待定，由软件调试领域的学术界和工业界专家组成。</p>
++    </section>
++
++    <section class="competition-section">
++        <h3>三、赛事安排</h3>
++        <p>比赛过程和时间安排：</p>
++        <ol>
++            <li>报名与赛题发布：2026年9月1日</li>
++            <li>报名截止日期：2026年9月15日</li>
++            <li>作品提交截至日期：2026年9月30日</li>
++            <li>决赛入围通知日期：2026年10月20日</li>
++            <li>决赛和颁奖日期：2026中国软件大会会议期间（2026年11月6-8日）</li>
++        </ol>
++        <p><strong>参赛对象与报名方式：</strong>比赛面向国内外软件修复研究人员（学生、教师或其他企事业单位的研究人员），可组队或独立参赛。比赛允许跨校组队，一个参赛队伍人员上限不超过10人，参赛队伍不设指导老师。每个参赛人员可以参加多个队伍，但是需要基于技术路线不同的修复工具。往届竞赛中已获奖的修复工具，不得重复参赛。</p>
++        <p>请参赛队以队伍为单位，在报名截止日前将报名表发送至赛事报名邮箱 <a href="mailto:yusenwang@whu.edu.cn">yusenwang@whu.edu.cn</a>，联系人：王钰森。报名表模板下载链接：<a href="https://pan.quark.cn/s/b1192611d9f9" target="_blank" rel="noopener noreferrer">https://pan.quark.cn/s/b1192611d9f9</a>，提取码: eGs8。</p>
++        <p><strong>参赛费用：</strong>比赛不收取任何报名费、参赛费、评审费和服务费等费用。参赛选手在决赛期间及颁奖典礼期间产生的交通、会议、食宿等费自理。</p>
++        <p><strong>参赛流程与评分规则：</strong>在赛题发布后，参赛学生可自行组队。比赛将提供基准测试集。参赛队伍设计并实现修复工具，并适配所提供的基准测试集。作品提交时，参赛队伍应提交设计文档、执行录像、符合格式要求的补丁文件、执行日志、作品源码等内容。基准数据集的使用方式和作品提交方式请见《中国软件大会第三届软件自动修复竞赛—技术方案》（附后）。比赛评审委员会根据上述提交内容评分。比赛组委会根据分数从高到底排序，选择进入决赛答辩的队伍。</p>
++        <p>进入决赛的队伍需在中国软件大会现场进行答辩，介绍工具的修复方法及其创新性、修复效果等，报告由比赛评审会现场打分。赛事组织同时会在决赛现场随机抽查每个决赛入围队伍报告的修复结果，并提供额外的未知修复题目给每个决赛队伍现场修复。最终总成绩由：（初赛分数×40% + 决赛现场修复分数×40% + 答辩分数×20%）计算所得。所有决赛队伍根据总成绩排名并颁奖。</p>
++    </section>
++
++    <section class="competition-section">
++        <h3>五、奖项设置</h3>
++        <p>所有奖项在中国软件大会2026现场发布，在决赛完成后统一颁奖。评奖过程中保持单位回避原则，即评委不为相同单位的参赛队伍评分。奖项包括特等奖（不超过3个参赛队伍）、一等奖和二等奖。</p>
++    </section>
++
++    <section class="competition-section">
++        <h3>六、知识产权与学术诚信</h3>
++        <ol>
++            <li>除另行说明，所有作品知识产权归参赛队所有。作品提交后，赛事组织方有使用权。</li>
++            <li>参赛队应自觉遵守知识产权有关法规。参赛队未经相关单位许可，不得公开发布或者共享涉及该单位的知识产权作品及软件。如产生不良后果大赛主办方、组会会等均不负任何法律责任。</li>
++            <li>参赛队应自觉遵守学术诚信。禁止代码及技术抄袭，禁止利用规则或者技术漏洞等不良途径提高排名，一经发现取消所有比赛成绩。</li>
++        </ol>
++    </section>
++
++    <section class="competition-section">
++        <h3>七、联系方式</h3>
++        <p><strong>大赛官方邮箱：</strong><a href="mailto:yusenwang@whu.edu.cn">yusenwang@whu.edu.cn</a></p>
++        <p><strong>组委会联系方式：</strong>辛奇（<a href="mailto:qxin@whu.edu.cn">qxin@whu.edu.cn</a>）、王博（<a href="mailto:wangbo_cs@bjtu.edu.cn">wangbo_cs@bjtu.edu.cn</a>）、姜佳君（<a href="mailto:jiangjiajun@tju.edu.cn">jiangjiajun@tju.edu.cn</a>）、玄跻峰（<a href="mailto:jxuan@whu.edu.cn">jxuan@whu.edu.cn</a>）</p>
++    </section>
++
++    <h2 class="section-title">中国软件大会第三届软件自动修复竞赛技术方案</h2>
++
++    <section class="competition-section">
++        <h3>一、评价方式的基本说明</h3>
++        <p>比赛要求各参赛队综合运用软件测试、软件分析、软件调试等技术构思并实现一个缺陷自动修复系统，尽可能修复比赛所指定的缺陷。为展示参赛队的技术水平，进入决赛的队伍还需修复现场指定的缺陷，临时调整修复工具。除了本技术方案特别要求、规定和禁止的事项外，各参赛队可以自行决定使用的编程语言、操作系统、工具、自动定位方案等技术细节。</p>
++    </section>
++
++    <section class="competition-section">
++        <h3>二、比赛基准数据集</h3>
++        <p>比赛使用公开缺陷基准数据集Defects4J_Trans。数据集的仓库地址：<a href="https://github.com/Feng-Jay/Defects4J_Trans" target="_blank" rel="noopener noreferrer">https://github.com/Feng-Jay/Defects4J_Trans</a>。该数据集包含483个真实Java历史缺陷，分别来自17个开源项目，数据集使用问题咨询请发送邮件到大赛官方邮箱。</p>
++        <p>参赛队可以使用任意的自动定位技术，不得以人工方式提供定位结果。各参赛队在所有缺陷上尝试修复后提交结果。针对每个缺陷，参赛队提交修复工具产生的第一个可行解，不得人工筛选正确补丁以及人工排除过拟合补丁。参赛队应提交所有产生的补丁文件，包括过拟合的修复结果。修复结果将由比赛组委会检查。</p>
++        <p>参赛队提交标准diff格式的补丁（即补丁包含所在文件和行号信息，文件减号行代表原缺陷代码，加号行代表工具提供的补丁代码）。比赛不以修复速度为评判标准，但是鼓励参赛队提交所用修复时间。</p>
++    </section>
++
++    <section class="competition-section">
++        <h3>三、初赛评分标准</h3>
++        <p>比赛初赛同时考虑修复召回率（recall）与精确率（precision），以F1分数计分，即：</p>
++        <div style="text-align: center; margin: 1rem 0;">
++            <img src="images/competition/auto-software-repair/f1-formula.png" alt="F1 = 2 × precision × recall / (precision + recall)" style="max-width: 100%; height: auto;">
++        </div>
++        <p>各个参赛队需要在初赛提交截至之前提交结果，比赛允许多次提交，以最后一次提交结果为准。所有参赛队将按照提交结果按上述公式计算分数。比赛组委会检查提交结果后，根据得分结果从高到低排名，决定决赛入围队伍。</p>
++    </section>
++
++    <section class="competition-section">
++        <h3>四、决赛评分标准</h3>
++        <p>进入决赛的队伍需要至少派1名队员参加2026年度中国软件大会，并在现场进行决赛。决赛中比赛提供新的缺陷，由决赛队伍在会议现场修复并提交修复结果。决赛队伍需要准备现场答辩，由比赛评委会委员根据修复方法的算法和实现进行评分。现场答辩的评分标准在决赛阶段公布。</p>
++        <p>比赛总成绩为100分，计分公式为（初赛分数×40% + 决赛现场修复分数×40% + 答辩分数×20%）。</p>
++    </section>
++
++    <section class="competition-section">
++        <h3>五、其他</h3>
++        <p>如果比赛队伍使用第三方工具或者借鉴他人部分源码，必须在提交文件中说明。参赛队应严守学术诚信，一经发现代码抄袭或者技术抄袭等学术不端行为，取消参赛队资格。</p>
++    </section>
++
++</div>
++
++<!-- blank 100px -->
++<p style="margin-bottom: 4rem;"></p>
+--- before/pages/competition/theorem-proving.html
++++ after/pages/competition/theorem-proving.html
+@@ -0,0 +1,146 @@
++<div class="banner">
++    <img src="images/logo/banner.jpg" alt="Background" class="banner-background" />
++</div>
++<!--插入CSS文件-->
++<link rel="stylesheet" type="text/css" href="./css/index.css">
++<link rel="stylesheet" type="text/css" href="./css/competition.css">
++<!--插入JS文件 -->
++<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
++
++<div class="container">
++    <h2 class="section-title">ChinaSoft2026定理证明竞赛</h2>
++
++    <section class="competition-section">
++        <h3>一、竞赛目的</h3>
++        <p>定理证明是形式化方法中的关键技术，它将程序与系统的正确性表达为数学命题，并通过逻辑推导的方式证明正确性。与测试等方法相比，定理证明不受系统状态空间规模的限制，能够对非常复杂的系统和性质给出严格保证。目前国际上一些规模最大、最有影响力的形式化验证工作均建立在定理证明之上，例如澳大利亚团队完整验证的seL4操作系统微内核、法国INRIA团队实现的可信C语言编译器CompCert，以及美国耶鲁大学进行的CertiKOS多核实时操作系统验证等。</p>
++        <p>2025年，首届定理证明竞赛在ChinaSoft2025大会期间成功举办，获评大会“优秀论坛”，吸引来自国内外高校和工业界的50余名选手参赛，积累了试题设计、现场组织、评审评分与奖项颁发等方面的成熟经验。2026年，竞赛在沿用2025年办赛经验的基础上进行升级：新增LLM/AI辅助证明赛道，实行“线上初赛＋线下决赛”赛制，扩大参赛覆盖面，探索人工智能时代程序验证的新范式。</p>
++        <p>本届竞赛以“以赛促学、以赛促教、以赛促研”为目标，通过设置贴近实际的证明试题与验证任务，激发青年学子对形式化方法的兴趣，提升逻辑推理、程序验证以及人与大模型协同证明的能力，为我国软硬件系统安全保障方向的发展积聚年轻力量。</p>
++    </section>
++
++    <section class="competition-section">
++        <h3>二、论坛安排</h3>
++        <p>定理证明竞赛是ChinaSoft2026大会的竞赛单元，主赛场设于大会现场。竞赛设人工证明赛道与LLM/AI辅助证明赛道，两个赛道分别命题、分别评审、分别排名；大会现场将举行线下决赛、评审与颁奖。ChinaSoft2026大会的时间与地点以大会官网公布为准（大会预计于2026年11月举行，具体日期与举办地点待公布）。</p>
++        <p>拟议日程安排（正式日程以组委会赛前发布为准）：</p>
++        <table class="competition-table">
++            <thead>
++                <tr>
++                    <th>阶段</th>
++                    <th>时间</th>
++                    <th>说明</th>
++                </tr>
++            </thead>
++            <tbody>
++                <tr>
++                    <td>线上报名启动</td>
++                    <td>9月12日</td>
++                    <td>官网与TPChina社区同步发布</td>
++                </tr>
++                <tr>
++                    <td>LLM/AI辅助证明赛道线上初赛</td>
++                    <td>9月20日、10月10日<br>19:00 – 21:00</td>
++                    <td>全国线上进行，平台提交</td>
++                </tr>
++                <tr>
++                    <td>晋级名单公布</td>
++                    <td>初赛后公布，日期待定</td>
++                    <td>通过竞赛官网公布</td>
++                </tr>
++                <tr>
++                    <td>人工证明赛道</td>
++                    <td>11月7日下午</td>
++                    <td>现场竞赛</td>
++                </tr>
++                <tr>
++                    <td>LLM/AI辅助证明赛道线下决赛</td>
++                    <td>11月8日上午</td>
++                    <td>现场竞赛</td>
++                </tr>
++                <tr>
++                    <td>颁奖</td>
++                    <td>11月8日下午</td>
++                    <td>评审与颁奖</td>
++                </tr>
++            </tbody>
++        </table>
++    </section>
++
++    <section class="competition-section">
++        <h3>三、报名参赛</h3>
++        <p><strong>报名对象：</strong>全国高校在校学生以及定理证明领域的从业者、爱好者均可报名参赛。参赛形式为个人参赛，定理证明竞赛不接受组队报名；每名选手限用一个账号参赛，同一赛道重复报名视为无效。</p>
++        <p><strong>报名方式：</strong>本次竞赛线上报名（<a href="https://www.wjx.top/vm/Pp76N9S.aspx#" target="_blank" rel="noopener noreferrer">https://www.wjx.top/vm/Pp76N9S.aspx#</a>）。报名成功的选手将在规定时间内收到邮件确认通知。</p>
++        <p><strong>费用：</strong>本次竞赛不收取报名费、参赛费、评审费和服务费等任何费用；线下参赛选手在比赛期间产生的交通、食宿等费用自理。</p>
++        <p><strong>赛道说明：</strong>人工证明赛道与LLM/AI辅助证明赛道分别命题、分别评审、分别排名；两赛道的报名时间、参赛指南与工具环境说明将随竞赛章程一并发布（竞赛章程待发布），便于选手提前熟悉规则、安装工具并开展备赛练习。</p>
++    </section>
++
++    <section class="competition-section">
++        <h3>四、竞赛规则</h3>
++        <h4>（一）人工证明赛道（与2025年赛制保持一致）</h4>
++        <p>该赛事将于11月7日下午在ChinaSoft2026大会现场举行。</p>
++        <p>试题于竞赛现场公布并下发。试题类型涵盖基本证明、算法证明、数学证明和程序验证四大类，依据难度设置相应分值（2026年具体题量与分值待赛前公布）。选手须在现场规定时间内独立完成尽可能多的试题，依据总得分确定排名；同分选手按提交时间先后确定名次。</p>
++        <p>该赛道允许使用Rocq、Isabelle/HOL、Lean等定理证明器；参赛选手应自备可携带到现场的计算机。竞赛过程中允许查阅本地或离线的文档与手册，但不允许使用互联网搜索，禁止使用人工智能工具，禁止利用规则或技术漏洞等不良途径提高得分，一经发现取消比赛成绩。</p>
++        <h4>（二）LLM/AI辅助证明赛道（2026年新增）</h4>
++        <p>该赛道采用“线上初赛＋线下决赛”两阶段赛制：线上初赛于9月20日、10月10日的19:00 – 21:00举行，线下决赛将于11月8日上午在ChinaSoft2026大会现场举行。</p>
++        <p>初赛与决赛均以C程序验证为主要任务，依托QCP与C*工具开展，涵盖规约标注、验证条件求解与证明补全等环节；具体任务形式与工具版本（以赛前公布的竞赛章程为准）。</p>
++        <p>该赛道允许使用大语言模型等AI工具辅助完成验证任务，但选手须在提交材料中如实说明AI的使用情况；禁止他人代做、抄袭或伪造验证结果等弄虚作假行为，违者取消成绩并按情节追究相应责任。</p>
++        <p>线上初赛的竞赛结果将首先依据完成的程序验证问题数量排名，解决的问题数量越多，排名越靠前。如果两名或多名选手解决的程序验证问题数量相同，则按照最后一次成功提交的时间排序，越早完成最后一次成功提交的排名越靠前。</p>
++        <p>线下决赛的排名方式总体与线上初赛相似，但是将参考初赛排名。具体而言，线下决赛的竞赛结果将首先依据完成的程序验证问题数量排名，解决的问题数量越多，排名越靠前。如果两名或多名选手解决的程序验证问题数量相同，则依据“时间 + 初赛排名/2”排序。其中，“时间”指的是最后一次成功提交的时间，“初赛排名”指的是两次初赛中排名较高得一次，如果未参赛按照第40名计，如初赛成绩低于第40名，按照第40名计。例如，如果某选手两次初赛成绩为第8名和第19名，在决赛中在开赛后85分钟，完成了所有提交，那么他的“时间 + 初赛排名”就是85 + 8/2 = 89，解决的程序验证问题数量相同的前提下，这个数字越小，排名越靠前。</p>
++        <h4>（三）通用规则</h4>
++        <p>报名实行实名注册，组委会统一审核参赛资格；所有提交的证明、验证结果及相关材料须真实原创。完整竞赛规则、评分细则与违规处理办法将于赛前通过官网公布（以最终发布版本为准）。</p>
++    </section>
++
++    <section class="competition-section">
++        <h3>五、奖项设置</h3>
++        <p>人工证明赛道与LLM/AI辅助证明赛道分别设置一、二、三等奖，由赛事组委会依据各赛道最终排名评定并颁发获奖证书；各赛道排名前三的选手颁发奖金，其他排名靠前的选手颁发相应奖品。</p>
++        <p>奖项设置建议（正式名额以组委会发布的竞赛章程为准）：</p>
++        <table class="competition-table">
++            <thead>
++                <tr>
++                    <th>奖项</th>
++                    <th>说明</th>
++                </tr>
++            </thead>
++            <tbody>
++                <tr>
++                    <td>第一名、第二名、第三名</td>
++                    <td>各1人，另颁发奖金</td>
++                </tr>
++                <tr>
++                    <td>一等奖</td>
++                    <td>不超过参赛人数的10%</td>
++                </tr>
++                <tr>
++                    <td>二等奖</td>
++                    <td>不超过参赛人数的20%</td>
++                </tr>
++                <tr>
++                    <td>三等奖</td>
++                    <td>不超过参赛人数的30%</td>
++                </tr>
++            </tbody>
++        </table>
++        <p>全部奖项在ChinaSoft2026大会现场统一颁发，获奖名单通过竞赛官网与相关平台同步公布。具体奖项名额与奖金安排以赛事组委会最终公布的竞赛章程为准。</p>
++    </section>
++
++    <section class="competition-section">
++        <h3>六、竞赛组织</h3>
++        <p><strong>竞赛主办单位：</strong>中国计算机学会（CCF）形式化方法专委会。</p>
++        <p><strong>竞赛承办单位：</strong>TPChina定理证明开放社区、浙江大学、上海交通大学。</p>
++        <p><strong>竞赛独家赞助：</strong>上海算法创新研究院。</p>
++        <p><strong>竞赛指导委员会：</strong>胡振江（北京大学）、名单待公布。</p>
++        <p><strong>赛事组织与评审委员会：</strong>曹钦翔（上海交通大学）、袁胜浩（浙江大学）、王迪（北京大学）、李希萌（首都师范大学）、施晓牧（中国科学院软件研究所）、詹博华（华为）、赵永望（浙江大学），最终组成以组委会公布为准。</p>
++        <p><strong>竞赛申报与筹备委员会：</strong>袁胜浩（浙江大学）、曹钦翔（上海交通大学）、赵永望（浙江大学）。</p>
++    </section>
++
++    <section class="competition-section">
++        <h3>七、竞赛官网</h3>
++        <p>本页（ChinaSoft2026定理证明竞赛）地址：<a href="https://chinasoft.ccf.org.cn/2026/#competition/theorem-proving" target="_blank" rel="noopener noreferrer">https://chinasoft.ccf.org.cn/2026/#competition/theorem-proving</a>竞赛相关信息将同步发布在TPChina定理证明开放社区官网。</p>
++        <p>TPChina定理证明开放社区成立于2020年12月，由浙江大学赵永望教授、上海交通大学曹钦翔副教授与华为技术有限公司詹博华博士等学者共同发起，旨在为定理证明领域的爱好者、学者和研究人员提供交流和分享经验的平台。社区定期组织线上线下活动，并通过官网提供Rocq、Isabelle/HOL、Lean等定理证明工具的入门资料、项目检索信息以及相关学术论文的索引。</p>
++        <p>LLM/AI辅助证明赛道的验证工具：QCP（QualifiedCProgramming）与C*（CStar）。QCP是面向C语言的程序验证工具，选手为C代码添加前置/后置条件与循环不变量等规约后，由工具将安全性、功能正确性验证转化为验证条件，并支持生成Rocq证明文件供选手补全；C*是一种“开发与证明一体化”的系统编程语言，将函数契约、循环不变式与证明代码嵌入同一份C源码，便于选手借助大模型在同一份源码中完成程序编写、规约标注与证明构造。工具安装说明、版本与在线练习环境将于赛前公布（以赛前通知为准）。</p>
++        <p>竞赛咨询与联系方式：待公布（请关注本页、TPChina定理证明开放社区及相关公众号通知）。</p>
++        <p style="text-align: right;"><strong>ChinaSoft2026定理证明竞赛组委会</strong></p>
++    </section>
++
++</div>
++
++<!-- blank 100px -->
++<p style="margin-bottom: 4rem;"></p>

@@ -1,0 +1,68 @@
+--- before/pages/agenda/agenda-overview/index.html
++++ after/pages/agenda/agenda-overview/index.html
+@@ -443,6 +443,24 @@
+                     <td>I6</td>
+                     <td>智能化高可信嵌入式软件工程论坛</td>
+                 </tr>
++                   <tr>
++                    <td>工业论坛</td>
++                    <td>I7</td>
++                    <td>软件研发体系与工程实践论坛</td>
++                </tr>
++                   <tr>
++                    <td>工业论坛</td>
++                    <td>I8</td>
++                    <td>智能系统底座与应用实践论坛</td>
++                </tr>
++
++
++
++
++
++
++
++
+                 <tr>
+                     <td>竞赛论坛</td>
+                     <td>C1</td>
+--- before/pages/agenda/industry-forum/templates/trusted-embedded.html
++++ after/pages/agenda/industry-forum/templates/trusted-embedded.html
+@@ -34,7 +34,7 @@
+             </li>
+             <li>
+                 <span class="member-name">李晓锋</span>
+-                <span class="member-unit">（航天科技集团502所，北京轩宇信息技术有限公司）</span>
++                <span class="member-unit">（航天科技集团502所）</span>
+             </li>
+         </ul>
+     </section>
+@@ -224,7 +224,7 @@
+                     <img src="./images/academic-forum/工业论坛/陈睿.png" alt="陈睿头像"
+                         onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+-                <p><strong>简介：</strong>陈睿，博士，航天科技集团502所研究员，轩宇信息董事长，CCF形式化方法专委会常务委员，CICC智能测评专委会委员。长期从事嵌入式软件可信保障技术以及相关工具软件的研制。主持多个国家级省部级项目，在ISSTA、FSE等发表高水平论文20余篇，获发明专利20余项。负责研制了覆盖嵌入式软件测试全过程的完整工具链，推动软件工程和形式化等技术产业化，广泛应用于载人飞船和空间站、嫦娥系列探测器、北斗导航卫星等航天器软件的开发和测试中。获北京市科技进步一等奖，航天贡献奖等。
++                <p><strong>简介：</strong>陈睿，博士，航天科技集团502所研究员，轩宇信息董事长，CCF形式化方法专委会常务委员，CICC智能测评专委会委员。长期从事嵌入式软件可信保障技术以及相关工具软件的研制。主持多个国家级省部级项目，在ISSTA、FSE等发表高水平论文20余篇，获发明专利20余项。负责研制了覆盖嵌入式软件测试全过程的完整工具链，推动软件工程和形式化等技术产业化，广泛应用于载人飞船和空间站、嫦娥系列探测器、北斗导航卫星等航天器软件的开发和测试中。入选首都科技创新领军人才，获北京市杰出青年中关村奖、北京市科技进步一等奖，航天贡献奖等。
+                 </p>
+             </div>
+         </div>
+--- before/pages/agenda/special-issue-forum/index.html
++++ after/pages/agenda/special-issue-forum/index.html
+@@ -26,7 +26,7 @@
+             <li><a href="#agenda/special-issue-forum/formal-methods" class="sidebar-item"
+                     onclick="loadAgenda('special-issue-forum', 'formal-methods')">形式化方法与应用</a></li>
+             <li><a href="#agenda/special-issue-forum/intelligent-supply-chain-security" class="sidebar-item"
+-                    onclick="loadAgenda('special-issue-forum', 'intelligent-supply-chain-security')">智能软硬件供应链安全分析</a></li>
++                    onclick="loadAgenda('special-issue-forum', 'intelligent-supply-chain-security')">智能化软硬件供应链安全分析技术</a></li>
+             <!-- <li><a href="#agenda/special-issue-forum/software-construction-supply-chain" class="sidebar-item"
+                     onclick="loadAgenda('special-issue-forum', 'software-construction-supply-chain')">智能化基础软件可信构造与供应链安全</a></li>
+             <li><a href="#agenda/special-issue-forum/riscv-ai-systems" class="sidebar-item"
+--- before/pages/agenda/special-issue-forum/templates/intelligent-supply-chain-security.html
++++ after/pages/agenda/special-issue-forum/templates/intelligent-supply-chain-security.html
+@@ -1,6 +1,6 @@
+ <div class="container">
+ 
+-    <h2 class="section-title">智能软硬件供应链安全分析</h2>
++    <h2 class="section-title">智能化软硬件供应链安全分析技术</h2>
+     <div class="section-title-en">专刊论坛 S8</div>
+ 
+     <section class="forum-section">
