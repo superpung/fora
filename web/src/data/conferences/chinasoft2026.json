@@ -736,6 +736,14 @@
           }
         },
         {
+          "name": "王劲松",
+          "affiliation_raw": "天津职业技术师范大学",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/87cf3b82aba231737608.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E7%8E%8B%E5%8A%B2%E6%9D%BE.png"
+          }
+        },
+        {
           "name": "杨亮",
           "affiliation_raw": "河北工业大学",
           "photo": {
@@ -757,14 +765,6 @@
           "photo": {
             "local_path": "/portraits/chinasoft2026/ad2f5329c25353fbb03c.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E7%8E%8B%E8%B5%9C.png"
-          }
-        },
-        {
-          "name": "王劲松",
-          "affiliation_raw": "天津职业技术师范大学",
-          "photo": {
-            "local_path": "/portraits/chinasoft2026/87cf3b82aba231737608.webp",
-            "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E7%8E%8B%E5%8A%B2%E6%9D%BE.png"
           }
         },
         {
@@ -799,10 +799,10 @@
             "许光全",
             "程明明",
             "汪定",
+            "王劲松",
             "杨亮",
             "赵子平",
             "王赜",
-            "王劲松",
             "刘祥颖",
             "李海丰"
           ]
@@ -2071,7 +2071,7 @@
           "name": "徐英帅",
           "affiliation_raw": "天津大学",
           "photo": {
-            "local_path": "/portraits/chinasoft2026/d96f45f080ac71f1878b.webp",
+            "local_path": "/portraits/chinasoft2026/1053d24f834873f07add.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E5%BE%90%E8%8B%B1%E5%B8%85.png"
           }
         },
@@ -23507,14 +23507,22 @@
           "affiliation_raw": "中国人民大学",
           "chair_role": "论坛组委会",
           "title": "副教授",
-          "bio": "刘爽，中国人民大学吴玉章青年学者，博导、副教授。中国计算机学会系统软件专委、数据库专委委员，在新加坡国立大学获得博士学位。从事复杂系统测试、数据库测试等相关方向的研究工作。在相关领域国际会议及期刊PVLDB, ICDE, ISSTA, ESEC/FSE, ASE, ICSE, FM, USENIX Security, TSE, TOSEM, 软件学报等发表论文70余篇，并获得ESEC/FSE 2020 (CCF A) 最佳论文奖。担任软件工程、数据库领域多个国际会议程序委员会委员。主持包括自科面上、重大专项子课题、青年项目，CCF-蚂蚁联合基金等在内的多项项目。"
+          "bio": "刘爽，中国人民大学吴玉章青年学者，博导、副教授。中国计算机学会系统软件专委、数据库专委委员，在新加坡国立大学获得博士学位。从事复杂系统测试、数据库测试等相关方向的研究工作。在相关领域国际会议及期刊PVLDB, ICDE, ISSTA, ESEC/FSE, ASE, ICSE, FM, USENIX Security, TSE, TOSEM, 软件学报等发表论文70余篇，并获得ESEC/FSE 2020 (CCF A) 最佳论文奖。担任软件工程、数据库领域多个国际会议程序委员会委员。主持包括自科面上、重大专项子课题、青年项目，CCF-蚂蚁联合基金等在内的多项项目。",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/79d8fda8d088f2a2235e.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%B7%A5%E4%B8%9A%E8%AE%BA%E5%9D%9B/%E5%88%98%E7%88%BD.png"
+          }
         },
         {
           "name": "肖涛",
           "affiliation_raw": "九州大学",
           "chair_role": "论坛组委会",
           "title": "助理教授",
-          "bio": "肖涛，日本九州大学助理教授，在日本奈良先端科学技术大学院大学获得博士学位。主要从事智能软件工程与实证软件工程研究，研究方向包括生成式人工智能应用评估、软件质量与可靠性、软件维护与演化。在软件工程领域国际会议及期刊TSE、TOSEM，ICSE、FSE、ASE等发表或获录用论文。主持日本学术振兴会（JSPS）若手研究、特别研究员奖励费及栢森信息科学振兴基金研究资助项目。担任MSR 2024 Mining Challenge联合主席、FSE 2026及ASE 2026程序委员会委员，并为TSE、TOSEM、ESE等期刊审稿，获ASE 2026优秀审稿人奖。"
+          "bio": "肖涛，日本九州大学助理教授，在日本奈良先端科学技术大学院大学获得博士学位。主要从事智能软件工程与实证软件工程研究，研究方向包括生成式人工智能应用评估、软件质量与可靠性、软件维护与演化。在软件工程领域国际会议及期刊TSE、TOSEM，ICSE、FSE、ASE等发表或获录用论文。主持日本学术振兴会（JSPS）若手研究、特别研究员奖励费及栢森信息科学振兴基金研究资助项目。担任MSR 2024 Mining Challenge联合主席、FSE 2026及ASE 2026程序委员会委员，并为TSE、TOSEM、ESE等期刊审稿，获ASE 2026优秀审稿人奖。",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/74aafedfca8ef326e353.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%B7%A5%E4%B8%9A%E8%AE%BA%E5%9D%9B/%E8%82%96%E6%B6%9B.png"
+          }
         }
       ],
       "talks": [
@@ -23547,7 +23555,11 @@
             {
               "name": "王子谋",
               "affiliation_raw": "海光信息技术",
-              "bio": "王子谋先生现任海光信息技术有限公司 政府与公共行业方案部副总经理,主管交通医卫科研教育技术工作，以丰富行业经验带领海光产业生态大力投入交通行业数字化转型的解决方案打造及市场引领。此前，王子谋先生曾在深度参与交通、医疗、教育行业技术规划及算力建设咨询工作，拥有多年的IT产业从业经验，凭借前瞻的视野以及实践积累，致力于中国信息产业的自主可控与高质量发展。协助用户有效利用云、大数据、人工智能等IT新型态，创新商业模式，在产业数智化趋势下把握先机。"
+              "bio": "王子谋先生现任海光信息技术有限公司 政府与公共行业方案部副总经理,主管交通医卫科研教育技术工作，以丰富行业经验带领海光产业生态大力投入交通行业数字化转型的解决方案打造及市场引领。此前，王子谋先生曾在深度参与交通、医疗、教育行业技术规划及算力建设咨询工作，拥有多年的IT产业从业经验，凭借前瞻的视野以及实践积累，致力于中国信息产业的自主可控与高质量发展。协助用户有效利用云、大数据、人工智能等IT新型态，创新商业模式，在产业数智化趋势下把握先机。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/d26f290553ca3d0e60df.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%B7%A5%E4%B8%9A%E8%AE%BA%E5%9D%9B/%E7%8E%8B%E5%AD%90%E8%B0%8B.png"
+              }
             }
           ],
           "type": "talk",
@@ -23580,7 +23592,11 @@
             {
               "name": "张卿",
               "affiliation_raw": "腾讯云",
-              "bio": "张卿，复旦大学硕士，在腾讯云从事数据库语义层，NL2SQL，Agent Context 和 Ontology 的相关研究和开发工作。"
+              "bio": "张卿，复旦大学硕士，在腾讯云从事数据库语义层，NL2SQL，Agent Context 和 Ontology 的相关研究和开发工作。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/56b435005583365561b3.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%B7%A5%E4%B8%9A%E8%AE%BA%E5%9D%9B/%E5%BC%A0%E5%8D%BF.png"
+              }
             }
           ],
           "type": "talk",
@@ -23613,7 +23629,11 @@
             {
               "name": "刘振宇",
               "affiliation_raw": "航天信息",
-              "bio": "刘振宇，高级工程师，中国航天科工集团科技委人工智能专业组成员，北京市科学技术委员会评审委员，北京邮电大学人工智能学院企业导师，中关村科技园区管理委员会科技项目专家、目前任航天信息股份有限公司技术创新部副部长，牵头负责信诺财税大模型和金税智能体建设，带领团队完成“2+1+N”财税大模型体系建设和落地应用，累计服务用户超三百万户，发表人工智能领域高水平论文十余篇、专利百余篇，先后获得航天科工集团科技进步二等奖、自治区科技进步二等奖等省部级奖项。"
+              "bio": "刘振宇，高级工程师，中国航天科工集团科技委人工智能专业组成员，北京市科学技术委员会评审委员，北京邮电大学人工智能学院企业导师，中关村科技园区管理委员会科技项目专家、目前任航天信息股份有限公司技术创新部副部长，牵头负责信诺财税大模型和金税智能体建设，带领团队完成“2+1+N”财税大模型体系建设和落地应用，累计服务用户超三百万户，发表人工智能领域高水平论文十余篇、专利百余篇，先后获得航天科工集团科技进步二等奖、自治区科技进步二等奖等省部级奖项。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/ede7863a08150f1c8c85.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%B7%A5%E4%B8%9A%E8%AE%BA%E5%9D%9B/%E5%88%98%E6%8C%AF%E5%AE%87.png"
+              }
             }
           ],
           "type": "talk",
@@ -23646,7 +23666,11 @@
             {
               "name": "岳赟",
               "affiliation_raw": "（蚂蚁）",
-              "bio": "蚂蚁阿福 Agent Infra 负责人"
+              "bio": "蚂蚁阿福 Agent Infra 负责人",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/f7f6919d529795dad30d.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%B7%A5%E4%B8%9A%E8%AE%BA%E5%9D%9B/%E5%B2%B3%E8%B5%9F.png"
+              }
             }
           ],
           "type": "talk",
@@ -23678,7 +23702,11 @@
             {
               "name": "柳义利",
               "affiliation_raw": "紫光云",
-              "bio": "柳义利，毕业于西安电子科技大学，硕士研究生毕业，现任紫光云技术有限公司首席技术官CTO，在ICT行业深耕多年，有着丰富的产品研发、方案研发，产品管理和市场营销经验。2000年在华为，是第一台三层以太网交换机的开发者。2003，在华三，开创开创性地研发出新一代12500X-AF最高端旗舰产品，奠定了H3C在该领域领导者地位。2020年，担任新华三云智产线总经理，后兼任产品研发总经理。"
+              "bio": "柳义利，毕业于西安电子科技大学，硕士研究生毕业，现任紫光云技术有限公司首席技术官CTO，在ICT行业深耕多年，有着丰富的产品研发、方案研发，产品管理和市场营销经验。2000年在华为，是第一台三层以太网交换机的开发者。2003，在华三，开创开创性地研发出新一代12500X-AF最高端旗舰产品，奠定了H3C在该领域领导者地位。2020年，担任新华三云智产线总经理，后兼任产品研发总经理。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/66c7d4d37154725e271d.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%B7%A5%E4%B8%9A%E8%AE%BA%E5%9D%9B/%E6%9F%B3%E4%B9%89%E5%88%A9.png"
+              }
             }
           ],
           "type": "talk",
@@ -23711,7 +23739,11 @@
             {
               "name": "郭威俊",
               "affiliation_raw": "墨芯人工智能",
-              "bio": "郭威俊先生现任墨芯人工智能集团市场及公关副总裁，统筹墨芯品牌及对外市场公关策略，负责协调深化墨芯科技品牌资产及品牌舆情口碑，曾任哈啰商业化平台总经理，全面负责哈啰营销系统及战略产品从0-1的搭建，对当下中国O2O营销市场有深刻洞察和前沿见解。在加入哈啰之前，历任腾讯社交与效果广告部全国快消行业负责人，在腾讯工作的9年时间里曾领导腾讯社交广告深度服务联合利华、宝洁、欧莱雅等50家头部客户，在重大营销战役中收获颇丰，国内斩获诸多奖项。还曾担任尼尔森大中华区媒介研究管理岗位，熟稔营销心理学，有敏锐的消费者洞察，并将其应用在零售行业中积累了大量丰富的实战经验。"
+              "bio": "郭威俊先生现任墨芯人工智能集团市场及公关副总裁，统筹墨芯品牌及对外市场公关策略，负责协调深化墨芯科技品牌资产及品牌舆情口碑，曾任哈啰商业化平台总经理，全面负责哈啰营销系统及战略产品从0-1的搭建，对当下中国O2O营销市场有深刻洞察和前沿见解。在加入哈啰之前，历任腾讯社交与效果广告部全国快消行业负责人，在腾讯工作的9年时间里曾领导腾讯社交广告深度服务联合利华、宝洁、欧莱雅等50家头部客户，在重大营销战役中收获颇丰，国内斩获诸多奖项。还曾担任尼尔森大中华区媒介研究管理岗位，熟稔营销心理学，有敏锐的消费者洞察，并将其应用在零售行业中积累了大量丰富的实战经验。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/df4b5988f03d977dbf6e.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%B7%A5%E4%B8%9A%E8%AE%BA%E5%9D%9B/%E9%83%AD%E5%A8%81%E4%BF%8A.png"
+              }
             }
           ],
           "type": "talk",
@@ -24206,7 +24238,7 @@
   },
   "extraction": {
     "source": "https://chinasoft.ccf.org.cn/2026/",
-    "content_sha256": "c74de17f0dbdc3b622770a66c5cd8e26a5deb64f19562370197a3688e2aefb40",
+    "content_sha256": "6ba4a1a3aa7c28ea29cb3b63bb367770d9fa9927332957812403fb179aa274ac",
     "forums_total": 66,
     "forums_detail_extracted": 56,
     "notes": "Active navigation and explicitly reviewed accessible withdrawn pages are captured. Unpublished programmes remain unscheduled. Timetable titles and affiliations are retained verbatim; profiles supplement abstracts and biographies."

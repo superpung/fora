@@ -1,23 +1,20 @@
 # ChinaSoft 2026: source gaps and refresh checklist
 
-Last imported source review: **2026-10-24, checked at 15:42 Asia/Shanghai**. This is the conference-specific
+Last imported source review: **2026-10-25, checked at 13:37–13:38 Asia/Shanghai**. This is the conference-specific
 checklist for every subsequent refresh, not a claim that the official programme
 is complete. Talk numbers below are **one-based**, matching `#talk-N` links.
 
-Latest check: [October 24, 18:00–18:01 Asia/Shanghai](../source/chinasoft2026/checks/20261024T100040420152Z/REVIEW.md).
-All 95 accessible HTML pages and all 596 portrait status/fingerprint records
-match the 15:42 observation. No source additions, replacements or corrections
-are needed. The committee-meeting index and eight I8 portrait URLs still return
-HTTP 404. The check remains incomplete; the successful baseline is unchanged.
+Latest check: [October 25, 13:37–13:38 Asia/Shanghai](../source/chinasoft2026/checks/20261025T053746279694Z/REVIEW.md).
+The local advisory committee moves 王劲松 earlier in its roster. The committee
+overview adopts the five previously curated 负责人 role labels. All eight I8
+portrait URLs recover, and 徐英帅's existing portrait changes; all 596 active
+portrait resources are now available and prepared. Programmes, people, dates,
+times and rooms are unchanged. The committee-meeting index remains HTTP 404;
+the observation is incomplete and the successful baseline remains October 21 morning.
 
-Last content import: [October 24, 15:42 Asia/Shanghai](../source/chinasoft2026/checks/20261024T074205242195Z/REVIEW.md).
-R9/R35/E5/I8 publish 25 programme items and 20 abstracts. R9 is renamed;
-R30 replaces its fourth speaker/report. C4 publishes two timed competition
-stages. Three committees add nine members. One new HTML reference and 15 changed
-pages are archived. Of 596 portrait references, eight new I8 images are HTTP 404;
-588 accessible resources are prepared. Existing content is retained. The
-committee-meeting index remains HTTP 404, so the observation is incomplete
-and the successful baseline remains October 21 morning.
+The [October 24, 18:00 observation](../source/chinasoft2026/checks/20261024T100040420152Z/REVIEW.md)
+was unchanged from the [15:42 content import](../source/chinasoft2026/checks/20261024T074205242195Z/REVIEW.md),
+which added R9/R35/E5/I8 programmes, C4 stages and nine committee members.
 
 The [October 23 observation](../source/chinasoft2026/checks/20261023T065259587808Z/REVIEW.md)
 had no source changes compared with October 22 evening.
@@ -67,7 +64,7 @@ published programmes and five explicit placeholders. One further newly linked
 committee-meeting index is unavailable (HTTP 404). R16 is active again; no
 additional withdrawn page is needed for the current inventory.
 The dataset contains 66 forum/competition entries, 454 programme items, 60
-breaks, 378 attached source abstracts and 588 downloaded portrait resources.
+breaks, 378 attached source abstracts and 596 downloaded portrait resources.
 One further abstract is retained in an unmatched profile, separately displayed.
 
 ## Unpublished programmes
@@ -101,6 +98,21 @@ One further abstract is retained in an unmatched profile, separately displayed.
   `extra.other_meetings`; the three A1–A3 annual meetings have timed day blocks.
   Do not assign the undated meetings to a day by analogy.
 
+## October 25 source details to recheck
+
+- The advisory roster places 王劲松 immediately after 汪定 and before 杨亮,
+  moving from member position 16 to 13. The same 18 members and two chairs remain.
+- The committee overview now says 负责人 for finance, publicity, sponsorship,
+  publication and volunteer organization. Its former five-heading correction
+  is resolved upstream; keep the full official page without that override.
+  Dedicated pages still need their committee-name prefixes to scope the roles.
+- All eight I8 portrait URLs are available again. Restore their explicit tags;
+  retain the existing 岳赟/蚂蚁 typography correction. 徐英帅's volunteer-committee
+  image changes bytes at the same URL. No identity is inferred from filenames.
+- There are no newly published programmes or changes to report metadata,
+  abstracts, biographies, clock windows or rooms. All previously pending
+  entries and substantive source notes remain unchanged.
+
 ## October 24 source details to recheck
 
 - R9 is now named 智能嵌入式系统基础软件论坛 in both overview and detail.
@@ -117,6 +129,7 @@ One further abstract is retained in an unmatched profile, separately displayed.
   柳义利, 王子谋, 肖涛 and 郭威俊. Remove only those image tags from curated
   HTML; preserve all names, biographies and abstracts. Restore the tags if the
   exact URLs recover. None had a previously imported I8 photo to retain.
+  **Resolved October 25:** all eight exact URLs work and their tags/photos are restored.
 - The I8 table separates 岳赟 and 蚂蚁 with a line break. Curated HTML makes the
   existing name/affiliation boundary explicit as 岳赟（蚂蚁） to avoid interpreting
   the two two-character strings as a spaced four-character name. R30's two chair
@@ -290,8 +303,9 @@ One further abstract is retained in an unmatched profile, separately displayed.
 - Committee role reconciliation is a deliberate data-only correction: dedicated
   finance/publicity/sponsorship/publication/volunteer pages now say 负责人,
   while `committee-chair.html` still says 主席. In curated HTML, prefix the
-  five dedicated headings with their committee names and update the five
-  corresponding overview headings to 负责人. This merges unchanged duplicate
+  five dedicated headings with their committee names. The five corresponding
+  overview headings were also corrected to 负责人; **resolved October 25**,
+  when the source adopted those labels itself. This merges unchanged duplicate
   rosters without combining unrelated committees. Original labels stay archived;
   recheck before reapplying after a fetch. No decorative discrepancy note is added.
 - The three previously missing programme-committee affiliations are now all
@@ -483,10 +497,11 @@ generated JSON copies must come from the same rebuilt source.
    versus curated input. Then fetch live pages and compare added, changed and removed links. A withdrawn
    link is not evidence of a cancelled event. Review this document's pending
    codes, identities, title differences and source rosters against the new pages.
-2. Apply the documented R32, October 19 committee-label and October 21
-   overview-header data corrections,
-   check for repeated navigation links, and
-   recheck portrait availability (all previously broken URLs recovered on October 20);
+2. Apply the documented R32, October 19 dedicated committee-page prefixes and
+   October 21 overview-header data corrections. The five committee overview
+   labels were resolved upstream on October 25 and need no override.
+   Check for repeated navigation links, and
+   recheck portrait availability (all currently referenced URLs are available after the October 25 I8 recovery);
    do not generalize one-off source edits into shared parsing code. Review
    `curation.json` against the source and update this document when upstream fixes gaps.
 3. Refresh portrait assets if image references/content changed. Check identities
@@ -508,8 +523,8 @@ generated JSON copies must come from the same rebuilt source.
 
 ## Resolved display defects tracked by regression checks
 
-- All 66 forum entries are reachable in the normal dashboard (68 daily rows), including the
-  nine entries under the pending-date section; filtering works there too.
+- All 66 forum entries are reachable in the normal dashboard (69 daily rows), including the
+  four entries under the pending-date section; filtering works there too.
 - Long committee rosters reveal when entering the viewport. A fractional
   visibility threshold hid the 195-member programme committee on mobile;
   independent 400-member fixtures now cover both desktop and mobile.

@@ -49,11 +49,13 @@ overview block locations omit the known venue prefixes, while `extra.location_ra
 retains the full source wording. The conference venue remains available for
 the page header, calendar exports and standalone share posters.
 
-All 588 available portrait URLs have been downloaded and decoded. The October 21
+All 596 available portrait URLs have been downloaded and decoded. The October 21
 check replaces two P3/R19 speaker portraits; seven formerly retained-only R16
 resources are active again. All previously recovered P3/I3/S1 images remain
-available. Eight newly published I8 portrait references return HTTP 404 and are omitted
-from curated HTML; all people and text remain, with exact URLs in the check archive.
+available. All eight I8 portrait URLs recover on October 25 and their explicit tags are
+restored. The volunteer committee image for 徐英帅 changes at its existing URL.
+No broken portrait references remain; the committee-meeting HTML index still
+returns HTTP 404 and does not advance the complete-check baseline.
 `fetch_photos.py` and `web/scripts/prepare-portraits.mjs` prepare 256px WebP
 assets under `web/public/portraits/chinasoft2026/`; install web dependencies
 before refreshing portraits. `raw/portraits.json` records original URLs,
@@ -174,3 +176,8 @@ R9 changes its name in both official inventory and detail. The adapter now
 matches an explicitly unnamed profile by its reviewed role credit and normalized
 report title; it retains the abstract without inventing a person. An independent
 fixture rejects mismatched titles. No shared web application code changes.
+
+The October 25 refresh restores eight I8 portraits, replaces 徐英帅's portrait,
+and moves 王劲松 earlier in the unchanged advisory roster. The official committee
+overview now uses the five previously curated 负责人 labels, resolving that
+data-only correction. Programmes and enrichment are unchanged.
