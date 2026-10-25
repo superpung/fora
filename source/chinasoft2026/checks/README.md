@@ -93,9 +93,16 @@ the 15:42 observation. No import is needed. The committee-meeting index and
 eight I8 portraits remain HTTP 404; the observation is incomplete and does not
 advance the October 21 morning complete baseline.
 
-Latest observation: [October 25, 13:37–13:38](20261025T053746279694Z/REVIEW.md).
+Latest content import: [October 25, 13:37–13:38](20261025T053746279694Z/REVIEW.md).
 Two committee pages change: advisory-member order and role labels already used
 in curated input. Eight I8 portraits recover and 徐英帅's existing image changes;
 all 596 active portrait URLs are now available. Programmes are unchanged. The
 committee-meeting index remains HTTP 404, so this incomplete observation does
 not advance the October 21 morning baseline.
+
+Latest observation: [October 25, 18:00–18:01](20261025T100058174329Z/REVIEW.md).
+All 95 accessible HTML pages and all 596 portrait status/hash records match the
+13:37–13:38 imported observation. No import is needed; all eleven deliberate
+curated-page differences remain intact. The committee-meeting index remains
+HTTP 404, so the observation is incomplete and does not advance the October 21
+morning complete baseline.

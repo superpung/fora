@@ -4,13 +4,20 @@ Last imported source review: **2026-10-25, checked at 13:37–13:38 Asia/Shangha
 checklist for every subsequent refresh, not a claim that the official programme
 is complete. Talk numbers below are **one-based**, matching `#talk-N` links.
 
-Latest check: [October 25, 13:37–13:38 Asia/Shanghai](../source/chinasoft2026/checks/20261025T053746279694Z/REVIEW.md).
+Latest imported check: [October 25, 13:37–13:38 Asia/Shanghai](../source/chinasoft2026/checks/20261025T053746279694Z/REVIEW.md).
 The local advisory committee moves 王劲松 earlier in its roster. The committee
 overview adopts the five previously curated 负责人 role labels. All eight I8
 portrait URLs recover, and 徐英帅's existing portrait changes; all 596 active
 portrait resources are now available and prepared. Programmes, people, dates,
 times and rooms are unchanged. The committee-meeting index remains HTTP 404;
 the observation is incomplete and the successful baseline remains October 21 morning.
+
+Latest check: [October 25, 18:00–18:01 Asia/Shanghai](../source/chinasoft2026/checks/20261025T100058174329Z/REVIEW.md).
+All 95 accessible HTML pages and all 596 portrait status/hash records match the
+13:37–13:38 imported observation. No source additions, replacements or corrections
+are needed. All eleven deliberate curated-page differences remain intact. The
+committee-meeting index remains HTTP 404; this observation is incomplete and
+does not advance the October 21 morning complete baseline.
 
 The [October 24, 18:00 observation](../source/chinasoft2026/checks/20261024T100040420152Z/REVIEW.md)
 was unchanged from the [15:42 content import](../source/chinasoft2026/checks/20261024T074205242195Z/REVIEW.md),
