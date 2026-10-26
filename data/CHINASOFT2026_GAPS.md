@@ -12,12 +12,25 @@ portrait resources are now available and prepared. Programmes, people, dates,
 times and rooms are unchanged. The committee-meeting index remains HTTP 404;
 the observation is incomplete and the successful baseline remains October 21 morning.
 
-Latest check: [October 25, 18:00–18:01 Asia/Shanghai](../source/chinasoft2026/checks/20261025T100058174329Z/REVIEW.md).
-All 95 accessible HTML pages and all 596 portrait status/hash records match the
-13:37–13:38 imported observation. No source additions, replacements or corrections
-are needed. All eleven deliberate curated-page differences remain intact. The
-committee-meeting index remains HTTP 404; this observation is incomplete and
-does not advance the October 21 morning complete baseline.
+Latest check: [October 26, 18:00–18:01 Asia/Shanghai](../source/chinasoft2026/checks/20261026T100051973226Z/REVIEW.md).
+All 97 active HTML pages are accessible; the committee-meeting index recovers
+and a new T1 programme is published. Of 601 portrait references, 600 work;
+袁斌's new R32 image returns HTTP 404. The checker completes successfully and
+advances its complete-observation baseline. **Content import is pending a user
+decision on representing T1's twenty-item programme**, currently an undated
+other-meeting entry. This evidence-only update does not change curated data.
+
+Since the last import, R2 removes/replaces reports, R3/E1/I4 add reports, R26/R32
+replace speakers and report content, and C1 publishes exact times and a room.
+R32's role paragraphs, E1's ambiguous credits, R22's affiliation discrepancy and
+I4's time overrun are resolved upstream but still await import. C4 has a new
+source conflict: the updated announcement ends November 7 at 18:20, while its
+dedicated detail still ends at 18:30. See the observation review for the complete
+change list, portrait references and required enrichment remapping. All counts
+below describe the unchanged October 25 imported dataset.
+
+The [October 25 evening check](../source/chinasoft2026/checks/20261025T100058174329Z/REVIEW.md)
+matched the last import and remained incomplete because of the then-broken index.
 
 The [October 24, 18:00 observation](../source/chinasoft2026/checks/20261024T100040420152Z/REVIEW.md)
 was unchanged from the [15:42 content import](../source/chinasoft2026/checks/20261024T074205242195Z/REVIEW.md),
@@ -478,6 +491,11 @@ One further abstract is retained in an unmatched profile, separately displayed.
   losing chair sections or labeling a committee merely 委员.
 
 ## Deliberate data-only correction: R32 biographies
+
+**Observed resolution on October 26, pending import:** the official source now
+removes all four role paragraphs itself and revises the substantive biographies.
+Do not reapply obsolete removals or overwrite those new biographies after the
+pending refresh. The historical correction below describes the imported snapshot.
 
 At the user's explicit request, remove the four standalone role paragraphs
 from the curated R32 source snapshot before building. Do not add a general

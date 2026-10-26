@@ -53,7 +53,7 @@ unexpected response types fail the run. A failed run is not a "no changes" resul
 First complete observation:
 [2026-10-15 review](20261015T055445155743Z/REVIEW.md).
 
-Latest complete observation: [2026-10-21 morning review](20261021T020913151864Z/REVIEW.md).
+Previous complete observation: [2026-10-21 morning review](20261021T020913151864Z/REVIEW.md).
 
 Previous reviewed accessible-content import:
 [October 21 evening](20261021T124314880733Z/REVIEW.md). Its committee-meeting
@@ -100,9 +100,20 @@ all 596 active portrait URLs are now available. Programmes are unchanged. The
 committee-meeting index remains HTTP 404, so this incomplete observation does
 not advance the October 21 morning baseline.
 
-Latest observation: [October 25, 18:00–18:01](20261025T100058174329Z/REVIEW.md).
+Previous observation: [October 25, 18:00–18:01](20261025T100058174329Z/REVIEW.md).
 All 95 accessible HTML pages and all 596 portrait status/hash records match the
 13:37–13:38 imported observation. No import is needed; all eleven deliberate
 curated-page differences remain intact. The committee-meeting index remains
 HTTP 404, so the observation is incomplete and does not advance the October 21
 morning complete baseline.
+
+Latest complete observation: [October 26, 18:00–18:01](20261026T100051973226Z/REVIEW.md).
+The committee-meeting index recovers; all 97 HTML pages are accessible.
+T1 has a newly published programme, with additional forum and competition
+changes detailed in the review. There are 601 portrait references: 600 images
+and one confirmed new HTTP 404 for 袁斌. Under the checker contract this is a
+complete observation with a recorded broken-image defect, and it becomes the
+next complete baseline. Curated input is unchanged: the content import awaits
+a user decision on representing T1's programme. `since-imported.json` records
+one added and 22 changed page/status records, plus nine added/four removed
+portrait references, against the last imported October 25 observation.

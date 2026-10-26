@@ -1,5 +1,11 @@
 # ChinaSoft 2026 adapter
 
+The [October 26 observation](checks/20261026T100051973226Z/REVIEW.md) is complete
+but **not imported**. It recovers the committee-meeting index, adds T1 and
+changes several programmes/competitions. T1 programme representation awaits a
+user decision under the project agreement. The counts and source status below
+describe the October 25 imported snapshot, not the latest observation.
+
 The snapshot follows the published navigation at
 <https://chinasoft.ccf.org.cn/2026/>. Commented-out links are excluded: some
 still name previous-year forums. Fetching fails on request errors and completes
