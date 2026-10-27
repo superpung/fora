@@ -46,6 +46,8 @@ def fetch():
                 get(f"pages/intro/{intro[1]}.html")
     for retained in json.loads((RAW.parent / "curation.json").read_text())["retained_details"]:
         get(f"pages/agenda/{retained['category']}/templates/{retained['slug']}.html")
+    for path in json.loads((RAW.parent / "curation.json").read_text()).get("retained_pages", []):
+        get(path)
     for path, html in pages.items():
         target = RAW / path
         target.parent.mkdir(parents=True, exist_ok=True)

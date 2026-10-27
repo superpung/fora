@@ -32,6 +32,7 @@ CATEGORIES = {
     "常设论坛": "regular-forum", "学术论坛": "academic-forum",
     "专刊论坛": "special-issue-forum", "教育论坛": "education-forum",
     "工业论坛": "industry-forum", "竞赛论坛": "competition",
+    "专委会议": "committee-meeting",
 }
 DATE = re.compile(r"(?:(\d{4})年)?(\d{1,2})月(\d{1,2})日")
 TIME = re.compile(r"(\d{1,2}:\d{2})\s*[-–—~至]\s*(\d{1,2}:\d{2})")
@@ -267,12 +268,12 @@ def detail(category, slug):
                 fields[label] = match[1]
     dates = sorted({date(m[0]) for m in DATE.finditer(fields["时间"])})
     multi_day = len(dates) > 1
-    window = [None, None] if multi_day else time_range(fields["时间"], flags)
+    window = [None, None] if multi_day or not TIME.search(fields["时间"]) else time_range(fields["时间"], flags)
     forum = {
         "code": code[0], "title": i18n(title),
         "start": window[0], "end": window[1],
         "day_date": None if multi_day else dates[0], "room": room_name(fields["地点"]),
-        "session_period": (None if multi_day or window[0] < "12:00" and window[1] >= "13:00"
+        "session_period": (None if multi_day or not window[0] or window[0] < "12:00" and window[1] >= "13:00"
                            else "morning" if window[0] < "12:00" else "afternoon"),
         "source_url": f"{BASE}#agenda/{category}/{slug}",
         "chairs": [], "talks": [], "breaks": [], "detail_extracted": True,
@@ -347,7 +348,7 @@ def detail(category, slug):
                 "title": i18n(title), "title_status": "tbd" if "待定" in title else "confirmed",
                 "start": start, "end": end, "speakers": speakers,
                 "type": "opening" if re.search(r"开场|开幕|致辞|论坛介绍|论坛情况介绍|论坛引导发言", title) else
-                        "other" if re.search(r"圆桌|[Pp]an+el|交流讨论|交流与总结|论坛总结|论坛闭幕|结语|专题研讨", title) else "talk",
+                        "other" if re.search(r"圆桌|[Pp]an+el|交流讨论|交流与总结|论坛总结|会议总结|论坛闭幕|结语|专题研讨", title) else "talk",
                 "abstract_status": "unknown", "extra": {"speaker_raw": speaker_raw},
             }
             if section_title:
@@ -422,7 +423,7 @@ def detail(category, slug):
                             host["photo"] = info["person"]["photo"]
                         if info.get("report_title"):
                             talk["extra"]["host_profile_title"] = info["report_title"]
-            if not multi_day and (start < window[0] or end > window[1]):
+            if not multi_day and window[0] and (start < window[0] or end > window[1]):
                 row_flags.append(f"时间不一致：本报告为 {start}–{end}，超出论坛标注的 {window[0]}–{window[1]}，均按原文保留。")
             if row_flags:
                 talk["flags"] = row_flags
@@ -435,6 +436,11 @@ def detail(category, slug):
         flags.append("以下报告资料未能与日程表署名明确对应，单独保留：" + "、".join(unmatched))
     if not forum["talks"]:
         raise ValueError(f"Published detail has no parsed programme: {code[0]}")
+    if not multi_day and window[0] is None:
+        items = forum["talks"] + forum["breaks"]
+        forum["start"] = min(item["start"] for item in items)
+        forum["end"] = max(item["end"] for item in items)
+        forum["extra"]["window_basis"] = "programme_envelope"
     if multi_day:
         forum["sessions"] = []
         for day in dates:
@@ -624,23 +630,44 @@ def build():
         forum["extra"] = {"announcement_title": txt(announcement.find(["h1", "h2"])),
                           "milestones": milestones}
         forum["flags"].append("竞赛通知已公布决赛日期，具体时间、会场和参赛议程尚未公布。")
-    for code, slug in (("C1", "theorem-proving"),):
-        announcement = load(f"pages/competition/{slug}.html")
-        forum = next(f for f in forums if f["code"] == code)
-        forum["source_url"] = BASE + f"#competition/{slug}"
-        forum["extra"] = {"announcement_title": txt(announcement.find(["h1", "h2"]))}
-        if code == "C1":
-            # The source marks these stages provisional and gives periods only.
-            # Keep one date-only session per day, without invented clock times.
-            milestones = [cells for cells, header in table_rows(announcement.find("table"))
-                          if not header and re.search(r"11月\d+日", cells[1])]
-            if len(milestones) != 3:
-                raise ValueError("Expected three provisional theorem-proving stages")
-            forum["sessions"] = [{"date": day, "start": None, "end": None}
-                                 for day in sorted({date(cells[1]) for cells in milestones})]
-            forum["extra"].update(milestones=milestones, schedule_status="provisional")
-            forum["description"] = "拟议日程安排（正式日程以组委会赛前发布为准）：\n\n" + "\n\n".join(
-                f"{cells[0]}：{cells[1]}（{cells[2]}）" for cells in milestones)
+    # Published competition stages retain their exact clocks; untimed awards
+    # remain in the description rather than borrowing a morning final's window.
+    announcement = load("pages/competition/theorem-proving.html")
+    forum = next(f for f in forums if f["code"] == "C1")
+    milestones = [cells for cells, header in table_rows(announcement.find("table"))
+                  if not header and re.search(r"11月\d+日", cells[1])]
+    if len(milestones) != 3:
+        raise ValueError("Expected three theorem-proving stages")
+    location = next(txt(p).split("：", 1)[1] for p in announcement.find_all("p")
+                    if txt(p).startswith("现场竞赛地点："))
+    forum["room"] = room_name(clean(location))
+    forum["sessions"] = []
+    for cells in milestones:
+        if TIME.search(cells[1]):
+            start, end = time_range(cells[1], forum["flags"])
+            forum["sessions"].append({"date": date(cells[1]), "start": start, "end": end})
+    forum["source_url"] = BASE + "#competition/theorem-proving"
+    forum["extra"] = {"milestones": milestones, "location_raw": location,
+                      "announcement_title": txt(announcement.find(["h1", "h2"]))}
+    forum["description"] = "日程安排：\n\n" + "\n\n".join(
+        f"{cells[0]}：{cells[1]}（{cells[2]}）" for cells in milestones)
+    # The Harmony notice supplies two separate timed stages on one date.
+    harmony = load("pages/competition/harmony-ai.html")
+    forum = next(f for f in forums if f["code"] == "C2")
+    schedule = next(txt(p).split("：", 1)[1] for p in harmony.find_all("p")
+                    if txt(p).startswith("决赛时间地点："))
+    ranges = [time_range(match[0], forum["flags"]) for match in TIME.finditer(schedule)]
+    if len(ranges) != 2:
+        raise ValueError("Expected two Harmony final stages")
+    forum["room"] = room_name(schedule.split("，11月", 1)[0])
+    forum["start"], forum["end"] = ranges[0][0], ranges[-1][1]
+    forum["talks"] = [{"title": i18n("线下决赛"), "start": start, "end": end,
+                       "speakers": [], "type": "other", "abstract_status": "unknown"}
+                      for start, end in ranges]
+    forum.pop("agenda_status", None)
+    forum["detail_extracted"] = True
+    forum["extra"].update(schedule_raw=schedule, window_basis="programme_envelope")
+    forum["description"] = "决赛时间地点：" + schedule
     # The new repair announcement supplies two timed stages, but no team slots.
     repair = load("pages/agenda/competition/templates/software-repair-competition.html")
     forum = next(f for f in forums if f["code"] == "C4")
@@ -669,6 +696,12 @@ def build():
     forum["extra"] = {"milestones": milestones, "defense_schedule_raw": fields["时间"],
                       "location_raw": fields["地点"],
                       "previous_announcement_url": BASE + "#competition/auto-software-repair"}
+    previous_repair = load("pages/competition/auto-software-repair.html")
+    alternate = next(txt(p) for p in previous_repair.find_all(["p", "li"])
+                     if "11月7日" in txt(p) and "18:20" in txt(p))
+    forum["extra"]["alternate_schedule_raw"] = alternate
+    forum["flags"].append("时间不一致：竞赛通知的11月7日决赛结束时间为18:20，详情页为18:30；此处保留详情页时间。")
+    forum["extra"]["source_navigation_status"] = "link_withdrawn"
     for member in parse_chairs(repair):
         person, problem = read_person(member.pop("name"), member.pop("affiliation_raw", None), **member)
         if problem:

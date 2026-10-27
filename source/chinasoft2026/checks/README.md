@@ -64,7 +64,7 @@ portrait evidence, writes the report/archive, then exits unsuccessfully. Missing
 HTML is never represented as deleted content in patches. Transport/server errors
 still fail; no incomplete observation advances the comparison baseline.
 
-Latest reviewed accessible-content import:
+Previous reviewed accessible-content import:
 [October 22 daily check](20261022T100053520657Z/REVIEW.md). Twelve accessible
 pages changed since the October 21 evening import; six portrait URLs are new.
 The same committee-meeting index remains HTTP 404, so this observation is also
@@ -93,7 +93,7 @@ the 15:42 observation. No import is needed. The committee-meeting index and
 eight I8 portraits remain HTTP 404; the observation is incomplete and does not
 advance the October 21 morning complete baseline.
 
-Latest content import: [October 25, 13:37–13:38](20261025T053746279694Z/REVIEW.md).
+Previous content import: [October 25, 13:37–13:38](20261025T053746279694Z/REVIEW.md).
 Two committee pages change: advisory-member order and role labels already used
 in curated input. Eight I8 portraits recover and 徐英帅's existing image changes;
 all 596 active portrait URLs are now available. Programmes are unchanged. The
@@ -107,13 +107,19 @@ curated-page differences remain intact. The committee-meeting index remains
 HTTP 404, so the observation is incomplete and does not advance the October 21
 morning complete baseline.
 
-Latest complete observation: [October 26, 18:00–18:01](20261026T100051973226Z/REVIEW.md).
+Previous complete observation: [October 26, 18:00–18:01](20261026T100051973226Z/REVIEW.md).
 The committee-meeting index recovers; all 97 HTML pages are accessible.
 T1 has a newly published programme, with additional forum and competition
 changes detailed in the review. There are 601 portrait references: 600 images
 and one confirmed new HTTP 404 for 袁斌. Under the checker contract this is a
 complete observation with a recorded broken-image defect, and it becomes the
-next complete baseline. Curated input is unchanged: the content import awaits
-a user decision on representing T1's programme. `since-imported.json` records
+next complete baseline. At that observation, curated input was unchanged and
+content import awaited a user decision on representing T1's programme. `since-imported.json` records
 one added and 22 changed page/status records, plus nine added/four removed
 portrait references, against the last imported October 25 observation.
+
+Latest imported complete observation: [October 27, 16:08–16:09](20261027T080809032302Z/REVIEW.md).
+All 94 active and three withdrawn HTML pages are accessible. Two of 605 active
+portrait references return HTTP 404. The observation advances the complete
+baseline; the October 26 pending import is now incorporated with the user's T1
+category decision. All withdrawn competition pages remain archived/imported.

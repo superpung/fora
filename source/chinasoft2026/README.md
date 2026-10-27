@@ -1,10 +1,9 @@
 # ChinaSoft 2026 adapter
 
-The [October 26 observation](checks/20261026T100051973226Z/REVIEW.md) is complete
-but **not imported**. It recovers the committee-meeting index, adds T1 and
-changes several programmes/competitions. T1 programme representation awaits a
-user decision under the project agreement. The counts and source status below
-describe the October 25 imported snapshot, not the latest observation.
+The [October 27 observation](checks/20261027T080809032302Z/REVIEW.md) is complete
+and imported, including October 26 changes previously awaiting the T1 decision.
+The user approved T1 as a browsable 专委会议. E4/I7 programmes and C2's two
+final stages are included; three withdrawn competition pages remain retained.
 
 The snapshot follows the published navigation at
 <https://chinasoft.ccf.org.cn/2026/>. Commented-out links are excluded: some
@@ -12,8 +11,8 @@ still name previous-year forums. Fetching fails on request errors and completes
 all downloads before replacing the source snapshot.
 
 Before every refresh, read [the gap and correction checklist](../../data/CHINASOFT2026_GAPS.md).
-It includes unresolved source identities and a deliberate data-only R32
-biography correction that must be reviewed after fetching.
+It includes source gaps and historical data-only corrections. R32 role
+paragraphs are now absent upstream; recheck without blindly reapplying the edit.
 
 For a read-only update check, run:
 
@@ -27,16 +26,16 @@ or generated datasets. Review those changes before running the import below.
 
 ```bash
 uv run python source/chinasoft2026/fetch.py
-# Inspect and apply the documented R32 snapshot correction before building.
+# Review the documented typography corrections and broken portrait references.
 uv run python source/chinasoft2026/fetch_photos.py
 uv run python source/build_all.py
 uv run python source/validate.py
 uv run python -m unittest discover -s source/chinasoft2026
 ```
 
-The overview supplies 66 forum/competition entries and 13 conference timetable
-rows across November 5–8. The 56 linked published programmes (including restored R16) supply
-454 programme items and 60 breaks. Conference meetings are retained separately from technical forums.
+The overview supplies 67 forum/competition/committee-meeting entries and 13 conference timetable
+rows across November 5–8. The 59 published forum/meeting programmes plus C2's timed stages supply
+492 programme items and 64 breaks. Other undated meetings remain separate.
 The homepage advertises November 6–8; the dataset includes November 5 check-in
 as published in the overview and introduction, as a normal schedule event.
 
@@ -55,13 +54,10 @@ overview block locations omit the known venue prefixes, while `extra.location_ra
 retains the full source wording. The conference venue remains available for
 the page header, calendar exports and standalone share posters.
 
-All 596 available portrait URLs have been downloaded and decoded. The October 21
-check replaces two P3/R19 speaker portraits; seven formerly retained-only R16
-resources are active again. All previously recovered P3/I3/S1 images remain
-available. All eight I8 portrait URLs recover on October 25 and their explicit tags are
-restored. The volunteer committee image for 徐英帅 changes at its existing URL.
-No broken portrait references remain; the committee-meeting HTML index still
-returns HTTP 404 and does not advance the complete-check baseline.
+The portrait manifest contains 607 prepared resources: 603 working active URLs
+plus four retained C4 references. Two new R16 images return HTTP 404 (唐滨 and
+王晔晖); all text survives and only their broken image tags are omitted. 袁斌's
+portrait recovers and 梁广泰's image changes. All active HTML is accessible.
 `fetch_photos.py` and `web/scripts/prepare-portraits.mjs` prepare 256px WebP
 assets under `web/public/portraits/chinasoft2026/`; install web dependencies
 before refreshing portraits. `raw/portraits.json` records original URLs,
@@ -70,32 +66,34 @@ local file. Forum profiles, chairs and committee cards supply the identity;
 no image is assigned by filename or guessed across unrelated people. The
 service worker caches portraits on demand instead of precaching every photo.
 
-Unpublished programmes have `agenda_status: not_published`. Five linked pages
-still contain only a pending-content notice after the October 24 update.
+Unpublished programmes have `agenda_status: not_published`. Three linked pages
+(R25/R33/E6) still contain only a pending-content notice.
 The adapter recognizes that template without inventing a programme. E2 now
 publishes its correct code; its old mismatched placeholder association remains
 in resolved curation history without a displayed warning.
 The overview's four mislabeled table-header cells are corrected directly in
-curated HTML; original bytes remain in the observation archive. C5/C2 final dates
+curated HTML; original bytes remain in the observation archive. C5 final dates
 come from their competition announcements. E6's date, room and window come
 from its title in the overview, allowing the optional 论坛 suffix. No guessed clock times or people are
 assigned. The October 20 overview shifts education codes E2–E7 to E1–E6;
 the old E1 is now closed meeting M5. Current official codes are retained.
-C1 has provisional date-only sessions on November 7–8; its period labels remain
-in the description. C4 now has a November 7 timed final and November 8 timed defense in one room,
+C1 has exact timed sessions on November 7–8 and a room; its untimed award
+remains in the description. C2 has two November 6 timed stages, with no invented
+programme in their gap. T1 derives its date-only heading's envelope from rows. C4 now has a November 7 timed final and November 8 timed defense in one room,
 represented as two sessions without invented team slots. The older code-less prototype
 announcement remains withdrawn; no unpublished schedule is inferred from it.
 
-Source inconsistencies are retained in `flags` and `extra`: R1/E3/I4 talks
+Source inconsistencies are retained in `flags` and `extra`: R1/E3 talks
 outlast their forum's printed window; R14 has differing timetable/profile
-titles; E1 has ambiguous hyphenated speaker credits. R14 now explicitly names
+titles; C3 has conflicting rooms and C4 conflicting final end times.
+E1 credits, R22 affiliation and I4 window conflicts are resolved upstream. R14 now explicitly names
 廖楠, so his profile is attached. Unmatched profiles remain separately visible
 under `extra.unmatched_profiles`. Planned academician guests are stored
 with their original tentative label, not treated as confirmed keynote speakers.
 
 The viewer resolves one forum block per day. Its envelope covers all published
 forum/talk times and places it in chronological order among other events.
-Every forum keeps its own first-class `start`/`end`; explicit nulls keep C5/C2
+Every forum keeps its own first-class `start`/`end`; explicit nulls keep C5
 clock times unknown. Original overview placeholders are preserved in
 `extra.overview_rows`, avoiding duplicate visible sessions. E6 remains visible
 even with no announced talks. Repeated committee roles are merged; differing
@@ -106,10 +104,10 @@ remain valid followed agenda items before individual reports are announced.
 Explicit `person.extra.identity_key` values separate distinct same-name
 source records; the viewer never infers identity from affiliation alone.
 
-`enrichment.json` supplies 415 AI summaries/topic classifications, covering all
+`enrichment.json` supplies 445 AI summaries/topic classifications, covering all
 substantive reports and meaningful panels. They live only in `enrichment` and
 respect the global AI switch. Each entry records its source title so an agenda
-reordering cannot silently attach annotations to the wrong report. The 378 attached
+reordering cannot silently attach annotations to the wrong report. The 391 attached
 source abstracts remain separate and unchanged.
 
 The source fingerprint covers every captured page, the portrait manifest and
@@ -128,7 +126,7 @@ associations and retained pages; it preserves the two known 李佳 identities
 across R7 and their original P4/R4 appearances without changing follow keys.
 
 The reviewed note cleanup is stored in `note_review.json`: exact non-substantive
-messages are removed from generated data, leaving nine substantive notes. Exact reviewed
+messages are removed from generated data, leaving six substantive notes. Exact reviewed
 text is matched so future changed discrepancies still need review. Pending
 committee rosters and collective credits remain normal content; committee flags
 are scoped to their own group. See the applied inventory in

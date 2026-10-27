@@ -20,7 +20,7 @@ try {
   for (const mobile of [false, true]) {
     const context = await browser.newContext({ locale: 'zh-CN', timezoneId: 'America/Los_Angeles',
       viewport: { width: mobile ? 390 : 1440, height: 900 }, isMobile: mobile, hasTouch: mobile, serviceWorkers: 'block' });
-    await context.addInitScript(() => localStorage.setItem('chinasoft2026:followed.talks', JSON.stringify(['R2#11'])));
+    await context.addInitScript(() => localStorage.setItem('chinasoft2026:followed.talks', JSON.stringify(['R2#10'])));
     const page = await context.newPage();
     page.on('pageerror', error => errors.push(error.message));
     await page.clock.setFixedTime(new Date('2026-11-07T15:30:00+08:00'));
@@ -45,12 +45,12 @@ try {
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), name + ': overflow');
       await page.screenshot({ path: `${output}/${mobile ? 'mobile' : 'desktop'}-${name}.png` });
     };
-    await go('/forum/R2#talk-12', '#talk-12');
-    assert.equal(await page.locator('[data-date="2026-11-06"] [id^="talk-"]').count(), 11);
+    await go('/forum/R2#talk-11', '#talk-11');
+    assert.equal(await page.locator('[data-date="2026-11-06"] [id^="talk-"]').count(), 10);
     assert.equal(await page.locator('[data-date="2026-11-07"] [id^="talk-"]').count(), 6);
-    assert((await page.locator('#talk-12').getAttribute('class')).includes('now'));
+    assert((await page.locator('#talk-11').getAttribute('class')).includes('now'));
     assert(!(await page.locator('#talk-9').getAttribute('class')).includes('now'));
-    await shot('R2-second-day', page.locator('#talk-12'));
+    await shot('R2-second-day', page.locator('#talk-11'));
     await go('', '.frow');
     await page.locator('.daypill').first().click();
     await page.waitForFunction(() => document.querySelectorAll('.frow a[href="/chinasoft2026/forum/R2"]').length === 2);
@@ -59,12 +59,12 @@ try {
     // Following one second-day report must not surface a first-day copy.
     const mine = page.locator('button').filter({ hasText: '我的关注' });
     await mine.click();
-    await page.locator('a.ftalk__link[href="/chinasoft2026/forum/R2#talk-12"]').waitFor();
+    await page.locator('a.ftalk__link[href="/chinasoft2026/forum/R2#talk-11"]').waitFor();
     assert.equal(await page.locator('.frow').count(), 1);
     assert.equal(await page.locator('a.ftalk__link[href="/chinasoft2026/forum/R2#talk-1"]').count(), 0);
-    await shot('home-followed', page.locator('a.ftalk__link[href="/chinasoft2026/forum/R2#talk-12"]'));
+    await shot('home-followed', page.locator('a.ftalk__link[href="/chinasoft2026/forum/R2#talk-11"]'));
     await go('/schedule?v=all', '.daytab');
-    for (const [tab, count, first, absent] of [[1, 11, 1, 12], [2, 6, 12, 1]]) {
+    for (const [tab, count, first, absent] of [[1, 10, 1, 11], [2, 6, 11, 1]]) {
       await page.locator('.daytab').nth(tab).click();
       const column = page.locator('.tgrid__col').filter({ has: page.locator('.tgrid__chead[href="/chinasoft2026/forum/R2"]') });
       await page.waitForFunction(count => {
@@ -90,8 +90,8 @@ try {
     await card.scrollIntoViewIfNeeded(); await shot('now-second-day', card);
     await go('/schedule?v=mine-day', '.daytab');
     await page.locator('.daytab').nth(2).click();
-    await page.locator('.talkrow a[href="/chinasoft2026/forum/R2#talk-12"]').waitFor();
-    await shot('followed-second-day', page.locator('.talkrow a[href="/chinasoft2026/forum/R2#talk-12"]'));
+    await page.locator('.talkrow a[href="/chinasoft2026/forum/R2#talk-11"]').waitFor();
+    await shot('followed-second-day', page.locator('.talkrow a[href="/chinasoft2026/forum/R2#talk-11"]'));
     await context.close();
     console.log(`PASS ${mobile ? 'mobile' : 'desktop'}: multi-day detail, stable anchors/follows, daily timelines and live report`);
   }

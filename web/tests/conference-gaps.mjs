@@ -27,12 +27,12 @@ try {
     await page.locator(selector).first().waitFor();
   };
   await go("/chinasoft2026", ".frow");
-  assert.equal(await page.locator(".frow").count(), 69);
+  assert.equal(await page.locator(".frow").count(), 70);
   const pending = page.locator(".dashday").filter({ has: page.locator("h2", { hasText: "日期待公布" }) });
-  assert.equal(await pending.locator(".frow").count(), 4);
+  assert.equal(await pending.locator(".frow").count(), 2);
   await page.locator(".daypill").filter({ hasText: "日期待公布" }).click();
-  await page.waitForFunction(() => document.querySelectorAll(".frow").length === 4);
-  assert.equal(await page.locator(".frow").count(), 4);
+  await page.waitForFunction(() => document.querySelectorAll(".frow").length === 2);
+  assert.equal(await page.locator(".frow").count(), 2);
   await page.locator(".search__input").fill("R25");
   await page.waitForFunction(() => document.querySelectorAll(".frow").length === 1);
   assert.equal(await page.locator(".frow").count(), 1);
@@ -96,8 +96,10 @@ try {
       const items = collectFollowedItems({ forums: new Set(["E6", "C5"]), speakers: new Set(), talks: new Set() }, views);
       const competition = collectFollowedItems({ forums: new Set(["C1", "C4"]), speakers: new Set(), talks: new Set() }, views);
       const rust = collectFollowedItems({ forums: new Set(["C3"]), speakers: new Set(), talks: new Set() }, views);
+      const added = collectFollowedItems({ forums: new Set(["C2", "T1"]), speakers: new Set(), talks: new Set() }, views);
       const live = (date, minutes) => buildLiveView(views, { todayStr: date, nowMin: minutes });
-      return { items, competition, rust, rustICS: toICS(rust, "2026-10-21T00:00:00Z", views),
+      return { items, competition, rust, added, addedICS: toICS(added, "2026-10-27T00:00:00Z", views),
+        rustICS: toICS(rust, "2026-10-21T00:00:00Z", views),
         rustLive: live("2026-11-07", 16 * 60),
         repairDefense: live("2026-11-08", 10 * 60),
         competitionICS: toICS(competition, "2026-10-20T00:00:00Z", views),
@@ -108,16 +110,21 @@ try {
       };
     });
     assert.equal(result.items.length, 2);
+    assert.deepEqual(result.added.filter(x => x.code === "C2").map(x => [x.date, x.start, x.end, x.talkIndex]),
+      [["2026-11-06", "14:00", "17:00", 0], ["2026-11-06", "19:30", "21:30", 1]]);
+    assert.equal(result.added.filter(x => x.code === "T1").length, 20);
+    assert(result.added.every(x => x.date === "2026-11-06" && !x.approx));
+    assert(result.addedICS.includes("20261106T113000Z"));
     assert.deepEqual(result.rust.map(x => [x.code, x.date, x.start, x.end, x.talkIndex ?? null]),
       [["C3", "2026-11-07", "15:20", "18:20", null]]);
     assert(result.rustICS.includes("20261107T072000Z"));
     assert(result.rustICS.includes("20261107T102000Z"));
     assert(result.rustLive.nowRooms.some(r => r.code === "C3"));
     assert.deepEqual(result.competition.map(x => [x.code, x.date, x.start ?? null, x.end ?? null]),
-      [["C1", "2026-11-07", null, null], ["C4", "2026-11-07", "15:20", "18:30"],
-       ["C1", "2026-11-08", null, null], ["C4", "2026-11-08", "09:00", "12:00"]]);
-    assert(result.competitionICS.includes("DTSTART;VALUE=DATE:20261107"));
-    assert(result.competitionICS.includes("DTSTART;VALUE=DATE:20261108"));
+      [["C4", "2026-11-07", "15:20", "18:30"], ["C1", "2026-11-07", "15:30", "18:30"],
+       ["C1", "2026-11-08", "09:00", "12:00"], ["C4", "2026-11-08", "09:00", "12:00"]]);
+    assert(result.competitionICS.includes("DTSTART:20261107T073000Z"));
+    assert(!result.competitionICS.includes("VALUE=DATE"));
     assert(result.competitionICS.includes("20261107T072000Z"));
     assert(result.competitionICS.includes("20261107T103000Z"));
     assert(result.competitionICS.includes("20261108T010000Z"));
@@ -141,7 +148,7 @@ try {
     assert(result.lateReport.nowRooms.some((r) => r.code === "E3"));
   }
   await go("/chinasoft2026/forum/C1", ".followbtn");
-  assert((await page.locator(".fd__desc").textContent()).includes("拟议日程"));
+  assert((await page.locator(".fd__desc").textContent()).includes("日程安排"));
   await page.locator(".followbtn").click();
   await go("/chinasoft2026/schedule?v=mine-day", ".daytab");
   for (const day of [2, 3]) {
@@ -156,16 +163,16 @@ try {
   assert(await page.locator('.frow__code').getByText("C3", { exact: true }).count());
 
   await page.setViewportSize({ width: 390, height: 844 });
-  await go("/chinasoft2026/forum/E1", ".source-notes__toggle");
+  await go("/chinasoft2026/forum/E1", "#talk-4");
+  assert.equal(await page.locator(".source-notes__toggle").count(), 0);
+  assert.equal(await page.locator(".talk--profile").count(), 0);
+  assert.equal(await page.locator("#talk-4 .person__name").textContent(), "张颖");
+  await go("/chinasoft2026/forum/R14", ".source-notes__toggle");
   const note = page.locator("#talk-4 .source-notes__toggle");
   await note.focus();
   await page.keyboard.press("Enter");
   assert.equal(await note.getAttribute("aria-expanded"), "true");
-  assert((await page.locator("#talk-4 .source-notes__content").textContent()).includes("彭蓉-张颖"));
-  assert(await page.getByRole("heading", { name: "未匹配的报告资料" }).count());
-  assert(await page.locator(".person__name").getByText("张颖", { exact: true }).count());
-  const profileWidth = await page.locator(".talk--profile .talk__body").evaluate((el) => el.getBoundingClientRect().width);
-  assert(profileWidth >= 300, "Unmatched profiles must not occupy the report-number column on mobile");
+  assert((await page.locator("#talk-4 .source-notes__content").textContent()).includes("报告题目不一致"));
   assert(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth <= 1));
   assert.deepEqual(errors, []);
   console.log("PASS all forum entries, updated source, hosts, breaks, clean biographies, separate identities, legacy follows, pending-forum agenda/exports and accessible source notes");

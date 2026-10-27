@@ -103,18 +103,18 @@ try {
         .map((p) => `${p.name}:${p.photo.local_path}`).sort(), `${forum.code}#${i}: portraits`);
     });
     console.log(`PASS ${forum.code}: ${result.length} programme rows and speaker identities`);
-    if (["R34", "S3", "E2", "I5", "R29", "S4", "R23", "R13", "P4", "R19", "E1", "E3", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].includes(forum.code)) {
+    if (["T1", "E4", "I7", "C2", "R16", "R3", "I4", "R34", "S3", "E2", "I5", "R29", "S4", "R23", "R13", "P4", "R19", "E1", "E3", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].includes(forum.code)) {
       await page.waitForTimeout(600);
       await capture(page, { path: `${screenshots}/desktop-${forum.code}.png` });
     }
   }
-  await goto("/chinasoft2026/forum/R32#talk-5", "#talk-5 .person__name");
-  assert.deepEqual(await page.locator("#talk-5 .person__name").allTextContents(), ["金意儿"]);
-  assert.equal(await page.locator("#talk-5 .person__aff").textContent(), "华为");
+  await goto("/chinasoft2026/forum/R32#talk-4", "#talk-4 .person__name");
+  assert.deepEqual(await page.locator("#talk-4 .person__name").allTextContents(), ["金意儿"]);
+  assert.equal(await page.locator("#talk-4 .person__aff").textContent(), "华为");
   await page.waitForTimeout(1200);
   await capture(page, { path: "/tmp/chinasoft2026-r32.png" });
-  await page.locator("#talk-5 .talk__star").click();
-  assert.equal(await page.locator("#talk-5 .talk__star").getAttribute("aria-pressed"), "true");
+  await page.locator("#talk-4 .talk__star").click();
+  assert.equal(await page.locator("#talk-4 .talk__star").getAttribute("aria-pressed"), "true");
 
   await goto("/chinasoft2026/committee", ".member__name");
   const members = await page.locator(".member__name").allTextContents();
@@ -159,14 +159,14 @@ try {
       await capture(page, { path: "/tmp/chinasoft2026-schedule.png" });
     }
     if (data.days[i].date === "2026-11-07") {
-      for (const code of ["E6", "C5", "C2", "C1", "C3"]) {
+      for (const code of ["E6", "C5", "C1", "C3"]) {
         assert(await page.locator(`.tgrid__chead[href="/chinasoft2026/forum/${code}"]`).count(), `Missing pending forum ${code}`);
       }
     }
   }
   await goto("/chinasoft2026/schedule?v=mine-day", ".daytab");
   await page.locator(".daytab").nth(1).click();
-  await page.locator('a[href="/chinasoft2026/forum/R32#talk-5"]').first().waitFor();
+  await page.locator('a[href="/chinasoft2026/forum/R32#talk-4"]').first().waitFor();
 
   await goto("/chinasoft2026/topics", ".tmap__node");
   assert(await page.locator(".tmap__node").count() > 10, "Topic map is empty");
@@ -178,10 +178,10 @@ try {
   await goto("/chinasoft2026/forum/R32", ".talksum");
   await page.evaluate(() => localStorage.setItem("fora-ai.enabled", "0"));
   await page.reload({ waitUntil: "domcontentloaded" });
-  await page.locator("#talk-5 .person__aff").waitFor();
+  await page.locator("#talk-4 .person__aff").waitFor();
   assert.equal(await page.locator(".talksum").count(), 0, "AI summary ignores the global switch");
   assert.equal(await page.locator('nav a[href="/chinasoft2026/topics"]').count(), 0);
-  assert.equal(await page.locator("#talk-5 .person__aff").textContent(), "华为");
+  assert.equal(await page.locator("#talk-4 .person__aff").textContent(), "华为");
 
   const mobile = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, locale: "zh-CN" });
   const phone = await mobile.newPage();
@@ -206,9 +206,9 @@ try {
       await capture(target, { path: `${screenshots}/${label}-${code}.png` });
     }
   }
-  for (const path of ["forum/R32#talk-5", "committee", "schedule", "topics", "speakers", "plan",
+  for (const path of ["forum/R32#talk-4", "committee", "schedule", "topics", "speakers", "plan",
     "forum/R6#talk-1", "forum/R7#talk-5", "forum/R7#talk-7", "forum/R8#talk-10", "forum/R11#talk-1", "forum/R17#talk-1",
-    ...["R9", "R35", "E5", "I8", "R30", "R34", "S3", "E2", "I5", "R29", "S4", "R23", "R13", "P4", "R19", "E1", "E3", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].map(code => `forum/${code}#talk-2`)]) {
+    ...["T1", "E4", "I7", "C2", "R9", "R35", "E5", "I8", "R30", "R34", "S3", "E2", "I5", "R29", "S4", "R23", "R13", "P4", "R19", "E1", "E3", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].map(code => `forum/${code}#talk-2`)]) {
     // Assert application readiness, independent of the preview's analytics requests.
     await phone.goto(`${base}/chinasoft2026/${path}`, { waitUntil: "domcontentloaded" });
     const ready = path.startsWith("forum/") ? `#${path.split("#")[1]}` : {

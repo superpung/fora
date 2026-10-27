@@ -62,17 +62,7 @@
       "identity_key": "C4:王博"
     }
   },
-  "talk_notes": {
-    "R22#2": {
-      "source_title": "基于RISC-V软硬协同的智能体内生安全方案",
-      "name": "武延军",
-      "affiliation_raw": "中科院计算所",
-      "bio_excerpt": "中国科学院软件研究所所长",
-      "flags": [
-        "单位信息不一致：日程表为中科院计算所，个人简介为中国科学院软件研究所，均按原文保留。"
-      ]
-    }
-  },
+  "talk_notes": {},
   "resolved_talk_notes": {
     "E3#1": {
       "source_title": "论 AI 时代形式化方法课程教学的挑战与机遇",
@@ -84,6 +74,17 @@
       ],
       "resolved_on": "2026-10-21",
       "resolution": "The original-source comparison now supplies Liu Wanwei's actual biography. Keep the old note here for history; do not display the obsolete defect."
+    },
+    "R22#2": {
+      "source_title": "基于RISC-V软硬协同的智能体内生安全方案",
+      "name": "武延军",
+      "affiliation_raw": "中科院计算所",
+      "bio_excerpt": "中国科学院软件研究所所长",
+      "flags": [
+        "单位信息不一致：日程表为中科院计算所，个人简介为中国科学院软件研究所，均按原文保留。"
+      ],
+      "resolved_on": "2026-10-27",
+      "resolution": "The timetable now explicitly gives 中国科学院软件研究所, matching the profile."
     }
   },
   "resolved_placeholder_codes": {
@@ -97,5 +98,11 @@
       "resolved_on": "2026-10-21",
       "resolution": "The evening source now publishes the full E2 programme with the correct code and title. The old association is retained only as history."
     }
-  }
+  },
+  "retained_pages": [
+    "pages/agenda/competition/index.html",
+    "pages/agenda/competition/templates/rust-prototype-competition.html",
+    "pages/agenda/competition/templates/software-repair-competition.html"
+  ],
+  "retained_pages_reason": "Competition navigation was hidden on October 27, but all three original URLs remain accessible. Preserve the source pages and existing content; no cancellation is announced."
 }
