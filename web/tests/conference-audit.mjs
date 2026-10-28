@@ -103,7 +103,7 @@ try {
         .map((p) => `${p.name}:${p.photo.local_path}`).sort(), `${forum.code}#${i}: portraits`);
     });
     console.log(`PASS ${forum.code}: ${result.length} programme rows and speaker identities`);
-    if (["T1", "E4", "I7", "C2", "R16", "R3", "I4", "R34", "S3", "E2", "I5", "R29", "S4", "R23", "R13", "P4", "R19", "E1", "E3", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].includes(forum.code)) {
+    if (["R25", "R33", "R20", "R3", "R16", "T1", "E4", "I7", "C2", "R16", "R3", "I4", "R34", "S3", "E2", "I5", "R29", "S4", "R23", "R13", "P4", "R19", "E1", "E3", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].includes(forum.code)) {
       await page.waitForTimeout(600);
       await capture(page, { path: `${screenshots}/desktop-${forum.code}.png` });
     }
@@ -187,6 +187,20 @@ try {
   const phone = await mobile.newPage();
   phone.on("pageerror", (error) => errors.push(error.message));
   for (const [label, target] of [["desktop", page], ["mobile", phone]]) {
+    await target.goto(`${base}/chinasoft2026/organizations`, { waitUntil: "domcontentloaded" });
+    await target.locator(".orgitem").first().waitFor();
+    const partners = target.locator(".orgcol").filter({ has: target.getByRole("heading", { name: "合作单位", exact: true }) });
+    assert.deepEqual(await partners.locator(".orgitem").allTextContents(),
+      data.organizations.filter(o => o.role === "partner").map(o => o.name.zh));
+    assert.equal(await partners.locator(".orgitem").count(), 18);
+    const support = target.locator(".orgcol").filter({ has: target.getByRole("heading", { name: "协办单位", exact: true }) });
+    assert((await support.textContent()).includes("中国民航大学"));
+    for (const edge of ["first", "last"]) {
+      await partners.locator(".orgitem")[edge]().scrollIntoViewIfNeeded();
+      await target.waitForTimeout(600);
+      assert(await target.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
+      await capture(target, { path: `${screenshots}/${label}-partners-${edge}.png` });
+    }
     await target.goto(`${base}/chinasoft2026/forum/C3`, { waitUntil: "domcontentloaded" });
     await target.locator(".fd__meta").waitFor();
     assert((await target.locator(".fd__meta").innerText()).includes("15:20–18:20"));
@@ -208,7 +222,7 @@ try {
   }
   for (const path of ["forum/R32#talk-4", "committee", "schedule", "topics", "speakers", "plan",
     "forum/R6#talk-1", "forum/R7#talk-5", "forum/R7#talk-7", "forum/R8#talk-10", "forum/R11#talk-1", "forum/R17#talk-1",
-    ...["T1", "E4", "I7", "C2", "R9", "R35", "E5", "I8", "R30", "R34", "S3", "E2", "I5", "R29", "S4", "R23", "R13", "P4", "R19", "E1", "E3", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].map(code => `forum/${code}#talk-2`)]) {
+    ...["R25", "R33", "R20", "R3", "R16", "T1", "E4", "I7", "C2", "R9", "R35", "E5", "I8", "R30", "R34", "S3", "E2", "I5", "R29", "S4", "R23", "R13", "P4", "R19", "E1", "E3", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].map(code => `forum/${code}#talk-2`)]) {
     // Assert application readiness, independent of the preview's analytics requests.
     await phone.goto(`${base}/chinasoft2026/${path}`, { waitUntil: "domcontentloaded" });
     const ready = path.startsWith("forum/") ? `#${path.split("#")[1]}` : {

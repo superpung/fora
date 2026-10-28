@@ -35,7 +35,7 @@ export interface Venue {
 
 export interface Organization {
   name: I18n;
-  role: "host" | "co_host" | "support" | "sponsor";
+  role: "host" | "co_host" | "support" | "sponsor" | "partner";
   sponsor_tier?: string | null;
   logo?: Asset;
 }

@@ -29,10 +29,8 @@ try {
   await go("/chinasoft2026", ".frow");
   assert.equal(await page.locator(".frow").count(), 70);
   const pending = page.locator(".dashday").filter({ has: page.locator("h2", { hasText: "日期待公布" }) });
-  assert.equal(await pending.locator(".frow").count(), 2);
-  await page.locator(".daypill").filter({ hasText: "日期待公布" }).click();
-  await page.waitForFunction(() => document.querySelectorAll(".frow").length === 2);
-  assert.equal(await page.locator(".frow").count(), 2);
+  assert.equal(await pending.count(), 0);
+  assert.equal(await page.locator(".daypill").filter({ hasText: "日期待公布" }).count(), 0);
   await page.locator(".search__input").fill("R25");
   await page.waitForFunction(() => document.querySelectorAll(".frow").length === 1);
   assert.equal(await page.locator(".frow").count(), 1);

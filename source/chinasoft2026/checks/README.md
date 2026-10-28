@@ -118,8 +118,20 @@ content import awaited a user decision on representing T1's programme. `since-im
 one added and 22 changed page/status records, plus nine added/four removed
 portrait references, against the last imported October 25 observation.
 
-Latest imported complete observation: [October 27, 16:08–16:09](20261027T080809032302Z/REVIEW.md).
+Previous imported complete observation: [October 27, 16:08–16:09](20261027T080809032302Z/REVIEW.md).
 All 94 active and three withdrawn HTML pages are accessible. Two of 605 active
 portrait references return HTTP 404. The observation advances the complete
 baseline; the October 26 pending import is now incorporated with the user's T1
 category decision. All withdrawn competition pages remain archived/imported.
+
+Previous complete observation: [October 27, 18:00](20261027T100045155225Z/REVIEW.md).
+Its candidate was not pushed: S6's replacement profile still referenced an old
+portrait, and a mobile committee animation assertion failed. The archived
+review is historical evidence, not the current import status.
+
+Latest imported complete observation: [October 28, 14:31–14:32](20261028T063127723598Z/REVIEW.md).
+All 94 active and three retained HTML pages, and all 624 active portraits, work.
+Sixteen active HTML pages change since October 27 evening; R2 also differs from
+the last pushed import. R25/R33 programmes, source replacements and partner
+organizations are imported. S6 now supplies the correct explicit portrait; its
+schedule/profile title discrepancy remains marked. No withdrawn content is deleted.

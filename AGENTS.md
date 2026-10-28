@@ -166,6 +166,8 @@ and how to add a conference.
     parent block's window. A shared day-wide board is not an individual
     forum's schedule.
   - Bilingual and TBD states are supported throughout.
+- Organization roles include `partner` for explicitly published cooperating
+  organizations, distinct from hosts, supporting organizations and sponsors.
 - Dirty data is recorded faithfully and marked with `flags` — never silently
   corrected (see `data/VERIFY_TODO.md` for the running data-quality tracker).
 - **Faithful does not mean literal into the wrong field.** A `person.name` is a

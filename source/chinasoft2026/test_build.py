@@ -58,7 +58,44 @@ class ProgrammeTests(unittest.TestCase):
         for name in ("唐滨", "王晔晖"):
             person = next(p for p in forums["R16"]["chairs"] if p["name"] == name)
             self.assertTrue(person.get("bio"))
-            self.assertFalse(person.get("photo"))
+            self.assertTrue(person.get("photo"))
+
+    def test_october_28_programmes_people_and_organization_roles(self):
+        data = json.loads((ROOT / "data/chinasoft2026.json").read_text())
+        forums = {f["code"]: f for f in data["forums"]}
+        for code, day, start, end, reports in (
+            ("R25", "2026-11-08", "09:00", "12:00", 7),
+            ("R33", "2026-11-06", "14:00", "16:40", 8),
+        ):
+            forum = forums[code]
+            self.assertEqual((forum["day_date"], forum["start"], forum["end"]), (day, start, end))
+            self.assertEqual(len(forum["talks"]), 9)
+            technical = [t for t in forum["talks"] if t["type"] == "talk"]
+            self.assertEqual(len(technical), reports)
+            self.assertTrue(all(t.get("abstract") and t.get("enrichment") for t in technical))
+            self.assertTrue(all(p.get("photo") for t in technical for p in t["speakers"]))
+        self.assertEqual(forums["R25"]["talks"][0]["speakers"], [])
+        self.assertEqual(forums["R25"]["talks"][-1]["speakers"], [])
+        people = forums["R33"]["talks"][1]["speakers"]
+        self.assertEqual([p["name"] for p in people], ["金海"])
+        self.assertIn("中国计算机学会副理事长", people[0]["affiliation_raw"])
+        self.assertEqual(forums["R33"]["breaks"], [])
+        self.assertEqual(forums["R20"]["talks"][0]["speakers"][0]["name"], "李晓红")
+        replacement = forums["S6"]["talks"][9]
+        self.assertEqual((replacement["start"], replacement["end"]), ("16:25", "16:50"))
+        self.assertEqual(replacement["speakers"][0]["name"], "任慰")
+        self.assertTrue(replacement["speakers"][0].get("photo"))
+        self.assertTrue(replacement.get("abstract"))
+        self.assertIn("银河麒麟桌面操作系统", replacement["flags"][0])
+        dong = forums["R3"]["talks"][6]
+        self.assertEqual(dong["speakers"][0]["name"], "董淑照")
+        self.assertTrue(dong.get("abstract") and dong["speakers"][0].get("photo"))
+        self.assertEqual(forums["R2"]["talks"][2]["speakers"][0]["affiliation_raw"], "蚂蚁数科")
+        self.assertEqual(forums["S4"]["end"], "18:10")
+        partners = [o for o in data["organizations"] if o["role"] == "partner"]
+        self.assertEqual(len(partners), 18)
+        self.assertTrue(any(o["role"] == "support" and o["name"]["zh"] == "中国民航大学"
+                            for o in data["organizations"]))
 
     def test_unnamed_profile_keeps_abstract_without_creating_person(self):
         html = """
@@ -181,15 +218,12 @@ class ProgrammeTests(unittest.TestCase):
         data = json.loads((ROOT / "data/chinasoft2026.json").read_text())
         forums = {f["code"]: f for f in data["forums"]}
         self.assertEqual(len(forums), 67)
-        self.assertEqual(sum(f["detail_extracted"] for f in forums.values()), 60)
-        for code in ("R25", "R33", "E6"):
+        self.assertEqual(sum(f["detail_extracted"] for f in forums.values()), 62)
+        for code in ("E6",):
             forum = forums[code]
             self.assertEqual(forum["agenda_status"], "not_published")
             self.assertFalse(forum["talks"])
             self.assertIn("内容正在更新中", forum["extra"]["source_notice"])
-            if code != "E6":
-                self.assertIsNone(forum["day_date"])
-                self.assertIsNone(forum["start"])
         self.assertFalse(forums["E2"]["flags"])
         self.assertTrue(forums["E2"]["talks"])
         self.assertTrue(forums["E1"]["talks"])

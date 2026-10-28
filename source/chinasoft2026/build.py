@@ -787,7 +787,7 @@ def build():
         forum_dates = [s["date"] for s in forum.get("sessions", [])] or [forum["day_date"]]
         if any(day and day not in days for day in forum_dates):
             raise ValueError(f"Forum date outside overview: {forum['code']}")
-    organization_roles = {"主办单位": "host", "承办单位": "co_host", "协办单位": "support"}
+    organization_roles = {"主办单位": "host", "承办单位": "co_host", "协办单位": "support", "合作单位": "partner"}
     organizations = []
     for column in load("index.html").select(".footer-column"):
         role = organization_roles.get(txt(column.find("h3")))

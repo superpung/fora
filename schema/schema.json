@@ -86,12 +86,12 @@
     },
 
     "organization": {
-      "description": "Host / co-host / supporter / sponsor organization.",
+      "description": "Host / co-host / supporter / sponsor / partner organization.",
       "type": "object",
       "required": ["name", "role"],
       "properties": {
         "name": { "$ref": "#/$defs/i18n" },
-        "role": { "type": "string", "enum": ["host", "co_host", "support", "sponsor"] },
+        "role": { "type": "string", "enum": ["host", "co_host", "support", "sponsor", "partner"] },
         "sponsor_tier": { "type": ["string", "null"], "description": "Sponsorship tier, e.g. 金钻/钻石/铂金/黄金/白银" },
         "logo": { "$ref": "#/$defs/asset" },
         "extra": { "$ref": "#/$defs/extra" }

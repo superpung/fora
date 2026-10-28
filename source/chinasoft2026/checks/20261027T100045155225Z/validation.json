@@ -1,0 +1,32 @@
+{
+  "observation": "20261027T100045155225Z",
+  "source_check": "complete",
+  "import_status": "R2 prepared locally; S6 awaits user decision",
+  "remote_revision": "e82ebe52607ba5fa5bad2c08ad6d1557434d0dff",
+  "committed": false,
+  "pushed": false,
+  "snapshot_integrity": "passed: 97 original HTML, 95 curated HTML, both archives, 607 prepared portrait records",
+  "python_tests": {
+    "passed": 29,
+    "checker_tests_included": 4
+  },
+  "build": "passed",
+  "schema_person_time_validation": "passed",
+  "deterministic_rebuild": "passed",
+  "generated_copies": "identical",
+  "web_lint": "passed",
+  "web_build": "passed",
+  "web_suites": {
+    "conference-core": "passed",
+    "conference-ui": "passed",
+    "permalink-scroll": "passed",
+    "conference-audit": "failed: mobile committee member opacity at line 47, called at line 232",
+    "conference-gaps": "passed",
+    "multiday": "passed",
+    "live-clock": "passed: 65 screenshots"
+  },
+  "committee_diagnostic": "six edges passed; initial failure unexplained",
+  "candidate_preview": "local R2 desktop/mobile affiliation, expanded biography, clock, portraits and overflow checks passed; four screenshots inspected",
+  "new_revision_ci": "not run: no new revision pushed",
+  "new_revision_netlify": "not run: no new revision pushed"
+}

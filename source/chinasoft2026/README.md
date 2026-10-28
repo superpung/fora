@@ -1,9 +1,11 @@
 # ChinaSoft 2026 adapter
 
-The [October 27 observation](checks/20261027T080809032302Z/REVIEW.md) is complete
-and imported, including October 26 changes previously awaiting the T1 decision.
-The user approved T1 as a browsable 专委会议. E4/I7 programmes and C2's two
-final stages are included; three withdrawn competition pages remain retained.
+The [October 28 observation](checks/20261028T063127723598Z/REVIEW.md) is complete
+and imported. R25/R33 now publish full programmes; R3 adds a missing profile,
+R20/S6 replace reports and S4 ends earlier. All active portraits work again.
+The homepage adds 18 cooperating organizations, represented separately from
+sponsors through the general `partner` organization role, and a supporting
+university. Three withdrawn competition pages remain retained.
 
 The snapshot follows the published navigation at
 <https://chinasoft.ccf.org.cn/2026/>. Commented-out links are excluded: some
@@ -34,8 +36,8 @@ uv run python -m unittest discover -s source/chinasoft2026
 ```
 
 The overview supplies 67 forum/competition/committee-meeting entries and 13 conference timetable
-rows across November 5–8. The 59 published forum/meeting programmes plus C2's timed stages supply
-492 programme items and 64 breaks. Other undated meetings remain separate.
+rows across November 5–8. The 61 published forum/meeting programmes plus C2's timed stages supply
+510 programme items and 65 breaks. Other undated meetings remain separate.
 The homepage advertises November 6–8; the dataset includes November 5 check-in
 as published in the overview and introduction, as a normal schedule event.
 
@@ -54,10 +56,10 @@ overview block locations omit the known venue prefixes, while `extra.location_ra
 retains the full source wording. The conference venue remains available for
 the page header, calendar exports and standalone share posters.
 
-The portrait manifest contains 607 prepared resources: 603 working active URLs
-plus four retained C4 references. Two new R16 images return HTTP 404 (唐滨 and
-王晔晖); all text survives and only their broken image tags are omitted. 袁斌's
-portrait recovers and 梁广泰's image changes. All active HTML is accessible.
+The portrait manifest contains 628 prepared resources: 624 working active URLs
+plus four retained C4 references. 唐滨 and 王晔晖 recover from HTTP 404;
+new explicit photos include 任慰, 李晓红, 董淑照 and R25/R33 participants.
+All active HTML is accessible.
 `fetch_photos.py` and `web/scripts/prepare-portraits.mjs` prepare 256px WebP
 assets under `web/public/portraits/chinasoft2026/`; install web dependencies
 before refreshing portraits. `raw/portraits.json` records original URLs,
@@ -66,8 +68,7 @@ local file. Forum profiles, chairs and committee cards supply the identity;
 no image is assigned by filename or guessed across unrelated people. The
 service worker caches portraits on demand instead of precaching every photo.
 
-Unpublished programmes have `agenda_status: not_published`. Three linked pages
-(R25/R33/E6) still contain only a pending-content notice.
+Unpublished programmes have `agenda_status: not_published`. Only E6 still contains a pending-content notice.
 The adapter recognizes that template without inventing a programme. E2 now
 publishes its correct code; its old mismatched placeholder association remains
 in resolved curation history without a displayed warning.
@@ -104,10 +105,10 @@ remain valid followed agenda items before individual reports are announced.
 Explicit `person.extra.identity_key` values separate distinct same-name
 source records; the viewer never infers identity from affiliation alone.
 
-`enrichment.json` supplies 445 AI summaries/topic classifications, covering all
+`enrichment.json` supplies 460 AI summaries/topic classifications, covering all
 substantive reports and meaningful panels. They live only in `enrichment` and
 respect the global AI switch. Each entry records its source title so an agenda
-reordering cannot silently attach annotations to the wrong report. The 391 attached
+reordering cannot silently attach annotations to the wrong report. The 407 attached
 source abstracts remain separate and unchanged.
 
 The source fingerprint covers every captured page, the portrait manifest and
@@ -126,7 +127,7 @@ associations and retained pages; it preserves the two known 李佳 identities
 across R7 and their original P4/R4 appearances without changing follow keys.
 
 The reviewed note cleanup is stored in `note_review.json`: exact non-substantive
-messages are removed from generated data, leaving six substantive notes. Exact reviewed
+messages are removed from generated data, leaving seven substantive notes. Exact reviewed
 text is matched so future changed discrepancies still need review. Pending
 committee rosters and collective credits remain normal content; committee flags
 are scoped to their own group. See the applied inventory in

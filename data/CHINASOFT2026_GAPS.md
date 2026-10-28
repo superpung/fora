@@ -1,19 +1,26 @@
 # ChinaSoft 2026: source gaps and refresh checklist
 
-Last imported source review: **2026-10-27, checked at 16:08–16:09 Asia/Shanghai**.
+Last imported source review: **2026-10-28, checked at 14:31–14:32 Asia/Shanghai**.
 This is the conference-specific checklist for subsequent refreshes. Talk numbers
 below are **one-based**, matching `#talk-N` links. Historical sections retain
 the codes and source state used at their observation dates.
 
-Latest imported check: [October 27 review](../source/chinasoft2026/checks/20261027T080809032302Z/REVIEW.md).
-All 94 active and three retained HTML pages work. Of 605 active portrait
-references, two new R16 images (唐滨 and 王晔晖) return HTTP 404. Their text is
-preserved; remove only these broken image tags from curated input until they
-recover. 袁斌's image recovers and 梁广泰's existing portrait changes. The
-prepared manifest contains 607 resources, including four retained C4 portraits.
+Latest imported check: [October 28 review](../source/chinasoft2026/checks/20261028T063127723598Z/REVIEW.md).
+All 94 active and three retained HTML pages work, as do all 624 active portraits.
+The prepared manifest contains 628 resources, including four retained C4 images.
+R25/R33 now publish nine rows each; R3 adds its missing profile. R20/S6 replace
+reports; R9 updates a title; R2 updates an affiliation; S4 ends at 18:10.
+The homepage adds China Civil Aviation University as a supporting organization
+and 18 cooperating organizations, represented by the reusable `partner` role.
 The observation is complete and advances the successful baseline.
 
-This import includes the [October 26 pending changes](../source/chinasoft2026/checks/20261026T100051973226Z/REVIEW.md).
+The [October 27 evening review](../source/chinasoft2026/checks/20261027T100045155225Z/REVIEW.md)
+recorded an unpushed candidate and a stale S6 portrait. Today's source supplies
+an explicit 任慰 portrait; the old image is no longer attached. S6's schedule
+and profile titles still conflict, so the substantive warning is retained.
+Its actual date is November 6; the evening review's November 7 wording was wrong.
+
+The October 27 afternoon import includes the [October 26 pending changes](../source/chinasoft2026/checks/20261026T100051973226Z/REVIEW.md).
 The user approved T1 as a first-class 专委会议 with all 20 rows. E4 and I7 now
 publish seven rows each. C1 publishes exact stage times and a room. C2 moves
 to November 6, with separate 14:00–17:00 and 19:30–21:30 stages. R2/R3/R16/R26/
@@ -73,16 +80,16 @@ Original snapshots remain separate from curated importer input.
 Sources: [official site](https://chinasoft.ccf.org.cn/2026/),
 [overview](https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index).
 The snapshot contains 95 importer-scope HTML pages (92 active plus three
-retained). The dataset has 67 forum/competition/meeting entries, 492 programme
-items, 64 breaks, 391 attached source abstracts and 607 prepared portrait
-resources. No unmatched report profile remains. There are 59 published forum/
+retained). The dataset has 67 forum/competition/meeting entries, 510 programme
+items, 65 breaks, 407 attached source abstracts and 628 prepared portrait
+resources. No unmatched report profile remains. There are 61 published forum/
 meeting programmes plus C2's two published competition stages.
 
 ## Unpublished programmes
 
 | Category | Detailed / listed | Codes still without a detailed programme |
 | --- | --- | --- |
-| Academic | 33 / 35 | R25, R33 |
+| Academic | 35 / 35 | None |
 | Regular | 4 / 4 | None |
 | Education | 5 / 6 | E6 |
 | Industry | 8 / 8 | None |
@@ -90,8 +97,8 @@ meeting programmes plus C2's two published competition stages.
 | Committee meeting | 1 / 1 | None |
 | Competition | 1 / 5 | C1, C3, C4, C5 (individual slots unpublished) |
 
-- Seven entries lack detailed individual programmes. R25/R33 have no date;
-  R25/R33/C5 have no room or clock window. C1/C4 use dated timed sessions,
+- Five entries lack detailed individual programmes. All entries have a published date;
+  C5 has no room or clock window. C1/C4 use dated timed sessions,
   so their canonical null date/window is not missing schedule information.
 - E6 retains November 7, 14:10–15:10 and its overview room. C5 has only a
   November 7 final date. C1 has November 7, 15:30–18:30 and November 8,
@@ -109,6 +116,32 @@ meeting programmes plus C2's two published competition stages.
   November 6, 09:00–17:00, 二楼3号会议室. Its heading gives only the date;
   the envelope comes from the actual rows, not an invented published window.
 
+## October 28 source details to recheck
+
+- R25 publishes November 8, 09:00–12:00 in third-floor reception hall: an
+  opening, seven reports, one break and a closing. Collective opening/closing
+  credits remain collective; they are not fabricated people.
+- R33 publishes November 6, 14:00–16:40 in third-floor multifunction room 2:
+  one opening and eight reports. Preserve the unexplained 14:15–14:25 gap;
+  the introductory panel description has no corresponding timed row. Do not
+  invent a panel or break. 杜一圣 has a portrait/abstract but no biography.
+  朱其罡's repeated title suffix is present in both source locations; retain it.
+- R33's 金海 row uses an enumeration comma between two roles. In curated HTML,
+  replace only that separator with a fullwidth comma so the role does not parse
+  as another person. Both published role/affiliation facts remain intact.
+- R20 repeats `职称：` in speaker headings. Remove only this field label in
+  curated HTML; keep the name, title and affiliation. These are data-only edits.
+- S6#10 is 任慰's industrial operating-system report, November 6, 16:25–16:50.
+  The profile still gives the former desktop-OS title. Keep the timetable title,
+  new abstract/biography and explicit new portrait, with the title-conflict flag.
+- R9 removes 胡春明 from its short chair list but retains his detailed chair
+  card with an updated biography. Preserve that explicit source record.
+- C1 changes the rank substituted in the final tie-break formula for absent
+  or lower-ranked qualifiers from 40 to 30. This is a scoring rule in the
+  retained announcement, not an eligibility limit or an agenda slot.
+- S4's forum end now matches its last row at 18:10. R16 image omissions from
+  October 27 must not be reapplied; both original URLs have recovered.
+
 ## October 27 source details to recheck
 
 - E4/I7 publish complete programmes and explicit portraits. I7 ends at 12:00
@@ -120,8 +153,8 @@ meeting programmes plus C2's two published competition stages.
   data-only name/unit separators to avoid duplicate chair records. Preserve
   original bytes in the archive. All four R32 role paragraphs are now absent
   upstream; the old role-removal override is no longer needed.
-- R16's new 唐滨/王晔晖 portraits are HTTP 404. Preserve all text, and recheck
-  the exact URLs. R3's new 董淑照 row has no profile, photo or abstract.
+- Resolved October 28: R16's 唐滨/王晔晖 portraits work again; R3's 董淑照
+  now has an abstract, biography and portrait.
 - C2 has two separated final windows, not a continuous seven-hour final.
   Export and live states must retain the gap between 17:00 and 19:30.
 - Retain the withdrawn competition index and C3/C4 detail pages via
@@ -593,9 +626,10 @@ The original cleanup removed 84 of 93 notes. October 15 added two exact
 forum-title dismissals; October 16 adds 16 equivalent title/collective-credit
 messages to the exact-text review list; October 18 adds two forum-suffix differences. These are not new source warnings.
 R13's affiliation and the publicity roster discrepancy are now resolved.
-Six substantive notes remain: R1/E3 timing conflicts, R14's report-title
+Seven substantive notes remain: R1/E3 timing conflicts, R14's report-title
 conflict, R34's changed forum title, C3's room conflict and C4's final-end-time
-conflict. The October 27 import resolves E1's ambiguous credits, R22's unit
+conflict, plus S6's schedule/profile report-title conflict. The October 28 import
+adds two exact R16 punctuation/spacing dismissals. The October 27 import resolves E1's ambiguous credits, R22's unit
 conflict and I4's overrun; S2's title conflicts were resolved October 22.
 The October 21 evening update resolves the E2 placeholder-code mismatch. October 21 resolves
 the E3#2 biography defect, with its old note retained only in curation history. October 20 adds
