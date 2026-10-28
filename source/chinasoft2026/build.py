@@ -530,8 +530,11 @@ def committees():
             if member["name"] not in known:
                 previous["members"].append(member)
                 known[member["name"]] = member
-            elif member.get("photo"):
-                known[member["name"]].setdefault("photo", member["photo"])
+            else:
+                # Dedicated rosters may supply fields absent from the overview.
+                for field in ("photo", "affiliation_raw"):
+                    if member.get(field):
+                        known[member["name"]].setdefault(field, member[field])
     return list(merged.values()), flags
 
 

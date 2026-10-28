@@ -1,11 +1,18 @@
 # ChinaSoft 2026: source gaps and refresh checklist
 
-Last imported source review: **2026-10-28, checked at 14:31–14:32 Asia/Shanghai**.
+Last imported source review: **2026-10-28, checked at 18:01–18:02 Asia/Shanghai**.
 This is the conference-specific checklist for subsequent refreshes. Talk numbers
 below are **one-based**, matching `#talk-N` links. Historical sections retain
 the codes and source state used at their observation dates.
 
-Latest imported check: [October 28 review](../source/chinasoft2026/checks/20261028T063127723598Z/REVIEW.md).
+Latest imported check: [October 28 evening review](../source/chinasoft2026/checks/20261028T100102601374Z/REVIEW.md).
+All 94 active and three retained HTML pages and 626 active portraits are accessible.
+Six pages change since the afternoon import: honorary-chair replacement, two
+sponsorship committee members, nine explicit committee affiliations and corrected
+registration add-on price-period headings. Programmes and enrichment are unchanged.
+The prepared manifest contains 630 resources, including four retained C4 images.
+
+Previous imported check: [October 28 afternoon review](../source/chinasoft2026/checks/20261028T063127723598Z/REVIEW.md).
 All 94 active and three retained HTML pages work, as do all 624 active portraits.
 The prepared manifest contains 628 resources, including four retained C4 images.
 R25/R33 now publish nine rows each; R3 adds its missing profile. R20/S6 replace
@@ -81,7 +88,7 @@ Sources: [official site](https://chinasoft.ccf.org.cn/2026/),
 [overview](https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index).
 The snapshot contains 95 importer-scope HTML pages (92 active plus three
 retained). The dataset has 67 forum/competition/meeting entries, 510 programme
-items, 65 breaks, 407 attached source abstracts and 628 prepared portrait
+items, 65 breaks, 407 attached source abstracts and 630 prepared portrait
 resources. No unmatched report profile remains. There are 61 published forum/
 meeting programmes plus C2's two published competition stages.
 
@@ -115,6 +122,30 @@ meeting programmes plus C2's two published competition stages.
   T1 is now a first-class 专委会议 with 18 project reports plus opening/closing,
   November 6, 09:00–17:00, 二楼3号会议室. Its heading gives only the date;
   the envelope comes from the actual rows, not an invented published window.
+
+## October 28 evening source details to recheck
+
+- The steering page replaces honorary chair 陈雨露 with 龚克, retaining the
+  published title 校长 and an explicit new portrait. Do not infer an affiliation
+  or correct the title from outside information. The removed person/image remains
+  available in Git history; no current card uses the old portrait.
+- The sponsorship page adds members 黄丽丽 and 陆彦州, both explicitly at
+  天津大学, with portraits. Its existing two leaders remain unchanged.
+- Nine existing leaders receive explicit units: publication 姜佳君/天津大学
+  and 张静宣/南京航空航天大学; publicity 王栋/天津大学, 辜文蔚/南开大学
+  and 张重群/南开大学; sponsorship 赵英全/天津大学 and 王伟/南开大学;
+  volunteer organization 姜艳杰/天津大学 and 孙永谦/南开大学.
+- The committee overview still omits those units. Merge explicit units from
+  repeated same-role rosters without inferring identities from affiliations.
+  Independent fixtures cover either overview/detail order. Keep the five
+  dedicated committee-heading prefixes as existing data-only corrections.
+- Registration's add-on activity price-period headings now read 09.1–10.25
+  and 10.26–11.8, matching the previously updated main registration periods.
+  Prices and conference programme windows are unchanged.
+- All existing programme gaps, seven substantive notes, known distinct-person
+  keys and 15 curated-page corrections remain unchanged. R32's obsolete role
+  paragraphs remain absent upstream. No title/abstract/index changes require
+  enrichment edits; all 460 annotations remain byte-identical.
 
 ## October 28 source details to recheck
 

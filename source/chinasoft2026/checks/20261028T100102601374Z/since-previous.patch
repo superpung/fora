@@ -1,0 +1,115 @@
+--- before/pages/intro/committee-publication.html
++++ after/pages/intro/committee-publication.html
+@@ -18,11 +18,13 @@
+             <img class="committee-img" src="images/people/committee/姜佳君.png" alt="姜佳君"
+                 onerror="this.src='./images/academic-forum/default.png'">
+             <div class="committee-name">姜佳君</div>
++            <div class="committee-unit">天津大学</div>
+         </div>
+         <div class="committee-item">
+             <img class="committee-img" src="images/people/committee/张静宣.png" alt="张静宣"
+                 onerror="this.src='./images/academic-forum/default.png'">
+             <div class="committee-name">张静宣</div>
++            <div class="committee-unit">南京航空航天大学</div>
+         </div>
+     </div>
+ 
+--- before/pages/intro/committee-publicity.html
++++ after/pages/intro/committee-publicity.html
+@@ -18,15 +18,18 @@
+             <img class="committee-img" src="images/people/committee/王栋.png" alt="王栋"
+                 onerror="this.src='./images/academic-forum/default.png'">
+             <div class="committee-name">王栋</div>
++            <div class="committee-unit">天津大学</div>
+         </div>
+         <div class="committee-item">
+             <img class="committee-img" src="images/people/committee/辜文蔚.png" alt="辜文蔚"
+                 onerror="this.src='./images/academic-forum/default.png'">
+             <div class="committee-name">辜文蔚</div>
++            <div class="committee-unit">南开大学</div>
+         </div>
+         <div class="committee-item">
+             <img class="committee-img" src="./images/people/committee/张重群.png" alt="张重群">
+             <div class="committee-name">张重群</div>
++            <div class="committee-unit">南开大学</div>
+         </div>
+     </div>
+ 
+--- before/pages/intro/committee-sponsorship.html
++++ after/pages/intro/committee-sponsorship.html
+@@ -8,12 +8,34 @@
+             <img class="committee-img" src="images/people/committee/赵英全.png" alt="赵英全"
+                 onerror="this.src='./images/academic-forum/default.png'">
+             <div class="committee-name">赵英全</div>
++            <div class="committee-unit">天津大学</div>
+         </div>
+         <div class="committee-item">
+             <img class="committee-img" src="images/people/committee/王伟.png" alt="王伟"
+                 onerror="this.src='./images/academic-forum/default.png'">
+             <div class="committee-name">王伟</div>
++            <div class="committee-unit">南开大学</div>
+         </div>
+ 
+     </div>
++
++    <br>
++    <br>
++
++    <!-- 赞助委员会委员 -->
++    <div class="section-title">委员</div>
++    <div class="committee-grid">
++        <div class="committee-item">
++            <img class="committee-img" src="images/people/committee/黄丽丽.jpg" alt="黄丽丽"
++                onerror="this.src='./images/academic-forum/default.png'">
++            <div class="committee-name">黄丽丽</div>
++            <div class="committee-unit">天津大学</div>
++        </div>
++        <div class="committee-item">
++            <img class="committee-img" src="images/people/committee/陆彦州.jpg" alt="陆彦州"
++                onerror="this.src='./images/academic-forum/default.png'">
++            <div class="committee-name">陆彦州</div>
++            <div class="committee-unit">天津大学</div>
++        </div>
++    </div>
+ </div>--- before/pages/intro/committee-steering.html
++++ after/pages/intro/committee-steering.html
+@@ -23,8 +23,8 @@
+             <div class="committee-name">柴立元 校长</div>
+         </div>
+         <div class="committee-item">
+-            <img class="committee-img" src="images/people/陈雨露.png" alt="陈雨露">
+-            <div class="committee-name">陈雨露 校长</div>
++            <img class="committee-img" src="images/people/committee/龚克.png" alt="龚克">
++            <div class="committee-name">龚克 校长</div>
+         </div>
+ 
+     </div>
+--- before/pages/intro/committee-volunteer.html
++++ after/pages/intro/committee-volunteer.html
+@@ -8,11 +8,13 @@
+             <img class="committee-img" src="images/people/committee/姜艳杰.png" alt="姜艳杰"
+                 onerror="this.src='./images/academic-forum/default.png'">
+             <div class="committee-name">姜艳杰</div>
++            <div class="committee-unit">天津大学</div>
+         </div>
+         <div class="committee-item">
+             <img class="committee-img" src="images/people/committee/孙永谦.png" alt="孙永谦"
+                 onerror="this.src='./images/academic-forum/default.png'">
+             <div class="committee-name">孙永谦</div>
++            <div class="committee-unit">南开大学</div>
+         </div>
+ 
+     </div>
+--- before/pages/register.html
++++ after/pages/register.html
+@@ -126,8 +126,8 @@
+                     <tr>
+                         <th>附加活动名称</th>
+                         <th>参会者身份</th>
+-                        <th>09.1-10.20</th>
+-                        <th>10.21-11.8</th>
++                        <th>09.1-10.25</th>
++                        <th>10.26-11.8</th>
+                     </tr>
+                 </thead>
+                 <tbody>

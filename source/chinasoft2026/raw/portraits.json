@@ -4839,6 +4839,14 @@
     "width": 256,
     "height": 171
   },
+  "https://chinasoft.ccf.org.cn/2026/images/people/committee/陆彦州.jpg": {
+    "local_path": "/portraits/chinasoft2026/b7ceab0e13375f763436.webp",
+    "source_sha256": "71a4e6bd8608d7ff4f25c01b30b124a4f53b56e50cf6faaa056833499c10b746",
+    "sha256": "b7ceab0e13375f7634362b1005a7d03fb3a8c82c4f684240848d321d4427f58d",
+    "bytes": 8158,
+    "width": 205,
+    "height": 256
+  },
   "https://chinasoft.ccf.org.cn/2026/images/people/committee/陈俊洁.png": {
     "local_path": "/portraits/chinasoft2026/cd415f7478242f19ace8.webp",
     "source_sha256": "c5cd88ff39dbb1b8cd21d7baa3d6ac67f29b3f7ba6d430d8976b25cdb0203cd5",
@@ -4855,12 +4863,28 @@
     "width": 202,
     "height": 256
   },
+  "https://chinasoft.ccf.org.cn/2026/images/people/committee/黄丽丽.jpg": {
+    "local_path": "/portraits/chinasoft2026/a62e2ce0391cf620c11f.webp",
+    "source_sha256": "d85df6f6920b4177bca972f2c4e1d6599f2845524fc7af553c7d8c8e72868326",
+    "sha256": "a62e2ce0391cf620c11fe76b2c18bdad4a6cc335c7d6b3047c53dd05dad321ff",
+    "bytes": 5190,
+    "width": 191,
+    "height": 256
+  },
   "https://chinasoft.ccf.org.cn/2026/images/people/committee/黄毅安.png": {
     "local_path": "/portraits/chinasoft2026/ffe4840904577410fab8.webp",
     "source_sha256": "454a65f99a7f98c6bcb36a2f2be8d72861a5986084c327136f8b69f7cebb76bb",
     "sha256": "ffe4840904577410fab86726ec547fd039f260759f9943a53c59b786ea13be72",
     "bytes": 4222,
     "width": 192,
+    "height": 256
+  },
+  "https://chinasoft.ccf.org.cn/2026/images/people/committee/龚克.png": {
+    "local_path": "/portraits/chinasoft2026/1454e31bd062dd78efd9.webp",
+    "source_sha256": "fd9abece2ec685289f1eeae4c3cef7fa6e85dd3dae041cd38e5a069b57bd3ec9",
+    "sha256": "1454e31bd062dd78efd9932ec1c187730654c78ec153067965ee9dbd905a329e",
+    "bytes": 3294,
+    "width": 193,
     "height": 256
   },
   "https://chinasoft.ccf.org.cn/2026/images/people/傅育熙.jpg": {
@@ -4998,14 +5022,6 @@
     "bytes": 4116,
     "width": 164,
     "height": 229
-  },
-  "https://chinasoft.ccf.org.cn/2026/images/people/陈雨露.png": {
-    "local_path": "/portraits/chinasoft2026/8a34125d87de5d6105da.webp",
-    "source_sha256": "82b123add9f3e99754a9add9005efc961ffa349fdb37b2fbfdbdc59f2e3ea148",
-    "sha256": "8a34125d87de5d6105da22333a36ebc64e2ceda7e446ace0b5e86a2cf7a333fb",
-    "bytes": 4248,
-    "width": 192,
-    "height": 256
   },
   "https://chinasoft.ccf.org.cn/2026/images/people/马晓星.jpg": {
     "local_path": "/portraits/chinasoft2026/365780476c14c5a31ca5.webp",

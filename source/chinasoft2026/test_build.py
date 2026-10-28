@@ -13,6 +13,22 @@ from people import read_person, person_problem
 
 
 class ProgrammeTests(unittest.TestCase):
+    def test_repeated_committee_rosters_keep_explicit_units_in_either_order(self):
+        overview = '<div class="section-title">Example role</div><div class="committee-grid"><div class="committee-item"><div class="committee-name">张三</div></div></div>'
+        detail = overview.replace('</div></div></div>', '</div><div class="committee-unit">Example University</div></div></div>')
+        for first, second in ((overview, detail), (detail, overview)):
+            pages = {
+                'pages/introduction.html': '<a onclick="loadIntroPage(\'first\')">First</a><a onclick="loadIntroPage(\'second\')">Second</a>',
+                'pages/intro/first.html': first,
+                'pages/intro/second.html': second,
+            }
+            with self.subTest(first_has_unit=first == detail), patch('build.load', side_effect=lambda path: BeautifulSoup(pages[path], 'html.parser')):
+                groups, flags = committees()
+            self.assertEqual(flags, [])
+            self.assertEqual(len(groups), 1)
+            self.assertEqual(groups[0]['members'], [{'name': '张三', 'affiliation_raw': 'Example University'}])
+            self.assertEqual(groups[0]['extra']['source_rosters'], [['张三'], ['张三']])
+
     def test_date_only_header_uses_published_rows_without_inventing_a_window(self):
         html = """
         <h2 class="section-title">Example</h2><div class="section-title-en">T99</div>
@@ -453,7 +469,7 @@ class ProgrammeTests(unittest.TestCase):
         groups, _ = committees()
         honorary = next(g for g in groups if g["role"]["zh"] == "荣誉主席")
         self.assertEqual([p["name"] for p in honorary["members"]],
-                         ["林惠民", "梅宏", "吕建", "柴立元", "陈雨露"])
+                         ["林惠民", "梅宏", "吕建", "柴立元", "龚克"])
         self.assertEqual(len({g["role"]["zh"] for g in groups}), len(groups))
 
     def test_pending_and_collective_credits_are_flags(self):

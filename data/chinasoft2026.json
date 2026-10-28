@@ -276,11 +276,11 @@
           }
         },
         {
-          "name": "陈雨露",
+          "name": "龚克",
           "title": "校长",
           "photo": {
-            "local_path": "/portraits/chinasoft2026/8a34125d87de5d6105da.webp",
-            "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/%E9%99%88%E9%9B%A8%E9%9C%B2.png"
+            "local_path": "/portraits/chinasoft2026/1454e31bd062dd78efd9.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E9%BE%9A%E5%85%8B.png"
           }
         }
       ],
@@ -291,7 +291,7 @@
             "梅宏",
             "吕建",
             "柴立元",
-            "陈雨露"
+            "龚克"
           ]
         ]
       }
@@ -600,21 +600,24 @@
           "photo": {
             "local_path": "/portraits/chinasoft2026/788ed78729add3dd3157.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E7%8E%8B%E6%A0%8B.png"
-          }
+          },
+          "affiliation_raw": "天津大学"
         },
         {
           "name": "辜文蔚",
           "photo": {
             "local_path": "/portraits/chinasoft2026/bbd3788e9733af6e290f.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E8%BE%9C%E6%96%87%E8%94%9A.png"
-          }
+          },
+          "affiliation_raw": "南开大学"
         },
         {
           "name": "张重群",
           "photo": {
             "local_path": "/portraits/chinasoft2026/228c8625da7a8a8de983.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E5%BC%A0%E9%87%8D%E7%BE%A4.png"
-          }
+          },
+          "affiliation_raw": "南开大学"
         }
       ],
       "extra": {
@@ -643,14 +646,16 @@
           "photo": {
             "local_path": "/portraits/chinasoft2026/86717082de31487d4202.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E8%B5%B5%E8%8B%B1%E5%85%A8.png"
-          }
+          },
+          "affiliation_raw": "天津大学"
         },
         {
           "name": "王伟",
           "photo": {
             "local_path": "/portraits/chinasoft2026/6b3b4dbde9999fe7750d.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E7%8E%8B%E4%BC%9F.png"
-          }
+          },
+          "affiliation_raw": "南开大学"
         }
       ],
       "extra": {
@@ -677,14 +682,16 @@
           "photo": {
             "local_path": "/portraits/chinasoft2026/7b1d4463ddc9be1c7dfd.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E5%A7%9C%E4%BD%B3%E5%90%9B.png"
-          }
+          },
+          "affiliation_raw": "天津大学"
         },
         {
           "name": "张静宣",
           "photo": {
             "local_path": "/portraits/chinasoft2026/bc2d60ac960f4b4b9f30.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E5%BC%A0%E9%9D%99%E5%AE%A3.png"
-          }
+          },
+          "affiliation_raw": "南京航空航天大学"
         }
       ],
       "extra": {
@@ -711,14 +718,16 @@
           "photo": {
             "local_path": "/portraits/chinasoft2026/8d6e475b778ed4211ee6.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E5%A7%9C%E8%89%B3%E6%9D%B0.png"
-          }
+          },
+          "affiliation_raw": "天津大学"
         },
         {
           "name": "孙永谦",
           "photo": {
             "local_path": "/portraits/chinasoft2026/cc64aa22d48a2b74ac61.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E5%AD%99%E6%B0%B8%E8%B0%A6.png"
-          }
+          },
+          "affiliation_raw": "南开大学"
         }
       ],
       "extra": {
@@ -2142,6 +2151,38 @@
             "李晓鹏",
             "户庆凯",
             "胡沛廷"
+          ]
+        ]
+      }
+    },
+    {
+      "role": {
+        "zh": "赞助委员会委员",
+        "en": null
+      },
+      "members": [
+        {
+          "name": "黄丽丽",
+          "affiliation_raw": "天津大学",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/a62e2ce0391cf620c11f.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E9%BB%84%E4%B8%BD%E4%B8%BD.jpg"
+          }
+        },
+        {
+          "name": "陆彦州",
+          "affiliation_raw": "天津大学",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/b7ceab0e13375f763436.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E9%99%86%E5%BD%A6%E5%B7%9E.jpg"
+          }
+        }
+      ],
+      "extra": {
+        "source_rosters": [
+          [
+            "黄丽丽",
+            "陆彦州"
           ]
         ]
       }
@@ -26442,7 +26483,7 @@
   },
   "extraction": {
     "source": "https://chinasoft.ccf.org.cn/2026/",
-    "content_sha256": "990f52e5f16e86e1b219b9ebefcd0697309eb35cc2d2e0c9beb322a844490f29",
+    "content_sha256": "606bf4213a8376d02cfc609b2edec193d53ddfb70f54e4b8da1813d2f913ffa5",
     "forums_total": 67,
     "forums_detail_extracted": 62,
     "notes": "Active navigation and explicitly reviewed accessible withdrawn pages are captured. Unpublished programmes remain unscheduled. Timetable titles and affiliations are retained verbatim; profiles supplement abstracts and biographies."

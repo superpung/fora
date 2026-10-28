@@ -129,9 +129,16 @@ Its candidate was not pushed: S6's replacement profile still referenced an old
 portrait, and a mobile committee animation assertion failed. The archived
 review is historical evidence, not the current import status.
 
-Latest imported complete observation: [October 28, 14:31–14:32](20261028T063127723598Z/REVIEW.md).
+Previous imported complete observation: [October 28, 14:31–14:32](20261028T063127723598Z/REVIEW.md).
 All 94 active and three retained HTML pages, and all 624 active portraits, work.
 Sixteen active HTML pages change since October 27 evening; R2 also differs from
 the last pushed import. R25/R33 programmes, source replacements and partner
 organizations are imported. S6 now supplies the correct explicit portrait; its
 schedule/profile title discrepancy remains marked. No withdrawn content is deleted.
+
+Latest imported complete observation: [October 28, 18:01–18:02](20261028T100102601374Z/REVIEW.md).
+Six active HTML pages change; all 94 active and three retained pages work.
+There are 626 available active portraits, with three added and one removed
+reference. Import the honorary-chair replacement, two sponsorship members,
+nine committee affiliations and corrected add-on registration periods.
+Programmes and all existing gaps remain unchanged; this advances the baseline.

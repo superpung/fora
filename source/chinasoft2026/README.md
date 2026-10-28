@@ -1,6 +1,14 @@
 # ChinaSoft 2026 adapter
 
-The [October 28 observation](checks/20261028T063127723598Z/REVIEW.md) is complete
+The [October 28 evening observation](checks/20261028T100102601374Z/REVIEW.md)
+is complete and imported. It replaces one honorary chair, adds two sponsorship
+members and nine published committee affiliations, and corrects registration
+add-on price-period headings. All 626 active portraits work; 630 resources are
+prepared including retained C4 images. Programmes and enrichment are unchanged.
+Repeated committee rosters retain explicit units supplied by dedicated pages;
+independent fixtures cover either page order.
+
+The earlier [October 28 observation](checks/20261028T063127723598Z/REVIEW.md) is complete
 and imported. R25/R33 now publish full programmes; R3 adds a missing profile,
 R20/S6 replace reports and S4 ends earlier. All active portraits work again.
 The homepage adds 18 cooperating organizations, represented separately from
@@ -56,7 +64,7 @@ overview block locations omit the known venue prefixes, while `extra.location_ra
 retains the full source wording. The conference venue remains available for
 the page header, calendar exports and standalone share posters.
 
-The portrait manifest contains 628 prepared resources: 624 working active URLs
+The portrait manifest contains 630 prepared resources: 626 working active URLs
 plus four retained C4 references. 唐滨 and 王晔晖 recover from HTTP 404;
 new explicit photos include 任慰, 李晓红, 董淑照 and R25/R33 participants.
 All active HTML is accessible.
