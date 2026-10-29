@@ -56,6 +56,18 @@ try {
   assert(cookies.some(value => value.includes('__Host-fora-oauth=') && value.includes('Max-Age=0')));
   const carol = await (await mf.dispatchFetch(origin + '/api/session', { headers: { Cookie: sessionCookie } })).json();
   assert.equal(carol.user.login, 'carol');
+  for (const [error, status] of [['incorrect_client_credentials', 503], ['redirect_uri_mismatch', 503],
+    ['bad_verification_code', 401], ['unexpected-error-containing-a-secret', 502]]) {
+    fetchMock.get('https://github.com').intercept({ path: '/login/oauth/access_token', method: 'POST' })
+      .reply(200, { error, error_description: 'sensitive-provider-description' });
+    const denied = await mf.dispatchFetch(origin + '/?code=rejected&state=' + state, {
+      redirect: 'manual', headers: { Cookie: login.headers.get('Set-Cookie').split(';')[0] },
+    });
+    assert.equal(denied.status, status);
+    const body = await denied.text();
+    assert(!body.includes('sensitive-provider-description') && !body.includes('containing-a-secret'));
+    assert(!denied.headers.has('Set-Cookie'), 'failed authorization must never create a session');
+  }
   const sessions = await DB.prepare('SELECT token_hash FROM sessions WHERE user_id = ?').bind(carol.user.id).all();
   assert.equal(sessions.results[0].token_hash, createHash('sha256').update(sessionCookie.split('=')[1]).digest('hex'));
   assert.equal((await mf.dispatchFetch('https://preview.test/api/auth/login', { redirect: 'manual' })).status, 403);
@@ -115,6 +127,41 @@ try {
   assert.equal((await promote(null)).status, 409);
   const catalog = await (await mf.dispatchFetch(origin + '/api/publish/catalog', { headers: publisher })).json();
   assert.equal(catalog.catalog.conferences[0].sha256, datasetHash);
+  const rejectedUpload = await mf.dispatchFetch(`${origin}/api/publish/objects/conferences/demo/${'f'.repeat(64)}.json`, {
+    method: 'PUT', headers: { ...publisher, 'X-Content-SHA256': 'f'.repeat(64), 'Content-Length': '2' }, body: '{}',
+  });
+  assert(!rejectedUpload.ok, 'content checksum must be verified before accepting an upload');
+  assert.equal((await mf.dispatchFetch(`${origin}/api/publish/objects/conferences/demo/${'f'.repeat(64)}.json`, { method: 'HEAD', headers: publisher })).status, 404);
+  assert.equal((await mf.dispatchFetch(`${origin}/api/publish/objects/conferences/demo/${datasetHash}.json`, {
+    method: 'PUT', headers: { ...publisher, 'X-Content-SHA256': 'f'.repeat(64), 'Content-Length': '2' }, body: '{}',
+  })).status, 409, 'an existing immutable object cannot be overwritten');
+  const candidate = async conferences => {
+    const body = JSON.stringify({ schema_version: 1, conferences });
+    const digest = createHash('sha256').update(body).digest('hex');
+    await upload('objects', `releases/${digest}.json`, body);
+    return digest;
+  };
+  const release = (manifest_hash, expected_etag) => mf.dispatchFetch(origin + '/api/publish/promote', {
+    method: 'POST', headers: publisher, body: JSON.stringify({ manifest_hash, expected_etag }),
+  });
+  const missingHash = 'f'.repeat(64);
+  const missing = await candidate([{ id: 'demo', sha256: missingHash, path: `conferences/demo/${missingHash}.json` }]);
+  assert.equal((await release(missing, catalog.etag)).status, 400, 'partial uploads cannot become the live catalog');
+  const duplicate = await candidate([catalog.catalog.conferences[0], catalog.catalog.conferences[0]]);
+  assert.equal((await release(duplicate, catalog.etag)).status, 400);
+  const secondData = JSON.stringify({ id: 'demo', updated: true });
+  const secondHash = createHash('sha256').update(secondData).digest('hex');
+  await upload('objects', `conferences/demo/${secondHash}.json`, secondData);
+  const second = await candidate([{ id: 'demo', sha256: secondHash, path: `conferences/demo/${secondHash}.json` }]);
+  const beforePromotion = await (await mf.dispatchFetch(origin + '/api/publish/catalog', { headers: publisher })).json();
+  assert.deepEqual(beforePromotion, catalog, 'staging and failed promotions leave the live catalog unchanged');
+  const promoted = await release(second, catalog.etag);
+  assert.equal(promoted.status, 200);
+  const secondEtag = (await promoted.json()).etag;
+  assert.equal((await release(manifestHash, catalog.etag)).status, 409, 'rollback must also reject stale review state');
+  assert.equal((await release(manifestHash, secondEtag)).status, 200);
+  const rolledBack = await (await mf.dispatchFetch(origin + '/api/publish/catalog', { headers: publisher })).json();
+  assert.deepEqual(rolledBack.catalog, catalog.catalog, 'reviewed rollback restores the prior immutable release');
   assert.equal((await mf.dispatchFetch(origin + '/api/publish/checks', { headers: publisher })).status, 404);
   assert.equal((await mf.dispatchFetch(origin + '/api/publish/archives/old', { headers: publisher })).status, 404);
   console.log('PASS Worker authentication, origin checks, validation, isolation, atomic concurrent writes and logout');

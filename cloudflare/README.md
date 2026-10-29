@@ -40,6 +40,7 @@ uv run python source/build_all.py
 uv run python source/validate.py
 pnpm --dir web install --frozen-lockfile
 pnpm --dir web lint
+pnpm --dir web build
 pnpm --dir web test:cloudflare
 VITE_DATA_BASE_URL=https://fora-data.repus.me pnpm --dir web build
 cd web
@@ -59,6 +60,14 @@ identifies subsequent calls. Successful logins also remove expired sessions,
 without a background timer. Preview origins disable login. No Gist backend or
 Gist import flow remains; existing JSON backup/import handles user-controlled
 transfers. Device-local follows remain usable without signing in.
+
+Before installing or changing OAuth credentials, run
+`PUBLIC_ORIGIN=https://fora.repus.me uv run python cloudflare/check_oauth.py` with the
+client ID and secret supplied through the environment. It sends an intentionally
+invalid authorization code to the real GitHub token endpoint and requires
+`bad_verification_code`, rejecting invalid client credentials. Never assume
+another platform's environment variables are correct merely because they exist.
+This check does not validate a real user's authorization or the entire callback.
 
 All sync writes compare a D1 revision atomically. Clients merge changes against
 their last common state and retry a stale revision. Preference conflicts and
@@ -135,3 +144,27 @@ AUDIT_BASE_URL=https://fora.repus.me AUDIT_DATA_BASE_URL=https://fora-data.repus
 `AUDIT_DATA_REVISION` can select a staged candidate. There is no special preview
 branch selector or repository-variable workflow in CI; the browser scripts remain
 available alongside normal CI validation.
+
+## Migration acceptance
+
+Implementation, simulated-provider tests and production acceptance are separate
+results. Do not mark a migration complete while a required check is unperformed
+or failing. A passing anonymous-page probe is not a successful login test.
+
+| Change | Required evidence |
+| --- | --- |
+| GitHub identity and cookie sessions | Real credential check; real human authorization on production; rejected state/code/configuration; secure HttpOnly cookie; logout and expiry |
+| D1 sync | Browser application through the actual Worker and D1; two device contexts; follows and deletions; offline edits; preference conflicts; account isolation; stale revisions |
+| Independent R2 releases | Hash rejection; incomplete upload rejection; staging leaves live catalog unchanged; conditional promotion; stale publisher rejection; conditional rollback |
+| Runtime data and PWA | Real CDN/schema/hash checks; deep links and portraits; visited content offline; corrupt data rejection; OAuth bypasses the service worker |
+| Durable report IDs | Insert/reorder identity tests; follows, anchors, exports, multi-day and clock regression suites |
+| Local source maintenance | Unchanged snapshot reuse; pending import comparison; failed baseline retention; date guard; clean cron-environment smoke; first full scheduled-run report |
+| Deployment isolation | Production checks before/after deployment; unchanged unrelated account resources |
+
+`pnpm --dir web test:cloudflare` includes the API tests, deterministic browser
+conflict tests and `cloudflare-integration.mjs`. The latter connects the actual
+application to the Worker and D1, simulating only GitHub's external responses.
+It does not substitute for real production authorization. `pnpm --dir web test`
+covers the conference, identity, navigation and clock surfaces. Run source and
+publisher Python tests as well. Record unperformed production checks explicitly
+instead of treating the corresponding local test as production acceptance.
