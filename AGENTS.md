@@ -86,7 +86,7 @@ someone compared the file list against what the agents said they wrote.
     `buildConferenceViews(raw)`; the registry (`lib/conferences.ts`) builds and
     memoises views per id, and components read the active conference through
     `useConference()`.
-  - Reference fixtures live only at `data/<id>.json`. The build
+  - Generated local fixtures live at `data/<id>.json` and are ignored by Git. The build
     generates a lightweight catalog; production reads its independently published
     R2 version for the hub / switcher, without loading any full dataset.
   - Every per-conference storage key is namespaced under the conference id
@@ -243,7 +243,8 @@ web/
 
 ## Build & reproduce
 
-Datasets are built offline and committed as reference fixtures. Production reads
+Datasets are built offline as ignored local fixtures. Source inputs and builders
+remain in Git; generated conference JSON does not. Production reads
 a separately published, checksummed R2 catalog and immutable JSON at runtime.
 See [Cloudflare publishing](cloudflare/README.md) for staging and promotion.
 
@@ -263,13 +264,13 @@ per-conference knowledge: it runs every `source/<id>/build.py` it finds, then
 **CI is never edited for a conference**, because a forgotten line there would
 still go green while leaving that conference's data unchecked.
 
-Each `build.py` writes its dataset once to `data/`. Tests, validation and the
+Each `build.py` writes its dataset once to ignored `data/*.json`. Tests, validation and the
 web asset preparation script all read this canonical copy.
 Output is **deterministic**: with unchanged source data a rerun is byte-for-byte
 identical (`extraction.content_sha256` is a content fingerprint; a real
 `generated_at` timestamp is written only when `SOURCE_DATE_EPOCH` is set). CI
-rebuilds and asserts the committed data is in sync, so never hand-edit generated
-files.
+rebuilds twice and compares output hashes, and checks the lightweight manifest.
+Never hand-edit or commit generated conference datasets.
 
 ## Adding a conference
 
