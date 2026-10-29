@@ -52,7 +52,7 @@ try {
   await go("/chinasoft2026/forum/R32", ".fd__people");
   for (const button of await page.locator(".fd__people .person__toggle").all()) await button.click();
   const bios = await page.locator(".fd__people .person__bio").allTextContents();
-  assert.equal(bios.length, 4);
+  assert.equal(bios.length, 5);
   assert(bios.every((bio) => bio.length > 30 && !bio.includes("角色：")));
 
   await go("/chinasoft2026/speakers?q=李佳", ".spcard");
@@ -96,7 +96,8 @@ try {
       const rust = collectFollowedItems({ forums: new Set(["C3"]), speakers: new Set(), talks: new Set() }, views);
       const added = collectFollowedItems({ forums: new Set(["C2", "T1"]), speakers: new Set(), talks: new Set() }, views);
       const live = (date, minutes) => buildLiveView(views, { todayStr: date, nowMin: minutes });
-      return { items, competition, rust, added, addedICS: toICS(added, "2026-10-27T00:00:00Z", views),
+      return { items, competition, rust, added, cangjieBefore: live("2026-11-06", 19 * 60 + 29),
+        cangjieDuring: live("2026-11-06", 20 * 60), cangjieAfter: live("2026-11-06", 21 * 60 + 30), addedICS: toICS(added, "2026-10-27T00:00:00Z", views),
         rustICS: toICS(rust, "2026-10-21T00:00:00Z", views),
         rustLive: live("2026-11-07", 16 * 60),
         repairDefense: live("2026-11-08", 10 * 60),
@@ -133,7 +134,14 @@ try {
     assert.equal(forum.approx, false);
     assert.equal(forum.talkIndex, undefined);
     assert(result.ics.includes("20261107T061000Z"));
-    assert(result.ics.includes("DTSTART;VALUE=DATE:20261107"));
+    assert(result.ics.includes("DTSTART:20261106T113000Z"));
+    const cangjie = result.items.find(x => x.code === "C5");
+    assert.deepEqual([cangjie.date, cangjie.start, cangjie.end, cangjie.talkIndex ?? null],
+      ["2026-11-06", "19:30", "21:30", null]);
+    assert.equal(cangjie.approx, false);
+    assert(!result.cangjieBefore.nowRooms.some(r => r.code === "C5"));
+    assert(result.cangjieDuring.nowRooms.some(r => r.code === "C5"));
+    assert(!result.cangjieAfter.nowRooms.some(r => r.code === "C5"));
     assert(result.morning.nowRooms.some((r) => r.code === "R14"));
     assert(!result.morning.nowRooms.some((r) => r.code === "R32"));
     assert(!result.afternoon.nowRooms.some((r) => r.code === "R14"));

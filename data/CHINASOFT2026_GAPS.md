@@ -1,11 +1,19 @@
 # ChinaSoft 2026: source gaps and refresh checklist
 
-Last imported source review: **2026-10-28, checked at 18:01–18:02 Asia/Shanghai**.
+Last imported source review: **2026-10-29, checked at 11:08–11:09 Asia/Shanghai**.
 This is the conference-specific checklist for subsequent refreshes. Talk numbers
 below are **one-based**, matching `#talk-N` links. Historical sections retain
 the codes and source state used at their observation dates.
 
-Latest imported check: [October 28 evening review](../source/chinasoft2026/checks/20261028T100102601374Z/REVIEW.md).
+Latest imported check: [October 29 review](../source/chinasoft2026/checks/20261029T030820915010Z/REVIEW.md).
+All 94 active and three retained HTML pages and 627 active portraits are accessible.
+Thirteen pages change since the evening import. I1 adds a report and retimes
+its morning; R20 adds an opening and retimes reports/break; C5 moves to November 6
+with an exact evening time and room. S1 replaces a speaker; R32 adds a chair;
+committee membership, profiles and source typography change. There are 631
+prepared portrait resources. Seven substantive source notes remain.
+
+Previous imported check: [October 28 evening review](../source/chinasoft2026/checks/20261028T100102601374Z/REVIEW.md).
 All 94 active and three retained HTML pages and 626 active portraits are accessible.
 Six pages change since the afternoon import: honorary-chair replacement, two
 sponsorship committee members, nine explicit committee affiliations and corrected
@@ -87,8 +95,8 @@ Original snapshots remain separate from curated importer input.
 Sources: [official site](https://chinasoft.ccf.org.cn/2026/),
 [overview](https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index).
 The snapshot contains 95 importer-scope HTML pages (92 active plus three
-retained). The dataset has 67 forum/competition/meeting entries, 510 programme
-items, 65 breaks, 407 attached source abstracts and 630 prepared portrait
+retained). The dataset has 67 forum/competition/meeting entries, 512 programme
+items, 65 breaks, 408 attached source abstracts and 631 prepared portrait
 resources. No unmatched report profile remains. There are 61 published forum/
 meeting programmes plus C2's two published competition stages.
 
@@ -104,11 +112,11 @@ meeting programmes plus C2's two published competition stages.
 | Committee meeting | 1 / 1 | None |
 | Competition | 1 / 5 | C1, C3, C4, C5 (individual slots unpublished) |
 
-- Five entries lack detailed individual programmes. All entries have a published date;
-  C5 has no room or clock window. C1/C4 use dated timed sessions,
+- Five entries lack detailed individual programmes. All entries have published dates,
+  rooms and clock windows. C1/C4 use dated timed sessions,
   so their canonical null date/window is not missing schedule information.
-- E6 retains November 7, 14:10–15:10 and its overview room. C5 has only a
-  November 7 final date. C1 has November 7, 15:30–18:30 and November 8,
+- E6 retains November 7, 14:10–15:10 and its overview room. C5 now has a
+  November 6, 19:30–21:30 final in second-floor room 16. C1 has November 7, 15:30–18:30 and November 8,
   09:00–12:00 in second-floor room 6; its November 8 afternoon award is
   untimed and remains in the description. C4 has November 7, 15:20–18:30
   and November 8, 09:00–12:00 in second-floor room 5. C3 retains November 7,
@@ -122,6 +130,41 @@ meeting programmes plus C2's two published competition stages.
   T1 is now a first-class 专委会议 with 18 project reports plus opening/closing,
   November 6, 09:00–17:00, 二楼3号会议室. Its heading gives only the date;
   the envelope comes from the actual rows, not an invented published window.
+
+## October 29 source details to recheck
+
+- I1 adds 黄罡's “智能化软件的数据挑战与展望” at 09:05–09:25 on November 8,
+  with abstract, biography and explicit portrait. Existing report windows become
+  09:25–09:45, 09:45–10:05, 10:05–10:25 and 10:40–11:00; tea is 10:25–10:40.
+  Its panel remains 11:00–12:00 and adds 黄罡. The source restores an introduction
+  and separately identifies the two organizers. Reindex guarded annotations by
+  report title, never attach the old index's annotation to the new report.
+- R20 adds 孟国柱's 09:00–09:10 introduction on November 8. Existing five
+  reports move to 09:10–09:40, 09:40–10:10, 10:30–11:00, 11:00–11:30 and
+  11:30–12:00; tea moves to 10:10–10:30. The source removes `职称：` itself;
+  the former data-only removal is now obsolete. No absent opening abstract is invented.
+- C5 moves from November 7 to November 6 and publishes 19:30–21:30 in second-floor
+  room 16. Keep a timed forum, without invented team slots. Its award notice
+  now says awards occur from November 8, with at least three working days of
+  public notice before certificates are mailed. Check exports, follows and live
+  boundaries against the new date; old date-only C5 assertions are obsolete.
+- S1#8 replaces 陶乐 with 张瑞宸 (北京信息科技大学), retaining its title and
+  16:50–17:15 slot. No report profile or portrait is supplied.
+- R32 adds 陈俊洁, 天津大学 professor, with biography/portrait; its short roster
+  adds academic titles to all five organizers. R9 now removes 胡春明's detailed
+  chair card as well as the previously removed short-list entry. Historical
+  content remains archived; he is no longer displayed as a current R9 chair.
+- R8 reorders organizer profiles and swaps the positions of 康梓峰/孟岩 report
+  cards to match the already-published timetable. No report slot changes.
+- The advisory roster replaces 刘祥颖 with 刘军利 and his explicit portrait;
+  the organizing roster replaces 刘军利 with 刘祥颖. Both keep their explicit
+  天津市大学软件学院 affiliation. Do not swap unrelated identities or portraits.
+- E4's navigation label now matches its detail title. Its new 王尚广 heading
+  omits a name/unit separator: add one space in curated HTML only. The former
+  parenthetical chair-heading fixes are resolved upstream. Other E4 and R25
+  heading/line-wrap changes do not change report content or times.
+- Fourteen curated pages retain deliberate data-only differences. R32 role
+  paragraphs remain absent upstream. S6's title conflict is unchanged.
 
 ## October 28 evening source details to recheck
 
@@ -160,13 +203,13 @@ meeting programmes plus C2's two published competition stages.
 - R33's 金海 row uses an enumeration comma between two roles. In curated HTML,
   replace only that separator with a fullwidth comma so the role does not parse
   as another person. Both published role/affiliation facts remain intact.
-- R20 repeats `职称：` in speaker headings. Remove only this field label in
-  curated HTML; keep the name, title and affiliation. These are data-only edits.
+- Resolved October 29: R20 removes `职称：` upstream; the former curated
+  heading-label edit is no longer necessary.
 - S6#10 is 任慰's industrial operating-system report, November 6, 16:25–16:50.
   The profile still gives the former desktop-OS title. Keep the timetable title,
   new abstract/biography and explicit new portrait, with the title-conflict flag.
-- R9 removes 胡春明 from its short chair list but retains his detailed chair
-  card with an updated biography. Preserve that explicit source record.
+- Resolved October 29: R9 also removes 胡春明's detailed chair card. The current
+  roster therefore no longer includes him; prior source content stays archived.
 - C1 changes the rank substituted in the final tie-break formula for absent
   or lower-ranked qualifiers from 40 to 30. This is a scoring rule in the
   retained announcement, not an eligibility limit or an agenda slot.
@@ -626,22 +669,24 @@ generated JSON copies must come from the same rebuilt source.
 
 ## Resolved display defects tracked by regression checks
 
-- All 67 forum entries are reachable in the normal dashboard (70 daily rows), including the
-  two entries under the pending-date section; filtering works there too.
+- All 67 forum entries are reachable in the normal dashboard (70 daily rows).
+  All current entries have published dates; generic pending-date fixtures remain tested.
 - Long committee rosters reveal when entering the viewport. A fractional
   visibility threshold hid the 195-member programme committee on mobile;
   independent 400-member fixtures now cover both desktop and mobile.
 - R13's six host-bearing rows and E3's seven host-bearing rows display their
   hosts separately from speakers, with portraits from each forum's own chair
-  profiles. Forum details include all 64 source breaks,
+  profiles. Forum details include all 65 source breaks,
   without changing report anchor numbering.
 - R14's confirmed speaker, profile and new abstract paragraph are imported;
   凌祥's updated biography and M1's updated title are synchronized.
-- R32 role paragraphs are removed by the documented data edit, not parser code.
+- R32 role paragraphs were removed with a data-only edit and are now absent
+  upstream; no generic parser change is used.
 - Source notes are expandable with keyboard/touch; substantive notes now appear
   at committee and report level; unresolved profiles remain separately accessible.
 - E6 can be followed as a timed forum before individual reports are announced.
-  C5 retains a date-only event; unknown dates are never fabricated for exports.
+  C5 now exports its exact November 6 evening final; unknown dates elsewhere
+  are never fabricated for exports.
 - P4#4 / R4#6 are two different people named 李佳, confirmed by the user.
   Their profiles and identity keys remain separate. They are not a source
   discrepancy and carry no uncertainty note. Legacy name-based follows retain

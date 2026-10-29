@@ -136,9 +136,16 @@ the last pushed import. R25/R33 programmes, source replacements and partner
 organizations are imported. S6 now supplies the correct explicit portrait; its
 schedule/profile title discrepancy remains marked. No withdrawn content is deleted.
 
-Latest imported complete observation: [October 28, 18:01–18:02](20261028T100102601374Z/REVIEW.md).
+Previous imported complete observation: [October 28, 18:01–18:02](20261028T100102601374Z/REVIEW.md).
 Six active HTML pages change; all 94 active and three retained pages work.
 There are 626 available active portraits, with three added and one removed
 reference. Import the honorary-chair replacement, two sponsorship members,
 nine committee affiliations and corrected add-on registration periods.
 Programmes and all existing gaps remain unchanged; this advances the baseline.
+
+Latest imported complete observation: [October 29, 11:08–11:09](20261029T030820915010Z/REVIEW.md).
+Thirteen active pages change; all 94 active and three retained pages and all 627
+active portraits work. I1/R20 gain rows and retime their programmes; C5 moves to
+November 6, 19:30–21:30 with a room. Speaker, organizer and committee edits are
+imported with three new explicit portraits. Fourteen curated-page corrections
+remain separate from the original archive. No inaccessible content is deleted.

@@ -68,7 +68,7 @@ class ProgrammeTests(unittest.TestCase):
             self.assertEqual(person["name"], name)
             self.assertTrue(person.get("photo"))
         self.assertNotIn("unmatched_profiles", forums["E1"]["extra"])
-        for code, count in (("E4", 2), ("R32", 4)):
+        for code, count in (("E4", 2), ("R32", 5)):
             self.assertEqual(len(forums[code]["chairs"]), count)
             self.assertTrue(all(p.get("photo") and p.get("bio") for p in forums[code]["chairs"]))
         for name in ("唐滨", "王晔晖"):
@@ -96,7 +96,7 @@ class ProgrammeTests(unittest.TestCase):
         self.assertEqual([p["name"] for p in people], ["金海"])
         self.assertIn("中国计算机学会副理事长", people[0]["affiliation_raw"])
         self.assertEqual(forums["R33"]["breaks"], [])
-        self.assertEqual(forums["R20"]["talks"][0]["speakers"][0]["name"], "李晓红")
+        self.assertEqual(forums["R20"]["talks"][1]["speakers"][0]["name"], "李晓红")
         replacement = forums["S6"]["talks"][9]
         self.assertEqual((replacement["start"], replacement["end"]), ("16:25", "16:50"))
         self.assertEqual(replacement["speakers"][0]["name"], "任慰")
@@ -112,6 +112,35 @@ class ProgrammeTests(unittest.TestCase):
         self.assertEqual(len(partners), 18)
         self.assertTrue(any(o["role"] == "support" and o["name"]["zh"] == "中国民航大学"
                             for o in data["organizations"]))
+
+    def test_october_29_retimed_programmes_and_source_boundaries(self):
+        data = json.loads((ROOT / "data/chinasoft2026.json").read_text())
+        forums = {f["code"]: f for f in data["forums"]}
+        self.assertEqual([(t["start"], t["end"]) for t in forums["R20"]["talks"]],
+                         [("09:00", "09:10"), ("09:10", "09:40"), ("09:40", "10:10"),
+                          ("10:30", "11:00"), ("11:00", "11:30"), ("11:30", "12:00")])
+        self.assertEqual(forums["R20"]["talks"][0]["type"], "opening")
+        self.assertEqual(forums["R20"]["talks"][0]["speakers"][0]["name"], "孟国柱")
+        report = forums["I1"]["talks"][1]
+        self.assertEqual(report["speakers"][0]["name"], "黄罡")
+        self.assertEqual((report["start"], report["end"]), ("09:05", "09:25"))
+        self.assertTrue(report.get("abstract") and report["speakers"][0].get("photo"))
+        self.assertEqual(len(forums["I1"]["talks"]), 7)
+        self.assertIn("黄罡", [p["name"] for p in forums["I1"]["talks"][-1]["speakers"]])
+        final = forums["C5"]
+        self.assertEqual((final["day_date"], final["start"], final["end"], final["room"]),
+                         ("2026-11-06", "19:30", "21:30", "二层16号会议室"))
+        self.assertFalse(final["talks"])
+        self.assertFalse(final["flags"])
+        self.assertEqual(forums["S1"]["talks"][7]["speakers"][0]["name"], "张瑞宸")
+        self.assertNotIn("胡春明", [p["name"] for p in forums["R9"]["chairs"]])
+        self.assertEqual(forums["E4"]["talks"][1]["speakers"][0]["name"], "王尚广")
+        self.assertTrue(forums["E4"]["talks"][1].get("abstract"))
+        groups = {g["role"]["zh"]: g for g in data["committees"]}
+        self.assertIn("刘军利", [p["name"] for p in groups["本地咨询委员会委员"]["members"]])
+        self.assertNotIn("刘祥颖", [p["name"] for p in groups["本地咨询委员会委员"]["members"]])
+        self.assertIn("刘祥颖", [p["name"] for p in groups["本地组织委员会委员"]["members"]])
+        self.assertNotIn("刘军利", [p["name"] for p in groups["本地组织委员会委员"]["members"]])
 
     def test_unnamed_profile_keeps_abstract_without_creating_person(self):
         html = """
@@ -215,7 +244,7 @@ class ProgrammeTests(unittest.TestCase):
             self.assertTrue(all(p.get("affiliation_raw") for p in groups[role]["members"]))
             self.assertNotIn("members_status", groups[role].get("extra", {}))
         advisory = {p["name"]: p for p in groups["本地咨询委员会委员"]["members"]}
-        for name in ("杨亮", "赵子平", "王赜", "王劲松", "刘祥颖", "李海丰"):
+        for name in ("杨亮", "赵子平", "王赜", "王劲松", "刘军利", "李海丰"):
             self.assertTrue(advisory[name].get("photo"))
         forums = {f["code"]: f for f in data["forums"]}
         for index, title in ((3, "跨项目需求分类中检索增强上下文学习的实证研究"),
@@ -377,9 +406,7 @@ class ProgrammeTests(unittest.TestCase):
         for code in ("R10", "R13"):
             self.assertIsNone(forums[code]["session_period"], "A full-day programme is not a morning-only forum")
         self.assertEqual((forums["E6"]["start"], forums["E6"]["end"]), ("14:10", "15:10"))
-        for code in ("C5",):
-            self.assertIsNone(forums[code]["start"])
-            self.assertIsNone(forums[code]["end"])
+        self.assertEqual((forums["C5"]["start"], forums["C5"]["end"]), ("19:30", "21:30"))
         for forum in forums.values():
             for talk in forum["talks"]:
                 if talk.get("type") == "talk":

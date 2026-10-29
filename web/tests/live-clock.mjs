@@ -167,15 +167,15 @@ try {
  for(const [name,time,path,options] of [
   ['now-dark-mobile','2026-11-07T14:30:00+08:00','/chinasoft2026/now',{mobile:true,dark:true}],
   ['opening-highlight','2026-11-07T09:00:00+08:00','/chinasoft2026/schedule',{}],
-  ['myday-unknown','2026-11-07T14:30:00+08:00','/chinasoft2026/schedule?v=mine-day',{}],
-  ['unknown-only','2026-11-07T14:30:00+08:00','/chinasoft2026/now',{seed:{forums:['C5'],talks:[],speakers:[]}}],
+  ['myday-updated-final','2026-11-07T14:30:00+08:00','/chinasoft2026/schedule?v=mine-day',{}],
+  ['final-finished','2026-11-07T14:30:00+08:00','/chinasoft2026/now',{seed:{forums:['C5'],talks:[],speakers:[]}}],
   ['now-overseas','2026-11-07T09:00:00+08:00','/chinasoft2026/now',{zone:'America/Los_Angeles'}],
   ['schedule-overseas','2026-11-06T10:00:00+08:00','/chinasoft2026/schedule',{zone:'America/Los_Angeles'}],
   ['forum-overseas','2026-11-06T10:00:00+08:00','/chinasoft2026/forum/R14#talk-4',{zone:'America/Los_Angeles'}]]) {
   const test=await open(name,time,path,options); const {page}=test;
   if(name==='now-dark-mobile') assert((await page.locator('.nowstar--live').innerText()).includes('智能化时代软件人才培养特别大会论坛'));
-  if(name==='unknown-only') assert.equal((await page.locator('.nowstar__when').innerText()).trim(),'时间待定');
-  if(name==='myday-unknown') assert.equal(await page.locator('.myday__move').count(),1);
+  if(name==='final-finished') assert.equal(await page.locator('.nowstar__when').count(),0);
+  if(name==='myday-updated-final') assert.equal(await page.locator('.myday__move').count(),1);
   if(name==='opening-highlight') assert((await page.locator('.block--other .is-now').first().innerText()).includes('08:30–12:10'));
   if(name==='now-overseas') assert.equal(await page.locator('.nowclock__time').innerText(),'09:00');
   if(name==='schedule-overseas') assert.equal(await page.locator('.tgrid__nowpill').innerText(),'10:00');
@@ -231,7 +231,7 @@ try {
  await finish(late);
  for(const [name,seed,time] of [
   ['reminders-disabled',{forums:[],talks:['R14#3'],speakers:[]},'2026-11-06T09:49:40+08:00'],
-  ['reminders-untimed',{forums:['C5'],talks:[],speakers:[]},'2026-11-07T14:00:00+08:00']]) {
+  ['reminders-finished',{forums:['C5'],talks:[],speakers:[]},'2026-11-07T14:00:00+08:00']]) {
   const test=await open(name,time,'/chinasoft2026/now',{seed,clock:true,mock:true,mobile:true});
   await test.page.getByRole('button',{name:'账户与设置',exact:true}).click();
   const toggle=test.page.getByRole('button',{name:/日程提醒/});

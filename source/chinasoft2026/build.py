@@ -616,8 +616,7 @@ def build():
         forums.append(forum)
     if details:
         raise ValueError(f"Detail forums absent from inventory: {list(details)}")
-    # Announcements publish competition dates without a timed programme. Keep
-    # those dates and the source milestones, without inventing clock times.
+    # Read final dates before attaching explicitly published stage windows.
     for code, slug in (("C5", "cangjie"), ("C2", "harmony-ai")):
         announcement = load(f"pages/competition/{slug}.html")
         forum = next(f for f in forums if f["code"] == code)
@@ -632,7 +631,21 @@ def build():
         forum["source_url"] = BASE + f"#competition/{slug}"
         forum["extra"] = {"announcement_title": txt(announcement.find(["h1", "h2"])),
                           "milestones": milestones}
-        forum["flags"].append("竞赛通知已公布决赛日期，具体时间、会场和参赛议程尚未公布。")
+    # Cangjie publishes one timed final, without individual team slots.
+    cangjie = load("pages/competition/cangjie.html")
+    schedules = [re.sub(r"^决赛时间地点[：:]\s*", "", txt(p))
+                 for p in cangjie.find_all("p") if re.match(r"决赛时间地点[：:]", txt(p))]
+    if len(schedules) != 1 or len(TIME.findall(schedules[0])) != 1:
+        raise ValueError("Expected one Cangjie final window")
+    schedule = schedules[0]
+    forum = next(f for f in forums if f["code"] == "C5")
+    if date(schedule) != forum["day_date"]:
+        raise ValueError("Cangjie final date differs between milestone and location")
+    forum["start"], forum["end"] = time_range(schedule, forum["flags"])
+    location = schedule.split("，11月", 1)[0]
+    forum["room"] = room_name(location)
+    forum["extra"].update(schedule_raw=schedule, location_raw=location)
+    forum["description"] = "决赛时间地点：" + schedule
     # Published competition stages retain their exact clocks; untimed awards
     # remain in the description rather than borrowing a morning final's window.
     announcement = load("pages/competition/theorem-proving.html")

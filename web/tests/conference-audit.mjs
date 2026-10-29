@@ -103,7 +103,7 @@ try {
         .map((p) => `${p.name}:${p.photo.local_path}`).sort(), `${forum.code}#${i}: portraits`);
     });
     console.log(`PASS ${forum.code}: ${result.length} programme rows and speaker identities`);
-    if (["R25", "R33", "R20", "R3", "R16", "T1", "E4", "I7", "C2", "R16", "R3", "I4", "R34", "S3", "E2", "I5", "R29", "S4", "R23", "R13", "P4", "R19", "E1", "E3", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].includes(forum.code)) {
+    if (["R8", "R32", "I1", "R25", "R33", "R20", "R3", "R16", "T1", "E4", "I7", "C2", "R16", "R3", "I4", "R34", "S3", "E2", "I5", "R29", "S4", "R23", "R13", "P4", "R19", "E1", "E3", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].includes(forum.code)) {
       await page.waitForTimeout(600);
       await capture(page, { path: `${screenshots}/desktop-${forum.code}.png` });
     }
@@ -159,7 +159,7 @@ try {
       await capture(page, { path: "/tmp/chinasoft2026-schedule.png" });
     }
     if (data.days[i].date === "2026-11-07") {
-      for (const code of ["E6", "C5", "C1", "C3"]) {
+      for (const code of ["E6", "C1", "C3"]) {
         assert(await page.locator(`.tgrid__chead[href="/chinasoft2026/forum/${code}"]`).count(), `Missing pending forum ${code}`);
       }
     }
@@ -222,7 +222,7 @@ try {
   }
   for (const path of ["forum/R32#talk-4", "committee", "schedule", "topics", "speakers", "plan",
     "forum/R6#talk-1", "forum/R7#talk-5", "forum/R7#talk-7", "forum/R8#talk-10", "forum/R11#talk-1", "forum/R17#talk-1",
-    ...["R25", "R33", "R20", "R3", "R16", "T1", "E4", "I7", "C2", "R9", "R35", "E5", "I8", "R30", "R34", "S3", "E2", "I5", "R29", "S4", "R23", "R13", "P4", "R19", "E1", "E3", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].map(code => `forum/${code}#talk-2`)]) {
+    ...["R8", "R32", "I1", "R25", "R33", "R20", "R3", "R16", "T1", "E4", "I7", "C2", "R9", "R35", "E5", "I8", "R30", "R34", "S3", "E2", "I5", "R29", "S4", "R23", "R13", "P4", "R19", "E1", "E3", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].map(code => `forum/${code}#talk-2`)]) {
     // Assert application readiness, independent of the preview's analytics requests.
     await phone.goto(`${base}/chinasoft2026/${path}`, { waitUntil: "domcontentloaded" });
     const ready = path.startsWith("forum/") ? `#${path.split("#")[1]}` : {

@@ -910,11 +910,11 @@
           }
         },
         {
-          "name": "刘祥颖",
+          "name": "刘军利",
           "affiliation_raw": "天津市大学软件学院",
           "photo": {
-            "local_path": "/portraits/chinasoft2026/e43171ddc6443e4bee89.webp",
-            "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E5%88%98%E7%A5%A5%E9%A2%96.png"
+            "local_path": "/portraits/chinasoft2026/feb3923c03e68dd059b6.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/people/committee/%E5%88%98%E5%86%9B%E5%88%A9.png"
           }
         },
         {
@@ -945,7 +945,7 @@
             "杨亮",
             "赵子平",
             "王赜",
-            "刘祥颖",
+            "刘军利",
             "李海丰"
           ]
         ]
@@ -2059,7 +2059,7 @@
           "affiliation_raw": "天津职业技术师范大学"
         },
         {
-          "name": "刘军利",
+          "name": "刘祥颖",
           "affiliation_raw": "天津市大学软件学院"
         },
         {
@@ -2106,7 +2106,7 @@
             "张航",
             "吕垛斌",
             "王湘懿",
-            "刘军利",
+            "刘祥颖",
             "李海丰",
             "惠康华",
             "刘才华"
@@ -2419,6 +2419,10 @@
               "room": "二层5号和6号会议室"
             },
             {
+              "forum_code": "C5",
+              "room": "二层16号会议室"
+            },
+            {
               "forum_code": "T1",
               "room": "二楼3号会议室"
             }
@@ -2607,10 +2611,6 @@
             {
               "forum_code": "C4",
               "room": "二层5号会议室"
-            },
-            {
-              "forum_code": "C5",
-              "room": null
             }
           ],
           "start": "14:10",
@@ -7235,7 +7235,7 @@
           "name": "赵斌",
           "affiliation_raw": "西北工业大学",
           "chair_role": "论坛组委会",
-          "bio": "赵斌，西北工业大学光电与智能研究院副院长，博导。从事面向异构智能体的具身智能大模型研究，在国际期刊和会议发表学术论文50余篇，包括TPAMI/CVPR/ICCV/RSS/ICRA/CoRL等，国家发明专利10余项，PCT国际专利1项。获中国科协青年托举人才工程、陕西省高校优秀青年人才，获国家自然科学基金面上/青年项目、军口国家级项目、陕西省特支项目等资助。相关成果应用于航空、航天任务中，公开技术被Asia Times、South China Morning Post、The SUN、人民日报、新华网、科学网等国内外媒体广泛报道。",
+          "bio": "赵斌，西北工业大学光电与智能研究院副院长，博导。从事面向异构智能体的具身智能大模型研究，在国际期刊和会议发表学术论文50余篇，包括TPAMI/CVPR/ICCV/RSS/ICRA/CoRL等，国家发明专利10余项，PCT国际专利1项。获中国科协青年托举人才工程、陕西省高校优秀青年人才，获国家自然科学基金青B项目、面上/青年项目、陕西省特支项目等资助。相关成果应用于航空、航天任务中，公开技术被Asia Times、South China Morning Post、The SUN、人民日报、新华网、科学网等国内外媒体广泛报道。",
           "photo": {
             "local_path": "/portraits/chinasoft2026/525655a7264db23c9334.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E8%B5%B5%E6%96%8C.png"
@@ -7943,16 +7943,6 @@
           "photo": {
             "local_path": "/portraits/chinasoft2026/15a8cb133c9080baae36.webp",
             "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9Bv2/%E7%94%B0%E6%99%96.png"
-          }
-        },
-        {
-          "name": "胡春明",
-          "chair_role": "论坛组委会",
-          "title": "教授 北京航空航天大学",
-          "bio": "胡春明，北京航空航天大学教授，博导。现任复杂关键软件环境全国重点实验室副主任，软件学院院长。担任中国计算机学会（CCF）系统软件专委会副主任，标准工委技术委员会主任。主要研究方向为计算机软件与理论、安全攸关软件开发方法、分布式系统、数据中心资源管理与调度等。曾获国家科学技术发明二等奖1项、中国电子学会科学技术进步奖3项。",
-          "photo": {
-            "local_path": "/portraits/chinasoft2026/7a7101be85edc2e46909.webp",
-            "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9Bv2/%E8%83%A1%E6%98%A5%E6%98%8E.png"
           }
         }
       ],
@@ -12218,12 +12208,36 @@
       "talks": [
         {
           "title": {
-            "zh": "异构平台下深度学习系统的分析与测试",
+            "zh": "论坛介绍",
             "en": null
           },
           "title_status": "confirmed",
           "start": "09:00",
-          "end": "09:30",
+          "end": "09:10",
+          "speakers": [
+            {
+              "name": "孟国柱",
+              "affiliation_raw": "中国科学院信息工程研究所",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/42738df6d45950c22b28.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E5%AD%9F%E5%9B%BD%E6%9F%B1.png"
+              }
+            }
+          ],
+          "type": "opening",
+          "abstract_status": "unknown",
+          "extra": {
+            "speaker_raw": "孟国柱 中国科学院信息工程研究所"
+          }
+        },
+        {
+          "title": {
+            "zh": "异构平台下深度学习系统的分析与测试",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "09:10",
+          "end": "09:40",
           "speakers": [
             {
               "name": "李晓红",
@@ -12260,8 +12274,8 @@
             "en": null
           },
           "title_status": "confirmed",
-          "start": "09:30",
-          "end": "10:00",
+          "start": "09:40",
+          "end": "10:10",
           "speakers": [
             {
               "name": "陈恺",
@@ -12298,8 +12312,8 @@
             "en": null
           },
           "title_status": "confirmed",
-          "start": "10:15",
-          "end": "10:45",
+          "start": "10:30",
+          "end": "11:00",
           "speakers": [
             {
               "name": "谢肖飞",
@@ -12335,8 +12349,8 @@
             "en": null
           },
           "title_status": "confirmed",
-          "start": "10:45",
-          "end": "11:15",
+          "start": "11:00",
+          "end": "11:30",
           "speakers": [
             {
               "name": "王浩宇",
@@ -12372,8 +12386,8 @@
             "en": null
           },
           "title_status": "confirmed",
-          "start": "11:15",
-          "end": "11:45",
+          "start": "11:30",
+          "end": "12:00",
           "speakers": [
             {
               "name": "王喆",
@@ -12407,8 +12421,8 @@
       "breaks": [
         {
           "name": "茶歇",
-          "start": "10:00",
-          "end": "10:15"
+          "start": "10:10",
+          "end": "10:30"
         }
       ],
       "detail_extracted": true,
@@ -15831,7 +15845,7 @@
       "chairs": [
         {
           "name": "吕勇强",
-          "affiliation_raw": "天津大学",
+          "affiliation_raw": "天津大学，教授",
           "chair_role": "论坛组委会",
           "title": "教授 天津大学",
           "bio": "吕勇强，天津大学讲席教授、网络安全学院执行院长，教育部长江学者、CCF高级会员。长期从事处理器芯片安全研究，作为主要贡献人之一发现并披露了 Intel、ARM 可信执行环境中密码实现模块的安全漏洞“骑士”（CVE-2019-11157）及 Nvidia GPU 漏洞“闪电”等。担任 IEEE TCAD、ACM IMWUT 期刊副主编；担任 CCF 网络与系统安全专委会执委、集成电路设计专委会执委、体系结构专委会执委等。",
@@ -15842,7 +15856,7 @@
         },
         {
           "name": "何家骥",
-          "affiliation_raw": "天津大学",
+          "affiliation_raw": "天津大学，教授",
           "chair_role": "论坛组委会",
           "title": "教授 天津大学",
           "bio": "天津大学教授、博导，院长助理，国家重点研发计划青年科学家项目首席，天津市宝坻区A类人才，江苏省盐城市“黄海明珠”人才，清华大学博士后，IEEE会员，CCF会员，中国计算机学会网络与系统安全专委会执行委员（首批），中国密码学会密码芯片专委会委员，天津市企业科技特派员、“科技副总”。主要研究领域为数字集成电路（全流程）设计、处理器漏洞挖掘、硬件形式化验证、密码芯片设计与安全分析。",
@@ -15852,8 +15866,19 @@
           }
         },
         {
+          "name": "陈俊洁",
+          "affiliation_raw": "天津大学，教授",
+          "chair_role": "论坛组委会",
+          "title": "教授 天津大学",
+          "bio": "陈俊洁，天津大学教授、博导、软件学院副院长，软件工程团队(TJU-WISE Lab)负责人，主持国家优青、重点研发计划青年科学家等项目；博士毕业于北京大学；研究方向主要为基础软件质量保障、代码智能体等；入选中国科协青年人才托举工程、斯坦福大学发布的全球前2%顶尖科学家榜单，荣获CCF优博、电子学会自然科学一等奖、十项最佳/杰出论文奖等奖项；成果在华为、字节等多家知名企业落地；担任CCF系统软件专委常委，AUSE、FCS、JCST、JSEP等期刊编委/青年编委，ICSE、FSE、ASE、ISSTA等顶会PC。",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/bba23245f281f9861a55.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E5%9D%9B/%E9%99%88%E4%BF%8A%E6%B4%81.png"
+          }
+        },
+        {
           "name": "胡强",
-          "affiliation_raw": "天津大学",
+          "affiliation_raw": "天津大学，副教授",
           "chair_role": "论坛组委会",
           "title": "天津大学",
           "bio": "胡强，天津大学英才副教授/特聘研究员，博士生导师，主要研究方向为可信人工智能、软件安全以及智能软件工程。在ICSE、S&P等会议和TOSEM、TSE等期刊发表论文60余篇，获得ICSE 2025杰出论文奖，ML4CS最佳论文奖。主持国家重点研发计划课题、国家自然科学基金青年科学基金项目（C类）等项目。长期担任ICSE、ASE、ISSTA等CCF A类会议程序委员会委员。",
@@ -15864,7 +15889,7 @@
         },
         {
           "name": "张瑶",
-          "affiliation_raw": "天津大学",
+          "affiliation_raw": "天津大学，副教授",
           "chair_role": "论坛组委会",
           "title": "天津大学",
           "bio": "张瑶，天津大学副教授，于天津大学获得工学硕士和博士学位。主要研究方向包括程序分析、程序测试、大模型安全及智能软件工程等。在ASE、NDSS、FSE、TSE、TMC、TPDS、AAAI等国际高水平会议和期刊发表论文30余篇。作为第一作者发表的论文获ASE 2023杰出论文奖，并获ACM天津分会优秀博士论文奖。担任TSE、TDSC、TIFS、TMC等国际期刊审稿人，以及AAAI、NeurIPS、IJCAI等国际学术会议程序委员会委员。主持国家自然科学基金青年科学基金项目，参与多项国家自然科学基金面上项目及国家重点研发计划项目。",
@@ -17387,14 +17412,14 @@
           "end": "17:15",
           "speakers": [
             {
-              "name": "陶乐",
+              "name": "张瑞宸",
               "affiliation_raw": "北京信息科技大学"
             }
           ],
           "type": "talk",
           "abstract_status": "unknown",
           "extra": {
-            "speaker_raw": "陶乐 北京信息科技大学"
+            "speaker_raw": "张瑞宸 北京信息科技大学"
           },
           "enrichment": {
             "generated_by": "ai",
@@ -22255,7 +22280,7 @@
           "name": "赵来平",
           "affiliation_raw": "天津大学 软件学院副院长",
           "chair_role": "论坛组委会",
-          "title": "（天津大学 软件学院副院长）",
+          "title": "天津大学软件学院副院长",
           "bio": "赵来平，天津大学软件学院教授、博导、副院长。国家级青年人才。CCF体系结构专委、系统软件专委执行委员。研究领域包括智能计算系统和操作系统。已在计算系统领域的重要期刊和会议上发表论文50余篇，包括ASPLOS、SC、TOCS、ATC、EuroSys等系统领域顶会顶刊。授权国家发明专利30余件，主持国家级青年人才项目、国家重点研发计划课题、省级重大专项等项目10余项，荣获2021年天津市科技进步特等奖。",
           "photo": {
             "local_path": "/portraits/chinasoft2026/8f601aa55fd2e532bb01.webp",
@@ -22266,7 +22291,7 @@
           "name": "姜佳君",
           "affiliation_raw": "天津大学 软件学院系主任",
           "chair_role": "论坛组委会",
-          "title": "（天津大学 软件学院系主任）",
+          "title": "天津大学软件学院系主任",
           "bio": "姜佳君，天津大学软件学院英才副教授、博士生导师，软件理论系主任，CCF专业会员、CCF软件工程专委执行委员、办公室副主任。2020年毕业于北京大学获得博士学位，主要研究领域为智能化软件工程，包括软件缺陷自动检测、缺陷自动定位与修复、深度学习系统调试和程序变换等。主持国家自然科学基金面上项目、青年科学基金项目（C类）、天津市重点项目、参与国家重点研发计划项目等十余项。相关研究成果发表软件工程领域高质量会议和期刊论文三十余篇。获中国电子学会科学技术奖自然科学一等奖、IEEE TCSE杰出论文奖。担任ISSTA 2019志愿者主席、《软件学报》和《Journal of Software: Evolution and Process》专刊编委，长期担任领域权威期刊和会议审稿人。",
           "photo": {
             "local_path": "/portraits/chinasoft2026/7b1d4463ddc9be1c7dfd.webp",
@@ -22865,7 +22890,30 @@
       "room": "四层5号多功能厅",
       "session_period": "morning",
       "source_url": "https://chinasoft.ccf.org.cn/2026/#agenda/industry-forum/agent-arch",
-      "chairs": [],
+      "chairs": [
+        {
+          "name": "彭鑫",
+          "affiliation_raw": "复旦大学",
+          "chair_role": "论坛组委会",
+          "title": "教授",
+          "bio": "彭鑫，复旦大学计算与智能创新学院副院长、教授，国家级高层次人才计划入选者。中国计算机学会（CCF）杰出会员、软件工程专委会副主任、开源发展委员会常务委员，中国汽车工程学会汽车基础软件分会副主任，《Journal of Software: Evolution and Process》联合主编（Co-Editor），《ACM Transactions on Software Engineering and Methodology》、《Empirical Software Engineering》、《Automated Software Engineering》、《软件学报》等期刊编委。2016年获得“NASAC青年软件创新奖”，2023年入选上海市东方英才拔尖项目，2024年获得“中创软件人才奖”。主要研究方向包括软件智能化开发与测试、智能化软件系统构造与运行支撑、具身智能与自主无人系统软件等。研究工作多次获得《IEEE Transactions on Software Engineering》年度最佳论文奖、ICSM最佳论文奖、ACM SIGSOFT杰出论文奖、IEEE TCSE杰出论文奖等国际期刊及会议优秀论文奖。担任2022年与2023年CCF中国软件大会（CCF ChinaSoft）组织委员会主席与程序委员会共同主席，以及ICSE、FSE、ASE、ISSTA、ICSME、SANER等会议程序委员会委员。",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/5501675bd52e9b6db2dd.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%B7%A5%E4%B8%9A%E8%AE%BA%E5%9D%9B/%E5%BD%AD%E9%91%AB.png"
+          }
+        },
+        {
+          "name": "王昊奋",
+          "affiliation_raw": "同济大学",
+          "chair_role": "论坛组委会",
+          "title": "教授",
+          "bio": "王昊奋，同济大学长聘教授、博士生导师，聚焦知识图谱与知识增强大模型研究，以及AI产业落地。核心成果包括全球首个知识增强推理模型KAG-Thinker（超万Star）、记忆操作系统MemOS（日调用量超150万次）及大模型评测平台AI-Ceping（30万+月活），已落地机场调控、金融风控等多场景。出版《知识图谱》《检索增强生成：理论与实践》《记忆工程》等6部专著，共发表高水平会议和期刊论文100多篇，谷歌学术被引超1.5万次。主持国自然重点、面上、国家新一代AI重大专项课题等10多个国家AI项目，获中交协科技进步一等奖、2026年IF设计奖、HCII最佳论文、DASFAA最佳学生论文等荣誉。他曾担任两家AI独角兽企业CTO，构建了全球首个可交互养成的虚拟偶像—“琥珀·虚颜”；所构建的智能客服机器人已累计服务用户超过100亿人次。目前，他担任全球最大开放知识图谱社区OpenKG首任轮值主席，中国计算机学会术语工委副主任，自然语言处理专委会副主任（执行），中国中文信息学会理事，大模型专委会指导委员，语言与知识计算专委会副主任，上海市计算机学会自然语言处理专委会副主任等社会职位。",
+          "photo": {
+            "local_path": "/portraits/chinasoft2026/d630cb56445f9817889f.webp",
+            "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%B7%A5%E4%B8%9A%E8%AE%BA%E5%9D%9B/%E7%8E%8B%E6%98%8A%E5%A5%8B.png"
+          }
+        }
+      ],
       "talks": [
         {
           "title": {
@@ -22884,21 +22932,59 @@
         },
         {
           "title": {
-            "zh": "从Semantic Layer到Ontology × Harness：企业级Agent软件的构造与演化",
+            "zh": "智能化软件的数据挑战与展望",
             "en": null
           },
           "title_status": "confirmed",
           "start": "09:05",
-          "end": "09:30",
+          "end": "09:25",
+          "speakers": [
+            {
+              "name": "黄罡",
+              "affiliation_raw": "北京大学",
+              "bio": "黄罡，北京大学博雅特聘教授，数据空间技术与系统全国重点实验室主任，国家数据咨询委员会委员，国家杰青，科技领军，中国计算机学会会士。长期从事系统软件基础研究、技术应用和人才培养，解决了云计算、大数据、数联网和数据空间等新一代信息技术的多个软件难题，获国家技术发明一等奖和二等奖、国家自然科学二等奖、陈嘉庚信息技术科学奖、中国青年科技奖和科学探索奖等荣誉。",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/19e6aea5c62128179c0d.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%B7%A5%E4%B8%9A%E8%AE%BA%E5%9D%9B/%E9%BB%84%E7%BD%A1.png"
+              }
+            }
+          ],
+          "type": "talk",
+          "abstract_status": "confirmed",
+          "extra": {
+            "speaker_raw": "黄罡 北京大学"
+          },
+          "abstract": "从网络空间、信息空间与数据空间的关系出发，本报告分析大模型与智能体的数据闭环，讨论从公域训练为主向专域训练深化、持续结合私域/专域数据增强的演进趋势，以及重构人机数据关系的必要性。提出私域数据认知转化四象限与三种人机数据交互模式，揭示大模型和智能体作为新主体引发的数据对象、关系与应用变化，剖析碎片化应对带来的语义、授权、信任与价值分配问题，探讨数联网与数据空间支撑可管、可控、可信数据闭环的架构、技术与应用路径，展望人机协同的数据价值创造。",
+          "enrichment": {
+            "generated_by": "ai",
+            "summary": {
+              "zh": "探讨大模型与智能体的数据闭环、私域数据利用和可信数据空间架构",
+              "en": null
+            },
+            "topics": [
+              "大模型",
+              "智能体",
+              "软件架构"
+            ]
+          }
+        },
+        {
+          "title": {
+            "zh": "从Semantic Layer到Ontology × Harness：企业级Agent软件的构造与演化",
+            "en": null
+          },
+          "title_status": "confirmed",
+          "start": "09:25",
+          "end": "09:45",
           "speakers": [
             {
               "name": "王昊奋",
               "affiliation_raw": "同济大学",
-              "bio": "王昊奋，同济大学长聘教授、博士生导师，聚焦知识图谱与知识增强大模型研究，以及AI产业落地。核心成果包括全球首个知识增强推理模型KAG-Thinker（超万Star）、记忆操作系统MemOS（日调用量超150万次）及大模型评测平台AI-Ceping（30万+月活），已落地机场调控、金融风控等多场景。出版《知识图谱》《检索增强生成：理论与实践》《记忆工程》等6部专著，共发表高水平会议和期刊论文100多篇，谷歌学术被引超1.5万次。主持国自然重点、面上、国家新一代AI重大专项课题等10多个国家AI项目，获中交协科技进步一等奖、2026年IF设计奖、HCII最佳论文、DASFAA最佳学生论文等荣誉。他曾担任两家AI独角兽企业CTO，构建了全球首个可交互养成的虚拟偶像—“琥珀·虚颜”；所构建的智能客服机器人已累计服务用户超过100亿人次。目前，他担任全球最大开放知识图谱社区OpenKG首任轮值主席，中国计算机学会术语工委副主任，自然语言处理专委会副主任（执行），中国中文信息学会理事，大模型专委会指导委员，语言与知识计算专委会副主任，上海市计算机学会自然语言处理专委会副主任等社会职位。",
               "photo": {
                 "local_path": "/portraits/chinasoft2026/d630cb56445f9817889f.webp",
                 "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%B7%A5%E4%B8%9A%E8%AE%BA%E5%9D%9B/%E7%8E%8B%E6%98%8A%E5%A5%8B.png"
-              }
+              },
+              "bio": "王昊奋，同济大学长聘教授、博士生导师，聚焦知识图谱与知识增强大模型研究，以及AI产业落地。核心成果包括全球首个知识增强推理模型KAG-Thinker（超万Star）、记忆操作系统MemOS（日调用量超150万次）及大模型评测平台AI-Ceping（30万+月活），已落地机场调控、金融风控等多场景。出版《知识图谱》《检索增强生成：理论与实践》《记忆工程》等6部专著，共发表高水平会议和期刊论文100多篇，谷歌学术被引超1.5万次。主持国自然重点、面上、国家新一代AI重大专项课题等10多个国家AI项目，获中交协科技进步一等奖、2026年IF设计奖、HCII最佳论文、DASFAA最佳学生论文等荣誉。他曾担任两家AI独角兽企业CTO，构建了全球首个可交互养成的虚拟偶像—“琥珀·虚颜”；所构建的智能客服机器人已累计服务用户超过100亿人次。目前，他担任全球最大开放知识图谱社区OpenKG首任轮值主席，中国计算机学会术语工委副主任，自然语言处理专委会副主任（执行），中国中文信息学会理事，大模型专委会指导委员，语言与知识计算专委会副主任，上海市计算机学会自然语言处理专委会副主任等社会职位。"
             }
           ],
           "type": "talk",
@@ -22925,13 +23011,13 @@
             "en": null
           },
           "title_status": "confirmed",
-          "start": "09:30",
-          "end": "09:55",
+          "start": "09:45",
+          "end": "10:05",
           "speakers": [
             {
               "name": "漆桂林",
               "affiliation_raw": "东南大学",
-              "bio": "漆桂林，东南大学计算机科学与工程学院教授、东南大学认知智能研究所所长、南京柯基数据科技有限公司首席科学家、OpenKG发起人之一、中国中文信息学会语言与知识计算专业委员会副主任、中国科学技术情报学会知识组织专业委员会副主任、国际期刊 Journal of Data Intelligence 主编、国际期刊 Journal of Web Semantics 副主编、情报工程编委。获得“江苏省六大人才高峰”和“创业南京高层次人才”省部级人才称号。编写专著2部，发表高水平学术论文290余篇。获得授权发明专利20余项。主持和参与科技部重点研发项目、国家863项目、自然科学基金重点、自然科学基金面上等20余项国家级知识图谱和自然语言处理相关项目以及阿里云、支付宝、中移动等企业项目。获2024电力科学技术进步奖三等奖。指导学生发表的论文获得国际会议ICTAI2015最佳学生论文奖和中国国际大学生创新大赛（2023）银奖。",
+              "bio": "漆桂林，东南大学计算机科学与工程学院教授、东南大学认知智能研究所所长、南京柯基数据科技有限公司首席科学家、OpenKG发起人之一、中国中文信息学会语言与知识计算专业委员会副主任、中国科学技术情报学会知识组织专业委员会副主任、国际期刊 Journal of Data Intelligence 主编、国际期刊 Journal of Web Semantics 副主编、情报工程编委。获得“江苏省六大人才高峰”和“创业南京高层次人才”省部级人才称号。编写专著2 部，发表高水平学术论文290 余篇。获得授权发明专利20余项。主持和参与科技部重点研发项目、国家 863项目、自然科学基金重点、自然科学基金面上等 20 余项国家级知识图谱和自然语言处理相关项目以及阿里云、支付宝、中移动等企业项目。获2024电力科学技术进步奖三等奖。指导学生发表的论文获得国际会议ICTAI2015 最佳学生论文奖和中国国际大学生创新大赛（2023）银奖。",
               "photo": {
                 "local_path": "/portraits/chinasoft2026/96d6f9c55c1bd5cab279.webp",
                 "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%B7%A5%E4%B8%9A%E8%AE%BA%E5%9D%9B/%E6%BC%86%E6%A1%82%E6%9E%97.png"
@@ -22962,8 +23048,8 @@
             "en": null
           },
           "title_status": "confirmed",
-          "start": "09:55",
-          "end": "10:20",
+          "start": "10:05",
+          "end": "10:25",
           "speakers": [
             {
               "name": "曹春",
@@ -22999,7 +23085,7 @@
             "en": null
           },
           "title_status": "confirmed",
-          "start": "10:35",
+          "start": "10:40",
           "end": "11:00",
           "speakers": [
             {
@@ -23017,7 +23103,7 @@
           "extra": {
             "speaker_raw": "毛舒能 华为公司"
           },
-          "abstract": "openJiuwen AgentOS是面向多场景的生产级、多智能体原生的开源Agent底座。本次分享将介绍 openJiuwen AgentOS 的技术架构，以及其针对企业级应用场景的技术创新，涵盖分层解耦、插件化设计、蜂群协作、Harness 执行框架及分布式运行时等关键能力，并探讨其如何支撑企业级应用场景，以及openJiuwen AgentOS如何通过开放生态、标准化组件、多智能体协同与持续演进，为企业构建高可靠、可扩展的Agent能力提供实践参考。",
+          "abstract": "openJiuwen AgentOS是面向多场景的生产级、多智能体原生的开源Agent底座。本次分享将介绍 openJiuwen AgentOS 的技术架构，以及其针对企业级应用场景的技术创新，涵盖分层解耦、插件化设计、蜂群协作、Harness 执行框架及分布式运行时等关键能力，并探讨其如何支撑企业级应用场景，以及openJiuwen AgentOS如何通过开放生态、标准化组件、多智能体协同与持续演进，为企业构建高可靠、可扩展的Agent 能力提供实践参考。",
           "enrichment": {
             "generated_by": "ai",
             "summary": {
@@ -23041,23 +23127,30 @@
           "speakers": [
             {
               "name": "彭鑫",
-              "bio": "彭鑫，复旦大学计算与智能创新学院副院长、教授，国家级高层次人才计划入选者。中国计算机学会（CCF）杰出会员、软件工程专委会副主任、开源发展委员会常务委员，中国汽车工程学会汽车基础软件分会副主任，《Journal of Software: Evolution and Process》联合主编（Co-Editor），《ACM Transactions on Software Engineering and Methodology》、《Empirical Software Engineering》、《Automated Software Engineering》、《软件学报》等期刊编委。2016年获得“NASAC青年软件创新奖”，2023年入选上海市东方英才拔尖项目，2024年获得“中创软件人才奖”。主要研究方向包括软件智能化开发与测试、智能化软件系统构造与运行支撑、具身智能与自主无人系统软件等。研究工作多次获得《IEEE Transactions on Software Engineering》年度最佳论文奖、ICSM最佳论文奖、ACM SIGSOFT杰出论文奖、IEEE TCSE杰出论文奖等国际期刊及会议优秀论文奖。担任2022年与2023年CCF中国软件大会（CCF ChinaSoft）组织委员会主席与程序委员会共同主席，以及ICSE、FSE、ASE、ISSTA、ICSME、SANER等会议程序委员会委员。",
               "photo": {
                 "local_path": "/portraits/chinasoft2026/5501675bd52e9b6db2dd.webp",
                 "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%B7%A5%E4%B8%9A%E8%AE%BA%E5%9D%9B/%E5%BD%AD%E9%91%AB.png"
               }
             },
             {
-              "name": "王昊奋",
-              "bio": "王昊奋，同济大学长聘教授、博士生导师，聚焦知识图谱与知识增强大模型研究，以及AI产业落地。核心成果包括全球首个知识增强推理模型KAG-Thinker（超万Star）、记忆操作系统MemOS（日调用量超150万次）及大模型评测平台AI-Ceping（30万+月活），已落地机场调控、金融风控等多场景。出版《知识图谱》《检索增强生成：理论与实践》《记忆工程》等6部专著，共发表高水平会议和期刊论文100多篇，谷歌学术被引超1.5万次。主持国自然重点、面上、国家新一代AI重大专项课题等10多个国家AI项目，获中交协科技进步一等奖、2026年IF设计奖、HCII最佳论文、DASFAA最佳学生论文等荣誉。他曾担任两家AI独角兽企业CTO，构建了全球首个可交互养成的虚拟偶像—“琥珀·虚颜”；所构建的智能客服机器人已累计服务用户超过100亿人次。目前，他担任全球最大开放知识图谱社区OpenKG首任轮值主席，中国计算机学会术语工委副主任，自然语言处理专委会副主任（执行），中国中文信息学会理事，大模型专委会指导委员，语言与知识计算专委会副主任，上海市计算机学会自然语言处理专委会副主任等社会职位。",
+              "name": "黄罡",
+              "bio": "黄罡，北京大学博雅特聘教授，数据空间技术与系统全国重点实验室主任，国家数据咨询委员会委员，国家杰青，科技领军，中国计算机学会会士。长期从事系统软件基础研究、技术应用和人才培养，解决了云计算、大数据、数联网和数据空间等新一代信息技术的多个软件难题，获国家技术发明一等奖和二等奖、国家自然科学二等奖、陈嘉庚信息技术科学奖、中国青年科技奖和科学探索奖等荣誉。",
               "photo": {
-                "local_path": "/portraits/chinasoft2026/d630cb56445f9817889f.webp",
-                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%B7%A5%E4%B8%9A%E8%AE%BA%E5%9D%9B/%E7%8E%8B%E6%98%8A%E5%A5%8B.png"
+                "local_path": "/portraits/chinasoft2026/19e6aea5c62128179c0d.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%B7%A5%E4%B8%9A%E8%AE%BA%E5%9D%9B/%E9%BB%84%E7%BD%A1.png"
               }
             },
             {
+              "name": "王昊奋",
+              "photo": {
+                "local_path": "/portraits/chinasoft2026/d630cb56445f9817889f.webp",
+                "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%B7%A5%E4%B8%9A%E8%AE%BA%E5%9D%9B/%E7%8E%8B%E6%98%8A%E5%A5%8B.png"
+              },
+              "bio": "王昊奋，同济大学长聘教授、博士生导师，聚焦知识图谱与知识增强大模型研究，以及AI产业落地。核心成果包括全球首个知识增强推理模型KAG-Thinker（超万Star）、记忆操作系统MemOS（日调用量超150万次）及大模型评测平台AI-Ceping（30万+月活），已落地机场调控、金融风控等多场景。出版《知识图谱》《检索增强生成：理论与实践》《记忆工程》等6部专著，共发表高水平会议和期刊论文100多篇，谷歌学术被引超1.5万次。主持国自然重点、面上、国家新一代AI重大专项课题等10多个国家AI项目，获中交协科技进步一等奖、2026年IF设计奖、HCII最佳论文、DASFAA最佳学生论文等荣誉。他曾担任两家AI独角兽企业CTO，构建了全球首个可交互养成的虚拟偶像—“琥珀·虚颜”；所构建的智能客服机器人已累计服务用户超过100亿人次。目前，他担任全球最大开放知识图谱社区OpenKG首任轮值主席，中国计算机学会术语工委副主任，自然语言处理专委会副主任（执行），中国中文信息学会理事，大模型专委会指导委员，语言与知识计算专委会副主任，上海市计算机学会自然语言处理专委会副主任等社会职位。"
+            },
+            {
               "name": "漆桂林",
-              "bio": "漆桂林，东南大学计算机科学与工程学院教授、东南大学认知智能研究所所长、南京柯基数据科技有限公司首席科学家、OpenKG发起人之一、中国中文信息学会语言与知识计算专业委员会副主任、中国科学技术情报学会知识组织专业委员会副主任、国际期刊 Journal of Data Intelligence 主编、国际期刊 Journal of Web Semantics 副主编、情报工程编委。获得“江苏省六大人才高峰”和“创业南京高层次人才”省部级人才称号。编写专著2部，发表高水平学术论文290余篇。获得授权发明专利20余项。主持和参与科技部重点研发项目、国家863项目、自然科学基金重点、自然科学基金面上等20余项国家级知识图谱和自然语言处理相关项目以及阿里云、支付宝、中移动等企业项目。获2024电力科学技术进步奖三等奖。指导学生发表的论文获得国际会议ICTAI2015最佳学生论文奖和中国国际大学生创新大赛（2023）银奖。",
+              "bio": "漆桂林，东南大学计算机科学与工程学院教授、东南大学认知智能研究所所长、南京柯基数据科技有限公司首席科学家、OpenKG发起人之一、中国中文信息学会语言与知识计算专业委员会副主任、中国科学技术情报学会知识组织专业委员会副主任、国际期刊 Journal of Data Intelligence 主编、国际期刊 Journal of Web Semantics 副主编、情报工程编委。获得“江苏省六大人才高峰”和“创业南京高层次人才”省部级人才称号。编写专著2 部，发表高水平学术论文290 余篇。获得授权发明专利20余项。主持和参与科技部重点研发项目、国家 863项目、自然科学基金重点、自然科学基金面上等 20 余项国家级知识图谱和自然语言处理相关项目以及阿里云、支付宝、中移动等企业项目。获2024电力科学技术进步奖三等奖。指导学生发表的论文获得国际会议ICTAI2015 最佳学生论文奖和中国国际大学生创新大赛（2023）银奖。",
               "photo": {
                 "local_path": "/portraits/chinasoft2026/96d6f9c55c1bd5cab279.webp",
                 "source_url": "https://chinasoft.ccf.org.cn/2026/images/academic-forum/%E5%B7%A5%E4%B8%9A%E8%AE%BA%E5%9D%9B/%E6%BC%86%E6%A1%82%E6%9E%97.png"
@@ -23083,7 +23176,7 @@
           "type": "other",
           "abstract_status": "unknown",
           "extra": {
-            "speaker_raw": "彭鑫、王昊奋、漆桂林、曹春、毛舒能"
+            "speaker_raw": "彭鑫、黄罡、王昊奋、漆桂林、曹春、毛舒能"
           },
           "enrichment": {
             "generated_by": "ai",
@@ -23101,8 +23194,8 @@
       "breaks": [
         {
           "name": "茶歇",
-          "start": "10:20",
-          "end": "10:35"
+          "start": "10:25",
+          "end": "10:40"
         }
       ],
       "detail_extracted": true,
@@ -23115,6 +23208,7 @@
           "end": "12:00"
         }
       },
+      "description": "大模型智能体（Agent）正成为人工智能应用的主流形态，从提示工程、上下文工程，到驾驭工程与循环工程，围绕其落地的工程范式也在快速演进。然而，当智能体从演示走向生产环境，在跨系统、跨数据的长程任务中，普遍暴露出一致性与可靠性不足的问题。面向真实业务场景的智能体系统，本质上是大模型自主行为、代码组件、业务知识与规则深度交织的复杂系统，是一种新型智能化软件形态，其核心命题在于实现智能性与可信性的高效、动态平衡。这要求我们超越以模型为中心的单一视角，以系统工程的思维，把智能体、代码与知识作为架构级的一阶实体统一组织，在神经符号融合中重新理解软件的架构、构造与运行。\n\n从产业实践看，企业级智能体软件仍面临业务理解不足、执行可靠性不高、持续演化困难等突出挑战。智能体不仅要“会做事”，更要在组织级的业务流程中可被约束、可被观测、可被审计、可被恢复——这既不能寄托于单个智能体始终“聪明而可靠”，也不能停留在局部的提示与技巧，而需要一整套从语义层、知识底座到运行时平台的系统性支撑。如何以本体与语义层统一业务语义，以知识图谱沉淀领域知识，以技能与记忆支撑能力复用与经验积累，以驾驭框架实现执行治理与反馈优化，以多智能体原生的操作系统承载分布式运行，并通过仿真、评测与受控演进保障持续演化，已成为软件工程与人工智能深度融合的关键方向。\n\n本论坛围绕“Agent 驱动的智能化软件架构与应用创新”这一主题，系统呈现上述方向的前沿探索与产业落地，议题涵盖四个层面：在体系结构上，探讨以本体统一语义、以驾驭框架实现执行治理，覆盖业务建模、智能体构造、分支验证、仿真评测与受控演进的企业级智能体软件构造与演化方法；在知识基础上，讨论知识图谱与大模型双向赋能、双轮驱动的新型知识服务架构及其在智能问答、决策支持、代码生成等场景的应用；在行业实践上，结合水利、电力等关键行业，剖析智能体驱动应用在领域建模、职责划分、架构设计与平台构建中的工程问题与设计取舍；在平台底座上，介绍生产级、多智能体原生的开源 Agent 操作系统，及其分层解耦、插件化、多智能体协同、Harness 执行框架与分布式运行时等关键能力。论坛最后设置圆桌讨论，共同研判 Agent 驱动的智能化软件架构与应用创新的现状与趋势。\n\n我们期待通过本次论坛，汇聚软件工程与人工智能领域的研究者与实践者，共同推动智能体软件从“能演示”走向“可托付”、从依赖“优秀个体”走向可信赖的“组织级系统”。",
       "category": {
         "key": "industry-forum",
         "name": {
@@ -25631,10 +25725,10 @@
         "zh": "仓颉杯智能编程大赛",
         "en": null
       },
-      "day_date": "2026-11-07",
-      "start": null,
-      "end": null,
-      "room": null,
+      "day_date": "2026-11-06",
+      "start": "19:30",
+      "end": "21:30",
+      "room": "二层16号会议室",
       "chairs": [],
       "talks": [],
       "detail_extracted": false,
@@ -25653,11 +25747,14 @@
         "milestones": [
           [
             "决赛",
-            "2026年11月7日",
+            "2026年11月6日",
             "开展项目陈述、实机演示、随机功能测试和专家答辩"
           ]
-        ]
-      }
+        ],
+        "schedule_raw": "天津市社会山国际会议中心酒店，二层16号会议室，11月6日19:30-21:30",
+        "location_raw": "天津市社会山国际会议中心酒店，二层16号会议室"
+      },
+      "description": "决赛时间地点：天津市社会山国际会议中心酒店，二层16号会议室，11月6日19:30-21:30"
     },
     {
       "code": "T1",
@@ -26483,7 +26580,7 @@
   },
   "extraction": {
     "source": "https://chinasoft.ccf.org.cn/2026/",
-    "content_sha256": "606bf4213a8376d02cfc609b2edec193d53ddfb70f54e4b8da1813d2f913ffa5",
+    "content_sha256": "1327d96614603ab973d27e14ae47dbad4ed9d4ac9279349206365abe402a3459",
     "forums_total": 67,
     "forums_detail_extracted": 62,
     "notes": "Active navigation and explicitly reviewed accessible withdrawn pages are captured. Unpublished programmes remain unscheduled. Timetable titles and affiliations are retained verbatim; profiles supplement abstracts and biographies."

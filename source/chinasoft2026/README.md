@@ -1,6 +1,13 @@
 # ChinaSoft 2026 adapter
 
-The [October 28 evening observation](checks/20261028T100102601374Z/REVIEW.md)
+The [October 29 observation](checks/20261029T030820915010Z/REVIEW.md) is complete
+and imported: I1 adds a report, R20 adds an opening, both retime existing rows;
+C5 moves to November 6 with a published evening window/room. Speaker, organizer
+and committee changes are included. All 627 active portraits work, with 631
+prepared resources including retained C4 images. One-off E4 typography remains
+a data-only correction; no shared web application code changes.
+
+The previous [October 28 evening observation](checks/20261028T100102601374Z/REVIEW.md)
 is complete and imported. It replaces one honorary chair, adds two sponsorship
 members and nine published committee affiliations, and corrects registration
 add-on price-period headings. All 626 active portraits work; 630 resources are
@@ -45,7 +52,7 @@ uv run python -m unittest discover -s source/chinasoft2026
 
 The overview supplies 67 forum/competition/committee-meeting entries and 13 conference timetable
 rows across November 5–8. The 61 published forum/meeting programmes plus C2's timed stages supply
-510 programme items and 65 breaks. Other undated meetings remain separate.
+512 programme items and 65 breaks. Other undated meetings remain separate.
 The homepage advertises November 6–8; the dataset includes November 5 check-in
 as published in the overview and introduction, as a normal schedule event.
 
@@ -64,7 +71,7 @@ overview block locations omit the known venue prefixes, while `extra.location_ra
 retains the full source wording. The conference venue remains available for
 the page header, calendar exports and standalone share posters.
 
-The portrait manifest contains 630 prepared resources: 626 working active URLs
+The portrait manifest contains 631 prepared resources: 627 working active URLs
 plus four retained C4 references. 唐滨 and 王晔晖 recover from HTTP 404;
 new explicit photos include 任慰, 李晓红, 董淑照 and R25/R33 participants.
 All active HTML is accessible.
@@ -81,8 +88,8 @@ The adapter recognizes that template without inventing a programme. E2 now
 publishes its correct code; its old mismatched placeholder association remains
 in resolved curation history without a displayed warning.
 The overview's four mislabeled table-header cells are corrected directly in
-curated HTML; original bytes remain in the observation archive. C5 final dates
-come from their competition announcements. E6's date, room and window come
+curated HTML; original bytes remain in the observation archive. C5's November 6,
+19:30–21:30 final and second-floor room 16 come from its competition notice. E6's date, room and window come
 from its title in the overview, allowing the optional 论坛 suffix. No guessed clock times or people are
 assigned. The October 20 overview shifts education codes E2–E7 to E1–E6;
 the old E1 is now closed meeting M5. Current official codes are retained.
@@ -102,8 +109,8 @@ with their original tentative label, not treated as confirmed keynote speakers.
 
 The viewer resolves one forum block per day. Its envelope covers all published
 forum/talk times and places it in chronological order among other events.
-Every forum keeps its own first-class `start`/`end`; explicit nulls keep C5
-clock times unknown. Original overview placeholders are preserved in
+Every forum keeps its own first-class `start`/`end`; explicit nulls preserve
+unknown clock times without borrowing the day-wide board. Original overview placeholders are preserved in
 `extra.overview_rows`, avoiding duplicate visible sessions. E6 remains visible
 even with no announced talks. Repeated committee roles are merged; differing
 published rosters remain flagged, with both source lists retained.
@@ -113,10 +120,10 @@ remain valid followed agenda items before individual reports are announced.
 Explicit `person.extra.identity_key` values separate distinct same-name
 source records; the viewer never infers identity from affiliation alone.
 
-`enrichment.json` supplies 460 AI summaries/topic classifications, covering all
+`enrichment.json` supplies 461 AI summaries/topic classifications, covering all
 substantive reports and meaningful panels. They live only in `enrichment` and
 respect the global AI switch. Each entry records its source title so an agenda
-reordering cannot silently attach annotations to the wrong report. The 407 attached
+reordering cannot silently attach annotations to the wrong report. The 408 attached
 source abstracts remain separate and unchanged.
 
 The source fingerprint covers every captured page, the portrait manifest and
