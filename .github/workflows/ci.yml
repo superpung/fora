@@ -11,16 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-        # Full history: build_manifest.py derives each dataset's `updated_at`
-        # from `git log -1 -- <file>`. A shallow clone makes git report every
-        # file as added in HEAD (today), breaking the determinism check.
-        with:
-          fetch-depth: 0
       - uses: astral-sh/setup-uv@v7
         with:
           python-version: "3.10"
       - name: Install deps
         run: uv sync --dev
+      - name: Build reference datasets
+        run: uv run python source/build_all.py
       - name: Validate against schema
         run: uv run python source/validate.py
       - name: Stable report identities
@@ -30,23 +27,13 @@ jobs:
       - name: OAuth preflight classification
         run: uv run python -m unittest discover -s cloudflare -p 'test_oauth.py'
       - name: Local source history
-        run: uv run python -m unittest discover -s source/chinasoft2026 -p 'test_check_updates.py'
-      - name: Rebuild dataset and assert it is in sync
-        # build_all.py discovers every conference builder (source/<id>/build.py)
-        # and rebuilds it, then the manifest. Deliberately NOT a list of
-        # per-conference commands: adding a conference must never require an
-        # edit here, because a forgotten line would still go green while
-        # silently leaving that conference's data unchecked.
-        # The builds deterministically write data/ and the lightweight web manifest.
-        # If a rerun changes anything, the committed dataset or manifest is
-        # stale or was hand-edited — fail before stale data reaches the application.
+        run: uv run python -m unittest discover -s source/chinasoft2026
+      - name: Verify deterministic generated data
         run: |
+          sha256sum data/*.json web/src/data/manifest.json > "$RUNNER_TEMP/fora-data.sha256"
           uv run python source/build_all.py
-          if ! git diff --quiet -- data/ web/src/data/manifest.json; then
-            echo "::error::Dataset out of sync — rerun the build scripts and commit the result."
-            git --no-pager diff -- data/ web/src/data/manifest.json
-            exit 1
-          fi
+          sha256sum --check "$RUNNER_TEMP/fora-data.sha256"
+          git diff --exit-code -- web/src/data/manifest.json
 
   web:
     name: Web (lint + build)
@@ -56,6 +43,12 @@ jobs:
         working-directory: web
     steps:
       - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v7
+        with:
+          python-version: "3.10"
+      - name: Build reference datasets
+        run: uv run python source/build_all.py
+        working-directory: .
       - uses: pnpm/action-setup@v6
         with:
           # package.json lives in web/, not the repo root the action defaults to

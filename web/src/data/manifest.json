@@ -13,8 +13,7 @@
     "venue": "无锡国际会议中心",
     "forums": 48,
     "keynotes": 12,
-    "days": 4,
-    "updated_at": "2026-10-29"
+    "days": 4
   },
   {
     "id": "chinaosc2026",
@@ -30,8 +29,7 @@
     "venue": "重庆・山城国际会议中心",
     "forums": 22,
     "keynotes": 0,
-    "days": 3,
-    "updated_at": "2026-10-29"
+    "days": 3
   },
   {
     "id": "chinasoft2025",
@@ -47,8 +45,7 @@
     "venue": "武汉国际会议中心",
     "forums": 73,
     "keynotes": 9,
-    "days": 4,
-    "updated_at": "2026-10-29"
+    "days": 4
   },
   {
     "id": "chinasoft2026",
@@ -64,7 +61,6 @@
     "venue": "天津社会山国际会议中心酒店",
     "forums": 67,
     "keynotes": 0,
-    "days": 4,
-    "updated_at": "2026-10-29"
+    "days": 4
   }
 ]
