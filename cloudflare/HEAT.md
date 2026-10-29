@@ -260,6 +260,10 @@ as part of the approved rollout, then deploy the verified application. Existing
 application behavior remains valid while the additive index/schema are staged.
 Keep the prior Worker version and immutable data manifest as rollback targets;
 do not remove DNS, change other account services or deploy preview database
-bindings to production. Preview acceptance does not substitute for production
-OAuth authorization. New feature production acceptance remains pending until
+bindings to production. If a rollback serves sync writes through the previous
+Worker, its derived heat vectors can become stale. After the next rollout has
+fully replaced that Worker, invalidate `sync_state.heat_index` (set it to an empty
+string) and expire `heat_cache`; verify reconciliation before accepting rankings.
+This is an explicit rollback recovery operation, not a permanent second backend.
+Preview acceptance does not substitute for production OAuth authorization. New feature production acceptance remains pending until
 that rollout occurs.
