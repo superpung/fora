@@ -6,6 +6,7 @@
   "compatibility_date": "2026-07-30",
   "workers_dev": true,
   "preview_urls": true,
+  "routes": [{ "pattern": "fora.repus.me/*", "zone_id": "cef5a908ac0240cdd7dcea34bf6fccb9" }],
   "assets": {
     "directory": "../web/dist",
     "binding": "ASSETS",

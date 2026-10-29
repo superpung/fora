@@ -19,6 +19,22 @@ repository. The local operator token is in
 `/root/.config/fora/worker-secrets.json`. Both are mode 0600. CI receives only
 its named secrets. Never print credentials or pass secret values as CLI arguments.
 
+## Continuous-availability rollout
+
+The production route is exactly `fora.repus.me/*`. Keep the existing proxied DNS
+record during the cutover: adding the route changes request handling without
+deleting the hostname. Pin Netlify's current published deployment before merging
+this migration so its automatic builds cannot replace the serving version.
+Keep that immutable deployment available until production verification finishes.
+Removing only Fora's Worker route restores the pinned origin without a DNS gap;
+never change shared routes or zone-wide settings to perform a rollback.
+
+Verify the pinned data preview first, then deploy the route and continuously
+check production HTML, deep links, datasets, portraits and `/api/session`.
+The Worker serves all application requests from its own assets and bindings;
+there is no application-level request forwarding or old-backend fallback.
+The old deployment is a rollout rollback artifact, not a second maintained app.
+
 ## Application
 
 ```sh
