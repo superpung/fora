@@ -203,6 +203,7 @@ const zh: Dict = {
   "orgRole.co_host": "承办单位",
   "orgRole.support": "协办单位",
   "orgRole.sponsor": "赞助单位",
+  "orgRole.partner": "合作单位",
 
   "forum.showBio": "个人简介",
   "forum.hideBio": "收起简介",
@@ -502,6 +503,7 @@ const en: Dict = {
   "orgRole.co_host": "Co-host",
   "orgRole.support": "Supporter",
   "orgRole.sponsor": "Sponsor",
+  "orgRole.partner": "Partner",
 
   "forum.showBio": "Bio",
   "forum.hideBio": "Hide bio",

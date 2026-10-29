@@ -1,7 +1,7 @@
 import { buildBm25, bm25Scores, maxScore, tokenize, type Bm25Model } from "./bm25";
 import { keynoteId, talkId } from "./follow-store";
 import { topicAliases, topicSearchText } from "./topic-labels";
-import type { ConferenceViews } from "./data";
+import { talkDate, type ConferenceViews } from "./data";
 import type { Talk } from "../types";
 import { ownTitle } from "./talk-title";
 
@@ -118,8 +118,8 @@ export function buildPlanCorpus(views: ConferenceViews): PlanCorpus {
     ].join(" ");
 
   for (const f of conference.forums ?? []) {
-    const win = forumTimeWindow(f);
     (f.talks ?? []).forEach((t, i) => {
+      const win = forumTimeWindow(f, t);
       countTopics(t);
       if (!plannable(t)) return;
       candidates.push({
@@ -131,7 +131,7 @@ export function buildPlanCorpus(views: ConferenceViews): PlanCorpus {
         code: f.code,
         talkIndex: i,
         room: f.room ?? null,
-        date: f.day_date ?? "",
+        date: talkDate(f, t) ?? "",
         start: t.start ?? win.start ?? null,
         end: t.end ?? win.end ?? null,
         approxTime: !t.start,

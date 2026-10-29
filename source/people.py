@@ -30,7 +30,7 @@ ROLE_WORDS = (
     "主持人", "主持", "嘉宾", "特邀嘉宾", "讲者", "报告人", "演讲嘉宾", "汇报人",
     "参与者", "与谈人", "对话嘉宾", "点评人", "执行主席", "论坛主席", "大会主席",
     "全体嘉宾", "全体", "各位嘉宾", "所有嘉宾", "报告嘉宾", "圆桌嘉宾",
-    "嘉宾致辞", "论坛组委会",
+    "嘉宾致辞", "论坛组委会", "论坛组委会代表",
     "Moderator", "Panelists", "Panelist", "Speakers", "Speaker", "Chair", "Chairs", "Host",
 )
 _ROLE_PREFIX = re.compile(r"^(?:%s)\s*[：:]\s*" % "|".join(map(re.escape, ROLE_WORDS)))
@@ -49,7 +49,7 @@ _ORG = re.compile(
 )
 # Short organization names and standalone titles have the same visual length
 # as Chinese personal names. They must never become people or given names.
-SHORT_ORGANIZATIONS = {"华为", "百度", "腾讯", "阿里巴巴", "京东", "昆仑芯"}
+SHORT_ORGANIZATIONS = {"华为", "百度", "腾讯", "阿里巴巴", "京东", "昆仑芯", "荣耀", "小米"}
 PERSON_TITLES = {"院士", "校长", "院长", "所长", "教授", "副教授", "研究员",
                  "副研究员", "博士", "博士生", "博士后", "工程师"}
 # The numbering of the list a name sits in: "1. 胡欣蔚 …", "(2) 秦彬娟".

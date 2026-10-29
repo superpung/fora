@@ -10,6 +10,7 @@ import Icon from "../components/Icon";
 import StarButton from "../components/StarButton";
 import type { Block, Forum, Talk } from "../types";
 import { titleLine } from "../lib/talk-title";
+import { forumOnDate } from "../lib/data";
 
 // A time-vs-forum board for a day whose forums run in PARALLEL but carry NO
 // per-talk times (e.g. ccfchip: each forum is an ordered talk list inside one
@@ -139,14 +140,15 @@ export default function UntimedForumGrid({
 
   // Per forum: apportion its ordered talks across the sessions.
   const talksPerForum = entries.map((e) => {
-    const forum = forumsByCode[e.forum_code];
+    const original = forumsByCode[e.forum_code];
+    const forum = forumOnDate(original, date);
     const talks = forum.talks ?? [];
     const counts = allocate(talks.length, sessions.map((s) => s.e - s.s));
     // slice talks into per-session groups, preserving original indices
     const groups: { t: Talk; i: number }[][] = [];
     let p = 0;
     for (const c of counts) {
-      groups.push(talks.slice(p, p + c).map((t, k) => ({ t, i: p + k })));
+      groups.push(talks.slice(p, p + c).map((t) => ({ t, i: (original.talks ?? []).indexOf(t) })));
       p += c;
     }
     const roomStr = (e.room ?? forum.room ?? "—").replace(/\s+/g, " ").trim() || "—";

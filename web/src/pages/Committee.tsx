@@ -31,7 +31,7 @@ export default function Committee() {
       <SourceNotes flags={conference.extra?.flags} />
       <div className="committees">
         {committees.map((c) => (
-          <Reveal key={c.role.zh} className="cmt">
+          <Reveal key={c.role.zh} className="cmt" amount={0}>
             <div className="cmt__head">
               <h3 className="cmt__role">{c.role.zh}</h3>
               {c.ordering_note && (
@@ -45,7 +45,7 @@ export default function Committee() {
               variants={stagger(0, 0.03)}
               initial="initial"
               whileInView="animate"
-              viewport={{ once: true, amount: 0.1 }}
+              viewport={{ once: true, amount: 0 }}
             >
               {c.members.map((m, i) => (
                 <motion.div key={i} variants={riseItem} className="member">
