@@ -102,6 +102,8 @@ uv run python source/publish_data.py promote --base https://fora.repus.me
 Staging uploads immutable public objects. It does not
 change the public catalog. Promotion checks referenced objects and atomically
 replaces the catalog only if its ETag still matches the reviewed baseline.
+Promotion preserves the reviewed manifest bytes. The authenticated catalog
+endpoint returns its immutable `release` hash and current `etag` for rollback.
 Another publisher winning that race requires a fresh review. The previous
 immutable manifests remain available for inspection and rollback through the
 same conditional promotion endpoint. Keep application code committed before
