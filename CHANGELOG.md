@@ -35,13 +35,14 @@ English per the repository language rule (see AGENTS.md).
 
 ### CI
 - Fresh clones rebuild all four datasets before schema and deterministic-output
-  checks. Generated datasets are no longer required in the Git tree.
+  checks. Generated datasets are no longer required in the Git tree. Speaker
+  regressions check parsed identities without freezing source affiliation text.
 - Worker/D1/R2 tests cover authentication, isolation, concurrent sync and data
   promotion; integrated browser tests exercise the actual application and Worker
   with a simulated GitHub provider. Real production login and two-browser
   follow/unfollow synchronization were separately confirmed by the user.
 
-_Changes since v0.4.0: #41, #42, #43, #44 and #45._
+_Changes since v0.4.0: #41, #42, #43, #44, #45 and #47._
 
 ## v0.4.0 — 2026-10-29
 
