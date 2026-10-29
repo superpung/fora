@@ -9,7 +9,7 @@ import type { Talk } from "../types";
 // official site. This module is the UI half of that contract:
 //
 //   1. ONE switch decides whether AI-derived content is shown at all. Every
-//      feature built on `enrichment` (TL;DR summaries, semantic search, the
+//      feature built on `enrichment` (TL;DR summaries, the
 //      agenda planner, the topic map, similar talks) reads `useAi().enabled`
 //      and falls back to source-only behaviour when it is off.
 //   2. Anything AI-generated that IS shown carries a visible marker plus the

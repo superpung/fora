@@ -100,6 +100,47 @@ try {
   await refresh(a.page); await until(async () => !await saved(a.page));
   console.log('PASS offline deletion is retained and propagated without resurrection');
 
+  // Current speaker keys must survive backup, sync and unfollow without expanding namesakes.
+  for (const device of [a, b]) {
+    await device.page.goto(origin + '/chinasoft2026/speakers?q=李佳', { waitUntil: 'domcontentloaded' });
+    await device.page.locator('.spcard').first().waitFor();
+  }
+  const speaker = (page, affiliation) => page.locator('.spcard')
+    .filter({ has: page.locator('.spcard__name', { hasText: /^李佳$/ }) })
+    .filter({ has: page.locator('.spcard__aff', { hasText: affiliation }) }).locator('.star');
+  const speakerSaved = (page, affiliation) => speaker(page, affiliation).getAttribute('aria-pressed');
+  await speaker(a.page, '清华大学').click();
+  await until(async () => (await state('alice')).bundle.follows.includes('["chinasoft2026","speakers","P4:李佳"]'));
+  await refresh(b.page);
+  await until(async () => await speakerSaved(b.page, '清华大学') === 'true');
+  assert.equal(await speakerSaved(b.page, '武汉大学'), 'false');
+  await b.page.reload({ waitUntil: 'domcontentloaded' });
+  await until(async () => await speakerSaved(b.page, '清华大学') === 'true');
+  await menu(b.page);
+  await b.page.getByRole('button', { name: '导出', exact: true }).click();
+  const downloadReady = b.page.waitForEvent('download');
+  await b.page.getByRole('button', { name: /备份.*\.json/ }).click();
+  const backup = await readFile(await (await downloadReady).path());
+  assert.deepEqual(JSON.parse(backup).follows.speakers, ['P4:李佳']);
+  await speaker(b.page, '清华大学').click();
+  await until(async () => (await state('alice')).bundle.follows.length === 0);
+  await refresh(a.page);
+  await until(async () => await speakerSaved(a.page, '清华大学') === 'false');
+  await a.page.locator('input[type="file"]').setInputFiles({ name: 'follows.json', mimeType: 'application/json', buffer: backup });
+  await until(async () => (await state('alice')).bundle.follows.includes('["chinasoft2026","speakers","P4:李佳"]'));
+  await refresh(b.page);
+  await until(async () => await speakerSaved(b.page, '清华大学') === 'true');
+  assert.equal(await speakerSaved(b.page, '武汉大学'), 'false');
+  await speaker(b.page, '清华大学').click();
+  await until(async () => (await state('alice')).bundle.follows.length === 0);
+  await refresh(a.page);
+  await until(async () => await speakerSaved(a.page, '清华大学') === 'false');
+  for (const device of [a, b]) {
+    await device.page.goto(origin + '/chinasoft2026/forum/R1', { waitUntil: 'domcontentloaded' });
+    await device.page.locator('.followbtn').waitFor();
+  }
+  console.log('PASS current speaker identity survives two-device sync, reload and JSON backup/import without selecting its namesake');
+
   // Seed competing saved preferences; notification delivery has its own clock suite.
   await b.context.setOffline(true);
   await b.page.evaluate(() => localStorage.setItem('fora-reminders.lead', '30'));

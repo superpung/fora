@@ -69,9 +69,8 @@ try {
   await page.locator('a[href="/chinasoft2026/forum/R7#talk-5"]').waitFor();
   assert.equal(await page.locator('a[href="/chinasoft2026/forum/R7#talk-7"]').count(), 0);
 
-  // Legacy imports followed every appearance of the name. Preserve that scope,
-  // then allow either source record to be unfollowed independently.
-  await page.evaluate(() => localStorage.setItem("chinasoft2026:followed.speakers", '["李佳"]'));
+  // Current source keys keep the two people distinct across reload and unfollow.
+  await page.evaluate(() => localStorage.setItem("chinasoft2026:followed.speakers", '["P4:李佳","R4:李佳"]'));
   await go("/chinasoft2026/speakers?q=李佳", ".spcard");
   assert.equal(await page.locator('.spcard .star[aria-pressed="true"]').count(), 2);
   await page.locator(".spcard").filter({ has: page.locator(".spcard__aff", { hasText: "清华大学" }) }).locator(".star").click();
@@ -180,7 +179,7 @@ try {
   assert((await page.locator("#talk-4 .source-notes__content").textContent()).includes("报告题目不一致"));
   assert(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth <= 1));
   assert.deepEqual(errors, []);
-  console.log("PASS all forum entries, updated source, hosts, breaks, clean biographies, separate identities, legacy follows, pending-forum agenda/exports and accessible source notes");
+  console.log("PASS all forum entries, updated source, hosts, breaks, clean biographies, separate identities, current follows, pending-forum agenda/exports and accessible source notes");
 } finally {
   await browser?.close();
   server?.kill("SIGTERM");
