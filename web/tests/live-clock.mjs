@@ -248,22 +248,18 @@ try {
  await daily.page.waitForFunction(()=>window.__notifications.length===2);
  assert((await daily.page.evaluate(()=>window.__notifications.map(n=>n.title).join(' '))).includes('今日日程即将开始'));
  await shot(daily); await finish(daily);
- const legacy=await open('reminders-legacy-cache','2026-11-06T09:49:40+08:00','/chinasoft2026/schedule',
+ const cached=await open('reminders-cached-timezone','2026-11-06T09:49:40+08:00','/chinasoft2026/schedule',
   {clock:true,mock:true,zone:'America/Los_Angeles',seed:{forums:[],talks:['R14#3'],speakers:[]}});
- await legacy.page.evaluate(()=>{
-  const key='chinasoft2026:reminder.items';
-  const cached=JSON.parse(localStorage.getItem(key));
-  delete cached.timezone; localStorage.setItem(key,JSON.stringify(cached));
- });
- await legacy.page.goto(base+'/',{waitUntil:'networkidle'});
- legacy.path='/'; legacy.ready='.hub';
- await legacy.page.locator('.hub').waitFor();
- await legacy.page.getByRole('button',{name:'账户与设置',exact:true}).click();
- await legacy.page.getByRole('button',{name:/日程提醒/}).click();
- await legacy.page.clock.fastForward(31_000);
- await legacy.page.waitForFunction(()=>window.__notifications.length===1);
- assert((await legacy.page.evaluate(()=>window.__notifications[0].title)).includes('大模型威胁下的硬件组件供应链安全'));
- await shot(legacy); await finish(legacy);
+ assert.equal(await cached.page.evaluate(()=>JSON.parse(localStorage.getItem('chinasoft2026:reminder.items')).timezone),'Asia/Shanghai');
+ await cached.page.goto(base+'/',{waitUntil:'networkidle'});
+ cached.path='/'; cached.ready='.hub';
+ await cached.page.locator('.hub').waitFor();
+ await cached.page.getByRole('button',{name:'账户与设置',exact:true}).click();
+ await cached.page.getByRole('button',{name:/日程提醒/}).click();
+ await cached.page.clock.fastForward(31_000);
+ await cached.page.waitForFunction(()=>window.__notifications.length===1);
+ assert((await cached.page.evaluate(()=>window.__notifications[0].title)).includes('大模型威胁下的硬件组件供应链安全'));
+ await shot(cached); await finish(cached);
  }
  assert.deepEqual(errors,[]);
  console.log(`PASS clock audit: ${snapshots.length} screenshots, live boundaries, overseas clocks, automatic ticks, midnight and reminders`);

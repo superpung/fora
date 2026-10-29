@@ -28,7 +28,7 @@ try {
   console.log('PASS live navigation enters the conference at venue midnight');
   const passed = await page.evaluate(async () => {
     const [{ clockAt, scheduleTimeMs }, { buildConferenceViews }, { buildLiveView, nextStarredItem },
-      { collectFollowedItems, toICS }, { personKey, resolveSpeakerKeys }, { planReminders }] = await Promise.all([
+      { collectFollowedItems, toICS, toFollowJSON, parseFollowJSON }, { personKey }, { planReminders }] = await Promise.all([
       import('/src/lib/conference-time.ts'), import('/src/lib/data.ts'), import('/src/lib/live.ts'),
       import('/src/lib/export.ts'), import('/src/lib/person-key.ts'), import('/src/lib/reminder-schedule.ts'),
     ]);
@@ -71,8 +71,6 @@ try {
     const people = [{ name: 'Alex', extra: { identity_key: 'source:a' } }, { name: 'Alex', extra: { identity_key: 'source:b' } }];
     check(personKey(people[0]) !== personKey(people[1]) && personKey({ name: 'Alex', affiliation_raw: 'Other' }) === personKey({ name: 'Alex' }),
       'only explicit source keys separate namesakes');
-    const migrated = resolveSpeakerKeys(new Set(['Alex']), { forums: [{ talks: [{ speakers: people }] }] });
-    check(migrated.size === 2 && migrated.has('source:a') && migrated.has('source:b'), 'legacy name follows preserve their original scope');
     const mixed = { ...raw, forums: [
       forum('A', { talks: [{ id: 'A#0', title: { zh: 'Keyed report' }, speakers: [people[0]] }] }),
       forum('B', { talks: [{ id: 'B#0', title: { zh: 'Name-only report' }, speakers: [{ name: 'Alex' }] }] }),
@@ -80,22 +78,22 @@ try {
       { id: 'KEYNOTE:2030-05-08#0', title: { zh: 'Keynote-only identity' }, speakers: [{ name: 'Alex', extra: { identity_key: 'source:keynote' } }] },
     ] }] }] };
     const mixedViews = buildConferenceViews(mixed);
-    const legacy = { ...follow([]), speakers: new Set(['Alex']) };
-    const mixedKeys = resolveSpeakerKeys(legacy.speakers, mixed);
-    check(collectFollowedItems(legacy, mixedViews).length === 3,
-      'legacy follows retain keyed, name-only and keynote-only appearances');
-    const again = resolveSpeakerKeys(mixedKeys, mixed);
-    check(again.size === mixedKeys.size && [...mixedKeys].every(key => again.has(key)),
-      'speaker migration is idempotent');
-    mixedKeys.delete('source:a');
-    const remaining = collectFollowedItems({ ...legacy, speakers: resolveSpeakerKeys(mixedKeys, mixed) }, mixedViews);
+    const current = { ...follow([]), speakers: new Set(['source:a', 'name:Alex', 'source:keynote']) };
+    check(collectFollowedItems(current, mixedViews).length === 3,
+      'current keys retain distinct keyed, name-only and keynote identities');
+    const restored = parseFollowJSON(toFollowJSON(current, '2030-05-08T00:00:00Z', mixedViews), mixed.id);
+    const restoredFollows = { forums: new Set(restored.follows.forums), talks: new Set(restored.follows.talks),
+      speakers: new Set(restored.follows.speakers) };
+    check(JSON.stringify(collectFollowedItems(restoredFollows, mixedViews)) === JSON.stringify(collectFollowedItems(current, mixedViews)),
+      'current JSON backup round-trip preserves speaker identities and resolved agenda');
+    restoredFollows.speakers.delete('source:a');
+    const remaining = collectFollowedItems(restoredFollows, mixedViews);
     check(remaining.length === 2 && !remaining.some(item => item.title === 'Keyed report'),
-      'unfollowing one namesake survives migration and agenda resolution');
-    const keynoteOnly = { ...mixed, forums: [] };
-    check(collectFollowedItems(legacy, buildConferenceViews(keynoteOnly)).length === 1,
-      'legacy follows migrate when the person appears only in keynotes');
-    check(resolveSpeakerKeys(new Set(['Unpublished person']), mixed).has('Unpublished person'),
-      'unresolved legacy follows survive until their source records arrive');
+      'unfollowing one namesake leaves the other identities intact');
+    check(collectFollowedItems(current, buildConferenceViews({ ...mixed, forums: [] })).length === 1,
+      'current keynote-only follows resolve without a forum');
+    check(collectFollowedItems({ ...follow([]), speakers: new Set(['name:Alex']) }, mixedViews).length === 1,
+      'a current name-only follow never expands to other source identities');
     const instant = Date.parse('2030-05-07T16:00:00Z');
     check(clockAt(instant, 'Asia/Shanghai').todayStr === date && clockAt(instant, 'Asia/Shanghai').nowMin === 0,
       'venue midnight is independent of the device timezone');

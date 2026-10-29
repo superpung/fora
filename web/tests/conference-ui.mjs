@@ -70,9 +70,9 @@ try {
       await context.close();
     }
   }
-  const migration = await browser.newContext({ locale: 'en-US', serviceWorkers: 'block' });
-  const migrationPage = await migration.newPage();
-  migrationPage.on('pageerror', error => errors.push(error.message));
+  const identityContext = await browser.newContext({ locale: 'en-US', serviceWorkers: 'block' });
+  const identityPage = await identityContext.newPage();
+  identityPage.on('pageerror', error => errors.push(error.message));
   const date = '2030-05-08';
   const people = [
     { name: 'Alex', affiliation_raw: 'Unit A', extra: { identity_key: 'source:a' } },
@@ -84,26 +84,26 @@ try {
       title: { zh: `Forum ${i}` }, day_date: date, talks: [{ title: { zh: `Report ${i}` }, speakers: [person] }] })),
     days: [{ date, blocks: [{ kind: 'keynotes', talks: [{ title: { zh: 'Keynote' }, speakers: [people[2]] }] }] }],
   };
-  await installDataFixture(migrationPage, raw);
-  await migrationPage.addInitScript(() => {
+  await installDataFixture(identityPage, raw);
+  await identityPage.addInitScript(() => {
     const key = 'chinasoft2025:followed.speakers';
-    if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(['Alex']));
+    if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(['source:a', 'name:Alex', 'source:keynote']));
   });
-  await migrationPage.goto(base + '/chinasoft2025/speakers', { waitUntil: 'networkidle' });
-  assert.equal(await migrationPage.locator('.spcard .star[aria-pressed="true"]').count(), 3);
-  await migrationPage.locator('.spcard').filter({ hasText: 'Unit A' }).locator('.star').click();
-  await migrationPage.reload({ waitUntil: 'networkidle' });
-  assert.equal(await migrationPage.locator('.spcard .star[aria-pressed="true"]').count(), 2);
-  assert.equal(await migrationPage.locator('.spcard').filter({ hasText: 'Unit A' }).locator('.star').getAttribute('aria-pressed'), 'false');
-  await migrationPage.goto(base + '/chinasoft2025/schedule?v=mine-day', { waitUntil: 'networkidle' });
+  await identityPage.goto(base + '/chinasoft2025/speakers', { waitUntil: 'networkidle' });
+  assert.equal(await identityPage.locator('.spcard .star[aria-pressed="true"]').count(), 3);
+  await identityPage.locator('.spcard').filter({ hasText: 'Unit A' }).locator('.star').click();
+  await identityPage.reload({ waitUntil: 'networkidle' });
+  assert.equal(await identityPage.locator('.spcard .star[aria-pressed="true"]').count(), 2);
+  assert.equal(await identityPage.locator('.spcard').filter({ hasText: 'Unit A' }).locator('.star').getAttribute('aria-pressed'), 'false');
+  await identityPage.goto(base + '/chinasoft2025/schedule?v=mine-day', { waitUntil: 'networkidle' });
   // Network quiescence does not guarantee that the lazy route has rendered.
-  await migrationPage.locator('.talkrow__title').first().waitFor();
-  const titles = await migrationPage.locator('.talkrow__title').allTextContents();
+  await identityPage.locator('.talkrow__title').first().waitFor();
+  const titles = await identityPage.locator('.talkrow__title').allTextContents();
   assert.deepEqual(titles.sort(), ['Keynote', 'Report 1']);
-  const cached = await migrationPage.evaluate(() => JSON.parse(localStorage.getItem('chinasoft2025:reminder.items')));
+  const cached = await identityPage.evaluate(() => JSON.parse(localStorage.getItem('chinasoft2025:reminder.items')));
   assert.deepEqual(cached.items.map(item => item.title).sort(), ['Keynote', 'Report 1']);
-  console.log('PASS migrated follows preserve namesakes and keynotes, and an unfollow survives reload and reminder resolution');
-  await migration.close();
+  console.log('PASS current follows preserve namesakes and keynotes, and an unfollow survives reload and reminder resolution');
+  await identityContext.close();
   // Long rosters must reveal even when the viewport covers only a small fraction.
   for (const mobile of [false, true]) {
     const context = await browser.newContext({ viewport: { width: mobile ? 390 : 1440, height: 900 },

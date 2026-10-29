@@ -134,7 +134,7 @@ and audits all published forum pages, portrait decoding, committees, all four
 schedule days, pending forums, follows, topics, the AI switch and mobile routes.
 The gap regression suite additionally checks undated inventory entries,
 multi-paragraph abstracts, host/break display, source notes, identity separation,
-legacy follows, and empty-forum calendar exports across conference datasets.
+current speaker identities, and empty-forum calendar exports across conference datasets.
 
 The new flat programme-committee grid supplies 195 members, with all affiliations now published. Same-name profiles within a forum are matched by their
 explicit report titles. `curation.json` records guarded forum-code and person
