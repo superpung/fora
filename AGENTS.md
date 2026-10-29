@@ -1,5 +1,14 @@
 # AGENTS.md — working agreement for AI assistants on this project
 
+## Keep production available (hard rule)
+- `https://fora.repus.me` must remain available throughout development and rollout.
+- Verify application, data, authentication routing and offline behavior on a
+  separate preview before changing production traffic.
+- Never remove the live DNS record or stop the current deployment before its
+  replacement is serving successfully. Prepare and verify rollback first.
+- Scope every Cloudflare operation to Fora; leave unrelated account services,
+  zone-wide settings and shared routing rules unchanged.
+
 ## Keep one current implementation (hard rule)
 - Prefer deleting obsolete code to adding compatibility layers, fallback paths,
   dual implementations, or temporary migration machinery.
