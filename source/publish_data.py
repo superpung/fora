@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
 """Stage or promote a validated data release independently of application code."""
 import argparse
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 import hashlib
+import http.client
 import json
 import os
 from pathlib import Path
 import subprocess
 import sys
 import tarfile
+import time
 import urllib.error
 import urllib.request
 
@@ -24,12 +26,20 @@ def request(base, path, token, method="GET", body=None, content_type="applicatio
         headers["X-Content-SHA256"] = digest
     req = urllib.request.Request(base.rstrip("/") + "/api/publish/" + path,
                                  data=body, headers=headers, method=method)
-    try:
-        with urllib.request.urlopen(req, timeout=90) as response:
-            return response.read(), response.headers
-    except urllib.error.HTTPError as error:
-        detail = error.read().decode("utf-8", errors="replace")[:400]
-        raise RuntimeError(f"Publisher {method} {path}: HTTP {error.code}: {detail}") from None
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(req, timeout=90) as response:
+                return response.read(), response.headers
+        except urllib.error.HTTPError as error:
+            if method not in {"GET", "HEAD", "PUT"} or error.code < 500 or attempt == 2:
+                detail = error.read().decode("utf-8", errors="replace")[:400]
+                raise RuntimeError(f"Publisher {method} {path}: HTTP {error.code}: {detail}") from None
+            error.close()
+        except (urllib.error.URLError, http.client.RemoteDisconnected, TimeoutError):
+            if method not in {"GET", "HEAD", "PUT"} or attempt == 2:
+                raise
+        print(f"Retrying interrupted {method} {path} ({attempt + 2}/3)", flush=True)
+        time.sleep(attempt + 1)
 
 
 def upload(base, token, kind, key, path):
@@ -40,12 +50,21 @@ def upload(base, token, kind, key, path):
     return digest
 
 
+def is_source_input(path):
+    """Exclude shared vocabulary compiled into the application and check history."""
+    if path == Path("source/topics.json") or any(part in
+            {"checks", "automation", "__pycache__", "images", "files", "tiles"} for part in path.parts):
+        return False
+    return (path.parts[0] == "source" and path.suffix in {".json", ".html", ".txt"}) or \
+        (path.as_posix().startswith("data/forums_detail/") and path.suffix == ".json") or \
+        (path.as_posix().startswith("web/public/portraits/") and path.suffix == ".webp") or \
+        path == Path("data/CHINASOFT2026_GAPS.md")
+
+
 def source_files():
     """Archive curated inputs, never executable code or unbounded check history."""
     for path in (ROOT / "source").rglob("*"):
-        if not path.is_file() or any(part in {"checks", "automation", "__pycache__", "images", "files", "tiles"} for part in path.parts):
-            continue
-        if path.suffix in {".json", ".html", ".txt"}:
+        if path.is_file() and is_source_input(path.relative_to(ROOT)):
             yield path
     yield from (ROOT / "data/forums_detail").glob("*.json")
     yield from (ROOT / "web/public/portraits").rglob("*.webp")
@@ -82,10 +101,7 @@ def extract_sources(target):
         restored = set()
         for member in archive.getmembers():
             path = Path(member.name)
-            allowed = (member.name.startswith("source/") and path.suffix in {".json", ".html", ".txt"}) or \
-                (member.name.startswith("data/forums_detail/") and path.suffix == ".json") or \
-                (member.name.startswith("web/public/portraits/") and path.suffix == ".webp") or \
-                member.name == "data/CHINASOFT2026_GAPS.md"
+            allowed = is_source_input(path)
             if not allowed or not member.isfile() or path.is_absolute() or ".." in path.parts:
                 raise ValueError(f"Unexpected source archive member: {member.name}")
             if (ROOT / path).resolve() != ROOT / path or path in restored:
@@ -100,13 +116,13 @@ def extract_sources(target):
 
 
 def stage(base, token, summary):
-    inputs = {path.relative_to(ROOT).as_posix() for path in source_files()}
     changed = subprocess.check_output(["git", "diff", "HEAD", "--name-only", "-z"], cwd=ROOT).decode().split("\0")
     changed += subprocess.check_output(["git", "ls-files", "--others", "--exclude-standard", "-z"], cwd=ROOT).decode().split("\0")
-    code = [path for path in changed if path and path not in inputs and not
+    code = [path for path in changed if path and not is_source_input(Path(path)) and not
             (path.startswith("data/") and path.endswith(".json")) and not path.startswith("web/src/data/")]
     if code:
         raise ValueError("Commit application/parser changes before staging: " + ", ".join(code))
+    revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
     for script in ["source/build_all.py", "source/validate.py"]:
         subprocess.run([sys.executable, script], cwd=ROOT, check=True)
     subprocess.run(["node", "web/scripts/prepare-data.mjs"], cwd=ROOT, check=True,
@@ -126,9 +142,13 @@ def stage(base, token, summary):
         objects.append((entry["path"], OUTPUT / "public" / entry["path"]))
     objects.extend((p.relative_to(OUTPUT / "public").as_posix(), p) for p in (OUTPUT / "public/portraits").rglob("*.webp"))
     with ThreadPoolExecutor(max_workers=6) as pool:
-        list(pool.map(lambda item: upload(base, token, "objects", *item), objects))
+        futures = [pool.submit(upload, base, token, "objects", *item) for item in objects]
+        for count, future in enumerate(as_completed(futures), 1):
+            future.result()
+            if count % 50 == 0 or count == len(objects):
+                print(f"Uploaded {count}/{len(objects)} public objects", flush=True)
     catalog.update(released_at=now, source_archive=archive_key,
-                   code_revision=subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
+                   code_revision=revision,
                    summary=summary)
     payload = json.dumps(catalog, ensure_ascii=False, sort_keys=True).encode()
     digest = hashlib.sha256(payload).hexdigest()
