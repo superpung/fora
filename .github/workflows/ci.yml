@@ -73,7 +73,9 @@ jobs:
           AUDIT_DATA_BASE_URL: ${{ vars.FORA_PREVIEW_DATA_URL }}
           AUDIT_DATA_REVISION: ${{ vars.FORA_PREVIEW_DATA_REVISION }}
           SOURCE_AUDIT_DIR: /tmp/fora-preview-audit
-        run: node tests/conference-audit.mjs
+        run: |
+          node tests/cloudflare-deployment.mjs
+          node tests/conference-audit.mjs
       - name: Preserve deployed preview screenshots
         if: always() && github.head_ref != '' && github.head_ref == vars.FORA_PREVIEW_BRANCH
         uses: actions/upload-artifact@v4
