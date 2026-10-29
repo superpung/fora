@@ -1,8 +1,9 @@
+import { talkAnchor } from "../lib/follow-store";
 import { personKey } from "../lib/person-key";
 import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { useConference } from "../lib/conference-store";
-import { useFollow, talkId } from "../lib/follow-store";
+import { useFollow } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
 import { useCoarsePointer } from "../lib/use-coarse-pointer";
 import { useNow } from "../lib/use-now";
@@ -84,9 +85,9 @@ export default function UntimedForumGrid({
   const [openKey, setOpenKey] = useState<string | null>(null);
   const now = useNow();
 
-  const relevant = (code: string, i: number, t: Talk): boolean =>
+  const relevant = (code: string, _i: number, t: Talk): boolean =>
     isForum(code) ||
-    isTalk(talkId(code, i)) ||
+    isTalk(t.id) ||
     (t.speakers ?? []).some((s) => isSpeaker(personKey(s)));
 
   const entries = (block.forum_entries ?? []).filter((e) => forumsByCode[e.forum_code]);
@@ -271,7 +272,7 @@ export default function UntimedForumGrid({
               {showNow && <div className="tgrid__nowline" style={{ top: nowY }} />}
               {c.cells.map((cell) => {
                 const sp = cell.t.speakers?.[0];
-                const to = `/${confId}/forum/${c.code}#talk-${cell.i + 1}`;
+                const to = `/${confId}/forum/${c.code}#${talkAnchor(cell.t)}`;
                 const key = `${c.key}#${cell.i}`;
                 const open = coarse && openKey === key;
                 const inner = (
@@ -286,7 +287,7 @@ export default function UntimedForumGrid({
                 const style = { top: cell.top, height: cell.h, minHeight: cell.h };
                 // Beside the cell, not inside it — same reason as TimeGrid: the
                 // cell is a link, so the star follows it as a sibling.
-                const followed = isTalk(talkId(c.code, cell.i));
+                const followed = isTalk(cell.t.id);
                 const star = (
                   <span
                     className={`tgrid__tstarwrap ${followed ? "is-on" : ""}`}
@@ -297,7 +298,7 @@ export default function UntimedForumGrid({
                       size={13}
                       className="star--sm tgrid__tstar"
                       label={tr(followed ? "common.talkFollowRemove" : "common.talkFollowAdd")}
-                      onClick={() => toggleTalk(talkId(c.code, cell.i))}
+                      onClick={() => toggleTalk(cell.t.id)}
                     />
                   </span>
                 );

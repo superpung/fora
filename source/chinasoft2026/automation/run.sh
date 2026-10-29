@@ -50,18 +50,14 @@ if [[ $# != 0 ]]; then
   exit 2
 fi
 
-# Inspect the PR before choosing a base. Each run owns its branch and worktree.
-gh api repos/superpung/fora/pulls?state=open\&per_page=100 > "$run_dir/open-prs.json"
-pr_branch="$(uv run --project "$repo_dir" python - "$run_dir/open-prs.json" <<'PY'
-import json, sys
-prs = [p for p in json.load(open(sys.argv[1]))
-       if p['head']['repo']['full_name'] == 'superpung/fora'
-       and 'chinasoft2026' in p['head']['ref']]
-if len(prs) > 1:
-    raise SystemExit('Multiple ChinaSoft PRs are open; report and resolve before choosing a branch.')
-print(prs[0]['head']['ref'] if prs else 'main')
-PY
+# Code comes from main; published curated inputs are restored by the task.
+export FORA_PUBLISH_TOKEN="$(python3 - <<'TOKEN'
+import json
+from pathlib import Path
+print(json.loads(Path('/root/.config/fora/worker-secrets.json').read_text())['PUBLISH_TOKEN'])
+TOKEN
 )"
+pr_branch="main"
 git -C "$repo_dir" fetch origin "$pr_branch"
 base_revision="$(git -C "$repo_dir" rev-parse FETCH_HEAD)"
 printf '%s\n' "$pr_branch" > "$run_dir/base-branch.txt"
@@ -69,7 +65,7 @@ printf '%s\n' "$base_revision" > "$run_dir/base-revision.txt"
 worktree="$run_root/worktrees/$run_id"
 git -C "$repo_dir" worktree add -b "automation/chinasoft2026-$run_id" "$worktree" "$base_revision"
 task_file="$run_dir/task.md"
-cat "$repo_dir/source/chinasoft2026/automation/TASK.md" > "$task_file"
+git -C "$repo_dir" show "$base_revision:source/chinasoft2026/automation/TASK.md" > "$task_file"
 printf '\nRuntime context: base branch `%s`, initial revision `%s`, run directory `%s`.\n' \
   "$pr_branch" "$base_revision" "$run_dir" >> "$task_file"
 
@@ -85,6 +81,6 @@ if [[ $result != 0 ]]; then
   exit "$result"
 fi
 test -s "$run_dir/report.txt"
-printf 'finished; inspect report for import and PR outcome\n' > "$run_dir/status.txt"
+printf 'finished; inspect report for publication outcome\n' > "$run_dir/status.txt"
 ln -sfn "runs/$run_id/report.txt" "$run_root/latest-report.txt"
 printf '%s Finished; report: %s\n' "$(date -Is)" "$run_dir/report.txt" >> "$run_root/scheduler.log"

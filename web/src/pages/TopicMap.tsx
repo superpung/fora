@@ -97,7 +97,7 @@ function TopicTalkRow({ talk }: { talk: TopicTalk }) {
   return (
     <Link
       className="tmaptalk"
-      to={`/${confId}/forum/${talk.forumCode}#talk-${talk.index + 1}`}
+      to={`/${confId}/forum/${talk.forumCode}#${talk.anchor}`}
     >
       <span className="tmaptalk__title">
         {talk.titleTbd ? (

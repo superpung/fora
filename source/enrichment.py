@@ -10,8 +10,8 @@ a map from a STABLE talk id to ``{summary: {zh}, topics: [...]}``. The talk id i
 
     "<forum code>#<0-based index within that forum's talks[]>"
 
-which is exactly the id the web app already uses for a talk
-(see web/src/lib/follow-store.ts `talkId()` and ForumDetail.tsx `#talk-N`).
+The numeric suffix is a permanent allocation from source/identities, not the
+report's current list position. Reordering or inserting reports retains IDs.
 
 The build reads this file (if present) and attaches ALL derived output onto a
 single ``enrichment`` container on each matching talk, kept strictly separate
@@ -26,6 +26,7 @@ against stale indices when an agenda changes. Adapters call apply_enrichment.
 """
 import json
 import pathlib
+from identities import assign_forums
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 TOPICS_FILE = ROOT / "source" / "topics.json"
@@ -53,6 +54,7 @@ def apply_enrichment(forums, path):
     Returns (applied, summaries) counts. Raises on an unknown topic or an
     enrichment key that matches no talk (stale id), keeping the file honest.
     """
+    assign_forums(forums, pathlib.Path(path).parent.name)
     talks_map = load_enrichment(path)
     if not talks_map:
         return 0, 0
@@ -63,7 +65,7 @@ def apply_enrichment(forums, path):
     for f in forums:
         code = f.get("code")
         for i, t in enumerate(f.get("talks", [])):
-            key = f"{code}#{i}"
+            key = t["id"]
             entry = talks_map.get(key)
             if entry is None:
                 continue

@@ -1,0 +1,5501 @@
+{
+  "version": 1,
+  "conference": "ccfchip2026",
+  "baseline": "v0.4.0",
+  "reports": [
+    {
+      "id": "CF37#0",
+      "scope": "CF37",
+      "selectors": [
+        {
+          "title": "从芯片代码生成到智能设计闭环：迈向Agentic EDA的未来",
+          "speakers": [
+            "李华伟"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF37#1",
+      "scope": "CF37",
+      "selectors": [
+        {
+          "title": "Agentic EDA的信任边界：迈向签核级可信的AI原生验证",
+          "speakers": [
+            "徐强"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF37#2",
+      "scope": "CF37",
+      "selectors": [
+        {
+          "title": "AI赋能模拟集成电路设计",
+          "speakers": [
+            "叶佐昌"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF37#3",
+      "scope": "CF37",
+      "selectors": [
+        {
+          "title": "iPCL：芯片版图生成式模型和技术",
+          "speakers": [
+            "李兴权"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF37#4",
+      "scope": "CF37",
+      "selectors": [
+        {
+          "title": "Agentic AI 如何重塑 EDA 工具链",
+          "speakers": [
+            "吴晓忠"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF37#5",
+      "scope": "CF37",
+      "selectors": [
+        {
+          "title": "面向芯片设计的 Agent Memory：技术趋势与应用价值",
+          "speakers": [
+            "李磊"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF37#6",
+      "scope": "CF37",
+      "selectors": [
+        {
+          "title": "FluxEDA：面向真实设计流程的Agent执行底座",
+          "speakers": [
+            "孙奇"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF17#0",
+      "scope": "CF17",
+      "selectors": [
+        {
+          "title": "面向具身智能的高能效视觉定位芯片设计",
+          "speakers": [
+            "周军"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF17#1",
+      "scope": "CF17",
+      "selectors": [
+        {
+          "title": "面向具身智能快速感-算-控闭环的新型计算电路与架构",
+          "speakers": [
+            "贾弘洋"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF17#2",
+      "scope": "CF17",
+      "selectors": [
+        {
+          "title": "高性能人型机器人控制加速器设计",
+          "speakers": [
+            "甘一鸣"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF17#3",
+      "scope": "CF17",
+      "selectors": [
+        {
+          "title": "具身智能专用芯片设计：从感知到决策",
+          "speakers": [
+            "朱浩哲"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF17#4",
+      "scope": "CF17",
+      "selectors": [
+        {
+          "title": "基于混合近存计算的低延迟、可扩展 VLA 具身智能边缘处理器",
+          "speakers": [
+            "林龙扬"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF34#0",
+      "scope": "CF34",
+      "selectors": [
+        {
+          "title": "EMOptimizer®：基于人工智能驱动的射频集成电路设计与优化的全新模块化框架",
+          "speakers": [
+            "王高峰"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF34#1",
+      "scope": "CF34",
+      "selectors": [
+        {
+          "title": "AI驱动的集成电路互连电容提取与预测",
+          "speakers": [
+            "喻文健"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF34#2",
+      "scope": "CF34",
+      "selectors": [
+        {
+          "title": "基于图神经网络的SRAM快速分析方法",
+          "speakers": [
+            "杨帆"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF34#3",
+      "scope": "CF34",
+      "selectors": [
+        {
+          "title": "大规模并行多物理场耦合计算与求解器开发应用",
+          "speakers": [
+            "尹文言"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF34#4",
+      "scope": "CF34",
+      "selectors": [
+        {
+          "title": "芯粒集成硬约束增强神经算子网络热仿真",
+          "speakers": [
+            "徐勤志"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF34#5",
+      "scope": "CF34",
+      "selectors": [
+        {
+          "title": "板级EDA智能化建模及仿真",
+          "speakers": [
+            "陈全"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF34#6",
+      "scope": "CF34",
+      "selectors": [
+        {
+          "title": "Panel特邀嘉宾：从\"计算驱动\"到\"数据驱动\"：大模型重构集成电路仿真范式的机遇与挑战",
+          "speakers": [
+            "沈忱"
+          ],
+          "type": "invited"
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF04#0",
+      "scope": "CF04",
+      "selectors": [
+        {
+          "title": "基于SRAM的高能效浮点存算一体技术",
+          "speakers": [
+            "王幸"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF04#1",
+      "scope": "CF04",
+      "selectors": [
+        {
+          "title": "L-PCN: A Point Cloud Accelerator Exploiting Spatial Locality through Octree-based Islandization",
+          "speakers": [
+            "高一鸣"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF04#2",
+      "scope": "CF04",
+      "selectors": [
+        {
+          "title": "经由大模型生成代码提示增强的CPU微架构设计（LLM Hinted CPU Micro-Architecture）",
+          "speakers": [
+            "徐策羽"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF04#3",
+      "scope": "CF04",
+      "selectors": [
+        {
+          "title": "面向高效全同态硬件加速器的算法-硬件协同设计",
+          "speakers": [
+            "孔亮"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF04#4",
+      "scope": "CF04",
+      "selectors": [
+        {
+          "title": "存储为中心的通用人工智能处理器设计",
+          "speakers": [
+            "燕博南"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF04#5",
+      "scope": "CF04",
+      "selectors": [
+        {
+          "title": "大模型时代的存算集成芯片",
+          "speakers": [
+            "王扬"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF04#6",
+      "scope": "CF04",
+      "selectors": [
+        {
+          "title": "特邀嘉宾",
+          "speakers": [
+            "曾晓洋"
+          ],
+          "type": "invited"
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF20#0",
+      "scope": "CF20",
+      "selectors": [
+        {
+          "title": "AI时代的存算一体与新型存储器技术发展",
+          "speakers": [
+            "张锋"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF20#1",
+      "scope": "CF20",
+      "selectors": [
+        {
+          "title": "面向生理信号检测的异步类脑芯片",
+          "speakers": [
+            "陈虹"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF20#2",
+      "scope": "CF20",
+      "selectors": [
+        {
+          "title": "基于RRAM-逻辑三维堆叠的大模型近存计算架构",
+          "speakers": [
+            "赵亮"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF20#3",
+      "scope": "CF20",
+      "selectors": [
+        {
+          "title": "光电异构芯片架构与系统",
+          "speakers": [
+            "陶耀宇"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF20#4",
+      "scope": "CF20",
+      "selectors": [
+        {
+          "title": "边端存算芯片设计",
+          "speakers": [
+            "司鑫"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF20#5",
+      "scope": "CF20",
+      "selectors": [
+        {
+          "title": "类脑计算领域综述与可编程类脑芯片架构探索",
+          "speakers": [
+            "王蕾"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF03#0",
+      "scope": "CF03",
+      "selectors": [
+        {
+          "title": "面向多智能体与物理AI的软硬件协同设计、优化与挑战",
+          "speakers": [
+            "宋继强"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF03#1",
+      "scope": "CF03",
+      "selectors": [
+        {
+          "title": "面向个人智能体的端侧大模型芯片技术与应用",
+          "speakers": [
+            "余浩"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF03#2",
+      "scope": "CF03",
+      "selectors": [
+        {
+          "title": "高能效存内稀疏架构及软硬件协同设计",
+          "speakers": [
+            "傅玉祥"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF03#3",
+      "scope": "CF03",
+      "selectors": [
+        {
+          "title": "DiTPA：面向具身智能推理的实时动作规划加速器",
+          "speakers": [
+            "涂锋斌"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF03#4",
+      "scope": "CF03",
+      "selectors": [
+        {
+          "title": "人形机器人技术与产品迭代",
+          "speakers": [
+            "高子越"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF03#5",
+      "scope": "CF03",
+      "selectors": [
+        {
+          "title": "普适智能体：从数字空间到物理空间",
+          "speakers": [
+            "张兆翔"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF43#0",
+      "scope": "CF43",
+      "selectors": [
+        {
+          "title": "高密度CMOS存内计算电路与架构",
+          "speakers": [
+            "李学清"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF43#1",
+      "scope": "CF43",
+      "selectors": [
+        {
+          "title": "忆阻器存算一体芯片",
+          "speakers": [
+            "杨玉超"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF43#2",
+      "scope": "CF43",
+      "selectors": [
+        {
+          "title": "高能效跨精度忆阻存算一体技术",
+          "speakers": [
+            "李祎"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF43#3",
+      "scope": "CF43",
+      "selectors": [
+        {
+          "title": "安克存算芯片的模型场景与算法实践",
+          "speakers": [
+            "魏建强"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF28#0",
+      "scope": "CF28",
+      "selectors": [
+        {
+          "title": "致辞",
+          "speakers": [
+            "苏金树"
+          ],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF28#1",
+      "scope": "CF28",
+      "selectors": [
+        {
+          "title": "黎曼流形上的智能计算——以深度学习为例",
+          "speakers": [
+            "吴小俊"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF28#2",
+      "scope": "CF28",
+      "selectors": [
+        {
+          "title": "客户端自适应的联邦学习效率优化技术",
+          "speakers": [
+            "叶保留"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF28#3",
+      "scope": "CF28",
+      "selectors": [
+        {
+          "title": "大模型基础设施AI Infra研究汇报",
+          "speakers": [
+            "田臣"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF28#4",
+      "scope": "CF28",
+      "selectors": [
+        {
+          "title": "HPC+AI for Science的应用与系统",
+          "speakers": [
+            "甘霖"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF28#5",
+      "scope": "CF28",
+      "selectors": [
+        {
+          "title": "讯飞星火大模型国产化创新实践",
+          "speakers": [
+            "许瑞阳"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF40#0",
+      "scope": "CF40",
+      "selectors": [
+        {
+          "title": "新型智算中心可重构光学DORA技术研究",
+          "speakers": [
+            "李锴"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF40#1",
+      "scope": "CF40",
+      "selectors": [
+        {
+          "title": "集成电路多物理场EDA与智能工业软件",
+          "speakers": [
+            "吴语茂"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF40#2",
+      "scope": "CF40",
+      "selectors": [
+        {
+          "title": "光互连赋能算力集群横向与纵向协同扩展",
+          "speakers": [
+            "虞绍良"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF40#3",
+      "scope": "CF40",
+      "selectors": [
+        {
+          "title": "短距光互联VCSEL技术和发展趋势",
+          "speakers": [
+            "韩晓明"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF40#4",
+      "scope": "CF40",
+      "selectors": [
+        {
+          "title": "基于Micro-LED的光互联技术",
+          "speakers": [
+            "陶涛"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF40#5",
+      "scope": "CF40",
+      "selectors": [
+        {
+          "title": "AIGC时代下的芯粒互联趋势与接口技术",
+          "speakers": [
+            "王彧"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF40#6",
+      "scope": "CF40",
+      "selectors": [
+        {
+          "title": "从224G到448G：AI智算时代高速互连的下一道门槛",
+          "speakers": [
+            "苏水金"
+          ],
+          "type": "invited"
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF25#0",
+      "scope": "CF25",
+      "selectors": [
+        {
+          "title": "极简主义范式下DRAM RowHammer安全防御机制探索",
+          "speakers": [
+            "吴非"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF25#1",
+      "scope": "CF25",
+      "selectors": [
+        {
+          "title": "3D世界模型应用的软硬件架构设计",
+          "speakers": [
+            "冯宇"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF25#2",
+      "scope": "CF25",
+      "selectors": [
+        {
+          "title": "智能化时代的开放计算系统与开源芯片",
+          "speakers": [
+            "张科"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF25#3",
+      "scope": "CF25",
+      "selectors": [
+        {
+          "title": "导向自组装光刻技术在集成电路芯片制造中的应用",
+          "speakers": [
+            "李自立"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF25#4",
+      "scope": "CF25",
+      "selectors": [
+        {
+          "title": "高性能碳化硅紫外探测器和其航天应用可靠性研究",
+          "speakers": [
+            "宋立辉"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF25#5",
+      "scope": "CF25",
+      "selectors": [
+        {
+          "title": "Panel：同频共振：芯片产学研如何从\"握手\"走向\"联手\"？",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF47#0",
+      "scope": "CF47",
+      "selectors": [
+        {
+          "title": "特邀致辞",
+          "speakers": [
+            "严晓浪"
+          ],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF47#1",
+      "scope": "CF47",
+      "selectors": [
+        {
+          "title": "特邀致辞",
+          "speakers": [
+            "时龙兴"
+          ],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF47#2",
+      "scope": "CF47",
+      "selectors": [
+        {
+          "title": "重剑无锋，大巧不工——持续突破创新的玄铁系列处理器",
+          "speakers": [
+            "陈晨"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF47#3",
+      "scope": "CF47",
+      "selectors": [
+        {
+          "title": "乘影开源GPGPU软硬件设计",
+          "speakers": [
+            "何虎"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF47#4",
+      "scope": "CF47",
+      "selectors": [
+        {
+          "title": "面向高性能大模型推理的异构存算技术展望",
+          "speakers": [
+            "蔡一茂"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF47#5",
+      "scope": "CF47",
+      "selectors": [
+        {
+          "title": "面向智算应用的先进互连制造与系统集成",
+          "speakers": [
+            "徐炜鸿"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF47#6",
+      "scope": "CF47",
+      "selectors": [
+        {
+          "title": "RISC-V Accelerating the future of intelligent computing",
+          "speakers": [
+            "Nick Brown"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF47#7",
+      "scope": "CF47",
+      "selectors": [
+        {
+          "title": "玄铁高性能矢量扩展",
+          "speakers": [
+            "仇径"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF47#8",
+      "scope": "CF47",
+      "selectors": [
+        {
+          "title": "上海创芯学院-打造中国集成电路设计人才的“黄埔军校”",
+          "speakers": [
+            "周平强"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF01#0",
+      "scope": "CF01",
+      "selectors": [
+        {
+          "title": "（待确认）",
+          "speakers": [
+            "屈钢"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF01#1",
+      "scope": "CF01",
+      "selectors": [
+        {
+          "title": "新型存储芯片硬件安全",
+          "speakers": [
+            "张吉良"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF01#2",
+      "scope": "CF01",
+      "selectors": [
+        {
+          "title": "面向隐私计算的高能效环面全同态加密处理器芯片研究",
+          "speakers": [
+            "韩军"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF01#3",
+      "scope": "CF01",
+      "selectors": [
+        {
+          "title": "面向硬件加速的全同态密码算法优化技术",
+          "speakers": [
+            "汤殿华"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF01#4",
+      "scope": "CF01",
+      "selectors": [
+        {
+          "title": "无结构格硬件加速及在TLS/IPSec的应用研究",
+          "speakers": [
+            "姚富"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF07#0",
+      "scope": "CF07",
+      "selectors": [
+        {
+          "title": "Unlocking the Potential of AI-RAN: A Pathway towards Future Network Intelligence",
+          "speakers": [
+            "苏金树"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF07#1",
+      "scope": "CF07",
+      "selectors": [
+        {
+          "title": "芯片·平台·生态——百度智能云赋能天基算力与芯片产业",
+          "speakers": [
+            "袁佛玉"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF07#2",
+      "scope": "CF07",
+      "selectors": [
+        {
+          "title": "太空计算与算力芯片",
+          "speakers": [
+            "华更新"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF07#3",
+      "scope": "CF07",
+      "selectors": [
+        {
+          "title": "面向太空算力星座的光互连与光计算",
+          "speakers": [
+            "迟楠"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF07#4",
+      "scope": "CF07",
+      "selectors": [
+        {
+          "title": "关于低成本航天元器件的思考",
+          "speakers": [
+            "梁斌"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF07#5",
+      "scope": "CF07",
+      "selectors": [
+        {
+          "title": "商业卫星与宇航芯片双向协同发展",
+          "speakers": [
+            "李峰辉"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF07#6",
+      "scope": "CF07",
+      "selectors": [
+        {
+          "title": "太空计算场景下卫星电源系统需求与技术进展",
+          "speakers": [
+            "黄三玻"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF07#7",
+      "scope": "CF07",
+      "selectors": [
+        {
+          "title": "算启苍穹·智链星河：天基计算时代下的商业航天供应链新生态与元器件保障体系研究",
+          "speakers": [
+            "梅博"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF07#8",
+      "scope": "CF07",
+      "selectors": [
+        {
+          "title": "新型存储器研究进展",
+          "speakers": [
+            "王超"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF07#9",
+      "scope": "CF07",
+      "selectors": [
+        {
+          "title": "Panel特邀嘉宾",
+          "speakers": [
+            "倪家伟"
+          ],
+          "type": "invited"
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF46#0",
+      "scope": "CF46",
+      "selectors": [
+        {
+          "title": "海光CPU+DCU全栈产品体系——从微架构到先进计算平台",
+          "speakers": [
+            "徐俊辉"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF46#1",
+      "scope": "CF46",
+      "selectors": [
+        {
+          "title": "面向边缘计算的片上智能",
+          "speakers": [
+            "焦海龙"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF46#2",
+      "scope": "CF46",
+      "selectors": [
+        {
+          "title": "基于模拟分岔的高能效伊辛机设计",
+          "speakers": [
+            "刘思廷"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF46#3",
+      "scope": "CF46",
+      "selectors": [
+        {
+          "title": "空间光电融合计算集成系统",
+          "speakers": [
+            "乔飞"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF46#4",
+      "scope": "CF46",
+      "selectors": [
+        {
+          "title": "存算芯片设计和自动化",
+          "speakers": [
+            "司鑫"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF46#5",
+      "scope": "CF46",
+      "selectors": [
+        {
+          "title": "组合优化问题求解专用芯片",
+          "speakers": [
+            "尹勋钊"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF13#0",
+      "scope": "CF13",
+      "selectors": [
+        {
+          "title": "新型攻击面：基于可测试性设计的芯片逆向",
+          "speakers": [
+            "崔爱娇"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF13#1",
+      "scope": "CF13",
+      "selectors": [
+        {
+          "title": "DFT设计软件在容错领域中的应用",
+          "speakers": [
+            "钱静洁"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF13#2",
+      "scope": "CF13",
+      "selectors": [
+        {
+          "title": "容错单元的可测试性分析与设计",
+          "speakers": [
+            "徐辉"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF13#3",
+      "scope": "CF13",
+      "selectors": [
+        {
+          "title": "AI系统中的超高速互联：PCIe 6.0与112G以太网物理层一致性测试",
+          "speakers": [
+            "曾志"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF13#4",
+      "scope": "CF13",
+      "selectors": [
+        {
+          "title": "基于深度学习的射频集成电路智能测试方法及应用",
+          "speakers": [
+            "肖寅东"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF13#5",
+      "scope": "CF13",
+      "selectors": [
+        {
+          "title": "芯粒集成测试与可测试性设计",
+          "speakers": [
+            "向东"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF23#0",
+      "scope": "CF23",
+      "selectors": [
+        {
+          "title": "机密Token时代的芯片密码失效威胁",
+          "speakers": [
+            "吕勇强"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF23#1",
+      "scope": "CF23",
+      "selectors": [
+        {
+          "title": "基于PDN的硬件完整性检测研究——从电路板到芯片",
+          "speakers": [
+            "金意儿"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF23#2",
+      "scope": "CF23",
+      "selectors": [
+        {
+          "title": "处理器芯片侧信道攻防与安全架构研究",
+          "speakers": [
+            "张璐"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF23#3",
+      "scope": "CF23",
+      "selectors": [
+        {
+          "title": "机密AI：保护模型、数据和系统安全",
+          "speakers": [
+            "赵路坦"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF23#4",
+      "scope": "CF23",
+      "selectors": [
+        {
+          "title": "大模型推理的芯片安全：侧信道攻击与密态推理技术",
+          "speakers": [
+            "王文浩"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF23#5",
+      "scope": "CF23",
+      "selectors": [
+        {
+          "title": "AI时代，安全优先",
+          "speakers": [
+            "应志伟"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF10#0",
+      "scope": "CF10",
+      "selectors": [
+        {
+          "title": "量子威胁下的安全芯片演进与应用实践",
+          "speakers": [
+            "陈艳"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF10#1",
+      "scope": "CF10",
+      "selectors": [
+        {
+          "title": "量子密钥分发及后量子加密技术在运营商网络中的应用探索",
+          "speakers": [
+            "赵春旭"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF10#2",
+      "scope": "CF10",
+      "selectors": [
+        {
+          "title": "量子技术赋能未来船舶的思考",
+          "speakers": [
+            "李亚平"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF10#3",
+      "scope": "CF10",
+      "selectors": [
+        {
+          "title": "后量子密码迁移关键挑战及应对策略",
+          "speakers": [
+            "陈帅"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF10#4",
+      "scope": "CF10",
+      "selectors": [
+        {
+          "title": "车联网后量子密码场景化应用研究",
+          "speakers": [
+            "巩金亮"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF10#5",
+      "scope": "CF10",
+      "selectors": [
+        {
+          "title": "图灵量子数据全生命周期后量子密码应用",
+          "speakers": [
+            "陈立权"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF44#0",
+      "scope": "CF44",
+      "selectors": [
+        {
+          "title": "射频集成电路智能设计方法学及EDA工具",
+          "speakers": [
+            "王海明"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF44#1",
+      "scope": "CF44",
+      "selectors": [
+        {
+          "title": "射频计算研究新进展——也谈无线感知",
+          "speakers": [
+            "何源"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF44#2",
+      "scope": "CF44",
+      "selectors": [
+        {
+          "title": "WLAN芯片从模拟基带、RFIC到系统互联互通的测试方法与工程实践",
+          "speakers": [
+            "刘力维"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF44#3",
+      "scope": "CF44",
+      "selectors": [
+        {
+          "title": "面向工业运动控制的无线通信技术及芯片",
+          "speakers": [
+            "杨雨沱"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF44#4",
+      "scope": "CF44",
+      "selectors": [
+        {
+          "title": "AI驱动的开源无线短距网络IP开发现状与挑战",
+          "speakers": [
+            "程伟"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF44#5",
+      "scope": "CF44",
+      "selectors": [
+        {
+          "title": "IEEE 802.11标准进展及趋势",
+          "speakers": [
+            "陈玉"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF26#0",
+      "scope": "CF26",
+      "selectors": [
+        {
+          "title": "数据流体系架构的进展与思考",
+          "speakers": [
+            "冷静文"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF26#1",
+      "scope": "CF26",
+      "selectors": [
+        {
+          "title": "从软件优化到“通用”内核设计——一个类脑计算芯片的设计实例",
+          "speakers": [
+            "张悠慧"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF26#2",
+      "scope": "CF26",
+      "selectors": [
+        {
+          "title": "多层融合数据流执行模型及处理器设计",
+          "speakers": [
+            "李文明"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF26#3",
+      "scope": "CF26",
+      "selectors": [
+        {
+          "title": "面向图计算的统一加速器架构",
+          "speakers": [
+            "姚鹏程"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF26#4",
+      "scope": "CF26",
+      "selectors": [
+        {
+          "title": "面向AI时代的端侧推理体系架构的思考与实践",
+          "speakers": [
+            "谢炎"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF26#5",
+      "scope": "CF26",
+      "selectors": [
+        {
+          "title": "物理AI时代的算力基石：数据流架构芯片的突破与展望",
+          "speakers": [
+            "范东睿"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF14#0",
+      "scope": "CF14",
+      "selectors": [
+        {
+          "title": "端侧机密推理",
+          "speakers": [
+            "夏虞斌"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF14#1",
+      "scope": "CF14",
+      "selectors": [
+        {
+          "title": "基于统一硬件架构和灵活算子映射的隐私计算专用加速",
+          "speakers": [
+            "高鸣宇"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF14#2",
+      "scope": "CF14",
+      "selectors": [
+        {
+          "title": "全同态加密自举算法前沿进展",
+          "speakers": [
+            "王安宇"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF14#3",
+      "scope": "CF14",
+      "selectors": [
+        {
+          "title": "全同态加密软硬件协同加速研究",
+          "speakers": [
+            "杨英豪"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF14#4",
+      "scope": "CF14",
+      "selectors": [
+        {
+          "title": "全同态密算芯片：万倍加速突破同态落地鸿沟，可证安全护航数据价值流通",
+          "speakers": [
+            "闫守孟"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF14#5",
+      "scope": "CF14",
+      "selectors": [
+        {
+          "title": "面向机密虚拟机的可信客户机 OS",
+          "speakers": [
+            "田洪亮"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF38#0",
+      "scope": "CF38",
+      "selectors": [
+        {
+          "title": "EDA智能化趋势下的产业实践",
+          "speakers": [
+            "刘晓明"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF38#1",
+      "scope": "CF38",
+      "selectors": [
+        {
+          "title": "三维集成电路物理设计",
+          "speakers": [
+            "余备"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF38#2",
+      "scope": "CF38",
+      "selectors": [
+        {
+          "title": "异构并行加速物理设计技术",
+          "speakers": [
+            "林亦波"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF38#3",
+      "scope": "CF38",
+      "selectors": [
+        {
+          "title": "面向物理设计的图学习基准测试集",
+          "speakers": [
+            "申山"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF38#4",
+      "scope": "CF38",
+      "selectors": [
+        {
+          "title": "面向片上供电网络的EMIR智能分析技术",
+          "speakers": [
+            "翟建旺"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF38#5",
+      "scope": "CF38",
+      "selectors": [
+        {
+          "title": "面向模拟集成电路设计自动化的AI方法研究：从参数优化到布局布线",
+          "speakers": [
+            "贾博文"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF38#6",
+      "scope": "CF38",
+      "selectors": [
+        {
+          "title": "机器学习辅助的数字电路综合",
+          "speakers": [
+            "钱炜慷"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF31#0",
+      "scope": "CF31",
+      "selectors": [
+        {
+          "title": "后摩尔时代高性能通用处理器设计思考与实践",
+          "speakers": [
+            "赵振宇"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF31#1",
+      "scope": "CF31",
+      "selectors": [
+        {
+          "title": "RISC-V：AI时代的指令集生态",
+          "speakers": [
+            "唐丹"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF31#2",
+      "scope": "CF31",
+      "selectors": [
+        {
+          "title": "RISC-V 高性能计算：重构智能体时代的算力底座",
+          "speakers": [
+            "贾昊龚"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF31#3",
+      "scope": "CF31",
+      "selectors": [
+        {
+          "title": "智能体时代的\"芯\"命题：开源RISC-V如何重塑算力底座",
+          "speakers": [
+            "康晓啸"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF31#4",
+      "scope": "CF31",
+      "selectors": [
+        {
+          "title": "芯来科技1000系列 RISC-V 处理器 IP赋能 Agent新时代",
+          "speakers": [
+            "胡振波"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF31#5",
+      "scope": "CF31",
+      "selectors": [
+        {
+          "title": "重构计算与数据移动：面向智能体时代的处理器设计",
+          "speakers": [
+            "何哲陟"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF31#6",
+      "scope": "CF31",
+      "selectors": [
+        {
+          "title": "面向AI工作负载的通用处理器矩阵扩展与系统优化",
+          "speakers": [
+            "王重熙"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF16#0",
+      "scope": "CF16",
+      "selectors": [
+        {
+          "title": "创新体系建设推动产教融合的科技攻关与人才培养",
+          "speakers": [
+            "蔡一茂"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF16#1",
+      "scope": "CF16",
+      "selectors": [
+        {
+          "title": "智能经济时代集成电路学科建设思考",
+          "speakers": [
+            "王源"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF16#2",
+      "scope": "CF16",
+      "selectors": [
+        {
+          "title": "产教融合集成电路创新人才培养的探索与实践",
+          "speakers": [
+            "姜汉钧"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF16#3",
+      "scope": "CF16",
+      "selectors": [
+        {
+          "title": "AI赋能集成电路人才培养体系重构的探索与实践",
+          "speakers": [
+            "刘琦"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF16#4",
+      "scope": "CF16",
+      "selectors": [
+        {
+          "title": "驻入园区 嵌入产业——南邮特色集成电路学院（产教融合学院）建设实践",
+          "speakers": [
+            "靳雷生"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF48#0",
+      "scope": "CF48",
+      "selectors": [
+        {
+          "title": "后摩尔时代：异构集成驱动3D MEMS与3D IC创新发展",
+          "speakers": [
+            "金文超"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF48#1",
+      "scope": "CF48",
+      "selectors": [
+        {
+          "title": "先进封装时代AI赋能端到端3D IC STCO协同设计创新",
+          "speakers": [
+            "赵毅"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF48#2",
+      "scope": "CF48",
+      "selectors": [
+        {
+          "title": "基于2.5D封装的智能体加速芯粒架构与AI辅助设计方法",
+          "speakers": [
+            "贾天宇"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF48#3",
+      "scope": "CF48",
+      "selectors": [
+        {
+          "title": "混合键合工艺原理及前沿进展",
+          "speakers": [
+            "李力一"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF48#4",
+      "scope": "CF48",
+      "selectors": [
+        {
+          "title": "面向先进封装设计的开源测试基准CIT-Bench",
+          "speakers": [
+            "王郁杰"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF48#5",
+      "scope": "CF48",
+      "selectors": [
+        {
+          "title": "2.5D/3D物理设计可微优化研究与设计",
+          "speakers": [
+            "蔡述庭"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF21#0",
+      "scope": "CF21",
+      "selectors": [
+        {
+          "title": "面向智算应用的先进互连制造与系统集成",
+          "speakers": [
+            "王逸群"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF21#1",
+      "scope": "CF21",
+      "selectors": [
+        {
+          "title": "数智化中国芯的探索与实践",
+          "speakers": [
+            "任巨"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF21#2",
+      "scope": "CF21",
+      "selectors": [
+        {
+          "title": "端侧智能体生产力场景下的存算异构芯片探索",
+          "speakers": [
+            "赖梁祯"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF21#3",
+      "scope": "CF21",
+      "selectors": [
+        {
+          "title": "面向智能算力系统的互连芯片设计与验证",
+          "speakers": [
+            "齐星云"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF21#4",
+      "scope": "CF21",
+      "selectors": [
+        {
+          "title": "面向大模型/智能体推理的存算融合与先进互连",
+          "speakers": [
+            "陈迟晓"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF21#5",
+      "scope": "CF21",
+      "selectors": [
+        {
+          "title": "面向国产异构芯片的统一智能计算软件栈",
+          "speakers": [
+            "王豪杰"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF21#6",
+      "scope": "CF21",
+      "selectors": [
+        {
+          "title": "Panel：从单点突破到全局最优：构建下一代智能算力系统的跨尺度协同体系",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF35#0",
+      "scope": "CF35",
+      "selectors": [
+        {
+          "title": "像素级感存算一体芯片技术和应用介绍",
+          "speakers": [
+            "冉亮"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF35#1",
+      "scope": "CF35",
+      "selectors": [
+        {
+          "title": "SOT-MRAM技术探索与产业化进展",
+          "speakers": [
+            "刘宏喜"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF35#2",
+      "scope": "CF35",
+      "selectors": [
+        {
+          "title": "高能效自旋存储设计",
+          "speakers": [
+            "蔡浩"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF35#3",
+      "scope": "CF35",
+      "selectors": [
+        {
+          "title": "提升存内计算系统级能效的设计探索",
+          "speakers": [
+            "岳金山"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF35#4",
+      "scope": "CF35",
+      "selectors": [
+        {
+          "title": "面向大模型的时频域存内计算技术",
+          "speakers": [
+            "苏钰淇"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF33#0",
+      "scope": "CF33",
+      "selectors": [
+        {
+          "title": "面向CXL内存池的可靠性技术研究",
+          "speakers": [
+            "吴晨涛"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF33#1",
+      "scope": "CF33",
+      "selectors": [
+        {
+          "title": "面向人工智能的智能融合存储技术创新",
+          "speakers": [
+            "张在贵"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF33#2",
+      "scope": "CF33",
+      "selectors": [
+        {
+          "title": "探索Scale-Up系统架构的开放硬件平台",
+          "speakers": [
+            "孙广宇"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF33#3",
+      "scope": "CF33",
+      "selectors": [
+        {
+          "title": "从云数据库到 AI 基础设施：内存池化的系统实践",
+          "speakers": [
+            "陈浩"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF33#4",
+      "scope": "CF33",
+      "selectors": [
+        {
+          "title": "网络语义、缓存一致性与分布式共享内存系统设计",
+          "speakers": [
+            "汪庆"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF33#5",
+      "scope": "CF33",
+      "selectors": [
+        {
+          "title": "面向AI超结点的一致性异构计算体系结构研究",
+          "speakers": [
+            "吴利舟"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF33#6",
+      "scope": "CF33",
+      "selectors": [
+        {
+          "title": "Panel: 池化内存在智算浪潮下的应用与挑战",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF02#0",
+      "scope": "CF02",
+      "selectors": [
+        {
+          "title": "存内计算等数据存储、传输、计算安全问题探讨",
+          "speakers": [
+            "李学清"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF02#1",
+      "scope": "CF02",
+      "selectors": [
+        {
+          "title": "基于RISC-V的统一机密计算环境构建",
+          "speakers": [
+            "王鹃"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF02#2",
+      "scope": "CF02",
+      "selectors": [
+        {
+          "title": "面向后量子密码的高效安全硬件架构：从专用加速、侧信道防护到RISC-V协同芯片实现",
+          "speakers": [
+            "蔡述庭"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF02#3",
+      "scope": "CF02",
+      "selectors": [
+        {
+          "title": "基于氧化铪铁电晶体管的可靠边缘端安全应用",
+          "speakers": [
+            "唐克超"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF02#4",
+      "scope": "CF02",
+      "selectors": [
+        {
+          "title": "FHE算术层的一系列优化",
+          "speakers": [
+            "张博"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF18#0",
+      "scope": "CF18",
+      "selectors": [
+        {
+          "title": "星地大小模型协同学习与拆分推理研究",
+          "speakers": [
+            "高跃"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF18#1",
+      "scope": "CF18",
+      "selectors": [
+        {
+          "title": "星上算力发展态势与系统演进",
+          "speakers": [
+            "汪少林"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF18#2",
+      "scope": "CF18",
+      "selectors": [
+        {
+          "title": "空间人工智能工程化关键技术",
+          "speakers": [
+            "禹霁阳"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF18#3",
+      "scope": "CF18",
+      "selectors": [
+        {
+          "title": "天基智能处理技术及应用",
+          "speakers": [
+            "王长杰"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF18#4",
+      "scope": "CF18",
+      "selectors": [
+        {
+          "title": "基于COTS器件的太空算力建设与AI应用服务",
+          "speakers": [
+            "仓基荣"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF45#0",
+      "scope": "CF45",
+      "selectors": [
+        {
+          "title": "亚纳秒闪存器件与应用潜力",
+          "speakers": [
+            "周鹏"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF45#1",
+      "scope": "CF45",
+      "selectors": [
+        {
+          "title": "晶圆级二维半导体材料及后摩尔信息器件",
+          "speakers": [
+            "何军"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF45#2",
+      "scope": "CF45",
+      "selectors": [
+        {
+          "title": "空天红外智能探测",
+          "speakers": [
+            "胡伟达"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF45#3",
+      "scope": "CF45",
+      "selectors": [
+        {
+          "title": "二维半导体材料与集成电路工程化的探索与实践",
+          "speakers": [
+            "张铮"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF45#4",
+      "scope": "CF45",
+      "selectors": [
+        {
+          "title": "后摩尔时代二维晶体管工艺与集成技术",
+          "speakers": [
+            "田禾"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF45#5",
+      "scope": "CF45",
+      "selectors": [
+        {
+          "title": "硅基兼容的二维半导体器件与集成研究",
+          "speakers": [
+            "邱浩"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF29#0",
+      "scope": "CF29",
+      "selectors": [
+        {
+          "title": "致辞",
+          "speakers": [
+            "陈云霁"
+          ],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF29#1",
+      "scope": "CF29",
+      "selectors": [
+        {
+          "title": "学生培养的几点体会",
+          "speakers": [
+            "廖小飞"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF29#2",
+      "scope": "CF29",
+      "selectors": [
+        {
+          "title": "面向大模型推理加速的软硬协同优化研究",
+          "speakers": [
+            "王庆刚"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF29#3",
+      "scope": "CF29",
+      "selectors": [
+        {
+          "title": "大模型推理中的存算协同调度",
+          "speakers": [
+            "陈游旻"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF29#4",
+      "scope": "CF29",
+      "selectors": [
+        {
+          "title": "大模型驱动下推荐系统的新范式探索",
+          "speakers": [
+            "孙庆骁"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF29#5",
+      "scope": "CF29",
+      "selectors": [
+        {
+          "title": "面向大模型的晶圆级智能计算架构设计",
+          "speakers": [
+            "邓金易"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF29#6",
+      "scope": "CF29",
+      "selectors": [
+        {
+          "title": "大模型推理的跨层调度：从集群编排到运行时执行",
+          "speakers": [
+            "崔炜皞"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF24#0",
+      "scope": "CF24",
+      "selectors": [
+        {
+          "title": "Quantum Instruction Set Architecture: The Good, the Bad, and the Future",
+          "speakers": [
+            "陈建鑫"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF24#1",
+      "scope": "CF24",
+      "selectors": [
+        {
+          "title": "Quantum computation with spins in silicon: coherence, integration, and scaling",
+          "speakers": [
+            "薛潇"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF24#2",
+      "scope": "CF24",
+      "selectors": [
+        {
+          "title": "基于指令集大规模量子测控芯片及系统研究",
+          "speakers": [
+            "刘马良"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF24#3",
+      "scope": "CF24",
+      "selectors": [
+        {
+          "title": "基于超导量子器件的量子计算云平台",
+          "speakers": [
+            "王震"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF24#4",
+      "scope": "CF24",
+      "selectors": [
+        {
+          "title": "面向高相干超导量子芯片设计优化：界面损耗高精度仿真",
+          "speakers": [
+            "赵汇海"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF11#0",
+      "scope": "CF11",
+      "selectors": [
+        {
+          "title": "首创三维存算一体3D-CIM™新架构，开启大模型推理万亿新赛道！",
+          "speakers": [
+            "叶乐"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF11#1",
+      "scope": "CF11",
+      "selectors": [
+        {
+          "title": "面向多模态鸟瞰视图(BEV)感知的高能效Transformer芯片",
+          "speakers": [
+            "单伟伟"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF11#2",
+      "scope": "CF11",
+      "selectors": [
+        {
+          "title": "高性能GPU芯片的技术发展",
+          "speakers": [
+            "王爽"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF11#3",
+      "scope": "CF11",
+      "selectors": [
+        {
+          "title": "TileAI：面向大模型与多芯片的高性能编程基础设施",
+          "speakers": [
+            "杨智"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF11#4",
+      "scope": "CF11",
+      "selectors": [
+        {
+          "title": "Agent时代对模型、系统和芯片Co-design的思考",
+          "speakers": [
+            "朱亦博"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF11#5",
+      "scope": "CF11",
+      "selectors": [
+        {
+          "title": "云智数据基座与数据密集型分析应用",
+          "speakers": [
+            "周煊赫"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF11#6",
+      "scope": "CF11",
+      "selectors": [
+        {
+          "title": "Panel：大模型“下半场”，100X能效提升从何而来",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF41#0",
+      "scope": "CF41",
+      "selectors": [
+        {
+          "title": "智能化硬件设计：数据、框架和边界",
+          "speakers": [
+            "胡杏"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF41#1",
+      "scope": "CF41",
+      "selectors": [
+        {
+          "title": "RTLPolit：Skill驱动的多智能体RTL代码迁移系统",
+          "speakers": [
+            "罗国杰"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF41#2",
+      "scope": "CF41",
+      "selectors": [
+        {
+          "title": "智启验证：AI驱动下的芯片验证全流程加速实践",
+          "speakers": [
+            "姚治成"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF41#3",
+      "scope": "CF41",
+      "selectors": [
+        {
+          "title": "面向集成芯片的布局布线工具",
+          "speakers": [
+            "杨帆"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF41#4",
+      "scope": "CF41",
+      "selectors": [
+        {
+          "title": "面向FPGA工程的开源AI Agent Skill",
+          "speakers": [
+            "李鹤"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF41#5",
+      "scope": "CF41",
+      "selectors": [
+        {
+          "title": "CircuitNet3.0开源芯片数据集",
+          "speakers": [
+            "穆嘉楠"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF41#6",
+      "scope": "CF41",
+      "selectors": [
+        {
+          "title": "Panel：EDA开源生态建设之路——当开源遇到智能",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF39#0",
+      "scope": "CF39",
+      "selectors": [
+        {
+          "title": "多智能体驱动的新一代射频EDA仿真设计方法",
+          "speakers": [
+            "温继敏"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF39#1",
+      "scope": "CF39",
+      "selectors": [
+        {
+          "title": "集成芯片封装温度场的高效仿真技术",
+          "speakers": [
+            "唐旻"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF39#2",
+      "scope": "CF39",
+      "selectors": [
+        {
+          "title": "面向数字电路的智能化测试技术",
+          "speakers": [
+            "蔡志匡"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF39#3",
+      "scope": "CF39",
+      "selectors": [
+        {
+          "title": "3D芯粒高效热仿真有限元网格生成与模块化热模型构建",
+          "speakers": [
+            "牛丹"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF39#4",
+      "scope": "CF39",
+      "selectors": [
+        {
+          "title": "数字芯片智能设计的渐进式高层生成与高层验证",
+          "speakers": [
+            "罗国杰"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF05#0",
+      "scope": "CF05",
+      "selectors": [
+        {
+          "title": "AI辅助的处理器建模与评估",
+          "speakers": [
+            "王颖"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF05#1",
+      "scope": "CF05",
+      "selectors": [
+        {
+          "title": "大模型时代的数字芯片设计与验证",
+          "speakers": [
+            "王翕"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF05#2",
+      "scope": "CF05",
+      "selectors": [
+        {
+          "title": "FluxEDA：面向真实设计流程的Agent执行底座",
+          "speakers": [
+            "孙奇"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF05#3",
+      "scope": "CF05",
+      "selectors": [
+        {
+          "title": "芯片设计智能体的工程实践与范式展望",
+          "speakers": [
+            "沈钲"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF05#4",
+      "scope": "CF05",
+      "selectors": [
+        {
+          "title": "Chips Z：2.5D/3D AI EDA+ 开启先进封装STCO系统协同新时代",
+          "speakers": [
+            "赵毅"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF05#5",
+      "scope": "CF05",
+      "selectors": [
+        {
+          "title": "前端验证工具与LLM协同加速设计验证",
+          "speakers": [
+            "高波"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF05#6",
+      "scope": "CF05",
+      "selectors": [
+        {
+          "title": "AI赋能EDA的新态势",
+          "speakers": [
+            "杨祖声"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF09#0",
+      "scope": "CF09",
+      "selectors": [
+        {
+          "title": "用光电融合打破AI互连墙",
+          "speakers": [
+            "须江"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF09#1",
+      "scope": "CF09",
+      "selectors": [
+        {
+          "title": "后摩尔时代电子器件与集成",
+          "speakers": [
+            "周鹏"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF09#2",
+      "scope": "CF09",
+      "selectors": [
+        {
+          "title": "首创三维存算一体3D-CIM™新架构，开启大模型推理万亿新赛道！",
+          "speakers": [
+            "叶乐"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF09#3",
+      "scope": "CF09",
+      "selectors": [
+        {
+          "title": "面向图像生成的专用硬件加速器设计",
+          "speakers": [
+            "林军"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF09#4",
+      "scope": "CF09",
+      "selectors": [
+        {
+          "title": "大规模网络系统高性能仿真",
+          "speakers": [
+            "高凯辉"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF09#5",
+      "scope": "CF09",
+      "selectors": [
+        {
+          "title": "从DRAM存算一体到下一代智算系统：工具链视角的探索与思考",
+          "speakers": [
+            "朱振华"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF08#0",
+      "scope": "CF08",
+      "selectors": [
+        {
+          "title": "面向大模型训练的高效容错软件",
+          "speakers": [
+            "舒继武"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF08#1",
+      "scope": "CF08",
+      "selectors": [
+        {
+          "title": "AI驱动的先进集成芯片全生命周期测试与管理",
+          "speakers": [
+            "苏菲"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF08#2",
+      "scope": "CF08",
+      "selectors": [
+        {
+          "title": "智能芯片可靠性跨层次分析与优化",
+          "speakers": [
+            "李萌"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF08#3",
+      "scope": "CF08",
+      "selectors": [
+        {
+          "title": "面向AI的高性能处理器可靠性分析与优化",
+          "speakers": [
+            "谭婧炜佳"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF08#4",
+      "scope": "CF08",
+      "selectors": [
+        {
+          "title": "面向AI芯片的可靠性评估、监控和优化技术研究",
+          "speakers": [
+            "任鹏鹏"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF32#0",
+      "scope": "CF32",
+      "selectors": [
+        {
+          "title": "面向AI计算芯片设计的高层次综合",
+          "speakers": [
+            "吴昌"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF32#1",
+      "scope": "CF32",
+      "selectors": [
+        {
+          "title": "基于强化学习与Skill技术的全自动芯片设计与算子生成",
+          "speakers": [
+            "朱帅"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF32#2",
+      "scope": "CF32",
+      "selectors": [
+        {
+          "title": "经由大模型生成代码提示增强的CPU微架构设计",
+          "speakers": [
+            "徐策羽"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF32#3",
+      "scope": "CF32",
+      "selectors": [
+        {
+          "title": "Make Each Error Count：CPU的高可靠架构与智能验证",
+          "speakers": [
+            "江哲"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF32#4",
+      "scope": "CF32",
+      "selectors": [
+        {
+          "title": "软硬协同驱动下的AI加速器模拟平台与架构探索",
+          "speakers": [
+            "王钲荣"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF32#5",
+      "scope": "CF32",
+      "selectors": [
+        {
+          "title": "基于大模型的硬件代码生成与优化",
+          "speakers": [
+            "黄迪"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF32#6",
+      "scope": "CF32",
+      "selectors": [
+        {
+          "title": "Panel：面向处理器与系统设计，AI 是在增强专家，还是在替代专家？",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF22#0",
+      "scope": "CF22",
+      "selectors": [
+        {
+          "title": "面向AI算力集群的超高密度光互连",
+          "speakers": [
+            "王斌浩"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF22#1",
+      "scope": "CF22",
+      "selectors": [
+        {
+          "title": "集成光计算芯片及架构",
+          "speakers": [
+            "郭旭晗"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF22#2",
+      "scope": "CF22",
+      "selectors": [
+        {
+          "title": "先进封装技术赋能AI时代光电融合互联",
+          "speakers": [
+            "薛海韵"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF22#3",
+      "scope": "CF22",
+      "selectors": [
+        {
+          "title": "面向1.6T光通信的高速串口发射机和驱动级电路技术创新",
+          "speakers": [
+            "贾海昆"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF22#4",
+      "scope": "CF22",
+      "selectors": [
+        {
+          "title": "光电融合集成互连芯片与系统架构",
+          "speakers": [
+            "祁楠"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF30#0",
+      "scope": "CF30",
+      "selectors": [
+        {
+          "title": "高效安全的Transformer隐私推理",
+          "speakers": [
+            "李萌"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF30#1",
+      "scope": "CF30",
+      "selectors": [
+        {
+          "title": "面向GPGPU的跨方案全同态加密算法编译方法",
+          "speakers": [
+            "边松"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF30#2",
+      "scope": "CF30",
+      "selectors": [
+        {
+          "title": "面向 GPU 的全同态加密程序开发与优化框架",
+          "speakers": [
+            "纪卓然"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF30#3",
+      "scope": "CF30",
+      "selectors": [
+        {
+          "title": "面向FPGA的高效可扩展NTT硬件架构及其自动设计框架",
+          "speakers": [
+            "诸怡兰"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF30#4",
+      "scope": "CF30",
+      "selectors": [
+        {
+          "title": "FHEFusion：在FHE编译器中实现算子融合优化DNN推理",
+          "speakers": [
+            "隋天祥"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF30#5",
+      "scope": "CF30",
+      "selectors": [
+        {
+          "title": "面向全同态加密的层次化GPU内存优化加速框架",
+          "speakers": [
+            "范广"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF27#0",
+      "scope": "CF27",
+      "selectors": [
+        {
+          "title": "软硬件协同的高可靠高性能 RAID 控制器技术",
+          "speakers": [
+            "舒继武"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF27#1",
+      "scope": "CF27",
+      "selectors": [
+        {
+          "title": "存算一体技术进展与产业化落地",
+          "speakers": [
+            "薛晓勇"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF27#2",
+      "scope": "CF27",
+      "selectors": [
+        {
+          "title": "晶圆级计算芯片可靠性探索",
+          "speakers": [
+            "王颖"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF27#3",
+      "scope": "CF27",
+      "selectors": [
+        {
+          "title": "面向大模型推理系统的可靠性编码技术研究",
+          "speakers": [
+            "胡燏翀"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF27#4",
+      "scope": "CF27",
+      "selectors": [
+        {
+          "title": "面向显存受限设备的 MoE 模型内存协同调度方案",
+          "speakers": [
+            "王小航"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF27#5",
+      "scope": "CF27",
+      "selectors": [
+        {
+          "title": "DisCoGC：字节跳动分布式存储系统中基于 Discard 的垃圾回收设计与实践",
+          "speakers": [
+            "张立强"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF19#0",
+      "scope": "CF19",
+      "selectors": [
+        {
+          "title": "面向无线生物医疗系统的低功耗射频收发机芯片研究",
+          "speakers": [
+            "王科平"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF19#1",
+      "scope": "CF19",
+      "selectors": [
+        {
+          "title": "硅基超声技术：从可穿戴成像到超声脑机接口的产业跨越",
+          "speakers": [
+            "陈超"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF19#2",
+      "scope": "CF19",
+      "selectors": [
+        {
+          "title": "毫米级智能医疗机器人芯片与系统设计",
+          "speakers": [
+            "刘清坤"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF19#3",
+      "scope": "CF19",
+      "selectors": [
+        {
+          "title": "面向闭环脑机接口的跨患者癫痫检测芯片设计",
+          "speakers": [
+            "李嘉敏"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF19#4",
+      "scope": "CF19",
+      "selectors": [
+        {
+          "title": "针对无创脑机接口应用的高性能脑电采集芯片关键技术研究",
+          "speakers": [
+            "祁亮"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF42#0",
+      "scope": "CF42",
+      "selectors": [
+        {
+          "title": "从约束求解到EDA形式化验证",
+          "speakers": [
+            "蔡少伟"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF42#1",
+      "scope": "CF42",
+      "selectors": [
+        {
+          "title": "硬件安全脆弱性建模与形式化验证研究",
+          "speakers": [
+            "胡伟"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF42#2",
+      "scope": "CF42",
+      "selectors": [
+        {
+          "title": "Galaxsim Turbo 3.0 Plus面向算法设计的验证加速",
+          "speakers": [
+            "葛健达"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF42#3",
+      "scope": "CF42",
+      "selectors": [
+        {
+          "title": "关于硬件模型检查技术近期的一些研究与探索",
+          "speakers": [
+            "李建文"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF42#4",
+      "scope": "CF42",
+      "selectors": [
+        {
+          "title": "工业级C2RTL高价等价验证",
+          "speakers": [
+            "袁军"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF42#5",
+      "scope": "CF42",
+      "selectors": [
+        {
+          "title": "从精确建模到启发式近似：静态验证中的形式化辅助算法",
+          "speakers": [
+            "李英梦"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF12#0",
+      "scope": "CF12",
+      "selectors": [
+        {
+          "title": "超导条带光子探测器及其应用",
+          "speakers": [
+            "尤立星"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF12#1",
+      "scope": "CF12",
+      "selectors": [
+        {
+          "title": "面向高能效神经计算的磁通量子超导芯片关键技术研究",
+          "speakers": [
+            "任洁"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF12#2",
+      "scope": "CF12",
+      "selectors": [
+        {
+          "title": "面向超导芯片测试的极低磁场低温系统与跨温区互联系统技术",
+          "speakers": [
+            "李建国"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF12#3",
+      "scope": "CF12",
+      "selectors": [
+        {
+          "title": "RSFQ电路中考虑长度匹配约束的布线算法研究",
+          "speakers": [
+            "刘耿耿"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF12#4",
+      "scope": "CF12",
+      "selectors": [
+        {
+          "title": "面向高能效计算的超导SFQ电路设计自动化方法研究",
+          "speakers": [
+            "付荣亮"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF12#5",
+      "scope": "CF12",
+      "selectors": [
+        {
+          "title": "面向超导量子处理器的毫开尔文数字模拟转换器：集成式低温偏置控制技术进展",
+          "speakers": [
+            "李宗元"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF36#0",
+      "scope": "CF36",
+      "selectors": [
+        {
+          "title": "面向容错量子计算的算法设计与编译优化",
+          "speakers": [
+            "王鑫"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF36#1",
+      "scope": "CF36",
+      "selectors": [
+        {
+          "title": "QLLVM：HPC-QC协同编程编译框架",
+          "speakers": [
+            "许瑾晨"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF36#2",
+      "scope": "CF36",
+      "selectors": [
+        {
+          "title": "大规模量子计算软硬件协同设计研究",
+          "speakers": [
+            "吴安邦"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF36#3",
+      "scope": "CF36",
+      "selectors": [
+        {
+          "title": "量子系统智能算法设计与应用探索",
+          "speakers": [
+            "唐叶辉"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF36#4",
+      "scope": "CF36",
+      "selectors": [
+        {
+          "title": "未知态辅助量子比特：从安全使用到资源优化",
+          "speakers": [
+            "周立"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF06#0",
+      "scope": "CF06",
+      "selectors": [
+        {
+          "title": "跨层协同近似计算：从应用容错性到 τ-scaling",
+          "speakers": [
+            "卓成"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF06#1",
+      "scope": "CF06",
+      "selectors": [
+        {
+          "title": "面向人工智能的近似计算芯片：从误差容忍算法到存算融合架构",
+          "speakers": [
+            "李涛"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF06#2",
+      "scope": "CF06",
+      "selectors": [
+        {
+          "title": "Flash存内计算技术",
+          "speakers": [
+            "刘国柱"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF06#3",
+      "scope": "CF06",
+      "selectors": [
+        {
+          "title": "高能效近似计算：从极低功耗语音芯片到大算力三维集成系统设计",
+          "speakers": [
+            "刘波"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF06#4",
+      "scope": "CF06",
+      "selectors": [
+        {
+          "title": "高能效近似计算设计与设计方法",
+          "speakers": [
+            "龚宇"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF15#0",
+      "scope": "CF15",
+      "selectors": [
+        {
+          "title": "从PFA到OFA：密码芯片持久性故障分析进展",
+          "speakers": [
+            "张帆"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF15#1",
+      "scope": "CF15",
+      "selectors": [
+        {
+          "title": "神经网络算法单粒子敏感性评估和容错设计",
+          "speakers": [
+            "池雅庆"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF15#2",
+      "scope": "CF15",
+      "selectors": [
+        {
+          "title": "面向极端环境的安全存算芯片：PUF安全机制与存内计算的高可靠协同设计",
+          "speakers": [
+            "陈卓俊"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF15#3",
+      "scope": "CF15",
+      "selectors": [
+        {
+          "title": "集成电路抗辐射设计与智能诊断技术",
+          "speakers": [
+            "王新胜"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF15#4",
+      "scope": "CF15",
+      "selectors": [
+        {
+          "title": "磁存储器的辐射效应实验分析与防护",
+          "speakers": [
+            "王碧"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "CF15#5",
+      "scope": "CF15",
+      "selectors": [
+        {
+          "title": "聚焦功耗侧信道泄漏的RISC-V扩展指令集设计",
+          "speakers": [
+            "程皓"
+          ],
+          "type": null
+        }
+      ],
+      "context": {
+        "date": "2026-07-20",
+        "start": null,
+        "end": null
+      }
+    },
+    {
+      "id": "KEYNOTE:2026-07-18#0",
+      "scope": "KEYNOTE",
+      "selectors": [
+        {
+          "title": "开幕式",
+          "speakers": [],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": "08:30",
+        "end": "09:00"
+      }
+    },
+    {
+      "id": "KEYNOTE:2026-07-18#1",
+      "scope": "KEYNOTE",
+      "selectors": [
+        {
+          "title": "射频异质异构集成技术",
+          "speakers": [
+            "毛军发"
+          ],
+          "type": "keynote"
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": "09:00",
+        "end": "09:40"
+      }
+    },
+    {
+      "id": "KEYNOTE:2026-07-18#2",
+      "scope": "KEYNOTE",
+      "selectors": [
+        {
+          "title": "感算一体智能感知芯片与应用",
+          "speakers": [
+            "曾晓洋"
+          ],
+          "type": "keynote"
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": "09:40",
+        "end": "10:15"
+      }
+    },
+    {
+      "id": "KEYNOTE:2026-07-18#3",
+      "scope": "KEYNOTE",
+      "selectors": [
+        {
+          "title": "反直觉的太空超算和大算力太空芯片设计",
+          "speakers": [
+            "韩银和"
+          ],
+          "type": "keynote"
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": "10:35",
+        "end": "11:10"
+      }
+    },
+    {
+      "id": "KEYNOTE:2026-07-18#4",
+      "scope": "KEYNOTE",
+      "selectors": [
+        {
+          "title": "面向大语言模型的存内计算",
+          "speakers": [
+            "王绍迪"
+          ],
+          "type": "keynote"
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": "11:10",
+        "end": "11:30"
+      }
+    },
+    {
+      "id": "KEYNOTE:2026-07-18#5",
+      "scope": "KEYNOTE",
+      "selectors": [
+        {
+          "title": "全同态密算芯片：万倍加速突破同态落地鸿沟，可证安全护航数据价值流通",
+          "speakers": [
+            "闫守孟"
+          ],
+          "type": "keynote"
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": "11:30",
+        "end": "11:45"
+      }
+    },
+    {
+      "id": "KEYNOTE:2026-07-18#6",
+      "scope": "KEYNOTE",
+      "selectors": [
+        {
+          "title": "智算时代AI芯片发展及先进封装技术演进",
+          "speakers": [
+            "杨道虹"
+          ],
+          "type": "keynote"
+        }
+      ],
+      "context": {
+        "date": "2026-07-18",
+        "start": "11:45",
+        "end": "12:00"
+      }
+    },
+    {
+      "id": "KEYNOTE:2026-07-19#0",
+      "scope": "KEYNOTE",
+      "selectors": [
+        {
+          "title": "毫米波与太赫兹芯片研究进展",
+          "speakers": [
+            "洪伟"
+          ],
+          "type": "keynote"
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": "08:30",
+        "end": "09:10"
+      }
+    },
+    {
+      "id": "KEYNOTE:2026-07-19#1",
+      "scope": "KEYNOTE",
+      "selectors": [
+        {
+          "title": "基于大失配外延的氮化物宽禁带半导体材料和芯片",
+          "speakers": [
+            "沈波"
+          ],
+          "type": "keynote"
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": "09:10",
+        "end": "09:50"
+      }
+    },
+    {
+      "id": "KEYNOTE:2026-07-19#2",
+      "scope": "KEYNOTE",
+      "selectors": [
+        {
+          "title": "太空算力驱动下集成电路需求与发展",
+          "speakers": [
+            "赵元富"
+          ],
+          "type": "keynote"
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": "09:50",
+        "end": "10:25"
+      }
+    },
+    {
+      "id": "KEYNOTE:2026-07-19#3",
+      "scope": "KEYNOTE",
+      "selectors": [
+        {
+          "title": "从人工智能到处理器芯片",
+          "speakers": [
+            "陈云霁"
+          ],
+          "type": "keynote"
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": "10:45",
+        "end": "11:20"
+      }
+    },
+    {
+      "id": "KEYNOTE:2026-07-19#4",
+      "scope": "KEYNOTE",
+      "selectors": [
+        {
+          "title": "二维半导体异构集成芯片",
+          "speakers": [
+            "王欣然"
+          ],
+          "type": "keynote"
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": "11:20",
+        "end": "11:55"
+      }
+    },
+    {
+      "id": "KEYNOTE:2026-07-19#5",
+      "scope": "KEYNOTE",
+      "selectors": [
+        {
+          "title": "Chips Z：2.5D/3D AI EDA+ 开启先进封装STCO系统协同新时代",
+          "speakers": [
+            "赵毅"
+          ],
+          "type": "keynote"
+        }
+      ],
+      "context": {
+        "date": "2026-07-19",
+        "start": "11:55",
+        "end": "12:10"
+      }
+    }
+  ]
+}

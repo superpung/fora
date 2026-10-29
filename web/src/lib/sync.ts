@@ -1,11 +1,5 @@
-// GitHub-login + Gist sync of the user's follows, powered by @repus/gist-sync.
-//
-// Follows are per-conference (localStorage keys `${confId}:followed.{forums,
-// speakers,talks}`), but sync uses ONE gist per user covering every conference.
-// We flatten all follows into a single string set — each entry is a JSON triple
-// `["${confId}","${type}","${value}"]` — so the engine's `stringSet` three-way
-// merge reconciles adds/removes across devices without knowing our shape.
-import type { Bundle, GistSyncConfig, Schema } from "@repus/gist-sync";
+// Serialize the current local agenda for the authenticated sync API.
+import type { SyncBundle as Bundle } from "./sync-model";
 import { PREF_KEYS, REMINDER_PREFS_UPDATED } from "./reminder-store";
 import { AI_PREF_KEY, AI_PREFS_UPDATED } from "./ai-store";
 
@@ -21,21 +15,6 @@ const PREF_EVENTS: Readonly<Record<string, string>> = {
   [AI_PREF_KEY]: AI_PREFS_UPDATED,
 };
 const PREF_KEY_LIST: readonly string[] = Object.keys(PREF_EVENTS);
-
-export const syncConfig: GistSyncConfig = {
-  clientId: (import.meta.env.VITE_GH_CLIENT_ID as string | undefined) ?? "",
-  brokerPath: "/.netlify/functions/github-oauth",
-  gistFilename: "fora-follows.json",
-  appMarker: "fora",
-};
-
-export const syncSchema: Schema = {
-  follows: { kind: "stringSet" },
-  // Site-wide preferences (reminder enabled/lead/day-start). scalarMap: a
-  // per-key three-way merge; empty values are dropped, so booleans are stored as
-  // "1"/"0" (never "") to keep an explicit "off" syncable.
-  prefs: { kind: "scalarMap" },
-};
 
 /** Event fired after a pull writes follows back to localStorage, so a mounted
  *  FollowProvider can reload its in-memory sets. */

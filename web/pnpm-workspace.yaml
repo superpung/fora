@@ -1,7 +1,4 @@
-# Keep the "minimum release age" supply-chain gate for third-party packages,
-# but don't block on our OWN freshly-published @repus/gist-sync releases (we own
-# and publish that package, so the age gate adds no safety for it). Under
-# --frozen-lockfile the exclude list is only honored when strict mode is off.
-minimumReleaseAgeStrict: false
-minimumReleaseAgeExclude:
-  - '@repus/gist-sync'
+# Native toolchain installers required by Wrangler local development.
+allowBuilds:
+  esbuild: true
+  workerd: true

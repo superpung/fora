@@ -1,35 +1,34 @@
-import { StrictMode } from "react";
+import { StrictMode, Suspense } from "react";
+import { DataBoundary, DataReady } from "./components/DataBoundary";
+import PageLoader from "./components/PageLoader";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import "./styles/global.css";
 import "./styles/app.css";
-import { GistSyncProvider } from "@repus/gist-sync/react";
+import { SyncProvider } from "./lib/sync-provider";
 import { ThemeProvider } from "./lib/theme";
 import { I18nProvider } from "./lib/i18n";
 import { ReminderProvider } from "./lib/reminder";
 import { AiProvider } from "./lib/ai";
-import { syncConfig, syncSchema, serialize, apply } from "./lib/sync";
 import App from "./App";
 
 // Follows are per-conference, so FollowProvider is mounted inside the conference
-// layout (ConferenceLayout). Theme and GitHub-login/Gist-sync are site-wide, so
-// they live here. GistSyncProvider syncs all conferences' follows via one gist.
+// layout (ConferenceLayout). Theme, login and D1 sync are site-wide.
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <ThemeProvider>
         <I18nProvider>
-          <GistSyncProvider config={syncConfig} schema={syncSchema} serialize={serialize} apply={apply}>
-            {/* Reminder prefs live here (site-wide) and sync via the same gist;
-                inside GistSyncProvider so pref changes can markLocalChange(). */}
+          <DataBoundary><Suspense fallback={<PageLoader />}><DataReady>
+          <SyncProvider>
+            {/* Preference providers notify the shared sync provider. */}
             <ReminderProvider>
-              {/* Site-wide "show AI-generated content" switch — also synced via
-                  the same gist, so the choice follows the user across devices. */}
               <AiProvider>
                 <App />
               </AiProvider>
             </ReminderProvider>
-          </GistSyncProvider>
+          </SyncProvider>
+          </DataReady></Suspense></DataBoundary>
         </I18nProvider>
       </ThemeProvider>
     </BrowserRouter>

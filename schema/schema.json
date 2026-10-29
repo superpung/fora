@@ -290,7 +290,9 @@
     "talk": {
       "description": "A single talk. Used for keynotes (timed) and forum talks (usually untimed).",
       "type": "object",
+      "required": ["id"],
       "properties": {
+        "id": { "type": "string", "minLength": 1, "description": "Persistent report identity, retained across source edits and reordering; never a current array index." },
         "day_date": { "type": ["string", "null"], "format": "date" },
         "order": { "type": ["integer", "null"] },
         "title": { "$ref": "#/$defs/i18n" },

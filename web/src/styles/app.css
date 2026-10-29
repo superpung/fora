@@ -1163,7 +1163,7 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 .nav__home { display: inline-flex; margin-right: -6px; flex: 0 0 auto; transition: opacity 0.15s ease; }
 .nav__home:hover { opacity: 0.75; }
 
-/* account menu (GitHub login + gist sync) */
+/* account menu (GitHub login + D1 sync) */
 .acct { position: relative; display: inline-flex; }
 .acct-btn {
   width: 34px; height: 34px; padding: 0; border-radius: 50%; cursor: pointer;

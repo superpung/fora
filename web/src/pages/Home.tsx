@@ -1,10 +1,11 @@
+import { talkAnchor } from "../lib/follow-store";
 import { personKey } from "../lib/person-key";
 import { useMemo, useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { formatDate, type ScheduleDay, type ForumSlot } from "../lib/data";
 import { useConference } from "../lib/conference-store";
-import { useFollow, talkId, keynoteId } from "../lib/follow-store";
+import { useFollow } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
 import { useStickyState } from "../lib/sticky-state";
 import { useHScroll } from "../lib/hscroll";
@@ -208,7 +209,7 @@ function KeynoteRow({
   t,
   date,
   now,
-  index,
+  index: _index,
   filtered,
   shown = true,
   activeSpeaker,
@@ -228,7 +229,7 @@ function KeynoteRow({
   const { t: tr } = useI18n();
   const speakers = t.speakers ?? [];
   const isOpening = t.type === "opening" || speakers.length === 0;
-  const id = keynoteId(date, index);
+  const id = t.id;
   const followed = isTalk(id);
   // In the "我的关注" view a followed-relevant keynote is tinted; a keynote merely
   // revealed from a collapsed run stays muted so the followed ones keep salience.
@@ -310,7 +311,7 @@ function ForumRow({
   // timeline uses. A talk merely revealed from a collapsed run isn't "shown".
   const showAll = isForum(slot.code);
   const talkMatches = (t: Talk, i: number) =>
-    isTalk(talkId(slot.code, canonicalIndex(i))) || (t.speakers ?? []).some((s) => isSpeaker(personKey(s)));
+    isTalk(talks[i].id) || (t.speakers ?? []).some((s) => isSpeaker(personKey(s)));
   const isShown = (i: number) => showAll || !filtered || talkMatches(talks[i], i);
   const matchCount = filtered && !showAll ? talks.filter(talkMatches).length : 0;
   // Chair-only follow: the forum surfaced solely because a followed person chairs
@@ -436,7 +437,7 @@ function ForumRow({
               note={chairOnly ? tr("home.chairNote", { name: followedHere.join("、") }) : undefined}
               renderItem={(i, shown) => {
               const t = talks[i];
-              const tFollowed = isTalk(talkId(slot.code, canonicalIndex(i)));
+              const tFollowed = isTalk(talks[i].id);
               const spHit =
                 activeSpeaker != null &&
                 (t.speakers ?? []).some((s) => s.name === activeSpeaker);
@@ -450,7 +451,7 @@ function ForumRow({
                   }`}
                   key={i}
                 >
-                  <Link to={`/${confId}/forum/${slot.code}#talk-${canonicalIndex(i) + 1}`} className="ftalk__link">
+                  <Link to={`/${confId}/forum/${slot.code}#${talkAnchor(t)}`} className="ftalk__link">
                     <span className="ftalk__no">{String(canonicalIndex(i) + 1).padStart(2, "0")}</span>
                     <span className="ftalk__main">
                       {t.start && (
@@ -487,7 +488,7 @@ function ForumRow({
                   </Link>
                   <StarButton
                     active={tFollowed}
-                    onClick={() => toggleTalk(talkId(slot.code, canonicalIndex(i)))}
+                    onClick={() => toggleTalk(talks[i].id)}
                     label={tFollowed ? tr("common.talkFollowRemove") : tr("common.talkFollowAdd")}
                     className="ftalk__star"
                   />
@@ -524,7 +525,7 @@ function DaySection({
   // followed — the same rule forum talks use.
   const keyShown = (i: number) =>
     !filtered ||
-    isTalk(keynoteId(day.date, i)) ||
+    isTalk(day.keynotes[i].id) ||
     (day.keynotes[i].speakers ?? []).some((s) => isSpeaker(personKey(s)));
   // In the follow view, auto-open the keynote rail if one of its keynotes is
   // followed, so the highlighted keynote is actually visible.
@@ -624,7 +625,7 @@ function DaySection({
 /* ---------------- dashboard ---------------- */
 
 export default function Home() {
-  const { id: confId, conference, getForum, scheduleDays: datedDays, unscheduledForums, stats, uniqueSpeakerCount } = useConference();
+  const { id: confId, conference, scheduleDays: datedDays, unscheduledForums, stats, uniqueSpeakerCount } = useConference();
   const scheduleDays = useMemo(() => unscheduledForums.length ? [...datedDays, {
     date: "", md: "", weekday: "", venue: "", keynotes: [], slots: unscheduledForums,
   }] : datedDays, [datedDays, unscheduledForums]);
@@ -685,7 +686,7 @@ export default function Home() {
               followedForums.has(s.code) ||
               (s.forum?.chairs ?? []).some((p) => isSpeaker(personKey(p))) ||
               (s.forum?.talks ?? []).some((t) => (t.speakers ?? []).some((p) => isSpeaker(personKey(p)))) ||
-              (s.forum?.talks ?? []).some((t) => isTalk(talkId(s.code, (getForum(s.code)?.talks ?? []).indexOf(t))));
+              (s.forum?.talks ?? []).some((t) => isTalk(t.id));
             if (!tracked) return false;
           }
           return true;
@@ -696,12 +697,12 @@ export default function Home() {
         const keynoteHit =
           onlyFollowed &&
           !categoryFilter &&
-          d.keynotes.some((kt, i) => {
+          d.keynotes.some((kt) => {
             if (speakerFilter && !(kt.speakers ?? []).some((s) => s.name === speakerFilter))
               return false;
             if (q && !keynoteSearch(kt).includes(q)) return false;
             return (
-              isTalk(keynoteId(d.date, i)) ||
+              isTalk(kt.id) ||
               (kt.speakers ?? []).some((s) => isSpeaker(personKey(s)))
             );
           });
@@ -710,7 +711,7 @@ export default function Home() {
       .filter((x) => x.slots.length > 0 || x.keynoteHit);
     // isSpeaker / isTalk are re-created whenever the followed sets change, so
     // depending on them is enough — the raw sets are redundant here.
-  }, [scheduleDays, dayFilter, q, onlyFollowed, categoryFilter, speakerFilter, followedForums, isSpeaker, isTalk, getForum]);
+  }, [scheduleDays, dayFilter, q, onlyFollowed, categoryFilter, speakerFilter, followedForums, isSpeaker, isTalk]);
 
   const totalShown = new Set(visibleDays.flatMap((x) => x.slots.map((s) => s.code))).size;
   const { md: startMd } = formatDate(conference.start_date, lang);
