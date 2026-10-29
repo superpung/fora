@@ -27,6 +27,8 @@ jobs:
         run: uv run python -m unittest discover -s source -p 'test_identities.py'
       - name: Publication request safety
         run: uv run python -m unittest discover -s source -p 'test_publish_data.py'
+      - name: OAuth preflight classification
+        run: uv run python -m unittest discover -s cloudflare -p 'test_oauth.py'
       - name: Local source history
         run: uv run python -m unittest discover -s source/chinasoft2026 -p 'test_check_updates.py'
       - name: Rebuild dataset and assert it is in sync
