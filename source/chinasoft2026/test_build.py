@@ -344,7 +344,7 @@ class ProgrammeTests(unittest.TestCase):
                     self.assertTrue(talk["abstract"])
                 self.assertFalse(talk.get("flags"))
         self.assertNotIn("E7", forums)
-        self.assertEqual(forums["E1"]["talks"][3]["extra"]["speaker_raw"], "张颖")
+        self.assertEqual([person["name"] for person in forums["E1"]["talks"][3]["speakers"]], ["张颖"])
         self.assertFalse(forums["E3"]["talks"][1].get("flags"))
         self.assertEqual(forums["E6"]["start"], "14:10")
         self.assertEqual(forums["E5"]["day_date"], "2026-11-06")
