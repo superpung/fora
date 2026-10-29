@@ -3,9 +3,6 @@
 
 Outputs:
   - data/<id>.json                       canonical dataset
-  - web/src/data/conferences/<id>.json   the web app's copy (kept identical)
-  - web/src/data/manifest.json           lightweight index of all conferences,
-                                         regenerated from every conference file
 
 Data sources:
   - Overview-level info (conference metadata / chair-panel keynotes / 48 forums ->
@@ -333,21 +330,11 @@ if epoch:
         .isoformat(timespec="seconds"))
 
 payload_out = json.dumps(conf, ensure_ascii=False, indent=2)
-# Single source of truth: write the canonical dataset AND the copy the web app
-# imports, so the two can never drift. The web app hosts several conferences, so
-# its copy lives under conferences/<id>.json (keyed by conference id).
+# The build entry point generates the shared catalog after all adapters finish.
 out = ROOT / "data" / f"{conf['id']}.json"
-web_dir = ROOT / "web" / "src" / "data" / "conferences"
-web_dir.mkdir(parents=True, exist_ok=True)
-web_out = web_dir / f"{conf['id']}.json"
-for p in (out, web_out):
-    p.write_text(payload_out)
-    print("wrote", p)
+out.write_text(payload_out)
+print("wrote", out)
 
-# Refresh the web app's conference manifest (shared, conference-agnostic step).
-from build_manifest import build_manifest, MANIFEST
-_entries = build_manifest()
-print("wrote", MANIFEST, f"({len(_entries)} conferences)")
 print("committees:", len(conf["committees"]),
       "| persons:", sum(len(c["members"]) for c in conf["committees"]))
 print("organizations:", len(conf["organizations"]))

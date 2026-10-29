@@ -10,7 +10,6 @@ import os
 from pathlib import Path
 import subprocess
 import sys
-import tarfile
 import time
 import urllib.error
 import urllib.request
@@ -42,11 +41,11 @@ def request(base, path, token, method="GET", body=None, content_type="applicatio
         time.sleep(attempt + 1)
 
 
-def upload(base, token, kind, key, path):
+def upload(base, token, key, path):
     body = path.read_bytes()
     digest = hashlib.sha256(body).hexdigest()
-    content_type = "application/json" if path.suffix == ".json" else "image/webp" if path.suffix == ".webp" else "application/gzip"
-    request(base, f"{kind}/{key}", token, "PUT", body, content_type, digest)
+    content_type = "application/json" if path.suffix == ".json" else "image/webp"
+    request(base, f"objects/{key}", token, "PUT", body, content_type, digest)
     return digest
 
 
@@ -59,60 +58,6 @@ def is_source_input(path):
         (path.as_posix().startswith("data/forums_detail/") and path.suffix == ".json") or \
         (path.as_posix().startswith("web/public/portraits/") and path.suffix == ".webp") or \
         path == Path("data/CHINASOFT2026_GAPS.md")
-
-
-def source_files():
-    """Archive curated inputs, never executable code or unbounded check history."""
-    for path in (ROOT / "source").rglob("*"):
-        if path.is_file() and is_source_input(path.relative_to(ROOT)):
-            yield path
-    yield from (ROOT / "data/forums_detail").glob("*.json")
-    yield from (ROOT / "web/public/portraits").rglob("*.webp")
-    yield ROOT / "data/CHINASOFT2026_GAPS.md"
-
-
-def archive_sources():
-    OUTPUT.mkdir(exist_ok=True)
-    target = OUTPUT / "source.tar.gz"
-    with tarfile.open(target, "w:gz") as archive:
-        for path in sorted(set(source_files())):
-            archive.add(path, arcname=path.relative_to(ROOT), recursive=False)
-    return target
-
-
-def restore_sources(base, token):
-    current = json.loads(request(base, "catalog", token)[0])
-    if not current["catalog"]:
-        raise ValueError("No published source archive")
-    key = current["catalog"]["source_archive"]
-    blob = request(base, "archives/" + key, token)[0]
-    if hashlib.sha256(blob).hexdigest() != Path(key).name.removesuffix(".tar.gz"):
-        raise ValueError("Source archive checksum mismatch")
-    OUTPUT.mkdir(exist_ok=True)
-    target = OUTPUT / "restored-source.tar.gz"
-    target.write_bytes(blob)
-    extract_sources(target)
-    print("Restored the published curated inputs; code was not restored")
-
-
-def extract_sources(target):
-    """Validate the whole archive before replacing the curated input file set."""
-    with tarfile.open(target) as archive:
-        restored = set()
-        for member in archive.getmembers():
-            path = Path(member.name)
-            allowed = is_source_input(path)
-            if not allowed or not member.isfile() or path.is_absolute() or ".." in path.parts:
-                raise ValueError(f"Unexpected source archive member: {member.name}")
-            if (ROOT / path).resolve() != ROOT / path or path in restored:
-                raise ValueError(f"Unsafe or duplicate source archive member: {member.name}")
-            restored.add(path)
-        if not restored:
-            raise ValueError("Empty source archive")
-        archive.extractall(ROOT, filter="data")
-        for path in set(source_files()):
-            if path.is_file() and path.relative_to(ROOT) not in restored:
-                path.unlink()
 
 
 def stage(base, token, summary):
@@ -134,27 +79,24 @@ def stage(base, token, summary):
     for entry in catalog["conferences"]:
         before = old.get(entry["id"], {})
         entry["updated_at"] = before["updated_at"] if before.get("sha256") == entry["sha256"] else now[:10]
-    archive = archive_sources()
-    archive_key = "sources/" + hashlib.sha256(archive.read_bytes()).hexdigest() + ".tar.gz"
-    upload(base, token, "archives", archive_key, archive)
     objects = []
     for entry in catalog["conferences"]:
         objects.append((entry["path"], OUTPUT / "public" / entry["path"]))
     objects.extend((p.relative_to(OUTPUT / "public").as_posix(), p) for p in (OUTPUT / "public/portraits").rglob("*.webp"))
     with ThreadPoolExecutor(max_workers=6) as pool:
-        futures = [pool.submit(upload, base, token, "objects", *item) for item in objects]
+        futures = [pool.submit(upload, base, token, *item) for item in objects]
         for count, future in enumerate(as_completed(futures), 1):
             future.result()
             if count % 50 == 0 or count == len(objects):
                 print(f"Uploaded {count}/{len(objects)} public objects", flush=True)
-    catalog.update(released_at=now, source_archive=archive_key,
+    catalog.update(released_at=now,
                    code_revision=revision,
                    summary=summary)
     payload = json.dumps(catalog, ensure_ascii=False, sort_keys=True).encode()
     digest = hashlib.sha256(payload).hexdigest()
     path = OUTPUT / f"{digest}.json"
     path.write_bytes(payload)
-    upload(base, token, "objects", f"releases/{digest}.json", path)
+    upload(base, token, f"releases/{digest}.json", path)
     staged = {"manifest_hash": digest, "expected_etag": previous["etag"],
               "preview_url": base.rstrip("/") + "/?dataVersion=" + digest, "summary": summary}
     (OUTPUT / "staged.json").write_text(json.dumps(staged, indent=2) + "\n")
@@ -163,16 +105,14 @@ def stage(base, token, summary):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=["stage", "promote", "restore"])
+    parser.add_argument("command", choices=["stage", "promote"])
     parser.add_argument("--base", required=True)
     parser.add_argument("--summary", default="")
     args = parser.parse_args()
     token = os.environ.get("FORA_PUBLISH_TOKEN")
     if not token:
         raise ValueError("FORA_PUBLISH_TOKEN is required")
-    if args.command == "restore":
-        restore_sources(args.base, token)
-    elif args.command == "stage":
+    if args.command == "stage":
         if not args.summary:
             raise ValueError("A concrete release summary is required")
         stage(args.base, token, args.summary)

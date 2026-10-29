@@ -825,10 +825,9 @@ def build():
     }
 
     payload = json.dumps(conf, ensure_ascii=False, indent=2)
-    for p in (ROOT / "data" / "chinasoft2025.json",
-              ROOT / "web" / "src" / "data" / "conferences" / "chinasoft2025.json"):
-        p.write_text(payload)
-        print("wrote", p)
+    output = ROOT / "data" / "chinasoft2025.json"
+    output.write_text(payload)
+    print("wrote", output)
 
     flagged = [f for f in forums if f.get("flags")]
     print(f"\nforums: {len(forums)}  |  per category: {diag}")

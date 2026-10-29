@@ -9,6 +9,7 @@ import io
 import json
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import sys
 import tarfile
@@ -251,7 +252,49 @@ def check(root):
         raise
 
 
+def record_check(root):
+    """Keep changed snapshots and a small local log of every check attempt."""
+    root.mkdir(parents=True, exist_ok=True)
+    previous = previous_snapshot(root)
+    before = set(root.iterdir())
+    error = None
+    try:
+        directory = check(root)
+    except Exception as caught:
+        error = caught
+        created = [p for p in set(root.iterdir()) - before if p.is_dir()]
+        if len(created) != 1:
+            raise
+        directory = created[0]
+    manifest = json.loads((directory / "manifest.json").read_text())
+    report_path = directory / "report.json"
+    report = json.loads(report_path.read_text()) if report_path.exists() else {}
+    snapshot = directory
+    unchanged = not error and previous and all(
+        not any(compare(previous[2].get(kind, {}), manifest.get(kind, {}))[key]
+                for key in ("added", "removed", "changed"))
+        for kind in ("pages", "portraits", "withdrawn_pages"))
+    if unchanged:
+        snapshot = previous[1]
+    record = {"checked_at": manifest["started_at"], "status": manifest["status"],
+              "snapshot": snapshot.name, "changed": not bool(unchanged)}
+    if error:
+        record["error"] = str(error)
+    dump(root / "latest-report.json", report)
+    dump(root / "latest.json", record)
+    with (root / "history.jsonl").open("a", encoding="utf-8") as output:
+        output.write(json.dumps(record, ensure_ascii=False) + "\n")
+    if unchanged:
+        # Only discard the duplicate produced by this invocation, never old evidence.
+        shutil.rmtree(directory)
+    print(json.dumps(record, ensure_ascii=False))
+    if error:
+        raise error
+    return snapshot
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=HERE / "checks")
-    check(parser.parse_args().output)
+    parser.add_argument("--output", type=Path,
+                        default=HERE.parent.parent / ".automation/chinasoft2026/checks")
+    record_check(parser.parse_args().output)

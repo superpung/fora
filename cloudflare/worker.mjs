@@ -78,6 +78,7 @@ async function callback(request, env) {
     .bind(crypto.randomUUID(), String(identity.id), identity.login, identity.name ?? null, identity.avatar_url ?? null).first();
   const sessionToken = random();
   await env.DB.batch([
+    env.DB.prepare('DELETE FROM sessions WHERE expires_at <= ?').bind(Math.floor(Date.now() / 1000)),
     env.DB.prepare('INSERT OR IGNORE INTO sync_state (user_id) VALUES (?)').bind(user.id),
     env.DB.prepare('INSERT INTO sessions (token_hash, user_id, expires_at) VALUES (?, ?, ?)')
       .bind(await hash(sessionToken), user.id, Math.floor(Date.now() / 1000) + SESSION_SECONDS),
@@ -145,15 +146,5 @@ export default {
       if (!error.status) console.error('Request failed', error.name, error.message);
       return json({ error: error.status ? error.message : 'Service unavailable' }, error.status ?? 503);
     }
-  },
-  async scheduled(_event, env) {
-    await env.DB.prepare('DELETE FROM sessions WHERE expires_at <= ?').bind(Math.floor(Date.now() / 1000)).run();
-    if (!env.MAINTENANCE_TOKEN) throw Error('Maintenance dispatch token is not configured');
-    const response = await fetch('https://api.github.com/repos/superpung/fora/actions/workflows/data-maintenance.yml/dispatches', {
-      method: 'POST', headers: { Authorization: `Bearer ${env.MAINTENANCE_TOKEN}`, 'User-Agent': 'Fora',
-        Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ref: 'main' }),
-    });
-    if (!response.ok) throw Error(`Maintenance dispatch failed: ${response.status}`);
   },
 };

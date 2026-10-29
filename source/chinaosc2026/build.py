@@ -1202,10 +1202,9 @@ def build():
     }
 
     payload = json.dumps(conf, ensure_ascii=False, indent=2)
-    for p in (ROOT / "data" / f"{CONF_ID}.json",
-              ROOT / "web" / "src" / "data" / "conferences" / f"{CONF_ID}.json"):
-        p.write_text(payload)
-        print("wrote", p)
+    output = ROOT / "data" / f"{CONF_ID}.json"
+    output.write_text(payload)
+    print("wrote", output)
 
     flagged = [f for f in forums if f.get("flags")]
     print(f"\nforums: {len(forums)}  |  days: {[d['date'] for d in days]}")
