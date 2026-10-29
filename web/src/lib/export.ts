@@ -4,7 +4,7 @@ import { personKey, resolveSpeakerKeys } from "./person-key";
 // calendar / spreadsheet / markdown. A forum talk has no time of its own, so we
 // fall back to its forum block's window; the location is the full venue name
 // joined with the room (e.g. "无锡国际会议中心 205A").
-import { speakerNames, type ConferenceViews } from "./data";
+import { forumOnDate, talkDate, speakerNames, type ConferenceViews } from "./data";
 import { isKeynoteId } from "./follow-store";
 import type { Forum, Talk } from "../types";
 import { titleLine } from "./talk-title";
@@ -83,7 +83,7 @@ function forumTalkItem(
   viaName?: string,
 ): ExportItem {
   const t = (forum.talks ?? [])[i];
-  const win = views.forumTimeWindow(forum);
+  const win = views.forumTimeWindow(forum, t);
   const room = roomOnly(views.mainVenueName, forum.room);
   return {
     uid: `${forum.code}-${i}`,
@@ -92,7 +92,7 @@ function forumTalkItem(
     session: forum.title.zh,
     code: forum.code,
     talkIndex: i,
-    date: forum.day_date ?? "",
+    date: talkDate(forum, t) ?? "",
     start: t.start ?? win.start ?? null,
     end: t.end ?? win.end ?? null,
     approx: !t.start,
@@ -158,15 +158,19 @@ export function collectFollowedItems(f: FollowSnapshot, views: ConferenceViews):
   });
   f.forums.forEach((code) => {
     const forum = views.getForum(code);
-    if (forum && !forum.talks?.length && forum.day_date) {
-      const win = views.forumTimeWindow(forum);
-      const room = roomOnly(views.mainVenueName, forum.room);
-      map.set(`forum:${code}`, {
-        uid: `forum-${code}`, title: forum.title.zh, speakers: "", session: forum.title.zh,
-        code, date: forum.day_date, start: win.start, end: win.end, approx: false,
-        location: fullLocation(views.mainVenueName, room), room,
-        followId: code, via: "forum", viaName: forum.title.zh,
-      });
+    if (forum && !forum.talks?.length) {
+      const dates = forum.sessions?.map((s) => s.date) ?? (forum.day_date ? [forum.day_date] : []);
+      for (const date of dates) {
+        const win = views.forumTimeWindow(forumOnDate(forum, date));
+        const room = roomOnly(views.mainVenueName, forum.room);
+        const suffix = forum.sessions?.length ? `-${date}` : "";
+        map.set(`forum:${code}${suffix}`, {
+          uid: `forum-${code}${suffix}`, title: forum.title.zh, speakers: "", session: forum.title.zh,
+          code, date, start: win.start, end: win.end, approx: false,
+          location: fullLocation(views.mainVenueName, room), room,
+          followId: code, via: "forum", viaName: forum.title.zh,
+        });
+      }
     }
     (forum?.talks ?? []).forEach(
       (_, i) => forum && putForum(forum, i, "forum", forum.title.zh),

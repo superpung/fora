@@ -3,7 +3,7 @@ import { personKey } from "../lib/person-key";
 import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useParams, Link, useLocation, useNavigate } from "react-router-dom";
-import { formatDate } from "../lib/data";
+import { formatDate, talkDate } from "../lib/data";
 import { useConference } from "../lib/conference-store";
 import { useFollow, talkId } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
@@ -294,6 +294,11 @@ export default function ForumDetail() {
   }
 
   const dateInfo = forum.day_date ? formatDate(forum.day_date, lang) : null;
+  const sessions = forum.sessions ?? [];
+  const sessionLabel = (date: string, start?: string | null, end?: string | null) => {
+    const info = formatDate(date, lang);
+    return `${info.md} ${info.weekday}${start ? ` · ${start}${end ? `–${end}` : ""}` : ""}`;
+  };
   // When any talk carries a start time, render the talks on a vertical time rail;
   // otherwise fall back to the numbered card list (untimed forums / conferences).
   const timed = (forum.talks ?? []).some((t) => t.start);
@@ -313,12 +318,12 @@ export default function ForumDetail() {
   // talk in each track (start ≤ now < end, end inferred from the next talk when
   // absent) and mark its rail segment + node dot red.
   const nowTalks = new Set<number>();
-  if (timed && forum.day_date === todayStr) {
+  if (timed) {
     const lists = tracks
       ? tracks.map((tk) => tk.talks)
       : [(forum.talks ?? []).map((t, i) => ({ t, i }))];
     for (const list of lists) {
-      const items = list.filter((x) => x.t.start);
+      const items = list.filter((x) => x.t.start && talkDate(forum, x.t) === todayStr);
       for (let j = 0; j < items.length; j++) {
         const s = toMin(items[j].t.start!);
         const end = items[j].t.end
@@ -346,6 +351,8 @@ export default function ForumDetail() {
   function openForumPoster() {
     const f = forum!;
     const metaLines: PosterMeta[] = [];
+    for (const session of sessions) metaLines.push({ icon: "calendar",
+      text: sessionLabel(session.date, session.start, session.end) });
     if (dateInfo)
       metaLines.push({
         icon: "calendar",
@@ -359,7 +366,8 @@ export default function ForumDetail() {
     const talks = (f.talks ?? []).map((t, i) => ({
       index: i + 1,
       title: titleLine(t, tr("forum.titleTbd")).text,
-      time: t.start ? `${t.start}${t.end ? `–${t.end}` : ""}` : null,
+      time: t.day_date ? sessionLabel(t.day_date, t.start, t.end)
+        : t.start ? `${t.start}${t.end ? `–${t.end}` : ""}` : null,
       speakers: (t.speakers ?? []).map((s) => ({ name: s.name, aff: s.affiliation_raw })),
     }));
     setPoster({
@@ -386,6 +394,8 @@ export default function ForumDetail() {
   // Build a single report's share poster (title + speakers + full abstract).
   function openTalkPoster(t: Talk, i: number) {
     const f = forum!;
+    const date = talkDate(f, t);
+    const dateInfo = date ? formatDate(date, lang) : null;
     const time = t.start ? `${t.start}${t.end ? `–${t.end}` : ""}` : "";
     const when = [dateInfo ? `${dateInfo.md} ${dateInfo.weekday}` : "", time]
       .filter(Boolean)
@@ -619,6 +629,8 @@ export default function ForumDetail() {
               {forum.start ? ` · ${forum.start}${forum.end ? `–${forum.end}` : ""}` : forum.session_period && ` · ${tr(`period.${forum.session_period}`)}`}
             </span>
           )}
+          {sessions.map((s) => <span key={s.date}><Icon name="calendar" size={13} />
+            {sessionLabel(s.date, s.start, s.end)}</span>)}
           {forum.sponsor && (
             <span className="fd__sponsor">
               <Icon name="building" size={13} /> {tr("forum.sponsorSession", { sponsor: forum.sponsor })}
@@ -651,7 +663,18 @@ export default function ForumDetail() {
             {tr("forum.talks")} <span className="fd__seccount">{forum.talks.length}</span>
           </h2>
           {showAiNote && <AiNote className="fd__ainote" />}
-          {tracks ? (
+          {sessions.length ? sessions.map((session) => (
+            <div className="fd__track" key={session.date} data-date={session.date}>
+              <h3 className="fd__trackhead"><Icon name="calendar" size={14} />
+                {sessionLabel(session.date, session.start, session.end)}</h3>
+              <motion.div className={timed ? "tline" : "tallist"}
+                variants={stagger(0.04, 0.05)} initial={activeId ? false : "initial"} animate="animate">
+                {renderProgramme((forum.talks ?? []).map((t, i) => ({ t, i }))
+                  .filter(({ t }) => talkDate(forum, t) === session.date),
+                  (forum.breaks ?? []).filter((b) => b.day_date === session.date))}
+              </motion.div>
+            </div>
+          )) : tracks ? (
             tracks.map((track, k) => (
               <div className="fd__track" key={k}>
                 <div className="fd__trackhead">
@@ -677,7 +700,7 @@ export default function ForumDetail() {
               initial={activeId ? false : "initial"}
               animate="animate"
             >
-              {renderProgramme(forum.talks.map((t, i) => ({ t, i })), forum.breaks)}
+              {renderProgramme((forum.talks ?? []).map((t, i) => ({ t, i })), forum.breaks)}
             </motion.div>
           )}
         </section>
