@@ -84,7 +84,7 @@ function PickRow({
             // there. Keynotes carry no anchor, so they stay plain text.
             <Link
               to={`/${confId}/forum/${pick.code}${
-                pick.talkIndex != null ? `#talk-${pick.talkIndex + 1}` : ""
+                pick.talkIndex != null ? `#${pick.anchor}` : ""
               }`}
             >
               {pick.title}
@@ -219,7 +219,7 @@ export default function Plan() {
   function starAll() {
     if (selected.size === 0) return;
     // Straight into the existing follow store, so the plan joins the user's
-    // starred set — synced to their Gist, and read by My Day and reminders.
+    // starred set — synced to their account, and read by My Day and reminders.
     importFollows({ forums: [], speakers: [], talks: [...selected] });
     setStarred(selected.size);
   }

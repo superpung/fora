@@ -1,0 +1,26 @@
+{
+  "$schema": "../web/node_modules/wrangler/config-schema.json",
+  "name": "fora",
+  "account_id": "efdf4a505a7f4ca9be62bee7957c7e19",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-07-30",
+  "workers_dev": true,
+  "preview_urls": true,
+  "assets": {
+    "directory": "../web/dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*", "/"]
+  },
+  "vars": { "PUBLIC_ORIGIN": "https://fora.repus.me" },
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "fora-users",
+    "database_id": "ab53652d-031c-4307-b219-39488724eada",
+    "migrations_dir": "migrations"
+  }],
+  "r2_buckets": [
+    { "binding": "DATA", "bucket_name": "fora-public" },
+    { "binding": "ARCHIVE", "bucket_name": "fora-private" }
+  ]
+}

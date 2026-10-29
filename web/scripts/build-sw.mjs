@@ -3,17 +3,15 @@
 // plugin to stay compatible with.
 //
 // Strategy: precache the app shell (HTML, CSS, code chunks, icons, manifest) so
-// the app loads and runs offline after one visit; the per-conference datasets
-// (emitted under assets/data/ — see vite.config.ts) are runtime-cached on first
-// visit instead, so a new conference works offline once it has been opened online
-// and the precache doesn't grow with every conference added.
+// the app loads offline after one visit. The data loader caches validated,
+// immutable JSON separately; the shell never embeds a conference release.
 import { generateSW } from "workbox-build";
 
 const { count, size, warnings } = await generateSW({
   globDirectory: "dist",
   globPatterns: ["**/*.{html,css,js,svg,png,ico,webmanifest,woff2}"],
   // Conference datasets are runtime-cached, not precached (see below).
-  globIgnores: ["assets/data/**", "portraits/**", "sw.js", "workbox-*.js"],
+  globIgnores: ["data/**", "portraits/**", "sw.js", "workbox-*.js"],
   swDest: "dist/sw.js",
   clientsClaim: true,
   skipWaiting: true,
@@ -22,29 +20,19 @@ const { count, size, warnings } = await generateSW({
   // so pre-session reminders — including TimestampTrigger ones that fire while
   // the app is closed — focus/open the app when tapped. See src/lib/reminder.tsx.
   importScripts: ["/reminder-sw.js"],
-  // SPA fallback: serve the app shell for in-app navigations. Never intercept the
-  // Netlify OAuth broker (or any /api route) — login must always hit the network.
+  // OAuth callbacks arrive at the root and must reach the Worker, even when
+  // this service worker already controls the page.
   navigateFallback: "/index.html",
-  navigateFallbackDenylist: [/^\/\.netlify\//, /^\/api\//],
+  navigateFallbackDenylist: [/^\/api\//, /^\/\?(?:.*&)?(?:code|state|error)=/],
   runtimeCaching: [
     {
       // Content-addressed portraits are cached as viewed, never downloaded for
       // unrelated conferences when the app shell first installs.
-      urlPattern: ({ url, sameOrigin }) => sameOrigin && url.pathname.startsWith("/portraits/"),
+      urlPattern: ({ url }) => url.pathname.includes("/portraits/"),
       handler: "CacheFirst",
       options: {
         cacheName: "fora-portraits",
         expiration: { maxEntries: 400, maxAgeSeconds: 60 * 60 * 24 * 90 },
-      },
-    },
-    {
-      // per-conference datasets: fetched on first (online) visit, then served
-      // from cache offline; revalidated in the background when online.
-      urlPattern: ({ url }) => url.pathname.startsWith("/assets/data/"),
-      handler: "StaleWhileRevalidate",
-      options: {
-        cacheName: "fora-conf-data",
-        expiration: { maxEntries: 40, maxAgeSeconds: 60 * 60 * 24 * 90 },
       },
     },
   ],

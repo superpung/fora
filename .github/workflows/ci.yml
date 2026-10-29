@@ -23,6 +23,10 @@ jobs:
         run: uv sync --dev
       - name: Validate against schema
         run: uv run python source/validate.py
+      - name: Stable report identities
+        run: uv run python -m unittest discover -s source -p 'test_identities.py'
+      - name: Source publication safety
+        run: uv run python -m unittest discover -s source -p 'test_publish_data.py'
       - name: Rebuild dataset and assert it is in sync
         # build_all.py discovers every conference builder (source/<id>/build.py)
         # and rebuilds it, then the manifest. Deliberately NOT a list of
@@ -60,3 +64,5 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm build
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:cloudflare

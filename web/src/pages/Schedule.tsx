@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
 import { formatDate } from "../lib/data";
 import { useConference } from "../lib/conference-store";
-import { useFollow, keynoteId } from "../lib/follow-store";
+import { useFollow } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
 import { useStickyState } from "../lib/sticky-state";
 import { useSavedState, oneOf } from "../lib/saved-state";
@@ -70,7 +70,7 @@ function KeynotesBlock({
       star id counts across the whole day, not within one block */
   base?: number;
   /** in the follow view, the rows to keep; breaks are context, so they go */
-  keep?: (index: number, talk: Talk) => boolean;
+  keep?: (_index: number, talk: Talk) => boolean;
 }) {
   const { t } = useI18n();
   const { isTalk, toggleTalk } = useFollow();
@@ -128,15 +128,15 @@ function KeynotesBlock({
                 star — the same rule the home page's keynote list follows. */}
             {row.talk.type !== "opening" && (row.talk.speakers ?? []).length > 0 && (
               <StarButton
-                active={isTalk(keynoteId(date, base + row.i))}
+                active={isTalk(row.talk.id)}
                 size={15}
                 className="star--sm talkrow__star"
                 label={t(
-                  isTalk(keynoteId(date, base + row.i))
+                  isTalk(row.talk.id)
                     ? "common.talkFollowRemove"
                     : "common.talkFollowAdd",
                 )}
-                onClick={() => toggleTalk(keynoteId(date, base + row.i))}
+                onClick={() => toggleTalk(row.talk.id)}
               />
             )}
           </motion.div>
@@ -288,8 +288,8 @@ export default function Schedule() {
   // A keynote is followed-relevant when starred or one of its speakers is —
   // the same rule the forum board and My Day use. Its id counts keynote talks
   // across the whole day, so each block starts where the previous one ended.
-  const keynoteFollowed = (index: number, talk: Talk) =>
-    isTalk(keynoteId(day.date, index)) ||
+  const keynoteFollowed = (_index: number, talk: Talk) =>
+    isTalk(talk.id) ||
     (talk.speakers ?? []).some((s) => isSpeaker(personKey(s)));
   const keynoteBase = new Map<Block, number>();
   let keynoteSeen = 0;

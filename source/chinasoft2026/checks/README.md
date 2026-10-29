@@ -7,8 +7,9 @@ uv run python source/chinasoft2026/check_updates.py
 ```
 
 Each UTC timestamp directory is an independent observation, not an upstream
-publication date. Keep these artifacts in version control with the checker.
-Daily host maintenance runs at 18:00 Asia/Shanghai; see [automation](../automation/README.md).
+publication date. Existing committed artifacts remain historical evidence. New
+daily observations are stored in private R2 by `source/check_published.py`,
+dispatched at 18:00 Asia/Shanghai; see [automation](../automation/README.md).
 `--output PATH` selects a different history root.
 
 - `html.tar.gz`: exact response bytes of active HTML pages and directly checked

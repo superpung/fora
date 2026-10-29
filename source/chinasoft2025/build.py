@@ -490,6 +490,11 @@ def parse_forum(cat, tid, html):
                     if info.get("abstract") and not t["abstract"]:
                         t["abstract"] = info["abstract"]
                         t["abstract_status"] = "confirmed"
+            # Retain the published table heading to distinguish identical rows
+            # in parallel programmes without treating their positions as IDs.
+            heading = tbl.find_previous("h4")
+            if heading:
+                t.setdefault("extra", {})["source_section"] = clean(heading.get_text())
             talks.append(t)
 
     if not tables:

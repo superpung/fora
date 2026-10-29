@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import { useGistSync } from "@repus/gist-sync/react";
+import { useSync } from "./sync-store";
 import {
   AiCtx,
   AI_PREFS_UPDATED,
@@ -9,15 +9,15 @@ import {
 } from "./ai-store";
 
 // Provider for the site-wide "show AI-generated content" switch. Mounted inside
-// GistSyncProvider so a change can markLocalChange() and push to the Gist —
+// SyncProvider so a change can markLocalChange() and push to the sync service —
 // same shape as ReminderProvider.
 
 export function AiProvider({ children }: { children: ReactNode }) {
   const [enabled, setEnabledState] = useState<boolean>(loadAiEnabled);
 
   // Persist and, after the first (mount) run, tell the sync engine so the change
-  // pushes to the Gist. Mirrors reminder.tsx / follow.tsx.
-  const { markLocalChange } = useGistSync();
+  // pushes to the sync service. Mirrors reminder.tsx / follow.tsx.
+  const { markLocalChange } = useSync();
   const markRef = useRef(markLocalChange);
   markRef.current = markLocalChange;
   const firstRun = useRef(true);

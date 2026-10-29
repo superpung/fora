@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import ForaMark from "./ForaMark";
 import Icon from "./Icon";
 import { useI18n } from "../lib/i18n-store";
-import { conferenceMeta, hasConference, latestUpdatedAt } from "../lib/conferences";
+import { conferenceMeta, hasConference, latestUpdatedAt, catalogOffline, previewRevision } from "../lib/conferences";
 import { REPO_URL } from "../lib/repo";
 
 // Global site footer: Fora project info. Brand is the mark alone (→ hub); inside
@@ -69,6 +69,8 @@ export default function Footer() {
               </span>
             </>
           )}
+          {catalogOffline && <span className="footer__upd">{zh ? "缓存数据" : "Cached data"}</span>}
+          {previewRevision && <a className="footer__link" href="/?dataVersion=current">{zh ? "退出数据预览" : "Exit data preview"}</a>}
         </div>
       </div>
 

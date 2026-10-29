@@ -38,6 +38,7 @@ def main() -> int:
         return 1
     for script in builders:
         run(script)
+    run(SRC / "identities.py")
     run(SRC / "build_manifest.py")
     print(f"\nrebuilt {len(builders)} conference(s):",
           ", ".join(p.parent.name for p in builders))

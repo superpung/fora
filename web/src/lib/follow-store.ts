@@ -1,4 +1,5 @@
 import { createContext, useContext } from "react";
+import type { Talk } from "../types";
 
 // Personal-agenda state helpers, context and hook. Kept in a component-free
 // module so the provider file (follow.tsx) exports only a component and stays
@@ -23,17 +24,11 @@ export function followKeys(confId: string): FollowKeys {
   };
 }
 
-// A talk has no stable id in the dataset, so we key it by its forum code plus
-// its index within that forum: `${code}#${index}`.
-export function talkId(code: string, index: number): string {
-  return `${code}#${index}`;
+/** The allocation suffix is permanent and is unrelated to current ordering. */
+export function talkAnchor(talk: Talk): string {
+  return `talk-${Number(talk.id.split("#").at(-1)) + 1}`;
 }
 
-// Main-conference keynotes live in day blocks (no forum code), so they get their
-// own id namespace, keyed by day + position within that day's keynote list.
-export function keynoteId(date: string, index: number): string {
-  return `KEYNOTE:${date}#${index}`;
-}
 export function isKeynoteId(id: string): boolean {
   return id.startsWith("KEYNOTE:");
 }

@@ -8,12 +8,6 @@
   NODE_VERSION = "22"
   # pnpm is enabled automatically by Netlify (corepack) from web/pnpm-lock.yaml.
 
-# Stateless OAuth broker: exchanges the code for a gist-scoped token.
-# Set GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET in the Netlify dashboard
-# (the function stores no data).
-[functions]
-  directory = "netlify/functions"
-
 # SPA routing: fall every path back to index.html (react-router client routing).
 [[redirects]]
   from = "/*"
