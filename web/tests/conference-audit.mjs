@@ -5,7 +5,7 @@ import { readFile, mkdir } from "node:fs/promises";
 import { spawn } from "node:child_process";
 import { chromium } from "playwright";
 
-const data = JSON.parse(await readFile(new URL("../src/data/conferences/chinasoft2026.json", import.meta.url)));
+const data = JSON.parse(await readFile(new URL("../../data/chinasoft2026.json", import.meta.url)));
 const base = process.env.AUDIT_BASE_URL || "http://127.0.0.1:4201";
 const dataBase = process.env.AUDIT_DATA_BASE_URL || "/data";
 const screenshots = process.env.SOURCE_AUDIT_DIR || "/tmp/chinasoft2026-source-refresh";

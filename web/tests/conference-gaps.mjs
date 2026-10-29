@@ -86,11 +86,10 @@ try {
   assert((await page.locator(".block--myday").textContent()).includes("14:10"));
   if (server) {
     const result = await page.evaluate(async () => {
-      const { buildConferenceViews } = await import("/src/lib/data.ts");
+      const { loadConferenceViews } = await import("/src/lib/conferences.ts");
       const { collectFollowedItems, toICS } = await import("/src/lib/export.ts");
       const { buildLiveView } = await import("/src/lib/live.ts");
-      const { default: raw } = await import("/src/data/conferences/chinasoft2026.json");
-      const views = buildConferenceViews(raw);
+      const views = await loadConferenceViews("chinasoft2026");
       const items = collectFollowedItems({ forums: new Set(["E6", "C5"]), speakers: new Set(), talks: new Set() }, views);
       const competition = collectFollowedItems({ forums: new Set(["C1", "C4"]), speakers: new Set(), talks: new Set() }, views);
       const rust = collectFollowedItems({ forums: new Set(["C3"]), speakers: new Set(), talks: new Set() }, views);

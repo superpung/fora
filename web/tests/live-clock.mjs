@@ -7,7 +7,7 @@ import { chromium } from 'playwright';
 const base = process.env.AUDIT_BASE_URL || 'http://127.0.0.1:4216';
 const out = resolve(process.env.LIVE_AUDIT_DIR || '/tmp/chinasoft2026-live-audit/after');
 mkdirSync(out, {recursive:true});
-const data = JSON.parse(readFileSync(new URL('../src/data/conferences/chinasoft2026.json', import.meta.url)));
+const data = JSON.parse(readFileSync(new URL('../../data/chinasoft2026.json', import.meta.url)));
 const server = process.env.AUDIT_BASE_URL ? null : spawn(new URL('../node_modules/.bin/vite',import.meta.url).pathname,
  ['--host','127.0.0.1','--port','4216','--strictPort'],{cwd:new URL('..',import.meta.url).pathname,stdio:'ignore'});
 const follows = {forums:['E6','C5'],talks:['R14#3','R32#1','E3#6','R1#6'],speakers:[]};
