@@ -7,6 +7,7 @@ import { chromium } from "playwright";
 
 const data = JSON.parse(await readFile(new URL("../src/data/conferences/chinasoft2026.json", import.meta.url)));
 const base = process.env.AUDIT_BASE_URL || "http://127.0.0.1:4201";
+const dataBase = process.env.AUDIT_DATA_BASE_URL || "/data";
 const screenshots = process.env.SOURCE_AUDIT_DIR || "/tmp/chinasoft2026-source-refresh";
 await mkdir(screenshots, { recursive: true });
 const server = process.env.AUDIT_BASE_URL ? null : spawn(
@@ -40,7 +41,7 @@ async function checkLocalCommittees(page, label) {
     assert.deepEqual(await roster.locator(".member__name").allTextContents(), expected.map((person) => person.name));
     assert.deepEqual(await roster.locator(".member__aff").allTextContents(), expected.map((person) => person.affiliation_raw));
     assert.deepEqual(await roster.locator("img.avatar").evaluateAll((nodes) => nodes.map((img) => img.getAttribute("src"))),
-      expected.filter((person) => person.photo).map((person) => person.photo.local_path));
+      expected.filter((person) => person.photo).map((person) => `${dataBase}${person.photo.local_path}`));
     for (const edge of ["first", "last"]) {
       await roster.locator(".member")[edge]().scrollIntoViewIfNeeded();
       await page.waitForTimeout(1400);
@@ -59,6 +60,7 @@ try {
   }
   browser = await chromium.launch();
   const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, locale: "zh-CN" });
+  if (process.env.AUDIT_DATA_REVISION) await context.addInitScript(revision => sessionStorage.setItem("fora.data-preview", revision), process.env.AUDIT_DATA_REVISION);
   const page = await context.newPage();
   page.on("pageerror", (error) => errors.push(error.message));
   const goto = async (path, selector) => {
@@ -68,7 +70,7 @@ try {
 
   await goto("/", 'a[href="/chinasoft2026"]');
   const portraits = JSON.parse(await readFile(new URL("../../source/chinasoft2026/raw/portraits.json", import.meta.url)));
-  const paths = [...new Set(Object.values(portraits).map((p) => p.local_path))];
+  const paths = [...new Set(Object.values(portraits).map((p) => dataBase + p.local_path))];
   for (let offset = 0; offset < paths.length; offset += 12) {
     const failures = await page.evaluate(async (batch) => {
       return (await Promise.all(batch.map(async (src) => {
@@ -100,7 +102,7 @@ try {
       assert.deepEqual(row.hosts, (forum.talks[i].extra?.hosts ?? []).map((p) => p.name), `${forum.code}#${i}: hosts`);
       row.people.forEach((name) => assert(!forbidden.has(name), `${forum.code}: pseudo-person ${name}`));
       assert.deepEqual(row.portraits.sort(), forum.talks[i].speakers.filter((p) => p.photo)
-        .map((p) => `${p.name}:${p.photo.local_path}`).sort(), `${forum.code}#${i}: portraits`);
+        .map((p) => `${p.name}:${dataBase}${p.photo.local_path}`).sort(), `${forum.code}#${i}: portraits`);
     });
     console.log(`PASS ${forum.code}: ${result.length} programme rows and speaker identities`);
     if (["R8", "R32", "I1", "R25", "R33", "R20", "R3", "R16", "T1", "E4", "I7", "C2", "R16", "R3", "I4", "R34", "S3", "E2", "I5", "R29", "S4", "R23", "R13", "P4", "R19", "E1", "E3", "S5", "R2", "R5", "R27", "S1", "P3", "R22", "R26", "R31", "S2", "S6", "S7", "S8", "I3"].includes(forum.code)) {
@@ -184,6 +186,7 @@ try {
   assert.equal(await page.locator("#talk-4 .person__aff").textContent(), "华为");
 
   const mobile = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, locale: "zh-CN" });
+  if (process.env.AUDIT_DATA_REVISION) await mobile.addInitScript(revision => sessionStorage.setItem("fora.data-preview", revision), process.env.AUDIT_DATA_REVISION);
   const phone = await mobile.newPage();
   phone.on("pageerror", (error) => errors.push(error.message));
   for (const [label, target] of [["desktop", page], ["mobile", phone]]) {

@@ -44,7 +44,7 @@ try {
           meetings: [{ name: { zh: 'Working group' }, start: '16:30', end: '17:00', room: 'Room B' }] },
         { kind: 'forums', start: '09:00', end: '17:00', forum_entries: ['L', 'U', 'E', 'X'].map(forum_code => ({ forum_code })) },
       ] }], forums: [forum('L'), forum('U', { start: null, end: null }), forum('E', { start: '14:10', end: '15:10' }),
-        forum('X', { start: '09:00', end: '10:00', talks: [{ title: { zh: 'Extended report' },
+        forum('X', { start: '09:00', end: '10:00', talks: [{ id: 'X#0', title: { zh: 'Extended report' },
           start: '09:50', end: '10:20', speakers: [{ name: 'Alex' }, { name: 'Sam' }] }] }),
         forum('Y', { day_date: null, start: null, end: null })],
     };
@@ -74,10 +74,10 @@ try {
     const migrated = resolveSpeakerKeys(new Set(['Alex']), { forums: [{ talks: [{ speakers: people }] }] });
     check(migrated.size === 2 && migrated.has('source:a') && migrated.has('source:b'), 'legacy name follows preserve their original scope');
     const mixed = { ...raw, forums: [
-      forum('A', { talks: [{ title: { zh: 'Keyed report' }, speakers: [people[0]] }] }),
-      forum('B', { talks: [{ title: { zh: 'Name-only report' }, speakers: [{ name: 'Alex' }] }] }),
+      forum('A', { talks: [{ id: 'A#0', title: { zh: 'Keyed report' }, speakers: [people[0]] }] }),
+      forum('B', { talks: [{ id: 'B#0', title: { zh: 'Name-only report' }, speakers: [{ name: 'Alex' }] }] }),
     ], days: [{ date, blocks: [{ kind: 'keynotes', talks: [
-      { title: { zh: 'Keynote-only identity' }, speakers: [{ name: 'Alex', extra: { identity_key: 'source:keynote' } }] },
+      { id: 'KEYNOTE:2030-05-08#0', title: { zh: 'Keynote-only identity' }, speakers: [{ name: 'Alex', extra: { identity_key: 'source:keynote' } }] },
     ] }] }] };
     const mixedViews = buildConferenceViews(mixed);
     const legacy = { ...follow([]), speakers: new Set(['Alex']) };
@@ -114,9 +114,15 @@ try {
       forums: [{ code: 'M', title: { zh: 'Two days' }, day_date: null, start: null, end: null, room: 'Room M',
         sessions: dates.map(date => ({ date, start: '09:00', end: '10:00' })),
         breaks: dates.map((day_date, i) => ({ day_date, name: `Break ${i}`, start: '09:20', end: '09:30' })),
-        talks: dates.map((day_date, i) => ({ day_date, title: { zh: `Report ${i}` }, start: '09:00', end: '09:20',
+        talks: dates.map((day_date, i) => ({ id: `M#${i}`, day_date, title: { zh: `Report ${i}` }, start: '09:00', end: '09:20',
           speakers: [{ name: `Person ${i}` }] })) }] };
     const mv = buildConferenceViews(multi);
+    const reordered = structuredClone(multi);
+    reordered.forums[0].talks.reverse();
+    reordered.forums[0].talks.unshift({ id: 'M#9', title: { zh: 'Inserted report' }, day_date: dates[0] });
+    const stable = collectFollowedItems({ ...follow([]), talks: new Set(['M#1']) }, buildConferenceViews(reordered));
+    check(stable.length === 1 && stable[0].title === 'Report 1' && stable[0].anchor === 'talk-2' && stable[0].uid === 'M-1',
+      'insertion and reorder preserve the followed report, permalink and calendar UID');
     check(mv.stats.forums === 1 && mv.unscheduledForums.length === 0 && mv.scheduleDays.length === 2,
       'one multi-day forum remains one identity with two scheduled appearances');
     for (const [i, date] of dates.entries()) {

@@ -1,3 +1,4 @@
+import { installDataFixture } from './data-fixture.mjs';
 // Exercise forum-only agendas through the actual schedule routes and providers.
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
@@ -34,9 +35,7 @@ try {
           day_date: date, room: 'Room A', start: window.start, end: window.end,
           talks: [], agenda_status: 'not_published' })),
       };
-      await page.route('**/src/data/conferences/chinasoft2025.json*', route => route.fulfill({
-        contentType: 'application/javascript', body: `export default ${JSON.stringify(raw)}`,
-      }));
+      await installDataFixture(page, raw);
       await page.addInitScript(() => localStorage.setItem('chinasoft2025:followed.forums', JSON.stringify(['E'])));
       await page.clock.setFixedTime(new Date(date + 'T14:30:00+08:00'));
       for (const view of ['all', 'mine-board', 'mine-day']) {
@@ -85,9 +84,7 @@ try {
       title: { zh: `Forum ${i}` }, day_date: date, talks: [{ title: { zh: `Report ${i}` }, speakers: [person] }] })),
     days: [{ date, blocks: [{ kind: 'keynotes', talks: [{ title: { zh: 'Keynote' }, speakers: [people[2]] }] }] }],
   };
-  await migrationPage.route('**/src/data/conferences/chinasoft2025.json*', route => route.fulfill({
-    contentType: 'application/javascript', body: `export default ${JSON.stringify(raw)}`,
-  }));
+  await installDataFixture(migrationPage, raw);
   await migrationPage.addInitScript(() => {
     const key = 'chinasoft2025:followed.speakers';
     if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(['Alex']));
@@ -116,9 +113,7 @@ try {
     const raw = { id: 'chinasoft2025', name: { zh: 'Fixture' }, start_date: date, end_date: date,
       forums: [], days: [], committees: [{ role: { zh: 'Large roster' },
         members: Array.from({ length: 400 }, (_, index) => ({ name: `Member ${index}`, affiliation_raw: 'Institute' })) }] };
-    await page.route('**/src/data/conferences/chinasoft2025.json*', route => route.fulfill({
-      contentType: 'application/javascript', body: `export default ${JSON.stringify(raw)}`,
-    }));
+    await installDataFixture(page, raw);
     await page.goto(base + '/chinasoft2025/committee', { waitUntil: 'networkidle' });
     await page.locator('.cmt__role').scrollIntoViewIfNeeded();
     await page.waitForFunction(() => [...document.querySelectorAll('.cmt, .member:first-child')]

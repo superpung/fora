@@ -1,13 +1,10 @@
-import manifest from "../data/manifest.json";
 import { buildConferenceViews, type ConferenceViews } from "./data";
-
-// The conference registry. `manifest.json` is a lightweight index (a few KB) of
-// every hosted conference — enough to render the hub and the switcher without
-// loading any full dataset. Full datasets are code-split and fetched lazily,
-// only when a conference is actually entered.
+import type { Conference } from "../types";
 
 export interface ConferenceMeta {
   id: string;
+  path: string;
+  sha256: string;
   name: { zh: string; en?: string | null };
   edition?: string | null;
   start_date: string;
@@ -18,112 +15,103 @@ export interface ConferenceMeta {
   forums: number;
   keynotes: number;
   days: number;
-  /** Date (YYYY-MM-DD) the conference's dataset was last updated (from git,
-   *  baked into the manifest by source/build_manifest.py). */
+  /** Publication date of the last changed dataset, carried by the catalog. */
   updated_at?: string | null;
 }
 
-/** Conferences, newest first — the display order for the hub and switcher. */
-export const conferenceList: ConferenceMeta[] = [...(manifest as ConferenceMeta[])].sort(
-  (a, b) => b.start_date.localeCompare(a.start_date) || a.id.localeCompare(b.id),
-);
 
-/** The conference a bare visit (or a legacy URL) resolves to — the newest one. */
-export const defaultConferenceId = conferenceList[0]?.id ?? "";
+interface Catalog { schema_version: number; conferences: ConferenceMeta[] }
+const DATA_BASE = (import.meta.env.VITE_DATA_BASE_URL as string | undefined)?.replace(/\/$/, "") ?? "/data";
+const CACHE = "fora-data-v1";
+export function dataAssetUrl(path: string): string { return `${DATA_BASE}${path}`; }
+export let conferenceList: ConferenceMeta[] = [];
+export let latestUpdatedAt: string | null = null;
+export let catalogOffline = false;
+export let previewRevision: string | null = null;
+const views = new Map<string, Promise<ConferenceViews>>();
 
-/** The most recent `updated_at` across all conferences — the hub's "last
- *  updated" date. Null when no conference carries a date. */
-export const latestUpdatedAt: string | null =
-  conferenceList.map((c) => c.updated_at).filter(Boolean).sort().pop() ?? null;
+async function stored(url: string): Promise<Response | undefined> {
+  if (typeof caches === "undefined") return undefined;
+  return (await caches.open(CACHE)).match(url);
+}
+async function remember(url: string, response: Response): Promise<void> {
+  try { if (typeof caches !== "undefined") await (await caches.open(CACHE)).put(url, response); }
+  catch { /* Storage quotas must not prevent an online visit. */ }
+}
+function validateCatalog(value: unknown): Catalog {
+  const data = value as Catalog;
+  if (data?.schema_version !== 1 || !Array.isArray(data.conferences)) throw Error("Unsupported data catalog");
+  const ids = new Set<string>();
+  for (const meta of data.conferences) {
+    if (!/^[a-z0-9-]+$/.test(meta.id) || ids.has(meta.id) || !meta.name?.zh ||
+      !/^[a-f0-9]{64}$/.test(meta.sha256) || meta.path !== `conferences/${meta.id}/${meta.sha256}.json`) {
+      throw Error("Invalid conference catalog entry");
+    }
+    ids.add(meta.id);
+  }
+  return data;
+}
+
+export async function initializeConferences(): Promise<void> {
+  const requested = new URL(location.href).searchParams.get("dataVersion");
+  if (requested === "current") sessionStorage.removeItem("fora.data-preview");
+  else if (requested) {
+    if (!/^[a-f0-9]{64}$/.test(requested)) throw Error("Invalid data preview revision");
+    sessionStorage.setItem("fora.data-preview", requested);
+  }
+  previewRevision = sessionStorage.getItem("fora.data-preview");
+  const url = `${DATA_BASE}/${previewRevision ? `releases/${previewRevision}.json` : "manifest.json"}`;
+  let response: Response;
+  try {
+    response = await fetch(url, { cache: "no-cache", signal: AbortSignal.timeout(10000) });
+  } catch (error) {
+    const cached = await stored(url);
+    if (!cached) throw error;
+    response = cached;
+    catalogOffline = true;
+  }
+  if (!response.ok) throw Error(`Catalog HTTP ${response.status}`);
+  const data = validateCatalog(await response.json());
+  if (!catalogOffline) await remember(url, Response.json(data));
+  conferenceList = data.conferences.sort((a, b) => b.start_date.localeCompare(a.start_date) || a.id.localeCompare(b.id));
+  latestUpdatedAt = conferenceList.map(c => c.updated_at).filter(Boolean).sort().pop() ?? null;
+}
 
 export function hasConference(id: string | undefined): id is string {
-  return !!id && conferenceList.some((c) => c.id === id);
+  return !!id && conferenceList.some(c => c.id === id);
 }
-
 export function conferenceMeta(id: string): ConferenceMeta | undefined {
-  return conferenceList.find((c) => c.id === id);
+  return conferenceList.find(c => c.id === id);
 }
 
-// Vite discovers every per-conference dataset at build time and code-splits each
-// into its own lazily-loaded chunk (keyed by file path).
-const loaders = import.meta.glob<{ default: unknown }>("../data/conferences/*.json");
-
-// Memoise the built views per conference id: entering, leaving and re-entering a
-// conference reuses the same promise, so its dataset is fetched and its views
-// built exactly once per session.
-const cache = new Map<string, Promise<ConferenceViews>>();
-
-/** The cache the service worker keeps conference datasets in (build-sw.mjs). */
-const DATA_CACHE = "fora-conf-data";
-
-/**
- * Make sure the dataset this visit just loaded is in the offline cache.
- *
- * Datasets are runtime-cached rather than precached, so the precache does not
- * grow by a megabyte with every conference added. The catch is that runtime
- * caching only happens for requests the service worker actually sees — and on
- * the FIRST visit it does not see this one. Registration waits for `load`, then
- * the worker installs and precaches the shell, and only then does `clientsClaim`
- * put it in front of the page. The dataset import has usually finished by then.
- *
- * The result was a promise the app did not keep: open a conference once, go
- * offline, and you got a blank page — the shell booted and the dataset import
- * failed with nothing to fall back on. It only started working after a second
- * page load, when the worker was already in charge.
- *
- * So once the worker is in charge, we put the dataset in its cache ourselves.
- * The fetch is served from the browser's own HTTP cache (these chunks are
- * content-hashed and immutable), so this costs a cache write, not a download.
- */
-/** Conferences loaded this session, so a late-arriving worker can catch up. */
-const loaded = new Set<string>();
-let awaitingController = false;
-
-function cacheDataset(id: string): void {
-  if (typeof caches === "undefined" || typeof performance === "undefined") return;
-  // The chunk's real URL is only known at runtime (content hash), so read it
-  // back off the resource timeline rather than trying to reconstruct it.
-  const entry = performance
-    .getEntriesByType("resource")
-    .reverse()
-    .find((e) => /\/assets\/data\/.*\.js(\?|$)/.test(e.name) && e.name.includes(id));
-  if (!entry) return;
-  void caches
-    .open(DATA_CACHE)
-    .then(async (c) => {
-      if (await c.match(entry.name)) return;
-      await c.add(entry.name);
-    })
-    .catch(() => {
-      /* private mode / quota — the app still works, just not offline yet */
-    });
-}
-
-function keepForOffline(id: string): void {
-  if (typeof navigator === "undefined" || !("serviceWorker" in navigator)) return;
-  loaded.add(id);
-  if (navigator.serviceWorker.controller) return cacheDataset(id);
-  // No controller yet — which is exactly the first-visit case this exists for.
-  // Wait for the worker to take over, then cache everything opened meanwhile.
-  if (awaitingController) return;
-  awaitingController = true;
-  navigator.serviceWorker.addEventListener(
-    "controllerchange",
-    () => loaded.forEach(cacheDataset),
-    { once: true },
-  );
+async function readConference(meta: ConferenceMeta): Promise<ConferenceViews> {
+  const url = `${DATA_BASE}/${meta.path}`;
+  const cached = await stored(url);
+  const response = cached ?? await fetch(url, { signal: AbortSignal.timeout(20000) });
+  if (!response.ok) throw Error(`Conference HTTP ${response.status}`);
+  const bytes = await response.clone().arrayBuffer();
+  const digest = [...new Uint8Array(await crypto.subtle.digest("SHA-256", bytes))]
+    .map(n => n.toString(16).padStart(2, "0")).join("");
+  if (digest !== meta.sha256) {
+    if (typeof caches !== "undefined") await (await caches.open(CACHE)).delete(url);
+    throw Error("Conference integrity check failed");
+  }
+  const raw = JSON.parse(new TextDecoder().decode(bytes)) as Conference;
+  if (raw.id !== meta.id || raw.extra?.identity_version !== 1) throw Error("Unsupported conference data");
+  await remember(url, response.clone());
+  return buildConferenceViews(raw);
 }
 
 export function loadConferenceViews(id: string): Promise<ConferenceViews> {
-  const cached = cache.get(id);
-  if (cached) return cached;
-  const loader = loaders[`../data/conferences/${id}.json`];
-  const p = loader
-    ? loader().then((m) => {
-        keepForOffline(id);
-        return buildConferenceViews(m.default);
-      })
-    : Promise.reject(new Error(`Unknown conference: ${id}`));
-  cache.set(id, p);
-  return p;
+  const meta = conferenceMeta(id);
+  if (!meta) return Promise.reject(Error(`Unknown conference: ${id}`));
+  const key = `${id}:${meta.sha256}`;
+  let promise = views.get(key);
+  if (!promise) {
+    // React must see the same rejected promise to reach the error boundary.
+    // The retry button reloads the page and starts a fresh request.
+    promise = readConference(meta);
+    views.set(key, promise);
+  }
+  return promise;
 }

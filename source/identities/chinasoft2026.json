@@ -1,0 +1,9184 @@
+{
+  "version": 1,
+  "conference": "chinasoft2026",
+  "baseline": "v0.4.0",
+  "reports": [
+    {
+      "id": "P1#0",
+      "scope": "P1",
+      "selectors": [
+        {
+          "title": "主持人开场介绍",
+          "speakers": [
+            "王莹"
+          ],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:00",
+        "end": "09:05"
+      }
+    },
+    {
+      "id": "P1#1",
+      "scope": "P1",
+      "selectors": [
+        {
+          "title": "特邀报告: 双链耦合：打通教学科研的任督二脉——探索教学与科研的双向赋能",
+          "speakers": [
+            "张莉"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:05",
+        "end": "09:35"
+      }
+    },
+    {
+      "id": "P1#2",
+      "scope": "P1",
+      "selectors": [
+        {
+          "title": "特邀报告: 软件工程之美",
+          "speakers": [
+            "夏鑫"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:35",
+        "end": "10:05"
+      }
+    },
+    {
+      "id": "P1#3",
+      "scope": "P1",
+      "selectors": [
+        {
+          "title": "青年学者报告: 在深耕中拓界：从网构软件到智能化软件的探索之旅",
+          "speakers": [
+            "王莹洁"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "10:05",
+        "end": "10:25"
+      }
+    },
+    {
+      "id": "P1#4",
+      "scope": "P1",
+      "selectors": [
+        {
+          "title": "青年学者报告: 从发现问题到形成研究方向",
+          "speakers": [
+            "谭鑫"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "10:40",
+        "end": "11:00"
+      }
+    },
+    {
+      "id": "P1#5",
+      "scope": "P1",
+      "selectors": [
+        {
+          "title": "青年学者报告: 一个ISFJ人的读博后记",
+          "speakers": [
+            "朱庭纬"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:00",
+        "end": "11:20"
+      }
+    },
+    {
+      "id": "P1#6",
+      "scope": "P1",
+      "selectors": [
+        {
+          "title": "博士生报告: 在复杂软件中寻真问题，在真实场景中解真问题：我的科研探索与思考",
+          "speakers": [
+            "杜雪盈"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:20",
+        "end": "11:30"
+      }
+    },
+    {
+      "id": "P1#7",
+      "scope": "P1",
+      "selectors": [
+        {
+          "title": "博士生报告: \"打怪升级\"之外：AI时代，如何找到自己的问题与动力？",
+          "speakers": [
+            "李欣悦"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:30",
+        "end": "11:40"
+      }
+    },
+    {
+      "id": "P1#8",
+      "scope": "P1",
+      "selectors": [
+        {
+          "title": "博士生报告: 在实验中求真，在实践中成长：探索可信代码大模型的科研之路",
+          "speakers": [
+            "陈雨佳"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:40",
+        "end": "11:50"
+      }
+    },
+    {
+      "id": "P1#9",
+      "scope": "P1",
+      "selectors": [
+        {
+          "title": "博士生报告: 让缺陷有迹可循，也让科研有迹可循",
+          "speakers": [
+            "周纯英"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:50",
+        "end": "12:00"
+      }
+    },
+    {
+      "id": "P2#0",
+      "scope": "P2",
+      "selectors": [
+        {
+          "title": "开场",
+          "speakers": [],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:00",
+        "end": "09:05"
+      }
+    },
+    {
+      "id": "P2#1",
+      "scope": "P2",
+      "selectors": [
+        {
+          "title": "算力网时代下的分布式智能计算系统",
+          "speakers": [
+            "余跃"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:05",
+        "end": "09:30"
+      }
+    },
+    {
+      "id": "P2#2",
+      "scope": "P2",
+      "selectors": [
+        {
+          "title": "大模型赋能的软件测试与分析",
+          "speakers": [
+            "文明"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:30",
+        "end": "09:55"
+      }
+    },
+    {
+      "id": "P2#3",
+      "scope": "P2",
+      "selectors": [
+        {
+          "title": "基于大语言模型自动验证复杂程序的安全性与功能正确性",
+          "speakers": [
+            "曹钦翔"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:55",
+        "end": "10:20"
+      }
+    },
+    {
+      "id": "P2#4",
+      "scope": "P2",
+      "selectors": [
+        {
+          "title": "信息物理融合系统的运行时验证",
+          "speakers": [
+            "安杰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "10:30",
+        "end": "10:55"
+      }
+    },
+    {
+      "id": "P2#5",
+      "scope": "P2",
+      "selectors": [
+        {
+          "title": "面向AI Coding的可信保障：从执行到评测",
+          "speakers": [
+            "刘忠鑫"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "10:55",
+        "end": "11:20"
+      }
+    },
+    {
+      "id": "P2#6",
+      "scope": "P2",
+      "selectors": [
+        {
+          "title": "数据库系统自动化测试关键技术研究与实践",
+          "speakers": [
+            "梁杰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:20",
+        "end": "11:45"
+      }
+    },
+    {
+      "id": "P2#7",
+      "scope": "P2",
+      "selectors": [
+        {
+          "title": "具身记忆系统",
+          "speakers": [
+            "李元春"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:45",
+        "end": "12:10"
+      }
+    },
+    {
+      "id": "P3#0",
+      "scope": "P3",
+      "selectors": [
+        {
+          "title": "特邀报告：五个图灵奖获得者的故事",
+          "speakers": [
+            "熊英飞"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:00",
+        "end": "09:45"
+      }
+    },
+    {
+      "id": "P3#1",
+      "scope": "P3",
+      "selectors": [
+        {
+          "title": "特邀报告：智能化软件发展的机遇与挑战",
+          "speakers": [
+            "彭鑫"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:45",
+        "end": "10:30"
+      }
+    },
+    {
+      "id": "P3#2",
+      "scope": "P3",
+      "selectors": [
+        {
+          "title": "基于蜕变测试的数据库逻辑缺陷检测技术的研究",
+          "speakers": [
+            "吴荣鑫"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:40",
+        "end": "11:10"
+      }
+    },
+    {
+      "id": "P3#3",
+      "scope": "P3",
+      "selectors": [
+        {
+          "title": "可信代码模型生态研究",
+          "speakers": [
+            "杨洲"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:10",
+        "end": "11:40"
+      }
+    },
+    {
+      "id": "P3#4",
+      "scope": "P3",
+      "selectors": [
+        {
+          "title": "基于因式分解形式共享的并行组合等价性检查",
+          "speakers": [
+            "曲南江"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:40",
+        "end": "12:10"
+      }
+    },
+    {
+      "id": "P3#5",
+      "scope": "P3",
+      "selectors": [
+        {
+          "title": "特邀报告：Deep API Learning and Beyond",
+          "speakers": [
+            "张洪宇"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:00",
+        "end": "14:45"
+      }
+    },
+    {
+      "id": "P3#6",
+      "scope": "P3",
+      "selectors": [
+        {
+          "title": "Datalog程序的自动故障定位",
+          "speakers": [
+            "钮鑫涛"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:45",
+        "end": "15:15"
+      }
+    },
+    {
+      "id": "P3#7",
+      "scope": "P3",
+      "selectors": [
+        {
+          "title": "从低效定位到多层次优化：大模型驱动的代码性能提升",
+          "speakers": [
+            "彭昀"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:30",
+        "end": "16:00"
+      }
+    },
+    {
+      "id": "P3#8",
+      "scope": "P3",
+      "selectors": [
+        {
+          "title": "高效动态分析赋能自主调试智能体",
+          "speakers": [
+            "张煜群"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:00",
+        "end": "16:30"
+      }
+    },
+    {
+      "id": "P3#9",
+      "scope": "P3",
+      "selectors": [
+        {
+          "title": "从猜测到看见：让大模型发现程序如何出错",
+          "speakers": [
+            "沈博"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:30",
+        "end": "17:00"
+      }
+    },
+    {
+      "id": "P4#0",
+      "scope": "P4",
+      "selectors": [
+        {
+          "title": "论坛开场",
+          "speakers": [],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:00",
+        "end": "09:05"
+      }
+    },
+    {
+      "id": "P4#1",
+      "scope": "P4",
+      "selectors": [
+        {
+          "title": "Xtrace：基于二进制指令拼接的高保真 GPU 核内追踪",
+          "speakers": [
+            "崔炜皞"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:05",
+        "end": "09:30"
+      }
+    },
+    {
+      "id": "P4#2",
+      "scope": "P4",
+      "selectors": [
+        {
+          "title": "AI 云基础设施的成本效益优化与工业实践",
+          "speakers": [
+            "柳清源"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:30",
+        "end": "09:55"
+      }
+    },
+    {
+      "id": "P4#3",
+      "scope": "P4",
+      "selectors": [
+        {
+          "title": "迈向可信Coding Agent：挑战与实践",
+          "speakers": [
+            "李佳"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:55",
+        "end": "10:20"
+      }
+    },
+    {
+      "id": "P4#4",
+      "scope": "P4",
+      "selectors": [
+        {
+          "title": "约束求解器测试的探索与实践",
+          "speakers": [
+            "孙茂林"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "10:40",
+        "end": "11:05"
+      }
+    },
+    {
+      "id": "P4#5",
+      "scope": "P4",
+      "selectors": [
+        {
+          "title": "SMT 的局部搜索技术与应用",
+          "speakers": [
+            "李博涵"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:05",
+        "end": "11:30"
+      }
+    },
+    {
+      "id": "P4#6",
+      "scope": "P4",
+      "selectors": [
+        {
+          "title": "AI 赋能的安全证书综合与形式化验证方法",
+          "speakers": [
+            "赵韩蕊"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:30",
+        "end": "11:55"
+      }
+    },
+    {
+      "id": "P4#7",
+      "scope": "P4",
+      "selectors": [
+        {
+          "title": "论坛总结",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:55",
+        "end": "12:00"
+      }
+    },
+    {
+      "id": "R1#0",
+      "scope": "R1",
+      "selectors": [
+        {
+          "title": "论坛介绍",
+          "speakers": [
+            "魏峻",
+            "高钰",
+            "张雅坤",
+            "刘哲"
+          ],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:20",
+        "end": "15:30"
+      }
+    },
+    {
+      "id": "R1#1",
+      "scope": "R1",
+      "selectors": [
+        {
+          "title": "从智能生成到可信交付：代码大模型的质量挑战与测试验证",
+          "speakers": [
+            "谢晓园"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:30",
+        "end": "16:00"
+      }
+    },
+    {
+      "id": "R1#2",
+      "scope": "R1",
+      "selectors": [
+        {
+          "title": "鸿蒙AI Coding实践",
+          "speakers": [
+            "黎立"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:00",
+        "end": "16:30"
+      }
+    },
+    {
+      "id": "R1#3",
+      "scope": "R1",
+      "selectors": [
+        {
+          "title": "交互式需求编译：面向软件开发的双向驾驭",
+          "speakers": [
+            "林云"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:30",
+        "end": "17:00"
+      }
+    },
+    {
+      "id": "R1#4",
+      "scope": "R1",
+      "selectors": [
+        {
+          "title": "Specification-Driven Software Testing with LLMs",
+          "speakers": [
+            "谢肖飞"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:00",
+        "end": "17:30"
+      }
+    },
+    {
+      "id": "R1#5",
+      "scope": "R1",
+      "selectors": [
+        {
+          "title": "智能体软件集成故障研究",
+          "speakers": [
+            "万成城"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:30",
+        "end": "18:00"
+      }
+    },
+    {
+      "id": "R1#6",
+      "scope": "R1",
+      "selectors": [
+        {
+          "title": "领域知识增强的软件维护智能体",
+          "speakers": [
+            "刘名威"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "18:00",
+        "end": "18:30"
+      }
+    },
+    {
+      "id": "R2#0",
+      "scope": "R2",
+      "selectors": [
+        {
+          "title": "是驾驭先进生产力的利器还是束缚生产力围栏",
+          "speakers": [
+            "潘瑞琪"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:00",
+        "end": "09:30"
+      }
+    },
+    {
+      "id": "R2#1",
+      "scope": "R2",
+      "selectors": [
+        {
+          "title": "Qoder：不止编程，无限创造",
+          "speakers": [
+            "谢吉宝"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:30",
+        "end": "10:00"
+      }
+    },
+    {
+      "id": "R2#2",
+      "scope": "R2",
+      "selectors": [
+        {
+          "title": "从「可用」到「可交付」：AiWork 的 Agent Harness 工程与企业级研发实践",
+          "speakers": [
+            "周维"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:40",
+        "end": "11:10"
+      }
+    },
+    {
+      "id": "R2#3",
+      "scope": "R2",
+      "selectors": [
+        {
+          "title": "长时运行智能体建设方法与挑战",
+          "speakers": [
+            "张克驰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:10",
+        "end": "11:40"
+      }
+    },
+    {
+      "id": "R2#4",
+      "scope": "R2",
+      "selectors": [
+        {
+          "title": "暗知识驱动的可信代码智能体构建",
+          "speakers": [
+            "石琳"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:00",
+        "end": "14:25"
+      }
+    },
+    {
+      "id": "R2#5",
+      "scope": "R2",
+      "selectors": [
+        {
+          "title": "经验、记忆与技能：从持续学习到自进化Agent",
+          "speakers": [
+            "冯涛"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:25",
+        "end": "14:50"
+      }
+    },
+    {
+      "id": "R2#6",
+      "scope": "R2",
+      "selectors": [
+        {
+          "title": "面向长程软件开发任务的智能体强化学习方法",
+          "speakers": [
+            "董益宏"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:50",
+        "end": "15:15"
+      }
+    },
+    {
+      "id": "R2#7",
+      "scope": "R2",
+      "selectors": [
+        {
+          "title": "真实世界中的 Agentic Skills：建模、检索、评估与演进",
+          "speakers": [
+            "曹嘉伦"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:30",
+        "end": "15:55"
+      }
+    },
+    {
+      "id": "R2#8",
+      "scope": "R2",
+      "selectors": [
+        {
+          "title": "智能化软件工程的进展与挑战",
+          "speakers": [
+            "张洪宇"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:55",
+        "end": "16:20"
+      }
+    },
+    {
+      "id": "R2#9",
+      "scope": "R2",
+      "selectors": [
+        {
+          "title": "软件工程全场景智能体产业实践Panel",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:20",
+        "end": "17:00"
+      }
+    },
+    {
+      "id": "R2#10",
+      "scope": "R2",
+      "selectors": [
+        {
+          "title": "iCode的设计理念:面向企业和组织的智能化平台",
+          "speakers": [
+            "潘瑞琪"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:20",
+        "end": "15:50"
+      }
+    },
+    {
+      "id": "R2#11",
+      "scope": "R2",
+      "selectors": [
+        {
+          "title": "系统工程视角下的软件Spec模式及语言",
+          "speakers": [
+            "金芝"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:50",
+        "end": "16:20"
+      }
+    },
+    {
+      "id": "R2#12",
+      "scope": "R2",
+      "selectors": [
+        {
+          "title": "智能体时代的软件工程再认识",
+          "speakers": [
+            "江贺"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:20",
+        "end": "16:50"
+      }
+    },
+    {
+      "id": "R2#13",
+      "scope": "R2",
+      "selectors": [
+        {
+          "title": "智能体驱动的形式化程序规约生成与代码验证",
+          "speakers": [
+            "卜磊"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:00",
+        "end": "17:30"
+      }
+    },
+    {
+      "id": "R2#14",
+      "scope": "R2",
+      "selectors": [
+        {
+          "title": "构建可信代码智能体：从供应链安全到内生质量治理",
+          "speakers": [
+            "夏鑫"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:30",
+        "end": "18:00"
+      }
+    },
+    {
+      "id": "R2#15",
+      "scope": "R2",
+      "selectors": [
+        {
+          "title": "AI-Native安卓应用鸿蒙化实践与思考",
+          "speakers": [
+            "贾岩涛"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "18:00",
+        "end": "18:30"
+      }
+    },
+    {
+      "id": "R3#0",
+      "scope": "R3",
+      "selectors": [
+        {
+          "title": "开幕式",
+          "speakers": [],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:00",
+        "end": "09:10"
+      }
+    },
+    {
+      "id": "R3#1",
+      "scope": "R3",
+      "selectors": [
+        {
+          "title": "企业软件架构智能感知的代码可信生成技术创新与实践",
+          "speakers": [
+            "梁广泰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:10",
+        "end": "09:30"
+      }
+    },
+    {
+      "id": "R3#2",
+      "scope": "R3",
+      "selectors": [
+        {
+          "title": "大模型赋能软件维护：从缺陷跟踪到软件演化",
+          "speakers": [
+            "谢晓园"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:30",
+        "end": "09:50"
+      }
+    },
+    {
+      "id": "R3#3",
+      "scope": "R3",
+      "selectors": [
+        {
+          "title": "端到端请求追踪：从云原生到AI原生",
+          "speakers": [
+            "陈鹏飞"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:50",
+        "end": "10:10"
+      }
+    },
+    {
+      "id": "R3#4",
+      "scope": "R3",
+      "selectors": [
+        {
+          "title": "智能化软件架构设计与逆向",
+          "speakers": [
+            "孙伟松"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:10",
+        "end": "10:30"
+      }
+    },
+    {
+      "id": "R3#5",
+      "scope": "R3",
+      "selectors": [
+        {
+          "title": "AI 对大型复杂软件系统的理解与推理实践",
+          "speakers": [
+            "刘瑞洲"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:40",
+        "end": "11:00"
+      }
+    },
+    {
+      "id": "R3#6",
+      "scope": "R3",
+      "selectors": [
+        {
+          "title": "AI Agent驱动的软件架构演进与范式变迁",
+          "speakers": [
+            "董淑照"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:00",
+        "end": "11:20"
+      }
+    },
+    {
+      "id": "R3#7",
+      "scope": "R3",
+      "selectors": [
+        {
+          "title": "破解AI Agent在软件研发中的架构语境缺失",
+          "speakers": [
+            "晋武侠"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:20",
+        "end": "11:40"
+      }
+    },
+    {
+      "id": "R3#8",
+      "scope": "R3",
+      "selectors": [
+        {
+          "title": "圆桌论坛",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:40",
+        "end": "12:00"
+      }
+    },
+    {
+      "id": "R4#0",
+      "scope": "R4",
+      "selectors": [
+        {
+          "title": "基于大模型的软件自动化—进展与问题（V10.2）",
+          "speakers": [
+            "李戈"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:00",
+        "end": "09:30"
+      }
+    },
+    {
+      "id": "R4#1",
+      "scope": "R4",
+      "selectors": [
+        {
+          "title": "属性驱动的可信代码生成与闭环修复",
+          "speakers": [
+            "高祥"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:30",
+        "end": "09:55"
+      }
+    },
+    {
+      "id": "R4#2",
+      "scope": "R4",
+      "selectors": [
+        {
+          "title": "从Security到Safety：大模型智能体的系统性安全风险与治理",
+          "speakers": [
+            "洪赓"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:55",
+        "end": "10:20"
+      }
+    },
+    {
+      "id": "R4#3",
+      "scope": "R4",
+      "selectors": [
+        {
+          "title": "AI时代的可信编程：大模型与程序分析结合的Rust软件工程支撑技术",
+          "speakers": [
+            "冯洋"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "10:40",
+        "end": "11:10"
+      }
+    },
+    {
+      "id": "R4#4",
+      "scope": "R4",
+      "selectors": [
+        {
+          "title": "语法规则制导的程序生成",
+          "speakers": [
+            "孙泽宇"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:10",
+        "end": "11:35"
+      }
+    },
+    {
+      "id": "R4#5",
+      "scope": "R4",
+      "selectors": [
+        {
+          "title": "基于需求的安全代码生成：理解、约束与补全",
+          "speakers": [
+            "李佳"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:35",
+        "end": "12:00"
+      }
+    },
+    {
+      "id": "R5#0",
+      "scope": "R5",
+      "selectors": [
+        {
+          "title": "安全编程语言Trust C若干进展",
+          "speakers": [
+            "王戟"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:00",
+        "end": "09:25"
+      }
+    },
+    {
+      "id": "R5#1",
+      "scope": "R5",
+      "selectors": [
+        {
+          "title": "大模型时代的编程语言设计初探",
+          "speakers": [
+            "王迪"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:25",
+        "end": "09:50"
+      }
+    },
+    {
+      "id": "R5#2",
+      "scope": "R5",
+      "selectors": [
+        {
+          "title": "仓颉编程语言 Modal Type 特性简介",
+          "speakers": [
+            "傅荣枭"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:50",
+        "end": "10:15"
+      }
+    },
+    {
+      "id": "R5#3",
+      "scope": "R5",
+      "selectors": [
+        {
+          "title": "骑河：面向硬件的通用型静态分析框架",
+          "speakers": [
+            "谭添"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:45",
+        "end": "11:10"
+      }
+    },
+    {
+      "id": "R5#4",
+      "scope": "R5",
+      "selectors": [
+        {
+          "title": "Typed and Staged Tile-Based GPU Programming",
+          "speakers": [
+            "叶文佳"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:10",
+        "end": "11:35"
+      }
+    },
+    {
+      "id": "R5#5",
+      "scope": "R5",
+      "selectors": [
+        {
+          "title": "从证明失效到可信修复：形式化证明维护的分析与自动化",
+          "speakers": [
+            "栾晓坤"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:35",
+        "end": "12:00"
+      }
+    },
+    {
+      "id": "R6#0",
+      "scope": "R6",
+      "selectors": [
+        {
+          "title": "方升-Code基准测试体系介绍及测试结果解读",
+          "speakers": [
+            "魏凯"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:20",
+        "end": "15:40"
+      }
+    },
+    {
+      "id": "R6#1",
+      "scope": "R6",
+      "selectors": [
+        {
+          "title": "软件开发智能体的评测：价值、要点与建议",
+          "speakers": [
+            "王千祥"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:40",
+        "end": "16:00"
+      }
+    },
+    {
+      "id": "R6#2",
+      "scope": "R6",
+      "selectors": [
+        {
+          "title": "从单点测评到全流程画像——软件研发大模型评测基准构建与实践",
+          "speakers": [
+            "石琳"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:10",
+        "end": "16:30"
+      }
+    },
+    {
+      "id": "R6#3",
+      "scope": "R6",
+      "selectors": [
+        {
+          "title": "智能运维如何科学评测：从能力基准到真实场景验证",
+          "speakers": [
+            "裴昶华"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:30",
+        "end": "16:50"
+      }
+    },
+    {
+      "id": "R6#4",
+      "scope": "R6",
+      "selectors": [
+        {
+          "title": "软件复杂性视角下的智能化开发评测",
+          "speakers": [
+            "王翀"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:50",
+        "end": "17:10"
+      }
+    },
+    {
+      "id": "R6#5",
+      "scope": "R6",
+      "selectors": [
+        {
+          "title": "企业代码智能体评测：从基准构建到系统级验收",
+          "speakers": [
+            "蒋思源"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:10",
+        "end": "17:30"
+      }
+    },
+    {
+      "id": "R7#0",
+      "scope": "R7",
+      "selectors": [
+        {
+          "title": "在变化的方法背后，寻找不变的问题：关于科研成长的一些思考",
+          "speakers": [
+            "邓锦亮"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:20",
+        "end": "15:40"
+      }
+    },
+    {
+      "id": "R7#1",
+      "scope": "R7",
+      "selectors": [
+        {
+          "title": "从比特到原子：具身智能的安全挑战与探索",
+          "speakers": [
+            "马福辰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:40",
+        "end": "16:00"
+      }
+    },
+    {
+      "id": "R7#2",
+      "scope": "R7",
+      "selectors": [
+        {
+          "title": "从跨语言代码迁移到青年教师的跨平台成长",
+          "speakers": [
+            "徐圣斌"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:00",
+        "end": "16:20"
+      }
+    },
+    {
+      "id": "R7#3",
+      "scope": "R7",
+      "selectors": [
+        {
+          "title": "从定义性质到定位角色：智能化变革中的科研之路",
+          "speakers": [
+            "孙静翎"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:20",
+        "end": "16:40"
+      }
+    },
+    {
+      "id": "R7#4",
+      "scope": "R7",
+      "selectors": [
+        {
+          "title": "迈向可信Coding Agent：挑战与实践",
+          "speakers": [
+            "李佳"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:00",
+        "end": "17:20"
+      }
+    },
+    {
+      "id": "R7#5",
+      "scope": "R7",
+      "selectors": [
+        {
+          "title": "智能软件系统的缺陷测试与修复",
+          "speakers": [
+            "李恬霖"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:20",
+        "end": "17:40"
+      }
+    },
+    {
+      "id": "R7#6",
+      "scope": "R7",
+      "selectors": [
+        {
+          "title": "代码智能体执行轨迹与安全性分析",
+          "speakers": [
+            "李佳"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:40",
+        "end": "18:00"
+      }
+    },
+    {
+      "id": "R7#7",
+      "scope": "R7",
+      "selectors": [
+        {
+          "title": "面向安全攸关领域智能控制系统的形式化验证",
+          "speakers": [
+            "赵韩蕊"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "18:00",
+        "end": "18:20"
+      }
+    },
+    {
+      "id": "R8#0",
+      "scope": "R8",
+      "selectors": [
+        {
+          "title": "开场介绍",
+          "speakers": [],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:00",
+        "end": "09:05"
+      }
+    },
+    {
+      "id": "R8#1",
+      "scope": "R8",
+      "selectors": [
+        {
+          "title": "具身智能对机器人系统的重塑——从状态驱动到状态与学习双闭环驱动",
+          "speakers": [
+            "梁斌"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:05",
+        "end": "09:30"
+      }
+    },
+    {
+      "id": "R8#2",
+      "scope": "R8",
+      "selectors": [
+        {
+          "title": "具身智能基座模型与应用前沿探索",
+          "speakers": [
+            "王栋"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:30",
+        "end": "09:55"
+      }
+    },
+    {
+      "id": "R8#3",
+      "scope": "R8",
+      "selectors": [
+        {
+          "title": "机器人软件与算法",
+          "speakers": [
+            "刘一帆"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:55",
+        "end": "10:20"
+      }
+    },
+    {
+      "id": "R8#4",
+      "scope": "R8",
+      "selectors": [
+        {
+          "title": "泛在智能系统新型漏洞精准检测及利用",
+          "speakers": [
+            "康梓峰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:20",
+        "end": "10:45"
+      }
+    },
+    {
+      "id": "R8#5",
+      "scope": "R8",
+      "selectors": [
+        {
+          "title": "从\"能做\"到\"做好\"：具身机器人的可靠性探索",
+          "speakers": [
+            "董震"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:00",
+        "end": "11:25"
+      }
+    },
+    {
+      "id": "R8#6",
+      "scope": "R8",
+      "selectors": [
+        {
+          "title": "空中具身智能：从世界构建到自主飞行",
+          "speakers": [
+            "王之港"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:25",
+        "end": "11:50"
+      }
+    },
+    {
+      "id": "R8#7",
+      "scope": "R8",
+      "selectors": [
+        {
+          "title": "大规模微模型驱动的具身智能软件架构",
+          "speakers": [
+            "贾周阳"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:50",
+        "end": "12:15"
+      }
+    },
+    {
+      "id": "R8#8",
+      "scope": "R8",
+      "selectors": [
+        {
+          "title": "结语",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "12:15",
+        "end": "12:20"
+      }
+    },
+    {
+      "id": "R8#9",
+      "scope": "R8",
+      "selectors": [
+        {
+          "title": "开场介绍",
+          "speakers": [],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:00",
+        "end": "14:05"
+      }
+    },
+    {
+      "id": "R8#10",
+      "scope": "R8",
+      "selectors": [
+        {
+          "title": "具身智能机器人关键技术及实践",
+          "speakers": [
+            "黄凯"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:05",
+        "end": "14:30"
+      }
+    },
+    {
+      "id": "R8#11",
+      "scope": "R8",
+      "selectors": [
+        {
+          "title": "具身智能系统软件体系的探索与开源实践",
+          "speakers": [
+            "陈康"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:30",
+        "end": "14:55"
+      }
+    },
+    {
+      "id": "R8#12",
+      "scope": "R8",
+      "selectors": [
+        {
+          "title": "端侧多模态智能感知与应用",
+          "speakers": [
+            "张德宇"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:55",
+        "end": "15:20"
+      }
+    },
+    {
+      "id": "R8#13",
+      "scope": "R8",
+      "selectors": [
+        {
+          "title": "多模态融合驱动的具身智能系统",
+          "speakers": [
+            "夏海峰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:20",
+        "end": "15:45"
+      }
+    },
+    {
+      "id": "R8#14",
+      "scope": "R8",
+      "selectors": [
+        {
+          "title": "基于端侧推理的多模态具身智能体模型与系统",
+          "speakers": [
+            "刘生钟"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:00",
+        "end": "16:25"
+      }
+    },
+    {
+      "id": "R8#15",
+      "scope": "R8",
+      "selectors": [
+        {
+          "title": "类脑分层分区具身大脑",
+          "speakers": [
+            "郑锋"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:25",
+        "end": "16:50"
+      }
+    },
+    {
+      "id": "R8#16",
+      "scope": "R8",
+      "selectors": [
+        {
+          "title": "人机交互视角下的物联网安全研究",
+          "speakers": [
+            "孟岩"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:50",
+        "end": "17:15"
+      }
+    },
+    {
+      "id": "R8#17",
+      "scope": "R8",
+      "selectors": [
+        {
+          "title": "结语",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "17:15",
+        "end": "17:20"
+      }
+    },
+    {
+      "id": "R9#0",
+      "scope": "R9",
+      "selectors": [
+        {
+          "title": "主持人开场致辞",
+          "speakers": [],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:00",
+        "end": "14:10"
+      }
+    },
+    {
+      "id": "R9#1",
+      "scope": "R9",
+      "selectors": [
+        {
+          "title": "强对抗环境下智能车载嵌入式基础软件挑战与实践",
+          "speakers": [
+            "王博"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:10",
+        "end": "14:35"
+      }
+    },
+    {
+      "id": "R9#2",
+      "scope": "R9",
+      "selectors": [
+        {
+          "title": "面向具身智能的异步任务链端到端时延分析",
+          "speakers": [
+            "邓庆绪"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:35",
+        "end": "15:00"
+      }
+    },
+    {
+      "id": "R9#3",
+      "scope": "R9",
+      "selectors": [
+        {
+          "title": "面向Physical AI时代的麒麟工业操作系统",
+          "speakers": [
+            "任慰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:00",
+        "end": "15:25"
+      }
+    },
+    {
+      "id": "R9#4",
+      "scope": "R9",
+      "selectors": [
+        {
+          "title": "基于RISC-V K3 平台的openKylin 具身智能技术实践与探索",
+          "speakers": [
+            "王文竹"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:25",
+        "end": "15:50"
+      }
+    },
+    {
+      "id": "R9#5",
+      "scope": "R9",
+      "selectors": [
+        {
+          "title": "面向开放世界的具身智能体及其应用",
+          "speakers": [
+            "盛律"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:05",
+        "end": "16:30"
+      }
+    },
+    {
+      "id": "R9#6",
+      "scope": "R9",
+      "selectors": [
+        {
+          "title": "面向国产敏捷无人系统的实时推理优化工具链",
+          "speakers": [
+            "黄凯"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:30",
+        "end": "16:55"
+      }
+    },
+    {
+      "id": "R9#7",
+      "scope": "R9",
+      "selectors": [
+        {
+          "title": "交流讨论与论坛总结",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:55",
+        "end": "17:00"
+      }
+    },
+    {
+      "id": "R10#0",
+      "scope": "R10",
+      "selectors": [
+        {
+          "title": "Agile-SOFL：敏捷形式化工程方法",
+          "speakers": [
+            "刘少英"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:00",
+        "end": "09:40"
+      }
+    },
+    {
+      "id": "R10#1",
+      "scope": "R10",
+      "selectors": [
+        {
+          "title": "Why Quantum Software Needs Formal Engineering Methods",
+          "speakers": [
+            "赵建军"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:40",
+        "end": "10:20"
+      }
+    },
+    {
+      "id": "R10#2",
+      "scope": "R10",
+      "selectors": [
+        {
+          "title": "知识形式化驱动人工智能",
+          "speakers": [
+            "刘杨"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:40",
+        "end": "11:20"
+      }
+    },
+    {
+      "id": "R10#3",
+      "scope": "R10",
+      "selectors": [
+        {
+          "title": "Towards Trustworthiness Assurance of Intelligent Systems in the Agentic AI Era",
+          "speakers": [
+            "马雷"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:20",
+        "end": "12:00"
+      }
+    },
+    {
+      "id": "R10#4",
+      "scope": "R10",
+      "selectors": [
+        {
+          "title": "模型引导的功能性质测试技术及其应用",
+          "speakers": [
+            "苏亭"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:00",
+        "end": "14:35"
+      }
+    },
+    {
+      "id": "R10#5",
+      "scope": "R10",
+      "selectors": [
+        {
+          "title": "基于形式化方法的自主智能系统安全分析与控制",
+          "speakers": [
+            "林望"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:35",
+        "end": "15:10"
+      }
+    },
+    {
+      "id": "R10#6",
+      "scope": "R10",
+      "selectors": [
+        {
+          "title": "AIG结构中的并行性与共享性：从逻辑重写到组合等价性检查",
+          "speakers": [
+            "曲南江"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:30",
+        "end": "16:05"
+      }
+    },
+    {
+      "id": "R10#7",
+      "scope": "R10",
+      "selectors": [
+        {
+          "title": "基于测试的形式化验证：方法扩展与验证准则",
+          "speakers": [
+            "刘艾"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:05",
+        "end": "16:40"
+      }
+    },
+    {
+      "id": "R11#0",
+      "scope": "R11",
+      "selectors": [
+        {
+          "title": "验证复杂程序功能正确性",
+          "speakers": [
+            "曹钦翔"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:00",
+        "end": "14:55"
+      }
+    },
+    {
+      "id": "R11#1",
+      "scope": "R11",
+      "selectors": [
+        {
+          "title": "面向真实软件任务的大模型评测",
+          "speakers": [
+            "高翠芸"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:55",
+        "end": "15:50"
+      }
+    },
+    {
+      "id": "R11#2",
+      "scope": "R11",
+      "selectors": [
+        {
+          "title": "鸿蒙软件的智能移植、演化与安全保障",
+          "speakers": [
+            "王莹"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:05",
+        "end": "17:00"
+      }
+    },
+    {
+      "id": "R12#0",
+      "scope": "R12",
+      "selectors": [
+        {
+          "title": "开场白",
+          "speakers": [
+            "李必信",
+            "孙小兵",
+            "裴玉"
+          ],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:00",
+        "end": "09:15"
+      }
+    },
+    {
+      "id": "R12#1",
+      "scope": "R12",
+      "selectors": [
+        {
+          "title": "代码智能驱动的软件漏洞分析：从检测到理解",
+          "speakers": [
+            "陈翔"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:15",
+        "end": "09:45"
+      }
+    },
+    {
+      "id": "R12#2",
+      "scope": "R12",
+      "selectors": [
+        {
+          "title": "智能模型鲁棒性测试研究与实践",
+          "speakers": [
+            "崔展齐"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:45",
+        "end": "10:15"
+      }
+    },
+    {
+      "id": "R12#3",
+      "scope": "R12",
+      "selectors": [
+        {
+          "title": "基于优化的软件功能消胀",
+          "speakers": [
+            "辛奇"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "10:30",
+        "end": "11:00"
+      }
+    },
+    {
+      "id": "R12#4",
+      "scope": "R12",
+      "selectors": [
+        {
+          "title": "架构依赖视角下的软件缺陷检测：从传统开发到智能化软件工程",
+          "speakers": [
+            "钟陈星"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:00",
+        "end": "11:30"
+      }
+    },
+    {
+      "id": "R12#5",
+      "scope": "R12",
+      "selectors": [
+        {
+          "title": "AI驱动的工业软件缺陷智能检测与质量闭环管理实践",
+          "speakers": [
+            "胡英杰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:30",
+        "end": "12:00"
+      }
+    },
+    {
+      "id": "R13#0",
+      "scope": "R13",
+      "selectors": [
+        {
+          "title": "主持人开场致辞",
+          "speakers": [],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:00",
+        "end": "09:05"
+      }
+    },
+    {
+      "id": "R13#1",
+      "scope": "R13",
+      "selectors": [
+        {
+          "title": "基于大模型的软件自动化 – 进展与问题（V10.1）",
+          "speakers": [
+            "李戈"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:05",
+        "end": "09:20"
+      }
+    },
+    {
+      "id": "R13#2",
+      "scope": "R13",
+      "selectors": [
+        {
+          "title": "Agent 驱动的 XPU Kernel 生成与 Compiler IR 协同优化演进",
+          "speakers": [
+            "狄鹏"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:20",
+        "end": "09:35"
+      }
+    },
+    {
+      "id": "R13#3",
+      "scope": "R13",
+      "selectors": [
+        {
+          "title": "从轨迹分析到可靠驾驭：大模型智能体失效定位与能力提升",
+          "speakers": [
+            "王俊杰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:35",
+        "end": "09:50"
+      }
+    },
+    {
+      "id": "R13#4",
+      "scope": "R13",
+      "selectors": [
+        {
+          "title": "需求编译与约束工程",
+          "speakers": [
+            "林云"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:50",
+        "end": "10:05"
+      }
+    },
+    {
+      "id": "R13#5",
+      "scope": "R13",
+      "selectors": [
+        {
+          "title": "迈向可信的软件智能：大模型驱动的代码审查",
+          "speakers": [
+            "高翠芸"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:05",
+        "end": "10:20"
+      }
+    },
+    {
+      "id": "R13#6",
+      "scope": "R13",
+      "selectors": [
+        {
+          "title": "可审计代码生成初探：从责任保持到有界修复",
+          "speakers": [
+            "吕晨"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:20",
+        "end": "10:35"
+      }
+    },
+    {
+      "id": "R13#7",
+      "scope": "R13",
+      "selectors": [
+        {
+          "title": "FaaS系统运维中的资源治理：从函数服务到函数工作流",
+          "speakers": [
+            "徐悦甡"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:35",
+        "end": "10:50"
+      }
+    },
+    {
+      "id": "R13#8",
+      "scope": "R13",
+      "selectors": [
+        {
+          "title": "大模型辅助的低资源编程语言缺陷分析",
+          "speakers": [
+            "陈嘉弛"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:50",
+        "end": "11:05"
+      }
+    },
+    {
+      "id": "R13#9",
+      "scope": "R13",
+      "selectors": [
+        {
+          "title": "大模型时代的智能程序修复：范式与演进",
+          "speakers": [
+            "张建"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:05",
+        "end": "11:20"
+      }
+    },
+    {
+      "id": "R13#10",
+      "scope": "R13",
+      "selectors": [
+        {
+          "title": "鸿蒙模型增训经验分享",
+          "speakers": [
+            "岳崇建"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:20",
+        "end": "11:35"
+      }
+    },
+    {
+      "id": "R13#11",
+      "scope": "R13",
+      "selectors": [
+        {
+          "title": "圆桌对话、观众提问与总结",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:35",
+        "end": "12:00"
+      }
+    },
+    {
+      "id": "R13#12",
+      "scope": "R13",
+      "selectors": [
+        {
+          "title": "特邀报告1：《人机物融合软件系统的设计方法——探索和挑战》",
+          "speakers": [
+            "金芝"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:00",
+        "end": "14:40"
+      }
+    },
+    {
+      "id": "R13#13",
+      "scope": "R13",
+      "selectors": [
+        {
+          "title": "特邀报告2：《从人类智能到机器智能：一种受脑启发的智能体计算架构》",
+          "speakers": [
+            "刘杨"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:40",
+        "end": "15:20"
+      }
+    },
+    {
+      "id": "R13#14",
+      "scope": "R13",
+      "selectors": [
+        {
+          "title": "特邀报告3：《林草智能软件研究与典型应用》",
+          "speakers": [
+            "许福"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:20",
+        "end": "16:00"
+      }
+    },
+    {
+      "id": "R13#15",
+      "scope": "R13",
+      "selectors": [
+        {
+          "title": "特邀报告4：《面向数据安全保护场景的系统性能优化》",
+          "speakers": [
+            "赵路坦"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:20",
+        "end": "17:00"
+      }
+    },
+    {
+      "id": "R13#16",
+      "scope": "R13",
+      "selectors": [
+        {
+          "title": "特邀报告5：《机无所恶，伤有所至：具身智能时代的软件的可靠性危机》",
+          "speakers": [
+            "张悦"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "17:00",
+        "end": "17:40"
+      }
+    },
+    {
+      "id": "R13#17",
+      "scope": "R13",
+      "selectors": [
+        {
+          "title": "特邀报告6：《生-机-电系统融合：从感知到生成》",
+          "speakers": [
+            "郑恩昊"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "17:40",
+        "end": "18:20"
+      }
+    },
+    {
+      "id": "R14#0",
+      "scope": "R14",
+      "selectors": [
+        {
+          "title": "智能驱动的软件供应链安全分析：从风险发现到自主验证",
+          "speakers": [
+            "陈森"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:00",
+        "end": "09:20"
+      }
+    },
+    {
+      "id": "R14#1",
+      "scope": "R14",
+      "selectors": [
+        {
+          "title": "面向国产操作系统的供应链安全知识图谱构建与智能分析应用",
+          "speakers": [
+            "马俊"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:20",
+        "end": "09:40"
+      }
+    },
+    {
+      "id": "R14#2",
+      "scope": "R14",
+      "selectors": [
+        {
+          "title": "ROS机器人系统软件安全测试",
+          "speakers": [
+            "白家驹"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:40",
+        "end": "10:00"
+      }
+    },
+    {
+      "id": "R14#3",
+      "scope": "R14",
+      "selectors": [
+        {
+          "title": "大模型威胁下的硬件组件供应链安全",
+          "speakers": [
+            "廖楠"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:00",
+        "end": "10:20"
+      }
+    },
+    {
+      "id": "R14#4",
+      "scope": "R14",
+      "selectors": [
+        {
+          "title": "开源供应链基础设施最新进展",
+          "speakers": [
+            "凌祥"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:40",
+        "end": "11:00"
+      }
+    },
+    {
+      "id": "R14#5",
+      "scope": "R14",
+      "selectors": [
+        {
+          "title": "面向软件供应链安全的智能化二进制反混淆",
+          "speakers": [
+            "朱康晨"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:00",
+        "end": "11:10"
+      }
+    },
+    {
+      "id": "R14#6",
+      "scope": "R14",
+      "selectors": [
+        {
+          "title": "大模型赋能的漏洞检测",
+          "speakers": [
+            "胡鑫"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:10",
+        "end": "11:20"
+      }
+    },
+    {
+      "id": "R14#7",
+      "scope": "R14",
+      "selectors": [
+        {
+          "title": "SBOM标准与工具的遵循差距：大规模纵向分析",
+          "speakers": [
+            "王承杰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:20",
+        "end": "11:30"
+      }
+    },
+    {
+      "id": "R14#8",
+      "scope": "R14",
+      "selectors": [
+        {
+          "title": "可信开源代码库关键进展",
+          "speakers": [
+            "崔星"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:30",
+        "end": "11:40"
+      }
+    },
+    {
+      "id": "R15#0",
+      "scope": "R15",
+      "selectors": [
+        {
+          "title": "区块链欺诈行为检测与安全监管技术研究",
+          "speakers": [
+            "王海军"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:20",
+        "end": "15:45"
+      }
+    },
+    {
+      "id": "R15#1",
+      "scope": "R15",
+      "selectors": [
+        {
+          "title": "可扩展区块链关键技术：科学问题与发展趋势",
+          "speakers": [
+            "肖江"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:45",
+        "end": "16:10"
+      }
+    },
+    {
+      "id": "R15#2",
+      "scope": "R15",
+      "selectors": [
+        {
+          "title": "大模型时代的区块链安全：挑战与机遇",
+          "speakers": [
+            "吴嘉婧"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:10",
+        "end": "16:35"
+      }
+    },
+    {
+      "id": "R15#3",
+      "scope": "R15",
+      "selectors": [
+        {
+          "title": "Web4智能体经济：身份、支付与动态安全调度",
+          "speakers": [
+            "陈嘉弛"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:50",
+        "end": "17:15"
+      }
+    },
+    {
+      "id": "R15#4",
+      "scope": "R15",
+      "selectors": [
+        {
+          "title": "敏感资源驱动的区块链生态安全保障研究",
+          "speakers": [
+            "南雨宏"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:15",
+        "end": "17:40"
+      }
+    },
+    {
+      "id": "R15#5",
+      "scope": "R15",
+      "selectors": [
+        {
+          "title": "区块链预言机安全风险与可信机制研究",
+          "speakers": [
+            "高健博"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:40",
+        "end": "18:05"
+      }
+    },
+    {
+      "id": "R16#0",
+      "scope": "R16",
+      "selectors": [
+        {
+          "title": "主持开场/致辞",
+          "speakers": [],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:00",
+        "end": "09:20"
+      }
+    },
+    {
+      "id": "R16#1",
+      "scope": "R16",
+      "selectors": [
+        {
+          "title": "Community over Code：开源社区的演化挑战与智能体驱动维护",
+          "speakers": [
+            "周明辉"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:20",
+        "end": "09:40"
+      }
+    },
+    {
+      "id": "R16#2",
+      "scope": "R16",
+      "selectors": [
+        {
+          "title": "“如意” RISC-V 原生社区：构建基础软件新生态",
+          "speakers": [
+            "武延军"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:40",
+        "end": "10:00"
+      }
+    },
+    {
+      "id": "R16#3",
+      "scope": "R16",
+      "selectors": [
+        {
+          "title": "从智能算力中心到算力网：筑牢智能软件生态底座",
+          "speakers": [
+            "余跃"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "10:00",
+        "end": "10:20"
+      }
+    },
+    {
+      "id": "R16#4",
+      "scope": "R16",
+      "selectors": [
+        {
+          "title": "开源卫星研究进展",
+          "speakers": [
+            "王尚广"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "10:40",
+        "end": "11:00"
+      }
+    },
+    {
+      "id": "R16#5",
+      "scope": "R16",
+      "selectors": [
+        {
+          "title": "AI 智能研发范式下开源工业软件协同创新生态构建",
+          "speakers": [
+            "唐滨"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:00",
+        "end": "11:20"
+      }
+    },
+    {
+      "id": "R16#6",
+      "scope": "R16",
+      "selectors": [
+        {
+          "title": "Panel",
+          "speakers": [
+            "张宇霞",
+            "周明辉",
+            "武延军",
+            "余跃",
+            "王尚广",
+            "唐滨"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:20",
+        "end": "12:00"
+      }
+    },
+    {
+      "id": "R17#0",
+      "scope": "R17",
+      "selectors": [
+        {
+          "title": "静态分析误报消除方法研究",
+          "speakers": [
+            "王林章"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:20",
+        "end": "15:40"
+      }
+    },
+    {
+      "id": "R17#1",
+      "scope": "R17",
+      "selectors": [
+        {
+          "title": "面向物联网应用的联邦学习与推理优化关键技术研究",
+          "speakers": [
+            "杜军朝"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:40",
+        "end": "16:00"
+      }
+    },
+    {
+      "id": "R17#2",
+      "scope": "R17",
+      "selectors": [
+        {
+          "title": "大规模超智融合系统智能监控运维实践",
+          "speakers": [
+            "韩锦恒"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:00",
+        "end": "16:20"
+      }
+    },
+    {
+      "id": "R17#3",
+      "scope": "R17",
+      "selectors": [
+        {
+          "title": "大模型系统下可靠性技术研究",
+          "speakers": [
+            "胡燏翀"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:20",
+        "end": "16:40"
+      }
+    },
+    {
+      "id": "R17#4",
+      "scope": "R17",
+      "selectors": [
+        {
+          "title": "智能合约视角下的分布式系统韧性保障",
+          "speakers": [
+            "张鹏程"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:00",
+        "end": "17:20"
+      }
+    },
+    {
+      "id": "R17#5",
+      "scope": "R17",
+      "selectors": [
+        {
+          "title": "智能时代AI Infra可靠性保障技术与实践",
+          "speakers": [
+            "杨任宇"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:20",
+        "end": "17:40"
+      }
+    },
+    {
+      "id": "R17#6",
+      "scope": "R17",
+      "selectors": [
+        {
+          "title": "面向典型应用的近似容错技术研究",
+          "speakers": [
+            "岳恒山"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:40",
+        "end": "18:00"
+      }
+    },
+    {
+      "id": "R17#7",
+      "scope": "R17",
+      "selectors": [
+        {
+          "title": "星座智能自主运行研究与实践",
+          "speakers": [
+            "李晴"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "18:00",
+        "end": "18:20"
+      }
+    },
+    {
+      "id": "R18#0",
+      "scope": "R18",
+      "selectors": [
+        {
+          "title": "论坛开幕",
+          "speakers": [
+            "黎立"
+          ],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:00",
+        "end": "09:05"
+      }
+    },
+    {
+      "id": "R18#1",
+      "scope": "R18",
+      "selectors": [
+        {
+          "title": "从恶意检测到合规分析：移动应用安全的研究变迁与产业演化",
+          "speakers": [
+            "刘烃"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:05",
+        "end": "09:40"
+      }
+    },
+    {
+      "id": "R18#2",
+      "scope": "R18",
+      "selectors": [
+        {
+          "title": "\"码\"上迁徙：安卓应用一键转鸿蒙背后的智能体力量",
+          "speakers": [
+            "王莹"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:40",
+        "end": "10:00"
+      }
+    },
+    {
+      "id": "R18#3",
+      "scope": "R18",
+      "selectors": [
+        {
+          "title": "从功能抽象到缺陷触发：GUI 缺陷检测探索",
+          "speakers": [
+            "燕季薇"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:00",
+        "end": "10:20"
+      }
+    },
+    {
+      "id": "R18#4",
+      "scope": "R18",
+      "selectors": [
+        {
+          "title": "HomeTrans: AI Coding使能安卓应用鸿蒙化",
+          "speakers": [
+            "陈驰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:40",
+        "end": "11:00"
+      }
+    },
+    {
+      "id": "R18#5",
+      "scope": "R18",
+      "selectors": [
+        {
+          "title": "小程序生态安全：现状、机遇与挑战",
+          "speakers": [
+            "杨哲慜"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:00",
+        "end": "11:20"
+      }
+    },
+    {
+      "id": "R18#6",
+      "scope": "R18",
+      "selectors": [
+        {
+          "title": "数据为中心的AI测评与增强：从通用到端侧",
+          "speakers": [
+            "胡强"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:20",
+        "end": "11:40"
+      }
+    },
+    {
+      "id": "R18#7",
+      "scope": "R18",
+      "selectors": [
+        {
+          "title": "AI时代移动应用生态的合规挑战与机遇",
+          "speakers": [
+            "王柳"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:40",
+        "end": "12:00"
+      }
+    },
+    {
+      "id": "R19#0",
+      "scope": "R19",
+      "selectors": [
+        {
+          "title": "Rust筑牢底座，AI驱动未来：vivo蓝河操作系统的探索与实践",
+          "speakers": [
+            "张毅"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:00",
+        "end": "09:30"
+      }
+    },
+    {
+      "id": "R19#1",
+      "scope": "R19",
+      "selectors": [
+        {
+          "title": "大模型驱动的 Rust 形式化验证：从证明生成到验证工程自动化",
+          "speakers": [
+            "刘昱玮"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:30",
+        "end": "10:00"
+      }
+    },
+    {
+      "id": "R19#2",
+      "scope": "R19",
+      "selectors": [
+        {
+          "title": "内核界的\"乐高\"：用 Rust 组件按需拼装多形态内核",
+          "speakers": [
+            "周睿"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:20",
+        "end": "10:50"
+      }
+    },
+    {
+      "id": "R19#3",
+      "scope": "R19",
+      "selectors": [
+        {
+          "title": "基于安全属性的 Rust 程序验证",
+          "speakers": [
+            "饶子豪"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:50",
+        "end": "11:20"
+      }
+    },
+    {
+      "id": "R19#4",
+      "scope": "R19",
+      "selectors": [
+        {
+          "title": "基于 Rust 的 Monorepo 架构体系实现",
+          "speakers": [
+            "马全一"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:20",
+        "end": "11:50"
+      }
+    },
+    {
+      "id": "R20#0",
+      "scope": "R20",
+      "selectors": [
+        {
+          "title": "论坛介绍",
+          "speakers": [
+            "孟国柱"
+          ],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:00",
+        "end": "09:10"
+      }
+    },
+    {
+      "id": "R20#1",
+      "scope": "R20",
+      "selectors": [
+        {
+          "title": "异构平台下深度学习系统的分析与测试",
+          "speakers": [
+            "李晓红"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:10",
+        "end": "09:40"
+      }
+    },
+    {
+      "id": "R20#2",
+      "scope": "R20",
+      "selectors": [
+        {
+          "title": "人工智能模型安全问题与隐私风险",
+          "speakers": [
+            "陈恺"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:40",
+        "end": "10:10"
+      }
+    },
+    {
+      "id": "R20#3",
+      "scope": "R20",
+      "selectors": [
+        {
+          "title": "Securing AI Agents Across Context, Behavior, and Code",
+          "speakers": [
+            "谢肖飞"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "10:30",
+        "end": "11:00"
+      }
+    },
+    {
+      "id": "R20#4",
+      "scope": "R20",
+      "selectors": [
+        {
+          "title": "面向智能体软件的原生程序分析技术",
+          "speakers": [
+            "王浩宇"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:00",
+        "end": "11:30"
+      }
+    },
+    {
+      "id": "R20#5",
+      "scope": "R20",
+      "selectors": [
+        {
+          "title": "软硬件协同的安全操作系统内核",
+          "speakers": [
+            "王喆"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:30",
+        "end": "12:00"
+      }
+    },
+    {
+      "id": "R21#0",
+      "scope": "R21",
+      "selectors": [
+        {
+          "title": "勾勒系统溯源智能分析的信息边界",
+          "speakers": [
+            "梁振凯"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:20",
+        "end": "15:50"
+      }
+    },
+    {
+      "id": "R21#1",
+      "scope": "R21",
+      "selectors": [
+        {
+          "title": "网络安全极端场景下的快速恢复与抗毁重构",
+          "speakers": [
+            "孔令和"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:50",
+        "end": "16:10"
+      }
+    },
+    {
+      "id": "R21#2",
+      "scope": "R21",
+      "selectors": [
+        {
+          "title": "系统安全攻防推理与有效性分析",
+          "speakers": [
+            "李媛"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:10",
+        "end": "16:30"
+      }
+    },
+    {
+      "id": "R21#3",
+      "scope": "R21",
+      "selectors": [
+        {
+          "title": "SysEvolve：构建 AI 原生的攻防自主协同对抗体系",
+          "speakers": [
+            "蒋鹏"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:30",
+        "end": "16:50"
+      }
+    },
+    {
+      "id": "R21#4",
+      "scope": "R21",
+      "selectors": [
+        {
+          "title": "人工智能赋能漏洞发现的实践与思考",
+          "speakers": [
+            "陈恺"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:10",
+        "end": "17:40"
+      }
+    },
+    {
+      "id": "R21#5",
+      "scope": "R21",
+      "selectors": [
+        {
+          "title": "大模型驱动的网络渗透任务编排与错误纠正",
+          "speakers": [
+            "纪守领"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:40",
+        "end": "18:00"
+      }
+    },
+    {
+      "id": "R21#6",
+      "scope": "R21",
+      "selectors": [
+        {
+          "title": "面向真实网络环境的攻击智能体能力评估",
+          "speakers": [
+            "张源"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "18:00",
+        "end": "18:20"
+      }
+    },
+    {
+      "id": "R22#0",
+      "scope": "R22",
+      "selectors": [
+        {
+          "title": "从宿主到靶标：操作系统在AI Agent时代的双重安全挑战",
+          "speakers": [
+            "武成岗"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:20",
+        "end": "15:40"
+      }
+    },
+    {
+      "id": "R22#1",
+      "scope": "R22",
+      "selectors": [
+        {
+          "title": "抗攻击的新型操作系统内核架构",
+          "speakers": [
+            "王喆"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:40",
+        "end": "16:00"
+      }
+    },
+    {
+      "id": "R22#2",
+      "scope": "R22",
+      "selectors": [
+        {
+          "title": "基于RISC-V软硬协同的智能体内生安全方案",
+          "speakers": [
+            "武延军"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:00",
+        "end": "16:20"
+      }
+    },
+    {
+      "id": "R22#3",
+      "scope": "R22",
+      "selectors": [
+        {
+          "title": "AI芯片可信执行环境研究",
+          "speakers": [
+            "张锋巍"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:20",
+        "end": "16:40"
+      }
+    },
+    {
+      "id": "R22#4",
+      "scope": "R22",
+      "selectors": [
+        {
+          "title": "鸿蒙OS内生安全机制，如何为AI健康发展保驾护航",
+          "speakers": [
+            "付天福"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:40",
+        "end": "17:00"
+      }
+    },
+    {
+      "id": "R22#5",
+      "scope": "R22",
+      "selectors": [
+        {
+          "title": "面向AgenticOS 纵深防御实践",
+          "speakers": [
+            "黄冕"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:00",
+        "end": "17:20"
+      }
+    },
+    {
+      "id": "R22#6",
+      "scope": "R22",
+      "selectors": [
+        {
+          "title": "Panel：AI 时代的操作系统安全技术与挑战",
+          "speakers": [
+            "武成岗",
+            "王喆",
+            "张锋巍",
+            "付天福",
+            "黄冕",
+            "谢涛"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:20",
+        "end": "18:20"
+      }
+    },
+    {
+      "id": "R23#0",
+      "scope": "R23",
+      "selectors": [
+        {
+          "title": "量子计算软件理论与体系结构研究及实践",
+          "speakers": [
+            "尹建伟"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:20",
+        "end": "15:45"
+      }
+    },
+    {
+      "id": "R23#1",
+      "scope": "R23",
+      "selectors": [
+        {
+          "title": "面向复杂优化问题的高保真可重构原子阵列量子计算系统软件技术",
+          "speakers": [
+            "诸葛晴凤"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:45",
+        "end": "16:10"
+      }
+    },
+    {
+      "id": "R23#2",
+      "scope": "R23",
+      "selectors": [
+        {
+          "title": "基于大语言模型智能体系统的量子应用生成",
+          "speakers": [
+            "岳涛"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:10",
+        "end": "16:35"
+      }
+    },
+    {
+      "id": "R23#3",
+      "scope": "R23",
+      "selectors": [
+        {
+          "title": "量子算法：量子世界的计算之法",
+          "speakers": [
+            "李绿周"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:45",
+        "end": "17:10"
+      }
+    },
+    {
+      "id": "R23#4",
+      "scope": "R23",
+      "selectors": [
+        {
+          "title": "量子算法可靠实现的形式验证",
+          "speakers": [
+            "官极"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:10",
+        "end": "17:35"
+      }
+    },
+    {
+      "id": "R23#5",
+      "scope": "R23",
+      "selectors": [
+        {
+          "title": "Quafu 量子计算云平台介绍",
+          "speakers": [
+            "王赵波"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:35",
+        "end": "18:00"
+      }
+    },
+    {
+      "id": "R24#0",
+      "scope": "R24",
+      "selectors": [
+        {
+          "title": "面向ECO电源网络稀疏矩阵的高性能增量求解器",
+          "speakers": [
+            "金洲"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:20",
+        "end": "15:45"
+      }
+    },
+    {
+      "id": "R24#1",
+      "scope": "R24",
+      "selectors": [
+        {
+          "title": "AI原生EDA和3D-IC原生EDA",
+          "speakers": [
+            "李兴权"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:45",
+        "end": "16:10"
+      }
+    },
+    {
+      "id": "R24#2",
+      "scope": "R24",
+      "selectors": [
+        {
+          "title": "大模型与自主智能体驱动的 RTL 硬件设计验证框架",
+          "speakers": [
+            "吕杨迪"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:10",
+        "end": "16:35"
+      }
+    },
+    {
+      "id": "R24#3",
+      "scope": "R24",
+      "selectors": [
+        {
+          "title": "面向资产复用的 AI 辅助 IC 测试与形式化验证",
+          "speakers": [
+            "晁志腾"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:05",
+        "end": "17:30"
+      }
+    },
+    {
+      "id": "R24#4",
+      "scope": "R24",
+      "selectors": [
+        {
+          "title": "Agentic EDA：从单点AI到芯片设计范式重构",
+          "speakers": [
+            "许思源"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:30",
+        "end": "17:55"
+      }
+    },
+    {
+      "id": "R24#5",
+      "scope": "R24",
+      "selectors": [
+        {
+          "title": "面向芯片设计的ECO工具及关键问题",
+          "speakers": [
+            "袁峰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:55",
+        "end": "18:20"
+      }
+    },
+    {
+      "id": "R25#0",
+      "scope": "R25",
+      "selectors": [
+        {
+          "title": "主持人开场致辞",
+          "speakers": [],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:00",
+        "end": "09:05"
+      }
+    },
+    {
+      "id": "R25#1",
+      "scope": "R25",
+      "selectors": [
+        {
+          "title": "载人航天工程软件智能化独立审查：工程需求、关键技术与应用探索",
+          "speakers": [
+            "程胜"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:05",
+        "end": "09:25"
+      }
+    },
+    {
+      "id": "R25#2",
+      "scope": "R25",
+      "selectors": [
+        {
+          "title": "安全攸关软件模型驱动研发中的AI与形式化方法",
+          "speakers": [
+            "武方方"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:25",
+        "end": "09:45"
+      }
+    },
+    {
+      "id": "R25#3",
+      "scope": "R25",
+      "selectors": [
+        {
+          "title": "面向人机物融合场景的软件可信构造与保障",
+          "speakers": [
+            "卜磊"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:45",
+        "end": "10:05"
+      }
+    },
+    {
+      "id": "R25#4",
+      "scope": "R25",
+      "selectors": [
+        {
+          "title": "大模型增强的安全关键软件模型驱动开发与验证方法",
+          "speakers": [
+            "杨志斌"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "10:05",
+        "end": "10:25"
+      }
+    },
+    {
+      "id": "R25#5",
+      "scope": "R25",
+      "selectors": [
+        {
+          "title": "基于形式化方法的 Agent 行为安全检测与优化",
+          "speakers": [
+            "蔡少伟"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "10:40",
+        "end": "11:00"
+      }
+    },
+    {
+      "id": "R25#6",
+      "scope": "R25",
+      "selectors": [
+        {
+          "title": "Agents4PLC：多智能体驱动的工业控制软件可信开发与验证",
+          "speakers": [
+            "王东霞"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:00",
+        "end": "11:20"
+      }
+    },
+    {
+      "id": "R25#7",
+      "scope": "R25",
+      "selectors": [
+        {
+          "title": "面向智能系统的系统工程语义设计方法",
+          "speakers": [
+            "鲁金直"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:20",
+        "end": "11:40"
+      }
+    },
+    {
+      "id": "R25#8",
+      "scope": "R25",
+      "selectors": [
+        {
+          "title": "Q&A 论坛总结",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:40",
+        "end": "12:00"
+      }
+    },
+    {
+      "id": "R26#0",
+      "scope": "R26",
+      "selectors": [
+        {
+          "title": "系统软件的安全与可扩展并发：形式化方法与工业实践",
+          "speakers": [
+            "付明"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:20",
+        "end": "15:45"
+      }
+    },
+    {
+      "id": "R26#1",
+      "scope": "R26",
+      "selectors": [
+        {
+          "title": "面向全球规模的可编程算力网关研发体系",
+          "speakers": [
+            "高佳琦"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:45",
+        "end": "16:10"
+      }
+    },
+    {
+      "id": "R26#2",
+      "scope": "R26",
+      "selectors": [
+        {
+          "title": "分层并发对象的基础性组合验证方法",
+          "speakers": [
+            "汪宇霆"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:10",
+        "end": "16:35"
+      }
+    },
+    {
+      "id": "R26#3",
+      "scope": "R26",
+      "selectors": [
+        {
+          "title": "面向Linux eBPF的形式化语义与安全验证",
+          "speakers": [
+            "袁胜浩"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:05",
+        "end": "17:30"
+      }
+    },
+    {
+      "id": "R26#4",
+      "scope": "R26",
+      "selectors": [
+        {
+          "title": "基于智能体的符号执行",
+          "speakers": [
+            "罗正雄"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:30",
+        "end": "17:55"
+      }
+    },
+    {
+      "id": "R26#5",
+      "scope": "R26",
+      "selectors": [
+        {
+          "title": "硬件芯片缺陷检测",
+          "speakers": [
+            "陈元亮"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:55",
+        "end": "18:20"
+      }
+    },
+    {
+      "id": "R27#0",
+      "scope": "R27",
+      "selectors": [
+        {
+          "title": "智能化软件生态的成长式构建",
+          "speakers": [
+            "周明辉"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:00",
+        "end": "09:30"
+      }
+    },
+    {
+      "id": "R27#1",
+      "scope": "R27",
+      "selectors": [
+        {
+          "title": "国产开源操作系统软件质量保障",
+          "speakers": [
+            "施鹤远"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:30",
+        "end": "10:00"
+      }
+    },
+    {
+      "id": "R27#2",
+      "scope": "R27",
+      "selectors": [
+        {
+          "title": "智能混成软件的可信构造与演化",
+          "speakers": [
+            "董威"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "10:00",
+        "end": "10:30"
+      }
+    },
+    {
+      "id": "R27#3",
+      "scope": "R27",
+      "selectors": [
+        {
+          "title": "形式化方法在韧性系统软件中的应用",
+          "speakers": [
+            "王肇国"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:00",
+        "end": "11:30"
+      }
+    },
+    {
+      "id": "R27#4",
+      "scope": "R27",
+      "selectors": [
+        {
+          "title": "硬件的启示：如何构造韧性软件",
+          "speakers": [
+            "顾斌"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:30",
+        "end": "12:00"
+      }
+    },
+    {
+      "id": "R28#0",
+      "scope": "R28",
+      "selectors": [
+        {
+          "title": "大模型赋能的越权漏洞检测",
+          "speakers": [
+            "张源"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:00",
+        "end": "14:30"
+      }
+    },
+    {
+      "id": "R28#1",
+      "scope": "R28",
+      "selectors": [
+        {
+          "title": "面向软件漏洞可利用性验证的大语言模型能力测评方法研究",
+          "speakers": [
+            "赵磊"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:30",
+        "end": "15:00"
+      }
+    },
+    {
+      "id": "R28#2",
+      "scope": "R28",
+      "selectors": [
+        {
+          "title": "基于强制执行的恶意软件隐藏行为分析",
+          "speakers": [
+            "游伟"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:00",
+        "end": "15:20"
+      }
+    },
+    {
+      "id": "R28#3",
+      "scope": "R28",
+      "selectors": [
+        {
+          "title": "面向工业控制系统的软件安全分析",
+          "speakers": [
+            "薛磊"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:50",
+        "end": "16:20"
+      }
+    },
+    {
+      "id": "R28#4",
+      "scope": "R28",
+      "selectors": [
+        {
+          "title": "二进制软件相似性分析技术及其应用",
+          "speakers": [
+            "王怀瑾"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:20",
+        "end": "16:50"
+      }
+    },
+    {
+      "id": "R28#5",
+      "scope": "R28",
+      "selectors": [
+        {
+          "title": "以系统驱动研究：从程序分析框架\"太阿\"到长期研究路线",
+          "speakers": [
+            "谭添"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:50",
+        "end": "17:20"
+      }
+    },
+    {
+      "id": "R29#0",
+      "scope": "R29",
+      "selectors": [
+        {
+          "title": "Model-learning for Real-time and Hybrid Systems",
+          "speakers": [
+            "詹乃军"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "08:50",
+        "end": "09:20"
+      }
+    },
+    {
+      "id": "R29#1",
+      "scope": "R29",
+      "selectors": [
+        {
+          "title": "神经符号数据库技术及应用",
+          "speakers": [
+            "袁野"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:20",
+        "end": "09:50"
+      }
+    },
+    {
+      "id": "R29#2",
+      "scope": "R29",
+      "selectors": [
+        {
+          "title": "大模型时代的符号逻辑：价值与边界",
+          "speakers": [
+            "孙军"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:50",
+        "end": "10:20"
+      }
+    },
+    {
+      "id": "R29#3",
+      "scope": "R29",
+      "selectors": [
+        {
+          "title": "面向问题自动抽象与形式化的神经符号学习",
+          "speakers": [
+            "戴望州"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "10:40",
+        "end": "11:10"
+      }
+    },
+    {
+      "id": "R29#4",
+      "scope": "R29",
+      "selectors": [
+        {
+          "title": "Panel讨论",
+          "speakers": [
+            "詹乃军",
+            "袁野",
+            "孙军",
+            "戴望州"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:10",
+        "end": "12:00"
+      }
+    },
+    {
+      "id": "R30#0",
+      "scope": "R30",
+      "selectors": [
+        {
+          "title": "代码/证据协同生成与异构对齐",
+          "speakers": [
+            "王戟"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:20",
+        "end": "15:50"
+      }
+    },
+    {
+      "id": "R30#1",
+      "scope": "R30",
+      "selectors": [
+        {
+          "title": "所解即所证：基于大语言模型的编程和规约与验证一体化",
+          "speakers": [
+            "李宣东"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:50",
+        "end": "16:20"
+      }
+    },
+    {
+      "id": "R30#2",
+      "scope": "R30",
+      "selectors": [
+        {
+          "title": "从数据中挖掘符号规则",
+          "speakers": [
+            "熊英飞"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:20",
+        "end": "16:50"
+      }
+    },
+    {
+      "id": "R30#3",
+      "scope": "R30",
+      "selectors": [
+        {
+          "title": "形式化之后，可信之前：大模型辅助的建模与推断",
+          "speakers": [
+            "王培新"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:50",
+        "end": "17:20"
+      }
+    },
+    {
+      "id": "R30#4",
+      "scope": "R30",
+      "selectors": [
+        {
+          "title": "从 AI 辅助到 AI 驱动：形式化程序验证的新探索",
+          "speakers": [
+            "曹嘉伦"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:20",
+        "end": "17:50"
+      }
+    },
+    {
+      "id": "R30#5",
+      "scope": "R30",
+      "selectors": [
+        {
+          "title": "C 程序形式化验证智能体及工业实践",
+          "speakers": [
+            "李昊坤"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:50",
+        "end": "18:20"
+      }
+    },
+    {
+      "id": "R31#0",
+      "scope": "R31",
+      "selectors": [
+        {
+          "title": "论坛开幕",
+          "speakers": [],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:20",
+        "end": "15:25"
+      }
+    },
+    {
+      "id": "R31#1",
+      "scope": "R31",
+      "selectors": [
+        {
+          "title": "约束求解研究概览",
+          "speakers": [
+            "张健"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:25",
+        "end": "15:50"
+      }
+    },
+    {
+      "id": "R31#2",
+      "scope": "R31",
+      "selectors": [
+        {
+          "title": "大模型辅助的约束求解：算法理论与求解器",
+          "speakers": [
+            "蔡少伟"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:50",
+        "end": "16:15"
+      }
+    },
+    {
+      "id": "R31#3",
+      "scope": "R31",
+      "selectors": [
+        {
+          "title": "面向并发程序验证的SMT理论及其扩展",
+          "speakers": [
+            "贺飞"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:15",
+        "end": "16:40"
+      }
+    },
+    {
+      "id": "R31#4",
+      "scope": "R31",
+      "selectors": [
+        {
+          "title": "演化学习：迈向高效通用黑盒优化",
+          "speakers": [
+            "钱超"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:00",
+        "end": "17:25"
+      }
+    },
+    {
+      "id": "R31#5",
+      "scope": "R31",
+      "selectors": [
+        {
+          "title": "特定领域场景下Tensor加速器驱动的SAT/SMT求解",
+          "speakers": [
+            "史建琦"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:25",
+        "end": "17:50"
+      }
+    },
+    {
+      "id": "R31#6",
+      "scope": "R31",
+      "selectors": [
+        {
+          "title": "自动算法设计：算法空间蒸馏与代码生成",
+          "speakers": [
+            "刘晟材"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:50",
+        "end": "18:15"
+      }
+    },
+    {
+      "id": "R31#7",
+      "scope": "R31",
+      "selectors": [
+        {
+          "title": "论坛闭幕",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "18:15",
+        "end": "18:20"
+      }
+    },
+    {
+      "id": "R32#0",
+      "scope": "R32",
+      "selectors": [
+        {
+          "title": "开场致辞与论坛介绍",
+          "speakers": [
+            "何家骥"
+          ],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "13:30",
+        "end": "13:40"
+      }
+    },
+    {
+      "id": "R32#1",
+      "scope": "R32",
+      "selectors": [
+        {
+          "title": "熵变驱动的网络空间多域融合智能安全研究",
+          "speakers": [
+            "饶志宏"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "13:40",
+        "end": "14:00"
+      }
+    },
+    {
+      "id": "R32#2",
+      "scope": "R32",
+      "selectors": [
+        {
+          "title": "从深度模型确权到AIGC溯源",
+          "speakers": [
+            "张新鹏"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:00",
+        "end": "14:20"
+      }
+    },
+    {
+      "id": "R32#3",
+      "scope": "R32",
+      "selectors": [
+        {
+          "title": "机密Token：面向智能体的Token服务变革",
+          "speakers": [
+            "金意儿"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:20",
+        "end": "14:40"
+      }
+    },
+    {
+      "id": "R32#4",
+      "scope": "R32",
+      "selectors": [
+        {
+          "title": "GPU芯片软硬跨层分析方法",
+          "speakers": [
+            "王坚"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:40",
+        "end": "15:00"
+      }
+    },
+    {
+      "id": "R32#5",
+      "scope": "R32",
+      "selectors": [
+        {
+          "title": "面向复杂系统的逻辑漏洞高效检测",
+          "speakers": [
+            "袁斌"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:20",
+        "end": "15:40"
+      }
+    },
+    {
+      "id": "R32#6",
+      "scope": "R32",
+      "selectors": [
+        {
+          "title": "智能模型攻防及其安全应用",
+          "speakers": [
+            "马卓"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:40",
+        "end": "16:00"
+      }
+    },
+    {
+      "id": "R32#7",
+      "scope": "R32",
+      "selectors": [
+        {
+          "title": "面向加密勒索软件的多维欺骗防御技术",
+          "speakers": [
+            "孙彦斌"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:00",
+        "end": "16:20"
+      }
+    },
+    {
+      "id": "R32#8",
+      "scope": "R32",
+      "selectors": [
+        {
+          "title": "感知即泄露：MacBook内置IMU的软硬件跨层侧信道",
+          "speakers": [
+            "何家骥"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:20",
+        "end": "16:40"
+      }
+    },
+    {
+      "id": "R32#9",
+      "scope": "R32",
+      "selectors": [
+        {
+          "title": "论坛总结",
+          "speakers": [
+            "何家骥"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:40",
+        "end": "17:00"
+      }
+    },
+    {
+      "id": "R33#0",
+      "scope": "R33",
+      "selectors": [
+        {
+          "title": "开场致辞",
+          "speakers": [
+            "张兆成"
+          ],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:00",
+        "end": "14:05"
+      }
+    },
+    {
+      "id": "R33#1",
+      "scope": "R33",
+      "selectors": [
+        {
+          "title": "智能算力网络的探索与实践",
+          "speakers": [
+            "金海"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:05",
+        "end": "14:15"
+      }
+    },
+    {
+      "id": "R33#2",
+      "scope": "R33",
+      "selectors": [
+        {
+          "title": "光合组织介绍",
+          "speakers": [
+            "崔江波"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:25",
+        "end": "14:40"
+      }
+    },
+    {
+      "id": "R33#3",
+      "scope": "R33",
+      "selectors": [
+        {
+          "title": "国产算力底座上的具身智能技术路线与落地路径",
+          "speakers": [
+            "徐俊辉"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:40",
+        "end": "15:00"
+      }
+    },
+    {
+      "id": "R33#4",
+      "scope": "R33",
+      "selectors": [
+        {
+          "title": "超智融合算力底座的软件栈重构实践",
+          "speakers": [
+            "吴聪聪"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:00",
+        "end": "15:20"
+      }
+    },
+    {
+      "id": "R33#5",
+      "scope": "R33",
+      "selectors": [
+        {
+          "title": "众智FlagOS重构超智融合软件栈的实践与思考构实践",
+          "speakers": [
+            "朱其罡"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:20",
+        "end": "15:40"
+      }
+    },
+    {
+      "id": "R33#6",
+      "scope": "R33",
+      "selectors": [
+        {
+          "title": "AI Infra软硬协同释放国产算力效能",
+          "speakers": [
+            "师天麾"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:40",
+        "end": "16:00"
+      }
+    },
+    {
+      "id": "R33#7",
+      "scope": "R33",
+      "selectors": [
+        {
+          "title": "基于融合算力底座的AI原生应用行业落地实践",
+          "speakers": [
+            "李禹霆"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:00",
+        "end": "16:20"
+      }
+    },
+    {
+      "id": "R33#8",
+      "scope": "R33",
+      "selectors": [
+        {
+          "title": "算力落地“最后一公里”：国产终端重构端侧智能新入口",
+          "speakers": [
+            "杜一圣"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:20",
+        "end": "16:40"
+      }
+    },
+    {
+      "id": "R34#0",
+      "scope": "R34",
+      "selectors": [
+        {
+          "title": "论坛开场、致辞",
+          "speakers": [
+            "金海",
+            "梅宏"
+          ],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:20",
+        "end": "15:30"
+      }
+    },
+    {
+      "id": "R34#1",
+      "scope": "R34",
+      "selectors": [
+        {
+          "title": "工作报告：CCF泛在操作系统开放社区工作进展",
+          "speakers": [
+            "郭耀"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:30",
+        "end": "15:50"
+      }
+    },
+    {
+      "id": "R34#2",
+      "scope": "R34",
+      "selectors": [
+        {
+          "title": "技术报告：物模型白皮书：面向 AI 时代的泛在物联网标准实践",
+          "speakers": [
+            "蔺冰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:50",
+        "end": "16:10"
+      }
+    },
+    {
+      "id": "R34#3",
+      "scope": "R34",
+      "selectors": [
+        {
+          "title": "技术报告：分布式异构多机协同机器人操作系统M-Robots",
+          "speakers": [
+            "吴依伦"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:10",
+        "end": "16:30"
+      }
+    },
+    {
+      "id": "R34#4",
+      "scope": "R34",
+      "selectors": [
+        {
+          "title": "技术报告：Robonix：一种智能体式具身智能操作系统",
+          "speakers": [
+            "韩喻泷"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:50",
+        "end": "17:10"
+      }
+    },
+    {
+      "id": "R34#5",
+      "scope": "R34",
+      "selectors": [
+        {
+          "title": "技术报告：矽璓工业物联操作系统在习酒生产数字化中的应用实践",
+          "speakers": [
+            "刘振君"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:10",
+        "end": "17:30"
+      }
+    },
+    {
+      "id": "R34#6",
+      "scope": "R34",
+      "selectors": [
+        {
+          "title": "圆桌讨论：人工智能+操作系统",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:30",
+        "end": "18:20"
+      }
+    },
+    {
+      "id": "R35#0",
+      "scope": "R35",
+      "selectors": [
+        {
+          "title": "开场致辞",
+          "speakers": [
+            "沈宝庆"
+          ],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:30",
+        "end": "09:50"
+      }
+    },
+    {
+      "id": "R35#1",
+      "scope": "R35",
+      "selectors": [
+        {
+          "title": "基于鸿蒙技术体系的操作系统课程教学改革",
+          "speakers": [
+            "宫晓利"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:50",
+        "end": "10:10"
+      }
+    },
+    {
+      "id": "R35#2",
+      "scope": "R35",
+      "selectors": [
+        {
+          "title": "在生成之上确立新标准——对AIGC时代鸿蒙应用开发教学范式转变的思考",
+          "speakers": [
+            "李根"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:10",
+        "end": "10:30"
+      }
+    },
+    {
+      "id": "R35#3",
+      "scope": "R35",
+      "selectors": [
+        {
+          "title": "HarmonyOS·7·创新技术与新特性解析",
+          "speakers": [],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:30",
+        "end": "11:50"
+      }
+    },
+    {
+      "id": "S1#0",
+      "scope": "S1",
+      "selectors": [
+        {
+          "title": "论坛开幕",
+          "speakers": [],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:00",
+        "end": "14:05"
+      }
+    },
+    {
+      "id": "S1#1",
+      "scope": "S1",
+      "selectors": [
+        {
+          "title": "面向开发运维一体化的人与多智能体综合集成参考架构",
+          "speakers": [
+            "王瑞"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:05",
+        "end": "14:30"
+      }
+    },
+    {
+      "id": "S1#2",
+      "scope": "S1",
+      "selectors": [
+        {
+          "title": "基于eBPF的云原生运行时安全：行为监测、异常检测与响应处置",
+          "speakers": [
+            "刘锦样"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:30",
+        "end": "14:55"
+      }
+    },
+    {
+      "id": "S1#3",
+      "scope": "S1",
+      "selectors": [
+        {
+          "title": "故障经验驱动的微服务根因分析智能体研究",
+          "speakers": [
+            "周格林"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:55",
+        "end": "15:20"
+      }
+    },
+    {
+      "id": "S1#4",
+      "scope": "S1",
+      "selectors": [
+        {
+          "title": "面向高通量智能计算场景的性能评测指标与方法",
+          "speakers": [
+            "张园"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:20",
+        "end": "15:45"
+      }
+    },
+    {
+      "id": "S1#5",
+      "scope": "S1",
+      "selectors": [
+        {
+          "title": "面向运行时状态约束的微服务流量控制建模与仿真",
+          "speakers": [
+            "杨溢龙"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:00",
+        "end": "16:25"
+      }
+    },
+    {
+      "id": "S1#6",
+      "scope": "S1",
+      "selectors": [
+        {
+          "title": "面向深度学习云平台的细粒度GPU共享与弹性管控方法研究",
+          "speakers": [
+            "李俊艺"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:25",
+        "end": "16:50"
+      }
+    },
+    {
+      "id": "S1#7",
+      "scope": "S1",
+      "selectors": [
+        {
+          "title": "基于语义增强的ROS应用程序模糊测试初始种子生成方法",
+          "speakers": [
+            "张瑞宸"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:50",
+        "end": "17:15"
+      }
+    },
+    {
+      "id": "S1#8",
+      "scope": "S1",
+      "selectors": [
+        {
+          "title": "约束引导的REST API 自动化测试方法",
+          "speakers": [
+            "武雅琛"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "17:15",
+        "end": "17:40"
+      }
+    },
+    {
+      "id": "S2#0",
+      "scope": "S2",
+      "selectors": [
+        {
+          "title": "整车系统软件的需求驱动测试AI平台化应用实践",
+          "speakers": [
+            "黄颍华"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:00",
+        "end": "09:20"
+      }
+    },
+    {
+      "id": "S2#1",
+      "scope": "S2",
+      "selectors": [
+        {
+          "title": "面向航天控制系统的需求描述语言SpaceRDL",
+          "speakers": [
+            "綦艳霞"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:20",
+        "end": "09:40"
+      }
+    },
+    {
+      "id": "S2#2",
+      "scope": "S2",
+      "selectors": [
+        {
+          "title": "异构集成与多维提示驱动的需求识别方法",
+          "speakers": [
+            "姚李昊升"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:40",
+        "end": "10:00"
+      }
+    },
+    {
+      "id": "S2#3",
+      "scope": "S2",
+      "selectors": [
+        {
+          "title": "跨项目需求分类中检索增强上下文学习的实证研究",
+          "speakers": [
+            "吴云环"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:30",
+        "end": "10:50"
+      }
+    },
+    {
+      "id": "S2#4",
+      "scope": "S2",
+      "selectors": [
+        {
+          "title": "面向SLO工程的运行时质量需求候选证据检查与责任分流方法",
+          "speakers": [
+            "谢华澄"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:50",
+        "end": "11:10"
+      }
+    },
+    {
+      "id": "S2#5",
+      "scope": "S2",
+      "selectors": [
+        {
+          "title": "基于项目研发全流程知识的主动需求澄清方法",
+          "speakers": [
+            "方应涛"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:10",
+        "end": "11:30"
+      }
+    },
+    {
+      "id": "S2#6",
+      "scope": "S2",
+      "selectors": [
+        {
+          "title": "面向原型需求确认的模型约束确认场景合成方法",
+          "speakers": [
+            "张润坤"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:30",
+        "end": "11:50"
+      }
+    },
+    {
+      "id": "S2#7",
+      "scope": "S2",
+      "selectors": [
+        {
+          "title": "面向需求工程的大语言模型多任务评测基准",
+          "speakers": [
+            "赵琳慧"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:00",
+        "end": "14:20"
+      }
+    },
+    {
+      "id": "S2#8",
+      "scope": "S2",
+      "selectors": [
+        {
+          "title": "面向需求变更的机载软件需求增量一致性验证方法",
+          "speakers": [
+            "陈子涵"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:20",
+        "end": "14:40"
+      }
+    },
+    {
+      "id": "S2#9",
+      "scope": "S2",
+      "selectors": [
+        {
+          "title": "面向模糊需求的自适应代码变更影响定位方法",
+          "speakers": [
+            "朱煜琪"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:40",
+        "end": "15:00"
+      }
+    },
+    {
+      "id": "S2#10",
+      "scope": "S2",
+      "selectors": [
+        {
+          "title": "大语言模型赋能的任务导向DSL构建与DSL驱动代码生成方法",
+          "speakers": [
+            "张明悦"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:30",
+        "end": "15:50"
+      }
+    },
+    {
+      "id": "S2#11",
+      "scope": "S2",
+      "selectors": [
+        {
+          "title": "面向编码智能体的仓库级需求完备性分析与补全",
+          "speakers": [
+            "姜雪"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:50",
+        "end": "16:10"
+      }
+    },
+    {
+      "id": "S2#12",
+      "scope": "S2",
+      "selectors": [
+        {
+          "title": "RE 30周年专题研讨",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:10",
+        "end": "17:00"
+      }
+    },
+    {
+      "id": "S3#0",
+      "scope": "S3",
+      "selectors": [
+        {
+          "title": "数据驱动的鸿蒙静态告警修复方法实践",
+          "speakers": [
+            "张颖"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:20",
+        "end": "15:45"
+      }
+    },
+    {
+      "id": "S3#1",
+      "scope": "S3",
+      "selectors": [
+        {
+          "title": "面向新兴编程语言的缺陷检测：实践与思考",
+          "speakers": [
+            "玄跻峰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:45",
+        "end": "16:10"
+      }
+    },
+    {
+      "id": "S3#2",
+      "scope": "S3",
+      "selectors": [
+        {
+          "title": "面向跨域漏洞检测的目标域感知多空间数据选择方法",
+          "speakers": [
+            "吴雨濛"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:20",
+        "end": "16:32"
+      }
+    },
+    {
+      "id": "S3#3",
+      "scope": "S3",
+      "selectors": [
+        {
+          "title": "CWEFix:修复模式驱动的软件缺陷数据集构建方法",
+          "speakers": [
+            "薛志鹏"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:32",
+        "end": "16:44"
+      }
+    },
+    {
+      "id": "S3#4",
+      "scope": "S3",
+      "selectors": [
+        {
+          "title": "DISTINCT：基于函数意图和分支一致性分析提升自动化测试的逻辑缺陷揭示能力",
+          "speakers": [
+            "薛鹏宇"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:44",
+        "end": "16:56"
+      }
+    },
+    {
+      "id": "S3#5",
+      "scope": "S3",
+      "selectors": [
+        {
+          "title": "面向金融大语言模型的质量保障方法综述",
+          "speakers": [
+            "沈庆超"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:56",
+        "end": "17:08"
+      }
+    },
+    {
+      "id": "S3#6",
+      "scope": "S3",
+      "selectors": [
+        {
+          "title": "基于自适应特征融合与双曲判别的成对代码缺陷检测方法",
+          "speakers": [
+            "周百顺"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:08",
+        "end": "17:20"
+      }
+    },
+    {
+      "id": "S3#7",
+      "scope": "S3",
+      "selectors": [
+        {
+          "title": "Path-Refiner：面向漏洞关联的攻击路径推理方法",
+          "speakers": [
+            "曹明生"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:20",
+        "end": "17:32"
+      }
+    },
+    {
+      "id": "S3#8",
+      "scope": "S3",
+      "selectors": [
+        {
+          "title": "图数据库管理系统逻辑缺陷检测技术研究综述",
+          "speakers": [
+            "谢永俊"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:32",
+        "end": "17:44"
+      }
+    },
+    {
+      "id": "S3#9",
+      "scope": "S3",
+      "selectors": [
+        {
+          "title": "MultiRepair：面向多语言自动程序修复的专家混合低秩适配方法",
+          "speakers": [
+            "李国昌"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:44",
+        "end": "17:56"
+      }
+    },
+    {
+      "id": "S3#10",
+      "scope": "S3",
+      "selectors": [
+        {
+          "title": "大语言模型缺陷复现智能体失效行为的实证研究",
+          "speakers": [
+            "李智超"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:56",
+        "end": "18:08"
+      }
+    },
+    {
+      "id": "S3#11",
+      "scope": "S3",
+      "selectors": [
+        {
+          "title": "面向RISC-V架构KVM内核模块的跨侧模糊测试方法",
+          "speakers": [
+            "许佳凯"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "18:08",
+        "end": "18:20"
+      }
+    },
+    {
+      "id": "S4#0",
+      "scope": "S4",
+      "selectors": [
+        {
+          "title": "嘉宾报告：从生成式设计到物理智能：AICAD基础模型的探索与实践",
+          "speakers": [
+            "周平义"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:20",
+        "end": "15:35"
+      }
+    },
+    {
+      "id": "S4#1",
+      "scope": "S4",
+      "selectors": [
+        {
+          "title": "嘉宾报告：规则与神经网络融合：范式演进、核心挑战与研究展望",
+          "speakers": [
+            "陈刚"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:35",
+        "end": "15:50"
+      }
+    },
+    {
+      "id": "S4#2",
+      "scope": "S4",
+      "selectors": [
+        {
+          "title": "嘉宾报告：产业大脑关键技术及应用研究与研发",
+          "speakers": [
+            "王军平"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:50",
+        "end": "16:05"
+      }
+    },
+    {
+      "id": "S4#3",
+      "scope": "S4",
+      "selectors": [
+        {
+          "title": "论文报告：面向语言模型版本演化的智能回归缺陷检测方法",
+          "speakers": [
+            "尤翰墨"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:05",
+        "end": "16:15"
+      }
+    },
+    {
+      "id": "S4#4",
+      "scope": "S4",
+      "selectors": [
+        {
+          "title": "论文报告：基于智能体驱动与结构化反馈的HDL Testbench自动生成方法",
+          "speakers": [
+            "白如雪"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:15",
+        "end": "16:25"
+      }
+    },
+    {
+      "id": "S4#5",
+      "scope": "S4",
+      "selectors": [
+        {
+          "title": "论文报告：基于大模型智能体的芯片设计程序测试功能覆盖提升方法",
+          "speakers": [
+            "傅惠杰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:25",
+        "end": "16:35"
+      }
+    },
+    {
+      "id": "S4#6",
+      "scope": "S4",
+      "selectors": [
+        {
+          "title": "论文报告：星载电子系统智能辅助开发与安全论证",
+          "speakers": [
+            "陈泽众"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:35",
+        "end": "16:45"
+      }
+    },
+    {
+      "id": "S4#7",
+      "scope": "S4",
+      "selectors": [
+        {
+          "title": "论文报告：基于静态分析与大语言模型的Typescript仓库多粒度代码文档生成",
+          "speakers": [
+            "殷宇航"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:45",
+        "end": "16:55"
+      }
+    },
+    {
+      "id": "S4#8",
+      "scope": "S4",
+      "selectors": [
+        {
+          "title": "论文报告：面向软件漏洞可利用性验证的大语言模型能力测评方法研究",
+          "speakers": [
+            "张顾峰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:10",
+        "end": "17:20"
+      }
+    },
+    {
+      "id": "S4#9",
+      "scope": "S4",
+      "selectors": [
+        {
+          "title": "论文报告：GHOSTMark：基于对抗学习的隐蔽性优化源代码水印嵌入方法",
+          "speakers": [
+            "廖富威"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:20",
+        "end": "17:30"
+      }
+    },
+    {
+      "id": "S4#10",
+      "scope": "S4",
+      "selectors": [
+        {
+          "title": "论文报告：面向工业软件COSMIC功能规模测量的错误驱动神经符号协同蒸馏方法",
+          "speakers": [
+            "李锡晗"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:30",
+        "end": "17:40"
+      }
+    },
+    {
+      "id": "S4#11",
+      "scope": "S4",
+      "selectors": [
+        {
+          "title": "论文报告：大语言模型与局部搜索异步协同的约束覆盖表最小化方法",
+          "speakers": [
+            "温林林"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:40",
+        "end": "17:50"
+      }
+    },
+    {
+      "id": "S4#12",
+      "scope": "S4",
+      "selectors": [
+        {
+          "title": "论文报告：基于大模型辅助语义恢复与语义约束变异的毕昇C编译器缺陷检测方法",
+          "speakers": [
+            "瞿荣"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:50",
+        "end": "18:00"
+      }
+    },
+    {
+      "id": "S4#13",
+      "scope": "S4",
+      "selectors": [
+        {
+          "title": "论文报告：面向工业用户问题的专利证据检索：从文档召回到证据定位",
+          "speakers": [
+            "刘仲翔"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "18:00",
+        "end": "18:10"
+      }
+    },
+    {
+      "id": "S5#0",
+      "scope": "S5",
+      "selectors": [
+        {
+          "title": "软件定义的大模型系统",
+          "speakers": [
+            "金鑫"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:00",
+        "end": "09:25"
+      }
+    },
+    {
+      "id": "S5#1",
+      "scope": "S5",
+      "selectors": [
+        {
+          "title": "面向智能网联汽车的多智能体协同感知",
+          "speakers": [
+            "周晓波"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:25",
+        "end": "09:50"
+      }
+    },
+    {
+      "id": "S5#2",
+      "scope": "S5",
+      "selectors": [
+        {
+          "title": "融合大模型代码语义表示与AST结构表示的代码克隆检测方法",
+          "speakers": [
+            "李淑婕"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:50",
+        "end": "10:04"
+      }
+    },
+    {
+      "id": "S5#3",
+      "scope": "S5",
+      "selectors": [
+        {
+          "title": "混合触发任务图的端到端时延分析与调度方法研究",
+          "speakers": [
+            "李西盛"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "10:04",
+        "end": "10:18"
+      }
+    },
+    {
+      "id": "S5#4",
+      "scope": "S5",
+      "selectors": [
+        {
+          "title": "智能体大模型的安全防御与鲁棒性增强技术综述",
+          "speakers": [
+            "于春琳"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "10:33",
+        "end": "10:47"
+      }
+    },
+    {
+      "id": "S5#5",
+      "scope": "S5",
+      "selectors": [
+        {
+          "title": "多智能体任务规划全状态优化与大模型加速方法研究",
+          "speakers": [
+            "程云来"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "10:47",
+        "end": "11:01"
+      }
+    },
+    {
+      "id": "S5#6",
+      "scope": "S5",
+      "selectors": [
+        {
+          "title": "面向时空图异常检测的自适应智能体",
+          "speakers": [
+            "黄煜迪"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:01",
+        "end": "11:15"
+      }
+    },
+    {
+      "id": "S5#7",
+      "scope": "S5",
+      "selectors": [
+        {
+          "title": "大模型时代的存内计算：产业现状与研究进展",
+          "speakers": [
+            "张钊"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:15",
+        "end": "11:29"
+      }
+    },
+    {
+      "id": "S5#8",
+      "scope": "S5",
+      "selectors": [
+        {
+          "title": "GenFlare：基于生成的图像分类压缩模型偏差行为搜索方法",
+          "speakers": [
+            "霍龙腾"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:29",
+        "end": "11:43"
+      }
+    },
+    {
+      "id": "S5#9",
+      "scope": "S5",
+      "selectors": [
+        {
+          "title": "面向智能体高效运行的检索增强生成鲁棒性研究综述",
+          "speakers": [
+            "黄鸿发"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:43",
+        "end": "11:57"
+      }
+    },
+    {
+      "id": "S5#10",
+      "scope": "S5",
+      "selectors": [
+        {
+          "title": "自由交流与总结",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:57",
+        "end": "12:00"
+      }
+    },
+    {
+      "id": "S6#0",
+      "scope": "S6",
+      "selectors": [
+        {
+          "title": "论坛开场及介绍",
+          "speakers": [
+            "向剑文"
+          ],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:00",
+        "end": "14:05"
+      }
+    },
+    {
+      "id": "S6#1",
+      "scope": "S6",
+      "selectors": [
+        {
+          "title": "AI赋能的软件可靠性与安全性研究：过去，现在，未来（特邀）",
+          "speakers": [
+            "张涛"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:05",
+        "end": "14:30"
+      }
+    },
+    {
+      "id": "S6#2",
+      "scope": "S6",
+      "selectors": [
+        {
+          "title": "声明式智能体操作系统研究与实践（特邀）",
+          "speakers": [
+            "杜冬冬"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:30",
+        "end": "14:55"
+      }
+    },
+    {
+      "id": "S6#3",
+      "scope": "S6",
+      "selectors": [
+        {
+          "title": "KylinX:双内核通用可信操作系统",
+          "speakers": [
+            "伍复慧"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:55",
+        "end": "15:05"
+      }
+    },
+    {
+      "id": "S6#4",
+      "scope": "S6",
+      "selectors": [
+        {
+          "title": "事件驱动智能体操作系统跨层能力治理方法",
+          "speakers": [
+            "徐刚"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:05",
+        "end": "15:15"
+      }
+    },
+    {
+      "id": "S6#5",
+      "scope": "S6",
+      "selectors": [
+        {
+          "title": "面向智能制造操作系统的可信计算模型推荐:一种多智能体协同方法",
+          "speakers": [
+            "周远"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:15",
+        "end": "15:25"
+      }
+    },
+    {
+      "id": "S6#6",
+      "scope": "S6",
+      "selectors": [
+        {
+          "title": "基于混合依赖关系矩阵制导的鸿蒙内核模糊测试",
+          "speakers": [
+            "司徒凌云"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:25",
+        "end": "15:35"
+      }
+    },
+    {
+      "id": "S6#7",
+      "scope": "S6",
+      "selectors": [
+        {
+          "title": "基于多智能体协同的安全补丁定位方法",
+          "speakers": [
+            "曹思聪"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:35",
+        "end": "15:45"
+      }
+    },
+    {
+      "id": "S6#8",
+      "scope": "S6",
+      "selectors": [
+        {
+          "title": "基于openEuler的Agent 可靠性及安全探索与实践（特邀）",
+          "speakers": [
+            "王磊"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:00",
+        "end": "16:25"
+      }
+    },
+    {
+      "id": "S6#9",
+      "scope": "S6",
+      "selectors": [
+        {
+          "title": "面向关键领域装备的智显算控麒麟工业操作系统探索与实践（特邀）",
+          "speakers": [
+            "任慰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:25",
+        "end": "16:50"
+      }
+    },
+    {
+      "id": "S6#10",
+      "scope": "S6",
+      "selectors": [
+        {
+          "title": "GuardFlow-EI面向人工智能操作系统AIOS硬件与模型可信基座的威胁传播形式化与可判定阻断框架",
+          "speakers": [
+            "仇晶"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:50",
+        "end": "17:00"
+      }
+    },
+    {
+      "id": "S6#11",
+      "scope": "S6",
+      "selectors": [
+        {
+          "title": "基于消息特征差异分析的ROS应用程序模糊测试方法",
+          "speakers": [
+            "尹振洋"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "17:00",
+        "end": "17:10"
+      }
+    },
+    {
+      "id": "S6#12",
+      "scope": "S6",
+      "selectors": [
+        {
+          "title": "RAG框架缺陷特征与修复策略的实证研究",
+          "speakers": [
+            "陈晓东"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "17:10",
+        "end": "17:20"
+      }
+    },
+    {
+      "id": "S6#13",
+      "scope": "S6",
+      "selectors": [
+        {
+          "title": "语义诱导下的AI Agent授权决策失误挖掘",
+          "speakers": [
+            "贺昕曈"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "17:20",
+        "end": "17:30"
+      }
+    },
+    {
+      "id": "S6#14",
+      "scope": "S6",
+      "selectors": [
+        {
+          "title": "DiffHallu：基于差分测试的长文本生成幻觉风险量化方法",
+          "speakers": [
+            "陈子涵"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "17:30",
+        "end": "17:40"
+      }
+    },
+    {
+      "id": "S7#0",
+      "scope": "S7",
+      "selectors": [
+        {
+          "title": "专刊与论坛情况介绍",
+          "speakers": [],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:00",
+        "end": "09:05"
+      }
+    },
+    {
+      "id": "S7#1",
+      "scope": "S7",
+      "selectors": [
+        {
+          "title": "SMT求解器测试:问题、进展与挑战",
+          "speakers": [
+            "孙茂林"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:05",
+        "end": "09:20"
+      }
+    },
+    {
+      "id": "S7#2",
+      "scope": "S7",
+      "selectors": [
+        {
+          "title": "广义加权Pólya枚举的Lean 4形式化及其应用",
+          "speakers": [
+            "白子卉"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:20",
+        "end": "09:35"
+      }
+    },
+    {
+      "id": "S7#3",
+      "scope": "S7",
+      "selectors": [
+        {
+          "title": "纠缠辅助量子纠错码对偶定理形式化验证",
+          "speakers": [
+            "贺腾宇"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:35",
+        "end": "09:50"
+      }
+    },
+    {
+      "id": "S7#4",
+      "scope": "S7",
+      "selectors": [
+        {
+          "title": "单调可线性化及其形式化验证研究",
+          "speakers": [
+            "王超"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:50",
+        "end": "10:05"
+      }
+    },
+    {
+      "id": "S7#5",
+      "scope": "S7",
+      "selectors": [
+        {
+          "title": "Rust通用操作系统内核基础库OSTD的形式化验证",
+          "speakers": [
+            "万新熠"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "10:05",
+        "end": "10:20"
+      }
+    },
+    {
+      "id": "S7#6",
+      "scope": "S7",
+      "selectors": [
+        {
+          "title": "基于EasyBC的SPN结构分组密码自动化截断差分分析",
+          "speakers": [
+            "贾凤鸣"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "10:40",
+        "end": "10:55"
+      }
+    },
+    {
+      "id": "S7#7",
+      "scope": "S7",
+      "selectors": [
+        {
+          "title": "基于轨迹的组合式混成霍尔逻辑定理证明器",
+          "speakers": [
+            "金翔宇"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "10:55",
+        "end": "11:10"
+      }
+    },
+    {
+      "id": "S7#8",
+      "scope": "S7",
+      "selectors": [
+        {
+          "title": "人机物融合自动机切换策略的统计模型检验",
+          "speakers": [
+            "唐晓辰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:10",
+        "end": "11:25"
+      }
+    },
+    {
+      "id": "S7#9",
+      "scope": "S7",
+      "selectors": [
+        {
+          "title": "基于扩散模型的视觉控制系统概率安全验证",
+          "speakers": [
+            "何嘉骐"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:25",
+        "end": "11:40"
+      }
+    },
+    {
+      "id": "S7#10",
+      "scope": "S7",
+      "selectors": [
+        {
+          "title": "基于障碍证书的神经网络控制系统运行时安全防护方法",
+          "speakers": [
+            "王培新"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:40",
+        "end": "11:55"
+      }
+    },
+    {
+      "id": "S7#11",
+      "scope": "S7",
+      "selectors": [
+        {
+          "title": "论坛总结",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:55",
+        "end": "12:00"
+      }
+    },
+    {
+      "id": "S8#0",
+      "scope": "S8",
+      "selectors": [
+        {
+          "title": "论坛引导发言",
+          "speakers": [
+            "刘杨"
+          ],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:30",
+        "end": "15:40"
+      }
+    },
+    {
+      "id": "S8#1",
+      "scope": "S8",
+      "selectors": [
+        {
+          "title": "从SBOM到AI-BOM：智能软件供应链的合规演进与工程落地",
+          "speakers": [
+            "朱辉"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "15:40",
+        "end": "16:05"
+      }
+    },
+    {
+      "id": "S8#2",
+      "scope": "S8",
+      "selectors": [
+        {
+          "title": "智能软件安全：从漏洞发现到自主修复",
+          "speakers": [
+            "张建"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:05",
+        "end": "16:30"
+      }
+    },
+    {
+      "id": "S8#3",
+      "scope": "S8",
+      "selectors": [
+        {
+          "title": "TrustRelay:面向大语言模型API供应链的可验证与防篡改中转系统",
+          "speakers": [
+            "刘维杰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:40",
+        "end": "16:55"
+      }
+    },
+    {
+      "id": "S8#4",
+      "scope": "S8",
+      "selectors": [
+        {
+          "title": "TraceOracle：面向Java软件供应链漏洞候选的路径约束反事实运行时验证方法",
+          "speakers": [
+            "张凯林"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "16:55",
+        "end": "17:10"
+      }
+    },
+    {
+      "id": "S8#5",
+      "scope": "S8",
+      "selectors": [
+        {
+          "title": "LLM生成代码中的依赖版本建议：发生、质量与后果",
+          "speakers": [
+            "王承杰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:10",
+        "end": "17:25"
+      }
+    },
+    {
+      "id": "S8#6",
+      "scope": "S8",
+      "selectors": [
+        {
+          "title": "基于伪代码证据的轻量级、模型无关的二进制代码相似性检测重排序方法",
+          "speakers": [
+            "张一筝"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:25",
+        "end": "17:40"
+      }
+    },
+    {
+      "id": "S8#7",
+      "scope": "S8",
+      "selectors": [
+        {
+          "title": "Kimulator: 面向硬件工具链的基于语义的仿真与失效分析",
+          "speakers": [
+            "陈奕铭"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:40",
+        "end": "17:55"
+      }
+    },
+    {
+      "id": "S8#8",
+      "scope": "S8",
+      "selectors": [
+        {
+          "title": "基于Android密钥库的裁剪图像认证与安全恢复",
+          "speakers": [
+            "宋文纳"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-07",
+        "start": "17:55",
+        "end": "18:10"
+      }
+    },
+    {
+      "id": "E1#0",
+      "scope": "E1",
+      "selectors": [
+        {
+          "title": "智能化时代软件工程课程教学改革探索",
+          "speakers": [
+            "彭鑫"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:00",
+        "end": "09:30"
+      }
+    },
+    {
+      "id": "E1#1",
+      "scope": "E1",
+      "selectors": [
+        {
+          "title": "驾驭AI的软件工程人才培养：认识与思考",
+          "speakers": [
+            "李宣东"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:30",
+        "end": "10:00"
+      }
+    },
+    {
+      "id": "E1#2",
+      "scope": "E1",
+      "selectors": [
+        {
+          "title": "AI时代软件工程课程教学改革与实践",
+          "speakers": [
+            "孙艳春"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:00",
+        "end": "10:20"
+      }
+    },
+    {
+      "id": "E1#3",
+      "scope": "E1",
+      "selectors": [
+        {
+          "title": "AI Native时代的研发实践和人才观",
+          "speakers": [
+            "张颖"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:40",
+        "end": "11:00"
+      }
+    },
+    {
+      "id": "E1#4",
+      "scope": "E1",
+      "selectors": [
+        {
+          "title": "AI驱动下有组织高质量特色化软件人才培养的天软实践",
+          "speakers": [
+            "刘军利"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:00",
+        "end": "11:20"
+      }
+    },
+    {
+      "id": "E1#5",
+      "scope": "E1",
+      "selectors": [
+        {
+          "title": "圆桌论坛： 智能化时代软件工程教学改革",
+          "speakers": [
+            "刘璘",
+            "彭蓉",
+            "孙艳春",
+            "彭鑫",
+            "李宣东",
+            "张颖",
+            "刘军利"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:20",
+        "end": "12:00"
+      }
+    },
+    {
+      "id": "E2#0",
+      "scope": "E2",
+      "selectors": [
+        {
+          "title": "论坛开场与报告嘉宾介绍",
+          "speakers": [],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:00",
+        "end": "09:05"
+      }
+    },
+    {
+      "id": "E2#1",
+      "scope": "E2",
+      "selectors": [
+        {
+          "title": "从代码智能到系统智能：AI时代系统软件人才培养探究",
+          "speakers": [
+            "杨威"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:05",
+        "end": "09:20"
+      }
+    },
+    {
+      "id": "E2#2",
+      "scope": "E2",
+      "selectors": [
+        {
+          "title": "当AI能写代码写论文，系统软件教育该做什么？",
+          "speakers": [
+            "翟恩南"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:20",
+        "end": "09:35"
+      }
+    },
+    {
+      "id": "E2#3",
+      "scope": "E2",
+      "selectors": [
+        {
+          "title": "人工智能冲击下的编译课程教育——竞赛、课堂与研究生培养的观察与对策",
+          "speakers": [
+            "刘先华"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:35",
+        "end": "09:50"
+      }
+    },
+    {
+      "id": "E2#4",
+      "scope": "E2",
+      "selectors": [
+        {
+          "title": "大模型背景下操作系统课程面临的挑战与对策",
+          "speakers": [
+            "翟高寿"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:50",
+        "end": "10:05"
+      }
+    },
+    {
+      "id": "E2#5",
+      "scope": "E2",
+      "selectors": [
+        {
+          "title": "生成式AI时代操作系统核心能力培养方式的思考",
+          "speakers": [
+            "宫晓利"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:05",
+        "end": "10:20"
+      }
+    },
+    {
+      "id": "E2#6",
+      "scope": "E2",
+      "selectors": [
+        {
+          "title": "操作系统实践教学新变化与AI教学工具运用",
+          "speakers": [
+            "张羽"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:40",
+        "end": "10:55"
+      }
+    },
+    {
+      "id": "E2#7",
+      "scope": "E2",
+      "selectors": [
+        {
+          "title": "九源智能计算系统的开源生态建设与人才培养实践",
+          "speakers": [
+            "王豪杰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:55",
+        "end": "11:10"
+      }
+    },
+    {
+      "id": "E2#8",
+      "scope": "E2",
+      "selectors": [
+        {
+          "title": "基于AI追问机制的操作系统实验教学改革与探索",
+          "speakers": [
+            "赵霞"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:10",
+        "end": "11:25"
+      }
+    },
+    {
+      "id": "E2#9",
+      "scope": "E2",
+      "selectors": [
+        {
+          "title": "交流讨论：AI时代系统软件教育的能力培养与范式变革",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:25",
+        "end": "12:00"
+      }
+    },
+    {
+      "id": "E3#0",
+      "scope": "E3",
+      "selectors": [
+        {
+          "title": "教学生如何“说话”的探讨",
+          "speakers": [
+            "蒋炎岩"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:00",
+        "end": "09:25"
+      }
+    },
+    {
+      "id": "E3#1",
+      "scope": "E3",
+      "selectors": [
+        {
+          "title": "论 AI 时代形式化方法课程教学的挑战与机遇",
+          "speakers": [
+            "刘万伟"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:25",
+        "end": "09:50"
+      }
+    },
+    {
+      "id": "E3#2",
+      "scope": "E3",
+      "selectors": [
+        {
+          "title": "AI时代模型检查课程的教学探索",
+          "speakers": [
+            "李建文"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:50",
+        "end": "10:15"
+      }
+    },
+    {
+      "id": "E3#3",
+      "scope": "E3",
+      "selectors": [
+        {
+          "title": "大模型时代的编程语言理论教学",
+          "speakers": [
+            "王迪"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:15",
+        "end": "10:40"
+      }
+    },
+    {
+      "id": "E3#4",
+      "scope": "E3",
+      "selectors": [
+        {
+          "title": "从“代码编写”到“需求编译”：AI智能体驱动下的软件工程教学演进与前沿探索",
+          "speakers": [
+            "林云"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:55",
+        "end": "11:20"
+      }
+    },
+    {
+      "id": "E3#5",
+      "scope": "E3",
+      "selectors": [
+        {
+          "title": "从拔尖到普适：基于《计算复杂性理论》的形式化思维教学实践",
+          "speakers": [
+            "陆旭"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:20",
+        "end": "11:45"
+      }
+    },
+    {
+      "id": "E3#6",
+      "scope": "E3",
+      "selectors": [
+        {
+          "title": "神经网络鲁棒性验证",
+          "speakers": [
+            "白光冬"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:45",
+        "end": "12:10"
+      }
+    },
+    {
+      "id": "E4#0",
+      "scope": "E4",
+      "selectors": [
+        {
+          "title": "主持开场/致辞",
+          "speakers": [],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:00",
+        "end": "09:05"
+      }
+    },
+    {
+      "id": "E4#1",
+      "scope": "E4",
+      "selectors": [
+        {
+          "title": "嵌入式软件人才培养中的北邮探索",
+          "speakers": [
+            "王尚广"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:05",
+        "end": "09:30"
+      }
+    },
+    {
+      "id": "E4#2",
+      "scope": "E4",
+      "selectors": [
+        {
+          "title": "面向AI时代的特色化软件人才培养——重庆大学“三链融合”的实践与思考",
+          "speakers": [
+            "文俊浩"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:30",
+        "end": "09:55"
+      }
+    },
+    {
+      "id": "E4#3",
+      "scope": "E4",
+      "selectors": [
+        {
+          "title": "Agent时代高价值产业人才校企联合培养策略思考与实践",
+          "speakers": [
+            "梁广泰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:55",
+        "end": "10:20"
+      }
+    },
+    {
+      "id": "E4#4",
+      "scope": "E4",
+      "selectors": [
+        {
+          "title": "双一流行业高校特软学院建设探索与实践（以天工软件为例）",
+          "speakers": [
+            "王赜"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:40",
+        "end": "11:05"
+      }
+    },
+    {
+      "id": "E4#5",
+      "scope": "E4",
+      "selectors": [
+        {
+          "title": "天津大学国家特色化示范性软件学院建设的思考与实践",
+          "speakers": [
+            "张加万"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:05",
+        "end": "11:30"
+      }
+    },
+    {
+      "id": "E4#6",
+      "scope": "E4",
+      "selectors": [
+        {
+          "title": "Panel",
+          "speakers": [
+            "王尚广",
+            "文俊浩",
+            "梁广泰",
+            "王赜",
+            "张加万"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:30",
+        "end": "12:00"
+      }
+    },
+    {
+      "id": "E5#0",
+      "scope": "E5",
+      "selectors": [
+        {
+          "title": "Lingxi：基于过程性知识引导的仓库级代码生成",
+          "speakers": [
+            "刘逵"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:00",
+        "end": "14:30"
+      }
+    },
+    {
+      "id": "E5#1",
+      "scope": "E5",
+      "selectors": [
+        {
+          "title": "ARC-Bench：面向智能体软件工程的评测基准与教学竞赛平台",
+          "speakers": [
+            "林云"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:30",
+        "end": "15:00"
+      }
+    },
+    {
+      "id": "E5#2",
+      "scope": "E5",
+      "selectors": [
+        {
+          "title": "历史缺陷引导的智能化重构引擎测试方法",
+          "speakers": [
+            "姜艳杰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:30",
+        "end": "16:00"
+      }
+    },
+    {
+      "id": "E5#3",
+      "scope": "E5",
+      "selectors": [
+        {
+          "title": "Kea2: 基于性质的移动应用功能正确性测试工具",
+          "speakers": [
+            "梁锡贤"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:00",
+        "end": "16:30"
+      }
+    },
+    {
+      "id": "E5#4",
+      "scope": "E5",
+      "selectors": [
+        {
+          "title": "从交互到智能：面向复杂GUI场景的智能测试方法",
+          "speakers": [
+            "刘哲"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:30",
+        "end": "17:00"
+      }
+    },
+    {
+      "id": "I1#0",
+      "scope": "I1",
+      "selectors": [
+        {
+          "title": "论坛开幕",
+          "speakers": [],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:00",
+        "end": "09:05"
+      }
+    },
+    {
+      "id": "I1#1",
+      "scope": "I1",
+      "selectors": [
+        {
+          "title": "智能化软件的数据挑战与展望",
+          "speakers": [
+            "黄罡"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:05",
+        "end": "09:25"
+      }
+    },
+    {
+      "id": "I1#2",
+      "scope": "I1",
+      "selectors": [
+        {
+          "title": "从Semantic Layer到Ontology × Harness：企业级Agent软件的构造与演化",
+          "speakers": [
+            "王昊奋"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:25",
+        "end": "09:45"
+      }
+    },
+    {
+      "id": "I1#3",
+      "scope": "I1",
+      "selectors": [
+        {
+          "title": "知识图谱和大模型双轮驱动的知识服务架构与企业应用案例",
+          "speakers": [
+            "漆桂林"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:45",
+        "end": "10:05"
+      }
+    },
+    {
+      "id": "I1#4",
+      "scope": "I1",
+      "selectors": [
+        {
+          "title": "智能体驱动行业应用的软件工程实践与思考",
+          "speakers": [
+            "曹春"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "10:05",
+        "end": "10:25"
+      }
+    },
+    {
+      "id": "I1#5",
+      "scope": "I1",
+      "selectors": [
+        {
+          "title": "openJiuwen AgentOS技术、生态及应用实践",
+          "speakers": [
+            "毛舒能"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "10:40",
+        "end": "11:00"
+      }
+    },
+    {
+      "id": "I1#6",
+      "scope": "I1",
+      "selectors": [
+        {
+          "title": "圆桌讨论：Agent驱动的智能化软件架构与应用创新现状与趋势",
+          "speakers": [
+            "彭鑫",
+            "黄罡",
+            "王昊奋",
+            "漆桂林",
+            "曹春",
+            "毛舒能"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:00",
+        "end": "12:00"
+      }
+    },
+    {
+      "id": "I2#0",
+      "scope": "I2",
+      "selectors": [
+        {
+          "title": "开场致辞",
+          "speakers": [],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "08:50",
+        "end": "09:00"
+      }
+    },
+    {
+      "id": "I2#1",
+      "scope": "I2",
+      "selectors": [
+        {
+          "title": "AI辅助嵌入式设备软件测试审计与生成",
+          "speakers": [
+            "蒲戈光"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:00",
+        "end": "09:25"
+      }
+    },
+    {
+      "id": "I2#2",
+      "scope": "I2",
+      "selectors": [
+        {
+          "title": "面向机载高安全领域的智能软件工程技术探索",
+          "speakers": [
+            "戴小氐"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:25",
+        "end": "09:50"
+      }
+    },
+    {
+      "id": "I2#3",
+      "scope": "I2",
+      "selectors": [
+        {
+          "title": "AI长在工业知识上：本体驱动的H4 OntoX与制造价值落地",
+          "speakers": [
+            "张永文"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:50",
+        "end": "10:15"
+      }
+    },
+    {
+      "id": "I2#4",
+      "scope": "I2",
+      "selectors": [
+        {
+          "title": "石油装备材料失效分析与预测预防智能化技术研发进展",
+          "speakers": [
+            "王鹏"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:15",
+        "end": "10:40"
+      }
+    },
+    {
+      "id": "I2#5",
+      "scope": "I2",
+      "selectors": [
+        {
+          "title": "安全攸关嵌入式软件智能化开发研究与应用",
+          "speakers": [
+            "顾斌"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:50",
+        "end": "11:15"
+      }
+    },
+    {
+      "id": "I2#6",
+      "scope": "I2",
+      "selectors": [
+        {
+          "title": "软件与AI融合的产数实践",
+          "speakers": [
+            "杨小凡"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:15",
+        "end": "11:40"
+      }
+    },
+    {
+      "id": "I2#7",
+      "scope": "I2",
+      "selectors": [
+        {
+          "title": "AI+城市级低空GNSS智能监测网",
+          "speakers": [
+            "王徐华"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:40",
+        "end": "12:05"
+      }
+    },
+    {
+      "id": "I3#0",
+      "scope": "I3",
+      "selectors": [
+        {
+          "title": "开场简介",
+          "speakers": [
+            "左志强",
+            "高耀清"
+          ],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:00",
+        "end": "09:05"
+      }
+    },
+    {
+      "id": "I3#1",
+      "scope": "I3",
+      "selectors": [
+        {
+          "title": "AscendNPU-IR：开源编译底座，多语言无缝接入昇腾生态",
+          "speakers": [
+            "陈相廷"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:05",
+        "end": "09:30"
+      }
+    },
+    {
+      "id": "I3#2",
+      "scope": "I3",
+      "selectors": [
+        {
+          "title": "AI辅助的IR编程与编译优化",
+          "speakers": [
+            "狄鹏"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:30",
+        "end": "09:55"
+      }
+    },
+    {
+      "id": "I3#3",
+      "scope": "I3",
+      "selectors": [
+        {
+          "title": "荣耀多维感知编译及虚拟机技术介绍",
+          "speakers": [
+            "金鑫"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:55",
+        "end": "10:20"
+      }
+    },
+    {
+      "id": "I3#4",
+      "scope": "I3",
+      "selectors": [
+        {
+          "title": "从编译AI到AI辅助编译：地平线的实践与挑战",
+          "speakers": [
+            "李建军"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "10:40",
+        "end": "11:05"
+      }
+    },
+    {
+      "id": "I3#5",
+      "scope": "I3",
+      "selectors": [
+        {
+          "title": "从语言规范到代码质量：AI Skill驱动的生态构建路径",
+          "speakers": [
+            "翁长成"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:05",
+        "end": "11:30"
+      }
+    },
+    {
+      "id": "I3#6",
+      "scope": "I3",
+      "selectors": [
+        {
+          "title": "AI驱动的虚拟机与编译器优化探索",
+          "speakers": [
+            "周谦"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:30",
+        "end": "11:55"
+      }
+    },
+    {
+      "id": "I4#0",
+      "scope": "I4",
+      "selectors": [
+        {
+          "title": "论坛致辞与论坛介绍",
+          "speakers": [
+            "周鑫"
+          ],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:00",
+        "end": "09:10"
+      }
+    },
+    {
+      "id": "I4#1",
+      "scope": "I4",
+      "selectors": [
+        {
+          "title": "从个体到团队，京东科技 AI 原生组织实践",
+          "speakers": [
+            "徐翔"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:10",
+        "end": "09:35"
+      }
+    },
+    {
+      "id": "I4#2",
+      "scope": "I4",
+      "selectors": [
+        {
+          "title": "RustBot：企业级Rust智能化作业解决方案",
+          "speakers": [
+            "崔漠寒"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:35",
+        "end": "10:00"
+      }
+    },
+    {
+      "id": "I4#3",
+      "scope": "I4",
+      "selectors": [
+        {
+          "title": "从个人提效到组织提效—Coding Agent的组织落地实践",
+          "speakers": [
+            "杨经纬"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:20",
+        "end": "10:45"
+      }
+    },
+    {
+      "id": "I4#4",
+      "scope": "I4",
+      "selectors": [
+        {
+          "title": "企业级智能化软件工厂方案及最佳实践",
+          "speakers": [
+            "胡汝道"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:45",
+        "end": "11:10"
+      }
+    },
+    {
+      "id": "I4#5",
+      "scope": "I4",
+      "selectors": [
+        {
+          "title": "“人工智能+软件”背景下的研发效能度量与标准化建设的思考",
+          "speakers": [
+            "荣国平"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:10",
+        "end": "11:35"
+      }
+    },
+    {
+      "id": "I4#6",
+      "scope": "I4",
+      "selectors": [
+        {
+          "title": "Pannel讨论：LLM4SE时代的研发效能",
+          "speakers": [
+            "周鑫",
+            "曾祝玮",
+            "柯猛",
+            "臧志",
+            "荣国平"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:35",
+        "end": "12:00"
+      }
+    },
+    {
+      "id": "I5#0",
+      "scope": "I5",
+      "selectors": [
+        {
+          "title": "从开放指令集到 AI 软件栈：RISC-V 算子生成框架探索",
+          "speakers": [
+            "杨威"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:00",
+        "end": "09:30"
+      }
+    },
+    {
+      "id": "I5#1",
+      "scope": "I5",
+      "selectors": [
+        {
+          "title": "Rowhammer研究现状与发展趋势",
+          "speakers": [
+            "吴国伟"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:30",
+        "end": "10:00"
+      }
+    },
+    {
+      "id": "I5#2",
+      "scope": "I5",
+      "selectors": [
+        {
+          "title": "面向RISC-V的可靠高效代码生成：大模型评测、智能体协作与解码优化",
+          "speakers": [
+            "王青山"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "10:00",
+        "end": "10:30"
+      }
+    },
+    {
+      "id": "I5#3",
+      "scope": "I5",
+      "selectors": [
+        {
+          "title": "基于协同搜索空间的高效编译器自动调优",
+          "speakers": [
+            "潘浩林"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:00",
+        "end": "11:20"
+      }
+    },
+    {
+      "id": "I5#4",
+      "scope": "I5",
+      "selectors": [
+        {
+          "title": "RISC-V 在具身智能领域的发展展望",
+          "speakers": [
+            "吴伟"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:20",
+        "end": "11:40"
+      }
+    },
+    {
+      "id": "I6#0",
+      "scope": "I6",
+      "selectors": [
+        {
+          "title": "面向程序分析与验证的约束求解",
+          "speakers": [
+            "陈振邦"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:00",
+        "end": "09:25"
+      }
+    },
+    {
+      "id": "I6#1",
+      "scope": "I6",
+      "selectors": [
+        {
+          "title": "自动驾驶系统仿真测试探索",
+          "speakers": [
+            "周宇"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:25",
+        "end": "09:50"
+      }
+    },
+    {
+      "id": "I6#2",
+      "scope": "I6",
+      "selectors": [
+        {
+          "title": "智能体驱动的大规模程序验证",
+          "speakers": [
+            "陈明帅"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "09:50",
+        "end": "10:15"
+      }
+    },
+    {
+      "id": "I6#3",
+      "scope": "I6",
+      "selectors": [
+        {
+          "title": "可信软件工程的左右脑：需求智能体与测试智能体",
+          "speakers": [
+            "陈俊洁"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "10:40",
+        "end": "11:05"
+      }
+    },
+    {
+      "id": "I6#4",
+      "scope": "I6",
+      "selectors": [
+        {
+          "title": "低资源场景下大模型赋能的代码安全智能审计",
+          "speakers": [
+            "文明"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:05",
+        "end": "11:30"
+      }
+    },
+    {
+      "id": "I6#5",
+      "scope": "I6",
+      "selectors": [
+        {
+          "title": "面向空间飞行器控制算法的可信代码智能生成",
+          "speakers": [
+            "杨逸"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-08",
+        "start": "11:30",
+        "end": "11:55"
+      }
+    },
+    {
+      "id": "I7#0",
+      "scope": "I7",
+      "selectors": [
+        {
+          "title": "主持人开场、介绍嘉宾",
+          "speakers": [],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:00",
+        "end": "09:05"
+      }
+    },
+    {
+      "id": "I7#1",
+      "scope": "I7",
+      "selectors": [
+        {
+          "title": "可信数据空间探索与实践",
+          "speakers": [
+            "王劲松"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:05",
+        "end": "09:30"
+      }
+    },
+    {
+      "id": "I7#2",
+      "scope": "I7",
+      "selectors": [
+        {
+          "title": "迈向AI Native：开源社区工程体系重构与Agentic Workflow实践",
+          "speakers": [
+            "吴鹏飞"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:30",
+        "end": "09:55"
+      }
+    },
+    {
+      "id": "I7#3",
+      "scope": "I7",
+      "selectors": [
+        {
+          "title": "驾驭“智”研-全周期触达可信关键装备软件研制过程",
+          "speakers": [
+            "杨洋"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:55",
+        "end": "10:20"
+      }
+    },
+    {
+      "id": "I7#4",
+      "scope": "I7",
+      "selectors": [
+        {
+          "title": "航天嵌入式软件智能化测试技术研究进展",
+          "speakers": [
+            "李超"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:40",
+        "end": "11:05"
+      }
+    },
+    {
+      "id": "I7#5",
+      "scope": "I7",
+      "selectors": [
+        {
+          "title": "从单点工具到全流程智能：智能体工具在教育行业演进实践",
+          "speakers": [
+            "何思雨"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:05",
+        "end": "11:30"
+      }
+    },
+    {
+      "id": "I7#6",
+      "scope": "I7",
+      "selectors": [
+        {
+          "title": "结语",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:30",
+        "end": "11:35"
+      }
+    },
+    {
+      "id": "I8#0",
+      "scope": "I8",
+      "selectors": [
+        {
+          "title": "主持人开场、介绍嘉宾",
+          "speakers": [],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:00",
+        "end": "14:10"
+      }
+    },
+    {
+      "id": "I8#1",
+      "scope": "I8",
+      "selectors": [
+        {
+          "title": "安全与智能两翼齐飞，海光助力国产算力建设高质量发展",
+          "speakers": [
+            "王子谋"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:10",
+        "end": "14:30"
+      }
+    },
+    {
+      "id": "I8#2",
+      "scope": "I8",
+      "selectors": [
+        {
+          "title": "从 ATLAS 到 Nexa Knowledge：大规模数据库自演进语义层的研究与实践",
+          "speakers": [
+            "张卿"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:30",
+        "end": "14:50"
+      }
+    },
+    {
+      "id": "I8#3",
+      "scope": "I8",
+      "selectors": [
+        {
+          "title": "航天信息金税智能体系统底座与财税数智化升级实践专题分享",
+          "speakers": [
+            "刘振宇"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:50",
+        "end": "15:10"
+      }
+    },
+    {
+      "id": "I8#4",
+      "scope": "I8",
+      "selectors": [
+        {
+          "title": "双反馈驱动的蚂蚁阿福APP",
+          "speakers": [
+            "岳赟"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:30",
+        "end": "15:50"
+      }
+    },
+    {
+      "id": "I8#5",
+      "scope": "I8",
+      "selectors": [
+        {
+          "title": "紫鸾AI操作系统产业创新与实践分享",
+          "speakers": [
+            "柳义利"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:50",
+        "end": "16:10"
+      }
+    },
+    {
+      "id": "I8#6",
+      "scope": "I8",
+      "selectors": [
+        {
+          "title": "下一代国产芯片软硬协同设计及稀疏架构应用",
+          "speakers": [
+            "郭威俊"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:10",
+        "end": "16:30"
+      }
+    },
+    {
+      "id": "I8#7",
+      "scope": "I8",
+      "selectors": [
+        {
+          "title": "结语",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:30",
+        "end": "16:40"
+      }
+    },
+    {
+      "id": "C2#0",
+      "scope": "C2",
+      "selectors": [
+        {
+          "title": "线下决赛",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:00",
+        "end": "17:00"
+      }
+    },
+    {
+      "id": "C2#1",
+      "scope": "C2",
+      "selectors": [
+        {
+          "title": "线下决赛",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "19:30",
+        "end": "21:30"
+      }
+    },
+    {
+      "id": "T1#0",
+      "scope": "T1",
+      "selectors": [
+        {
+          "title": "开场致辞",
+          "speakers": [],
+          "type": "opening"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:00",
+        "end": "09:10"
+      }
+    },
+    {
+      "id": "T1#1",
+      "scope": "T1",
+      "selectors": [
+        {
+          "title": "面向异构融合内存的分布式推理系统研究",
+          "speakers": [
+            "郑圣安"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:10",
+        "end": "09:30"
+      }
+    },
+    {
+      "id": "T1#2",
+      "scope": "T1",
+      "selectors": [
+        {
+          "title": "基于高速互联总线内存语义的高性能RPC技术",
+          "speakers": [
+            "陈游旻"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:30",
+        "end": "09:50"
+      }
+    },
+    {
+      "id": "T1#3",
+      "scope": "T1",
+      "selectors": [
+        {
+          "title": "大模型赋能与代码语义感知增强的操作系统补丁智能管理方法技术研究",
+          "speakers": [
+            "文明"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "09:50",
+        "end": "10:10"
+      }
+    },
+    {
+      "id": "T1#4",
+      "scope": "T1",
+      "selectors": [
+        {
+          "title": "融合大模型与符号推理的轻量级内存安全性验证框架",
+          "speakers": [
+            "陈明帅"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:10",
+        "end": "10:30"
+      }
+    },
+    {
+      "id": "T1#5",
+      "scope": "T1",
+      "selectors": [
+        {
+          "title": "众核高密容器场景高精度干扰监测与隔离技术",
+          "speakers": [
+            "黄航"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "10:45",
+        "end": "11:05"
+      }
+    },
+    {
+      "id": "T1#6",
+      "scope": "T1",
+      "selectors": [
+        {
+          "title": "基于高速互联总线的系统高可用关键技术",
+          "speakers": [
+            "张一鸣"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:05",
+        "end": "11:25"
+      }
+    },
+    {
+      "id": "T1#7",
+      "scope": "T1",
+      "selectors": [
+        {
+          "title": "面向应用场景的虚拟机自动调优方法",
+          "speakers": [
+            "张昱"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:25",
+        "end": "11:45"
+      }
+    },
+    {
+      "id": "T1#8",
+      "scope": "T1",
+      "selectors": [
+        {
+          "title": "面向鲲鹏处理器的Triton生态适配",
+          "speakers": [
+            "韩林"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "11:45",
+        "end": "12:05"
+      }
+    },
+    {
+      "id": "T1#9",
+      "scope": "T1",
+      "selectors": [
+        {
+          "title": "基于 ORAM 的无泄露向量数据相似性查询技术研究",
+          "speakers": [
+            "王祥宇"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "13:30",
+        "end": "13:50"
+      }
+    },
+    {
+      "id": "T1#10",
+      "scope": "T1",
+      "selectors": [
+        {
+          "title": "面向模型上下文协议（MCP）服务端的运行时安全防护技术",
+          "speakers": [
+            "王浩宇"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "13:50",
+        "end": "14:10"
+      }
+    },
+    {
+      "id": "T1#11",
+      "scope": "T1",
+      "selectors": [
+        {
+          "title": "基于XPU TEE的大模型资产保护",
+          "speakers": [
+            "古金宇"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:10",
+        "end": "14:30"
+      }
+    },
+    {
+      "id": "T1#12",
+      "scope": "T1",
+      "selectors": [
+        {
+          "title": "面向大规模分布式 MoE 的精细计算与通信重叠推理优化框架",
+          "speakers": [
+            "陈武辉"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:30",
+        "end": "14:50"
+      }
+    },
+    {
+      "id": "T1#13",
+      "scope": "T1",
+      "selectors": [
+        {
+          "title": "面向鸿蒙应用的AI辅助架构设计一致性检测技术研究",
+          "speakers": [
+            "李杉杉"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "14:50",
+        "end": "15:10"
+      }
+    },
+    {
+      "id": "T1#14",
+      "scope": "T1",
+      "selectors": [
+        {
+          "title": "面向鸿蒙系统的字节码切片与大模型语义理解双驱动的代码分析智能体",
+          "speakers": [
+            "吴道远"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:10",
+        "end": "15:30"
+      }
+    },
+    {
+      "id": "T1#15",
+      "scope": "T1",
+      "selectors": [
+        {
+          "title": "开源治理：功能导向的鸿蒙生态关键软件与原生开源软件的同步演进",
+          "speakers": [
+            "黄凯锋"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:30",
+        "end": "15:50"
+      }
+    },
+    {
+      "id": "T1#16",
+      "scope": "T1",
+      "selectors": [
+        {
+          "title": "基于鸿蒙ArkUI的页面设计性能评估与自动化优化方法研究",
+          "speakers": [
+            "范玲玲"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "15:50",
+        "end": "16:10"
+      }
+    },
+    {
+      "id": "T1#17",
+      "scope": "T1",
+      "selectors": [
+        {
+          "title": "面向应用生态的开源软件的跨语言升级演进辅助工具",
+          "speakers": [
+            "王莹"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:10",
+        "end": "16:30"
+      }
+    },
+    {
+      "id": "T1#18",
+      "scope": "T1",
+      "selectors": [
+        {
+          "title": "基于细粒度性能自动化剖析的鸿蒙应用负载优化研究",
+          "speakers": [
+            "周鸣一"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:30",
+        "end": "16:50"
+      }
+    },
+    {
+      "id": "T1#19",
+      "scope": "T1",
+      "selectors": [
+        {
+          "title": "会议总结",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-11-06",
+        "start": "16:50",
+        "end": "17:00"
+      }
+    }
+  ]
+}

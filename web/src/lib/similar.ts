@@ -1,3 +1,4 @@
+import { talkAnchor } from "./follow-store";
 import type { Conference } from "../types";
 import { ownTitle, titleLine } from "./talk-title";
 import { talkDate, speakerNames } from "./data";
@@ -21,6 +22,7 @@ export interface SimilarTalk {
   forumTitle: string;
   /** 0-based index in the forum's talk list; the anchor is `#talk-${index+1}`. */
   index: number;
+  anchor: string;
   title?: string;
   titleTbd: boolean;
   /** The speakers as one line — a talk row anywhere in this app names them. */
@@ -69,6 +71,7 @@ interface Doc {
   forumCode: string;
   forumTitle: string;
   index: number;
+  anchor: string;
   title?: string;
   titleTbd: boolean;
   speakers?: string;
@@ -112,6 +115,7 @@ function buildCorpus(conference: Conference): Corpus {
       tfs.push(tf);
       docs.push({
         forumCode: f.code,
+        anchor: talkAnchor(talk),
         forumTitle: f.title.zh,
         index,
         title: titleLine(talk, "").text || undefined,
@@ -230,6 +234,7 @@ export function similarTalks(
       forumCode: doc.forumCode,
       forumTitle: doc.forumTitle,
       index: doc.index,
+      anchor: doc.anchor,
       title: doc.title,
       titleTbd: doc.titleTbd,
       speakers: doc.speakers,

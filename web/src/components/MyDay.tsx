@@ -181,7 +181,7 @@ export default function MyDay({ date, items }: { date: string; items: ExportItem
                   {it.code && (
                     <Link
                       to={`/${confId}/forum/${it.code}${
-                        it.talkIndex != null ? `#talk-${it.talkIndex + 1}` : ""
+                        it.talkIndex != null ? `#${it.anchor}` : ""
                       }`}
                       className="talkrow__cover"
                       aria-label={it.title}

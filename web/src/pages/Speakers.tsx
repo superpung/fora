@@ -1,3 +1,4 @@
+import { talkAnchor } from "../lib/follow-store";
 import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useSearchParams } from "react-router-dom";
@@ -8,7 +9,7 @@ import {
   type SpeakerCategory,
 } from "../lib/data";
 import { useConference } from "../lib/conference-store";
-import { useFollow, talkId, keynoteId } from "../lib/follow-store";
+import { useFollow } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
 import { useStickyState } from "../lib/sticky-state";
 import { pageVariants } from "../lib/motion";
@@ -31,9 +32,9 @@ function TalkLine({ t }: { t: SpeakerTalk }) {
   // a follow toggled here shows up there too.
   const followId =
     t.forumCode != null && t.talkIndex != null
-      ? talkId(t.forumCode, t.talkIndex)
+      ? t.report.id
       : t.isKeynote && t.date != null && t.keynoteIndex != null
-        ? keynoteId(t.date, t.keynoteIndex)
+        ? t.report.id
         : null;
   const followed = followId != null && isTalk(followId);
   const body = (
@@ -104,7 +105,7 @@ function TalkLine({ t }: { t: SpeakerTalk }) {
       )}
       {isLink && (
         <Link
-          to={`/${confId}/forum/${t.forumCode}#talk-${(t.talkIndex ?? 0) + 1}`}
+          to={`/${confId}/forum/${t.forumCode}#${talkAnchor(t.report)}`}
           className="sptalk__cover"
           aria-label={t.talkTitle?.zh ?? tr("speakers.tbd")}
         />

@@ -1,0 +1,2851 @@
+{
+  "version": 1,
+  "conference": "chinaosc2026",
+  "baseline": "v0.4.0",
+  "reports": [
+    {
+      "id": "F1490#0",
+      "scope": "F1490",
+      "selectors": [
+        {
+          "title": "开幕词",
+          "speakers": [
+            "陈渝"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "13:30",
+        "end": "13:35"
+      }
+    },
+    {
+      "id": "F1490#1",
+      "scope": "F1490",
+      "selectors": [
+        {
+          "title": "从展厅到工厂：Xenomai支撑具身智能的确定性控制与工业落地",
+          "speakers": [
+            "王广锋"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "13:35",
+        "end": "14:05"
+      }
+    },
+    {
+      "id": "F1490#2",
+      "scope": "F1490",
+      "selectors": [
+        {
+          "title": "从“天算星座”到太空操作系统：构建星座时代的太空算力基础",
+          "speakers": [
+            "胡夏蒙"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "14:05",
+        "end": "14:35"
+      }
+    },
+    {
+      "id": "F1490#3",
+      "scope": "F1490",
+      "selectors": [
+        {
+          "title": "搭载MetaOS(基于Xenomai)的工智机在具身智能、AI基建领域的应用设施",
+          "speakers": [
+            "宋健玮"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "14:35",
+        "end": "15:05"
+      }
+    },
+    {
+      "id": "F1490#4",
+      "scope": "F1490",
+      "selectors": [
+        {
+          "title": "Panel",
+          "speakers": [
+            "Jan Kiszka",
+            "庄天然"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "15:05",
+        "end": "17:30"
+      }
+    },
+    {
+      "id": "F1493#0",
+      "scope": "F1493",
+      "selectors": [
+        {
+          "title": "天地一体的超级智能体系统与开源实践",
+          "speakers": [
+            "吴刚"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "14:10",
+        "end": "14:40"
+      }
+    },
+    {
+      "id": "F1493#1",
+      "scope": "F1493",
+      "selectors": [
+        {
+          "title": "开源生态安全的新问题与新实践",
+          "speakers": [
+            "吴敬征"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "14:40",
+        "end": "15:10"
+      }
+    },
+    {
+      "id": "F1493#2",
+      "scope": "F1493",
+      "selectors": [
+        {
+          "title": "面向多域融合的开源卫星操作系统",
+          "speakers": [
+            "李弘宇"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "15:40",
+        "end": "16:10"
+      }
+    },
+    {
+      "id": "F1493#3",
+      "scope": "F1493",
+      "selectors": [
+        {
+          "title": "通信高效的星地协同学习方法研究",
+          "speakers": [
+            "杨晨"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "16:10",
+        "end": "16:40"
+      }
+    },
+    {
+      "id": "F1493#4",
+      "scope": "F1493",
+      "selectors": [
+        {
+          "title": "开源卫星软件生态的现状与特征",
+          "speakers": [
+            "温金凤"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "16:40",
+        "end": "17:10"
+      }
+    },
+    {
+      "id": "F1497#0",
+      "scope": "F1497",
+      "selectors": [
+        {
+          "title": "论坛背景介绍",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "13:30",
+        "end": "13:40"
+      }
+    },
+    {
+      "id": "F1497#1",
+      "scope": "F1497",
+      "selectors": [
+        {
+          "title": "CCF ODTC 主任指导",
+          "speakers": [
+            "王怀民"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "13:40",
+        "end": "13:50"
+      }
+    },
+    {
+      "id": "F1497#2",
+      "scope": "F1497",
+      "selectors": [
+        {
+          "title": "开放·共享·创新：开源政策赋能科学教育新生态",
+          "speakers": [
+            "周建中"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "13:50",
+        "end": "14:05"
+      }
+    },
+    {
+      "id": "F1497#3",
+      "scope": "F1497",
+      "selectors": [
+        {
+          "title": "从时序数据库到 AI 原生的工业数据底座",
+          "speakers": [
+            "陶建辉"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "14:05",
+        "end": "14:20"
+      }
+    },
+    {
+      "id": "F1497#4",
+      "scope": "F1497",
+      "selectors": [
+        {
+          "title": "AI4Science范式下科学数据生态社区的建设和变化",
+          "speakers": [
+            "许哲平"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "14:20",
+        "end": "14:35"
+      }
+    },
+    {
+      "id": "F1497#5",
+      "scope": "F1497",
+      "selectors": [
+        {
+          "title": "构筑开源生态的“数据基石”：OSIDX 全球开源生态高质量数据集建设之路",
+          "speakers": [
+            "王伟"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "14:35",
+        "end": "14:50"
+      }
+    },
+    {
+      "id": "F1497#6",
+      "scope": "F1497",
+      "selectors": [
+        {
+          "title": "社区共识的重构——演进中的开源规则",
+          "speakers": [
+            "王荷舒"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "14:50",
+        "end": "15:05"
+      }
+    },
+    {
+      "id": "F1497#7",
+      "scope": "F1497",
+      "selectors": [
+        {
+          "title": "“开源社区治理：从文档规则到智能体协同”",
+          "speakers": [
+            "邱睿桥"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "15:05",
+        "end": "15:20"
+      }
+    },
+    {
+      "id": "F1497#8",
+      "scope": "F1497",
+      "selectors": [
+        {
+          "title": "圆桌论坛",
+          "speakers": [
+            "包云岗",
+            "陶建辉",
+            "任旭东",
+            "谭中意",
+            "边思康",
+            "郭晧"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "15:40",
+        "end": "17:30"
+      }
+    },
+    {
+      "id": "F1499#0",
+      "scope": "F1499",
+      "selectors": [
+        {
+          "title": "开场、嘉宾介绍",
+          "speakers": [
+            "田昊野",
+            "李姗姗"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "13:30",
+        "end": "13:35"
+      }
+    },
+    {
+      "id": "F1499#1",
+      "scope": "F1499",
+      "selectors": [
+        {
+          "title": "基于大模型的软件自动化 —— Where Do We Stand?",
+          "speakers": [
+            "李戈"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "13:35",
+        "end": "14:10"
+      }
+    },
+    {
+      "id": "F1499#2",
+      "scope": "F1499",
+      "selectors": [
+        {
+          "title": "大模型智能体驱动的软件测试",
+          "speakers": [
+            "陈俊洁"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "14:10",
+        "end": "14:45"
+      }
+    },
+    {
+      "id": "F1499#3",
+      "scope": "F1499",
+      "selectors": [
+        {
+          "title": "智能时代的软件复用",
+          "speakers": [
+            "余跃"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "14:45",
+        "end": "15:20"
+      }
+    },
+    {
+      "id": "F1499#4",
+      "scope": "F1499",
+      "selectors": [
+        {
+          "title": "鸿蒙AI Coding实践",
+          "speakers": [
+            "黎立"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "15:40",
+        "end": "16:15"
+      }
+    },
+    {
+      "id": "F1499#5",
+      "scope": "F1499",
+      "selectors": [
+        {
+          "title": "大模型驱动的代码效率优化与缺陷定位研究",
+          "speakers": [
+            "任晓雪"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "16:15",
+        "end": "16:50"
+      }
+    },
+    {
+      "id": "F1499#6",
+      "scope": "F1499",
+      "selectors": [
+        {
+          "title": "数据与隐私保护视角下的代码模型可信生态",
+          "speakers": [
+            "杨洲"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "16:50",
+        "end": "17:25"
+      }
+    },
+    {
+      "id": "F1501#0",
+      "scope": "F1501",
+      "selectors": [
+        {
+          "title": "从启悟学习社区建设到高校AI自主开源生态发展",
+          "speakers": [
+            "姜开达"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "13:30",
+        "end": "14:00"
+      }
+    },
+    {
+      "id": "F1501#1",
+      "scope": "F1501",
+      "selectors": [
+        {
+          "title": "HUATUO 华佗：面向 Agent 沙箱的低损耗内核全景观测实践",
+          "speakers": [
+            "张同浩"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "14:00",
+        "end": "14:30"
+      }
+    },
+    {
+      "id": "F1501#2",
+      "scope": "F1501",
+      "selectors": [
+        {
+          "title": "从统一编程到异构推理：国产开源智能计算系统的探索与实践",
+          "speakers": [
+            "王豪杰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "14:30",
+        "end": "15:00"
+      }
+    },
+    {
+      "id": "F1501#3",
+      "scope": "F1501",
+      "selectors": [
+        {
+          "title": "GPU为中心的KV Cache存储",
+          "speakers": [
+            "仇实"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "15:00",
+        "end": "15:30"
+      }
+    },
+    {
+      "id": "F1501#4",
+      "scope": "F1501",
+      "selectors": [
+        {
+          "title": "大模型时代云原生InfraServices的机会",
+          "speakers": [
+            "章文嵩"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "15:50",
+        "end": "16:20"
+      }
+    },
+    {
+      "id": "F1501#5",
+      "scope": "F1501",
+      "selectors": [
+        {
+          "title": "智能体原生GPU架构设计与实现",
+          "speakers": [
+            "李兆石"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "16:20",
+        "end": "16:50"
+      }
+    },
+    {
+      "id": "F1501#6",
+      "scope": "F1501",
+      "selectors": [
+        {
+          "title": "Panel",
+          "speakers": [
+            "章文嵩",
+            "章津楠",
+            "李兆石",
+            "姜开达",
+            "王豪杰",
+            "葛佳烨",
+            "仇实",
+            "张同浩"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "16:50",
+        "end": "17:30"
+      }
+    },
+    {
+      "id": "F1510#0",
+      "scope": "F1510",
+      "selectors": [
+        {
+          "title": "嘉宾致辞",
+          "speakers": [
+            "王怀民"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "13:30",
+        "end": "13:40"
+      }
+    },
+    {
+      "id": "F1510#1",
+      "scope": "F1510",
+      "selectors": [
+        {
+          "title": "工业软件开源生态构建",
+          "speakers": [
+            "唐滨"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "13:40",
+        "end": "14:10"
+      }
+    },
+    {
+      "id": "F1510#2",
+      "scope": "F1510",
+      "selectors": [
+        {
+          "title": "AI软件工厂在关键行业的落地难点及实践思考",
+          "speakers": [
+            "王一"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "14:10",
+        "end": "14:40"
+      }
+    },
+    {
+      "id": "F1510#3",
+      "scope": "F1510",
+      "selectors": [
+        {
+          "title": "让AI编程在控制中释放智能",
+          "speakers": [
+            "王蕴博"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "14:40",
+        "end": "15:10"
+      }
+    },
+    {
+      "id": "F1510#4",
+      "scope": "F1510",
+      "selectors": [
+        {
+          "title": "智能软件工厂开源治理实践——如何构建可信中心仓",
+          "speakers": [
+            "高琨"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "15:20",
+        "end": "15:50"
+      }
+    },
+    {
+      "id": "F1510#5",
+      "scope": "F1510",
+      "selectors": [
+        {
+          "title": "区块链如何为开源贡献存证",
+          "speakers": [
+            "傅翔"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "15:50",
+        "end": "16:20"
+      }
+    },
+    {
+      "id": "F1510#6",
+      "scope": "F1510",
+      "selectors": [
+        {
+          "title": "Panel讨论：关键领域软件生态联盟的建设与发展",
+          "speakers": [
+            "丁博",
+            "彭璐",
+            "王一",
+            "王蕴博",
+            "高琨",
+            "其他发言嘉宾"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "16:30",
+        "end": "17:30"
+      }
+    },
+    {
+      "id": "F1511#0",
+      "scope": "F1511",
+      "selectors": [
+        {
+          "title": "致辞",
+          "speakers": [
+            "梅宏"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "13:40",
+        "end": "13:50"
+      }
+    },
+    {
+      "id": "F1511#1",
+      "scope": "F1511",
+      "selectors": [
+        {
+          "title": "社区新增会员单位授牌仪式",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "13:50",
+        "end": "14:00"
+      }
+    },
+    {
+      "id": "F1511#2",
+      "scope": "F1511",
+      "selectors": [
+        {
+          "title": "泛在操作系统开放社区介绍",
+          "speakers": [
+            "杨丽蕴"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "14:00",
+        "end": "14:20"
+      }
+    },
+    {
+      "id": "F1511#3",
+      "scope": "F1511",
+      "selectors": [
+        {
+          "title": "灵玑OS:智能体框架共性基础设施",
+          "speakers": [
+            "邹艳珍"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "14:20",
+        "end": "14:50"
+      }
+    },
+    {
+      "id": "F1511#4",
+      "scope": "F1511",
+      "selectors": [
+        {
+          "title": "泛在群智计算系统——主动认知型智能系统的创新探索与开源实践",
+          "speakers": [
+            "陈亚兴"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "14:50",
+        "end": "15:20"
+      }
+    },
+    {
+      "id": "F1511#5",
+      "scope": "F1511",
+      "selectors": [
+        {
+          "title": "从开源鸿蒙到分布式智能体群：构建开放协同的产业AI底座",
+          "speakers": [
+            "王潮"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "15:40",
+        "end": "16:05"
+      }
+    },
+    {
+      "id": "F1511#6",
+      "scope": "F1511",
+      "selectors": [
+        {
+          "title": "教会Agent像专家一样评审内核代码——以星绽为例",
+          "speakers": [
+            "田洪亮"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "16:05",
+        "end": "16:30"
+      }
+    },
+    {
+      "id": "F1511#7",
+      "scope": "F1511",
+      "selectors": [
+        {
+          "title": "基于双体系内核架构的Klink-U软总线安全探索",
+          "speakers": [
+            "郭伟康"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "16:30",
+        "end": "16:55"
+      }
+    },
+    {
+      "id": "F1511#8",
+      "scope": "F1511",
+      "selectors": [
+        {
+          "title": "Panel：开源操作系统生态建设",
+          "speakers": [
+            "郭耀",
+            "邹艳珍",
+            "陈亚兴",
+            "王潮",
+            "田洪亮",
+            "郭伟康"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "16:50",
+        "end": "17:30"
+      }
+    },
+    {
+      "id": "F1512#0",
+      "scope": "F1512",
+      "selectors": [
+        {
+          "title": "开场、致辞",
+          "speakers": [
+            "王怀民"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "13:30",
+        "end": "13:50"
+      }
+    },
+    {
+      "id": "F1512#1",
+      "scope": "F1512",
+      "selectors": [
+        {
+          "title": "红山开源平台半年总结及成果发布",
+          "speakers": [],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "13:50",
+        "end": "14:20"
+      }
+    },
+    {
+      "id": "F1512#2",
+      "scope": "F1512",
+      "selectors": [
+        {
+          "title": "硅基时间下的开源开发者红利",
+          "speakers": [
+            "蒋涛"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "14:20",
+        "end": "14:50"
+      }
+    },
+    {
+      "id": "F1512#3",
+      "scope": "F1512",
+      "selectors": [
+        {
+          "title": "AI智能研发范式下开源工业软件协同创新生态构建",
+          "speakers": [
+            "唐滨"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "14:50",
+        "end": "15:20"
+      }
+    },
+    {
+      "id": "F1512#4",
+      "scope": "F1512",
+      "selectors": [
+        {
+          "title": "开源共筑，生态共赢-打造人工智能根技术助力自主可控生态体系",
+          "speakers": [
+            "程捷"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "15:40",
+        "end": "16:10"
+      }
+    },
+    {
+      "id": "F1512#5",
+      "scope": "F1512",
+      "selectors": [
+        {
+          "title": "特定场景下的智能体系开源化建设路径与演进研究",
+          "speakers": [
+            "姜巍"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "16:10",
+        "end": "16:40"
+      }
+    },
+    {
+      "id": "F1512#6",
+      "scope": "F1512",
+      "selectors": [
+        {
+          "title": "Panel",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "16:40",
+        "end": "17:20"
+      }
+    },
+    {
+      "id": "F1512#7",
+      "scope": "F1512",
+      "selectors": [
+        {
+          "title": "会议总结",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "17:20",
+        "end": "17:30"
+      }
+    },
+    {
+      "id": "F1513#0",
+      "scope": "F1513",
+      "selectors": [
+        {
+          "title": "开场致辞",
+          "speakers": [
+            "任旭东"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "13:30",
+        "end": "13:35"
+      }
+    },
+    {
+      "id": "F1513#1",
+      "scope": "F1513",
+      "selectors": [
+        {
+          "title": "CANN开源开放助力高校AI人才培养",
+          "speakers": [
+            "邵立欣"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "13:35",
+        "end": "14:10"
+      }
+    },
+    {
+      "id": "F1513#2",
+      "scope": "F1513",
+      "selectors": [
+        {
+          "title": "CANNLab：CANN社区一站式开发平台介绍",
+          "speakers": [
+            "王谦"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "14:10",
+        "end": "14:40"
+      }
+    },
+    {
+      "id": "F1513#3",
+      "scope": "F1513",
+      "selectors": [
+        {
+          "title": "CANNBot+CANNBench：算子生成测试迭代演进闭环",
+          "speakers": [
+            "陈振宇"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "14:40",
+        "end": "15:20"
+      }
+    },
+    {
+      "id": "F1513#4",
+      "scope": "F1513",
+      "selectors": [
+        {
+          "title": "昇腾950特性全景剖析与开箱案例",
+          "speakers": [
+            "丁玉军"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "15:40",
+        "end": "16:00"
+      }
+    },
+    {
+      "id": "F1513#5",
+      "scope": "F1513",
+      "selectors": [
+        {
+          "title": "DeepSeek V4在昇腾950的优化实践",
+          "speakers": [
+            "邹楠"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "16:00",
+        "end": "16:30"
+      }
+    },
+    {
+      "id": "F1513#6",
+      "scope": "F1513",
+      "selectors": [
+        {
+          "title": "昇腾NPU原生训练的三维重建基础模型与4D世界模型",
+          "speakers": [
+            "陈天润"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "16:30",
+        "end": "17:00"
+      }
+    },
+    {
+      "id": "F1517#0",
+      "scope": "F1517",
+      "selectors": [
+        {
+          "title": "AI 时代的数字基础设施：openGauss AI多模数据库创新实践",
+          "speakers": [
+            "熊钦"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "13:30",
+        "end": "13:50"
+      }
+    },
+    {
+      "id": "F1517#1",
+      "scope": "F1517",
+      "selectors": [
+        {
+          "title": "openGauss基于鲲鹏超节点的最佳实践",
+          "speakers": [
+            "彭炯"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "13:50",
+        "end": "14:10"
+      }
+    },
+    {
+      "id": "F1517#2",
+      "scope": "F1517",
+      "selectors": [
+        {
+          "title": "Triton-Ascend的功能泛化和性能优化",
+          "speakers": [
+            "杨开昕"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "14:10",
+        "end": "14:30"
+      }
+    },
+    {
+      "id": "F1517#3",
+      "scope": "F1517",
+      "selectors": [
+        {
+          "title": "AscendNPU IR：面向AI算力基础设施的Tile编程与编译关键技术",
+          "speakers": [
+            "程琛"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "14:30",
+        "end": "14:50"
+      }
+    },
+    {
+      "id": "F1517#4",
+      "scope": "F1517",
+      "selectors": [
+        {
+          "title": "MindSpore HyperParallel的开源分布式编程新范式",
+          "speakers": [
+            "常哲睿"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "14:50",
+        "end": "15:10"
+      }
+    },
+    {
+      "id": "F1517#5",
+      "scope": "F1517",
+      "selectors": [
+        {
+          "title": "MemCache、MemFabric和BoostIO构筑超节点高性能KV Cache",
+          "speakers": [
+            "刘勇"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "15:30",
+        "end": "15:50"
+      }
+    },
+    {
+      "id": "F1517#6",
+      "scope": "F1517",
+      "selectors": [
+        {
+          "title": "MindCluster释放昇腾超节点极致性能",
+          "speakers": [
+            "李睿"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "15:50",
+        "end": "16:10"
+      }
+    },
+    {
+      "id": "F1517#7",
+      "scope": "F1517",
+      "selectors": [
+        {
+          "title": "鲲鹏超智融合软件架构的探索与实践",
+          "speakers": [
+            "朱延超"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "16:10",
+        "end": "16:30"
+      }
+    },
+    {
+      "id": "F1517#8",
+      "scope": "F1517",
+      "selectors": [
+        {
+          "title": "OmniRuntime基于鲲鹏的大数据开源最佳实践",
+          "speakers": [
+            "尹伟杰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "16:30",
+        "end": "17:00"
+      }
+    },
+    {
+      "id": "F1519#0",
+      "scope": "F1519",
+      "selectors": [
+        {
+          "title": "致辞",
+          "speakers": [
+            "梅宏"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "13:30",
+        "end": "13:35"
+      }
+    },
+    {
+      "id": "F1519#1",
+      "scope": "F1519",
+      "selectors": [
+        {
+          "title": "致辞",
+          "speakers": [
+            "王怀民"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "13:35",
+        "end": "13:40"
+      }
+    },
+    {
+      "id": "F1519#2",
+      "scope": "F1519",
+      "selectors": [
+        {
+          "title": "EIOT: Embodied Intelligence of Things",
+          "speakers": [
+            "刘云浩"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "13:40",
+        "end": "14:20"
+      }
+    },
+    {
+      "id": "F1519#3",
+      "scope": "F1519",
+      "selectors": [
+        {
+          "title": "具身智能操作系统Robonix：原理与架构",
+          "speakers": [
+            "陈康"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "14:20",
+        "end": "15:00"
+      }
+    },
+    {
+      "id": "F1519#4",
+      "scope": "F1519",
+      "selectors": [
+        {
+          "title": "Robonix战略合作揭牌仪式（梅宏院士、生态伙伴）",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "15:00",
+        "end": "15:10"
+      }
+    },
+    {
+      "id": "F1519#5",
+      "scope": "F1519",
+      "selectors": [
+        {
+          "title": "RoboHarness：让机器人从实验室走向产线",
+          "speakers": [
+            "邹振盛"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "15:30",
+        "end": "15:50"
+      }
+    },
+    {
+      "id": "F1519#6",
+      "scope": "F1519",
+      "selectors": [
+        {
+          "title": "砻盘筑基 · 开源赋能——提速具身智能规模化应用进程",
+          "speakers": [
+            "陈文强"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "15:50",
+        "end": "16:10"
+      }
+    },
+    {
+      "id": "F1519#7",
+      "scope": "F1519",
+      "selectors": [
+        {
+          "title": "从四足到人形机器人--底层技术与产品演进",
+          "speakers": [
+            "范永"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "16:10",
+        "end": "16:30"
+      }
+    },
+    {
+      "id": "F1519#8",
+      "scope": "F1519",
+      "selectors": [
+        {
+          "title": "面向开放世界的具身多智能体决策",
+          "speakers": [
+            "李阳"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "16:30",
+        "end": "16:50"
+      }
+    },
+    {
+      "id": "F1519#9",
+      "scope": "F1519",
+      "selectors": [
+        {
+          "title": "从视控一体到具身智能：工业智能机器人的技术与应用",
+          "speakers": [
+            "孙丹枫"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "16:50",
+        "end": "17:10"
+      }
+    },
+    {
+      "id": "F1519#10",
+      "scope": "F1519",
+      "selectors": [
+        {
+          "title": "基于矽璓操作系统的关节控制与管理",
+          "speakers": [
+            "薛栋梁"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "17:10",
+        "end": "17:30"
+      }
+    },
+    {
+      "id": "F1519#11",
+      "scope": "F1519",
+      "selectors": [
+        {
+          "title": "总结展望",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-15",
+        "start": "17:30",
+        "end": "17:35"
+      }
+    },
+    {
+      "id": "F1491#0",
+      "scope": "F1491",
+      "selectors": [
+        {
+          "title": "主旨报告：AI时代的科学计算与系统建模——从开源工具链走向智能工程生态",
+          "speakers": [
+            "周凡利"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "13:30",
+        "end": "14:00"
+      }
+    },
+    {
+      "id": "F1491#1",
+      "scope": "F1491",
+      "selectors": [
+        {
+          "title": "AI时代下能源系统工程发展的机遇与挑战",
+          "speakers": [
+            "李明涛"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "14:00",
+        "end": "14:20"
+      }
+    },
+    {
+      "id": "F1491#2",
+      "scope": "F1491",
+      "selectors": [
+        {
+          "title": "Sysplorer MCP Server+智能体重塑系统建模仿真工作流",
+          "speakers": [
+            "许飞"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "14:25",
+        "end": "14:45"
+      }
+    },
+    {
+      "id": "F1491#3",
+      "scope": "F1491",
+      "selectors": [
+        {
+          "title": "开源系统建模模型库与 Modelica 中文生态建设——面向智能应用的 MCP 赋能实践",
+          "speakers": [
+            "刘瑞栋"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "14:50",
+        "end": "15:10"
+      }
+    },
+    {
+      "id": "F1491#4",
+      "scope": "F1491",
+      "selectors": [
+        {
+          "title": "具身智能场景下的系统建模、控制与仿真新需求",
+          "speakers": [
+            "周治国"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "15:50",
+        "end": "16:10"
+      }
+    },
+    {
+      "id": "F1491#5",
+      "scope": "F1491",
+      "selectors": [
+        {
+          "title": "综合能源数字孪生系统管理发展探索",
+          "speakers": [
+            "杨党锋"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "16:10",
+        "end": "16:30"
+      }
+    },
+    {
+      "id": "F1491#6",
+      "scope": "F1491",
+      "selectors": [
+        {
+          "title": "2026“校源行”计划与高校参与路径",
+          "speakers": [
+            "惠立新"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "16:30",
+        "end": "16:50"
+      }
+    },
+    {
+      "id": "F1492#0",
+      "scope": "F1492",
+      "selectors": [
+        {
+          "title": "智能体时代的代码质量保障与开源挑战",
+          "speakers": [
+            "玄跻峰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "13:30",
+        "end": "14:10"
+      }
+    },
+    {
+      "id": "F1492#1",
+      "scope": "F1492",
+      "selectors": [
+        {
+          "title": "人机物融合智能化软件的多维建模与协同机制",
+          "speakers": [
+            "王莹洁"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "14:10",
+        "end": "14:45"
+      }
+    },
+    {
+      "id": "F1492#2",
+      "scope": "F1492",
+      "selectors": [
+        {
+          "title": "基于大模型的缺陷检测和修复",
+          "speakers": [
+            "张建"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "14:45",
+        "end": "15:20"
+      }
+    },
+    {
+      "id": "F1492#3",
+      "scope": "F1492",
+      "selectors": [
+        {
+          "title": "浅谈LLM Agent从代码生成、仓库定位到设计技术债治理的能力与边界",
+          "speakers": [
+            "李传艺"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "15:40",
+        "end": "16:15"
+      }
+    },
+    {
+      "id": "F1492#4",
+      "scope": "F1492",
+      "selectors": [
+        {
+          "title": "智能化测试生成",
+          "speakers": [
+            "孙泽宇"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "16:15",
+        "end": "16:50"
+      }
+    },
+    {
+      "id": "F1492#5",
+      "scope": "F1492",
+      "selectors": [
+        {
+          "title": "Panel：智能体对开源软件开发的赋能与挑战",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "16:50",
+        "end": "17:20"
+      }
+    },
+    {
+      "id": "F1494#0",
+      "scope": "F1494",
+      "selectors": [
+        {
+          "title": "开场介绍",
+          "speakers": [
+            "王莹"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "13:30",
+        "end": "13:35"
+      }
+    },
+    {
+      "id": "F1494#1",
+      "scope": "F1494",
+      "selectors": [
+        {
+          "title": "Keynote:开源供应链合规性管理：从开源软件到开放模型",
+          "speakers": [
+            "周明辉"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "13:35",
+        "end": "14:15"
+      }
+    },
+    {
+      "id": "F1494#2",
+      "scope": "F1494",
+      "selectors": [
+        {
+          "title": "大模型软件供应链安全：现状、机遇与挑战",
+          "speakers": [
+            "王浩宇"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "14:15",
+        "end": "14:45"
+      }
+    },
+    {
+      "id": "F1494#3",
+      "scope": "F1494",
+      "selectors": [
+        {
+          "title": "软件与大模型供应链安全治理",
+          "speakers": [
+            "陈碧欢"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "14:45",
+        "end": "15:15"
+      }
+    },
+    {
+      "id": "F1494#4",
+      "scope": "F1494",
+      "selectors": [
+        {
+          "title": "智能体安全攻防：挑战与实践",
+          "speakers": [
+            "戴嘉润"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "15:40",
+        "end": "16:10"
+      }
+    },
+    {
+      "id": "F1494#5",
+      "scope": "F1494",
+      "selectors": [
+        {
+          "title": "大模型供应链可追溯性研究：从模型依赖恢复到训练代码溯源",
+          "speakers": [
+            "黄凯锋"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "16:10",
+        "end": "16:40"
+      }
+    },
+    {
+      "id": "F1494#6",
+      "scope": "F1494",
+      "selectors": [
+        {
+          "title": "智能体狂飙时代：Agentic AI 供应链安全的变局与防御重构",
+          "speakers": [
+            "史磊"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "16:40",
+        "end": "17:10"
+      }
+    },
+    {
+      "id": "F1494#7",
+      "scope": "F1494",
+      "selectors": [
+        {
+          "title": "战略研讨环节",
+          "speakers": [
+            "梁广泰"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "17:10",
+        "end": "17:30"
+      }
+    },
+    {
+      "id": "F1495#0",
+      "scope": "F1495",
+      "selectors": [
+        {
+          "title": "开源人才教育与地方开源体系建设",
+          "speakers": [
+            "郭雪"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "13:30",
+        "end": "14:00"
+      }
+    },
+    {
+      "id": "F1495#1",
+      "scope": "F1495",
+      "selectors": [
+        {
+          "title": "基于AI+开源混态教育的复合型创新性人才培养模式研究与实践",
+          "speakers": [
+            "张燕"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "14:05",
+        "end": "14:35"
+      }
+    },
+    {
+      "id": "F1495#2",
+      "scope": "F1495",
+      "selectors": [
+        {
+          "title": "探索以实践为核心的阶梯式开源人才培养方法",
+          "speakers": [
+            "汪亮"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "14:40",
+        "end": "15:10"
+      }
+    },
+    {
+      "id": "F1495#3",
+      "scope": "F1495",
+      "selectors": [
+        {
+          "title": "判断力，开源人才的新稀缺 -- Agent 接管编码之后，如何评估它仍是开放命题",
+          "speakers": [
+            "王晔晖"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "15:40",
+        "end": "16:10"
+      }
+    },
+    {
+      "id": "F1495#4",
+      "scope": "F1495",
+      "selectors": [
+        {
+          "title": "真实问题驱动的人才培养：从开源悬榜到AI时代的创造力成长",
+          "speakers": [
+            "倪超"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "16:15",
+        "end": "16:45"
+      }
+    },
+    {
+      "id": "F1495#5",
+      "scope": "F1495",
+      "selectors": [
+        {
+          "title": "圆桌：当AI会写代码，开源教育如何培养“会创造的人”？",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "16:50",
+        "end": "17:50"
+      }
+    },
+    {
+      "id": "F1496#0",
+      "scope": "F1496",
+      "selectors": [
+        {
+          "title": "面向协同驾驶的智能车辆运动行为建模与仿真测试关键技术",
+          "speakers": [
+            "黄鑫"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "13:30",
+        "end": "14:00"
+      }
+    },
+    {
+      "id": "F1496#1",
+      "scope": "F1496",
+      "selectors": [
+        {
+          "title": "移动具身智能",
+          "speakers": [
+            "陈超"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "14:00",
+        "end": "14:30"
+      }
+    },
+    {
+      "id": "F1496#2",
+      "scope": "F1496",
+      "selectors": [
+        {
+          "title": "智能体驱动的车联网安全攻防与数据集构建",
+          "speakers": [
+            "刘玉岭"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "14:30",
+        "end": "15:00"
+      }
+    },
+    {
+      "id": "F1496#3",
+      "scope": "F1496",
+      "selectors": [
+        {
+          "title": "面向自动驾驶开放数据集的后量子安全体系构建",
+          "speakers": [
+            "咸鹤群"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "15:00",
+        "end": "15:20"
+      }
+    },
+    {
+      "id": "F1496#4",
+      "scope": "F1496",
+      "selectors": [
+        {
+          "title": "研讨引导报告（介绍需要研讨的问题）",
+          "speakers": [
+            "房建武"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "15:20",
+        "end": "15:40"
+      }
+    },
+    {
+      "id": "F1496#5",
+      "scope": "F1496",
+      "selectors": [
+        {
+          "title": "圆桌研讨",
+          "speakers": [
+            "房建武"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "17:10",
+        "end": "17:40"
+      }
+    },
+    {
+      "id": "F1498#0",
+      "scope": "F1498",
+      "selectors": [
+        {
+          "title": "面向可信AI供应链的开源神经网络演化与复用安全分析",
+          "speakers": [
+            "薛吟兴"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "13:30",
+        "end": "13:50"
+      }
+    },
+    {
+      "id": "F1498#1",
+      "scope": "F1498",
+      "selectors": [
+        {
+          "title": "算力网开源开放试验场",
+          "speakers": [
+            "余跃"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "13:50",
+        "end": "14:10"
+      }
+    },
+    {
+      "id": "F1498#2",
+      "scope": "F1498",
+      "selectors": [
+        {
+          "title": "开源供应链风险数据基座的脆弱性剖析与可信重构",
+          "speakers": [
+            "陈森"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "14:10",
+        "end": "14:30"
+      }
+    },
+    {
+      "id": "F1498#3",
+      "scope": "F1498",
+      "selectors": [
+        {
+          "title": "面向依赖版本更新任务的大规模数据集挖掘",
+          "speakers": [
+            "高恺"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "14:30",
+        "end": "14:50"
+      }
+    },
+    {
+      "id": "F1498#4",
+      "scope": "F1498",
+      "selectors": [
+        {
+          "title": "从开源代码到开放权重：AI模型协作开发的新演进与挑战",
+          "speakers": [
+            "叶恒志"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "14:50",
+        "end": "15:10"
+      }
+    },
+    {
+      "id": "F1498#5",
+      "scope": "F1498",
+      "selectors": [
+        {
+          "title": "Panel",
+          "speakers": [],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "15:40",
+        "end": "17:00"
+      }
+    },
+    {
+      "id": "F1500#0",
+      "scope": "F1500",
+      "selectors": [
+        {
+          "title": "大模型智能体轨迹分析：从失效定位到驾驭工程",
+          "speakers": [
+            "王俊杰"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "13:30",
+        "end": "14:00"
+      }
+    },
+    {
+      "id": "F1500#1",
+      "scope": "F1500",
+      "selectors": [
+        {
+          "title": "大模型驱动开源软件缺陷自动化诊治",
+          "speakers": [
+            "雷晏"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "14:00",
+        "end": "14:30"
+      }
+    },
+    {
+      "id": "F1500#2",
+      "scope": "F1500",
+      "selectors": [
+        {
+          "title": "开源软件供应链安全风险治理的创新与实践",
+          "speakers": [
+            "陈铁明"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "14:30",
+        "end": "15:00"
+      }
+    },
+    {
+      "id": "F1500#3",
+      "scope": "F1500",
+      "selectors": [
+        {
+          "title": "AI生态0-Day软件工程演进之路",
+          "speakers": [
+            "刘波"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "15:00",
+        "end": "15:30"
+      }
+    },
+    {
+      "id": "F1500#4",
+      "scope": "F1500",
+      "selectors": [
+        {
+          "title": "计算开源社区Agentic Workflow-- \"一切皆代码、一切皆 CLI + AI Agent Loop\"",
+          "speakers": [
+            "王泽俊"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "15:40",
+        "end": "16:10"
+      }
+    },
+    {
+      "id": "F1500#5",
+      "scope": "F1500",
+      "selectors": [
+        {
+          "title": "Panel",
+          "speakers": [
+            "王俊杰",
+            "雷晏",
+            "陈铁明",
+            "刘波",
+            "王泽俊"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "16:15",
+        "end": "17:30"
+      }
+    },
+    {
+      "id": "F1502#0",
+      "scope": "F1502",
+      "selectors": [
+        {
+          "title": "科技向善，开源赋能 AI 全栈生态繁荣发展",
+          "speakers": [
+            "田广礼"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "13:30",
+        "end": "13:40"
+      }
+    },
+    {
+      "id": "F1502#1",
+      "scope": "F1502",
+      "selectors": [
+        {
+          "title": "开源物理AI正加速工业AI应用",
+          "speakers": [
+            "聂凯旋"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "13:40",
+        "end": "14:10"
+      }
+    },
+    {
+      "id": "F1502#2",
+      "scope": "F1502",
+      "selectors": [
+        {
+          "title": "国产GPU算力站支撑具身智能实时仿真与大规模世界模型应用",
+          "speakers": [
+            "黄树福"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "14:10",
+        "end": "14:40"
+      }
+    },
+    {
+      "id": "F1502#3",
+      "scope": "F1502",
+      "selectors": [
+        {
+          "title": "工业AI的挑战",
+          "speakers": [
+            "陶建辉"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "14:40",
+        "end": "15:10"
+      }
+    },
+    {
+      "id": "F1502#4",
+      "scope": "F1502",
+      "selectors": [
+        {
+          "title": "国家级工业软件开源生态平台创新路径探索",
+          "speakers": [
+            "唐滨"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "15:30",
+        "end": "16:00"
+      }
+    },
+    {
+      "id": "F1502#5",
+      "scope": "F1502",
+      "selectors": [
+        {
+          "title": "探索统一的图像到图像分布变换框架-残差去噪扩散模型",
+          "speakers": [
+            "刘佳伟"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "16:00",
+        "end": "16:30"
+      }
+    },
+    {
+      "id": "F1502#6",
+      "scope": "F1502",
+      "selectors": [
+        {
+          "title": "RoboChallenge真机测评年度报告：洞察具身智能趋势，推动开放测评生态共建",
+          "speakers": [
+            "陈阳"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "16:30",
+        "end": "17:00"
+      }
+    },
+    {
+      "id": "F1502#7",
+      "scope": "F1502",
+      "selectors": [
+        {
+          "title": "Panel",
+          "speakers": [
+            "庄表伟",
+            "聂凯旋",
+            "黄树福",
+            "陶建辉",
+            "唐滨",
+            "刘佳伟",
+            "陈阳"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "17:00",
+        "end": "17:30"
+      }
+    },
+    {
+      "id": "F1509#0",
+      "scope": "F1509",
+      "selectors": [
+        {
+          "title": "以开源为基，以协同为翼——工业软件创新生态的协同发展路径",
+          "speakers": [
+            "唐滨"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "13:35",
+        "end": "14:10"
+      }
+    },
+    {
+      "id": "F1509#1",
+      "scope": "F1509",
+      "selectors": [
+        {
+          "title": "风雷流体工业软件开源进展",
+          "speakers": [
+            "赵钟"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "14:10",
+        "end": "14:45"
+      }
+    },
+    {
+      "id": "F1509#2",
+      "scope": "F1509",
+      "selectors": [
+        {
+          "title": "从根社区到行业实践——openKylin筑牢工业软件数字底座",
+          "speakers": [
+            "马发俊"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "14:45",
+        "end": "15:20"
+      }
+    },
+    {
+      "id": "F1509#3",
+      "scope": "F1509",
+      "selectors": [
+        {
+          "title": "信创背景下，开源工业软件的国产化替代机遇与挑战",
+          "speakers": [
+            "杨程"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "15:40",
+        "end": "16:15"
+      }
+    },
+    {
+      "id": "F1509#4",
+      "scope": "F1509",
+      "selectors": [
+        {
+          "title": "开源协作驱动工业软件生态发展新机遇",
+          "speakers": [
+            "黄宝锟"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "16:15",
+        "end": "16:50"
+      }
+    },
+    {
+      "id": "F1509#5",
+      "scope": "F1509",
+      "selectors": [
+        {
+          "title": "圆桌讨论",
+          "speakers": [
+            "唐滨",
+            "赵钟",
+            "马发俊",
+            "杨程",
+            "黄宝锟"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "16:50",
+        "end": "17:30"
+      }
+    },
+    {
+      "id": "F1514#0",
+      "scope": "F1514",
+      "selectors": [
+        {
+          "title": "跨云端协同的开源智能体系统",
+          "speakers": [
+            "夏虞斌"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "14:30",
+        "end": "15:00"
+      }
+    },
+    {
+      "id": "F1514#1",
+      "scope": "F1514",
+      "selectors": [
+        {
+          "title": "复杂智能软件云际构造环境",
+          "speakers": [
+            "冯大为"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "15:00",
+        "end": "15:30"
+      }
+    },
+    {
+      "id": "F1514#2",
+      "scope": "F1514",
+      "selectors": [
+        {
+          "title": "Omni-infer性能极致优化实践 & LFAI&Data 开原生态",
+          "speakers": [
+            "杨家荷"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "15:50",
+        "end": "16:20"
+      }
+    },
+    {
+      "id": "F1514#3",
+      "scope": "F1514",
+      "selectors": [
+        {
+          "title": "FlagOS开源智能软件技术体系",
+          "speakers": [
+            "朱其罡"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "16:20",
+        "end": "16:50"
+      }
+    },
+    {
+      "id": "F1514#4",
+      "scope": "F1514",
+      "selectors": [
+        {
+          "title": "高效可靠的AI Infra资源管理技术与开源实践",
+          "speakers": [
+            "杨任宇"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "16:50",
+        "end": "17:30"
+      }
+    },
+    {
+      "id": "F1515#0",
+      "scope": "F1515",
+      "selectors": [
+        {
+          "title": "论坛介绍：RISC-V与开源芯片",
+          "speakers": [
+            "解壁伟"
+          ],
+          "type": "other"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "13:30",
+        "end": "13:45"
+      }
+    },
+    {
+      "id": "F1515#1",
+      "scope": "F1515",
+      "selectors": [
+        {
+          "title": "甲辰计划：为了 RISC-V 软件生态的繁荣",
+          "speakers": [
+            "吴伟"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "13:45",
+        "end": "14:15"
+      }
+    },
+    {
+      "id": "F1515#2",
+      "scope": "F1515",
+      "selectors": [
+        {
+          "title": "开源高性能处理器芯片的敏捷设计方法",
+          "speakers": [
+            "徐易难"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "14:15",
+        "end": "14:45"
+      }
+    },
+    {
+      "id": "F1515#3",
+      "scope": "F1515",
+      "selectors": [
+        {
+          "title": "基于RISC-V矩阵扩展指令集的AI加速器设计",
+          "speakers": [
+            "高明晋"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "14:45",
+        "end": "15:15"
+      }
+    },
+    {
+      "id": "F1515#4",
+      "scope": "F1515",
+      "selectors": [
+        {
+          "title": "开源PDK与公共流片平台：筑牢开源芯片全栈创新底座",
+          "speakers": [
+            "欧阳平"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "15:30",
+        "end": "16:00"
+      }
+    },
+    {
+      "id": "F1515#5",
+      "scope": "F1515",
+      "selectors": [
+        {
+          "title": "ECOS Studio：开源EDA、IP与PDK的端到端芯片设计与社区流片实践",
+          "speakers": [
+            "王昊"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "16:00",
+        "end": "16:30"
+      }
+    },
+    {
+      "id": "F1515#6",
+      "scope": "F1515",
+      "selectors": [
+        {
+          "title": "UCAgent：AI 驱动的芯片验证全流程加速实践",
+          "speakers": [
+            "皮彦"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "16:30",
+        "end": "17:00"
+      }
+    },
+    {
+      "id": "F1515#7",
+      "scope": "F1515",
+      "selectors": [
+        {
+          "title": "“一生一芯”计划——从零开始设计自己的RISC-V处理器芯片",
+          "speakers": [
+            "杨昊天"
+          ],
+          "type": "talk"
+        }
+      ],
+      "context": {
+        "date": "2026-08-16",
+        "start": "17:00",
+        "end": "17:30"
+      }
+    }
+  ]
+}

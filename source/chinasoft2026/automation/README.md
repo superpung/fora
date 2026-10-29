@@ -1,15 +1,16 @@
 # Daily ChinaSoft maintenance
 
-The user requested daily execution at **18:00 Asia/Shanghai**, and confirmed
+The cloud source check runs at **18:00 Asia/Shanghai**. The existing local curator
+runs at **18:10 Asia/Shanghai** after the observation job. The user confirmed
 that this host stays online with its Codex login and `~/.ghtoken` available.
 The installed host job is `/etc/cron.d/fora-chinasoft2026`; it invokes `run.sh`.
 The host clock is UTC+08:00. Cron runs in Asia/Shanghai; the corresponding UTC
-time is 10:00. The first scheduled run after installation is October 22, 2026.
+curation time is 10:10. Cloud observation and application hosting do not depend
+on this host; unattended AI curation still does.
 
-This is a local host job, not a ChatGPT Scheduled task or GitHub Actions job.
-Cron and the host must remain running. The current container has no systemd
-init: after restarting the container, start `/usr/sbin/cron` again and verify
-the job. No machine restart is performed by this workflow.
+This runner performs AI curation using the existing local Codex login. It is not
+a server for the application. Cloudflare Cron dispatches the observation workflow
+independently. Do not copy the local Codex login into GitHub Actions.
 
 The job runs the installed Codex CLI with `--approve-for-me`, using the existing
 `/root/.codex-2` configuration/authentication. It does not disable sandboxing or
@@ -21,12 +22,12 @@ test is required: cron does not inherit the interactive shell's network settings
 Missing credentials, inaccessible source pages, unresolved choices and failed
 checks must be reported rather than silently treated as a successful refresh.
 
-Each run acquires a lock, records the active PR/head, fetches that base, and
-creates a unique branch and worktree under `.automation/chinasoft2026/`.
-The interactive checkout is never edited by the daily agent. An open ChinaSoft
-PR is updated; if none remains open, the agent starts from main and creates a
-new update PR. No merge, release, force-push, email or Slack action is authorized.
-The complete task contract is [TASK.md](TASK.md).
+Each run acquires a lock and creates a unique branch/worktree from main under
+`.automation/chinasoft2026/`. It restores published inputs and source observations
+from private R2, reviews changes and publishes validated data through the narrow
+publisher API. The interactive checkout is never edited. General code changes
+still require a PR; the curator never merges or releases code. The complete task
+contract is [TASK.md](TASK.md).
 
 Reports and logs are local and ignored by Git:
 
@@ -34,7 +35,8 @@ Reports and logs are local and ignored by Git:
 - `.automation/chinasoft2026/runs/<UTC timestamp>/report.txt`: per-run report.
 - `execution.log`, `status.txt`, `exit-code.txt`: execution details. A zero
   process exit does not prove an import succeeded; read the final report.
-- The open PR's latest-check section records the result and validation on GitHub.
+- GitHub Actions retains the cloud observation report and differences; private R2
+  retains source archives, the latest attempt and the last complete baseline.
 
 Run manually with `bash source/chinasoft2026/automation/run.sh`. Use
 `--smoke-test` to verify GitHub authentication and a no-tool Codex response
