@@ -117,7 +117,7 @@ try {
   await upload('objects', `conferences/demo/${datasetHash}.json`, dataset);
   const manifest = JSON.stringify({ schema_version: 1, conferences: [
     { id: 'demo', sha256: datasetHash, path: `conferences/demo/${datasetHash}.json` },
-  ] });
+  ] }, null, 2) + '\n';
   const manifestHash = createHash('sha256').update(manifest).digest('hex');
   await upload('objects', `releases/${manifestHash}.json`, manifest);
   const promote = expected_etag => mf.dispatchFetch(origin + '/api/publish/promote', {
@@ -127,6 +127,10 @@ try {
   assert.equal((await promote(null)).status, 409);
   const catalog = await (await mf.dispatchFetch(origin + '/api/publish/catalog', { headers: publisher })).json();
   assert.equal(catalog.catalog.conferences[0].sha256, datasetHash);
+  assert.equal(catalog.release, manifestHash);
+  const bucket = await mf.getR2Bucket('DATA');
+  assert.equal(await (await bucket.get('manifest.json')).text(), manifest,
+    'promotion preserves the reviewed manifest bytes, including whitespace');
   const rejectedUpload = await mf.dispatchFetch(`${origin}/api/publish/objects/conferences/demo/${'f'.repeat(64)}.json`, {
     method: 'PUT', headers: { ...publisher, 'X-Content-SHA256': 'f'.repeat(64), 'Content-Length': '2' }, body: '{}',
   });
@@ -162,6 +166,8 @@ try {
   assert.equal((await release(manifestHash, secondEtag)).status, 200);
   const rolledBack = await (await mf.dispatchFetch(origin + '/api/publish/catalog', { headers: publisher })).json();
   assert.deepEqual(rolledBack.catalog, catalog.catalog, 'reviewed rollback restores the prior immutable release');
+  assert.equal(rolledBack.release, manifestHash);
+  assert.equal(await (await bucket.get('manifest.json')).text(), manifest);
   assert.equal((await mf.dispatchFetch(origin + '/api/publish/checks', { headers: publisher })).status, 404);
   assert.equal((await mf.dispatchFetch(origin + '/api/publish/archives/old', { headers: publisher })).status, 404);
   console.log('PASS Worker authentication, origin checks, validation, isolation, atomic concurrent writes and logout');
