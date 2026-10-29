@@ -7,7 +7,7 @@ import Reveal from "../components/Reveal";
 import Icon from "../components/Icon";
 import type { Organization } from "../types";
 
-const ROLE_ORDER = ["host", "co_host", "support", "sponsor"];
+const ROLE_ORDER = ["host", "co_host", "support", "sponsor", "partner"];
 
 export default function Organizations() {
   const { id: confId, conference } = useConference();

@@ -30,3 +30,6 @@ source/chinaosc2026/raw/images/
 # OS
 .DS_Store
 Thumbs.db
+
+# Local daily source-check runs, reports, and isolated worktrees
+.automation/

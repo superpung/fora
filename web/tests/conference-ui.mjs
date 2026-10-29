@@ -99,14 +99,40 @@ try {
   assert.equal(await migrationPage.locator('.spcard .star[aria-pressed="true"]').count(), 2);
   assert.equal(await migrationPage.locator('.spcard').filter({ hasText: 'Unit A' }).locator('.star').getAttribute('aria-pressed'), 'false');
   await migrationPage.goto(base + '/chinasoft2025/schedule?v=mine-day', { waitUntil: 'networkidle' });
+  // Network quiescence does not guarantee that the lazy route has rendered.
+  await migrationPage.locator('.talkrow__title').first().waitFor();
   const titles = await migrationPage.locator('.talkrow__title').allTextContents();
   assert.deepEqual(titles.sort(), ['Keynote', 'Report 1']);
   const cached = await migrationPage.evaluate(() => JSON.parse(localStorage.getItem('chinasoft2025:reminder.items')));
   assert.deepEqual(cached.items.map(item => item.title).sort(), ['Keynote', 'Report 1']);
   console.log('PASS migrated follows preserve namesakes and keynotes, and an unfollow survives reload and reminder resolution');
   await migration.close();
+  // Long rosters must reveal even when the viewport covers only a small fraction.
+  for (const mobile of [false, true]) {
+    const context = await browser.newContext({ viewport: { width: mobile ? 390 : 1440, height: 900 },
+      isMobile: mobile, hasTouch: mobile, serviceWorkers: 'block' });
+    const page = await context.newPage();
+    page.on('pageerror', error => errors.push(error.message));
+    const raw = { id: 'chinasoft2025', name: { zh: 'Fixture' }, start_date: date, end_date: date,
+      forums: [], days: [], committees: [{ role: { zh: 'Large roster' },
+        members: Array.from({ length: 400 }, (_, index) => ({ name: `Member ${index}`, affiliation_raw: 'Institute' })) }] };
+    await page.route('**/src/data/conferences/chinasoft2025.json*', route => route.fulfill({
+      contentType: 'application/javascript', body: `export default ${JSON.stringify(raw)}`,
+    }));
+    await page.goto(base + '/chinasoft2025/committee', { waitUntil: 'networkidle' });
+    await page.locator('.cmt__role').scrollIntoViewIfNeeded();
+    await page.waitForFunction(() => [...document.querySelectorAll('.cmt, .member:first-child')]
+      .every(el => Number(getComputedStyle(el).opacity) >= 0.99));
+    assert.equal(await page.locator('.member').count(), 400);
+    await page.locator('.member').last().scrollIntoViewIfNeeded();
+    await page.waitForFunction(() => Number(getComputedStyle(document.querySelector('.member:last-child')).opacity) >= 0.99);
+    assert((await page.locator('.member').last().boundingBox()).y < 900);
+    console.log(`PASS ${mobile ? 'mobile' : 'desktop'} long committee remains visible at both ends`);
+    cases++;
+    await context.close();
+  }
   assert.deepEqual(errors, []);
-  console.log(`PASS ${cases} forum-only agenda regressions`);
+  console.log(`PASS ${cases} shared UI regressions`);
 } finally {
   await browser?.close(); server.kill();
 }

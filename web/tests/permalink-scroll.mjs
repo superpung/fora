@@ -12,10 +12,20 @@ import net from "node:net";
 
 const PORT = Number(process.env.PERMA_PORT || 4199);
 const BASE = `http://localhost:${PORT}`;
-const CONF = process.env.PERMA_CONF || "chinasoft2025";
 // Forums with enough talks that a late anchor sits well below the fold. Both a
 // timed forum (tlrow layout) and the numbered-card layout are worth covering.
-const FORUMS = (process.env.PERMA_FORUMS || "U1,S8").split(",");
+// R13 also covers a long programme where inheriting CSS smooth scrolling made
+// the repeated anchor corrections finish too late.
+const TARGETS = process.env.PERMA_CONF || process.env.PERMA_FORUMS
+  ? (process.env.PERMA_FORUMS || "U1,S8").split(",").map((code) => ({
+      conf: process.env.PERMA_CONF || "chinasoft2025", code,
+    }))
+  : [
+      { conf: "chinasoft2025", code: "U1" },
+      { conf: "chinasoft2025", code: "S8" },
+      { conf: "chinasoft2026", code: "R13" },
+      { conf: "chinasoft2026", code: "E3" },
+    ];
 const TOL = 14; // px tolerance around the intended resting offset
 
 // Readiness via a raw TCP connect (avoids proxy env interfering with fetch).
@@ -59,9 +69,9 @@ try {
   const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
   const page = await ctx.newPage();
 
-  for (const code of FORUMS) {
+  for (const { conf, code } of TARGETS) {
     // discover how many talks this forum lists
-    await page.goto(`${BASE}/${CONF}/forum/${code}`, { waitUntil: "networkidle" });
+    await page.goto(`${BASE}/${conf}/forum/${code}`, { waitUntil: "networkidle" });
     await page.waitForTimeout(400);
     const count = await page.locator("[id^='talk-']").count();
     if (count < 3) { console.log(`SKIP ${code}: only ${count} talks`); continue; }
@@ -74,7 +84,7 @@ try {
     for (const n of anchors) {
       const anchor = `talk-${n}`;
       // fresh load straight at the permalink (mimics a refresh of a shared link)
-      await page.goto(`${BASE}/${CONF}/forum/${code}#${anchor}`, { waitUntil: "networkidle" });
+      await page.goto(`${BASE}/${conf}/forum/${code}#${anchor}`, { waitUntil: "networkidle" });
       await page.waitForTimeout(1000); // let abstracts clamp / avatars load / anim settle
 
       const m = await page.evaluate((id) => {

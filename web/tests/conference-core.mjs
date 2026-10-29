@@ -28,7 +28,7 @@ try {
   console.log('PASS live navigation enters the conference at venue midnight');
   const passed = await page.evaluate(async () => {
     const [{ clockAt, scheduleTimeMs }, { buildConferenceViews }, { buildLiveView, nextStarredItem },
-      { collectFollowedItems }, { personKey, resolveSpeakerKeys }, { planReminders }] = await Promise.all([
+      { collectFollowedItems, toICS }, { personKey, resolveSpeakerKeys }, { planReminders }] = await Promise.all([
       import('/src/lib/conference-time.ts'), import('/src/lib/data.ts'), import('/src/lib/live.ts'),
       import('/src/lib/export.ts'), import('/src/lib/person-key.ts'), import('/src/lib/reminder-schedule.ts'),
     ]);
@@ -108,6 +108,44 @@ try {
       (key, vars) => JSON.stringify({ key, ...vars }), true, Date.parse('2030-05-08T01:55:00Z'));
     check(planned.length === 1 && planned[0].fireAt === Date.parse('2030-05-08T01:50:00Z') &&
       JSON.parse(planned[0].body).min === 5, 'reminders skip unknown clocks and announce actual remaining minutes');
+    const dates = ['2031-06-10', '2031-06-11'];
+    const multi = { id: 'multi', name: { zh: 'Multi-day fixture' }, start_date: dates[0], end_date: dates[1], timezone: 'Asia/Shanghai',
+      days: dates.map(date => ({ date, blocks: [{ kind: 'forums', forum_entries: [{ forum_code: 'M' }] }] })),
+      forums: [{ code: 'M', title: { zh: 'Two days' }, day_date: null, start: null, end: null, room: 'Room M',
+        sessions: dates.map(date => ({ date, start: '09:00', end: '10:00' })),
+        breaks: dates.map((day_date, i) => ({ day_date, name: `Break ${i}`, start: '09:20', end: '09:30' })),
+        talks: dates.map((day_date, i) => ({ day_date, title: { zh: `Report ${i}` }, start: '09:00', end: '09:20',
+          speakers: [{ name: `Person ${i}` }] })) }] };
+    const mv = buildConferenceViews(multi);
+    check(mv.stats.forums === 1 && mv.unscheduledForums.length === 0 && mv.scheduleDays.length === 2,
+      'one multi-day forum remains one identity with two scheduled appearances');
+    for (const [i, date] of dates.entries()) {
+      const slot = mv.scheduleDays[i].slots[0].forum;
+      check(slot.talks.length === 1 && slot.talks[0] === multi.forums[0].talks[i] && slot.breaks[0].name === `Break ${i}`,
+        `day ${i} projects only its reports and breaks without losing canonical objects`);
+      const room = buildLiveView(mv, { todayStr: date, nowMin: 545 }).nowRooms[0];
+      check(room.nowTalk.title === `Report ${i}`, `day ${i} selects its own live report`);
+      check(buildLiveView(mv, { todayStr: date, nowMin: 565 }).nowRooms[0].nowBreak.name === `Break ${i}`,
+        `day ${i} selects its own break`);
+    }
+    const items = collectFollowedItems(follow(['M']), mv);
+    check(items.length === 2 && items[1].date === dates[1] && items[1].followId === 'M#1',
+      'following one forum exports both dates with stable report indices');
+    check(toICS(items, '2030-01-01T00:00:00Z', mv).includes('20310611T010000Z'), 'calendar export uses the second report date');
+    check(mv.speakerList.find(s => s.name === 'Person 1').talks[0].date === dates[1], 'speaker directory retains the second date');
+    const untimed = structuredClone(multi);
+    untimed.forums[0].sessions[1].start = '14:00';
+    untimed.forums[0].sessions[1].end = '15:00';
+    delete untimed.forums[0].talks[1].start;
+    delete untimed.forums[0].talks[1].end;
+    const uv = buildConferenceViews(untimed);
+    const borrowed = collectFollowedItems(follow(['M']), uv)[1];
+    check(borrowed.date === dates[1] && borrowed.start === '14:00' && borrowed.approx,
+      'untimed reports borrow their own dated session window');
+    untimed.forums[0].talks = [];
+    const emptyItems = collectFollowedItems(follow(['M']), buildConferenceViews(untimed));
+    check(emptyItems.length === 2 && emptyItems[0].uid !== emptyItems[1].uid && emptyItems[1].start === '14:00',
+      'empty multi-day forums export each published session separately');
     return passed;
   });
   for (const label of passed) console.log('PASS ' + label);
