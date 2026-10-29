@@ -65,7 +65,7 @@ printf '%s\n' "$base_revision" > "$run_dir/base-revision.txt"
 worktree="$run_root/worktrees/$run_id"
 git -C "$repo_dir" worktree add -b "automation/chinasoft2026-$run_id" "$worktree" "$base_revision"
 task_file="$run_dir/task.md"
-cat "$repo_dir/source/chinasoft2026/automation/TASK.md" > "$task_file"
+git -C "$repo_dir" show "$base_revision:source/chinasoft2026/automation/TASK.md" > "$task_file"
 printf '\nRuntime context: base branch `%s`, initial revision `%s`, run directory `%s`.\n' \
   "$pr_branch" "$base_revision" "$run_dir" >> "$task_file"
 
