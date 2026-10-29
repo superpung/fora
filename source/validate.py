@@ -3,7 +3,7 @@
 every person in it is a person and every time is a time. Requires jsonschema.
 
 This is the regression gate: after any schema change, every existing conference
-must still validate. It checks all datasets under web/src/data/conferences/.
+must still validate. It checks all datasets under data/.
 
 A JSON Schema can say a field is a string, not what the string has to MEAN, and
 both gaps have already shipped bugs:
@@ -30,7 +30,7 @@ schema = json.loads((ROOT / "schema" / "schema.json").read_text())
 jsonschema.Draft202012Validator.check_schema(schema)
 validator = jsonschema.Draft202012Validator(schema)
 
-conf_dir = ROOT / "web" / "src" / "data" / "conferences"
+conf_dir = ROOT / "data"
 files = sorted(conf_dir.glob("*.json"))
 if not files:
     print("no conference datasets found in", conf_dir)

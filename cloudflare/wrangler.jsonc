@@ -7,7 +7,7 @@
   "workers_dev": true,
   "preview_urls": true,
   "routes": [{ "pattern": "fora.repus.me/*", "zone_id": "cef5a908ac0240cdd7dcea34bf6fccb9" }],
-  "triggers": { "crons": ["0 10 * * *"] },
+  "triggers": { "crons": [] },
   "assets": {
     "directory": "../web/dist",
     "binding": "ASSETS",
@@ -22,7 +22,6 @@
     "migrations_dir": "migrations"
   }],
   "r2_buckets": [
-    { "binding": "DATA", "bucket_name": "fora-public" },
-    { "binding": "ARCHIVE", "bucket_name": "fora-private" }
+    { "binding": "DATA", "bucket_name": "fora-public" }
   ]
 }

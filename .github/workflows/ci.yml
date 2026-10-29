@@ -25,22 +25,24 @@ jobs:
         run: uv run python source/validate.py
       - name: Stable report identities
         run: uv run python -m unittest discover -s source -p 'test_identities.py'
-      - name: Source publication safety
+      - name: Publication request safety
         run: uv run python -m unittest discover -s source -p 'test_publish_data.py'
+      - name: Local source history
+        run: uv run python -m unittest discover -s source/chinasoft2026 -p 'test_check_updates.py'
       - name: Rebuild dataset and assert it is in sync
         # build_all.py discovers every conference builder (source/<id>/build.py)
         # and rebuilds it, then the manifest. Deliberately NOT a list of
         # per-conference commands: adding a conference must never require an
         # edit here, because a forgotten line would still go green while
         # silently leaving that conference's data unchecked.
-        # The builds are deterministic and write both data/ and web/src/data/.
-        # If a rerun changes anything, the committed dataset (or the web copy) is
-        # stale / was hand-edited — fail so the two can never silently drift.
+        # The builds deterministically write data/ and the lightweight web manifest.
+        # If a rerun changes anything, the committed dataset or manifest is
+        # stale or was hand-edited — fail before stale data reaches the application.
         run: |
           uv run python source/build_all.py
-          if ! git diff --quiet -- data/ 'web/src/data/conferences/' web/src/data/manifest.json; then
+          if ! git diff --quiet -- data/ web/src/data/manifest.json; then
             echo "::error::Dataset out of sync — rerun the build scripts and commit the result."
-            git --no-pager diff -- data/ 'web/src/data/conferences/' web/src/data/manifest.json
+            git --no-pager diff -- data/ web/src/data/manifest.json
             exit 1
           fi
 
@@ -66,20 +68,3 @@ jobs:
       - run: pnpm build
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:cloudflare
-      - name: Audit the explicitly selected deployed preview
-        if: github.head_ref != '' && github.head_ref == vars.FORA_PREVIEW_BRANCH
-        env:
-          AUDIT_BASE_URL: ${{ vars.FORA_PREVIEW_URL }}
-          AUDIT_DATA_BASE_URL: ${{ vars.FORA_PREVIEW_DATA_URL }}
-          AUDIT_DATA_REVISION: ${{ vars.FORA_PREVIEW_DATA_REVISION }}
-          SOURCE_AUDIT_DIR: /tmp/fora-preview-audit
-        run: |
-          node tests/cloudflare-deployment.mjs
-          node tests/conference-audit.mjs
-      - name: Preserve deployed preview screenshots
-        if: always() && github.head_ref != '' && github.head_ref == vars.FORA_PREVIEW_BRANCH
-        uses: actions/upload-artifact@v4
-        with:
-          name: deployed-preview-audit
-          path: /tmp/fora-preview-audit/
-          retention-days: 7

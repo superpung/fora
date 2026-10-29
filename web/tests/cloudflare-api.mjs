@@ -15,7 +15,7 @@ const mf = new Miniflare({ modules: true, scriptPath: new URL('../../cloudflare/
   modulesRoot: new URL('../../cloudflare/', import.meta.url).pathname,
   fetchMock,
   compatibilityDate: '2026-07-30', d1Databases: { DB: 'fora-test' },
-  r2Buckets: ['DATA', 'ARCHIVE'],
+  r2Buckets: ['DATA'],
   bindings: { PUBLIC_ORIGIN: origin, PUBLISH_TOKEN: 'test-publisher', GITHUB_CLIENT_ID: 'test-client', GITHUB_CLIENT_SECRET: 'test-secret' } });
 try {
   const { DB } = await mf.getBindings();
@@ -30,6 +30,7 @@ try {
     DB.prepare('INSERT INTO sessions (token_hash, user_id, expires_at) VALUES (?, ?, ?)')
       .bind(digest, 'alice', Math.floor(Date.now() / 1000) + 3600),
   ]);
+  await DB.prepare('INSERT INTO sessions (token_hash, user_id, expires_at) VALUES (?, ?, ?)').bind('expired', 'alice', 0).run();
   const auth = { Cookie: `__Host-fora-session=${token}`, Origin: origin, 'Content-Type': 'application/json' };
   const get = path => mf.dispatchFetch(origin + path, { headers: auth, redirect: 'manual' });
   const put = (revision, follows, headers = auth) => mf.dispatchFetch(origin + '/api/sync', { method: 'PUT', headers,
@@ -48,6 +49,8 @@ try {
     redirect: 'manual', headers: { Cookie: login.headers.get('Set-Cookie').split(';')[0] },
   });
   assert.equal(callback.status, 302);
+  assert.equal(await DB.prepare("SELECT token_hash FROM sessions WHERE token_hash = 'expired'").first(), null);
+  assert(await DB.prepare('SELECT token_hash FROM sessions WHERE token_hash = ?').bind(digest).first());
   const cookies = callback.headers.getSetCookie();
   const sessionCookie = cookies.find(value => value.startsWith('__Host-fora-session=')).split(';')[0];
   assert(cookies.some(value => value.includes('__Host-fora-oauth=') && value.includes('Max-Age=0')));
@@ -100,8 +103,7 @@ try {
   const dataset = JSON.stringify({ id: 'demo' });
   const datasetHash = createHash('sha256').update(dataset).digest('hex');
   await upload('objects', `conferences/demo/${datasetHash}.json`, dataset);
-  await upload('archives', 'sources/test.tar.gz', 'Source evidence');
-  const manifest = JSON.stringify({ schema_version: 1, source_archive: 'sources/test.tar.gz', conferences: [
+  const manifest = JSON.stringify({ schema_version: 1, conferences: [
     { id: 'demo', sha256: datasetHash, path: `conferences/demo/${datasetHash}.json` },
   ] });
   const manifestHash = createHash('sha256').update(manifest).digest('hex');
@@ -113,21 +115,8 @@ try {
   assert.equal((await promote(null)).status, 409);
   const catalog = await (await mf.dispatchFetch(origin + '/api/publish/catalog', { headers: publisher })).json();
   assert.equal(catalog.catalog.conferences[0].sha256, datasetHash);
-  const goodCheck = 'checks/' + 'c'.repeat(64) + '.tar.gz';
-  const failedCheck = 'checks/' + 'd'.repeat(64) + '.tar.gz';
-  await upload('archives', goodCheck, 'Successful check');
-  await upload('archives', failedCheck, 'Incomplete check');
-  const checks = () => mf.dispatchFetch(origin + '/api/publish/checks', { headers: publisher });
-  const recordCheck = (snapshot, complete, expected_etag) => mf.dispatchFetch(origin + '/api/publish/checks', {
-    method: 'POST', headers: publisher, body: JSON.stringify({ snapshot, complete, expected_etag }),
-  });
-  assert.equal((await recordCheck(goodCheck, true, null)).status, 200);
-  const checkVersion = await (await checks()).json();
-  assert.equal((await recordCheck(failedCheck, false, checkVersion.etag)).status, 200);
-  const latestCheck = await (await checks()).json();
-  assert.equal(latestCheck.index.latest, failedCheck);
-  assert.equal(latestCheck.index.successful, goodCheck, 'incomplete checks never advance the successful baseline');
-  assert.equal((await recordCheck(goodCheck, true, checkVersion.etag)).status, 409);
+  assert.equal((await mf.dispatchFetch(origin + '/api/publish/checks', { headers: publisher })).status, 404);
+  assert.equal((await mf.dispatchFetch(origin + '/api/publish/archives/old', { headers: publisher })).status, 404);
   console.log('PASS Worker authentication, origin checks, validation, isolation, atomic concurrent writes and logout');
   console.log('PASS Publisher authorization, immutable checksummed objects and atomic catalog promotion');
 } finally { await mf.dispose(); }
