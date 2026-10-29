@@ -66,3 +66,18 @@ jobs:
       - run: pnpm build
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:cloudflare
+      - name: Audit the explicitly selected deployed preview
+        if: github.head_ref != '' && github.head_ref == vars.FORA_PREVIEW_BRANCH
+        env:
+          AUDIT_BASE_URL: ${{ vars.FORA_PREVIEW_URL }}
+          AUDIT_DATA_BASE_URL: ${{ vars.FORA_PREVIEW_DATA_URL }}
+          AUDIT_DATA_REVISION: ${{ vars.FORA_PREVIEW_DATA_REVISION }}
+          SOURCE_AUDIT_DIR: /tmp/fora-preview-audit
+        run: node tests/conference-audit.mjs
+      - name: Preserve deployed preview screenshots
+        if: always() && github.head_ref != '' && github.head_ref == vars.FORA_PREVIEW_BRANCH
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployed-preview-audit
+          path: /tmp/fora-preview-audit/
+          retention-days: 7

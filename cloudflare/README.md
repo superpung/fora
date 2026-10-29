@@ -119,3 +119,8 @@ including deletion, competing writes, offline edits, cached reading and corrupt
 data rejection. The existing conference and clock suites cover data-driven UI.
 Production verification additionally checks actual CORS, portrait decoding,
 service-worker OAuth bypass, app/API routes, and unchanged unrelated resources.
+To audit an explicitly deployed PR from GitHub's network, set repository variables
+`FORA_PREVIEW_BRANCH`, `FORA_PREVIEW_URL`, `FORA_PREVIEW_DATA_URL` and
+`FORA_PREVIEW_DATA_REVISION`. Only the named PR branch runs the remote browser
+audit; its screenshots are retained for seven days. Clear the branch variable
+after review so unrelated changes never test against an old deployment.
