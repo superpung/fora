@@ -9,7 +9,7 @@ There is no Cloudflare Cron Trigger or GitHub source-check workflow.
 `/etc/cron.d/fora-chinasoft2026` invokes `run.sh --scheduled`. The host clock is
 UTC+08:00. The command sources `/etc/fora/chinasoft2026.env` (mode 0600) for its
 credential-free proxy endpoints. Keep the existing Codex configuration at
-`/root/.codex-2`; no model credentials are sent to a cloud workflow.
+`/root/.codex-3`; no model credentials are sent to a cloud workflow.
 
 The runner takes a lock and uses one persistent checkout at
 `.automation/chinasoft2026/worktree`, on `maintenance/chinasoft2026`. Code

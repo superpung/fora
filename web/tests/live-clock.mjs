@@ -84,9 +84,7 @@ async function shot(test,suffix='',expandedCard=false) {
   assert(await card.evaluate(el=>el.scrollHeight<=el.clientHeight+1),'expanded card must reveal all metadata');
  }
  const filename=name+suffix+'.png';
- await page.screenshot({path:resolve(out,filename),fullPage:!expandedCard&&!test.path.includes('/forum/'),
-  // The hosting provider's review toolbar is not part of the application.
-  style:'iframe[title="Netlify Drawer"] { visibility: hidden !important; }'});
+ await page.screenshot({path:resolve(out,filename),fullPage:!expandedCard&&!test.path.includes('/forum/')});
  snapshots.push({...meta,context:undefined,filename,name:name+suffix});
  console.log('SCREENSHOT '+name+suffix);
 }

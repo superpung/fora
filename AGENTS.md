@@ -270,7 +270,9 @@ Output is **deterministic**: with unchanged source data a rerun is byte-for-byte
 identical (`extraction.content_sha256` is a content fingerprint; a real
 `generated_at` timestamp is written only when `SOURCE_DATE_EPOCH` is set). CI
 rebuilds twice and compares output hashes, and checks the lightweight manifest.
-Never hand-edit or commit generated conference datasets.
+Never hand-edit or commit generated conference datasets. Generated JSON was also
+removed from branch/tag history on October 29, 2026. Do not merge or push old
+pre-cleanup history; preserve local work separately and use a fresh clone.
 
 ## Adding a conference
 
