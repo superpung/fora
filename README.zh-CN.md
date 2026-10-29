@@ -39,6 +39,10 @@ Fora 把密集的会议日程变得真正好用。挑选一个会议，浏览它
 
 Fora 是开源项目。本地运行、参与贡献或新增会议，请见 **[AGENTS.md](AGENTS.md)**。
 
+会议数据独立发布到 Cloudflare R2；应用由 Workers 托管，登录会话和收藏同步存储在 D1。
+报告重排后，收藏与链接仍保持稳定。生成的会议 JSON 不进入 Git，原始资料和构建脚本
+用于重建本地测试数据。部署与发布流程见 [说明](cloudflare/README.md)。
+
 ## 许可证
 
 [MIT](LICENSE) © Super Lee & Claude。

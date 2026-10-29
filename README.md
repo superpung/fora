@@ -44,7 +44,8 @@ Fora is open source. To run it locally, contribute, or add a conference, see
 
 Conference data is published independently to Cloudflare R2. The application runs
 on Workers Static Assets, with D1-backed sessions and agenda sync. Report IDs
-survive agenda reordering. See [deployment and data publishing](cloudflare/README.md).
+survive agenda reordering. Generated conference JSON stays out of Git; source
+inputs and builders reproduce local test data. See [deployment and data publishing](cloudflare/README.md).
 
 ## License
 
