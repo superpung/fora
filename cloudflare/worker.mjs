@@ -60,13 +60,17 @@ async function callback(request, env) {
   const code = url.searchParams.get('code');
   if (!code || code.length > 512) fail(400, 'Invalid OAuth code');
   const tokenResponse = await fetch('https://github.com/login/oauth/access_token', {
-    method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+    method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json', 'User-Agent': 'Fora' },
     body: JSON.stringify({ client_id: env.GITHUB_CLIENT_ID, client_secret: env.GITHUB_CLIENT_SECRET,
       code, redirect_uri: env.PUBLIC_ORIGIN + '/' }), signal: AbortSignal.timeout(15000),
   });
   if (!tokenResponse.ok) fail(502, 'GitHub authentication failed');
   const token = await tokenResponse.json();
-  if (!token.access_token) fail(401, 'GitHub authentication rejected');
+  if (['incorrect_client_credentials', 'redirect_uri_mismatch'].includes(token.error)) {
+    fail(503, 'GitHub OAuth configuration rejected');
+  }
+  if (token.error === 'bad_verification_code') fail(401, 'GitHub authorization expired; sign in again');
+  if (typeof token.access_token !== 'string' || !token.access_token) fail(502, 'Invalid GitHub token response');
   const response = await fetch('https://api.github.com/user', { headers: {
     Authorization: `Bearer ${token.access_token}`, Accept: 'application/vnd.github+json', 'User-Agent': 'Fora',
   }, signal: AbortSignal.timeout(15000) });
