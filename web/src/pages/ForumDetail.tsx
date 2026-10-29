@@ -11,6 +11,7 @@ import { useI18n } from "../lib/i18n-store";
 import { useAi, talkSummaryText } from "../lib/ai-store";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Icon from "../components/Icon";
+import HeatValue from "../components/HeatValue";
 import Avatar from "../components/Avatar";
 import SourceNotes from "../components/SourceNotes";
 import { AiNote } from "../components/AiMark";
@@ -472,6 +473,7 @@ export default function ForumDetail() {
           >
             <Icon name={copied === i ? "check" : "link"} size={15} />
           </button>
+          {t.type !== "opening" && <HeatValue kind="talks" id={id} />}
           <button
             className={`star star--sm talk__star ${followed ? "is-on" : ""}`}
             aria-pressed={followed}
@@ -591,6 +593,7 @@ export default function ForumDetail() {
         <div className="fd__titlerow">
           <h1 className="fd__title">{forum.title.zh}</h1>
           <div className="fd__actions">
+            <HeatValue kind="forums" id={forum.code} />
             <button
               className={`followbtn ${forumFollowed ? "is-on" : ""}`}
               onClick={() => code && toggleForum(code)}

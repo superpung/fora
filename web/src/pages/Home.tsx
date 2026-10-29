@@ -12,6 +12,7 @@ import { useHScroll } from "../lib/hscroll";
 import { useNow, isNowWithin, type Now } from "../lib/use-now";
 import { pageVariants } from "../lib/motion";
 import Icon from "../components/Icon";
+import HeatValue from "../components/HeatValue";
 import StarButton from "../components/StarButton";
 import SourceNotes from "../components/SourceNotes";
 import type { Talk } from "../types";
@@ -252,6 +253,7 @@ function KeynoteRow({
               return line.own ? line.text : <span className="muted-i">{line.text}</span>;
             })()}
           </div>
+          {!isOpening && <HeatValue kind="talks" id={id} />}
           {!isOpening && (
             <StarButton
               active={followed}
@@ -389,6 +391,7 @@ function ForumRow({
           )}
         </div>
         <div className="frow__actions">
+          <HeatValue kind="forums" id={slot.code} />
           <StarButton
             active={isForum(slot.code)}
             onClick={() => toggleForum(slot.code)}
@@ -486,6 +489,7 @@ function ForumRow({
                       )}
                     </span>
                   </Link>
+                  {t.type !== "opening" && <HeatValue kind="talks" id={t.id} />}
                   <StarButton
                     active={tFollowed}
                     onClick={() => toggleTalk(talks[i].id)}

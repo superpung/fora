@@ -42,6 +42,7 @@ export default function Nav({ confId }: { confId: string }) {
   const links: NavLinkDef[] = [
     LINKS[0],
     ...(showNow ? [{ to: "/now", key: "nav.now", live: true } as NavLinkDef] : []),
+    { to: "/popular", key: "nav.popular" },
     LINKS[1], // the timeline; the two AI views sit behind it
     // Both the planner and the topic map are AI-derived: with AI content off
     // they do not exist (their routes explain themselves if reached directly).

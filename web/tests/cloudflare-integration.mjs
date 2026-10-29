@@ -1,3 +1,4 @@
+import { migrate } from './cloudflare-fixtures.mjs';
 // Run the actual application, Worker, cookie sessions and D1 together.
 // Only GitHub's external authorization and identity responses are simulated.
 import assert from 'node:assert/strict';
@@ -30,9 +31,12 @@ const mf = new Miniflare({ modules: true, scriptPath: new URL('../../cloudflare/
 let browser;
 try {
   await mf.ready;
-  const { DB } = await mf.getBindings();
-  const migration = await readFile(new URL('../../cloudflare/migrations/0001.sql', import.meta.url), 'utf8');
-  for (const sql of migration.split(';').map(s => s.trim()).filter(Boolean)) await DB.prepare(sql).run();
+  const { DB, DATA } = await mf.getBindings();
+  await migrate(DB);
+  const catalog = JSON.parse(await readFile(new URL('../public/data/manifest.json', import.meta.url), 'utf8'));
+  await DATA.put('manifest.json', JSON.stringify(catalog));
+  for (const entry of catalog.conferences) await DATA.put(entry.path,
+    await readFile(new URL('../public/data/' + entry.path, import.meta.url)));
   const state = async login => {
     const row = await DB.prepare('SELECT revision, bundle FROM sync_state JOIN users ON users.id = sync_state.user_id WHERE login = ?').bind(login).first();
     return row && { revision: row.revision, bundle: JSON.parse(row.bundle) };
@@ -90,6 +94,31 @@ try {
   await until(() => saved(b.page));
   console.log('PASS real application login, protected cookie, D1 write and second-device follow pull');
 
+  const participation = page => page.getByRole('button', { name: '参与统计', exact: true });
+  assert.equal(await participation(a.page).getAttribute('aria-pressed'), 'true');
+  assert.equal(await participation(b.page).getAttribute('aria-pressed'), 'true');
+  await DB.prepare('UPDATE heat_cache SET expires_at = 0 WHERE id = 1').run();
+  await a.page.goto(origin + '/chinasoft2026/popular');
+  await a.page.getByRole('button', { name: '刷新热度', exact: true }).click();
+  await a.page.locator('.popular__row').first().waitFor();
+  assert((await a.page.locator('.popular__row').first().innerText()).includes('热度 200'));
+  await b.page.keyboard.press('Escape'); await menu(b.page);
+  await participation(b.page).click();
+  await until(async () => await participation(b.page).getAttribute('aria-pressed') === 'false');
+  await refresh(a.page); await menu(a.page);
+  await until(async () => await participation(a.page).getAttribute('aria-pressed') === 'false');
+  await DB.prepare('UPDATE heat_cache SET expires_at = 0 WHERE id = 1').run();
+  await a.page.keyboard.press('Escape');
+  await a.page.getByRole('button', { name: '刷新热度', exact: true }).click();
+  await a.page.getByText('暂无热度数据', { exact: true }).waitFor();
+  assert((await state('alice')).bundle.follows.includes('["chinasoft2026","forums","R1"]'));
+  await menu(a.page); await participation(a.page).click();
+  await until(async () => await participation(a.page).getAttribute('aria-pressed') === 'true');
+  await a.page.goto(origin + '/chinasoft2026/forum/R1', { waitUntil: 'domcontentloaded' });
+  await a.page.locator('.followbtn').waitFor();
+  console.log('PASS default participation, heat ranking and cross-device withdrawal without deleting follows');
+
+
   await b.context.setOffline(true);
   await b.page.keyboard.press('Escape');
   await b.page.locator('.followbtn').click();
@@ -140,6 +169,41 @@ try {
     await device.page.locator('.followbtn').waitFor();
   }
   console.log('PASS current speaker identity survives two-device sync, reload and JSON backup/import without selecting its namesake');
+
+  await a.page.locator('.followbtn').click();
+  await a.page.locator('#talk-2 .talk__star').click();
+  await until(async () => (await state('alice')).bundle.follows.length === 2);
+  await DB.prepare('UPDATE heat_cache SET expires_at = 0 WHERE id = 1').run();
+  await mkdir(screenshots, { recursive: true });
+  for (const [name, device] of [['desktop', a], ['mobile', b]]) {
+    await device.page.goto(origin + '/chinasoft2026/popular');
+    await device.page.getByRole('button', { name: '刷新热度', exact: true }).click();
+    await device.page.locator('.popular__row').first().waitFor();
+    await device.page.getByRole('tab', { name: '报告', exact: true }).click();
+    await until(async () => (await device.page.locator('.popular__row').first().innerText()).includes('热度 200'));
+    assert.equal(await device.page.locator('.popular__row').first().locator('.popular__meta svg').count(), 3);
+    const actionBounds = await device.page.locator('.popular__actions').first().evaluate(el => {
+      const score = el.querySelector('.heat-value').getBoundingClientRect(), star = el.querySelector('.star').getBoundingClientRect();
+      return score.right <= star.left || score.bottom <= star.top;
+    });
+    assert(actionBounds, 'heat and follow controls must not overlap');
+    await device.page.getByRole('button', { name: '热度算法', exact: true }).click();
+    await device.page.waitForTimeout(400);
+    assert(await device.page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
+    await device.page.screenshot({ path: screenshots + '/' + name + '-heat.png', fullPage: true });
+    await menu(device.page);
+    await device.page.waitForTimeout(250);
+    assert(await device.page.locator('.acct-pop').evaluate(el => el.scrollWidth <= el.clientWidth + 1));
+    await device.page.screenshot({ path: screenshots + '/' + name + '-statistics-setting.png', fullPage: true });
+    await device.page.keyboard.press('Escape');
+  }
+  await a.page.goto(origin + '/chinasoft2026/forum/R1');
+  await a.page.locator('.followbtn').click();
+  await a.page.locator('#talk-2 .talk__star').click();
+  await until(async () => (await state('alice')).bundle.follows.length === 0);
+  await b.page.goto(origin + '/chinasoft2026/forum/R1');
+  await refresh(b.page); await until(async () => !await saved(b.page));
+  console.log('PASS desktop/mobile weighted report discovery, source metadata, scoring disclosure and statistics settings');
 
   // Seed competing saved preferences; notification delivery has its own clock suite.
   await b.context.setOffline(true);

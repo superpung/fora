@@ -7,7 +7,7 @@ other Workers, shared routing rules, or the nameservers of `repus.me`.
 | Resource | Purpose |
 | --- | --- |
 | `fora` Worker | Static application, GitHub OAuth, sessions, sync and publishing |
-| `fora-users` D1 | User identities, hashed sessions and revisioned agenda bundles |
+| `fora-users` D1 | User identities, hashed sessions, revisioned agenda bundles and heat snapshots |
 | `fora-public` R2 | Immutable datasets, portraits and release manifests |
 | `fora.repus.me` | Application and same-origin API |
 | `fora-data.repus.me` | Public R2 data, with GET/HEAD CORS |
@@ -69,7 +69,15 @@ This check does not validate a real user's authorization or the entire callback.
 All sync writes compare a D1 revision atomically. Clients merge changes against
 their last common state and retry a stale revision. Preference conflicts and
 account changes require an explicit choice. A failed sync retains local edits.
-Both `/api/` and root OAuth callback navigations bypass the service worker.
+Foreground account polling runs every five minutes; edits upload after two seconds,
+with immediate foreground/network/manual refresh. Both `/api/` and root OAuth
+callback navigations bypass the service worker.
+
+Forum/report heat uses an account-level default-on participation setting and a
+public aggregate snapshot. Read [HEAT.md](HEAT.md) for weighting, the measured
+account budget, incremental aggregation, withdrawal semantics and deployment order.
+A published catalog must include its compact `interest` identity index before
+rolling out heat; production data and preview databases must remain separate.
 
 ## Conference data
 

@@ -304,6 +304,17 @@ export default function AccountMenu() {
             <div className="acct-divider" />
             <div className="acct-sectitle">{t("settings.section")}</div>
 
+            <button className="acct-row" disabled={!loggedIn || !gs.statistics || gs.statisticsPending}
+              aria-pressed={gs.statistics?.enabled ?? false}
+              onClick={() => void gs.setStatistics(!gs.statistics?.enabled)}>
+              <RowIcon name="chart" on={gs.statistics?.enabled ?? false} gesture="row-pop" />
+              <span className="acct-row__label">{zh ? "参与统计" : "Participate in statistics"}</span>
+              {!loggedIn ? <span className="acct-row__meta">{zh ? "登录后设置" : "Sign in"}</span>
+                : gs.statisticsPending ? <span className="acct-row__meta">{zh ? "保存中" : "Saving"}</span>
+                : gs.statisticsError ? <span className="acct-row__meta">{zh ? "保存失败" : "Failed"}</span>
+                : <span className={`acct-switch ${gs.statistics?.enabled ? "is-on" : ""}`} aria-hidden />}
+            </button>
+
             {rem.supported && (
               <>
                 <button

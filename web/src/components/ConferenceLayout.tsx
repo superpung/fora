@@ -5,6 +5,7 @@ import PageLoader from "./PageLoader";
 import DocumentTitle from "./DocumentTitle";
 import SearchPalette from "./SearchPalette";
 import { ConferenceProvider } from "../lib/conference";
+import { HeatProvider } from "../lib/heat";
 import { FollowProvider } from "../lib/follow";
 import { FollowActionsBridge } from "../lib/follow-actions";
 import { SearchCtx } from "../lib/search-store";
@@ -35,6 +36,7 @@ export default function ConferenceLayout() {
             {/* Publishes this conference's import/export/clear actions up to the
                 nav account menu (the nav renders outside these providers). */}
             <FollowActionsBridge />
+            <HeatProvider>
             {/* Global search over the loaded conference; mounted here so it can
                 read the dataset via useConference. */}
             <SearchPalette />
@@ -43,6 +45,7 @@ export default function ConferenceLayout() {
             <main key={location.pathname}>
               <Outlet />
             </main>
+            </HeatProvider>
           </FollowProvider>
         </ConferenceProvider>
       </Suspense>

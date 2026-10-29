@@ -2227,3 +2227,31 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 @media (max-width: 600px) {
   .tmaptalk { padding: 11px 34px 11px 12px; }
 }
+
+/* Weighted conference interest; all figures use the shared numeric typography. */
+.heat-value { color: var(--fg-secondary); font-size: 11px; flex-shrink: 0; white-space: nowrap; }
+.popular__controls, .popular__tabs, .popular__actions { display: flex; align-items: center; gap: 10px; }
+.popular__actions .star { position: static; transform: none; }
+.popular__tabs { margin-bottom: 20px; }
+.popular__list { border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.popular__row { display: flex; align-items: center; gap: 16px; padding: 20px; border-bottom: 1px solid var(--border); transition: background .2s; }
+.popular__row:last-child { border-bottom: 0; }
+.popular__row:hover { background: var(--bg-subtle); }
+.popular__rank { width: 24px; flex-shrink: 0; color: var(--fg-muted); }
+.popular__body { flex: 1; min-width: 0; }
+.popular__title { font-weight: 600; color: var(--fg); overflow-wrap: anywhere; }
+.popular__title:hover { color: var(--accent); }
+.popular__meta { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--fg-secondary); font-size: 12px; margin-top: 8px; }
+.popular__meta > span { display: inline-flex; align-items: center; gap: 4px; }
+.popular__empty { padding: 48px 0; color: var(--fg-secondary); }
+.popular__explain { overflow: hidden; }
+.popular__explain > div { padding: 16px; margin-bottom: 20px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-subtle); font-size: 13px; color: var(--fg-secondary); }
+.popular__explain p + p { margin-top: 8px; }
+@media (max-width: 600px) {
+  .popular__row { gap: 10px; padding: 16px 12px; align-items: flex-start; }
+  .popular__rank { width: 18px; }
+  .popular__actions { flex-direction: column; gap: 6px; }
+  .frow__actions { flex-wrap: wrap; justify-content: flex-end; }
+  .talk__titlerow { flex-wrap: wrap; }
+  .ftalk > .heat-value { font-size: 10px; }
+}

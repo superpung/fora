@@ -29,47 +29,18 @@ The earlier offline embedding-search proposal was never implemented. It is not
 a dependency of the shipped planner, topic map or similar-talks feature. Adding
 an embedding model would require a separate scope and approval decision.
 
-## Follow statistics — draft, awaiting approval
+## Conference heat — approved, in implementation
 
-The author has selected forum and report popularity, one participation switch
-(default off), and no online-user count. The following complete feature list is
-still subject to approval before implementation:
+The author approved a separate feature PR after #50: weighted forum/report heat,
+public conference-scoped rankings, and one default-on account setting labeled
+“参与统计”. No online-user count is included. The scoring formula, privacy and
+freshness contract, account-wide resource budget and acceptance matrix are in
+[cloudflare/HEAT.md](cloudflare/HEAT.md). Implementation and production rollout are
+separate: the feature is not shipped until the reviewed PR and rollout complete.
 
-1. **Participation:** one account-wide setting, labeled “参与关注统计”, off by
-   default. Only signed-in accounts that enable it contribute. Enabling includes
-   their current follows; disabling removes their contribution without deleting
-   follows or changing synchronization. Devices share the account's choice.
-2. **Forum counts:** distinct participating accounts that explicitly follow the
-   forum or at least one report within it. Multiple reports, devices and forum
-   dates do not multiply an account's contribution to the same forum.
-3. **Report counts:** distinct participating accounts that explicitly follow the
-   report. Following its forum or speaker does not implicitly contribute a report
-   follow. Speaker-derived agenda items do not contribute to forum counts either.
-4. **Discovery:** conference-scoped popular forums and popular reports, ordered
-   by these counts, with counts on the corresponding forum/report entries. Keep
-   chronological schedule views chronological. No cross-conference ranking.
-5. **Privacy and freshness:** aggregate counts are visible without signing in;
-   identities and follower lists are not public. Counts describe opted-in follows,
-   not total attendance. Public results may take up to five minutes to refresh,
-   including after withdrawal. Unavailable statistics must not appear as zero.
-6. **Scope and cost:** no presence tracking, heartbeat, browsing history, historical
-   trend charts or new scheduler. Update contributions when follows or consent
-   change, and cache aggregate reads. Use the existing Fora Worker and D1;
-   measure read/write cost before rollout, accounting for other account services.
-
-Acceptance must cover consent off by default; account/device deduplication;
-forum/report union and exclusions; follow/unfollow, import and sync; withdrawal;
-conference isolation; count ordering; unavailable data; and desktop/mobile UI.
-Existing login, synchronization, offline reading and chronological schedules
-must retain their behavior. This proposal has no implementation yet.
-
-Quota reference, checked October 29, 2026: [Workers Free](https://developers.cloudflare.com/workers/platform/limits/)
-allows 100,000 dynamic requests per day; [D1 Free](https://developers.cloudflare.com/d1/platform/pricing/)
-allows 5 million rows read, 100,000 rows written per day and 5 GB total storage.
-These are account allowances, not dedicated Fora capacity. For comparison,
-1,000 users sending one presence update per minute for two hours would produce
-120,000 updates, before counting index writes or existing workloads. This is a
-hypothetical workload, not observed traffic. Presence is excluded from the proposal.
+The author also approved changing foreground account polling from one minute to
+five minutes. Local changes still upload after two seconds; foreground/network
+restoration and manual synchronization remain immediate.
 
 ## Outside the Fora product backlog
 

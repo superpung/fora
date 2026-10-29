@@ -1,7 +1,7 @@
+import { migrate } from './cloudflare-fixtures.mjs';
 // Exercise the actual Worker and SQLite bindings without touching an account.
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { readFile } from 'node:fs/promises';
 import { Miniflare, createFetchMock } from 'miniflare';
 
 const origin = 'https://fora.test';
@@ -19,8 +19,9 @@ const mf = new Miniflare({ modules: true, scriptPath: new URL('../../cloudflare/
   bindings: { PUBLIC_ORIGIN: origin, PUBLISH_TOKEN: 'test-publisher', GITHUB_CLIENT_ID: 'test-client', GITHUB_CLIENT_SECRET: 'test-secret' } });
 try {
   const { DB } = await mf.getBindings();
-  const migration = await readFile(new URL('../../cloudflare/migrations/0001.sql', import.meta.url), 'utf8');
-  for (const sql of migration.split(';').map(s => s.trim()).filter(Boolean)) await DB.prepare(sql).run();
+  await migrate(DB);
+  const heatData = await mf.getR2Bucket('DATA');
+  await heatData.put('manifest.json', JSON.stringify({ conferences: [] }));
   const token = 'a'.repeat(64), digest = createHash('sha256').update(token).digest('hex');
   await DB.batch([
     DB.prepare('INSERT INTO users (id, github_id, login) VALUES (?, ?, ?)').bind('alice', '1', 'alice'),
@@ -104,6 +105,7 @@ try {
   assert.match(logout.headers.get('Set-Cookie'), /Max-Age=0/);
   assert.equal((await get('/api/sync')).status, 401);
   assert.equal((await mf.dispatchFetch(origin + '/api/publish/catalog')).status, 401);
+  await heatData.delete('manifest.json');
   const publisher = { Authorization: 'Bearer test-publisher', 'Content-Type': 'application/json' };
   const upload = async (kind, key, body) => {
     const sha256 = createHash('sha256').update(body).digest('hex');
@@ -116,7 +118,7 @@ try {
   const datasetHash = createHash('sha256').update(dataset).digest('hex');
   await upload('objects', `conferences/demo/${datasetHash}.json`, dataset);
   const manifest = JSON.stringify({ schema_version: 1, conferences: [
-    { id: 'demo', sha256: datasetHash, path: `conferences/demo/${datasetHash}.json` },
+    { id: 'demo', interest: { forums: {}, keynotes: [] }, sha256: datasetHash, path: `conferences/demo/${datasetHash}.json` },
   ] }, null, 2) + '\n';
   const manifestHash = createHash('sha256').update(manifest).digest('hex');
   await upload('objects', `releases/${manifestHash}.json`, manifest);
@@ -149,14 +151,16 @@ try {
     method: 'POST', headers: publisher, body: JSON.stringify({ manifest_hash, expected_etag }),
   });
   const missingHash = 'f'.repeat(64);
-  const missing = await candidate([{ id: 'demo', sha256: missingHash, path: `conferences/demo/${missingHash}.json` }]);
+  const missing = await candidate([{ id: 'demo', interest: { forums: {}, keynotes: [] }, sha256: missingHash, path: `conferences/demo/${missingHash}.json` }]);
   assert.equal((await release(missing, catalog.etag)).status, 400, 'partial uploads cannot become the live catalog');
+  const withoutIndex = await candidate([{ ...catalog.catalog.conferences[0], interest: null }]);
+  assert.equal((await release(withoutIndex, catalog.etag)).status, 400, 'an obsolete catalog cannot remove the heat index');
   const duplicate = await candidate([catalog.catalog.conferences[0], catalog.catalog.conferences[0]]);
   assert.equal((await release(duplicate, catalog.etag)).status, 400);
   const secondData = JSON.stringify({ id: 'demo', updated: true });
   const secondHash = createHash('sha256').update(secondData).digest('hex');
   await upload('objects', `conferences/demo/${secondHash}.json`, secondData);
-  const second = await candidate([{ id: 'demo', sha256: secondHash, path: `conferences/demo/${secondHash}.json` }]);
+  const second = await candidate([{ id: 'demo', interest: { forums: {}, keynotes: [] }, sha256: secondHash, path: `conferences/demo/${secondHash}.json` }]);
   const beforePromotion = await (await mf.dispatchFetch(origin + '/api/publish/catalog', { headers: publisher })).json();
   assert.deepEqual(beforePromotion, catalog, 'staging and failed promotions leave the live catalog unchanged');
   const promoted = await release(second, catalog.etag);

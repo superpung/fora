@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { apply, serialize } from "./sync";
 import { emptyBundle, fingerprint, mergeBundles, type SyncRecord } from "./sync-model";
-import { SyncContext, type SyncState, type SyncUser } from "./sync-store";
+import { SyncContext, type SyncState, type SyncUser, type Statistics } from "./sync-store";
 
 async function api<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(path, { ...init, credentials: "same-origin", cache: "no-store",
@@ -19,6 +19,10 @@ function remember(user: SyncUser, record: SyncRecord): void {
 }
 
 export function SyncProvider({ children }: { children: ReactNode }) {
+  const [statistics, setStatisticsState] = useState<Statistics | null>(null);
+  const [statisticsPending, setStatisticsPending] = useState(false);
+  const [statisticsError, setStatisticsError] = useState(false);
+  const acceptStatistics = (next: Statistics) => setStatisticsState(prev => !prev || next.revision >= prev.revision ? next : prev);
   const [user, setUser] = useState<SyncUser | null>(null);
   const [enabled, setEnabled] = useState(false);
   const [status, setStatus] = useState<SyncState["status"]>("signed_out");
@@ -41,8 +45,9 @@ export function SyncProvider({ children }: { children: ReactNode }) {
     setStatus("syncing");
     try {
       for (let attempt = 0; attempt < 3; attempt++) {
-        const remote = await api<SyncRecord>("/api/sync");
+        const remote = await api<SyncRecord & { statistics: Statistics }>("/api/sync");
         if (account.current?.id !== identity.id) return;
+        acceptStatistics(remote.statistics);
         const local = serialize(), meta = saved(identity);
         const owner = localStorage.getItem("fora.sync-owner");
         const merged = mergeBundles(meta?.bundle ?? emptyBundle(), local, remote.bundle);
@@ -54,7 +59,7 @@ export function SyncProvider({ children }: { children: ReactNode }) {
         let committed = remote;
         if (fingerprint(bundle) !== fingerprint(remote.bundle)) {
           try {
-            committed = await api<SyncRecord>("/api/sync", { method: "PUT", headers: { "Content-Type": "application/json" },
+            committed = await api<SyncRecord & { statistics: Statistics }>("/api/sync", { method: "PUT", headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ revision: remote.revision, bundle }) });
           } catch (error) {
             if ((error as { status?: number }).status === 409) continue;
@@ -85,21 +90,21 @@ export function SyncProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     let cancelled = false;
-    api<{ enabled: boolean; user: SyncUser | null }>("/api/session").then(result => {
+    api<{ enabled: boolean; user: SyncUser | null; statistics: Statistics | null }>("/api/session").then(result => {
       if (cancelled) return;
-      setEnabled(result.enabled); setUser(result.user);
+      setEnabled(result.enabled); setUser(result.user); setStatisticsState(result.statistics);
       if (!result.user) setStatus("signed_out");
     }).catch(() => { if (!cancelled) setStatus("error"); });
     return () => { cancelled = true; };
   }, []);
 
   useEffect(() => {
-    if (!user) return;
+    if (!user) { setStatisticsState(null); setStatisticsError(false); return; }
     void syncNow();
     const refresh = () => { if (document.visibilityState === "visible") void syncNow(); };
     window.addEventListener("online", refresh);
     document.addEventListener("visibilitychange", refresh);
-    const interval = setInterval(refresh, 60000);
+    const interval = setInterval(refresh, 300000);
     return () => {
       window.removeEventListener("online", refresh);
       document.removeEventListener("visibilitychange", refresh);
@@ -122,7 +127,19 @@ export function SyncProvider({ children }: { children: ReactNode }) {
       account.current = null; setUser(null); setStatus("signed_out");
     } catch { setStatus("error"); }
   };
-  const value: SyncState = { enabled, user, isLoggedIn: !!user, status, conflict: status === "conflict",
+  const setStatistics = async (next: boolean) => {
+    const identity = account.current;
+    if (!identity || !statistics || statisticsPending) return;
+    setStatisticsPending(true); setStatisticsError(false);
+    try {
+      const updated = await api<Statistics>("/api/statistics", { method: "PUT", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ enabled: next, revision: statistics.revision }) });
+      if (account.current?.id === identity.id) acceptStatistics(updated);
+    } catch {
+      if (account.current?.id === identity.id) { setStatisticsError(true); void syncNow(); }
+    } finally { setStatisticsPending(false); }
+  };
+  const value: SyncState = { statistics, statisticsPending, statisticsError, setStatistics, enabled, user, isLoggedIn: !!user, status, conflict: status === "conflict",
     lastSyncedAt, login: () => { location.href = "/api/auth/login"; }, logout: () => void logout(),
     syncNow, markLocalChange, resolveConflict: choice => syncNow(choice) };
   return <SyncContext.Provider value={value}>{children}</SyncContext.Provider>;

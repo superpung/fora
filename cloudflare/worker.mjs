@@ -1,5 +1,6 @@
 // Fora owns only its bound database, buckets, assets and explicit routes.
 import { publish } from './publish.mjs';
+import { heat, statistics, setStatistics, heatIndex, contribution } from './heat.mjs';
 const SESSION_COOKIE = '__Host-fora-session';
 const STATE_COOKIE = '__Host-fora-oauth';
 const SESSION_SECONDS = 60 * 60 * 24 * 30;
@@ -93,47 +94,58 @@ async function callback(request, env) {
   return new Response(null, { status: 302, headers });
 }
 
+async function readJSON(request, limit) {
+  if (!request.headers.get('Content-Type')?.startsWith('application/json')) fail(415, 'JSON required');
+  if (Number(request.headers.get('Content-Length') || 0) > limit) fail(413, 'Request too large');
+  const reader = request.body?.getReader();
+  const chunks = []; let length = 0;
+  if (reader) {
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      length += value.byteLength;
+      if (length > limit) { await reader.cancel(); fail(413, 'Request too large'); }
+      chunks.push(value);
+    }
+  }
+  const raw = await new Blob(chunks).text();
+  try { return JSON.parse(raw); } catch { fail(400, 'Invalid JSON'); }
+}
+
 async function api(request, env, url) {
   if (!['GET', 'HEAD'].includes(request.method) && request.headers.get('Origin') !== env.PUBLIC_ORIGIN) {
     fail(403, 'Origin rejected');
   }
+  if (url.pathname === '/api/heat' && request.method === 'GET') return heat(env);
   if (url.pathname === '/api/auth/login' && request.method === 'GET') return login(request, env);
   if (url.pathname === '/api/session' && request.method === 'GET') {
+    const current = await session(request, env);
     return json({ enabled: url.origin === env.PUBLIC_ORIGIN && Boolean(env.GITHUB_CLIENT_ID && env.GITHUB_CLIENT_SECRET),
-      user: publicUser(await session(request, env)) });
+      user: publicUser(current), statistics: current ? statistics(current) : null });
   }
   const user = await session(request, env);
   if (!user) fail(401, 'Sign in required');
+  if (url.pathname === '/api/statistics' && request.method === 'PUT') return setStatistics(await readJSON(request, 128), env, user);
   if (url.pathname === '/api/auth/logout' && request.method === 'POST') {
     await env.DB.prepare('DELETE FROM sessions WHERE token_hash = ?').bind(await hash(cookieValue(request, SESSION_COOKIE))).run();
     const response = json({ ok: true }); response.headers.set('Set-Cookie', cookie(SESSION_COOKIE, '', 0)); return response;
   }
   if (url.pathname === '/api/sync' && request.method === 'GET') {
     const row = await env.DB.prepare('SELECT revision, bundle, updated_at FROM sync_state WHERE user_id = ?').bind(user.id).first();
-    return json({ revision: row.revision, bundle: JSON.parse(row.bundle), updated_at: row.updated_at });
+    return json({ revision: row.revision, bundle: JSON.parse(row.bundle), updated_at: row.updated_at, statistics: statistics(user) });
   }
   if (url.pathname === '/api/sync' && request.method === 'PUT') {
-    if (!request.headers.get('Content-Type')?.startsWith('application/json')) fail(415, 'JSON required');
-    if (Number(request.headers.get('Content-Length') || 0) > 262144) fail(413, 'Sync bundle too large');
-    const reader = request.body?.getReader();
-    const chunks = []; let length = 0;
-    if (reader) {
-      while (true) {
-        const { value, done } = await reader.read();
-        if (done) break;
-        length += value.byteLength;
-        if (length > 262144) { await reader.cancel(); fail(413, 'Sync bundle too large'); }
-        chunks.push(value);
-      }
-    }
-    const raw = await new Blob(chunks).text();
-    let body; try { body = JSON.parse(raw); } catch { fail(400, 'Invalid JSON'); }
+    const body = await readJSON(request, 262144);
     if (!Number.isSafeInteger(body?.revision) || body.revision < 0) fail(400, 'Invalid revision');
     const bundle = checkedBundle(body.bundle), updated = new Date().toISOString();
-    const row = await env.DB.prepare(`UPDATE sync_state SET bundle = ?, revision = revision + 1, updated_at = ?
-      WHERE user_id = ? AND revision = ? RETURNING revision`).bind(JSON.stringify(bundle), updated, user.id, body.revision).first();
+    const index = await heatIndex(env);
+    const row = await env.DB.prepare(`UPDATE sync_state SET bundle = ?, revision = revision + 1, updated_at = ?,
+      heat_contribution = ?, heat_index = ? WHERE user_id = ? AND revision = ?
+      AND EXISTS(SELECT 1 FROM users WHERE id = ? AND statistics_revision = ?) RETURNING revision`)
+      .bind(JSON.stringify(bundle), updated, contribution(index, bundle, user.statistics_enabled === 1), index.hash,
+        user.id, body.revision, user.id, user.statistics_revision).first();
     if (!row) fail(409, 'Sync revision changed');
-    return json({ revision: row.revision, bundle, updated_at: updated });
+    return json({ revision: row.revision, bundle, updated_at: updated, statistics: statistics(user) });
   }
   fail(404, 'Unknown API endpoint');
 }

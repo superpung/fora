@@ -318,6 +318,18 @@ pnpm preview    # serve the production build
   D1 API in `cloudflare/worker.mjs`. `sync-provider.tsx` performs revisioned,
   three-way synchronization; sessions are HttpOnly cookies with hashes in D1.
   No GitHub token or Gist is used for storage. See `cloudflare/README.md`.
+- **Conference heat:** `cloudflare/heat-model.mjs` builds the published identity
+  index and computes weighted interest; `cloudflare/heat.mjs` serves a globally
+  cached snapshot of incremental D1 totals. Account vectors and trigger deltas
+  commit atomically with sync/participation writes. Structural identity changes
+  reconcile stale vectors on demand; no periodic full-user scan is used. Participation defaults
+  on for signed-in accounts and uses its own server revision outside sync bundles.
+  `/:conf/popular` ranks scores, never people; `HeatValue` shows unavailable
+  rather than zero on errors or dataset mismatch. No presence or background heat
+  polling. Account polling is five minutes; edits still upload after two seconds.
+  Read `cloudflare/HEAT.md` for the exact formula, resource budget, privacy window,
+  test matrix and catalog/schema rollout requirements. Do not publish an obsolete
+  catalog without its `interest` index or substitute full-dataset parsing at runtime.
 - **Stable reports:** required `talk.id` is allocated by `source/identities.py`
   from reviewed `source/identities/<id>.json` registries. Its numeric suffix is
   permanent, never the current list index. Follows, anchors, enrichment, exports
