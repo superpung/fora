@@ -79,7 +79,6 @@ def finalize():
         conference = assign_conference(json.loads(path.read_text()))
         payload = json.dumps(conference, ensure_ascii=False, indent=2) + "\n"
         path.write_text(payload)
-        (ROOT / "web/src/data/conferences" / path.name).write_text(payload)
 
 
 if __name__ == "__main__":
