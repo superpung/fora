@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import type { Person } from "../types";
+import { dataAssetUrl } from "../lib/conferences";
 
 // Speaker/chair avatar. Uses a real headshot when `photo.local_path` (or
 // `source_url`) is available; otherwise renders a deterministic initials
@@ -23,7 +24,7 @@ function hue(name: string): number {
 }
 
 export default function Avatar({ person, size = 40 }: { person: Person; size?: number }) {
-  const src = person.photo?.local_path || person.photo?.source_url || null;
+  const src = person.photo?.local_path ? dataAssetUrl(person.photo.local_path) : person.photo?.source_url;
   const style = { width: size, height: size, fontSize: Math.round(size * 0.34) };
 
   if (src) {

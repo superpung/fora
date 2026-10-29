@@ -1,0 +1,59 @@
+"""Source releases replace data exactly without allowing archives to edit code."""
+import io
+import http.client
+from pathlib import Path
+import tarfile
+import tempfile
+import unittest
+from unittest.mock import patch, MagicMock
+
+import publish_data
+
+
+class SourceArchiveTests(unittest.TestCase):
+    def archive(self, root, entries):
+        path = root / 'release.tar.gz'
+        with tarfile.open(path, 'w:gz') as archive:
+            for name, value in entries:
+                member = tarfile.TarInfo(name)
+                member.size = len(value)
+                archive.addfile(member, io.BytesIO(value))
+        return path
+
+    def test_restore_removes_stale_inputs_and_preserves_code(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'source/raw').mkdir(parents=True)
+            (root / 'source/raw/removed.html').write_text('stale')
+            (root / 'source/build.py').write_text('code')
+            archive = self.archive(root, [('source/raw/new.html', b'published')])
+            with patch.object(publish_data, 'ROOT', root):
+                publish_data.extract_sources(archive)
+            self.assertFalse((root / 'source/raw/removed.html').exists())
+            self.assertEqual((root / 'source/raw/new.html').read_text(), 'published')
+            self.assertEqual((root / 'source/build.py').read_text(), 'code')
+
+    def test_rejects_entire_unsafe_archive_before_any_write(self):
+        for bad in ['source/build.py', 'source/topics.json', 'source/../../escape.json', '/tmp/escape.json']:
+            with self.subTest(bad=bad), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                archive = self.archive(root, [('source/raw/new.json', b'{}'), (bad, b'bad')])
+                with patch.object(publish_data, 'ROOT', root), self.assertRaises(ValueError):
+                    publish_data.extract_sources(archive)
+                self.assertFalse((root / 'source').exists())
+
+    def test_retries_upload_but_never_repeats_promotion(self):
+        response = MagicMock()
+        response.__enter__.return_value.read.return_value = b'{}'
+        with patch.object(publish_data.urllib.request, 'urlopen', side_effect=[http.client.RemoteDisconnected(), response]) as opened, \
+                patch.object(publish_data.time, 'sleep'):
+            publish_data.request('https://example.test', 'objects/test', 'secret', 'PUT', b'data')
+            self.assertEqual(opened.call_count, 2)
+        with patch.object(publish_data.urllib.request, 'urlopen', side_effect=http.client.RemoteDisconnected()) as opened, \
+                self.assertRaises(http.client.RemoteDisconnected):
+            publish_data.request('https://example.test', 'promote', 'secret', 'POST', b'{}')
+        self.assertEqual(opened.call_count, 1)
+
+
+if __name__ == '__main__':
+    unittest.main()

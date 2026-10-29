@@ -48,6 +48,8 @@ export interface Committee {
 }
 
 export interface Talk {
+  /** Persistent identity allocated by the reviewed source registry. */
+  id: string;
   /** Explicit date within a forum that spans several days. */
   day_date?: string | null;
   order?: number | null;
@@ -103,7 +105,7 @@ export interface Break {
 }
 
 export interface Block {
-  id?: string;
+  id: string;
   kind: BlockKind;
   title?: I18n;
   start?: string | null;

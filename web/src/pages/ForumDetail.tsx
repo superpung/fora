@@ -1,3 +1,4 @@
+import { talkAnchor } from "../lib/follow-store";
 import { useNow } from "../lib/use-now";
 import { personKey } from "../lib/person-key";
 import { useState, useEffect, useRef, useLayoutEffect } from "react";
@@ -5,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useParams, Link, useLocation, useNavigate } from "react-router-dom";
 import { formatDate, talkDate } from "../lib/data";
 import { useConference } from "../lib/conference-store";
-import { useFollow, talkId } from "../lib/follow-store";
+import { useFollow } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
 import { useAi, talkSummaryText } from "../lib/ai-store";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
@@ -276,7 +277,9 @@ export default function ForumDetail() {
 
   // Copy a talk's shareable permalink and move the URL hash to it (so it lights up).
   function shareTalk(i: number) {
-    const anchor = `talk-${i + 1}`;
+    const talk = forum?.talks?.[i];
+    if (!talk) return;
+    const anchor = talkAnchor(talk);
     const url = `${window.location.origin}${window.location.pathname}#${anchor}`;
     navigator.clipboard?.writeText(url).catch(() => {});
     navigate(`#${anchor}`, { replace: false });
@@ -418,7 +421,7 @@ export default function ForumDetail() {
         title: titleLine(t, tr("forum.titleTbd")).text,
         metaLines,
         accent: accentColor(),
-        qrUrl: `${shareUrl()}#talk-${i + 1}`,
+        qrUrl: `${shareUrl()}#${talkAnchor(t)}`,
         peopleLabel: speakers.length ? tr("poster.speakers") : undefined,
         people: speakers,
         abstractLabel: abstract ? tr("poster.abstractLabel") : undefined,
@@ -431,9 +434,9 @@ export default function ForumDetail() {
   // One talk, rendered for either the timeline rail or the numbered card list.
   // Extracted so the parallel-track branch can reuse it per track.
   function renderTalk(t: Talk, i: number) {
-    const id = talkId(forum!.code, i);
+    const id = t.id;
     const followed = isTalk(id);
-    const anchor = `talk-${i + 1}`;
+    const anchor = talkAnchor(t);
     const isActive = activeId === anchor;
     const isNow = nowTalks.has(i);
     const body = (

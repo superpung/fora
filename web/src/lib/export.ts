@@ -5,7 +5,7 @@ import { personKey, resolveSpeakerKeys } from "./person-key";
 // fall back to its forum block's window; the location is the full venue name
 // joined with the room (e.g. "无锡国际会议中心 205A").
 import { forumOnDate, talkDate, speakerNames, type ConferenceViews } from "./data";
-import { isKeynoteId } from "./follow-store";
+import { isKeynoteId, talkAnchor } from "./follow-store";
 import type { Forum, Talk } from "../types";
 import { titleLine } from "./talk-title";
 
@@ -24,6 +24,7 @@ export interface ExportItem {
       counts, so anything linking here lands on the talk and not on the top of a
       page holding twenty of them. Absent for keynotes, which have no page. */
   talkIndex?: number;
+  anchor?: string;
   date: string; // YYYY-MM-DD
   start?: string | null;
   end?: string | null;
@@ -86,12 +87,13 @@ function forumTalkItem(
   const win = views.forumTimeWindow(forum, t);
   const room = roomOnly(views.mainVenueName, forum.room);
   return {
-    uid: `${forum.code}-${i}`,
+    uid: t.id.replace(/[:#]/g, "-"),
     title: talkTitle(t),
     speakers: speakerNames(t),
     session: forum.title.zh,
     code: forum.code,
     talkIndex: i,
+    anchor: talkAnchor(t),
     date: talkDate(forum, t) ?? "",
     start: t.start ?? win.start ?? null,
     end: t.end ?? win.end ?? null,
@@ -99,7 +101,7 @@ function forumTalkItem(
     location: fullLocation(views.mainVenueName, room),
     room,
     abstract: t.abstract ?? null,
-    followId: `${forum.code}#${i}`,
+    followId: t.id,
     via,
     viaName,
   };
@@ -140,7 +142,7 @@ export function collectFollowedItems(f: FollowSnapshot, views: ConferenceViews):
   // Directly starred talks are read first, so an item that is also covered by a
   // followed forum or speaker still knows it can be unstarred on its own.
   const putForum = (forum: Forum, i: number, via: FollowVia, viaName?: string) => {
-    const key = `${forum.code}#${i}`;
+    const key = forum.talks![i].id;
     if (!map.has(key)) map.set(key, forumTalkItem(forum, i, views, via, viaName));
   };
   const putKeynote = (id: string, via: FollowVia, viaName?: string) => {
@@ -151,9 +153,9 @@ export function collectFollowedItems(f: FollowSnapshot, views: ConferenceViews):
 
   f.talks.forEach((id) => {
     if (isKeynoteId(id)) return putKeynote(id, "talk");
-    const [code, idx] = id.split("#");
-    const forum = views.getForum(code);
-    const i = Number(idx);
+    const forum = views.conference.forums?.find((candidate) =>
+      candidate.talks?.some((talk) => talk.id === id));
+    const i = (forum?.talks ?? []).findIndex((talk) => talk.id === id);
     if (forum && (forum.talks ?? [])[i]) putForum(forum, i, "talk");
   });
   f.forums.forEach((code) => {

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useGistSync } from "@repus/gist-sync/react";
+import { useSync } from "./sync-store";
 import {
   FollowCtx,
   followKeys,
@@ -43,7 +43,7 @@ export function FollowProvider({ confId, children }: { confId: string; children:
   // Tell the sync engine after a local mutation (debounced push). Skip the mount
   // run so merely navigating into a conference doesn't schedule a push; a pull
   // that reloads to matching content is a no-op (localPending() is false).
-  const { markLocalChange } = useGistSync();
+  const { markLocalChange } = useSync();
   const markRef = useRef(markLocalChange);
   markRef.current = markLocalChange;
   const firstRun = useRef(true);

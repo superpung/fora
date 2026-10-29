@@ -31,7 +31,7 @@ matters, and take it with you everywhere — no app to install.
 - 🧭 **Plan for me** — a day without clashes, assembled from what interests you, with the reasoning behind every pick.
 - 🗺️ **Topic map** — see what a conference is about at a glance, with similar talks on every talk.
 - ✨ **AI summaries, on your terms** — one-line gists and topics, clearly marked as AI-generated, behind a single switch; the original text is always one tap away.
-- 🔄 **Synced across devices** — sign in to keep your agenda everywhere; browsing needs no account.
+- 🔄 **Synced across devices** — sign in with GitHub to sync through Fora’s database; browsing needs no account.
 - 📲 **Install & offline** — add it to your device and keep using it with no network.
 - 📤 **Export & back up** — take your agenda to your calendar, or as a backup you can bring back later.
 - 🖼️ **Share** — turn any session or talk into a clean, shareable image.
@@ -42,7 +42,10 @@ matters, and take it with you everywhere — no app to install.
 Fora is open source. To run it locally, contribute, or add a conference, see
 **[AGENTS.md](AGENTS.md)**.
 
+Conference data is published independently to Cloudflare R2. The application runs
+on Workers Static Assets, with D1-backed sessions and agenda sync. Report IDs
+survive agenda reordering. See [deployment and data publishing](cloudflare/README.md).
+
 ## License
 
-[MIT](LICENSE) © Super Lee & Claude. Cross-device sync is powered by
-[`@repus/gist-sync`](https://www.npmjs.com/package/@repus/gist-sync).
+[MIT](LICENSE) © Super Lee & Claude.

@@ -1,5 +1,6 @@
+import { talkAnchor } from "./follow-store";
 import { buildBm25, bm25Scores, maxScore, tokenize, type Bm25Model } from "./bm25";
-import { keynoteId, talkId } from "./follow-store";
+
 import { topicAliases, topicSearchText } from "./topic-labels";
 import { talkDate, type ConferenceViews } from "./data";
 import type { Talk } from "../types";
@@ -41,6 +42,7 @@ export interface PlanCandidate {
       itself (`#talk-${talkIndex + 1}`) instead of the top of the forum page.
       Null for keynotes — main-stage blocks carry no per-talk anchor. */
   talkIndex: number | null;
+  anchor?: string;
   room: string | null;
   date: string;
   start: string | null;
@@ -123,13 +125,14 @@ export function buildPlanCorpus(views: ConferenceViews): PlanCorpus {
       countTopics(t);
       if (!plannable(t)) return;
       candidates.push({
-        id: talkId(f.code, i),
+        id: t.id,
         kind: "talk",
         title: t.title?.zh ?? "",
         speakers: (t.speakers ?? []).map((s) => s.name).filter(Boolean).join("、"),
         session: f.title.zh,
         code: f.code,
         talkIndex: i,
+        anchor: talkAnchor(t),
         room: f.room ?? null,
         date: talkDate(f, t) ?? "",
         start: t.start ?? win.start ?? null,
@@ -146,7 +149,7 @@ export function buildPlanCorpus(views: ConferenceViews): PlanCorpus {
     countTopics(e.talk);
     if (!plannable(e.talk)) continue;
     candidates.push({
-      id: keynoteId(e.date, e.index),
+      id: e.talk.id,
       kind: "keynote",
       title: e.talk.title?.zh ?? "",
       speakers: (e.talk.speakers ?? []).map((s) => s.name).filter(Boolean).join("、"),

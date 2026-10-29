@@ -41,4 +41,4 @@ Fora 是开源项目。本地运行、参与贡献或新增会议，请见 **[AG
 
 ## 许可证
 
-[MIT](LICENSE) © Super Lee & Claude。跨设备同步由 [`@repus/gist-sync`](https://www.npmjs.com/package/@repus/gist-sync) 提供支持。
+[MIT](LICENSE) © Super Lee & Claude。
