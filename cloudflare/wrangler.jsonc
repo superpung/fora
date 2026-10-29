@@ -7,6 +7,7 @@
   "workers_dev": true,
   "preview_urls": true,
   "routes": [{ "pattern": "fora.repus.me/*", "zone_id": "cef5a908ac0240cdd7dcea34bf6fccb9" }],
+  "triggers": { "crons": ["0 10 * * *"] },
   "assets": {
     "directory": "../web/dist",
     "binding": "ASSETS",
