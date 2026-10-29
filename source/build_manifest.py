@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Regenerate web/src/data/manifest.json from every per-conference dataset under
-web/src/data/conferences/.
+data/.
 
 Conference-agnostic: run this after adding or updating ANY conference so the web
 app's hub and switcher pick it up, without loading a full dataset. This is a
@@ -9,7 +9,7 @@ generic step, independent of how each conference was parsed.
 import json, pathlib, subprocess
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-CONF_DIR = ROOT / "web" / "src" / "data" / "conferences"
+CONF_DIR = ROOT / "data"
 MANIFEST = ROOT / "web" / "src" / "data" / "manifest.json"
 
 

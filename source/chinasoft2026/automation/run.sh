@@ -4,6 +4,18 @@ set -euo pipefail
 umask 077
 
 repo_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../../.." && pwd)"
+run_mode="${1:-}"
+case "$run_mode" in
+  ""|--scheduled|--smoke-test) ;;
+  *) printf 'Unsupported argument\n' >&2; exit 2 ;;
+esac
+if [[ "$run_mode" == "--scheduled" ]]; then
+  today="$(TZ=Asia/Shanghai date +%F)"
+  # This conference's active maintenance window; manual checks remain available.
+  if [[ "$today" < "2026-10-29" || "$today" > "2026-11-08" ]]; then
+    exit 0
+  fi
+fi
 run_root="$repo_dir/.automation/chinasoft2026"
 mkdir -p "$run_root/runs"
 exec 9>"$run_root/run.lock"
@@ -14,7 +26,6 @@ fi
 run_id="$(date -u +%Y%m%dT%H%M%SZ)"
 run_dir="$run_root/runs/$run_id"
 mkdir "$run_dir"
-run_mode="${1:-}"
 exec >>"$run_dir/execution.log" 2>&1
 on_exit() {
   result=$?
@@ -45,12 +56,7 @@ if [[ "${1:-}" == "--smoke-test" ]]; then
   printf 'verified\n' > "$run_dir/status.txt"
   exit 0
 fi
-if [[ $# != 0 ]]; then
-  printf 'Unsupported argument\n' >&2
-  exit 2
-fi
-
-# Code comes from main; published curated inputs are restored by the task.
+# Curated inputs stay in one local checkout; only application code advances.
 export FORA_PUBLISH_TOKEN="$(python3 - <<'TOKEN'
 import json
 from pathlib import Path
@@ -62,8 +68,13 @@ git -C "$repo_dir" fetch origin "$pr_branch"
 base_revision="$(git -C "$repo_dir" rev-parse FETCH_HEAD)"
 printf '%s\n' "$pr_branch" > "$run_dir/base-branch.txt"
 printf '%s\n' "$base_revision" > "$run_dir/base-revision.txt"
-worktree="$run_root/worktrees/$run_id"
-git -C "$repo_dir" worktree add -b "automation/chinasoft2026-$run_id" "$worktree" "$base_revision"
+worktree="$run_root/worktree"
+if [[ ! -e "$worktree/.git" ]]; then
+  git -C "$repo_dir" worktree add -b maintenance/chinasoft2026 "$worktree" "$base_revision"
+else
+  git -C "$worktree" merge --ff-only "$base_revision"
+fi
+export FORA_CHECK_DIR="$run_root/checks"
 task_file="$run_dir/task.md"
 git -C "$repo_dir" show "$base_revision:source/chinasoft2026/automation/TASK.md" > "$task_file"
 printf '\nRuntime context: base branch `%s`, initial revision `%s`, run directory `%s`.\n' \

@@ -884,8 +884,7 @@ def build():
     }
     apply_note_review(conf)
     payload = json.dumps(conf, ensure_ascii=False, indent=2) + "\n"
-    for directory in (ROOT / "data", ROOT / "web/src/data/conferences"):
-        (directory / "chinasoft2026.json").write_text(payload, encoding="utf-8")
+    (ROOT / "data/chinasoft2026.json").write_text(payload, encoding="utf-8")
     print(f"ChinaSoft 2026: {len(forums)} forums, {sum(len(f['talks']) for f in forums)} programme items, {len(days)} days")
 
 
