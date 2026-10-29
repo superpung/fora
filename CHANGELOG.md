@@ -4,6 +4,60 @@ All notable changes to this project, newest first. The top entry is the current
 release; the dated log beneath it records development day by day. Written in
 English per the repository language rule (see AGENTS.md).
 
+## v0.4.0 — 2026-10-29
+
+### Added
+- **ChinaSoft 2026** — a fourth conference, with November 5 check-in and
+  November 6–8 programmes, explicit speaker/organizer portraits, committee
+  rosters, source abstracts and separately marked AI summaries and topics.
+- **Multi-day forums** — one forum and one set of follows across dated sessions;
+  report links, schedules, planning, reminders and exports use each report's date.
+- **Source notes** — expandable discrepancies, explicit report hosts, chronological
+  breaks and separately retained profiles when a source cannot match them to a row.
+- **Cooperating organizations** — a distinct partner role, displayed and searchable
+  separately from sponsors and supporting organizations.
+- **Source maintenance** — archived HTML/portrait fingerprints, reviewed import
+  comparisons, a gap checklist and daily host automation that updates a PR.
+
+### Changed
+- Live views include timed registration, ceremonies, banquets and committee
+  meetings. Dated forums without individual reports can be followed and exported;
+  unknown windows remain unknown instead of inheriting a day-wide board.
+- Speaker identities use explicit source keys when needed, with legacy follow
+  migration that preserves distinct same-name people and keynote appearances.
+- Portraits are prepared as compact WebP assets and cached on demand; AI annotations
+  carry source-title guards to prevent silent reuse after programme changes.
+- Both README feature lists and the developer reference describe the released
+  navigation, AI controls, data pipeline, source tracking and release workflow.
+
+### Fixed
+- Live status, reminders, calendar exports and conference-day navigation use the
+  venue's timezone, including foreign device zones, midnight and foreground refresh.
+- Timeline blocks sort chronologically; report links land at the correct anchors,
+  and multi-day lists retain canonical report indices and dates.
+- Long committee rosters remain visible on short viewports. Non-person credits
+  stay out of speaker lists, and explicit committee affiliations survive roster merges.
+- Topic and similar-talk lists show speakers consistently with other report lists.
+- Extended reports remain live through their actual published end; date-only follows
+  do not displace a timed next item, and borrowed report times stay approximate.
+
+### Data
+- ChinaSoft 2026 includes 67 forum/competition/meeting entries, 512 programme items,
+  65 breaks, 408 source abstracts, 631 prepared portrait references and 461 guarded
+  AI annotations, reviewed through October 29. Unpublished details and seven
+  substantive source discrepancies remain explicit; withdrawn pages are retained.
+- ChinaOSC 2026 now has detailed programmes and rooms for all 22 forums, with
+  157 talks and 132 abstracts, revised titles/timetables, sponsor tiers and
+  title-matched enrichment updates.
+- Corrected ChinaSoft 2025 person credits while preserving source meaning.
+
+### CI
+- Added shared identity/timezone/live regressions and desktop/mobile browser
+  coverage for source completeness, portraits, anchors, multi-day programmes,
+  exports and simulated clocks/notifications.
+
+_Changes since v0.3.0: #34, #35, #36, #37, #38 and #39._
+
 ## v0.3.0 — 2026-08-02
 
 ### Added
