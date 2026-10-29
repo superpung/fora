@@ -27,6 +27,8 @@ English per the repository language rule (see AGENTS.md).
   Invalid online responses remain visible errors instead of selecting old data.
 
 ### Fixed
+- Data promotion and rollback preserve the exact reviewed manifest bytes; the
+  publication API exposes the current immutable release identifier.
 - Corrected production GitHub OAuth credentials and added a real-provider
   credential preflight. Invalid credentials, expired codes and malformed provider
   responses now produce distinct, safe errors.
@@ -42,7 +44,7 @@ English per the repository language rule (see AGENTS.md).
   with a simulated GitHub provider. Real production login and two-browser
   follow/unfollow synchronization were separately confirmed by the user.
 
-_Changes since v0.4.0: #41, #42, #43, #44, #45, #47 and #48._
+_Changes since v0.4.0: #41, #42, #43, #44, #45, #47, #48 and #49._
 
 ## v0.4.0 — 2026-10-29
 
