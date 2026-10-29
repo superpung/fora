@@ -27,7 +27,7 @@ function SimilarRow({ item }: { item: SimilarTalk }) {
   const { t, lang } = useI18n();
   const dateInfo = item.date ? formatDate(item.date, lang) : null;
   return (
-    <Link className="simrow" to={`/${confId}/forum/${item.forumCode}#talk-${item.index + 1}`}>
+    <Link className="simrow" to={`/${confId}/forum/${item.forumCode}#${item.anchor}`}>
       <span className="simrow__title">
         {item.titleTbd ? (
           <span className="muted-i">{item.title || t("forum.titleTbd")}</span>

@@ -10,7 +10,7 @@ import type { ExportItem } from "./export";
 // starts in N minutes"), plus an optional day-start nudge. They are opt-in:
 // nothing schedules and no OS permission is requested until the user turns them
 // on explicitly. Prefs are SITE-WIDE (not per-conference), persisted to
-// localStorage like the theme, and synced across devices via the Gist bundle —
+// localStorage like the theme, and synced across devices via the sync bundle —
 // see sync.ts, which mirrors PREF_KEYS into the bundle's `prefs` scalarMap.
 
 export type LeadMinutes = 5 | 10 | 15 | 30;

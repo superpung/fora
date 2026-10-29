@@ -23,6 +23,10 @@ jobs:
         run: uv sync --dev
       - name: Validate against schema
         run: uv run python source/validate.py
+      - name: Stable report identities
+        run: uv run python -m unittest discover -s source -p 'test_identities.py'
+      - name: Source publication safety
+        run: uv run python -m unittest discover -s source -p 'test_publish_data.py'
       - name: Rebuild dataset and assert it is in sync
         # build_all.py discovers every conference builder (source/<id>/build.py)
         # and rebuilds it, then the manifest. Deliberately NOT a list of
@@ -60,3 +64,22 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm build
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:cloudflare
+      - name: Audit the explicitly selected deployed preview
+        if: github.head_ref != '' && github.head_ref == vars.FORA_PREVIEW_BRANCH
+        env:
+          AUDIT_BASE_URL: ${{ vars.FORA_PREVIEW_URL }}
+          AUDIT_DATA_BASE_URL: ${{ vars.FORA_PREVIEW_DATA_URL }}
+          AUDIT_DATA_REVISION: ${{ vars.FORA_PREVIEW_DATA_REVISION }}
+          SOURCE_AUDIT_DIR: /tmp/fora-preview-audit
+        run: |
+          node tests/cloudflare-deployment.mjs
+          node tests/conference-audit.mjs
+      - name: Preserve deployed preview screenshots
+        if: always() && github.head_ref != '' && github.head_ref == vars.FORA_PREVIEW_BRANCH
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployed-preview-audit
+          path: /tmp/fora-preview-audit/
+          retention-days: 7

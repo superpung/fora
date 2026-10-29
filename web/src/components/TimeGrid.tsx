@@ -1,8 +1,9 @@
+import { talkAnchor } from "../lib/follow-store";
 import { personKey } from "../lib/person-key";
 import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { useConference } from "../lib/conference-store";
-import { useFollow, talkId } from "../lib/follow-store";
+import { useFollow } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
 import { useCoarsePointer } from "../lib/use-coarse-pointer";
 import { useNow, isNowWithin } from "../lib/use-now";
@@ -105,9 +106,9 @@ export default function TimeGrid({
   // A talk is "followed-relevant" when its forum is followed (keep the whole
   // column), the talk itself is starred, or one of its speakers is followed —
   // the same rule the dashboard's 我的关注 filter uses.
-  const relevant = (code: string, i: number, t: Talk): boolean =>
+  const relevant = (code: string, _i: number, t: Talk): boolean =>
     isForum(code) ||
-    isTalk(talkId(code, i)) ||
+    isTalk(t.id) ||
     (t.speakers ?? []).some((s) => isSpeaker(personKey(s)));
 
   // First pass: gather each forum's timed talks as minute offsets, and the day's
@@ -341,7 +342,7 @@ export default function TimeGrid({
                 }
                 const { t, i, top, h } = cell;
                 const speakers = speakerNames(t);
-                const to = `/${confId}/forum/${c.code}#talk-${i + 1}`;
+                const to = `/${confId}/forum/${c.code}#${talkAnchor(t)}`;
                 const key = `${c.key}#${i}`;
                 const open = coarse && openKey === key;
                 // When the day is today and the live clock falls inside this
@@ -369,7 +370,7 @@ export default function TimeGrid({
                 // a button inside a link is neither valid nor clickable. As the
                 // next sibling it can still follow the cell's hover (see
                 // .tgrid__talk:hover + .tgrid__tstarwrap).
-                const followed = isTalk(talkId(c.code, i));
+                const followed = isTalk(t.id);
                 const star = (
                   <span
                     className={`tgrid__tstarwrap ${followed ? "is-on" : ""}`}
@@ -380,7 +381,7 @@ export default function TimeGrid({
                       size={13}
                       className="star--sm tgrid__tstar"
                       label={tr(followed ? "common.talkFollowRemove" : "common.talkFollowAdd")}
-                      onClick={() => toggleTalk(talkId(c.code, i))}
+                      onClick={() => toggleTalk(t.id)}
                     />
                   </span>
                 );

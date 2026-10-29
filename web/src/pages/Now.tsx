@@ -228,7 +228,7 @@ export default function Now() {
                 {starred.item.code && (
                   <Link
                     to={`/${views.id}/forum/${starred.item.code}${
-                      starred.item.talkIndex != null ? `#talk-${starred.item.talkIndex + 1}` : ""
+                      starred.item.talkIndex != null ? `#${starred.item.anchor}` : ""
                     }`}
                     className="nowstar__link"
                   >
