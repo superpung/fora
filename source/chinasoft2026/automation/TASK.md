@@ -27,7 +27,11 @@ cloud source archive is involved.
    missing fields. Update the gap document for unresolved source discrepancies.
 5. Rebuild and validate; run appropriate source, browser and clock regressions
    and inspect affected desktop/mobile screenshots. Do not rebuild during tests.
-   No content change means no publication. General parser/schema/UI changes need
+   Compare rebuilt dataset hashes with the live catalog using the existing
+   `source.publish_data.request(base, "catalog", token)` client, which supplies
+   the publisher authentication and HTTP headers. Unchanged source observations
+   or curated inputs can still contain an unpublished local update. Publish only
+   if a dataset hash differs from the live catalog. General parser/schema/UI changes need
    a separate code PR; do not merge it or publish data requiring unmerged code.
 6. Stage with `uv run python source/publish_data.py stage --base
    https://fora.repus.me --summary 'Concrete reviewed changes'`. Inspect the
