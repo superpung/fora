@@ -8,40 +8,12 @@ export async function publish(request, env, url) {
     const current = await env.DATA.get('manifest.json');
     return reply({ etag: current?.etag ?? null, catalog: current ? await current.json() : null });
   }
-  if (url.pathname === '/api/publish/checks') {
-    const key = 'checks/index.json';
-    if (request.method === 'GET') {
-      const current = await env.ARCHIVE.get(key);
-      return reply({ etag: current?.etag ?? null, index: current ? await current.json() : null });
-    }
-    if (request.method === 'POST') {
-      const { snapshot, complete, expected_etag: expected } = await request.json();
-      if (!/^checks\/[a-f0-9]{64}\.tar\.gz$/.test(snapshot || '') || typeof complete !== 'boolean' ||
-        !(expected === null || typeof expected === 'string')) fail(400, 'Invalid check reference');
-      if (!await env.ARCHIVE.head(snapshot)) fail(400, 'Check snapshot is missing');
-      const current = await env.ARCHIVE.get(key);
-      const previous = current ? await current.json() : null;
-      const index = { latest: snapshot, successful: complete ? snapshot : previous?.successful ?? null,
-        complete, checked_at: new Date().toISOString() };
-      const written = await env.ARCHIVE.put(key, JSON.stringify(index), {
-        onlyIf: expected === null ? { etagDoesNotMatch: '*' } : { etagMatches: expected },
-      });
-      if (!written) fail(409, 'Another check finished; review the new baseline');
-      return reply(index);
-    }
-  }
-  const match = url.pathname.match(/^\/api\/publish\/(objects|archives)\/(.+)$/);
+  const match = url.pathname.match(/^\/api\/publish\/objects\/(.+)$/);
   if (match) {
-    const [, kind, key] = match;
-    const valid = kind === 'objects' ? /^(conferences\/[a-z0-9-]+\/[a-f0-9]{64}\.json|portraits\/[a-z0-9-]+\/[a-f0-9]{20}\.webp|releases\/[a-f0-9]{64}\.json)$/.test(key) :
-      /^[a-zA-Z0-9/_.-]+$/.test(key) && !key.includes('..');
+    const [, key] = match;
+    const valid = /^(conferences\/[a-z0-9-]+\/[a-f0-9]{64}\.json|portraits\/[a-z0-9-]+\/[a-f0-9]{20}\.webp|releases\/[a-f0-9]{64}\.json)$/.test(key);
     if (!valid || key.length > 250) fail(400, 'Invalid object key');
-    const bucket = kind === 'objects' ? env.DATA : env.ARCHIVE;
-    if (request.method === 'GET' && kind === 'archives') {
-      const object = await bucket.get(key);
-      if (!object) fail(404, 'Archive not found');
-      return new Response(object.body, { headers: { 'Cache-Control': 'no-store' } });
-    }
+    const bucket = env.DATA;
     if (request.method === 'HEAD') {
       const object = await bucket.head(key);
       return new Response(null, { status: object ? 200 : 404,
@@ -71,8 +43,7 @@ export async function publish(request, env, url) {
     const candidate = await env.DATA.get(`releases/${digest}.json`);
     if (!candidate || candidate.customMetadata?.sha256 !== digest) fail(400, 'Release manifest is missing');
     const catalog = await candidate.json();
-    if (catalog.schema_version !== 1 || !Array.isArray(catalog.conferences) || !catalog.source_archive) fail(400, 'Invalid release manifest');
-    if (!await env.ARCHIVE.head(catalog.source_archive)) fail(400, 'Source archive is missing');
+    if (catalog.schema_version !== 1 || !Array.isArray(catalog.conferences)) fail(400, 'Invalid release manifest');
     const ids = new Set();
     for (const entry of catalog.conferences) {
       if (ids.has(entry.id) || !/^[a-z0-9-]+$/.test(entry.id) || !/^[a-f0-9]{64}$/.test(entry.sha256) ||
