@@ -16,7 +16,7 @@ import type { Talk } from "../types";
 //      "may contain errors — refer to the original" disclaimer. See AiMark.tsx.
 //
 // The preference is site-wide (not per-conference), persisted to localStorage
-// like the theme/lang/reminder prefs, and synced across devices via the Gist
+// like the theme/lang/reminder prefs, and synced across devices via the sync service
 // bundle's `prefs` scalarMap — sync.ts mirrors AI_PREF_KEY into it.
 
 /** localStorage key. Un-namespaced (site-wide), mirroring the theme/lang keys.

@@ -11,6 +11,12 @@ wheels/
 # Node / frontend
 node_modules/
 web/dist/
+web/public/data/
+web/.wrangler/
+web/.dev.vars*
+cloudflare/.wrangler/
+cloudflare/.dev.vars*
+.data-release/
 web/.vite/
 *.local
 

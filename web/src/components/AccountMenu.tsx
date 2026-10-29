@@ -1,9 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
-import { useGistSync } from "@repus/gist-sync/react";
+import { useSync } from "../lib/sync-store";
 import { useI18n } from "../lib/i18n-store";
-import { syncConfig } from "../lib/sync";
 import { useReminders, LEAD_CHOICES } from "../lib/reminder-store";
 import { useAi } from "../lib/ai-store";
 import { useTheme, THEME_LABEL } from "../lib/theme-store";
@@ -14,9 +13,9 @@ import Icon, { type IconName } from "./Icon";
 import ConfirmDialog from "./ConfirmDialog";
 import type { ExportFormat } from "../lib/export";
 
-// Global nav control that unifies the GitHub account (login + gist sync) and the
+// Global nav control that unifies the GitHub account (login + D1 sync) and the
 // active conference's follow actions (import / export / clear) into one dropdown.
-// Account data/actions come from useGistSync(); follow actions are published by
+// Account data/actions come from useSync(); follow actions are published by
 // the in-conference bridge (useFollowActions), since the nav renders outside the
 // conference providers. Everything is optional: with no OAuth configured it's
 // just the follow menu, and outside a conference it's just the account menu.
@@ -65,7 +64,7 @@ function RowIcon({ name, on, gesture, size = 15 }: {
 }
 
 export default function AccountMenu() {
-  const gs = useGistSync();
+  const gs = useSync();
   const actions = useFollowActions();
   const rem = useReminders();
   const ai = useAi();
@@ -107,7 +106,7 @@ export default function AccountMenu() {
     if (!open) setExpExport(false);
   }, [open]);
 
-  const hasSync = !!syncConfig.clientId;
+  const hasSync = gs.enabled;
   const loggedIn = gs.isLoggedIn;
 
   // The trigger ALWAYS opens the menu, signed in or out. This menu is not just
@@ -127,13 +126,8 @@ export default function AccountMenu() {
     gs.status === "syncing" ? (zh ? "同步中…" : "Syncing…")
       : gs.status === "pending" ? (zh ? "待同步" : "Pending")
         : gs.status === "conflict" ? (zh ? "有冲突" : "Conflict")
-          : (zh ? "已同步" : "Synced");
-
-  const gistHref = u?.login
-    ? gs.gistId
-      ? `https://gist.github.com/${u.login}/${gs.gistId}`
-      : `https://gist.github.com/${u.login}`
-    : null;
+          : gs.status === "error" ? (zh ? "同步失败" : "Sync failed")
+            : (zh ? "已同步" : "Synced");
 
   const onFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -205,12 +199,7 @@ export default function AccountMenu() {
                   </button>
                 )}
 
-                {gistHref && (
-                  <a className="acct-row" href={gistHref} target="_blank" rel="noreferrer">
-                    <Icon name="external" size={15} />
-                    <span className="acct-row__label">{zh ? "查看 Gist" : "View gist"}</span>
-                  </a>
-                )}
+
               </>
             )}
 

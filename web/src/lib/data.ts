@@ -1,5 +1,5 @@
 import { personKey } from "./person-key";
-import { keynoteId } from "./follow-store";
+
 import type { Conference, Forum, Day, Talk, Person, I18n, Status } from "../types";
 
 // This module has two halves:
@@ -132,6 +132,7 @@ export interface KeynoteEntry {
 }
 
 export interface SpeakerTalk {
+  report: Talk;
   forumCode?: string; // undefined for main-conference keynotes
   talkIndex?: number; // 0-based position within the forum's talk list
   keynoteIndex?: number; // 0-based position within the day's keynotes (keynotes only)
@@ -302,7 +303,7 @@ export function buildConferenceViews(raw: unknown): ConferenceViews {
       .filter((b) => b.kind === "keynotes")
       .flatMap((b) => (b.talks ?? []).map((t) => ({ t, loc: b.location, title: b.title?.zh })));
     return talks.map(({ t, loc, title }, i) => ({
-      id: keynoteId(d.date, i),
+      id: t.id,
       date: d.date,
       index: i,
       talk: t,
@@ -356,6 +357,7 @@ export function buildConferenceViews(raw: unknown): ConferenceViews {
         addSpeakerTalk(sp, {
           forumCode: f.code,
           talkIndex: ti,
+          report: t,
           forumTitle: f.title.zh,
           talkTitle: t.title,
           titleStatus: t.title_status,
@@ -388,6 +390,7 @@ export function buildConferenceViews(raw: unknown): ConferenceViews {
               talkTitle: t.title,
               titleStatus: t.title_status,
               keynoteIndex: index,
+              report: t,
               room: b.location,
               date: d.date,
               period: "morning",

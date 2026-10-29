@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useGistSync } from "@repus/gist-sync/react";
+import { useSync } from "./sync-store";
 import { useI18n } from "./i18n-store";
 import {
   ReminderCtx,
@@ -21,8 +21,8 @@ import {
 import { planReminders, type PlannedReminder } from "./reminder-schedule";
 
 // Site-wide provider that owns reminder preferences AND runs the local
-// scheduling engine. Mounted inside GistSyncProvider so pref changes can call
-// markLocalChange() and sync via the Gist bundle (see sync.ts).
+// scheduling engine. Mounted inside SyncProvider so pref changes can call
+// markLocalChange() and sync via the sync bundle (see sync.ts).
 //
 // SCHEDULING — two cooperating paths, both best-effort and no backend:
 //
@@ -131,8 +131,8 @@ export function ReminderProvider({ children }: { children: React.ReactNode }) {
   const supported = notificationsSupported();
 
   // Persist prefs and, after the first (mount) run, tell the sync engine so the
-  // change pushes to the Gist. Mirrors follow.tsx.
-  const { markLocalChange } = useGistSync();
+  // change pushes to the sync service. Mirrors follow.tsx.
+  const { markLocalChange } = useSync();
   const markRef = useRef(markLocalChange);
   markRef.current = markLocalChange;
   const firstRun = useRef(true);

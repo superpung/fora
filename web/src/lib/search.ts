@@ -1,3 +1,4 @@
+import { talkAnchor } from "./follow-store";
 import { buildBm25, bm25Scores, maxScore, tokenize, type Bm25Model } from "./bm25";
 import { topicSearchText } from "./topic-labels";
 import type { ConferenceViews } from "./data";
@@ -170,7 +171,7 @@ export function buildSearchIndex(
         subtitle: [forumTitle, speakerNames.join("、")].filter(Boolean).join(" · "),
         summary: talkSummaryText(talk) ?? undefined,
         haystack: hay,
-        to: `/${confId}/forum/${f.code}#talk-${i + 1}`,
+        to: `/${confId}/forum/${f.code}#${talkAnchor(talk)}`,
       });
     });
   }

@@ -1,3 +1,4 @@
+import { talkAnchor } from "./follow-store";
 import type { Conference } from "../types";
 import type { Lang } from "./i18n-store";
 import { topicLabel, topicMapLabel, topicCategory } from "./topic-labels";
@@ -37,6 +38,7 @@ export interface TopicTalk {
   forumTitle: string;
   /** 0-based index within the forum's talk list — the `#talk-N` anchor is N+1. */
   index: number;
+  anchor: string;
   title?: string;
   titleTbd: boolean;
   /** The speakers as one line — a talk row anywhere in this app names them. */
@@ -429,6 +431,7 @@ export function buildTopicMap(
       tagged += 1;
       const entry: TopicTalk = {
         forumCode: f.code,
+        anchor: talkAnchor(talk),
         forumTitle: f.title.zh,
         index,
         title: titleLine(talk, "").text || undefined,
