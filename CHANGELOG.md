@@ -42,7 +42,7 @@ English per the repository language rule (see AGENTS.md).
   with a simulated GitHub provider. Real production login and two-browser
   follow/unfollow synchronization were separately confirmed by the user.
 
-_Changes since v0.4.0: #41, #42, #43, #44, #45 and #47._
+_Changes since v0.4.0: #41, #42, #43, #44, #45, #47 and #48._
 
 ## v0.4.0 — 2026-10-29
 
