@@ -18,7 +18,7 @@ try {
   assert.equal(await page.locator('#talk-4 .person__name').textContent(), '金意儿');
   await page.locator('#talk-4 img').first().evaluate(img => img.decode());
   await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
-  const session = await (await context.request.get(base + '/api/session')).json();
+  const session = await page.evaluate(async () => (await fetch('/api/session')).json());
   assert.equal(session.user, null);
   await context.setOffline(true);
   await page.reload({ waitUntil: 'domcontentloaded' });
