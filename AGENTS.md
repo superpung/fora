@@ -8,6 +8,10 @@
   replacement is serving successfully. Prepare and verify rollback first.
 - Scope every Cloudflare operation to Fora; leave unrelated account services,
   zone-wide settings and shared routing rules unchanged.
+- A configured credential is not a verified credential. Check OAuth credentials
+  against GitHub before deployment, and distinguish simulated-provider tests from
+  real production authorization. Use the acceptance matrix in `cloudflare/README.md`;
+  unresolved failures and unperformed checks remain explicit pending work.
 
 ## Keep one current implementation (hard rule)
 - Build for the observed workload. Occasional conference maintenance belongs in
