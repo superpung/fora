@@ -430,3 +430,7 @@ app, and the omission is only visible to the reader who trusted it.
    release with the changelog entry as its body. Tag *after* the doc changes
    have landed, so the tree the tag names is the one the release describes.
 8. **Verify production** — https://fora.repus.me serves the new version.
+   Verify the footer version and release link in a fresh browser context, then
+   open the changed conference routes and confirm the deployed data. Check that
+   the tag and GitHub release resolve to the release PR's actual merge commit;
+   an earlier branch build or an existing service-worker cache is not release proof.
