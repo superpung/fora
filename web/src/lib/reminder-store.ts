@@ -1,4 +1,3 @@
-import { conferenceList } from "./conferences";
 import { createContext, useContext } from "react";
 import type { ExportItem } from "./export";
 
@@ -108,7 +107,6 @@ export function loadItemSets(): ReminderItemSet[] {
     try {
       const parsed = JSON.parse(localStorage.getItem(k) ?? "");
       if (parsed && Array.isArray(parsed.items)) {
-        parsed.timezone ??= conferenceList.find((c) => c.id === parsed.confId)?.timezone;
         out.push(parsed as ReminderItemSet);
       }
     } catch {

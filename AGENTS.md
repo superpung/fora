@@ -345,13 +345,13 @@ pnpm preview    # serve the production build
 - **Conference time:** `lib/conference-time.ts` resolves venue-local dates and
   instants for live states, reminders and calendar exports. The manifest carries
   `timezone` so the hub can update conference status at venue midnight without
-  loading full datasets. Reminder caches also carry the timezone; legacy caches
-  recover it from the manifest. An absent source timezone retains device-local
+  loading full datasets. Reminder caches carry the source timezone directly.
+  An absent source timezone retains device-local
   semantics. Never compare a venue agenda directly against device wall time.
 - **Shared regressions:** `web/tests/conference-core.mjs` checks venue clocks,
   live events, pending forum windows, identities, reminders and live navigation
   independently of any newly imported conference. `conference-ui.mjs` checks
-  empty-forum boards on desktop/mobile and speaker-follow migration across
+  empty-forum boards on desktop/mobile and current speaker identities across
   reloads. `permalink-scroll.mjs` checks browser anchors against existing data.
 - **Clock regression:** `web/tests/live-clock.mjs` controls browser clocks and
   checks event boundaries, current-report highlights, midnight, foreign device
@@ -378,10 +378,9 @@ pnpm preview    # serve the production build
   through `ConferenceViews.unscheduledForums` but receive no invented date.
 - **Ambiguous people:** `lib/person-key.ts` uses `person.extra.identity_key`
   when the adapter explicitly separates unresolved same-name source records.
-  Otherwise it uses `name:<name>` to distinguish a current name-only identity
-  from a legacy bare-name follow. Directory aggregation, follows and exports
-  use the same key. Legacy follows expand across forum and keynote identities,
-  including name-only records; canonical keys never expand again on reload.
+  Otherwise it uses `name:<name>`. Directory aggregation, follows, JSON backups,
+  synchronization and exports use these exact keys, including keynote-only
+  identities. Reading or importing follows never expands a name to other people.
   Never infer identity from affiliation.
 - **Source gaps:** `SourceNotes.tsx` exposes flags through an animated,
   keyboard/touch-accessible disclosure. Forum details display hosts from

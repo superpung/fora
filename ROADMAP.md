@@ -1,147 +1,84 @@
-# Feature roadmap
+# Product status and roadmap
 
-Product backlog for Fora, curated by the author (Super Lee). This file is the
-single source of truth for what we intend to build, what we have decided
-*against*, and what is still under discussion — so we don't re-litigate settled
-calls.
+This document distinguishes shipped behavior from proposals. A proposal is not
+permission to implement it. Current architecture and operational procedures live
+in [AGENTS.md](AGENTS.md) and [cloudflare/README.md](cloudflare/README.md).
 
-Status legend: 🟢 accepted (build it) · 🔴 declined (author will not add) ·
-🟡 under discussion (needs author decision).
+## Shipped
 
-Effort is a rough T-shirt size for engineering + data-pipeline work.
+| Feature | Current behavior |
+| --- | --- |
+| Global search | Browser-side BM25 across talks, abstracts, speakers, affiliations, forums, committees and organizations. No embedding model or network search. |
+| Now / Next | Current and upcoming sessions, timed conference events and the next followed item, evaluated in the conference timezone. |
+| My Day | The personal schedule's day view, including gaps, room changes and overlapping agenda items. |
+| Reminders | Opt-in local notifications for followed items, with a shared lead-time setting. Delivery depends on the running browser and its notification permission; closed-app delivery is not guaranteed. |
+| AI summaries | Optional authored enrichment, kept separate from original titles and abstracts. Coverage depends on the conference data. |
+| Plan for me | Local BM25 ranking and topic agreement assemble a suggested agenda. No runtime model or embeddings. |
+| Topic map | Groups reports using the controlled enrichment topic vocabulary; not an embedding-based knowledge graph. |
+| Similar talks | Local TF-IDF similarity and topic overlap, computed from the loaded conference. |
+| Accounts and sync | GitHub identity, HttpOnly sessions and revisioned three-way D1 synchronization. Gist storage has been removed. |
+| Independent data releases | Checksummed conference datasets and a catalog in R2, published separately from application releases. |
+| Offline reading | A cached app shell and previously verified conference data; portraits are cached when requested. |
 
----
+AI-derived content shares one site-wide setting, currently enabled by default,
+which synchronizes with account preferences. Displayed enrichment carries a
+provenance mark and disclaimer. Original conference content stays available.
+Search remains usable when AI content is disabled.
 
-## Cross-cutting: AI content governance
+The earlier offline embedding-search proposal was never implemented. It is not
+a dependency of the shipped planner, topic map or similar-talks feature. Adding
+an embedding model would require a separate scope and approval decision.
 
-Several accepted features (#5–#9) surface **AI-generated or AI-derived** content.
-Per the author, this class of content is governed by two shared rules:
+## Follow statistics — draft, awaiting approval
 
-1. **User toggle.** A single setting (persisted like theme/lang, synced via Gist)
-   controls whether AI-generated content is shown at all. Off by default is the
-   safe stance; final default TBD. When off, the UI falls back to source data
-   only (e.g. full abstract instead of TL;DR, plain keyword search instead of
-   semantic).
-2. **Provenance marking.** Anything AI-generated carries a visible marker plus a
-   disclaimer: *"AI-generated — may contain errors; refer to the original."*
-   The original source text is always one tap away.
+The author has selected forum and report popularity, one participation switch
+(default off), and no online-user count. The following complete feature list is
+still subject to approval before implementation:
 
-Implement this once as a shared primitive (setting + badge/disclaimer component)
-and reuse it across #5, #6, #7, #8, #9.
+1. **Participation:** one account-wide setting, labeled “参与关注统计”, off by
+   default. Only signed-in accounts that enable it contribute. Enabling includes
+   their current follows; disabling removes their contribution without deleting
+   follows or changing synchronization. Devices share the account's choice.
+2. **Forum counts:** distinct participating accounts that explicitly follow the
+   forum or at least one report within it. Multiple reports, devices and forum
+   dates do not multiply an account's contribution to the same forum.
+3. **Report counts:** distinct participating accounts that explicitly follow the
+   report. Following its forum or speaker does not implicitly contribute a report
+   follow. Speaker-derived agenda items do not contribute to forum counts either.
+4. **Discovery:** conference-scoped popular forums and popular reports, ordered
+   by these counts, with counts on the corresponding forum/report entries. Keep
+   chronological schedule views chronological. No cross-conference ranking.
+5. **Privacy and freshness:** aggregate counts are visible without signing in;
+   identities and follower lists are not public. Counts describe opted-in follows,
+   not total attendance. Public results may take up to five minutes to refresh,
+   including after withdrawal. Unavailable statistics must not appear as zero.
+6. **Scope and cost:** no presence tracking, heartbeat, browsing history, historical
+   trend charts or new scheduler. Update contributions when follows or consent
+   change, and cache aggregate reads. Use the existing Fora Worker and D1;
+   measure read/write cost before rollout, accounting for other account services.
 
----
+Acceptance must cover consent off by default; account/device deduplication;
+forum/report union and exclusions; follow/unfollow, import and sync; withdrawal;
+conference isolation; count ordering; unavailable data; and desktop/mobile UI.
+Existing login, synchronization, offline reading and chronological schedules
+must retain their behavior. This proposal has no implementation yet.
 
-## 🟢 Accepted
+Quota reference, checked October 29, 2026: [Workers Free](https://developers.cloudflare.com/workers/platform/limits/)
+allows 100,000 dynamic requests per day; [D1 Free](https://developers.cloudflare.com/d1/platform/pricing/)
+allows 5 million rows read, 100,000 rows written per day and 5 GB total storage.
+These are account allowances, not dedicated Fora capacity. For comparison,
+1,000 users sending one presence update per minute for two hours would produce
+120,000 updates, before counting index writes or existing workloads. This is a
+hypothetical workload, not observed traffic. Presence is excluded from the proposal.
 
-### 1. Global search
-One search box that spans **talk titles, abstracts, speakers, affiliations,
-organizations, forums, and committees** — not just the speaker directory we have
-today.
+## Outside the Fora product backlog
 
-- **Data:** all present in the conference JSON; pure client-side, no build work.
-- **Where:** a global entry (nav/command-k style), results grouped by type,
-  each linking to its detail (forum / speaker / talk anchor).
-- **Notes:** this is the plain keyword/substring layer. Semantic search (#5) is a
-  separate, optional layer on top — global search must work with AI toggled off.
-- **Effort:** S.
-
-### 2. Now / Next live view
-A glanceable, auto-refreshing view of **what is happening right now across all
-rooms, what starts next, and when the user's next starred item begins.**
-
-- **Data:** `days[].blocks` + `session_period` + `room`; `use-now.ts` already
-  tracks the current time; `follow-store` provides starred items.
-- **Where:** a dedicated lightweight route (`/:conf/now`), surfaced in the nav
-  **only during the conference dates** (quiet otherwise). Decided design, not a
-  downgrade to a Schedule card. Rationale: Schedule = browse the full grid for
-  planning; Now/Next = a zero-scroll, auto-refreshing, personalized "what do I do
-  this minute" glance — the primary on-site entry point.
-- **Effort:** M.
-
-### 3. Day route view ("My Day")
-Turn the user's starred items for a single day into an ordered vertical timeline —
-time-sorted, showing **gaps between sessions and room-to-room transitions.**
-
-- **Data:** starred set × `blocks`/`room`/`venue`; pure client-side.
-- **Where:** decided — a **view/tab of the personal ("关注") experience**, a
-  toggle alongside the existing starred list (e.g. list ↔ "My Day"). Not a
-  top-level nav item: it is a re-layout of data the user already curated, so it
-  belongs under the starred view.
-- **Effort:** M.
-
-### 4. Pre-session reminders (PWA notifications)
-Local notifications for starred items: "your starred talk starts in N minutes",
-optional opening-ceremony / day-start nudges.
-
-- **Tech:** PWA is already installed; use the Notifications API + a scheduling
-  strategy that survives being backgrounded (service-worker timers / periodic
-  checks). No server required for local reminders.
-- **Data:** starred items × start times.
-- **Open questions:** permission UX; reliability of scheduled local notifications
-  across iOS/Android web; opt-in granularity (per-item vs global lead time).
-- **Effort:** M–L (notification reliability is the risk, not the data).
-
-### 5. Semantic search (offline)
-Natural-language search ("talks about in-memory computing", "what should an EDA
-PhD student attend") answered by **vector similarity over precomputed
-embeddings**, running fully in the browser.
-
-- **Build-time:** compute embeddings for each talk (title + abstract) during the
-  dataset build; ship vectors as a static asset. Client does nearest-neighbour
-  locally — no backend, works offline.
-- **Governed by AI toggle (#cross-cutting).** Falls back to global search (#1)
-  when off.
-- **Open questions:** embedding model + vector size vs. bundle weight; whether to
-  ship a tiny in-browser encoder for the *query* or precompute a query-time
-  approach.
-- **Effort:** L.
-
-### 6. One-line summaries (TL;DR)
-A model-generated one-sentence summary per talk, shown in lists so users can
-triage 293 talks without reading full 300–500-char abstracts. Full abstract
-remains one tap away.
-
-- **Build-time:** generate TL;DRs during the dataset build; store as static data
-  (a derived field kept *separate* from the untouched source abstract).
-- **Governed by AI toggle + disclaimer (#cross-cutting)** — explicit author
-  requirement: user chooses whether to see it, and it is clearly marked as
-  AI-generated / may contain errors / refer to original.
-- **Effort:** M (mostly pipeline + a display toggle).
-
-### 7. AI agenda planner ("Plan for me")
-User states an interest in natural language; the system selects the most relevant
-talks (via #5 embeddings), assembles a suggested personal agenda, and offers a
-one-tap "star all". Time-ordered output.
-
-- **Data:** embeddings (#5) + schedule times; builds on #3's day-timeline output.
-- **Governed by AI toggle + disclaimer.**
-- **Open questions:** how much runs in-browser vs. a build-time/precomputed step;
-  interaction model (chat box vs. guided picker).
-- **Effort:** L.
-
-### 8. Topic map / knowledge graph
-An interactive visualization of the program: speaker–organization–topic
-relationships, or a clustered map of this year's themes, as a "conference at a
-glance" highlight page.
-
-- **Data:** `organization`, `honorifics`, speakers, plus topic clustering derived
-  from embeddings (#5).
-- **Governed by AI toggle** for any AI-derived clustering/labels.
-- **Open questions:** graph vs. cluster-map; how much is precomputed at build.
-- **Effort:** L.
-
-### 9. Similar talks
-"If you liked this, you might also want" — embedding-based related-talk
-recommendations at the bottom of each talk/forum detail.
-
-- **Data:** embeddings (#5); precompute top-K neighbours at build time.
-- **Governed by AI toggle + disclaimer.**
-- **Effort:** S–M once #5 exists.
-
-**Dependency note:** #5 (embeddings) is the foundation for #7, #8, #9 and the
-optional layer of #1. Sequencing #5 early unlocks the rest cheaply.
-
----
+- Host scheduling, Codex account capacity and maintenance-job monitoring belong
+  to the local operating environment.
+- Missing official conference details belong to later data maintenance. Retain
+  them in the conference gap tracker; they are not unfinished app features.
+- Historical GitHub pull-request refs may retain pre-cleanup objects. The author
+  accepts this platform limitation; active branches and tags have been cleaned.
 
 ## 🔴 Declined (author will not add — do not re-propose)
 
