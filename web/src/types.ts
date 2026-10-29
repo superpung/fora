@@ -35,7 +35,7 @@ export interface Venue {
 
 export interface Organization {
   name: I18n;
-  role: "host" | "co_host" | "support" | "sponsor";
+  role: "host" | "co_host" | "support" | "sponsor" | "partner";
   sponsor_tier?: string | null;
   logo?: Asset;
 }
@@ -48,6 +48,8 @@ export interface Committee {
 }
 
 export interface Talk {
+  /** Explicit date within a forum that spans several days. */
+  day_date?: string | null;
   order?: number | null;
   title?: I18n;
   title_status?: Status;
@@ -94,6 +96,7 @@ export type BlockKind =
   | "other";
 
 export interface Break {
+  day_date?: string | null;
   name: string;
   start?: string | null;
   end?: string | null;
@@ -136,6 +139,8 @@ export interface Forum {
   sponsor?: string | null;
   series_part?: string | null;
   day_date?: string | null;
+  /** Per-day programme envelopes for a forum spanning several dates. */
+  sessions?: { date: string; start?: string | null; end?: string | null }[];
   /** A forum's own published window. Explicit null means not announced. */
   start?: string | null;
   end?: string | null;

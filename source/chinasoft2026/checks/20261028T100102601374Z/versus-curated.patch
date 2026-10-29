@@ -1,0 +1,1262 @@
+--- before/pages/agenda/academic-forum/templates/formal-methods-llm.html
++++ after/pages/agenda/academic-forum/templates/formal-methods-llm.html
+@@ -187,7 +187,7 @@
+     <section class="forum-section">
+         <h3>五、论坛组织委员会简介</h3>
+         <div class="committee-member">
+-            <h4>1. 论坛组委会：孙猛 （北京大学教授）</h4>
++            <h4>1. 论坛组委会：孙猛（北京大学教授）</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+                     <img src="./images/academic-forum/学术论坛/孙猛.png" alt="孙猛头像"
+@@ -200,7 +200,7 @@
+             </div>
+         </div>
+         <div class="committee-member">
+-            <h4>2. 论坛组委会：张民 （华东师范大学教授）</h4>
++            <h4>2. 论坛组委会：张民（华东师范大学教授）</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+                     <img src="./images/academic-forum/学术论坛/张民.png" alt="张民头像"
+--- before/pages/agenda/academic-forum/templates/hw-sw-collaborative-security.html
++++ after/pages/agenda/academic-forum/templates/hw-sw-collaborative-security.html
+@@ -284,7 +284,7 @@
+             </div>
+         </div>
+         <div class="committee-member">
+-            <h4>4. 论坛组委会：张瑶 天津大学</h4>
++            <h4>4. 论坛组委会：张瑶｜天津大学</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+                     <img src="./images/academic-forum/学术论坛/张瑶.png" alt="张瑶头像"
+--- before/pages/agenda/academic-forum/templates/llm-reliability-security.html
++++ after/pages/agenda/academic-forum/templates/llm-reliability-security.html
+@@ -82,7 +82,7 @@
+     <section class="forum-section">
+         <h3>四、论坛报告嘉宾简介</h3>
+         <div class="speaker-member">
+-            <h4>1. 报告人：李晓红 教授</h4>
++            <h4>1. 报告人：李晓红 职称：教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+                     <img src="./images/academic-forum/学术论坛/李晓红.png" alt="李晓红头像" onerror="this.src='./images/academic-forum/default.png'">
+@@ -95,7 +95,7 @@
+             </div>
+         </div>
+         <div class="speaker-member">
+-            <h4>2. 报告人：陈恺 研究员</h4>
++            <h4>2. 报告人：陈恺 职称：研究员</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+                     <img src="./images/academic-forum/学术论坛/陈恺.png" alt="陈恺头像" onerror="this.src='./images/academic-forum/default.png'">
+@@ -108,7 +108,7 @@
+             </div>
+         </div>
+         <div class="speaker-member">
+-            <h4>3. 报告人：谢肖飞 助理教授</h4>
++            <h4>3. 报告人：谢肖飞 职称：助理教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+                     <img src="./images/academic-forum/学术论坛/谢肖飞.png" alt="谢肖飞头像" onerror="this.src='./images/academic-forum/default.png'">
+@@ -121,7 +121,7 @@
+             </div>
+         </div>
+         <div class="speaker-member">
+-            <h4>4. 报告人：王浩宇 教授</h4>
++            <h4>4. 报告人：王浩宇 职称：教授</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+                     <img src="./images/academic-forum/学术论坛/王浩宇.png" alt="王浩宇头像" onerror="this.src='./images/academic-forum/default.png'">
+@@ -134,7 +134,7 @@
+             </div>
+         </div>
+         <div class="speaker-member">
+-            <h4>5. 报告人：王喆 副研究员</h4>
++            <h4>5. 报告人：王喆 职称：副研究员</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+                     <img src="./images/academic-forum/学术论坛/王喆.png" alt="王喆头像" onerror="this.src='./images/academic-forum/default.png'">
+@@ -151,7 +151,7 @@
+     <section class="forum-section">
+         <h3>五、论坛组织委员会简介</h3>
+         <div class="committee-member">
+-            <h4>1. 论坛组委会：孟国柱 研究员</h4>
++            <h4>1. 论坛组委会：孟国柱 职称：研究员</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+                     <img src="./images/academic-forum/学术论坛/孟国柱.png" alt="孟国柱头像" onerror="this.src='./images/academic-forum/default.png'">
+@@ -160,7 +160,7 @@
+             </div>
+         </div>
+         <div class="committee-member">
+-            <h4>2. 论坛组委会：王俊杰 研究员</h4>
++            <h4>2. 论坛组委会：王俊杰 职称：研究员</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+                     <img src="./images/academic-forum/学术论坛/王俊杰.png" alt="王俊杰头像" onerror="this.src='./images/academic-forum/default.png'">
+@@ -169,7 +169,7 @@
+             </div>
+         </div>
+         <div class="committee-member">
+-            <h4>3. 论坛组委会：廖鑫 教授</h4>
++            <h4>3. 论坛组委会：廖鑫 职称：教授</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+                     <img src="./images/academic-forum/学术论坛/廖鑫.png" alt="廖鑫头像" onerror="this.src='./images/academic-forum/default.png'">
+--- before/pages/agenda/academic-forum/templates/super-intelligence-software-stack.html
++++ after/pages/agenda/academic-forum/templates/super-intelligence-software-stack.html
+@@ -48,7 +48,7 @@
+                 <tr>
+                     <td style="white-space: nowrap;">14:05-14:15</td>
+                     <td>智能算力网络的探索与实践</td>
+-                    <td>金海<br>华中科技大学教授，中国计算机学会副理事长</td>
++                    <td>金海<br>华中科技大学教授、中国计算机学会副理事长</td>
+                 </tr>
+                 <tr>
+                     <td style="white-space: nowrap;">14:25-14:40</td>
+--- before/pages/agenda/academic-forum/templates/ubiquitous-os-open-source.html
++++ after/pages/agenda/academic-forum/templates/ubiquitous-os-open-source.html
+@@ -28,7 +28,7 @@
+             <thead>
+                 <tr>
+                     <th>时间</th>
+-                    <th>题目</th>
++                    <th>议 题</th>
+                     <th>报告嘉宾</th>
+                 </tr>
+             </thead>
+@@ -36,7 +36,7 @@
+                 <tr>
+                     <td style="white-space: nowrap;">15:20-15:30</td>
+                     <td>论坛开场、致辞</td>
+-                    <td>金海 副理事长；梅宏 院士</td>
++                    <td>金海 副理事长<br>梅宏 院士</td>
+                 </tr>
+                 <tr>
+                     <td style="white-space: nowrap;">15:30-15:50</td>
+--- before/pages/agenda/agenda-overview/index.html
++++ after/pages/agenda/agenda-overview/index.html
+@@ -32,10 +32,10 @@
+             </thead>
+             <tbody>
+                 <tr>
+-                    <th>日期</th>
+-                    <th>时间</th>
+-                    <th>会议安排</th>
+-                    <th>地点</th>
++                    <td>日期</td>
++                    <td>时间</td>
++                    <td>会议安排</td>
++                    <td>地点</td>
+                 </tr>
+                 <tr>
+                     <td>11月5日 周四</td>
+--- before/pages/agenda/committee-meeting/templates/system-software-closeout.html
++++ after/pages/agenda/committee-meeting/templates/system-software-closeout.html
+@@ -30,8 +30,8 @@
+             <thead>
+                 <tr>
+                     <th>时间</th>
+-                    <th>题目</th>
+-                    <th>报告嘉宾</th>
++                    <th>议题名称</th>
++                    <th>报告人</th>
+                 </tr>
+             </thead>
+             <tbody>
+--- before/pages/agenda/competition/index.html
++++ after/pages/agenda/competition/index.html
+@@ -1,44 +0,0 @@
+-<div class="banner">
+-    <img src="images/logo/banner.jpg" alt="Background" class="banner-background" />
+-</div>
+-
+-<!--插入CSS文件-->
+-<link rel="stylesheet" type="text/css" href="css/index.css">
+-<link rel="stylesheet" type="text/css" href="./css/agenda.css">
+-
+-<!-- 插入JavaScript文件 -->
+-<script src="./js/agenda.js"></script>
+-
+-
+-<div class="forum-container">
+-    <!-- 左侧导航栏 -->
+-    <div class="sidebar">
+-        <ul>
+-         
+-            <li><a href="#agenda/competition/rust-prototype-competition" class="sidebar-item"
+-                    onclick="loadAgenda('competition', 'rust-prototype-competition')">2026年Rust软件原型开发竞赛</a></li>
+-            <li><a href="#agenda/competition/software-repair-competition" class="sidebar-item"
+-                    onclick="loadAgenda('competition', 'software-repair-competition')">软件自动修复竞赛</a></li>
+-        </ul>
+-    </div>
+-
+-    <!-- 右侧内容区 -->
+-    <div id="agenda-content" class="agenda-content">
+-
+-
+-        <div class="container">
+-            <h2 class="section-title">竞赛</h2>
+-            <div class="section-title-en">Competition</div>
+-
+-            <p>请从左侧选择感兴趣的分论坛主题查看详情。</p>
+-
+-
+-        </div>
+-
+-    </div>
+-
+-
+-
+-</div>
+-
+-<p style="margin-bottom: 10rem;"></p>--- before/pages/agenda/competition/templates/rust-prototype-competition.html
++++ after/pages/agenda/competition/templates/rust-prototype-competition.html
+@@ -1,279 +0,0 @@
+-<div class="container">
+-
+-    <h2 class="section-title">2026年Rust软件原型开发竞赛</h2>
+-    <div class="section-title-en">竞赛通知及日程安排</div>
+-
+-    <section class="forum-section">
+-        <p>为促进Rust语言在高校教学、科研训练和工程实践中的应用，推动高校学生参与软件开发与开源协作，举办2026年Rust软件原型开发竞赛。竞赛以可构建、可运行、可演示的软件原型为主要成果，面向大专院校在读本科生和研究生开放。有关事项通知如下。
+-        </p>
+-        <p style="text-indent: 0;"><strong>决赛时间：</strong>2026年11月7日 15:20—18:20</p>
+-        <p style="text-indent: 0;"><strong>决赛地点：</strong>天津社会山国际会议中心酒店，二层15号会议室</p>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>一 竞赛内容</h3>
+-        <p>参赛者以Rust为主要开发语言，自主选题开展软件原型设计、实现与展示。项目方向包括基础软件、系统工具、开发者工具、云原生组件、嵌入式与物联网、数据处理、安全可信软件、教育科研工具及行业应用等。成果可以是应用、库、框架、插件、命令行工具、系统服务，也可以是已有开源项目的功能扩展或工程优化。
+-        </p>
+-        <p>Rust须在核心功能、关键性能路径、可靠性保障或安全边界中发挥实质作用。允许合理使用其他语言组件，但仅以少量Rust代码包装其他语言项目的作品，原则上不符合竞赛定位。评审重点关注技术实现、工程质量、运行验证及应用价值。
+-        </p>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>二 赛制设置</h3>
+-        <p>竞赛分为初赛与决赛。初赛根据参赛稿件、项目仓库、文档及运行结果进行评审，确定决赛入围名单。决赛根据最终提交版本，通过现场项目陈述、运行演示和问答进行评审。
+-        </p>
+-        <p>初赛与决赛均采用百分制，由客观评分50分和评委综合评分50分组成。初赛成绩仅用于入围，不带入决赛。决赛允许在初赛基础上完善项目，并提交主要改动说明。
+-        </p>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>三 赛事安排</h3>
+-        <p>以下日期均为2026年，时间均为北京时间。</p>
+-        <table class="forum-table">
+-            <thead>
+-                <tr>
+-                    <th>阶段</th>
+-                    <th>时间</th>
+-                    <th>安排</th>
+-                </tr>
+-            </thead>
+-            <tbody>
+-                <tr>
+-                    <td>启动发布</td>
+-                    <td style="white-space: nowrap;">9月1日</td>
+-                    <td>发布竞赛通知，开放报名。</td>
+-                </tr>
+-                <tr>
+-                    <td>报名与开发</td>
+-                    <td style="white-space: nowrap;">9月1日至10月31日</td>
+-                    <td>提交报名信息，开展项目开发。</td>
+-                </tr>
+-                <tr>
+-                    <td>初赛投稿截止</td>
+-                    <td style="white-space: nowrap;">10月31日24:00</td>
+-                    <td>通过邮件提交完整初赛材料。</td>
+-                </tr>
+-                <tr>
+-                    <td>初赛评审</td>
+-                    <td style="white-space: nowrap;">11月1日至3日</td>
+-                    <td>审查材料，评审项目及运行结果。</td>
+-                </tr>
+-                <tr>
+-                    <td>入围通知</td>
+-                    <td style="white-space: nowrap;">11月4日</td>
+-                    <td>通知入围队伍及决赛准备事项。</td>
+-                </tr>
+-                <tr>
+-                    <td>决赛准备</td>
+-                    <td style="white-space: nowrap;">11月4日至5日</td>
+-                    <td>提交最终版本及演示材料，确认到场人员与设备需求。</td>
+-                </tr>
+-                <tr>
+-                    <td>现场决赛</td>
+-                    <td style="white-space: nowrap;">11月7日<br>15:20—18:20</td>
+-                    <td>在天津社会山国际会议中心酒店会议中心三层多功能厅（C3）举行路演与答辩。</td>
+-                </tr>
+-                <tr>
+-                    <td>颁奖活动</td>
+-                    <td style="white-space: nowrap;">11月8日下午</td>
+-                    <td>拟在ChinaSoft 2026闭幕式举行。</td>
+-                </tr>
+-                <tr>
+-                    <td>结果公示</td>
+-                    <td style="white-space: nowrap;">评审完成后</td>
+-                    <td>拟获奖名单及成绩公示不少于3个工作日。</td>
+-                </tr>
+-            </tbody>
+-        </table>
+-        <p>决赛材料提交截止时刻、签到时间及出场顺序以组委会通知为准。颁奖时尚未完成公示或争议复核的，相关证书和奖励待结果确认后发放。
+-        </p>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>四 报名参赛</h3>
+-        <p>每支队伍由1至6名在读学生组成，鼓励个人独立参赛，允许跨学校、跨专业、跨年级组队。每队可配备0—2名指导教师，指导教师不计入队员人数，教师不能作为队员参赛。每名学生只能加入一支队伍。队员名单在初赛投稿截止时确定，此后不得新增或替换队员。
+-        </p>
+-        <p>队长按要求提交队伍及项目名称、学生成员名单、学籍、联系方式和分工等信息，并填写指导教师信息（如有）。报名表与参赛材料统一通过邮件提交。跨校队伍在邮件主题中使用队长所在学校名称，报名表中注明各成员所在学校。
+-        </p>
+-        <p style="text-indent: 0;">报名表：<a href="https://docs.qq.com/sheet/DVHFCcXZDcVdscEpW?tab=000002"
+-                target="_blank">Rust原型竞赛报名表</a></p>
+-        <p>每支入围队伍须至少有1名队员到决赛现场参加路演与答辩。
+-        </p>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>五 开发要求及提交材料</h3>
+-        <h4>必交材料与格式</h4>
+-        <p>初赛通过邮件投稿，至少提交以下三项。项目URL写入邮件正文，PDF稿件和报名表作为邮件附件提交。
+-        </p>
+-        <table class="forum-table">
+-            <thead>
+-                <tr>
+-                    <th>必交材料</th>
+-                    <th>内容与格式</th>
+-                </tr>
+-            </thead>
+-            <tbody>
+-                <tr>
+-                    <td style="white-space: nowrap;">参赛PDF稿件</td>
+-                    <td>中文，不少于6页，尽可能不多于12页。包括项目简介、研发背景、核心功能、技术实现、效果评估、相关工作及Rust核心作用。提交可正常阅读的PDF文件，避免大量堆放源代码。</td>
+-                </tr>
+-                <tr>
+-                    <td style="white-space: nowrap;">项目URL地址</td>
+-                    <td>提供可访问的项目代码仓库URL，并注明用于评审的完整commit ID或固定版本标签。项目主页、在线演示地址可另附，不能替代代码仓库地址。</td>
+-                </tr>
+-                <tr>
+-                    <td style="white-space: nowrap;">报名表</td>
+-                    <td>使用上述报名表填写本队信息，将本队报名内容导出或另存为PDF或XLSX附件。邮件附件应包含本队完整报名信息。</td>
+-                </tr>
+-            </tbody>
+-        </table>
+-        <p>项目仓库须提供与评审版本一致的源码、README、开源许可证及第三方来源说明、设计和使用说明、贡献指南、开发提交历史，以及至少1个覆盖核心功能的最小运行用例。README应列明环境与依赖、构建运行命令、用例入口、输入及预期输出或断言；上述技术材料通过仓库提供，无须重复作为邮件附件。暂不能公开仓库的，须在邮件中说明原因，并提供评审可访问的替代材料。依赖特殊硬件、数据或服务的项目，应同时说明运行条件及可用的验证方案。
+-        </p>
+-        <h4>邮件提交规范</h4>
+-        <p style="text-indent: 0;"><strong>收件邮箱：</strong>Rust_China_Contest@163.com</p>
+-        <p style="text-indent: 0;"><strong>初赛邮件主题：</strong>【Rust竞赛投稿】学校名称-队伍名称-项目名称</p>
+-        <p style="text-indent: 0;"><strong>决赛邮件主题：</strong>【Rust竞赛决赛材料】学校名称-队伍名称-项目名称</p>
+-        <p>邮件正文依次写明：学校、队伍名称、项目名称、学生成员名单、指导教师（如有）、联系人姓名、联系电话、联系邮箱、项目仓库URL、评审版本（commit
+-            ID或固定版本标签）、附件清单；有特殊运行需求或未开源部分的，另作简要说明。
+-        </p>
+-        <p style="text-indent: 0;"><strong>附件命名：</strong><br>
+-            学校名称_队伍名称_项目名称_参赛稿件.pdf<br>
+-            学校名称_队伍名称_项目名称_报名表.pdf（或.xlsx）
+-        </p>
+-        <p>截止前更新材料时，在原邮件主题末尾加“【更新】”，重新发送完整材料，并在正文注明更新内容。以截止前最后一次完整提交的版本为准。
+-        </p>
+-        <h4>决赛补充材料</h4>
+-        <p>入围队伍通过邮件提交最终版PDF稿件、项目URL及固定版本、路演PPT（PPTX或PDF格式），并在正文说明主要改动、到场队员姓名及演示设备需求。附件沿用上述命名方式，以“决赛稿件”或“路演PPT”标明材料类型。报名信息未变化的，无须重复提交报名表。
+-        </p>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>六 考核实施与决赛流程</h3>
+-        <p>组委会审核参赛资格及材料完整性，依据项目文档、代码和运行结果开展初赛评审。入围队伍按通知完成决赛材料提交与现场准备。
+-        </p>
+-        <p>决赛每队共15分钟，其中项目陈述与演示10分钟，评委问答5分钟。每队至少1名队员现场参加路演与答辩。
+-        </p>
+-        <table class="forum-table">
+-            <thead>
+-                <tr>
+-                    <th>环节</th>
+-                    <th>时长</th>
+-                    <th>主要内容</th>
+-                </tr>
+-            </thead>
+-            <tbody>
+-                <tr>
+-                    <td>项目陈述与演示</td>
+-                    <td style="white-space: nowrap;">每队10分钟</td>
+-                    <td>介绍项目目标、技术方案及Rust核心作用，展示核心功能的真实运行过程。</td>
+-                </tr>
+-                <tr>
+-                    <td>评委问答</td>
+-                    <td style="white-space: nowrap;">每队5分钟</td>
+-                    <td>围绕技术实现、工程验证及应用价值进行答辩。</td>
+-                </tr>
+-            </tbody>
+-        </table>
+-        <p>到场队员按公布的顺序参加路演与答辩。评委结合最终版本、现场展示及问答独立评分，由组委会汇总结果。涉及离线演示或特殊设备的，应在决赛前向组委会说明。
+-        </p>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>七 考核标准与成绩计算</h3>
+-        <p>初赛与决赛采用相同的评分维度和分值，满分100分。</p>
+-        <table class="forum-table">
+-            <thead>
+-                <tr>
+-                    <th>评分类型</th>
+-                    <th>评价维度</th>
+-                    <th>分值</th>
+-                </tr>
+-            </thead>
+-            <tbody>
+-                <tr>
+-                    <td rowspan="4">客观评分<br>50分</td>
+-                    <td>开源说明文档完整性</td>
+-                    <td>10分</td>
+-                </tr>
+-                <tr>
+-                    <td>项目维护与提交历史</td>
+-                    <td>10分</td>
+-                </tr>
+-                <tr>
+-                    <td>最小运行用例</td>
+-                    <td>20分</td>
+-                </tr>
+-                <tr>
+-                    <td>README清晰完整</td>
+-                    <td>10分</td>
+-                </tr>
+-                <tr>
+-                    <td rowspan="4">评委综合评分<br>50分</td>
+-                    <td>Rust技术深度与实现质量</td>
+-                    <td>20分</td>
+-                </tr>
+-                <tr>
+-                    <td>核心功能与工程验证</td>
+-                    <td>15分</td>
+-                </tr>
+-                <tr>
+-                    <td>技术方案与新增贡献</td>
+-                    <td>10分</td>
+-                </tr>
+-                <tr>
+-                    <td>应用场景与使用价值</td>
+-                    <td>5分</td>
+-                </tr>
+-            </tbody>
+-        </table>
+-        <p>总成绩＝客观评分＋有效评委综合评分的算术平均值。
+-        </p>
+-        <p>每个项目由不少于3名无利益冲突的有效评委独立评分，成绩保留两位小数。决赛重新评分；同分时依次比较客观评分、最小运行用例、项目维护与提交历史得分，仍相同的列为并列。
+-        </p>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>八 人工智能工具使用及过程真实性</h3>
+-        <p>允许合理使用AI工具。队伍须在稿件或仓库中简要说明所用工具、使用范围及人工审查方式；未使用的明确注明。参赛队伍对提交成果及演示内容负责，开发记录、测试数据和实验结果须真实，不得伪造或冒用。
+-        </p>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>九 奖项设置及结果公示</h3>
+-        <p>竞赛设置一等奖、二等奖、三等奖和优胜奖，具体名额及奖励形式在决赛前公布。拟于2026年11月8日下午ChinaSoft 2026闭幕式开展颁奖活动，并结合实际资源为优秀项目提供社区孵化、技术指导、展示交流等支持。
+-        </p>
+-        <p>拟获奖名单及成绩公示不少于3个工作日。队伍如有异议，可通过投稿与咨询邮箱提交事实与依据，由组委会组织复核；公示无异议或复核完成后确认获奖结果并发放证书和奖励。
+-        </p>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>十 成果权益与学术诚信</h3>
+-        <p>参赛者保留作品著作权，授予组委会非独占的评审、展示和宣传使用权。成果原则上开源；确有合理原因不能全部开源的，应事先说明并提供可供评审的材料。使用第三方代码、数据或素材的，须注明来源并遵守相应许可；基于既有项目开发的，须说明本次新增内容。
+-        </p>
+-        <p>参赛材料应与实际成果一致，不得抄袭、代做、冒用成果或伪造开发及运行记录。对涉嫌违规的情况，组委会将听取说明并组织复核；查实严重违规的，可取消参赛或获奖资格。
+-        </p>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>十一 竞赛组织</h3>
+-        <p style="text-indent: 0;"><strong>主办单位：</strong>曙光信息产业股份有限公司（中科曙光）</p>
+-        <p style="text-indent: 0;"><strong>承办单位：</strong>南京大学计算机学院</p>
+-        <p style="text-indent: 0;"><strong>协办单位：</strong>华为2012软件工程与开源实验室、Rust编程语言与应用虚拟教研室、开放原子开源基金会旋武社区教育工作组</p>
+-        <p>组委会统筹赛事组织、材料收集、现场安排与结果公示，评审委员会负责竞赛评审。评审实行利益冲突回避。
+-        </p>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>十二 报名渠道及联系方式</h3>
+-        <p style="text-indent: 0;">报名表：<a href="https://docs.qq.com/sheet/DVHFCcXZDcVdscEpW?tab=000002"
+-                target="_blank">Rust原型竞赛报名表</a></p>
+-        <p style="text-indent: 0;"><strong>投稿与咨询邮箱：</strong>Rust_China_Contest@163.com</p>
+-        <p style="text-indent: 0;"><strong>联系人：</strong>燕老师</p>
+-        <p style="text-indent: 0;"><strong>参赛选手交流QQ群：</strong>1044822438</p>
+-        <p>报名和参赛材料统一通过邮件提交。后续赛事通知、决赛安排及公示信息通过邮件和参赛选手交流QQ群发布。未尽事宜由组委会另行通知。
+-        </p>
+-        <p style="text-indent: 0;"><strong>Rust软件原型开发竞赛组委会</strong></p>
+-    </section>
+-
+-</div>--- before/pages/agenda/competition/templates/software-repair-competition.html
++++ after/pages/agenda/competition/templates/software-repair-competition.html
+@@ -1,197 +0,0 @@
+-<div class="container">
+-
+-    <h2 class="section-title">软件自动修复竞赛</h2>
+-    <div class="section-title-en">竞赛通知及日程安排</div>
+-
+-    <section class="forum-section">
+-        <h3>一、竞赛目的</h3>
+-        <p>软件自动修复技术旨在通过自动分析软件缺陷并生成有效补丁，降低软件调试与维护成本，提升软件开发效率与质量保障能力。近年来，随着软件工程、程序语言与人工智能技术的快速发展，特别是大语言模型在代码理解与生成领域展现出的强大能力，自动修复领域迎来了新的发展机遇。同时，如何面向真实复杂的软件缺陷提升补丁正确性、修复效率，以及修复结果的可靠性，仍是该领域的重要挑战。
+-        </p>
+-        <p>2026年软件自动修复竞赛鼓励参赛团队综合运用程序分析、测试、搜索优化以及人工智能等技术，设计和实现高质量的软件缺陷自动修复方法与工具。竞赛旨在搭建一个技术交流与实践平台，通过统一的任务与评测促进不同修复技术的交流比较，探索自动修复技术的新方法与新应用，共同推动软件缺陷修复技术的发展。
+-        </p>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>二、竞赛日程</h3>
+-        <table class="forum-table">
+-            <thead>
+-                <tr>
+-                    <th>时间</th>
+-                    <th>内容</th>
+-                </tr>
+-            </thead>
+-            <tbody>
+-                <tr>
+-                    <td style="white-space: nowrap;">2026年9月1日</td>
+-                    <td>竞赛报名启动</td>
+-                </tr>
+-                <tr>
+-                    <td style="white-space: nowrap;">2026年10月30日</td>
+-                    <td>初赛作品提交截止</td>
+-                </tr>
+-                <tr>
+-                    <td style="white-space: nowrap;">2026年11月4日</td>
+-                    <td>公布入围名单</td>
+-                </tr>
+-                <tr>
+-                    <td>现场决赛<br>2026年11月7日，15:20-18:30<br>天津社会山国际会议中心 二层5号会议室</td>
+-                    <td>决赛（现场竞赛）</td>
+-                </tr>
+-            </tbody>
+-        </table>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>三、竞赛答辩</h3>
+-        <p><strong>时间：</strong>2026年11月8日，9:00-12:00</p>
+-        <p><strong>地点：</strong>天津社会山国际会议中心，二层5号会议室</p>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>四、参赛对象与报名方式</h3>
+-        <p>比赛面向全国高校及相关科研、产业团队（学生、教师或其他企事业单位的研究人员），鼓励个人报名，也允许组队参赛（可同单位或跨单位组队）。组队参赛有3点要求：（1）一个参赛队伍人员上限不超过3人；（2）允许每队最多设
+-            1 位指导教师，且不计入 3
+-            人上限；（3）队伍需明确每位成员的具体贡献，提供个人贡献描述文档，并在答辩中进行贡献陈述。注意：比赛不仅会对团队，也会对每位团队成员进行评价。每位参赛人员只能参加1支队伍。往届竞赛中已获奖的修复工具，不得重复参赛。
+-        </p>
+-        <p>请参赛队以队伍为单位，在报名截止日前将报名表发送至赛事报名邮箱 yusenwang@whu.edu.cn，联系人：王钰森。报名表模板下载链接：<a
+-                href="https://pan.quark.cn/s/b7e48bb52be4"
+-                target="_blank">https://pan.quark.cn/s/b7e48bb52be4</a>，提取码：5HNC。
+-        </p>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>五、参赛费用与奖项设置</h3>
+-        <p>比赛不收取任何报名费、参赛费、评审费和服务费等费用。参赛选手在决赛期间及颁奖典礼期间产生的交通、会议、食宿等费用自理。
+-        </p>
+-        <p>所有奖项在中国软件大会2026现场发布，在决赛完成后统一颁奖。评奖过程中保持单位回避原则，即评委不为相同单位的参赛队伍评分。奖项包括特等奖（不超过3个参赛队伍）、一等奖和二等奖。
+-        </p>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>六、知识产权与学术诚信</h3>
+-        <p>1.除另行说明，所有作品知识产权归参赛队所有。作品提交后，赛事组织方有使用权。</p>
+-        <p>2.参赛队应自觉遵守知识产权有关法规。参赛队未经相关单位许可，不得公开发布或者共享涉及该单位的知识产权作品及软件。如产生不良后果大赛主办方、组委会等均不负任何法律责任。
+-        </p>
+-        <p>3.参赛队应自觉遵守学术诚信。禁止代码及技术抄袭，禁止利用规则或者技术漏洞等不良途径提高排名，一经发现取消所有比赛成绩。
+-        </p>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>七、竞赛组织委员会</h3>
+-        <h4>主办单位</h4>
+-        <p>曙光信息产业股份有限公司（中科曙光）</p>
+-
+-        <h4>承办单位</h4>
+-        <p>武汉大学</p>
+-        <p>北京交通大学</p>
+-        <p>天津大学</p>
+-
+-        <h4>竞赛组织委员会</h4>
+-        <ul class="committee-list">
+-            <li><span class="member-name">辛奇</span><span class="member-unit">（武汉大学）</span></li>
+-            <li><span class="member-name">王博</span><span class="member-unit">（北京交通大学）</span></li>
+-            <li><span class="member-name">姜佳君</span><span class="member-unit">（天津大学）</span></li>
+-            <li><span class="member-name">玄跻峰</span><span class="member-unit">（武汉大学）</span></li>
+-        </ul>
+-
+-        <h4>竞赛组织委员会秘书</h4>
+-        <ul class="committee-list">
+-            <li><span class="member-name">王钰森</span><span class="member-unit">（武汉大学）</span></li>
+-            <li><span class="member-name">李丰杰</span><span class="member-unit">（天津大学）</span></li>
+-            <li><span class="member-name">罗清凡</span><span class="member-unit">（武汉大学）</span></li>
+-        </ul>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h2>竞赛组织委员会简介</h3>
+-            <div class="committee-member">
+-                <h4>1. 竞赛主席：辛奇 副教授</h4>
+-                <div class="committee-profile">
+-                    <div class="committee-image">
+-                        <img src="./images/academic-forum/竞赛论坛/辛奇.png" alt="辛奇头像"
+-                            onerror="this.src='./images/academic-forum/default.png'">
+-                    </div>
+-                    <p><strong>简介：</strong>辛奇，武汉大学计算机学院副教授，博士生导师。研究方向为软件测试与调试、软件优化、程序分析。致力于研发智能化技术，提升软件质量和安全。近期工作聚焦软件漏洞修复、利用链分析、软件消胀（software
+-                        debloating）。入选湖北省创新人才计划，武汉市青年朝阳计划，获得过包括ACM-Wuhan新星、ACM
+-                        Sigsoft杰出论文奖、武汉英才、等奖项。担任CCF系统软件、软件工程专委会执行委员，CCF中国软件大会论坛主席与出版主席，ICSE、FSE等会议程序委员会成员，以及TSE、TOSEM等期刊审稿人。
+-                    </p>
+-                </div>
+-            </div>
+-            <div class="committee-member">
+-                <h4>2. 竞赛主席：王博 副教授</h4>
+-                <div class="committee-profile">
+-                    <div class="committee-image">
+-                        <img src="./images/academic-forum/竞赛论坛/王博.png" alt="王博头像"
+-                            onerror="this.src='./images/academic-forum/default.png'">
+-                    </div>
+-                    <p><strong>简介：</strong>王博，北京交通大学计算机科学与技术学院副教授、博士生导师，CCF高级会员、CCF系统软件专委执行委员、CCF开源发展委员会执行委员。分别于北京大学、中国科学技术大学和中南大学获得博士、硕士和学士学位。研究兴趣为软件测试与调试。为
+-                        GCC、LLVM、Rustc等重要编译器挖掘300多个缺陷。在
+-                        OOPSLA、FSE、ASE、ISSTA、TSE、TOSEM、软件学报等软件领域重要会议期刊发表二十余篇论文。担任ACM Computing
+-                        Survey、TSE、TOSEM、TDSC、TPAMI、软件学报等多个期刊审稿人，担任 ICSE、FSE、ASE、ISSTA
+-                        等会议程序委员会成员。获得 ISSTA ACM SIGSOFT杰出论文奖，ICSME IEEE TCSE
+-                        杰出论文奖，全国大学生系统能力大赛优秀指导教师，北京市高校优质教案，北京交通大学本科教学成果等奖励。</p>
+-                </div>
+-            </div>
+-            <div class="committee-member">
+-                <h4>3. 竞赛主席：姜佳君 副教授</h4>
+-                <div class="committee-profile">
+-                    <div class="committee-image">
+-                        <img src="./images/academic-forum/竞赛论坛/姜佳君.png" alt="姜佳君头像"
+-                            onerror="this.src='./images/academic-forum/default.png'">
+-                    </div>
+-                    <p><strong>简介：</strong>姜佳君，天津大学英才副教授、博士生导师，软件理论系主任，CCF专业会员、CCF软件工程专委执行委员、办公室副主任。2020年毕业于北京大学获得博士学位，主要研究领域为智能化软件工程，包括软件缺陷自动检测、缺陷自动定位与修复、深度学习系统调试和程序变换等。主持国家自然科学基金面上项目、青年科学基金项目（C类）、天津市重点项目、参与国家重点研发计划项目等十余项。相关研究成果发表软件工程领域高质量会议和期刊论文三十余篇。获中国电子学会科学技术奖自然科学一等奖、IEEE
+-                        TCSE杰出论文奖。担任ISSTA 2019志愿者主席、《软件学报》和《Journal of Software:
+-                        Evolution and Process》专刊编委，长期担任领域权威期刊和会议审稿人。</p>
+-                </div>
+-            </div>
+-            <div class="committee-member">
+-                <h4>4. 竞赛主席：玄跻峰 教授</h4>
+-                <div class="committee-profile">
+-                    <div class="committee-image">
+-                        <img src="./images/academic-forum/竞赛论坛/玄跻峰.png" alt="玄跻峰头像"
+-                            onerror="this.src='./images/academic-forum/default.png'">
+-                    </div>
+-                    <p><strong>简介：</strong>玄跻峰，武汉大学教授、博士生导师，计算机学院副院长。中国计算机学会（CCF）杰出会员，武汉计算机软件工程学会常务理事，武汉市开源创新中心（软件工程）主任。主要研究领域为软件分析与测试。在软件工程权威期刊会议发表论文100余篇。论文获ACM
+-                        SIGSOFT、IEEE TCSE等杰出论文奖。担任全国演化计算与学习会议（ECOLE）2021主席，CCF中国软件大会（ChinaSoft）2025本地主席。入选IEEE
+-                        ICSME杰出服务奖、武汉大学查全性教授1977奖教金、华为开发者布道师、首批中国科协青年人才托举工程；获CCF
+-                        NASAC青年软件创新奖、CCF优秀博士论文奖。</p>
+-                </div>
+-            </div>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h2 style="text-align: center;">中国软件大会第二届软件自动修复竞赛技术方案</h2>
+-        <h4>一、评价方式基本说明</h4>
+-        <p>比赛要求各参赛队综合运用软件测试、软件分析、软件调试等技术构思并实现一个缺陷自动修复系统，尽可能修复比赛所指定的缺陷。为展示参赛队的技术水平，进入决赛的队伍还需修复现场指定的缺陷，临时调整修复工具。除了本技术方案特别要求、规定和禁止的事项外，各参赛队可以自行决定使用的编程语言、操作系统、工具、自动定位方案等技术细节。
+-        </p>
+-
+-        <h4>二、竞赛基准数据集</h4>
+-        <p>比赛使用公开缺陷基准数据集Defects4J_Trans。数据集的仓库地址：<a href="https://github.com/Feng-Jay/Defects4J_Trans"
+-                target="_blank">https://github.com/Feng-Jay/Defects4J_Trans</a>。该数据集包含483个真实Java历史缺陷，分别来自17个开源项目，数据集使用问题咨询请发送邮件到大赛官方邮箱。参赛队可以使用任意的自动定位技术，不得以人工方式提供定位结果。各参赛队在所有缺陷上尝试修复后提交结果。每个缺陷的修复时间上限为
+-            1
+-            小时，超过时限仍未产生可行解的，该缺陷则视为修复失败。针对每个缺陷，参赛队提交修复工具产生的第一个可行解，不得人工筛选正确补丁以及人工排除过拟合补丁。参赛队应提交所有产生的补丁文件，包括过拟合的修复结果。修复结果将由比赛组委会检查。此外，多人参赛的队伍还需提供一个文档，对每位成员的具体贡献进行描述，包括但不限于方法设计、工具开发、实验评估、文档撰写。除提供贡献文档外，进入决赛并参加答辩的队伍，还需在答辩环节进行团队个人贡献陈述。
+-        </p>
+-
+-        <h4>三、初赛评分标准</h4>
+-        <p>比赛初赛同时考虑修复召回率（recall）与精确率（precision），以F1分数计分，即：</p>
+-        <div style="text-align: center; margin: 1rem 0;">
+-            <img src="./images/academic-forum/竞赛论坛/公式.png" alt="F1分数计算公式" style="max-width: 100%;">
+-        </div>
+-        <p>各个参赛队需要在初赛提交截至之前提交结果，比赛允许多次提交，以最后一次提交结果为准。所有参赛队将按照提交结果按上述公式计算分数。比赛组委会检查提交结果后，根据得分结果从高到低排名，决定决赛入围队伍。
+-        </p>
+-
+-        <h4>四、决赛评分标准</h4>
+-        <p>进入决赛的队伍，需全部队员参加2026年度中国软件大会，并在现场进行决赛。决赛提供新的缺陷，由决赛队伍在会议现场修复并提交修复结果。决赛队伍需要准备现场答辩，介绍参赛作品并陈述成员贡献。比赛评委会委员综合修复方法的设计和实现、方法的有效性和实用性、团队贡献等进行评分。现场答辩的评分标准在决赛阶段公布。
+-        </p>
+-        <p>比赛总成绩为100分，计分公式为（初赛分数×40% + 决赛现场修复分数×40% + 答辩分数×20% ）。</p>
+-
+-        <h4>五、初赛作品提交说明</h4>
+-        <p>参赛在初赛作品提交截止日期之前将实验结果通过邮件发送到竞赛官方邮箱（yusenwang@whu.edu.cn）。参赛队提交标准diff格式的补丁（即补丁包含所在文件和行号信息，文件减号行代表原缺陷代码，加号行代表工具提供的补丁代码）。此外，还需提供能够反映实际开发过程的源代码、设计文档、运行日志及执行录像等可证明补丁真实性的支撑材料。比赛不以修复速度为评判标准，但是鼓励参赛队提交所用修复时间。
+-        </p>
+-
+-        <h4>六、其他</h4>
+-        <p>如果比赛队伍使用第三方工具或者借鉴他人部分源码，必须在提交文件中说明。参赛队应严守学术诚信，一经发现代码抄袭或者技术抄袭等学术不端行为，取消参赛队资格。
+-        </p>
+-    </section>
+-
+-</div>--- before/pages/agenda/education-forum/templates/special-software-college.html
++++ after/pages/agenda/education-forum/templates/special-software-college.html
+@@ -167,7 +167,7 @@
+     <section class="forum-section">
+         <h3>五、论坛组织委员会简介</h3>
+         <div class="committee-member">
+-            <h4>1. 论坛组委会：赵来平 （天津大学 软件学院副院长）</h4>
++            <h4>1. 论坛组委会：赵来平（天津大学软件学院副院长）</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+                     <img src="./images/academic-forum/教育论坛/赵来平.png" alt="赵来平头像"
+@@ -177,7 +177,7 @@
+             </div>
+         </div>
+         <div class="committee-member">
+-            <h4>2. 论坛组委会：姜佳君 （天津大学 软件学院系主任）</h4>
++            <h4>2. 论坛组委会：姜佳君（天津大学软件学院系主任）</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+                     <img src="./images/people/committee/姜佳君.png" alt="姜佳君头像"
+--- before/pages/agenda/education-forum/templates/system-software-education.html
++++ after/pages/agenda/education-forum/templates/system-software-education.html
+@@ -104,7 +104,7 @@
+                 <tr>
+                     <td>11:25-12:00</td>
+                     <td>交流讨论：AI时代系统软件教育的能力培养与范式变革</td>
+-                    <td>主持：陈向群<br>北京大学；全体报告嘉宾及参会者</td>
++                    <td>主持：陈向群<br>北京大学<br>全体报告嘉宾及参会者</td>
+                 </tr>
+             </tbody>
+         </table>
+--- before/pages/agenda/industry-forum/templates/intelligent-system-foundation.html
++++ after/pages/agenda/industry-forum/templates/intelligent-system-foundation.html
+@@ -64,7 +64,7 @@
+                 <tr>
+                     <td style="white-space: nowrap;">15:30–15:50</td>
+                     <td>双反馈驱动的蚂蚁阿福APP</td>
+-                    <td>岳赟（蚂蚁）</td>
++                    <td>岳赟<br>蚂蚁</td>
+                 </tr>
+                 <tr>
+                     <td style="white-space: nowrap;">15:50–16:10</td>
+--- before/pages/callforpaper.html
++++ after/pages/callforpaper.html
+@@ -0,0 +1,111 @@
++<div class="banner">
++    <img src="images/logo/banner.jpg" alt="Background" class="banner-background" />
++</div>
++
++<!--插入CSS文件-->
++<link rel="stylesheet" type="text/css" href="css/index.css">
++<link rel="stylesheet" type="text/css" href="./css/callforpaper.css">
++
++<!-- 插入js文件 -->
++<script src="./js/cfp-navi.js"></script>
++
++<!-- js route -->
++<div id="cfp-content" class="cfp-content">
++
++    <div class="cfp-intro">
++        <h2>征稿通知</h2>
++        <p>会议有多个Track，分别接受论文投稿，录用论文将由《软件学报》、《计算机学报》等期刊出版。</p>
++        <p style="color: red;"> 内容持续更新中 </p>
++    </div>
++
++    <div class="cards-container">
++
++        <a href="#callforpaper/demo" class="card card-white" onclick="loadCFP('demo')">
++            <div class="card-content">
++                <h2 class="card-title">征稿Track持续更新中</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期待定</p>
++                </div>
++            </div>
++        </a>
++
++        <a href="#callforpaper/IRE" class="card card-white" onclick="loadCFP('IRE')">
++            <div class="card-content">
++                <h2 class="card-title">S01 智能化需求工程</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期: 2026年8月17日</p>
++                </div>
++            </div>
++        </a>
++
++
++        <a href="#callforpaper/D3LR" class="card card-white" onclick="loadCFP('D3LR')">
++            <div class="card-content">
++                <h2 class="card-title">S02 数据驱动的软件缺陷检测、定位与修复</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期: 2026年8月17日</p>
++                </div>
++            </div>
++        </a>
++
++
++        <a href="#callforpaper/AIOS" class="card card-white" onclick="loadCFP('AIOS')">
++            <div class="card-content">
++                <h2 class="card-title">S03 人工智能操作系统及其安全</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期: 2026年8月17日</p>
++                </div>
++            </div>
++        </a>
++
++
++        <a href="#callforpaper/formal-methods" class="card card-white" onclick="loadCFP('formal-methods')">
++            <div class="card-content">
++                <h2 class="card-title">S04 形式化方法与应用</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期: 2026年8月17日</p>
++                </div>
++            </div>
++        </a>
++
++
++        <a href="#callforpaper/AIOps" class="card card-white" onclick="loadCFP('AIOps')">
++            <div class="card-content">
++                <h2 class="card-title">S05 大模型驱动的智能软件系统开发运维</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期: 2026-08-30（含）</p>
++                </div>
++            </div>
++        </a>
++
++        <a href="#callforpaper/Agent" class="card card-white" onclick="loadCFP('Agent')">
++            <div class="card-content">
++                <h2 class="card-title">S06 智能体高效运行的关键技术</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期: 2026年9月1日</p>
++                </div>
++            </div>
++        </a>
++
++        <a href="#callforpaper/supply-chain-security" class="card card-white"
++            onclick="loadCFP('supply-chain-security')">
++            <div class="card-content">
++                <h2 class="card-title">S07 智能化软硬件供应链安全分析技术</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期: 2026年9月11日</p>
++                </div>
++            </div>
++        </a>
++
++        <a href="#callforpaper/industrial-software-engineering-cfp" class="card card-white"
++            onclick="loadCFP('industrial-software-engineering-cfp')">
++            <div class="card-content">
++                <h2 class="card-title">S08 智能化工业软件工程：大模型驱动的开发、保障与治理</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期: 2026年9月1日</p>
++                </div>
++            </div>
++        </a>
++
++    </div>
++</div>--- before/pages/history.html
++++ after/pages/history.html
+@@ -0,0 +1,258 @@
++<!--插入CSS文件-->
++<link rel="stylesheet" type="text/css" href="css/index.css">
++<link rel="stylesheet" type="text/css" href="./css/history.css">
++
++
++<!-- Banner -->
++<div class="banner">
++    <img src="images/logo/banner.jpg" alt="Background" class="banner-background" />
++</div>
++
++<div class="container">
++
++    <!-- 历届主办高校 -->
++    <div class="history-title">
++        <h2>历届 CCF ChinaSoft FMAC 承办高校</h2>
++
++        <!-- <p style="text-align: center; font-weight: bold; color: #003a70; text-indent: 0em; margin-bottom: 1rem;"> “江城多山，珞珈独秀；山上有黉，武汉大学。” </p> -->
++
++        <p>CCF ChinaSoft/Chinasoft/FMAC 历届大会均由系统软件、软件工程或计算机科学领域的知名高校承办，包括北京大学、南京大学、国防科技大学、中国科学院、浙江大学、上海交通大学、哈尔滨工业大学等。</p>
++        <p>2026年，CCF ChinaSoft 大会在天津大学举办，依托其深厚的学术底蕴和优美的校园环境，汇聚国内外软件领域的专家学者，共同探讨软件技术的发展前沿，促进学术交流与合作。</p>
++    </div>
++
++    <div class="university-grid">
++        <!-- 第一行学校 -->
++
++        <!-- Peking University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/北京大学.png" alt="北京大学">
++            <div class="university-name">Chinasoft'02-04<br>北京大学</div>
++        </div>
++
++        <!-- Nanjing University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/南京大学.png" alt="南京大学">
++            <div class="university-name">Chinasoft'05<br>南京大学</div>
++        </div>
++
++        <!-- National University of Defense Technology -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/国防科技大学.png" alt="国防科技大学">
++            <div class="university-name">Chinasoft'06<br>国防科技大学</div>
++        </div>
++
++        <!-- Xi'an Jiaotong University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/西安交通大学.png" alt="西安交通大学">
++            <div class="university-name">Chinasoft'07<br>西安交通大学</div>
++        </div>
++
++        <!-- 华南理工大学 -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/华南理工大学.png" alt="华南理工大学">
++            <div class="university-name">Chinasoft'08<br>华南理工大学</div>
++        </div>
++
++        <!-- Northeastern University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/东北大学.png" alt="东北大学">
++            <div class="university-name">Chinasoft'09<br>东北大学</div>
++        </div>
++
++        <!-- Suzhou University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/苏州大学.png" alt="苏州大学">
++            <div class="university-name">Chinasoft'10<br>苏州大学</div>
++        </div>
++
++        <!-- Jilin University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/吉林大学.png" alt="吉林大学">
++            <div class="university-name">Chinasoft'11<br>吉林大学</div>
++        </div>
++
++        <!-- Nanjing University of Aeronautics and Astronautics -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/南航.png" alt="南京航空航天大学">
++            <div class="university-name">Chinasoft'12<br>南京航空航天大学</div>
++        </div>
++
++        <!-- Tianjin University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/天津大学.png" alt="天津大学">
++            <div class="university-name">Chinasoft'13<br>天津大学</div>
++        </div>
++
++        <!-- Guangxi Normal University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/广西师大.png" alt="广西师范大学">
++            <div class="university-name">Chinasoft'14<br>广西师范大学</div>
++        </div>
++
++        <!-- Huazhong University of Science and Technology -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/华中科大.png" alt="华中科技大学">
++            <div class="university-name">Chinasoft'15<br>华中科技大学</div>
++        </div>
++
++        <!-- Yunnan University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/云南大学.png" alt="云南大学">
++            <div class="university-name">Chinasoft'16<br>云南大学</div>
++        </div>
++
++        <!-- Chinese Academy of Sciences -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/中科院软件所.png" alt="中科院">
++            <div class="university-name">FMAC'16<br>中科院软件所</div>
++        </div>
++
++        <!-- Harbin Institute of Technology -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/哈工大.png" alt="哈尔滨工业大学">
++            <div class="university-name">Chinasoft'17<br>哈尔滨工业大学</div>
++        </div>
++
++        <!-- National University of Defense Technology -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/国防科技大学.png" alt="国防科技大学">
++            <div class="university-name">FMAC'17<br>国防科技大学</div>
++        </div>
++
++        <!-- Shenzhen University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/深圳大学.png" alt="深圳大学">
++            <div class="university-name">Chinasoft'18<br>深圳大学</div>
++        </div>
++
++        <!-- Southwest University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/西南大学.png" alt="西南大学">
++            <div class="university-name">FMAC'18<br>西南大学</div>
++        </div>
++
++        <!-- Zhejiang University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/浙江大学.png" alt="浙江大学">
++            <div class="university-name">Chinasoft'19<br>浙江大学</div>
++        </div>
++
++        <!-- East China Normal University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/华东师大.png" alt="华东师范大学">
++            <div class="university-name">FMAC'19<br>华东师范大学</div>
++        </div>
++
++        <!-- Shanghai Jiao Tong University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/上海交通大学.png" alt="上海交通大学">
++            <div class="university-name">FMAC'19<br>上海交通大学</div>
++        </div>
++
++        <!-- Chongqing University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/重庆大学.png" alt="重庆大学">
++            <div class="university-name">ChinaSoft'20<br>重庆大学</div>
++        </div>
++
++        <!-- Xidian University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/西安电子科技大学.png" alt="西安电子科技大学">
++            <div class="university-name">ChinaSoft'21<br>西安电子科技大学</div>
++        </div>
++
++        <!-- Fudan University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/复旦大学.png" alt="复旦大学">
++            <div class="university-name">ChinaSoft'22&23<br>复旦大学</div>
++        </div>
++
++        <!-- Xidian University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/西安电子科技大学.png" alt="西安电子科技大学">
++            <div class="university-name">ChinaSoft'24<br>西安电子科技大学</div>
++        </div>
++
++        <!-- Wuhan University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/武汉大学.png" alt="武汉大学">
++            <div class="university-name">ChinaSoft'25<br>武汉大学</div>
++        </div>
++
++        <div class="university-item  highlight">
++            <img class="university-logo" src="images/history/university/天津大学.png" alt="天津大学">
++            <div class="university-name">Chinasoft'26<br>天津大学</div>
++        </div>
++        <div class="university-item  highlight">
++            <img class="university-logo" src="images/history/university/南开大学.png" alt="南开大学">
++            <div class="university-name">Chinasoft'26<br>南开大学</div>
++        </div>
++    </div>
++
++    <!-- 历届回顾 -->
++    <div class="section-title">历届 CCF ChinaSoft Chinasoft FMAC 回顾 </div>
++
++    <div class="photo-grid">
++
++        <div class="photo-item">
++            <img src="images/history/photos/photo-13.jpg" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-14.jpg" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-15.jpg" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-18.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-19.jpg" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-20.jpg" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-21.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-22.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-23.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-24.jpg" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-25.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-26.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-27.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-28.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-29.jpg" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-30.jpg" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-31.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-32.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-33.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-34.png" alt="历届会议照片">
++        </div>
++    </div>
++</div>
+--- before/pages/intro/committee-finance.html
++++ after/pages/intro/committee-finance.html
+@@ -5,7 +5,7 @@
+     <!-- <h2>财务委员会委员</h2>
+     <p>梁鹏、帅子琦、陈晨</p> -->
+ 
+-    <div class="section-title">财务委员会负责人</div>
++    <div class="section-title">负责人</div>
+ 
+     <div class="committee-grid">
+ 
+--- before/pages/intro/committee-publication.html
++++ after/pages/intro/committee-publication.html
+@@ -12,17 +12,19 @@
+ 
+ <div class="member">
+     <!-- 出版委员会主席 -->
+-    <div class="section-title">出版委员会负责人</div>
++    <div class="section-title">负责人</div>
+     <div class="committee-grid">
+         <div class="committee-item">
+             <img class="committee-img" src="images/people/committee/姜佳君.png" alt="姜佳君"
+                 onerror="this.src='./images/academic-forum/default.png'">
+             <div class="committee-name">姜佳君</div>
++            <div class="committee-unit">天津大学</div>
+         </div>
+         <div class="committee-item">
+             <img class="committee-img" src="images/people/committee/张静宣.png" alt="张静宣"
+                 onerror="this.src='./images/academic-forum/default.png'">
+             <div class="committee-name">张静宣</div>
++            <div class="committee-unit">南京航空航天大学</div>
+         </div>
+     </div>
+ 
+--- before/pages/intro/committee-publicity.html
++++ after/pages/intro/committee-publicity.html
+@@ -12,21 +12,24 @@
+ 
+ <div class="member">
+     <!-- 宣传委员会主席 -->
+-    <div class="section-title">宣传委员会负责人</div>
++    <div class="section-title">负责人</div>
+     <div class="committee-grid">
+         <div class="committee-item">
+             <img class="committee-img" src="images/people/committee/王栋.png" alt="王栋"
+                 onerror="this.src='./images/academic-forum/default.png'">
+             <div class="committee-name">王栋</div>
++            <div class="committee-unit">天津大学</div>
+         </div>
+         <div class="committee-item">
+             <img class="committee-img" src="images/people/committee/辜文蔚.png" alt="辜文蔚"
+                 onerror="this.src='./images/academic-forum/default.png'">
+             <div class="committee-name">辜文蔚</div>
++            <div class="committee-unit">南开大学</div>
+         </div>
+         <div class="committee-item">
+             <img class="committee-img" src="./images/people/committee/张重群.png" alt="张重群">
+             <div class="committee-name">张重群</div>
++            <div class="committee-unit">南开大学</div>
+         </div>
+     </div>
+ 
+--- before/pages/intro/committee-sponsorship.html
++++ after/pages/intro/committee-sponsorship.html
+@@ -2,18 +2,40 @@
+ 
+ <div class="member">
+     <!-- 赞助委员会主席 -->
+-    <div class="section-title">赞助委员会负责人</div>
++    <div class="section-title">负责人</div>
+     <div class="committee-grid">
+         <div class="committee-item">
+             <img class="committee-img" src="images/people/committee/赵英全.png" alt="赵英全"
+                 onerror="this.src='./images/academic-forum/default.png'">
+             <div class="committee-name">赵英全</div>
++            <div class="committee-unit">天津大学</div>
+         </div>
+         <div class="committee-item">
+             <img class="committee-img" src="images/people/committee/王伟.png" alt="王伟"
+                 onerror="this.src='./images/academic-forum/default.png'">
+             <div class="committee-name">王伟</div>
++            <div class="committee-unit">南开大学</div>
+         </div>
+ 
+     </div>
++
++    <br>
++    <br>
++
++    <!-- 赞助委员会委员 -->
++    <div class="section-title">委员</div>
++    <div class="committee-grid">
++        <div class="committee-item">
++            <img class="committee-img" src="images/people/committee/黄丽丽.jpg" alt="黄丽丽"
++                onerror="this.src='./images/academic-forum/default.png'">
++            <div class="committee-name">黄丽丽</div>
++            <div class="committee-unit">天津大学</div>
++        </div>
++        <div class="committee-item">
++            <img class="committee-img" src="images/people/committee/陆彦州.jpg" alt="陆彦州"
++                onerror="this.src='./images/academic-forum/default.png'">
++            <div class="committee-name">陆彦州</div>
++            <div class="committee-unit">天津大学</div>
++        </div>
++    </div>
+ </div>--- before/pages/intro/committee-steering.html
++++ after/pages/intro/committee-steering.html
+@@ -23,8 +23,8 @@
+             <div class="committee-name">柴立元 校长</div>
+         </div>
+         <div class="committee-item">
+-            <img class="committee-img" src="images/people/陈雨露.png" alt="陈雨露">
+-            <div class="committee-name">陈雨露 校长</div>
++            <img class="committee-img" src="images/people/committee/龚克.png" alt="龚克">
++            <div class="committee-name">龚克 校长</div>
+         </div>
+ 
+     </div>
+--- before/pages/intro/committee-volunteer.html
++++ after/pages/intro/committee-volunteer.html
+@@ -2,17 +2,19 @@
+ 
+ <div class="member">
+     <!-- 志愿者组织委员会主席 -->
+-    <div class="section-title">志愿者组织委员会负责人</div>
++    <div class="section-title">负责人</div>
+     <div class="committee-grid">
+         <div class="committee-item">
+             <img class="committee-img" src="images/people/committee/姜艳杰.png" alt="姜艳杰"
+                 onerror="this.src='./images/academic-forum/default.png'">
+             <div class="committee-name">姜艳杰</div>
++            <div class="committee-unit">天津大学</div>
+         </div>
+         <div class="committee-item">
+             <img class="committee-img" src="images/people/committee/孙永谦.png" alt="孙永谦"
+                 onerror="this.src='./images/academic-forum/default.png'">
+             <div class="committee-name">孙永谦</div>
++            <div class="committee-unit">南开大学</div>
+         </div>
+ 
+     </div>
+--- before/pages/register.html
++++ after/pages/register.html
+@@ -126,8 +126,8 @@
+                     <tr>
+                         <th>附加活动名称</th>
+                         <th>参会者身份</th>
+-                        <th>09.1-10.20</th>
+-                        <th>10.21-11.8</th>
++                        <th>09.1-10.25</th>
++                        <th>10.26-11.8</th>
+                     </tr>
+                 </thead>
+                 <tbody>

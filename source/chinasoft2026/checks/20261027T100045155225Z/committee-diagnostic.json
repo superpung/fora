@@ -1,0 +1,50 @@
+[
+  {
+    "role": "本地咨询委员会主席",
+    "edge": "first",
+    "opacity": "1",
+    "name": "李克秋天津大学",
+    "top": 349.5,
+    "containerOpacity": "1"
+  },
+  {
+    "role": "本地咨询委员会主席",
+    "edge": "last",
+    "opacity": "1",
+    "name": "张玉志南开大学",
+    "top": 414,
+    "containerOpacity": "1"
+  },
+  {
+    "role": "本地咨询委员会委员",
+    "edge": "first",
+    "opacity": "1",
+    "name": "张加万天津大学",
+    "top": 554.5,
+    "containerOpacity": "1"
+  },
+  {
+    "role": "本地咨询委员会委员",
+    "edge": "last",
+    "opacity": "1",
+    "name": "李海丰中国民航大学",
+    "top": 390,
+    "containerOpacity": "1"
+  },
+  {
+    "role": "本地组织委员会委员",
+    "edge": "first",
+    "opacity": "1",
+    "name": "海永陈海永河北工业大学",
+    "top": 350,
+    "containerOpacity": "1"
+  },
+  {
+    "role": "本地组织委员会委员",
+    "edge": "last",
+    "opacity": "1",
+    "name": "才华刘才华中国民航大学",
+    "top": 389.5,
+    "containerOpacity": "1"
+  }
+]

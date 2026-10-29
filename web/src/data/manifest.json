@@ -49,5 +49,22 @@
     "keynotes": 9,
     "days": 4,
     "updated_at": "2026-10-14"
+  },
+  {
+    "id": "chinasoft2026",
+    "name": {
+      "zh": "2026 CCF中国软件大会",
+      "en": "ChinaSoft 2026"
+    },
+    "edition": null,
+    "start_date": "2026-11-05",
+    "end_date": "2026-11-08",
+    "timezone": "Asia/Shanghai",
+    "city": "天津",
+    "venue": "天津社会山国际会议中心酒店",
+    "forums": 67,
+    "keynotes": 0,
+    "days": 4,
+    "updated_at": "2026-10-29"
   }
 ]

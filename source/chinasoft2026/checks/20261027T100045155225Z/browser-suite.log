@@ -1,0 +1,133 @@
+$ node tests/conference-core.mjs && node tests/conference-ui.mjs && node tests/permalink-scroll.mjs && node tests/conference-audit.mjs && node tests/conference-gaps.mjs && node tests/multiday.mjs && node tests/live-clock.mjs
+PASS live navigation enters the conference at venue midnight
+PASS legacy windows inherit, explicitly unknown windows do not
+PASS undated forums remain browsable
+PASS registration appears in Now
+PASS keynote blocks need no fabricated reports
+PASS meeting clocks override parent windows
+PASS reports extending beyond forum windows remain live with all speakers
+PASS unknown clocks never become live
+PASS date-only follows cannot displace a running follow
+PASS date-only fallback retains unknown time
+PASS empty forums export their own window without a talk anchor
+PASS only explicit source keys separate namesakes
+PASS legacy name follows preserve their original scope
+PASS legacy follows retain keyed, name-only and keynote-only appearances
+PASS speaker migration is idempotent
+PASS unfollowing one namesake survives migration and agenda resolution
+PASS legacy follows migrate when the person appears only in keynotes
+PASS unresolved legacy follows survive until their source records arrive
+PASS venue midnight is independent of the device timezone
+PASS exports resolve venue clocks to exact instants
+PASS reminders skip unknown clocks and announce actual remaining minutes
+PASS one multi-day forum remains one identity with two scheduled appearances
+PASS day 0 projects only its reports and breaks without losing canonical objects
+PASS day 0 selects its own live report
+PASS day 0 selects its own break
+PASS day 1 projects only its reports and breaks without losing canonical objects
+PASS day 1 selects its own live report
+PASS day 1 selects its own break
+PASS following one forum exports both dates with stable report indices
+PASS calendar export uses the second report date
+PASS speaker directory retains the second date
+PASS untimed reports borrow their own dated session window
+PASS empty multi-day forums export each published session separately
+PASS live navigation leaves the conference at venue midnight
+PASS 34 shared regressions without new conference data
+PASS desktop empty forum: 14:10–15:10 in all/board/day
+PASS desktop empty forum: 14:00 in all/board/day
+PASS desktop empty forum: unknown clock in all/board/day
+PASS mobile empty forum: 14:10–15:10 in all/board/day
+PASS mobile empty forum: 14:00 in all/board/day
+PASS mobile empty forum: unknown clock in all/board/day
+PASS migrated follows preserve namesakes and keynotes, and an unfollow survives reload and reminder resolution
+PASS desktop long committee remains visible at both ends
+PASS mobile long committee remains visible at both ends
+PASS 8 shared UI regressions
+PASS U1#talk-7: rectTop=71.8 want≈72 drift=0.2 [at-top]
+PASS U1#talk-22: rectTop=487.3 want≈72 drift=415.3 [maxed-visible]
+PASS S8#talk-4: rectTop=72.4 want≈72 drift=0.4 [at-top]
+PASS S8#talk-13: rectTop=367.7 want≈72 drift=295.7 [maxed-visible]
+PASS R13#talk-6: rectTop=72.4 want≈72 drift=0.4 [at-top]
+PASS R13#talk-18: rectTop=97.5 want≈72 drift=25.5 [maxed-visible]
+PASS E3#talk-2: rectTop=72.0 want≈72 drift=0.0 [at-top]
+PASS E3#talk-7: rectTop=123.3 want≈72 drift=51.3 [maxed-visible]
+
+All permalink-scroll checks passed.
+PASS 604 local portrait assets load and decode
+PASS P1: 10 programme rows and speaker identities
+PASS P2: 8 programme rows and speaker identities
+PASS P3: 10 programme rows and speaker identities
+PASS P4: 8 programme rows and speaker identities
+PASS R1: 7 programme rows and speaker identities
+PASS R2: 16 programme rows and speaker identities
+PASS R3: 9 programme rows and speaker identities
+PASS R4: 6 programme rows and speaker identities
+PASS R5: 6 programme rows and speaker identities
+PASS R6: 6 programme rows and speaker identities
+PASS R7: 8 programme rows and speaker identities
+PASS R8: 18 programme rows and speaker identities
+PASS R9: 8 programme rows and speaker identities
+PASS R10: 8 programme rows and speaker identities
+PASS R11: 3 programme rows and speaker identities
+PASS R12: 6 programme rows and speaker identities
+PASS R13: 18 programme rows and speaker identities
+PASS R14: 9 programme rows and speaker identities
+PASS R15: 6 programme rows and speaker identities
+PASS R16: 7 programme rows and speaker identities
+PASS R17: 8 programme rows and speaker identities
+PASS R18: 8 programme rows and speaker identities
+PASS R19: 5 programme rows and speaker identities
+PASS R20: 5 programme rows and speaker identities
+PASS R21: 7 programme rows and speaker identities
+PASS R22: 7 programme rows and speaker identities
+PASS R23: 6 programme rows and speaker identities
+PASS R24: 6 programme rows and speaker identities
+PASS R26: 6 programme rows and speaker identities
+PASS R27: 5 programme rows and speaker identities
+PASS R28: 6 programme rows and speaker identities
+PASS R29: 5 programme rows and speaker identities
+PASS R30: 6 programme rows and speaker identities
+PASS R31: 8 programme rows and speaker identities
+PASS R32: 10 programme rows and speaker identities
+PASS R34: 7 programme rows and speaker identities
+PASS R35: 4 programme rows and speaker identities
+PASS S1: 9 programme rows and speaker identities
+PASS S2: 13 programme rows and speaker identities
+PASS S3: 12 programme rows and speaker identities
+PASS S4: 14 programme rows and speaker identities
+PASS S5: 11 programme rows and speaker identities
+PASS S6: 15 programme rows and speaker identities
+PASS S7: 12 programme rows and speaker identities
+PASS S8: 9 programme rows and speaker identities
+PASS E1: 6 programme rows and speaker identities
+PASS E2: 10 programme rows and speaker identities
+PASS E3: 7 programme rows and speaker identities
+PASS E4: 7 programme rows and speaker identities
+PASS E5: 5 programme rows and speaker identities
+PASS I1: 6 programme rows and speaker identities
+PASS I2: 8 programme rows and speaker identities
+PASS I3: 7 programme rows and speaker identities
+PASS I4: 7 programme rows and speaker identities
+PASS I5: 5 programme rows and speaker identities
+PASS I6: 6 programme rows and speaker identities
+PASS I7: 7 programme rows and speaker identities
+PASS I8: 8 programme rows and speaker identities
+PASS C2: 2 programme rows and speaker identities
+PASS T1: 20 programme rows and speaker identities
+node:internal/modules/run_main:122
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: false == true
+    at checkLocalCommittees (file:///data/workspace/conf-scheduler/.automation/chinasoft2026/worktrees/20261027T100001Z/web/tests/conference-audit.mjs:47:7)
+    at async file:///data/workspace/conf-scheduler/.automation/chinasoft2026/worktrees/20261027T100001Z/web/tests/conference-audit.mjs:232:7 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '=='
+}
+
+Node.js v22.14.0
+[ELIFECYCLE] Test failed. See above for more details.

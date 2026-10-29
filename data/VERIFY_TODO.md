@@ -57,3 +57,9 @@ kept verbatim with a `flag`; only change if the organizers correct the poster.
   CF33#6, CF34#6, CF41#6.
 - Invited guests with a bio but no talk title/abstract: CF04#6 (曾晓洋),
   CF07#9 (倪家伟).
+
+## ChinaSoft 2026
+
+The current source gaps, unresolved identities, deliberate data corrections and
+mandatory refresh checklist are maintained separately in
+[CHINASOFT2026_GAPS.md](CHINASOFT2026_GAPS.md). Read it before every refresh.

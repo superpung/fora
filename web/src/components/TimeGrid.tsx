@@ -10,7 +10,7 @@ import Icon from "../components/Icon";
 import StarButton from "../components/StarButton";
 import type { Block, Forum, Talk } from "../types";
 import { titleLine } from "../lib/talk-title";
-import { speakerNames } from "../lib/data";
+import { forumOnDate, speakerNames } from "../lib/data";
 
 // A time-vs-forum matrix for one day's parallel forum sessions: the vertical
 // axis is wall-clock time, each forum is a column, and every talk sits near its
@@ -133,11 +133,13 @@ export default function TimeGrid({
     return segBreaks.filter((b) => b.s >= s0 && b.s <= e0);
   };
   for (const e of block.forum_entries ?? []) {
-    const forum = forumsByCode[e.forum_code];
-    if (!forum) continue;
+    const original = forumsByCode[e.forum_code];
+    if (!original) continue;
+    const forum = forumOnDate(original, date);
     const timed: { t: Talk; i: number; s: number; e: number }[] = [];
     let untimed = 0;
-    (forum.talks ?? []).forEach((t, i) => {
+    (forum.talks ?? []).forEach((t) => {
+      const i = (original.talks ?? []).indexOf(t);
       if (!t.start) {
         untimed += 1;
         return;

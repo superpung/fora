@@ -37,6 +37,19 @@ export function speakerNames(t: Talk): string {
   return (t.speakers ?? []).map((s) => s.name).filter(Boolean).join("、");
 }
 
+export function talkDate(forum: Forum, talk: Talk): string | null | undefined {
+  return "day_date" in talk ? talk.day_date : forum.day_date;
+}
+
+/** Project a multi-day forum without changing its canonical talk objects/IDs. */
+export function forumOnDate(forum: Forum, date?: string | null): Forum {
+  if (!forum.sessions?.length || !date) return forum;
+  const session = forum.sessions.find((s) => s.date === date);
+  return { ...forum, day_date: date, start: session?.start ?? null, end: session?.end ?? null,
+    talks: (forum.talks ?? []).filter((t) => talkDate(forum, t) === date),
+    breaks: (forum.breaks ?? []).filter((b) => b.day_date === date) };
+}
+
 export type SpeakerCategory = "university" | "research" | "industry" | "other";
 
 // Classify a person by their affiliation string. Order matters: a corporate
@@ -195,7 +208,7 @@ export interface ConferenceViews {
   keynoteEntries: KeynoteEntry[];
   keynoteById: Map<string, KeynoteEntry>;
   mainVenueName: string;
-  forumTimeWindow: (forum: Forum) => { start?: string | null; end?: string | null };
+  forumTimeWindow: (forum: Forum, talk?: Talk) => { start?: string | null; end?: string | null };
   speakerList: SpeakerAgg[];
   speakerCategoryCounts: Record<SpeakerCategory, number>;
 }
@@ -249,7 +262,8 @@ export function buildConferenceViews(raw: unknown): ConferenceViews {
         .filter((b) => b.kind === "keynotes")
         .flatMap((b) => b.talks ?? []);
       const slots: ForumSlot[] = (forumBlock?.forum_entries ?? []).map((e) => {
-        const f = forumsByCode[e.forum_code];
+        const original = forumsByCode[e.forum_code];
+        const f = original ? forumOnDate(original, d.date) : undefined;
         return {
           code: e.forum_code,
           room: e.room ?? f?.room ?? null,
@@ -306,7 +320,8 @@ export function buildConferenceViews(raw: unknown): ConferenceViews {
 
   const forumBlockByDate = new Map(scheduleDays.map((d) => [d.date, d.forumBlock]));
   // A forum talk has no time of its own; fall back to its forum block's window.
-  const forumTimeWindow = (forum: Forum): { start?: string | null; end?: string | null } => {
+  const forumTimeWindow = (forum: Forum, talk?: Talk): { start?: string | null; end?: string | null } => {
+    if (talk) forum = forumOnDate(forum, talkDate(forum, talk));
     if ("start" in forum || "end" in forum) return { start: forum.start, end: forum.end };
     const blk = forum.day_date ? forumBlockByDate.get(forum.day_date) : undefined;
     return { start: blk?.start, end: blk?.end };
@@ -345,7 +360,7 @@ export function buildConferenceViews(raw: unknown): ConferenceViews {
           talkTitle: t.title,
           titleStatus: t.title_status,
           room: f.room,
-          date: f.day_date,
+          date: talkDate(f, t),
           period: f.session_period,
           start: t.start,
           end: t.end,

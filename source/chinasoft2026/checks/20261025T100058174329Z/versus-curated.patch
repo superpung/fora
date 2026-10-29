@@ -1,0 +1,542 @@
+--- before/pages/agenda/academic-forum/templates/formal-methods-llm.html
++++ after/pages/agenda/academic-forum/templates/formal-methods-llm.html
+@@ -187,7 +187,7 @@
+     <section class="forum-section">
+         <h3>五、论坛组织委员会简介</h3>
+         <div class="committee-member">
+-            <h4>1. 论坛组委会：孙猛 （北京大学教授）</h4>
++            <h4>1. 论坛组委会：孙猛（北京大学教授）</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+                     <img src="./images/academic-forum/学术论坛/孙猛.png" alt="孙猛头像"
+@@ -200,7 +200,7 @@
+             </div>
+         </div>
+         <div class="committee-member">
+-            <h4>2. 论坛组委会：张民 （华东师范大学教授）</h4>
++            <h4>2. 论坛组委会：张民（华东师范大学教授）</h4>
+             <div class="committee-profile">
+                 <div class="committee-image">
+                     <img src="./images/academic-forum/学术论坛/张民.png" alt="张民头像"
+--- before/pages/agenda/academic-forum/templates/hw-sw-collaborative-security.html
++++ after/pages/agenda/academic-forum/templates/hw-sw-collaborative-security.html
+@@ -221,6 +221,7 @@
+                 <div class="committee-image">
+                     <img src="./images/academic-forum/学术论坛/吕勇强.png" alt="吕勇强头像" onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
++                <p><strong>角色：</strong>论坛主席（唯一主负责人）</p>
+                 <p><strong>简介：</strong>吕勇强，天津大学讲席教授、网络安全学院执行院长，教育部长江学者、CCF杰出会员。长期从事处理器芯片安全研究，作为主要贡献人之一发现并披露了 Intel、ARM 可信执行环境中密码实现模块的安全漏洞"骑士"（CVE-2019-11157）及 Nvidia GPU 漏洞"闪电"等。担任 IEEE TCAD、ACM IMUT 期刊副主编；担任 CCF 网络与系统安全专委会执委、集成电路设计专委会执委、体系结构专委会执委等。</p>
+             </div>
+         </div>
+@@ -230,6 +231,7 @@
+                 <div class="committee-image">
+                     <img src="./images/academic-forum/学术论坛/何家骥.png" alt="何家骥头像" onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
++                <p><strong>角色：</strong>论坛主持人、组委会成员</p>
+                 <p><strong>简介：</strong>天津大学教授、博导，院长助理，国家重点研发计划青年科学家项目首席，中国计算机学会网络与系统安全专委会执行委员，中国密码学会密码芯片专委会委员，天津市企业科技特派员、"科技副总"。主要研究领域为数字集成电路（全流程）设计、处理器漏洞挖掘、硬件形式化验证、密码芯片设计与安全分析。</p>
+             </div>
+         </div>
+@@ -239,6 +241,7 @@
+                 <div class="committee-image">
+                     <img src="./images/academic-forum/学术论坛/胡强.png" alt="胡强头像" onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
++                <p><strong>角色：</strong>论坛主持人、组委会成员</p>
+                 <p><strong>简介：</strong>胡强，天津大学英才副教授/特聘研究员，博士生导师，主要研究方向为可信人工智能、软件安全以及智能软件工程。在ICSE、S&amp;P等会议和TOSEM、TSE等期刊发表论文60余篇，获得ICSE 2025杰出论文奖，ML4CS最佳论文奖。主持科技部重点研发计划课题、国自然青年C类等项目。长期担任ICSE、ASE、ISSTA等CCF A类会议程序委员会委员。</p>
+             </div>
+         </div>
+@@ -248,6 +251,7 @@
+                 <div class="committee-image">
+                     <img src="./images/academic-forum/学术论坛/张瑶.png" alt="张瑶头像" onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
++                <p><strong>角色：</strong>论坛主持人、组委会成员</p>
+                 <p><strong>简介：</strong>于天津大学获得工学硕士和工学博士学位。研究方向包括程序分析、程序测试、大模型安全，以及智慧软件工程等。在上述领域国际高水平期刊与会议上发表论文30余篇，包括ASE、NDSS、FSE、TSE、TMC、TPDS、AAAI等CCF-A类期刊和会议。曾在CCF-A类会议ASE上以第一作者身份获得杰出论文奖、并获得ACM天津分会优秀博士论文奖。担任TSE、TDSC、TIFS、TMC等期刊审稿人，并在AAAI、NeurIPS、IJCAI等国际顶级会议担任PC。同时，主持了国家青年基金并参与了多项国家自然科学基金面上项目以及国家重点研发项目。</p>
+             </div>
+         </div>
+--- before/pages/agenda/academic-forum/templates/ubiquitous-os-open-source.html
++++ after/pages/agenda/academic-forum/templates/ubiquitous-os-open-source.html
+@@ -28,7 +28,7 @@
+             <thead>
+                 <tr>
+                     <th>时间</th>
+-                    <th>题目</th>
++                    <th>议 题</th>
+                     <th>报告嘉宾</th>
+                 </tr>
+             </thead>
+@@ -36,7 +36,7 @@
+                 <tr>
+                     <td style="white-space: nowrap;">15:20-15:30</td>
+                     <td>论坛开场、致辞</td>
+-                    <td>金海 副理事长；梅宏 院士</td>
++                    <td>金海 副理事长<br>梅宏 院士</td>
+                 </tr>
+                 <tr>
+                     <td style="white-space: nowrap;">15:30-15:50</td>
+--- before/pages/agenda/agenda-overview/index.html
++++ after/pages/agenda/agenda-overview/index.html
+@@ -32,10 +32,10 @@
+             </thead>
+             <tbody>
+                 <tr>
+-                    <th>日期</th>
+-                    <th>时间</th>
+-                    <th>会议安排</th>
+-                    <th>地点</th>
++                    <td>日期</td>
++                    <td>时间</td>
++                    <td>会议安排</td>
++                    <td>地点</td>
+                 </tr>
+                 <tr>
+                     <td>11月5日 周四</td>
+--- before/pages/agenda/education-forum/templates/system-software-education.html
++++ after/pages/agenda/education-forum/templates/system-software-education.html
+@@ -104,7 +104,7 @@
+                 <tr>
+                     <td>11:25-12:00</td>
+                     <td>交流讨论：AI时代系统软件教育的能力培养与范式变革</td>
+-                    <td>主持：陈向群<br>北京大学；全体报告嘉宾及参会者</td>
++                    <td>主持：陈向群<br>北京大学<br>全体报告嘉宾及参会者</td>
+                 </tr>
+             </tbody>
+         </table>
+--- before/pages/agenda/industry-forum/templates/intelligent-system-foundation.html
++++ after/pages/agenda/industry-forum/templates/intelligent-system-foundation.html
+@@ -64,7 +64,7 @@
+                 <tr>
+                     <td style="white-space: nowrap;">15:30–15:50</td>
+                     <td>双反馈驱动的蚂蚁阿福APP</td>
+-                    <td>岳赟（蚂蚁）</td>
++                    <td>岳赟<br>蚂蚁</td>
+                 </tr>
+                 <tr>
+                     <td style="white-space: nowrap;">15:50–16:10</td>
+--- before/pages/callforpaper.html
++++ after/pages/callforpaper.html
+@@ -0,0 +1,111 @@
++<div class="banner">
++    <img src="images/logo/banner.jpg" alt="Background" class="banner-background" />
++</div>
++
++<!--插入CSS文件-->
++<link rel="stylesheet" type="text/css" href="css/index.css">
++<link rel="stylesheet" type="text/css" href="./css/callforpaper.css">
++
++<!-- 插入js文件 -->
++<script src="./js/cfp-navi.js"></script>
++
++<!-- js route -->
++<div id="cfp-content" class="cfp-content">
++
++    <div class="cfp-intro">
++        <h2>征稿通知</h2>
++        <p>会议有多个Track，分别接受论文投稿，录用论文将由《软件学报》、《计算机学报》等期刊出版。</p>
++        <p style="color: red;"> 内容持续更新中 </p>
++    </div>
++
++    <div class="cards-container">
++
++        <a href="#callforpaper/demo" class="card card-white" onclick="loadCFP('demo')">
++            <div class="card-content">
++                <h2 class="card-title">征稿Track持续更新中</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期待定</p>
++                </div>
++            </div>
++        </a>
++
++        <a href="#callforpaper/IRE" class="card card-white" onclick="loadCFP('IRE')">
++            <div class="card-content">
++                <h2 class="card-title">S01 智能化需求工程</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期: 2026年8月17日</p>
++                </div>
++            </div>
++        </a>
++
++
++        <a href="#callforpaper/D3LR" class="card card-white" onclick="loadCFP('D3LR')">
++            <div class="card-content">
++                <h2 class="card-title">S02 数据驱动的软件缺陷检测、定位与修复</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期: 2026年8月17日</p>
++                </div>
++            </div>
++        </a>
++
++
++        <a href="#callforpaper/AIOS" class="card card-white" onclick="loadCFP('AIOS')">
++            <div class="card-content">
++                <h2 class="card-title">S03 人工智能操作系统及其安全</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期: 2026年8月17日</p>
++                </div>
++            </div>
++        </a>
++
++
++        <a href="#callforpaper/formal-methods" class="card card-white" onclick="loadCFP('formal-methods')">
++            <div class="card-content">
++                <h2 class="card-title">S04 形式化方法与应用</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期: 2026年8月17日</p>
++                </div>
++            </div>
++        </a>
++
++
++        <a href="#callforpaper/AIOps" class="card card-white" onclick="loadCFP('AIOps')">
++            <div class="card-content">
++                <h2 class="card-title">S05 大模型驱动的智能软件系统开发运维</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期: 2026-08-30（含）</p>
++                </div>
++            </div>
++        </a>
++
++        <a href="#callforpaper/Agent" class="card card-white" onclick="loadCFP('Agent')">
++            <div class="card-content">
++                <h2 class="card-title">S06 智能体高效运行的关键技术</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期: 2026年9月1日</p>
++                </div>
++            </div>
++        </a>
++
++        <a href="#callforpaper/supply-chain-security" class="card card-white"
++            onclick="loadCFP('supply-chain-security')">
++            <div class="card-content">
++                <h2 class="card-title">S07 智能化软硬件供应链安全分析技术</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期: 2026年9月11日</p>
++                </div>
++            </div>
++        </a>
++
++        <a href="#callforpaper/industrial-software-engineering-cfp" class="card card-white"
++            onclick="loadCFP('industrial-software-engineering-cfp')">
++            <div class="card-content">
++                <h2 class="card-title">S08 智能化工业软件工程：大模型驱动的开发、保障与治理</h2>
++                <div class="date-container">
++                    <p class="date">截稿日期: 2026年9月1日</p>
++                </div>
++            </div>
++        </a>
++
++    </div>
++</div>--- before/pages/history.html
++++ after/pages/history.html
+@@ -0,0 +1,258 @@
++<!--插入CSS文件-->
++<link rel="stylesheet" type="text/css" href="css/index.css">
++<link rel="stylesheet" type="text/css" href="./css/history.css">
++
++
++<!-- Banner -->
++<div class="banner">
++    <img src="images/logo/banner.jpg" alt="Background" class="banner-background" />
++</div>
++
++<div class="container">
++
++    <!-- 历届主办高校 -->
++    <div class="history-title">
++        <h2>历届 CCF ChinaSoft FMAC 承办高校</h2>
++
++        <!-- <p style="text-align: center; font-weight: bold; color: #003a70; text-indent: 0em; margin-bottom: 1rem;"> “江城多山，珞珈独秀；山上有黉，武汉大学。” </p> -->
++
++        <p>CCF ChinaSoft/Chinasoft/FMAC 历届大会均由系统软件、软件工程或计算机科学领域的知名高校承办，包括北京大学、南京大学、国防科技大学、中国科学院、浙江大学、上海交通大学、哈尔滨工业大学等。</p>
++        <p>2026年，CCF ChinaSoft 大会在天津大学举办，依托其深厚的学术底蕴和优美的校园环境，汇聚国内外软件领域的专家学者，共同探讨软件技术的发展前沿，促进学术交流与合作。</p>
++    </div>
++
++    <div class="university-grid">
++        <!-- 第一行学校 -->
++
++        <!-- Peking University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/北京大学.png" alt="北京大学">
++            <div class="university-name">Chinasoft'02-04<br>北京大学</div>
++        </div>
++
++        <!-- Nanjing University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/南京大学.png" alt="南京大学">
++            <div class="university-name">Chinasoft'05<br>南京大学</div>
++        </div>
++
++        <!-- National University of Defense Technology -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/国防科技大学.png" alt="国防科技大学">
++            <div class="university-name">Chinasoft'06<br>国防科技大学</div>
++        </div>
++
++        <!-- Xi'an Jiaotong University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/西安交通大学.png" alt="西安交通大学">
++            <div class="university-name">Chinasoft'07<br>西安交通大学</div>
++        </div>
++
++        <!-- 华南理工大学 -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/华南理工大学.png" alt="华南理工大学">
++            <div class="university-name">Chinasoft'08<br>华南理工大学</div>
++        </div>
++
++        <!-- Northeastern University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/东北大学.png" alt="东北大学">
++            <div class="university-name">Chinasoft'09<br>东北大学</div>
++        </div>
++
++        <!-- Suzhou University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/苏州大学.png" alt="苏州大学">
++            <div class="university-name">Chinasoft'10<br>苏州大学</div>
++        </div>
++
++        <!-- Jilin University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/吉林大学.png" alt="吉林大学">
++            <div class="university-name">Chinasoft'11<br>吉林大学</div>
++        </div>
++
++        <!-- Nanjing University of Aeronautics and Astronautics -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/南航.png" alt="南京航空航天大学">
++            <div class="university-name">Chinasoft'12<br>南京航空航天大学</div>
++        </div>
++
++        <!-- Tianjin University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/天津大学.png" alt="天津大学">
++            <div class="university-name">Chinasoft'13<br>天津大学</div>
++        </div>
++
++        <!-- Guangxi Normal University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/广西师大.png" alt="广西师范大学">
++            <div class="university-name">Chinasoft'14<br>广西师范大学</div>
++        </div>
++
++        <!-- Huazhong University of Science and Technology -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/华中科大.png" alt="华中科技大学">
++            <div class="university-name">Chinasoft'15<br>华中科技大学</div>
++        </div>
++
++        <!-- Yunnan University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/云南大学.png" alt="云南大学">
++            <div class="university-name">Chinasoft'16<br>云南大学</div>
++        </div>
++
++        <!-- Chinese Academy of Sciences -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/中科院软件所.png" alt="中科院">
++            <div class="university-name">FMAC'16<br>中科院软件所</div>
++        </div>
++
++        <!-- Harbin Institute of Technology -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/哈工大.png" alt="哈尔滨工业大学">
++            <div class="university-name">Chinasoft'17<br>哈尔滨工业大学</div>
++        </div>
++
++        <!-- National University of Defense Technology -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/国防科技大学.png" alt="国防科技大学">
++            <div class="university-name">FMAC'17<br>国防科技大学</div>
++        </div>
++
++        <!-- Shenzhen University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/深圳大学.png" alt="深圳大学">
++            <div class="university-name">Chinasoft'18<br>深圳大学</div>
++        </div>
++
++        <!-- Southwest University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/西南大学.png" alt="西南大学">
++            <div class="university-name">FMAC'18<br>西南大学</div>
++        </div>
++
++        <!-- Zhejiang University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/浙江大学.png" alt="浙江大学">
++            <div class="university-name">Chinasoft'19<br>浙江大学</div>
++        </div>
++
++        <!-- East China Normal University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/华东师大.png" alt="华东师范大学">
++            <div class="university-name">FMAC'19<br>华东师范大学</div>
++        </div>
++
++        <!-- Shanghai Jiao Tong University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/上海交通大学.png" alt="上海交通大学">
++            <div class="university-name">FMAC'19<br>上海交通大学</div>
++        </div>
++
++        <!-- Chongqing University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/重庆大学.png" alt="重庆大学">
++            <div class="university-name">ChinaSoft'20<br>重庆大学</div>
++        </div>
++
++        <!-- Xidian University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/西安电子科技大学.png" alt="西安电子科技大学">
++            <div class="university-name">ChinaSoft'21<br>西安电子科技大学</div>
++        </div>
++
++        <!-- Fudan University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/复旦大学.png" alt="复旦大学">
++            <div class="university-name">ChinaSoft'22&23<br>复旦大学</div>
++        </div>
++
++        <!-- Xidian University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/西安电子科技大学.png" alt="西安电子科技大学">
++            <div class="university-name">ChinaSoft'24<br>西安电子科技大学</div>
++        </div>
++
++        <!-- Wuhan University -->
++        <div class="university-item">
++            <img class="university-logo" src="images/history/university/武汉大学.png" alt="武汉大学">
++            <div class="university-name">ChinaSoft'25<br>武汉大学</div>
++        </div>
++
++        <div class="university-item  highlight">
++            <img class="university-logo" src="images/history/university/天津大学.png" alt="天津大学">
++            <div class="university-name">Chinasoft'26<br>天津大学</div>
++        </div>
++        <div class="university-item  highlight">
++            <img class="university-logo" src="images/history/university/南开大学.png" alt="南开大学">
++            <div class="university-name">Chinasoft'26<br>南开大学</div>
++        </div>
++    </div>
++
++    <!-- 历届回顾 -->
++    <div class="section-title">历届 CCF ChinaSoft Chinasoft FMAC 回顾 </div>
++
++    <div class="photo-grid">
++
++        <div class="photo-item">
++            <img src="images/history/photos/photo-13.jpg" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-14.jpg" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-15.jpg" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-18.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-19.jpg" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-20.jpg" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-21.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-22.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-23.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-24.jpg" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-25.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-26.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-27.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-28.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-29.jpg" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-30.jpg" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-31.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-32.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-33.png" alt="历届会议照片">
++        </div>
++        <div class="photo-item">
++            <img src="images/history/photos/photo-34.png" alt="历届会议照片">
++        </div>
++    </div>
++</div>
+--- before/pages/intro/committee-finance.html
++++ after/pages/intro/committee-finance.html
+@@ -5,7 +5,7 @@
+     <!-- <h2>财务委员会委员</h2>
+     <p>梁鹏、帅子琦、陈晨</p> -->
+ 
+-    <div class="section-title">财务委员会负责人</div>
++    <div class="section-title">负责人</div>
+ 
+     <div class="committee-grid">
+ 
+--- before/pages/intro/committee-publication.html
++++ after/pages/intro/committee-publication.html
+@@ -12,7 +12,7 @@
+ 
+ <div class="member">
+     <!-- 出版委员会主席 -->
+-    <div class="section-title">出版委员会负责人</div>
++    <div class="section-title">负责人</div>
+     <div class="committee-grid">
+         <div class="committee-item">
+             <img class="committee-img" src="images/people/committee/姜佳君.png" alt="姜佳君"
+--- before/pages/intro/committee-publicity.html
++++ after/pages/intro/committee-publicity.html
+@@ -12,7 +12,7 @@
+ 
+ <div class="member">
+     <!-- 宣传委员会主席 -->
+-    <div class="section-title">宣传委员会负责人</div>
++    <div class="section-title">负责人</div>
+     <div class="committee-grid">
+         <div class="committee-item">
+             <img class="committee-img" src="images/people/committee/王栋.png" alt="王栋"
+--- before/pages/intro/committee-sponsorship.html
++++ after/pages/intro/committee-sponsorship.html
+@@ -2,7 +2,7 @@
+ 
+ <div class="member">
+     <!-- 赞助委员会主席 -->
+-    <div class="section-title">赞助委员会负责人</div>
++    <div class="section-title">负责人</div>
+     <div class="committee-grid">
+         <div class="committee-item">
+             <img class="committee-img" src="images/people/committee/赵英全.png" alt="赵英全"
+--- before/pages/intro/committee-volunteer.html
++++ after/pages/intro/committee-volunteer.html
+@@ -2,7 +2,7 @@
+ 
+ <div class="member">
+     <!-- 志愿者组织委员会主席 -->
+-    <div class="section-title">志愿者组织委员会负责人</div>
++    <div class="section-title">负责人</div>
+     <div class="committee-grid">
+         <div class="committee-item">
+             <img class="committee-img" src="images/people/committee/姜艳杰.png" alt="姜艳杰"

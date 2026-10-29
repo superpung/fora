@@ -1,0 +1,123 @@
+{
+  "baseline": "20261020T083547166350Z",
+  "since_previous_check": {
+    "pages": {
+      "added": [
+        "pages/agenda/academic-forum/templates/harmonyos-talent.html",
+        "pages/agenda/academic-forum/templates/intelligent-open-source.html",
+        "pages/agenda/academic-forum/templates/safety-critical-software-dev.html",
+        "pages/agenda/academic-forum/templates/super-intelligence-software-stack.html",
+        "pages/agenda/academic-forum/templates/trusted-intelligent-software-paradigm.html",
+        "pages/agenda/academic-forum/templates/ubiquitous-os-open-source.html",
+        "pages/agenda/education-forum/templates/intelligent-talent-development.html",
+        "pages/agenda/education-forum/templates/prototype-system-cases.html",
+        "pages/agenda/education-forum/templates/special-software-college.html",
+        "pages/agenda/education-forum/templates/system-software-education.html",
+        "pages/agenda/industry-forum/templates/intelligent-system-foundation.html",
+        "pages/agenda/industry-forum/templates/rd-system-engineering.html",
+        "pages/agenda/industry-forum/templates/riscv-software-hw-collaboration.html"
+      ],
+      "removed": [],
+      "changed": [
+        "pages/agenda/academic-forum/index.html",
+        "pages/agenda/academic-forum/templates/basic-software-trust.html",
+        "pages/agenda/academic-forum/templates/rust-system-software.html",
+        "pages/agenda/agenda-overview/index.html",
+        "pages/agenda/education-forum/index.html",
+        "pages/agenda/education-forum/templates/formal-methods.html",
+        "pages/agenda/industry-forum/index.html",
+        "pages/agenda/industry-forum/templates/agent-arch.html",
+        "pages/agenda/regular-forum/templates/top-venues.html",
+        "pages/agenda/special-issue-forum/index.html",
+        "pages/contact.html",
+        "pages/home.html",
+        "pages/register.html"
+      ],
+      "unchanged_count": 64
+    },
+    "portraits": {
+      "added": [
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/任旭东.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/余跃.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/周明辉.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/张宇霞.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/李光杰.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/王尚广.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/王涛.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛v2/马全一.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/常设论坛/钮鑫涛.png"
+      ],
+      "removed": [
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛v2/韩晓阳.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/常设论坛/范铭.png"
+      ],
+      "changed": [],
+      "unchanged_count": 508
+    }
+  },
+  "versus_curated_input": {
+    "pages": {
+      "added": [
+        "pages/agenda/academic-forum/templates/harmonyos-talent.html",
+        "pages/agenda/academic-forum/templates/safety-critical-software-dev.html",
+        "pages/agenda/academic-forum/templates/super-intelligence-software-stack.html",
+        "pages/agenda/academic-forum/templates/trusted-intelligent-software-paradigm.html",
+        "pages/agenda/academic-forum/templates/ubiquitous-os-open-source.html",
+        "pages/agenda/education-forum/templates/intelligent-talent-development.html",
+        "pages/agenda/education-forum/templates/prototype-system-cases.html",
+        "pages/agenda/education-forum/templates/special-software-college.html",
+        "pages/agenda/education-forum/templates/system-software-education.html",
+        "pages/agenda/industry-forum/templates/intelligent-system-foundation.html",
+        "pages/agenda/industry-forum/templates/rd-system-engineering.html",
+        "pages/agenda/industry-forum/templates/riscv-software-hw-collaboration.html",
+        "pages/callforpaper.html",
+        "pages/history.html"
+      ],
+      "removed": [],
+      "changed": [
+        "pages/agenda/academic-forum/index.html",
+        "pages/agenda/academic-forum/templates/basic-software-trust.html",
+        "pages/agenda/academic-forum/templates/hw-sw-collaborative-security.html",
+        "pages/agenda/academic-forum/templates/rust-system-software.html",
+        "pages/agenda/agenda-overview/index.html",
+        "pages/agenda/education-forum/index.html",
+        "pages/agenda/education-forum/templates/formal-methods.html",
+        "pages/agenda/industry-forum/index.html",
+        "pages/agenda/industry-forum/templates/agent-arch.html",
+        "pages/agenda/regular-forum/templates/top-venues.html",
+        "pages/agenda/special-issue-forum/index.html",
+        "pages/contact.html",
+        "pages/home.html",
+        "pages/intro/committee-chair.html",
+        "pages/intro/committee-finance.html",
+        "pages/intro/committee-publication.html",
+        "pages/intro/committee-publicity.html",
+        "pages/intro/committee-sponsorship.html",
+        "pages/intro/committee-volunteer.html",
+        "pages/register.html"
+      ],
+      "unchanged_count": 56
+    },
+    "portraits": {
+      "added": [
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛v2/马全一.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/常设论坛/钮鑫涛.png"
+      ],
+      "removed": [
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛v2/韩晓阳.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/常设论坛/范铭.png"
+      ],
+      "changed": [],
+      "unchanged_count": 515
+    }
+  },
+  "withdrawn_pages": {},
+  "broken_portraits": {},
+  "withdrawn_page_changes": {
+    "added": [],
+    "removed": [],
+    "changed": [],
+    "unchanged_count": 0
+  },
+  "coverage_note": "The checker includes callforpaper/history; the curated importer excludes them. Their first appearance establishes coverage, not evidence of recent publication. HTML is archived verbatim; portraits have content hashes, not archived originals. CSS, JavaScript, other images, attachments and external sites are outside this check. A withdrawn navigation link is not evidence of cancellation. R32 curated role-paragraph removals are documented in CHINASOFT2026_GAPS.md."
+}

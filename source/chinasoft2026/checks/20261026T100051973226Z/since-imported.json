@@ -1,0 +1,57 @@
+{
+  "imported_observation": "20261025T053746279694Z",
+  "comparison": {
+    "pages": {
+      "added": [
+        "pages/agenda/committee-meeting/templates/system-software-closeout.html"
+      ],
+      "removed": [],
+      "changed": [
+        "pages/agenda/academic-forum/index.html",
+        "pages/agenda/academic-forum/templates/ai-architecture-governance.html",
+        "pages/agenda/academic-forum/templates/ai-os-security.html",
+        "pages/agenda/academic-forum/templates/basic-software-trust.html",
+        "pages/agenda/academic-forum/templates/constraint-solving.html",
+        "pages/agenda/academic-forum/templates/harmonyos-talent.html",
+        "pages/agenda/academic-forum/templates/hw-sw-collaborative-security.html",
+        "pages/agenda/academic-forum/templates/se-agent-innovation.html",
+        "pages/agenda/committee-meeting/index.html",
+        "pages/agenda/competition/templates/rust-prototype-competition.html",
+        "pages/agenda/competition/templates/software-repair-competition.html",
+        "pages/agenda/education-forum/index.html",
+        "pages/agenda/education-forum/templates/software-engineering.html",
+        "pages/agenda/education-forum/templates/system-software-education.html",
+        "pages/agenda/industry-forum/templates/compiler-tech-ai.html",
+        "pages/agenda/industry-forum/templates/intelligent-system-foundation.html",
+        "pages/agenda/industry-forum/templates/llm-dev-paradigm.html",
+        "pages/agenda/regular-forum/templates/phd-award.html",
+        "pages/agenda/special-issue-forum/templates/intelligent-requirement-engineering.html",
+        "pages/competition/auto-software-repair.html",
+        "pages/competition/rust-prototype-competition.html",
+        "pages/competition/theorem-proving.html"
+      ],
+      "unchanged_count": 74
+    },
+    "portraits": {
+      "added": [
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专委会议/刘哲.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专委会议/卜磊.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专委会议/吴斌.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/专委会议/苏义博.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/周维.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/袁斌.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/高佳琦.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/工业论坛/胡汝道.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/教育论坛/刘军利.jpg"
+      ],
+      "removed": [
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/王龙.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/翟恩南.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/邹德清.png",
+        "https://chinasoft.ccf.org.cn/2026/images/academic-forum/学术论坛/魏长征.png"
+      ],
+      "changed": [],
+      "unchanged_count": 592
+    }
+  }
+}

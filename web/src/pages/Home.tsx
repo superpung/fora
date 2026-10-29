@@ -296,10 +296,11 @@ function ForumRow({
   onSpeaker: (name: string) => void;
 }) {
   const { isForum, toggleForum, isSpeaker, isTalk, toggleTalk } = useFollow();
-  const { id: confId } = useConference();
+  const { id: confId, forumsByCode } = useConference();
   const { t: tr } = useI18n();
   const f = slot.forum;
   const talks = f?.talks ?? [];
+  const canonicalIndex = (i: number) => (forumsByCode[slot.code]?.talks ?? []).indexOf(talks[i]);
   const hasTalks = !!f?.detail_extracted && talks.length > 0;
   const followedHere = [...new Set([...(f?.chairs ?? []), ...talks.flatMap((t) => t.speakers ?? [])]
     .filter((p) => isSpeaker(personKey(p))).map((p) => p.name))];
@@ -309,7 +310,7 @@ function ForumRow({
   // timeline uses. A talk merely revealed from a collapsed run isn't "shown".
   const showAll = isForum(slot.code);
   const talkMatches = (t: Talk, i: number) =>
-    isTalk(talkId(slot.code, i)) || (t.speakers ?? []).some((s) => isSpeaker(personKey(s)));
+    isTalk(talkId(slot.code, canonicalIndex(i))) || (t.speakers ?? []).some((s) => isSpeaker(personKey(s)));
   const isShown = (i: number) => showAll || !filtered || talkMatches(talks[i], i);
   const matchCount = filtered && !showAll ? talks.filter(talkMatches).length : 0;
   // Chair-only follow: the forum surfaced solely because a followed person chairs
@@ -435,7 +436,7 @@ function ForumRow({
               note={chairOnly ? tr("home.chairNote", { name: followedHere.join("、") }) : undefined}
               renderItem={(i, shown) => {
               const t = talks[i];
-              const tFollowed = isTalk(talkId(slot.code, i));
+              const tFollowed = isTalk(talkId(slot.code, canonicalIndex(i)));
               const spHit =
                 activeSpeaker != null &&
                 (t.speakers ?? []).some((s) => s.name === activeSpeaker);
@@ -449,8 +450,8 @@ function ForumRow({
                   }`}
                   key={i}
                 >
-                  <Link to={`/${confId}/forum/${slot.code}#talk-${i + 1}`} className="ftalk__link">
-                    <span className="ftalk__no">{String(i + 1).padStart(2, "0")}</span>
+                  <Link to={`/${confId}/forum/${slot.code}#talk-${canonicalIndex(i) + 1}`} className="ftalk__link">
+                    <span className="ftalk__no">{String(canonicalIndex(i) + 1).padStart(2, "0")}</span>
                     <span className="ftalk__main">
                       {t.start && (
                         <span
@@ -486,7 +487,7 @@ function ForumRow({
                   </Link>
                   <StarButton
                     active={tFollowed}
-                    onClick={() => toggleTalk(talkId(slot.code, i))}
+                    onClick={() => toggleTalk(talkId(slot.code, canonicalIndex(i)))}
                     label={tFollowed ? tr("common.talkFollowRemove") : tr("common.talkFollowAdd")}
                     className="ftalk__star"
                   />
@@ -623,7 +624,7 @@ function DaySection({
 /* ---------------- dashboard ---------------- */
 
 export default function Home() {
-  const { id: confId, conference, scheduleDays: datedDays, unscheduledForums, stats, uniqueSpeakerCount } = useConference();
+  const { id: confId, conference, getForum, scheduleDays: datedDays, unscheduledForums, stats, uniqueSpeakerCount } = useConference();
   const scheduleDays = useMemo(() => unscheduledForums.length ? [...datedDays, {
     date: "", md: "", weekday: "", venue: "", keynotes: [], slots: unscheduledForums,
   }] : datedDays, [datedDays, unscheduledForums]);
@@ -684,7 +685,7 @@ export default function Home() {
               followedForums.has(s.code) ||
               (s.forum?.chairs ?? []).some((p) => isSpeaker(personKey(p))) ||
               (s.forum?.talks ?? []).some((t) => (t.speakers ?? []).some((p) => isSpeaker(personKey(p)))) ||
-              (s.forum?.talks ?? []).some((_, i) => isTalk(talkId(s.code, i)));
+              (s.forum?.talks ?? []).some((t) => isTalk(talkId(s.code, (getForum(s.code)?.talks ?? []).indexOf(t))));
             if (!tracked) return false;
           }
           return true;
@@ -709,9 +710,9 @@ export default function Home() {
       .filter((x) => x.slots.length > 0 || x.keynoteHit);
     // isSpeaker / isTalk are re-created whenever the followed sets change, so
     // depending on them is enough — the raw sets are redundant here.
-  }, [scheduleDays, dayFilter, q, onlyFollowed, categoryFilter, speakerFilter, followedForums, isSpeaker, isTalk]);
+  }, [scheduleDays, dayFilter, q, onlyFollowed, categoryFilter, speakerFilter, followedForums, isSpeaker, isTalk, getForum]);
 
-  const totalShown = visibleDays.reduce((n, x) => n + x.slots.length, 0);
+  const totalShown = new Set(visibleDays.flatMap((x) => x.slots.map((s) => s.code))).size;
   const { md: startMd } = formatDate(conference.start_date, lang);
   const { md: endMd } = formatDate(conference.end_date, lang);
   const mainCity = conference.venues?.find((v) => v.type === "main")?.city;

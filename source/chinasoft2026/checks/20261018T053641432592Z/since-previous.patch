@@ -1,0 +1,1301 @@
+--- before/pages/agenda/academic-forum/index.html
++++ after/pages/agenda/academic-forum/index.html
+@@ -16,10 +16,15 @@
+                        
+                         <li><a href="#agenda/academic-forum/agentic-ai-testing" class="sidebar-item"
+                                         onclick="loadAgenda('academic-forum', 'agentic-ai-testing')">Agentic AI分析与测试</a></li>
++                           <li><a href="#agenda/academic-forum/se-agent-innovation" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'se-agent-innovation')">软件工程智能体创新论坛</a></li>
+                         <li><a href="#agenda/academic-forum/ai-architecture-governance" class="sidebar-item"
+                                         onclick="loadAgenda('academic-forum', 'ai-architecture-governance')">AI赋能架构治理与维护</a></li>
+                         <li><a href="#agenda/academic-forum/secure-code-generation" class="sidebar-item"
+                                         onclick="loadAgenda('academic-forum', 'secure-code-generation')">安全代码生成与软件可信构建</a></li>
++
++                                         <li><a href="#agenda/academic-forum/programming-language-frontier" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'programming-language-frontier')">编程语言前沿技术论坛</a></li>
+                                               <li><a href="#agenda/academic-forum/llm-dev-evaluation" class="sidebar-item"
+                                         onclick="loadAgenda('academic-forum', 'llm-dev-evaluation')">大模型辅助软件开发能力评测</a></li>
+                         <li><a href="#agenda/academic-forum/young-talent-growth" class="sidebar-item"
+@@ -33,8 +38,10 @@
+                                         onclick="loadAgenda('academic-forum', 'formal-engineering')">软件形式化工程方法</a></li>
+                         <li><a href="#agenda/academic-forum/forse-defect-detection" class="sidebar-item"
+                                         onclick="loadAgenda('academic-forum', 'forse-defect-detection')">软件全方位缺陷检测技术</a></li>
+-                        <li><a href="#agenda/academic-forum/intelligent-software-dev" class="sidebar-item"
++                                          <li><a href="#agenda/academic-forum/intelligent-software-dev" class="sidebar-item"
+                                         onclick="loadAgenda('academic-forum', 'intelligent-software-dev')">智能化软件开发、维护与安全</a></li>
++                       
++                    
+                     
+                      
+                                            <li><a href="#agenda/academic-forum/supply-chain-security" class="sidebar-item"
+@@ -53,8 +60,7 @@
+                                         onclick="loadAgenda('academic-forum', 'llm-reliability-security')">大模型可靠性与安全性</a></li>
+                         <li><a href="#agenda/academic-forum/attack-attribution-analysis" class="sidebar-item"
+                                         onclick="loadAgenda('academic-forum', 'attack-attribution-analysis')">攻击溯源、推理与安全分析</a></li>
+-                        <li><a href="#agenda/academic-forum/ai-os-security" class="sidebar-item"
+-                                        onclick="loadAgenda('academic-forum', 'ai-os-security')">AI时代的操作系统安全技术</a></li>
++                      
+                        <li><a href="#agenda/academic-forum/ai-os-security" class="sidebar-item"
+                                         onclick="loadAgenda('academic-forum', 'ai-os-security')">AI时代的操作系统安全技术</a></li>
+                       <li><a href="#agenda/academic-forum/quantum-computing-software" class="sidebar-item"
+@@ -63,6 +69,8 @@
+                                         onclick="loadAgenda('academic-forum', 'eda-frontier')">EDA前沿技术</a></li>
+                                           <li><a href="#agenda/academic-forum/basic-software-trust" class="sidebar-item"
+                                         onclick="loadAgenda('academic-forum', 'basic-software-trust')">基础软件可信保障技术</a></li>
++                                           <li><a href="#agenda/academic-forum/resilient-software" class="sidebar-item"
++                                        onclick="loadAgenda('academic-forum', 'resilient-software')">韧性软件论坛</a></li>
+                         <li><a href="#agenda/academic-forum/software-analysis-security" class="sidebar-item"
+                                         onclick="loadAgenda('academic-forum', 'software-analysis-security')">软件分析与软件安全新技术</a></li>
+                         <li><a href="#agenda/academic-forum/formal-methods-llm" class="sidebar-item"
+@@ -72,6 +80,8 @@
+ 
+                                         <li><a href="#agenda/academic-forum/hw-sw-collaborative-security" class="sidebar-item"
+                                         onclick="loadAgenda('academic-forum', 'hw-sw-collaborative-security')">软硬件协同安全</a></li>
++                       
++                     
+ 
+ 
+ 
+--- before/pages/agenda/academic-forum/templates/embodied-intelligence-robot.html
++++ after/pages/agenda/academic-forum/templates/embodied-intelligence-robot.html
+@@ -5,8 +5,8 @@
+ 
+     <section class="forum-section">
+         <h3>一、论坛介绍</h3>
+-        <p>论坛内容：具身智能成为人工智能前沿焦点之一。通过赋予机器人以感知、行动、学习的闭环能力，具身智能正在重塑算法、系统和应用之间的关系，推动从虚拟仿真到实体执行的全方位技术跃迁。本论坛，汇聚多位高校与企业专家，分享具身智能技术的前沿进展与创新实践，探索大规模数据训练、高效模型优化与具身系统设计，研究从虚拟到真实环境的迁移方法，讨论硬件与算法的协同进化及未来趋势，展望具身智能机器的应用潜能。</p>
+-        <p>重要性和意义：具身智能标志着AI从"虚拟智能"迈向"物理智能"，系统软件是连接算法、硬件与场景的"神经中枢"。当前正值技术爆发期，亟需跨学科协作以突破软硬件协同瓶颈。</p>
++        <p>具身智能成为人工智能前沿焦点之一。通过赋予机器人以感知、行动、学习的闭环能力，具身智能正在重塑算法、系统和应用之间的关系，推动从虚拟仿真到实体执行的全方位技术跃迁。本论坛，汇聚多位高校与企业专家，分享具身智能技术的前沿进展与创新实践，探索大规模数据训练、高效模型优化与具身系统设计，研究从虚拟到真实环境的迁移方法，讨论硬件与算法的协同进化及未来趋势，展望具身智能机器的应用潜能。</p>
++        <p>具身智能标志着AI从"虚拟智能"迈向"物理智能"，系统软件是连接算法、硬件与场景的"神经中枢"。当前正值技术爆发期，亟需跨学科协作以突破软硬件协同瓶颈。</p>
+     </section>
+ 
+     <section class="forum-section">
+@@ -21,7 +21,7 @@
+         <ul class="committee-list">
+             <li><span class="member-name">古金宇</span><span class="member-unit">（上海交通大学）</span></li>
+             <li><span class="member-name">肖艳</span><span class="member-unit">（中山大学）</span></li>
+-            <li><span class="member-name">张鹏程</span><span class="member-unit">（河海大学计算机与软件学院）</span></li>
++            <li><span class="member-name">张鹏程</span><span class="member-unit">（河海大学）</span></li>
+         </ul>
+     </section>
+ 
+@@ -41,7 +41,7 @@
+                 <tr><td style="white-space: nowrap;">9:05-9:30</td><td>具身智能对机器人系统的重塑——从状态驱动到状态与学习双闭环驱动</td><td>梁斌<br>清华大学 教授</td></tr>
+                 <tr><td style="white-space: nowrap;">9:30-9:55</td><td>具身智能基座模型与应用前沿探索</td><td>王栋<br>上海人工智能实验室 研究员</td></tr>
+                 <tr><td style="white-space: nowrap;">9:55-10:20</td><td>机器人软件与算法</td><td>刘一帆<br>中电科21所 研究员</td></tr>
+-                <tr><td style="white-space: nowrap;">10:20-10:45</td><td>人机交互视角下的物联网安全研究</td><td>孟岩<br>上海交通大学 副研究员</td></tr>
++                <tr><td style="white-space: nowrap;">10:20-10:45</td><td>泛在智能系统新型漏洞精准检测及利用</td><td>康梓峰<br>北京邮电大学 副研究员</td></tr>
+                 <tr><td style="white-space: nowrap;">10:45-11:00</td><td>茶歇15分钟</td><td>-</td></tr>
+                 <tr><td style="white-space: nowrap;">11:00-11:25</td><td>从"能做"到"做好"：具身机器人的可靠性探索</td><td>董震<br>复旦大学 副教授</td></tr>
+                 <tr><td style="white-space: nowrap;">11:25-11:50</td><td>空中具身智能：从世界构建到自主飞行</td><td>王之港<br>上海人工智能实验室 研究员</td></tr>
+@@ -64,7 +64,7 @@
+                 <tr><td style="white-space: nowrap;">15:45-16:00</td><td>茶歇15分钟</td><td>-</td></tr>
+                 <tr><td style="white-space: nowrap;">16:00-16:25</td><td>基于端侧推理的多模态具身智能体模型与系统</td><td>刘生钟<br>上海交通大学 副教授</td></tr>
+                 <tr><td style="white-space: nowrap;">16:25-16:50</td><td>类脑分层分区具身大脑</td><td>郑锋<br>南方科技大学 副教授</td></tr>
+-                <tr><td style="white-space: nowrap;">16:50-17:15</td><td>泛在智能系统新型漏洞精准检测及利用</td><td>康梓峰<br>北京邮电大学 副研究员</td></tr>
++                <tr><td style="white-space: nowrap;">16:50-17:15</td><td>人机交互视角下的物联网安全研究</td><td>孟岩<br>上海交通大学 副研究员</td></tr>
+                 <tr><td style="white-space: nowrap;">17:15-17:20</td><td>结语</td><td>-</td></tr>
+             </tbody>
+         </table>
+@@ -111,8 +111,149 @@
+                 </div>
+             </div>
+         </div>
+-        <div class="speaker-member">
+-            <h4>4. 报告人：孟岩 上海交通大学副研究员</h4>
++
++  <div class="speaker-member">
++            <h4>4. 报告人：康梓峰 北京邮电大学副研究员</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/康梓峰.png" alt="康梓峰头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>泛在智能系统新型漏洞精准检测及利用</p>
++                    <p><strong>摘要：</strong>随着泛在智能系统的快速发展和深入应用，新型漏洞的精准检测与利用验证已成为安全研究的重要前沿问题。本次报告将围绕"泛在智能系统新型漏洞精准检测及利用"主题，以Web应用、大模型智能体、具身智能等典型泛在智能系统为对象，针对未知机理建模难、潜伏污染检测难、链式利用验证难三大挑战，介绍我们在理论模型、关键方法和技术验证等方面取得的突破与创新。</p>
++                    <p><strong>简介：</strong>康梓峰，北京邮电大学网络空间安全学院副研究员，入选北京市科协青年人才托举工程。任CCF网络与系统专委会执行委员，任USENIX Security、NDSS、WWW等多个CCF-A类会议的PC委员。研究方向为漏洞检测与利用、大模型安全、具身智能安全等。发表多篇安全四大顶会论文，以一作身份获IEEE S&amp;P 2025【杰出论文奖】；另获USENIX Security 2025杰出奖提名。他的研究发现了超过3000个零日漏洞，漏洞被谷歌、微软、Meta等知名公司评为最高和高危风险等级，获多项漏洞赏金和百余个CVE漏洞编号，成果被多家国际主流媒体报道，论文被ACM Fellow团队等一流研究团队引用。</p>
++                </div>
++            </div>
++        </div>
++
++
++
++
++
++
++
++
++      
++        <div class="speaker-member">
++            <h4>5. 报告人：董震 复旦大学副教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/董震.png" alt="董震头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>从"能做"到"做好"：具身机器人的可靠性探索</p>
++                    <p><strong>摘要：</strong>如何让机器人不仅展现智能，更能在真实环境中可靠完成任务，是具身智能走向应用的关键问题。本报告结合机器人操作纠错、人型机器人打乒乓球及广州机场移动机器人落地三项工作，探讨机器人如何识别并纠正执行偏差、应对动态环境，以及融入实际业务，分享提升机器人执行可靠性的具体探索与实践体会。</p>
++                    <p><strong>简介：</strong>董震，海德堡大学博士，复旦大学计算与智能创新学院副教授、博导，CCF中国计算机学会智能机器人专业委员会执行委员、CCF中国计算机学会软件工程专业委员会执行委员。主持国家自然基金委面上基金、国家重点研发子课题，参与国家科技创新2030"新一代人工智能"重大项目课题，并参与完成多个国际合作项目（合作方包括卡巴斯基公司、新加坡电信公司等）。长期致力于软件分析与测试，在软件工程与人工智能领域ICSE、FSE、ASE、ISSTA、NeurIPS、IJCAI、FM等国际会议发表40余篇学术论文，并获得ICSE'20杰出论文、ISSTA'25杰出论文、ISSTA'26等多个奖项。同时，担任软件工程领域旗舰期刊《Automated Software Engineering》、《Journal of Software: Evolution and Process》编委，国际会议ICSE、FSE、ASE、ISSTA等程序委员，并获得ASE'22杰出评审、TOSEM杰出评审等荣誉称号。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>6. 报告人：王之港 上海人工智能实验室研究员</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/王之港.png" alt="王之港头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>空中具身智能：从世界构建到自主飞行</p>
++                    <p><strong>摘要：</strong>无人机所代表的空中具身智能，是具身智能迈向三维开放空间的重要方向，也是研究智能体环境理解、任务决策与安全行动的关键场景。本报告围绕"世界构建—空间理解—自主行动"展开。首先介绍无人机自主的 Real-to-Sim 环境构建，探讨如何将真实环境转化为可用于具身智能研究的仿真场景；随后聚焦空中视角下的视觉语言指代定位与视觉语言导航，阐述如何将自然语言目标锚定到真实空间，并转化为高层导航决策；最后结合强化学习驱动的抗风避障协同控制，讨论无人机在复杂环境下的鲁棒、安全执行。报告将呈现一条贯通真实环境建模、空间语义理解、语言驱动导航与物理飞行控制的研究脉络。</p>
++                    <p><strong>简介：</strong>王之港，上海人工智能实验室青年科学家，主要研究方向为机器智能感知、规划与控制，长期关注复杂开放环境下智能体的空间理解、自主决策与安全行动。曾任百度视觉技术部资深算法工程师，从事智慧城市与智能交通领域的技术研发，连续获得2019年和2020年AI City Challenge国际人工智能技术挑战赛冠军，相关研究成果已在多个城市和地区实现落地应用。2022年加入上海人工智能实验室，围绕具身智能与空间智能开展前沿研究，研究内容涵盖具身导航、自主路径规划、视觉指代定位（Visual Grounding）、异构智能体任务规划与协同等方向，形成了从视觉感知、空间语义理解到决策规划与运动控制的系统性研究布局。在CVPR、ICCV、ECCV、AAAI、ICRA以及TIP等人工智能、计算机视觉与机器人领域的国际顶级会议和期刊发表论文50余篇，公开技术在国家人工智能中试基地进行转化应用，被Asia Times、人民日报、新华网等国内外媒体报道。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>7. 报告人：贾周阳 国防科技大学副研究员</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/贾周阳.png" alt="贾周阳头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>大规模微模型驱动的具身智能软件架构</p>
++                    <p><strong>摘要：</strong>具身机器人端侧算力有限，单一通用模型难以覆盖开放场景，现有技能级分解粒度仍存在泛化能力受限的挑战。本报告提出大规模微模型驱动的具身智能软件架构，将模型粒度下沉至物体/任务级，为每个具体对象训练专用的微小模型，形成规模上不封顶的微模型群体。借鉴微服务架构思想，通过模型注册与发现、任务路由、弹性调度等系统软件机制，将海量微模型组织为可独立训练、部署与更新的"模型服务集群"。通用性不再依赖单个模型的能力，而是由群体的覆盖与调度涌现——智能从模型之内，搬到架构之上。</p>
++                    <p><strong>简介：</strong>贾周阳，博士，副研究员，博士生导师。主要从事系统软件、软件可靠性领域研究，主持国自科青年基金等项目3项，作为核心技术骨干参与5项国家和军队重大项目。在ICSE、FSE、ASE等CCF推荐A类高水平会议期刊发表论文20余篇，获ICSE'23/25等杰出论文奖5次，申请和授权专利10余项。获军事科技进步一等奖、军事科技领域青托、全军优博、CCF优博提名、湖南省湖湘青年英才。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>8. 报告人：黄凯 中山大学教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/黄凯.png" alt="黄凯头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>具身智能机器人关键技术及实践</p>
++                    <p><strong>摘要：</strong>AI+机器人是当下学术界和工业界的热门议题。具身智能是其主要载体技术，作为六大未来产业之一写入"十五五"规划。本次演讲将介绍团队关注的具身智能机器人关键技术，并从作为玩具的仿生机器人，到应用于人体的手术机器人，展示具身技术如何赋能机器人。</p>
++                    <p><strong>简介：</strong>现任中山大学计算机学院教授、人工智能与机器人研究所所长、机器智能与先进计算教育部重点实验室副主任，政协第十三届广东省委员会委员。主要研究方向是人工智能+机器人关键技术及工程化问题。应用领域包括智能驾驶，手术机器人，智能装备等。在CNS、JAMA子刊及其他国际著名期刊\会议发表多篇论文，最佳论文/提名二十余次。授权发明专利80余项，主导多项知识产权转化。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>9. 报告人：陈康 北京大学教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/陈康.png" alt="陈康头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>具身智能系统软件体系的探索与开源实践</p>
++                    <p><strong>摘要：</strong>具身智能正将模型推理、环境感知、实时控制等不同类型的计算任务集成到同一机器人，甚至同一颗异构SoC上，对资源隔离、软硬件复用以及系统协同提出了新的挑战。本报告围绕从芯片到机器人应用的系统软件栈，介绍两个层次的探索：在底层，轻量级Type-1虚拟机监控器hvisor对CPU、内存和I/O等硬件资源进行分区与隔离，为不同计算任务提供独立、可控的运行环境；在上层，具身智能操作系统Robonix通过任务、技能、服务和硬件原语等统一抽象，连接模型、机器人本体与应用。在此基础上，报告将进一步讨论hvisor与Robonix的协同架构及演进路线，探索构建面向具身智能的开源系统软件体系。</p>
++                    <p><strong>简介：</strong>北京大学计算机学院教授，长期从事操作系统研究。近年来在OSDI/SOSP等计算机系统领域顶级国际会议发表CCF-A类论文30余篇，获得过OSDI最佳论文奖。长期担任OSDI/SOSP/EuroSys/NSDI/ASPLOS/ATC/HPCA等系统领域顶级和重要国际会议程序委员会委员。2024年开始担任ACM Transactions on Computer Systems（TOCS）的副主编。曾获国家科技进步一等奖，国家技术发明二等奖、中国电子学会科技进步特等奖/一等奖、中国电子学会技术发明一等奖等奖项。近年来关注泛在操作系统研究，联合发起成立矽望泛在操作系统开源社区，主持研发Robonix具身智能操作系统并积极推动相关开源生态建设。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>10. 报告人：张德宇 中南大学副教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/张德宇.png" alt="张德宇头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>端侧多模态智能感知与应用</p>
++                    <p><strong>摘要：</strong>在计算机软硬件技术与人工智能持续突破、新型应用场景加速落地的当下，计算模式正经历深刻变革——从以云计算为核心的集中式智能，稳步迈向基于边缘计算的分布式智能与自主智能，构建起全新的智能计算范式。这一范式转型的核心挑战在于：如何为资源受限的端侧设备注入智能算力，从而支撑丰富多元的智能应用。本报告以此为切入点，立足端侧多模态数据的感知能力基础，聚焦深度估计与动作识别两个典型应用场景，深入剖析终端系统在提供智能服务过程中的关键优化路径与技术方法。</p>
++                    <p><strong>简介：</strong>中南大学计算机学院副教授，博导。近年来在边缘智能、物联网调度优化等方向发表50余篇论文，包括ACM MobiCom、SenSys、Mobisys和IEEE TMC、JSAC、ACM Computing Surveys等国际知名会议和期刊，其中ESI热点论文3篇，高被引论文5篇。成果应用于上市公司传音控股等多家知名企业。获得中国电子学会自然科学一等奖，湖南省计算机学会优秀高等教育教学成果一等奖，湖南省高等教育教学成果二等奖，微软亚洲研究院"铸星计划"。主持湖南省优秀青年基金，173项目，国家自然科学基金面上项目，青年项目，湖南省自然科学基金重大项目"揭榜挂帅"课题。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>11. 报告人：夏海峰 中山大学副教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/夏海峰.png" alt="夏海峰头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>多模态融合驱动的具身智能系统</p>
++                    <p><strong>摘要：</strong>具身智能是连接虚拟人工智能与真实物理世界的前沿研究方向，面向机器人在真实环境中感知、移动、操作物体的实际需求，本报告将围绕多模态融合驱动的具身智能系统展开，分别从具身智能定位、导航、操控与安全四大关键模块介绍。在定位层面，针对室内多传感器融合定位受环境变化引发性能衰减难题，提出基于双回归器对抗的跨场景室内定位方法，实现机器人依据传感信号的室内定位；在导航任务上，面向零样本目标导航，解决前沿点选择困难、局部观测与目标匹配偏差问题，提出RERV-Nav框架，实现新场景免重新训练的可靠探索与可修订目标校验；在灵巧手操控方面，针对现实操控数据采集成本高的痛点，提出操控语义蒸馏的灵巧手运动学习方案，完成仿真到现实迁移，实现跨机器人本体驱动。</p>
++                    <p><strong>简介：</strong>夏海峰，中山大学网络空间安全学院副教授、博士生导师，国家高层次青年人才，中山大学逸仙学者。曾在Google、NEC Lab、三菱电器北美研究院、香港浸会大学开展过多项研究工作，长期从事计算机视觉、多模态学习、人工智能安全领域的研究。近年来，在领域内的一流期刊和会议（IEEE TPAMI、CVPR、ICCV、ECCV等）上发表30余篇研究工作，其中多篇入选国际会议Oral Presentation。主持国家级青年人才项目、国自然面上/青年项目，参与广东省重点研发和深圳市重点研发项目等基金。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>12. 报告人：刘生钟 上海交通大学副教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/刘生钟.png" alt="刘生钟头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>基于端侧推理的多模态具身智能体模型与系统</p>
++                    <p><strong>摘要：</strong>面向资源受限终端上具身智能体的低时延、高可靠运行需求，本报告介绍多模态大模型快慢思考融合与技能沉淀的研究成果。首先，通过任务难度感知的推理长度调节，减少冗余思考，兼顾推理质量与响应效率；进一步，介绍TRACE系统，将多模态感知与行动中的重复决策过程沉淀为随实时观测动态调整的可执行技能，实现慢思考推理与快路径执行的协同。结合技能可靠性评估、执行准入与异常回退机制，探讨"推理—执行—沉淀—复用"的持续演进闭环，为具身智能系统的高效、可靠运行提供模型与系统协同设计思路。</p>
++                    <p><strong>简介：</strong>刘生钟，上海交通大学计算机学院长聘教轨副教授、博导，2022年国家海外优青。曾先后获得英特尔中国学术英才、启源青年学者、小米青年学者和华为火花奖。本科毕业于上海交大计算机系，博士毕业于美国伊利诺伊大学香槟分校（UIUC）计算机系。主持了国自然海优、面上项目以及山东省联合基金重点项目。参与国家重点研发计划、国自然重点专项/重点项目等国家级项目5项；与移动、电信、华为、联想、阿里、海尔、蔚来等企业开展广泛合作。担任了CCF A类国际会议UbiComp 2026大会副主席和ACM IMWUT编委，以及RTSS、SenSys、RTAS、ICDCS、IWQoS等多个知名国际会议程序委员。研究多模态边缘智能计算，先后在RTSS、UbiComp、EuroSys、SenSys、WWW、ICML、NeurIPS、ACL、TPAMI、TMC等国际知名会议与期刊发表论文70余篇，7次获得国际会议最佳/杰出论文奖（包括RTSS、UbiComp、ACL、SenSys、RTAS等），在Communications of ACM和ACM GetMobile杂志发表Research Highlight论文。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>13. 报告人：郑锋 南方科技大学副教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/郑锋.png" alt="郑锋头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>类脑分层分区具身大脑</p>
++                    <p><strong>摘要：</strong>当前具身智能（Embodied AI）的研究热点集中于端到端的操作大模型。然而，若要使机器人真正具备人类级别的跨场景适应、长程规划及多任务并行能力，单纯依赖局部运动层面的精准操控远未足够，其核心瓶颈在于缺乏多模态主动感知与高阶复杂推理的有机结合。针对这一挑战，本团队立足于人类行为大数据学习，创立"类脑分层分区具身认知架构"。该架构赋予机器人深度长程决策、全地形跨场景自主导航以及兼具空间三维感知的精细化操作能力。简言之，我们致力于打造兼具高级认知（能思考）、全域移动（能行走）与通用操作（能劳作）的三位一体通用机器人。围绕这一愿景，推出Omega、Omni、Alpha三大核心技术系列，打破传统具身智能的系统壁垒，构建了"感知-推理（高阶认知）"与"感知-执行（低阶控制）"的双层异构端到端体系，实现具身智能从"被动响应"向"自主通用"的范式跃升。</p>
++                    <p><strong>简介：</strong>郑锋，国家级青年人才，南方科技大学长聘副教授、机器人研究院副院长，具身智能初创公司无界智慧创始人兼CEO。于2016年获得谢菲尔德大学博士学位，2018年在匹兹堡大学完成博后研究工作，曾任职于腾讯优图、中科院深圳先进院。主要从事多模态感知，具身智能等方面的研究工作，发表CCF A类论文100余篇，谷歌引用万余次，多次入选斯坦福"全球前2%顶尖科学家"。指导学生获得国际竞赛4次冠军，3次亚军。多个开源项目在GitHub获得超万次星赞，其中TAM项目周/月排名进全球前二，提出金字塔算法收录于OpenCV。担任国际人工智能主流杂志IET IPR副编辑，Neurips、AAAI、ACMMM、CORL等会议领域主席。作为项目负责人，主持项目10余项，竞争性经费突破1600万，向中兴、华为、腾讯等高新企业实现技术转化。积极推动相关开源生态建设。</p>
++                </div>
++            </div>
++        </div>
++
++          <div class="speaker-member">
++            <h4>14. 报告人：孟岩 上海交通大学副研究员</h4>
+             <div class="speaker-profile">
+                 <div class="speaker-image">
+                     <img src="./images/academic-forum/学术论坛/孟岩.png" alt="孟岩头像" onerror="this.src='./images/academic-forum/default.png'">
+@@ -124,164 +265,36 @@
+                 </div>
+             </div>
+         </div>
+-        <div class="speaker-member">
+-            <h4>5. 报告人：董震 复旦大学副教授</h4>
+-            <div class="speaker-profile">
+-                <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/董震.png" alt="董震头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <div class="speaker-content">
+-                    <p><strong>题目：</strong>从"能做"到"做好"：具身机器人的可靠性探索</p>
+-                    <p><strong>摘要：</strong>如何让机器人不仅展现智能，更能在真实环境中可靠完成任务，是具身智能走向应用的关键问题。本报告结合机器人操作纠错、人型机器人打乒乓球及广州机场移动机器人落地三项工作，探讨机器人如何识别并纠正执行偏差、应对动态环境，以及融入实际业务，分享提升机器人执行可靠性的具体探索与实践体会。</p>
+-                    <p><strong>简介：</strong>董震，海德堡大学博士，复旦大学计算与智能创新学院副教授、博导，CCF中国计算机学会智能机器人专业委员会执行委员、CCF中国计算机学会软件工程专业委员会执行委员。主持国家自然基金委面上基金、国家重点研发子课题，参与国家科技创新2030"新一代人工智能"重大项目课题，并参与完成多个国际合作项目（合作方包括卡巴斯基公司、新加坡电信公司等）。长期致力于软件分析与测试，在软件工程与人工智能领域ICSE、FSE、ASE、ISSTA、NeurIPS、IJCAI、FM等国际会议发表40余篇学术论文，并获得ICSE'20杰出论文、ISSTA'25杰出论文、ISSTA'26等多个奖项。同时，担任软件工程领域旗舰期刊《Automated Software Engineering》、《Journal of Software: Evolution and Process》编委，国际会议ICSE、FSE、ASE、ISSTA等程序委员，并获得ASE'22杰出评审、TOSEM杰出评审等荣誉称号。</p>
+-                </div>
+-            </div>
+-        </div>
+-        <div class="speaker-member">
+-            <h4>6. 报告人：王之港 上海人工智能实验室研究员</h4>
+-            <div class="speaker-profile">
+-                <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/王之港.png" alt="王之港头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <div class="speaker-content">
+-                    <p><strong>题目：</strong>空中具身智能：从世界构建到自主飞行</p>
+-                    <p><strong>摘要：</strong>无人机所代表的空中具身智能，是具身智能迈向三维开放空间的重要方向，也是研究智能体环境理解、任务决策与安全行动的关键场景。本报告围绕"世界构建—空间理解—自主行动"展开。首先介绍无人机自主的 Real-to-Sim 环境构建，探讨如何将真实环境转化为可用于具身智能研究的仿真场景；随后聚焦空中视角下的视觉语言指代定位与视觉语言导航，阐述如何将自然语言目标锚定到真实空间，并转化为高层导航决策；最后结合强化学习驱动的抗风避障协同控制，讨论无人机在复杂环境下的鲁棒、安全执行。报告将呈现一条贯通真实环境建模、空间语义理解、语言驱动导航与物理飞行控制的研究脉络。</p>
+-                    <p><strong>简介：</strong>王之港，上海人工智能实验室青年科学家，主要研究方向为机器智能感知、规划与控制，长期关注复杂开放环境下智能体的空间理解、自主决策与安全行动。曾任百度视觉技术部资深算法工程师，从事智慧城市与智能交通领域的技术研发，连续获得2019年和2020年AI City Challenge国际人工智能技术挑战赛冠军，相关研究成果已在多个城市和地区实现落地应用。2022年加入上海人工智能实验室，围绕具身智能与空间智能开展前沿研究，研究内容涵盖具身导航、自主路径规划、视觉指代定位（Visual Grounding）、异构智能体任务规划与协同等方向，形成了从视觉感知、空间语义理解到决策规划与运动控制的系统性研究布局。在CVPR、ICCV、ECCV、AAAI、ICRA以及TIP等人工智能、计算机视觉与机器人领域的国际顶级会议和期刊发表论文50余篇，公开技术在国家人工智能中试基地进行转化应用，被Asia Times、人民日报、新华网等国内外媒体报道。</p>
+-                </div>
+-            </div>
+-        </div>
+-        <div class="speaker-member">
+-            <h4>7. 报告人：贾周阳 国防科技大学副研究员</h4>
+-            <div class="speaker-profile">
+-                <div class="speaker-image">
++
++      
++    </section>
++
++    <section class="forum-section">
++        <h3>五、论坛组织委员会简介</h3>
++        <div class="committee-member">
++            <h4>1. 论坛组委会：古金宇</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/学术论坛/古金宇.png" alt="古金宇头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>上海交通大学计算机学院副教授/博导，开源鸿蒙具身智能PMC主席。长期从事操作系统领域研究。研究成果发表在本领域主流学术会议与期刊如SOSP、OSDI、USENIX Security等，应用于华为鸿蒙、卫星星座、航空机载、南方电网等。担任操作系统领域主流会议EuroSys和ATC会议的程序委员会委员；参与编著《智能终端操作系统与OpenHarmony实践》、《操作系统：原理与实现》；曾获"示范性软件学院联盟十大关键软件技术成果"等。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>2. 论坛组委会：吴庆波</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/学术论坛/吴庆波.png" alt="吴庆波头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>博士学位，中国电子首席科学家、春天研究院院长，国防科技大学计算机学院研究员，教育部国产基础软件工程中心主任，原国防科技大学计算机学院国产基础软件工程研究中心主任，核高基国家科技重大专项麒麟操作系统常务副总师，主持了核高基科技重大专项军用服务器操作系统项目，银河高性能仿真计算机系统副总师，全军第一批高科技拔尖人才培养对象。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>3. 论坛组委会：贾周阳</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
+                     <img src="./images/academic-forum/学术论坛/贾周阳.png" alt="贾周阳头像" onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+-                <div class="speaker-content">
+-                    <p><strong>题目：</strong>大规模微模型驱动的具身智能软件架构</p>
+-                    <p><strong>摘要：</strong>具身机器人端侧算力有限，单一通用模型难以覆盖开放场景，现有技能级分解粒度仍存在泛化能力受限的挑战。本报告提出大规模微模型驱动的具身智能软件架构，将模型粒度下沉至物体/任务级，为每个具体对象训练专用的微小模型，形成规模上不封顶的微模型群体。借鉴微服务架构思想，通过模型注册与发现、任务路由、弹性调度等系统软件机制，将海量微模型组织为可独立训练、部署与更新的"模型服务集群"。通用性不再依赖单个模型的能力，而是由群体的覆盖与调度涌现——智能从模型之内，搬到架构之上。</p>
+-                    <p><strong>简介：</strong>贾周阳，博士，副研究员，博士生导师。主要从事系统软件、软件可靠性领域研究，主持国自科青年基金等项目3项，作为核心技术骨干参与5项国家和军队重大项目。在ICSE、FSE、ASE等CCF推荐A类高水平会议期刊发表论文20余篇，获ICSE'23/25等杰出论文奖5次，申请和授权专利10余项。获军事科技进步一等奖、军事科技领域青托、全军优博、CCF优博提名、湖南省湖湘青年英才。</p>
+-                </div>
+-            </div>
+-        </div>
+-        <div class="speaker-member">
+-            <h4>8. 报告人：黄凯 中山大学教授</h4>
+-            <div class="speaker-profile">
+-                <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/黄凯.png" alt="黄凯头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <div class="speaker-content">
+-                    <p><strong>题目：</strong>具身智能机器人关键技术及实践</p>
+-                    <p><strong>摘要：</strong>AI+机器人是当下学术界和工业界的热门议题。具身智能是其主要载体技术，作为六大未来产业之一写入"十五五"规划。本次演讲将介绍团队关注的具身智能机器人关键技术，并从作为玩具的仿生机器人，到应用于人体的手术机器人，展示具身技术如何赋能机器人。</p>
+-                    <p><strong>简介：</strong>现任中山大学计算机学院教授、人工智能与机器人研究所所长、机器智能与先进计算教育部重点实验室副主任，政协第十三届广东省委员会委员。主要研究方向是人工智能+机器人关键技术及工程化问题。应用领域包括智能驾驶，手术机器人，智能装备等。在CNS、JAMA子刊及其他国际著名期刊\会议发表多篇论文，最佳论文/提名二十余次。授权发明专利80余项，主导多项知识产权转化。</p>
+-                </div>
+-            </div>
+-        </div>
+-        <div class="speaker-member">
+-            <h4>9. 报告人：陈康 北京大学教授</h4>
+-            <div class="speaker-profile">
+-                <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/陈康.png" alt="陈康头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <div class="speaker-content">
+-                    <p><strong>题目：</strong>具身智能系统软件体系的探索与开源实践</p>
+-                    <p><strong>摘要：</strong>具身智能正将模型推理、环境感知、实时控制等不同类型的计算任务集成到同一机器人，甚至同一颗异构SoC上，对资源隔离、软硬件复用以及系统协同提出了新的挑战。本报告围绕从芯片到机器人应用的系统软件栈，介绍两个层次的探索：在底层，轻量级Type-1虚拟机监控器hvisor对CPU、内存和I/O等硬件资源进行分区与隔离，为不同计算任务提供独立、可控的运行环境；在上层，具身智能操作系统Robonix通过任务、技能、服务和硬件原语等统一抽象，连接模型、机器人本体与应用。在此基础上，报告将进一步讨论hvisor与Robonix的协同架构及演进路线，探索构建面向具身智能的开源系统软件体系。</p>
+-                    <p><strong>简介：</strong>北京大学计算机学院教授，长期从事操作系统研究。近年来在OSDI/SOSP等计算机系统领域顶级国际会议发表CCF-A类论文30余篇，获得过OSDI最佳论文奖。长期担任OSDI/SOSP/EuroSys/NSDI/ASPLOS/ATC/HPCA等系统领域顶级和重要国际会议程序委员会委员。2024年开始担任ACM Transactions on Computer Systems（TOCS）的副主编。曾获国家科技进步一等奖，国家技术发明二等奖、中国电子学会科技进步特等奖/一等奖、中国电子学会技术发明一等奖等奖项。近年来关注泛在操作系统研究，联合发起成立矽望泛在操作系统开源社区，主持研发Robonix具身智能操作系统并积极推动相关开源生态建设。</p>
+-                </div>
+-            </div>
+-        </div>
+-        <div class="speaker-member">
+-            <h4>10. 报告人：张德宇 中南大学副教授</h4>
+-            <div class="speaker-profile">
+-                <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/张德宇.png" alt="张德宇头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <div class="speaker-content">
+-                    <p><strong>题目：</strong>端侧多模态智能感知与应用</p>
+-                    <p><strong>摘要：</strong>在计算机软硬件技术与人工智能持续突破、新型应用场景加速落地的当下，计算模式正经历深刻变革——从以云计算为核心的集中式智能，稳步迈向基于边缘计算的分布式智能与自主智能，构建起全新的智能计算范式。这一范式转型的核心挑战在于：如何为资源受限的端侧设备注入智能算力，从而支撑丰富多元的智能应用。本报告以此为切入点，立足端侧多模态数据的感知能力基础，聚焦深度估计与动作识别两个典型应用场景，深入剖析终端系统在提供智能服务过程中的关键优化路径与技术方法。</p>
+-                    <p><strong>简介：</strong>中南大学计算机学院副教授，博导。近年来在边缘智能、物联网调度优化等方向发表50余篇论文，包括ACM MobiCom、SenSys、Mobisys和IEEE TMC、JSAC、ACM Computing Surveys等国际知名会议和期刊，其中ESI热点论文3篇，高被引论文5篇。成果应用于上市公司传音控股等多家知名企业。获得中国电子学会自然科学一等奖，湖南省计算机学会优秀高等教育教学成果一等奖，湖南省高等教育教学成果二等奖，微软亚洲研究院"铸星计划"。主持湖南省优秀青年基金，173项目，国家自然科学基金面上项目，青年项目，湖南省自然科学基金重大项目"揭榜挂帅"课题。</p>
+-                </div>
+-            </div>
+-        </div>
+-        <div class="speaker-member">
+-            <h4>11. 报告人：夏海峰 中山大学副教授</h4>
+-            <div class="speaker-profile">
+-                <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/夏海峰.png" alt="夏海峰头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <div class="speaker-content">
+-                    <p><strong>题目：</strong>多模态融合驱动的具身智能系统</p>
+-                    <p><strong>摘要：</strong>具身智能是连接虚拟人工智能与真实物理世界的前沿研究方向，面向机器人在真实环境中感知、移动、操作物体的实际需求，本报告将围绕多模态融合驱动的具身智能系统展开，分别从具身智能定位、导航、操控与安全四大关键模块介绍。在定位层面，针对室内多传感器融合定位受环境变化引发性能衰减难题，提出基于双回归器对抗的跨场景室内定位方法，实现机器人依据传感信号的室内定位；在导航任务上，面向零样本目标导航，解决前沿点选择困难、局部观测与目标匹配偏差问题，提出RERV-Nav框架，实现新场景免重新训练的可靠探索与可修订目标校验；在灵巧手操控方面，针对现实操控数据采集成本高的痛点，提出操控语义蒸馏的灵巧手运动学习方案，完成仿真到现实迁移，实现跨机器人本体驱动。</p>
+-                    <p><strong>简介：</strong>夏海峰，中山大学网络空间安全学院副教授、博士生导师，国家高层次青年人才，中山大学逸仙学者。曾在Google、NEC Lab、三菱电器北美研究院、香港浸会大学开展过多项研究工作，长期从事计算机视觉、多模态学习、人工智能安全领域的研究。近年来，在领域内的一流期刊和会议（IEEE TPAMI、CVPR、ICCV、ECCV等）上发表30余篇研究工作，其中多篇入选国际会议Oral Presentation。主持国家级青年人才项目、国自然面上/青年项目，参与广东省重点研发和深圳市重点研发项目等基金。</p>
+-                </div>
+-            </div>
+-        </div>
+-        <div class="speaker-member">
+-            <h4>12. 报告人：刘生钟 上海交通大学副教授</h4>
+-            <div class="speaker-profile">
+-                <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/刘生钟.png" alt="刘生钟头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <div class="speaker-content">
+-                    <p><strong>题目：</strong>基于端侧推理的多模态具身智能体模型与系统</p>
+-                    <p><strong>摘要：</strong>面向资源受限终端上具身智能体的低时延、高可靠运行需求，本报告介绍多模态大模型快慢思考融合与技能沉淀的研究成果。首先，通过任务难度感知的推理长度调节，减少冗余思考，兼顾推理质量与响应效率；进一步，介绍TRACE系统，将多模态感知与行动中的重复决策过程沉淀为随实时观测动态调整的可执行技能，实现慢思考推理与快路径执行的协同。结合技能可靠性评估、执行准入与异常回退机制，探讨"推理—执行—沉淀—复用"的持续演进闭环，为具身智能系统的高效、可靠运行提供模型与系统协同设计思路。</p>
+-                    <p><strong>简介：</strong>刘生钟，上海交通大学计算机学院长聘教轨副教授、博导，2022年国家海外优青。曾先后获得英特尔中国学术英才、启源青年学者、小米青年学者和华为火花奖。本科毕业于上海交大计算机系，博士毕业于美国伊利诺伊大学香槟分校（UIUC）计算机系。主持了国自然海优、面上项目以及山东省联合基金重点项目。参与国家重点研发计划、国自然重点专项/重点项目等国家级项目5项；与移动、电信、华为、联想、阿里、海尔、蔚来等企业开展广泛合作。担任了CCF A类国际会议UbiComp 2026大会副主席和ACM IMWUT编委，以及RTSS、SenSys、RTAS、ICDCS、IWQoS等多个知名国际会议程序委员。研究多模态边缘智能计算，先后在RTSS、UbiComp、EuroSys、SenSys、WWW、ICML、NeurIPS、ACL、TPAMI、TMC等国际知名会议与期刊发表论文70余篇，7次获得国际会议最佳/杰出论文奖（包括RTSS、UbiComp、ACL、SenSys、RTAS等），在Communications of ACM和ACM GetMobile杂志发表Research Highlight论文。</p>
+-                </div>
+-            </div>
+-        </div>
+-        <div class="speaker-member">
+-            <h4>13. 报告人：郑锋 南方科技大学副教授</h4>
+-            <div class="speaker-profile">
+-                <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/郑锋.png" alt="郑锋头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <div class="speaker-content">
+-                    <p><strong>题目：</strong>类脑分层分区具身大脑</p>
+-                    <p><strong>摘要：</strong>当前具身智能（Embodied AI）的研究热点集中于端到端的操作大模型。然而，若要使机器人真正具备人类级别的跨场景适应、长程规划及多任务并行能力，单纯依赖局部运动层面的精准操控远未足够，其核心瓶颈在于缺乏多模态主动感知与高阶复杂推理的有机结合。针对这一挑战，本团队立足于人类行为大数据学习，创立"类脑分层分区具身认知架构"。该架构赋予机器人深度长程决策、全地形跨场景自主导航以及兼具空间三维感知的精细化操作能力。简言之，我们致力于打造兼具高级认知（能思考）、全域移动（能行走）与通用操作（能劳作）的三位一体通用机器人。围绕这一愿景，推出Omega、Omni、Alpha三大核心技术系列，打破传统具身智能的系统壁垒，构建了"感知-推理（高阶认知）"与"感知-执行（低阶控制）"的双层异构端到端体系，实现具身智能从"被动响应"向"自主通用"的范式跃升。</p>
+-                    <p><strong>简介：</strong>郑锋，国家级青年人才，南方科技大学长聘副教授、机器人研究院副院长，具身智能初创公司无界智慧创始人兼CEO。于2016年获得谢菲尔德大学博士学位，2018年在匹兹堡大学完成博后研究工作，曾任职于腾讯优图、中科院深圳先进院。主要从事多模态感知，具身智能等方面的研究工作，发表CCF A类论文100余篇，谷歌引用万余次，多次入选斯坦福"全球前2%顶尖科学家"。指导学生获得国际竞赛4次冠军，3次亚军。多个开源项目在GitHub获得超万次星赞，其中TAM项目周/月排名进全球前二，提出金字塔算法收录于OpenCV。担任国际人工智能主流杂志IET IPR副编辑，Neurips、AAAI、ACMMM、CORL等会议领域主席。作为项目负责人，主持项目10余项，竞争性经费突破1600万，向中兴、华为、腾讯等高新企业实现技术转化。积极推动相关开源生态建设。</p>
+-                </div>
+-            </div>
+-        </div>
+-        <div class="speaker-member">
+-            <h4>14. 报告人：康梓峰 北京邮电大学副研究员</h4>
+-            <div class="speaker-profile">
+-                <div class="speaker-image">
+-                    <img src="./images/academic-forum/学术论坛/康梓峰.png" alt="康梓峰头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <div class="speaker-content">
+-                    <p><strong>题目：</strong>泛在智能系统新型漏洞精准检测及利用</p>
+-                    <p><strong>摘要：</strong>随着泛在智能系统的快速发展和深入应用，新型漏洞的精准检测与利用验证已成为安全研究的重要前沿问题。本次报告将围绕"泛在智能系统新型漏洞精准检测及利用"主题，以Web应用、大模型智能体、具身智能等典型泛在智能系统为对象，针对未知机理建模难、潜伏污染检测难、链式利用验证难三大挑战，介绍我们在理论模型、关键方法和技术验证等方面取得的突破与创新。</p>
+-                    <p><strong>简介：</strong>康梓峰，北京邮电大学网络空间安全学院副研究员，入选北京市科协青年人才托举工程。任CCF网络与系统专委会执行委员，任USENIX Security、NDSS、WWW等多个CCF-A类会议的PC委员。研究方向为漏洞检测与利用、大模型安全、具身智能安全等。发表多篇安全四大顶会论文，以一作身份获IEEE S&amp;P 2025【杰出论文奖】；另获USENIX Security 2025杰出奖提名。他的研究发现了超过3000个零日漏洞，漏洞被谷歌、微软、Meta等知名公司评为最高和高危风险等级，获多项漏洞赏金和百余个CVE漏洞编号，成果被多家国际主流媒体报道，论文被ACM Fellow团队等一流研究团队引用。</p>
+-                </div>
+-            </div>
+-        </div>
+-    </section>
+-
+-    <section class="forum-section">
+-        <h3>五、论坛组织委员会简介</h3>
+-        <div class="committee-member">
+-            <h4>1. 论坛组委会：古金宇</h4>
+-            <div class="committee-profile">
+-                <div class="committee-image">
+-                    <img src="./images/academic-forum/学术论坛/古金宇.png" alt="古金宇头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <p><strong>简介：</strong>上海交通大学计算机学院副教授/博导，开源鸿蒙具身智能PMC主席。长期从事操作系统领域研究。研究成果发表在本领域主流学术会议与期刊如SOSP、OSDI、USENIX Security等，应用于华为鸿蒙、卫星星座、航空机载、南方电网等。担任操作系统领域主流会议EuroSys和ATC会议的程序委员会委员；参与编著《智能终端操作系统与OpenHarmony实践》、《操作系统：原理与实现》；曾获"示范性软件学院联盟十大关键软件技术成果"等。</p>
+-            </div>
+-        </div>
+-        <div class="committee-member">
+-            <h4>2. 论坛组委会：吴庆波</h4>
+-            <div class="committee-profile">
+-                <div class="committee-image">
+-                    <img src="./images/academic-forum/学术论坛/吴庆波.png" alt="吴庆波头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+-                <p><strong>简介：</strong>博士学位，中国电子首席科学家、春天研究院院长，国防科技大学计算机学院研究员，教育部国产基础软件工程中心主任，原国防科技大学计算机学院国产基础软件工程研究中心主任，核高基国家科技重大专项麒麟操作系统常务副总师，主持了核高基科技重大专项军用服务器操作系统项目，银河高性能仿真计算机系统副总师，全军第一批高科技拔尖人才培养对象。</p>
+-            </div>
+-        </div>
+-        <div class="committee-member">
+-            <h4>3. 论坛组委会：贾周阳</h4>
+-            <div class="committee-profile">
+-                <div class="committee-image">
+-                    <img src="./images/academic-forum/学术论坛/贾周阳.png" alt="贾周阳头像" onerror="this.src='./images/academic-forum/default.png'">
+-                </div>
+                 <p><strong>简介：</strong>贾周阳，博士，副研究员，博士生导师。主要从事系统软件、软件可靠性领域研究，主持国自科青年基金等项目3项，作为核心技术骨干参与5项国家和军队重大项目。在ICSE、FSE、ASE等CCF推荐A类高水平会议期刊发表论文20余篇，获ICSE'23/25等杰出论文奖5次。获军事科技进步一等奖、军事科技领域青托、全军优博、CCF优博提名、湖南省湖湘青年英才。</p>
+             </div>
+         </div>
+--- before/pages/agenda/academic-forum/templates/intelligent-software-dev.html
++++ after/pages/agenda/academic-forum/templates/intelligent-software-dev.html
+@@ -54,13 +54,13 @@
+                 <tr><th>时间</th><th>题目</th><th>讲者</th><th>主持</th></tr>
+             </thead>
+             <tbody>
+-                <tr><td style="white-space: nowrap;">14:00–14:40</td><td>特邀报告1：《人机物融合软件系统的设计方法——探索和挑战》</td><td>金芝 教授<br>武汉大学/北京大学</td><td>孙伟松，南洋理工大学研究员<br>杨波，北京林业大学教授</td></tr>
+-                <tr><td style="white-space: nowrap;">14:40–15:20</td><td>特邀报告2：《从人类智能到机器智能：一种受脑启发的智能体计算架构》</td><td>刘杨 教授<br>南洋理工大学</td><td>-</td></tr>
+-                <tr><td style="white-space: nowrap;">15:20–16:00</td><td>特邀报告3：《林草智能软件研究与典型应用》</td><td>许福 教授<br>北京林业大学</td><td>-</td></tr>
+-                <tr><td style="white-space: nowrap;">16:00–16:20</td><td>茶歇</td><td>-</td><td>-</td></tr>
+-                <tr><td style="white-space: nowrap;">16:20–17:00</td><td>特邀报告4：《面向数据安全保护场景的系统性能优化》</td><td>赵路坦 研究员<br>中科院信息工程研究所</td><td>吕培卓，南洋理工大学研究员<br>梁瑞刚，中科院信工所高级工程师</td></tr>
+-                <tr><td style="white-space: nowrap;">17:00–17:40</td><td>特邀报告5：《机无所恶，伤有所至：具身智能时代的软件的可靠性危机》</td><td>张悦 教授<br>山东大学</td><td>-</td></tr>
+-                <tr><td style="white-space: nowrap;">17:40–18:20</td><td>特邀报告6：《生-机-电系统融合：从感知到生成》</td><td>郑恩昊 研究员<br>中国科学院自动化研究所</td><td>-</td></tr>
++                <tr><td style="white-space: nowrap;">14:00–14:40</td><td>特邀报告1：《人机物融合软件系统的设计方法——探索和挑战》</td><td>金芝 教授<br>武汉大学/北京大学</td><td rowspan="3">孙伟松，南洋理工大学研究员<br>杨波，北京林业大学教授</td></tr>
++                <tr><td style="white-space: nowrap;">14:40–15:20</td><td>特邀报告2：《从人类智能到机器智能：一种受脑启发的智能体计算架构》</td><td>刘杨 教授<br>南洋理工大学</td></tr>
++                <tr><td style="white-space: nowrap;">15:20–16:00</td><td>特邀报告3：《林草智能软件研究与典型应用》</td><td>许福 教授<br>北京林业大学</td></tr>
++                <tr><td style="white-space: nowrap;">16:00–16:20</td><td colspan="3">茶歇</td></tr>
++                <tr><td style="white-space: nowrap;">16:20–17:00</td><td>特邀报告4：《面向数据安全保护场景的系统性能优化》</td><td>赵路坦 研究员<br>中科院信息工程研究所</td><td rowspan="3">吕培卓，南洋理工大学研究员<br>梁瑞刚，中科院信工所高级工程师</td></tr>
++                <tr><td style="white-space: nowrap;">17:00–17:40</td><td>特邀报告5：《机无所恶，伤有所至：具身智能时代的软件的可靠性危机》</td><td>张悦 教授<br>山东大学</td></tr>
++                <tr><td style="white-space: nowrap;">17:40–18:20</td><td>特邀报告6：《生-机-电系统融合：从感知到生成》</td><td>郑恩昊 研究员<br>中国科学院自动化研究所</td></tr>
+             </tbody>
+         </table>
+     </section>
+--- before/pages/agenda/academic-forum/templates/llm-dev-evaluation.html
++++ after/pages/agenda/academic-forum/templates/llm-dev-evaluation.html
+@@ -5,7 +5,8 @@
+ 
+     <section class="forum-section">
+         <h3>一、论坛介绍</h3>
+-        <p>本论坛围绕大模型辅助软件开发能力评测体系建设，系统研讨代码生成补全、代码转换、单测生成、缺陷修复与工程问答等关键任务的评测方法，重点探索评测框架设计、指标体系构建、自动化与人工协同机制以及高质量评测数据集与动态演进机制建设。</p>
++        <p>软件开发是大模型应用范围最广、最具价值应用方向之一，大模型辅助开发能力评测技术是推动模型能力提升和产业健康发展的关键一环。科学规范的评测体系不仅能够发现各类模型和工具在复杂工程场景中的能力边界与薄弱环节，指导模型优化方向，减少算力资源浪费，还能够防止“唯排行榜”论导致指标失真的问题，促进模型能力的真实对比与良性竞争。</p>
++        <p>本论坛邀请了来自中国信通院、华为公司、北航、中科院计算机网络信息中心、新加坡南洋理工大学、北京硅心科技有限公司从事大模型能力评测和智能化软件开发运维的专家学者，分享AI开发能力评测体系设计、最新大模型评测结果洞察，以及在智能化软件开发运维的多种任务上对大模型和Agent进行科学评测的方法、技术以及思考。</p>
+     </section>
+ 
+     <section class="forum-section">
+@@ -34,7 +35,7 @@
+                 <tr><td style="white-space: nowrap;">16:00-16:10</td><td>茶歇</td><td>-</td></tr>
+                 <tr><td style="white-space: nowrap;">16:10-16:30</td><td>从单点测评到全流程画像——软件研发大模型评测基准构建与实践</td><td>石琳<br>北京航空航天大学</td></tr>
+                 <tr><td style="white-space: nowrap;">16:30-16:50</td><td>智能运维如何科学评测：从能力基准到真实场景验证</td><td>裴昶华<br>中国科学院计算机网络信息中心</td></tr>
+-                <tr><td style="white-space: nowrap;">16:50-17:10</td><td>软件复杂性视角下的智能化开发评测</td><td>王翀<br>南洋理工大学</td></tr>
++                <tr><td style="white-space: nowrap;">16:50-17:10</td><td>软件复杂性视角下的智能化开发评测</td><td>王翀<br>新加坡南洋理工大学</td></tr>
+                 <tr><td style="white-space: nowrap;">17:10-17:30</td><td>企业代码智能体评测：从基准构建到系统级验收</td><td>蒋思源<br>北京硅心科技有限公司</td></tr>
+             </tbody>
+         </table>
+@@ -139,7 +140,7 @@
+                 <div class="committee-image">
+                     <img src="./images/academic-forum/学术论坛/吴毅坚.png" alt="吴毅坚头像" onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+-                <p><strong>简介：</strong>复旦大学计算与智能创新学院副教授，博士生导师，CCF软件工程专委会执行委员，上海市计算机学会软件工程专委会副主任。主要研究方向为软件演化分析、智能化软件开发、缺陷库构建和缺陷分析、软件开发质量与效能分析等。</p>
++                <p><strong>简介：</strong>复旦大学计算与智能创新学院副教授，博士生导师，CCF软件工程专委会执行委员，上海市计算机学会软件工程专委会副主任。主要研究方向为软件演化分析、智能化软件开发、缺陷库构建和缺陷分析、软件开发质量与效能分析等。曾作为负责人承担国家863、973子课题、国家自然科学基金青年和面上项目、全军共用信息系统装备专用技术预研项目子课题、上海市科技计划项目子课题等多项国家级及省部级科研任务，承担多项企业合作研究项目，并开展成果应用。相关研究成果发表在ICSE、ISSTA、ASE、FSE、中国科学、软件学报等软件工程领域重要国际国内会议和期刊上。曾获CCF科学技术奖技术发明二等奖（2021）、ACM SIGSOFT杰出论文奖（ICPC 2022）和上海市教学成果二等奖（2009）。</p>
+             </div>
+         </div>
+         <div class="committee-member">
+--- before/pages/agenda/academic-forum/templates/programming-language-frontier.html
++++ after/pages/agenda/academic-forum/templates/programming-language-frontier.html
+@@ -0,0 +1,156 @@
++<div class="container">
++
++    <h2 class="section-title">编程语言前沿技术论坛</h2>
++    <div class="section-title-en">学术论坛 R5</div>
++
++    <section class="forum-section">
++        <h3>一、论坛介绍</h3>
++        <p>编程语言前沿技术论坛聚焦编程语言、编译器、程序分析和验证等领域的最新理论和技术成果，论坛将邀请来自学术界及产业界专家，通过分享最新研究与实践的进展，帮助编程语言领域的广大学术研究者及开发者了解、学习和交流最前沿的编程语言理论和技术。欢迎计算机科学、软件工程、编译器与编程语言等相关学科专家和学者前来参加。</p>
++    </section>
++
++    <section class="forum-section">
++        <h3>二、论坛组织委员会</h3>
++        <ul class="committee-list">
++            <li><span class="member-name">陈俊洁</span><span class="member-unit">（天津大学）</span></li>
++            <li><span class="member-name">冯新宇</span><span class="member-unit">（南京大学）</span></li>
++            <li><span class="member-name">贺飞</span><span class="member-unit">（清华大学）</span></li>
++        </ul>
++    </section>
++
++    <section class="forum-section">
++        <h3>三、论坛安排</h3>
++        <h4>日程安排：</h4>
++        <p><strong>时间：</strong>2026年11月6日，9:00~12:00</p>
++        <p><strong>地点：</strong>天津市社会山国际会议中心酒店，三层接见厅</p>
++
++        <h4>论坛议程：</h4>
++        <table class="forum-table">
++            <thead>
++                <tr><th>时间</th><th>题目</th><th>报告嘉宾</th></tr>
++            </thead>
++            <tbody>
++                <tr><td style="white-space: nowrap;">9:00-9:25</td><td>安全编程语言Trust C若干进展</td><td>王戟<br>国防科技大学</td></tr>
++                <tr><td style="white-space: nowrap;">9:25-9:50</td><td>大模型时代的编程语言设计初探</td><td>王迪<br>北京大学</td></tr>
++                <tr><td style="white-space: nowrap;">9:50-10:15</td><td>仓颉编程语言 Modal Type 特性简介</td><td>傅荣枭<br>华为编程语言实验室</td></tr>
++                <tr><td style="white-space: nowrap;">10:15-10:45</td><td>茶歇</td><td>-</td></tr>
++                <tr><td style="white-space: nowrap;">10:45-11:10</td><td>骑河：面向硬件的通用型静态分析框架</td><td>谭添<br>南京大学</td></tr>
++                <tr><td style="white-space: nowrap;">11:10-11:35</td><td>Typed and Staged Tile-Based GPU Programming</td><td>叶文佳<br>布里斯托大学</td></tr>
++                <tr><td style="white-space: nowrap;">11:35-12:00</td><td>从证明失效到可信修复：形式化证明维护的分析与自动化</td><td>栾晓坤<br>新加坡国立大学</td></tr>
++            </tbody>
++        </table>
++    </section>
++
++    <section class="forum-section">
++        <h3>四、论坛报告嘉宾简介</h3>
++        <div class="speaker-member">
++            <h4>1. 报告人：王戟 教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛v2/王戟.png" alt="王戟头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>安全编程语言Trust C若干进展</p>
++                    <p><strong>摘要：</strong>本报告将安全编程语言视为程序构造与形式验证的统一载体，将安全编程可信保证梳理为三种主要模式：语言内生的自动保证、规约驱动的自动验证、显式证明构造与交互式定理证明。以此为基础，介绍安全编程语言Trust C的若干进展：它是基于C的渐进式安全编程语言；安全保证思路是利用内生机制排除普遍且可结构化的错误、规约驱动验证处理程序特定要求、显式证明构造承担功能正确和功能安全的语义论证；这些安全保证内嵌于Trust C的验译器之中，并通过其IDE与外部分析、验证工具和AI辅助工具集成。</p>
++                    <p><strong>简介：</strong>王戟，国防科技大学教授，复杂关键软件环境全国重点实验室副主任，中国计算机学会会士。从事可信、智能与新兴软件技术研究，在复杂关键软件高可信保证、神经符号融合系统、虚拟计算环境等方面取得了重要进展，在国家和国防重大重点工程发挥了重要作用。获国家和省部级奖励6项，发表论文200余篇。曾获国务院政府特殊津贴、国家杰出青年科学基金、教育部长江学者特聘教授。历任中国计算机学会理事、形式化方法专委主任、软件工程专委副主任。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>2. 报告人：王迪 助理教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛v2/王迪.png" alt="王迪头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>大模型时代的编程语言设计初探</p>
++                    <p><strong>摘要：</strong>大模型正在成为代码的作者，如何检查其生成程序的正确性，成为编程语言设计的重要问题。本报告从表达能力与可检查性的关系回顾编程语言的演化，讨论作者角色的变化如何推动语言设计转向"大模型可生成、机器可检查"的协同目标：由人明确意图、审查规约，大模型生成实现与证明，机器检查实现是否满足规约。围绕这一目标，报告介绍面向系统软件的C*语言探索：沿用C的语法编写实现与证明，将实现、规约和证明就近组织在同一份源码中，通过符号执行与证明执行交替推进验证，并为智能体提供增量检查与状态反馈。这些设计将语言的熟悉度、推理的局部性和检查的及时性结合起来，探索开发与证明一体化的编程方式。</p>
++                    <p><strong>简介：</strong>王迪是北京大学计算机学院的助理教授。他于2022年在美国卡内基梅隆大学获得博士学位，于2017年在北京大学获得学士学位。他的研究兴趣包括形式化验证、程序分析、类型系统以及概率编程，目前的研究项目涉及资源安全的系统编程、可编程贝叶斯推断、量化程序分析以及面向证明的编程语言。他获得了国家优秀青年科学基金项目（海外）资助，多项研究成果发表于编程语言领域的顶级会议POPL、PLDI、OOPSLA、ICFP等。他是中国计算机学会形式化方法专委会执行委员。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>3. 报告人：傅荣枭 高级工程师</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛v2/傅荣枭.png" alt="傅荣枭头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>仓颉编程语言 Modal Type 特性简介</p>
++                    <p><strong>摘要：</strong>基于类型系统提供的静态约束改善程序安全性与提升运行性能，一直是学术界与工业界共同关注和探索的重要方向。本次报告将会介绍在仓颉编程语言中的 Modal Type 特性的设计和工程实践的进展。为了更高效的内存管理，更精细安全的资源管理，以及更安全的并发等目标，我们参考 OxCaml 等现有工作，在仓颉编程语言中引入了 Modal Type 特性。此特性作为对仓颉现有类型系统的增强，允许使用附加在数据类型上的 Mode 标记表示使用该类型的对象时会受到的一系列约束，并在此基础上提供相应的保证或执行相关的优化。当前我们的设计涵盖了用于约束对象生命周期的 Local Mode，用于表达所有权的 Unique Mode，以及用于控制可变性的 Immutable Mode。同时，本次报告将结合典型应用场景，探讨 Local Mode 在降低内存峰值、减少 GC 压力等方面的应用价值。</p>
++                    <p><strong>简介：</strong>傅荣枭，华为编程语言实验室高级工程师。电子科技大学与格拉斯哥大学本科毕业，爱丁堡大学硕士与博士毕业。研究方向包括编程语言设计，类型系统等。目前主要关注仓颉编程语言的语言设计。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>4. 报告人：谭添 助理教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛v2/谭添.png" alt="谭添头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>骑河：面向硬件的通用型静态分析框架</p>
++                    <p><strong>摘要：</strong>静态程序分析是公认提升软件质量的有效技术，可支撑软件缺陷检测、安全分析与程序理解等复杂任务。其中，通用型静态分析框架是各类先进软件分析技术的关键基座，能显著降低新分析的研发门槛。然而在硬件设计领域，尽管同样使用程序设计语言（Verilog等）进行开发，但硬件静态分析技术尚未得到充分发展和应用。针对这一问题，我们认为长期缺乏通用型硬件静态分析框架是限制该领域发展的主要原因之一。但面向硬件构建此类框架极具挑战：一方面，硬件静态分析并非软件分析技术的简单移植，而需针对硬件固有的并发语义、寄存器同步机制和位向量运算等特性进行专门设计；另一方面，硬件领域缺乏可参考的通用框架先例，针对硬件设计语言，通用型静态分析框架应提供哪些功能以支撑分析硬件分析技术的研发与应用，本身也是我们需要探索的问题。为挖掘硬件静态分析技术的潜力，我们设计并实现了国际首个通用型 Verilog 静态分析框架"骑河"。该框架代码规模超过 10 万行，现已连同配套文档一并开源发布。本报告将介绍骑河面向硬件特性的框架设计，并展示基于该框架在硬件缺陷检测、硬件安全分析和硬件设计理解三类应用上的初步探索。实验结果验证了静态分析技术在硬件设计领域的有效性，展现出良好的应用前景；同时，骑河也显著降低了相关分析应用的开发成本。</p>
++                    <p><strong>简介：</strong>谭添，南京大学计算机学院助理教授，博士生导师。2017年博士毕业于澳大利亚新南威尔士大学，2017至2019年于丹麦奥胡斯大学从事博士后研究工作。研究方向为程序分析与程序设计语言。研究成果发表在TOPLAS、PLDI、POPL、OOPSLA、TOSEM、TSE、ICSE、FSE、ISSTA等相关领域的重要国际期刊与会议。曾获NASAC青年软件创新奖（2024）、ICSE 2025最佳软件制品奖、ICSE 2025 杰出论文奖、OOPSLA 2023杰出软件制品奖、ECOOP 2016杰出论文奖等奖项。主导设计并开发程序分析框架"太阿"。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>5. 报告人：叶文佳 高级副研究员</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛v2/叶文佳.png" alt="叶文佳头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>Typed and Staged Tile-Based GPU Programming</p>
++                    <p><strong>摘要：</strong>High-performance GPU programming today relies heavily on Python-based meta-programming systems like TileLang and Triton. These systems offer flexibility by allowing users to programmatically generate intermediate representations (IR) for the GPU. However, this flexibility comes at a cost: the meta-logic—defining layouts, schedules, and tile sizes—is opaque to the compiler, residing in a dynamic runtime environment (Python) rather than the static type system. Errors in kernel configuration are often detected late, and cross-stage optimizations are missed. In this talk, we argue for a new class of GPU Domain Specific Languages (DSLs) that incorporate static meta-programming features directly into the surface language. Drawing on the success of the P4 programming language in networking, we propose lifting GPU memory hierarchy concepts—such as layouts and tile sizes—into a dependent type system, supported by first-class multi-stage programming primitives. This approach preserves the generative power of Python while enabling compile-time verification and deep, whole-program optimization.</p>
++                    <p><strong>简介：</strong>叶文佳主要从事程序语言理论、类型系统与形式化方法研究，重点关注渐进类型理论及其在高可信软件系统中的应用。曾在新加坡国立大学从事博士后研究，后任英国布里斯托大学高级副研究员。近五年以唯一第一作者发表多篇CORE A类论文，研究成果发表于PLDI、OOPSLA、TOPLAS等国际顶级会议和期刊，成果荣获PLDI杰出论文奖。相关研究成果已应用于微软Koka编程语言。未来将聚焦高可信AI编译器的渐进式语义与类型方法，致力于提升人工智能基础软件的可靠性与安全性。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>6. 报告人：栾晓坤 Research Fellow</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛v2/栾晓坤.png" alt="栾晓坤头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>从证明失效到可信修复：形式化证明维护的分析与自动化</p>
++                    <p><strong>摘要：</strong>随着形式化验证技术的发展和应用，形式化证明代码与证明库的规模不断增长，相应的维护需求也日益增加。证明器版本、依赖库及上下文环境的演化，可能使原本有效的证明失效，即使待证命题本身并未改变。如何理解这些失效，并高效、可信地完成修复，成为证明工程中的重要问题。本报告以 Isabelle 证明器及 Archive of Formal Proofs（AFP）的真实版本演化为背景，分析证明兼容性问题的典型表现、根本原因和常见修复方式，并讨论相关发现对证明开发与维护的启示。在此基础上，进一步探讨如何结合大语言模型与交互式证明工具自动修复失效的证明，如何构建贴近真实维护场景的评测基准，以及如何通过独立验证与证明信任检查，确保修复结果的有效性与可信性。最后，讨论 AI 辅助形式化证明维护面临的挑战与机遇。</p>
++                    <p><strong>简介：</strong>栾晓坤，新加坡国立大学计算机学院研究员，博士毕业于北京大学应用数学专业。主要从事可信人工智能与形式化方法的交叉研究，重点关注 AI 智能体的可靠性与安全性、人工智能辅助形式化推理，以及形式化证明的自动化与维护。研究成果发表于 FSE、ICSE、POPL、NDSS、ICML、ICLR 等国际学术会议，曾获 ACM SIGSOFT 杰出论文奖（FSE 2025）和最佳论文奖（ICFEM 2025）。</p>
++                </div>
++            </div>
++        </div>
++    </section>
++
++    <section class="forum-section">
++        <h3>五、论坛组织委员会简介</h3>
++        <div class="committee-member">
++            <h4>1. 论坛组委会：陈俊洁 教授</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/学术论坛v2/陈俊洁.png" alt="陈俊洁头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>陈俊洁，天津大学教授、博导、软件学院副院长，软件工程团队(TJU-WISE Lab)负责人，主持国家优青、重点研发计划青年科学家等项目；博士毕业于北京大学；研究方向主要为基础软件质量保障、代码智能体等；入选中国科协青年人才托举工程、斯坦福大学发布的全球前2%顶尖科学家榜单，荣获CCF优博、电子学会自然科学一等奖、十项最佳/杰出论文奖等奖项；成果在华为、字节等多家知名企业落地；担任CCF系统软件专委常委，AUSE、FCS、JCST、JSEP等期刊编委/青年编委，ICSE、FSE、ASE、ISSTA等顶会PC。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>2. 论坛组委会：冯新宇 教授</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/学术论坛v2/冯新宇.png" alt="冯新宇头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>冯新宇，南京大学教授，华为编程语言首席专家，仓颉编程语言首席架构师。主要研究方向为程序设计语言的设计与实现、程序设计语言理论、以及形式化程序验证。主要工作包括仓颉编程语言、安全系统编程、操作系统内核验证、编译器验证、以及细粒度/无锁并发算法验证等。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>3. 论坛组委会：贺飞 副教授</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/学术论坛v2/贺飞.png" alt="贺飞头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>贺飞，清华大学长聘副教授、博士生导师，软件系统与工程研究所所长。长期从事程序验证、模型检验与自动推理研究，在程序终止性证明、并发程序验证及面向验证的SMT理论方面取得成果。开发的程序验证工具四次获国际软件验证大赛并发安全赛道冠军。发表论文百余篇，入选国家特支计划青年人才，获"中创软件人才奖"。</p>
++            </div>
++        </div>
++    </section>
++
++</div>--- before/pages/agenda/academic-forum/templates/resilient-software.html
++++ after/pages/agenda/academic-forum/templates/resilient-software.html
+@@ -0,0 +1,153 @@
++<div class="container">
++
++    <h2 class="section-title">韧性软件论坛</h2>
++    <div class="section-title-en">学术论坛 R27</div>
++
++    <section class="forum-section">
++        <h3>一、论坛介绍</h3>
++        <p>在万物智联、生态依存的新时代，社会、经济与应用系统发展的韧性需求日益迫切。软件作为国家关键基础设施的核心载体，其韧性特质——尤其是应对"未知"的能力——正面临前所未有的挑战。发展面向未知的韧性软件新范式，成为解决这一挑战的关键路径。开展韧性软件相关的前瞻布局与产业实践，对于推动社会经济韧性发展、形成中国特色软件创新引领新路径具有重要意义。</p>
++        <p>本论坛以"面向未知的韧性软件新范式"为主题，探讨人机物融合泛在计算时代下韧性软件的免疫内生机理与成长演化机制，重点关注韧性软件的数理基础与软件定义方法，及智能技术在软件韧性内生中的应用。论坛邀请相关领域的专家学者，分享学术界理论前沿与工业界需求痛点，助力参会者把握韧性软件研究的前沿动态与技术趋势，拓宽研究视野，促进产学研用深度融合。</p>
++    </section>
++
++    <section class="forum-section">
++        <h3>二、论坛组织委员会</h3>
++        <ul class="committee-list">
++            <li><span class="member-name">陈明帅</span><span class="member-unit">（浙江大学）</span></li>
++            <li><span class="member-name">任志磊</span><span class="member-unit">（大连理工大学）</span></li>
++            <li><span class="member-name">玄跻峰</span><span class="member-unit">（武汉大学）</span></li>
++            <li><span class="member-name">尹建伟</span><span class="member-unit">（浙江大学）</span></li>
++        </ul>
++    </section>
++
++    <section class="forum-section">
++        <h3>三、论坛安排</h3>
++        <h4>日程安排：</h4>
++        <p><strong>时间：</strong>2026年11月8日，09:00-12:00</p>
++        <p><strong>地点：</strong>天津市社会山国际会议中心酒店，三层1号多功能厅</p>
++
++        <h4>论坛议程：</h4>
++        <table class="forum-table">
++            <thead>
++                <tr><th>时间</th><th>题目</th><th>报告嘉宾</th></tr>
++            </thead>
++            <tbody>
++                <tr><td style="white-space: nowrap;">09:00-09:30</td><td>智能化软件生态的成长式构建</td><td>周明辉<br>北京大学</td></tr>
++                <tr><td style="white-space: nowrap;">09:30-10:00</td><td>国产开源操作系统软件质量保障</td><td>施鹤远<br>中南大学</td></tr>
++                <tr><td style="white-space: nowrap;">10:00-10:30</td><td>智能混成软件的可信构造与演化</td><td>董威<br>国防科技大学</td></tr>
++                <tr><td style="white-space: nowrap;">10:30-11:00</td><td>茶歇</td><td>-</td></tr>
++                <tr><td style="white-space: nowrap;">11:00-11:30</td><td>形式化方法在韧性系统软件中的应用</td><td>王肇国<br>上海交通大学</td></tr>
++                <tr><td style="white-space: nowrap;">11:30-12:00</td><td>硬件的启示：如何构造韧性软件</td><td>顾斌<br>北京控制工程研究所</td></tr>
++            </tbody>
++        </table>
++    </section>
++
++    <section class="forum-section">
++        <h3>四、论坛报告嘉宾简介</h3>
++        <div class="speaker-member">
++            <h4>1. 报告人：周明辉 教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛v2/周明辉.png" alt="周明辉头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>智能化软件生态的成长式构建</p>
++                    <p><strong>摘要：</strong>智能化软件正在成为智能时代的新型基础设施，构建成长演化韧性生态是实现全球创新的重要路径。本报告探讨智能化软件及其生态区别于经典软件和生态的关键特征，围绕如何理解智能化软件生态中的人机协作关系、制品依赖关系以及主体利益关系，探讨如何采用多学科交叉融合方法，研究人机混合异构群体协作链构建与引导、复杂智能化软件供应链建模与风险应对、社区多元价值链构建与治理的机理和方法，打通人际-人机群体协作链、软件制品可信供应链、开源社区价值链，形成面向智能化软件韧性生态的成长式构建关键技术和平台。</p>
++                    <p><strong>简介：</strong>周明辉，北京大学博雅特聘教授，计算机学院副院长，中国计算机学会开源发展委员会副主任。主要研究兴趣是开源数字社会学、智能系统和人机交互。在软件工程、人机交互、AI等国际顶级会议和期刊发表100多篇论文。多次获国际ACM SIGSOFT杰出论文奖。开源生态度量和开源软件供应链合规性治理的相关研究成果在产业界和开源社区有广泛应用，主持开发的木兰宽松开源许可证MulanPSL被33万+开源项目采纳。曾获杰青项目"开源软件开发"，2024年获北京市科技进步奖一等奖。曾担任软件工程国际会议ASE 2024和SANER 2020的PC Co-Chair等；是国际顶级会议ASE Steering Committee成员，国际顶级期刊TSE和EMSE、ASE Journal等的编委。国家网络空间安全国家重大专项专家组专家。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>2. 报告人：施鹤远 教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛v2/施鹤远.png" alt="施鹤远头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>国产开源操作系统软件质量保障</p>
++                    <p><strong>摘要：</strong>本报告围绕国产开源操作系统软件生态的软件质量保障相关研究与应用实践展开，针对国产开源操作系统社区存在的内核测试能力不足、缺陷检测效率受限、漏洞管理成本高等挑战，探索缺陷测试与缺陷处理等方面的技术优化与工业实践。报告介绍的内核模糊测试、漏洞风险评估、稳定补丁识别、BaseOS兼容性测试等工具已在国产开源操作系统生态得到应用，为国产操作系统软件生态的安全可靠发展提供了技术支撑。</p>
++                    <p><strong>简介：</strong>施鹤远，中南大学电子信息学院教授、博导，研究方向为软件质量保障，主持国家自然科学基金面上项目、国家自然科学基金青年项目、国家重点研发项目子课题、长沙市科技重大专项、阿里巴巴创新研究计划等项目，入选中国科协青年人才托举工程、中国电子学会青年人才托举工程、湖南省科技人才托举工程，获北京市科技进步一等奖，发表CCF-A类论文30余篇，授权国家发明专利10余项。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>3. 报告人：董威 教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛v2/董威.png" alt="董威头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>智能混成软件的可信构造与演化</p>
++                    <p><strong>摘要：</strong>随着智能技术在各种人机物融合场景中应用，作为控制核心的软件系统构成也发生变化，神经控制、连续控制、离散控制紧密融合在一起形成新型的智能混成软件（Intelligent Hybrid Software），使得原本就面临众多挑战的混成系统（Hybrid System）软件变得更加复杂，在开发和演化过程中确保可信性越发困难。该报告探讨如何将智能化开发、形式化开发、运行时保证等理论与方法有效结合，同时提升智能混成软件构造与演化的自动化和可信性。</p>
++                    <p><strong>简介：</strong>董威，国防科技大学计算机学院教授，主要研究方向为高可信软件技术、智能化软件开发方法，中国计算机学会形式化方法专委会副主任、软件工程专委会执行委员。入选教育部新世纪优秀人才支持计划，曾获中国计算机学会首届NASAC青年软件创新奖、霍英东基金会高校青年教师奖等。先后主持国家和国防课题20余项，发表学术论文100余篇，出版国家级规划教材3部，相关成果应用于航空航天、装备控制、自主基础软件等关键领域。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>4. 报告人：王肇国 教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛v2/王肇国.png" alt="王肇国头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>形式化方法在韧性系统软件中的应用</p>
++                    <p><strong>摘要：</strong>高可靠性是韧性软件的重要基础，本报告将分别从共识协议、分布式系统、数据库系统等不同维度，介绍团队如何使用形式化方法提高大规模系统软件的可靠性，并在保障正确性的基础上实现性能优化。此外，还将分享如何通过大模型等人工智能技术赋能形式化验证，有效降低形式化验证的人力成本，实现大规模代码的一键审查。以上工作发表在PODC，OSDI，SIGMOD等会议上，并已被用于提高多个商业系统软件的可靠性。</p>
++                    <p><strong>简介：</strong>王肇国，上海交通大学教授，博士生导师，重点研发计划项目负责人，国家优秀青年科学基金获得者。从事系统软件研究，成果被Nature, OSDI、SIGMOD、PODC等相国际权威期刊和会议录用和发表。发表ACM通讯（Commmunications of the ACM） 亮点论文和封面文章，并获2023 ACM SIGMOD研究亮点奖、SIGMOD 2022最佳论文优胜奖、CCF青年科技奖、ACM ChinaSys新星奖、华为奥林帕斯先锋奖，以及两次华为火花奖。学术兼职包括OpenHarmony技术指导委员会智能数据管理TSG负责人、ACM ChinaSys秘书长、CCF学术工作委员会委员等。曾受邀担任MLSys 2026、EuroSys 2026/2025、NSDI 2024、SoCC 2024/2023等国际会议的程序委员会成员，以及第22期秀湖论坛联合主席等。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>5. 报告人：顾斌 研究员</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛v2/顾斌.png" alt="顾斌头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>硬件的启示：如何构造韧性软件</p>
++                    <p><strong>摘要：</strong>软件韧性的重要性日益凸显，如何构造韧性软件目前还处于探索阶段，面临着诸多挑战。航天器控制系统对可靠性、安全性要求极高，本报告介绍了我们的相关实践，希望这些经验能为韧性软件的构造提供一些启发，也期待与同行共同探讨这一充满挑战的方向。</p>
++                    <p><strong>简介：</strong>顾斌，男，北京控制工程研究所研究员，博士生导师。长期从事空间飞行器控制技术和高可信嵌入式软件研究和工程研制。主持和参与国家自然科学基金重点、集成和重大项目等。获国防科技进步一等奖、北京市科技进步一等奖等多项，主要研究领域包括高可信嵌入式软件、智能软件开发等。</p>
++                </div>
++            </div>
++        </div>
++    </section>
++
++    <section class="forum-section">
++        <h3>五、论坛组织委员会简介</h3>
++        <div class="committee-member">
++            <h4>1. 论坛组委会：陈明帅 研究员</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/学术论坛v2/陈明帅.png" alt="陈明帅头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>陈明帅，浙江大学研究员、博士生导师、启真学者，CCF形式化方法专委执行委员、系统软件专委通讯委员，国家优秀青年基金（海外）获得者。2019年于中国科学院软件研究所获博士学位，此后于德国RWTH Aachen从事为期3年的博士后研究工作，2023年初加入浙江大学。主要研究方向包括形式验证、程序理论、概率系统、信息物理融合系统、AI4FM等，与合作者一起，提出新型安全攸关系统形式验证理论，解决了概率程序不动点估计、微分系统可达性判定、时滞系统高效控制生成等若干软件理论难题，研究成果应用于我国月球探测和卫星姿轨控制等重大工程，在Inf. Comput.、CAV、FM、OOPSLA、TACAS等领域旗舰期刊/会议上发表学术论文50余篇，曾获中科院院长特别奖、ATVA杰出论文奖、FMAC最佳论文奖。担任ICFEM 2027与QEST+FORMATS 2026程序委员会联合主席。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>2. 论坛组委会：任志磊 教授</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/学术论坛v2/任志磊.png" alt="任志磊头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>任志磊，大连理工大学软件学院教授，先进工业软件与软件工程研究所所长。CCF系统软件专委会执行委员。主要研究方向为智能软件工程，包括工业软件智能测试、故障定位与自动修复、程序动态追踪等。在多个国内外知名学术期刊会议上发表论文60余篇，包括CCF A类国际会议与期刊（ICSE、ASE、ISSTA、IEEE TSE、ACM TOSEM、中国科学、软件学报等）。获得软件工程顶级会议杰出论文奖（ICSE 2018、ISSTA 2025）。2021年获辽宁省自然科学二等奖。相关成果在知名企业软件产品线、航天等场景实现应用。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>3. 论坛组委会：玄跻峰 教授</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/学术论坛v2/玄跻峰.png" alt="玄跻峰头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>玄跻峰，武汉大学教授、博士生导师，计算机学院副院长。中国计算机学会（CCF）杰出会员，武汉计算机软件工程学会常务理事，武汉市开源创新中心（软件工程）主任。主要研究领域为软件分析与测试。在软件工程权威期刊会议发表论文100余篇。担任全国演化计算与学习会议（ECOLE）2021主席，CCF中国软件大会（ChinaSoft）2025本地主席。论文获ACM SIGSOFT、IEEE TCSE等杰出论文奖。入选IEEE ICSME杰出服务奖、武汉大学查全性教授1977奖教金、华为开发者布道师、首批中国科协青年人才托举工程；获CCF NASAC青年软件创新奖、CCF优秀博士论文奖。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>4. 论坛组委会：尹建伟 教授</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/学术论坛v2/尹建伟.png" alt="尹建伟头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>尹建伟，浙江大学求是特聘教授，计算机科学与技术学院院长、软件学院院长、宁波国际科创中心主任、全省数智服务技术重点实验室主任。担任国家重点研发计划"文化科技与现代服务业"专家组副组长，国家自然科学基金杰出青年基金项目、国家重点研发计划项目、国家重大专项项目负责人，国家示范性软件联盟副理事长、中国计算机学会服务计算专委原主任委员。长期从事服务计算、软件工程、量子软件等领域的研究。牵头制定2项ISO国际标准、2项国家标准，出版国家重点规划教材、101计划教材、6部专著，获国家科技进步二等奖1项、省部级及国家级学会科技进步一等奖8项、中国专利银奖1项、国际会议最佳论文或杰出论文奖12项，2024年获IEEE TCSVC专委授予的服务计算全球杰出领导力奖。</p>
++            </div>
++        </div>
++    </section>
++
++</div>--- before/pages/agenda/academic-forum/templates/se-agent-innovation.html
++++ after/pages/agenda/academic-forum/templates/se-agent-innovation.html
+@@ -0,0 +1,343 @@
++<div class="container">
++
++    <h2 class="section-title">软件工程智能体创新论坛</h2>
++    <div class="section-title-en">学术论坛 R2</div>
++
++    <section class="forum-section">
++        <h3>一、论坛介绍</h3>
++        <p>随着大语言模型与智能体技术的持续发展，软件研发正从AI辅助编程迈向智能体驱动的全流程协作新阶段。“软件工程智能体创新论坛”旨在汇聚学术界与产业界专家，围绕AI原生软件工程的关键技术、研发范式与产业实践展开深入探讨。</p>
++        <p>本次论坛聚焦Spec驱动开发、多智能体协同、长程任务执行、智能体训练与自进化、研发技能与知识体系构建，以及代码理解、测试验证与可信质量保障等方向，交流最新研究成果与工程经验。结合企业级智能研发平台建设、复杂软件开发及跨平台代码迁移等真实场景，探讨软件智能体从能力提升到工程落地的关键挑战，推动智能体技术在软件研发全场景中的应用，促进学术研究与产业创新的协同发展。</p>
++    </section>
++
++    <section class="forum-section">
++        <h3>二、论坛组织委员会</h3>
++        <ul class="committee-list">
++            <li><span class="member-name">王千祥</span><span class="member-unit">（华为）</span></li>
++            <li><span class="member-name">李戈</span><span class="member-unit">（北京大学）</span></li>
++            <li><span class="member-name">夏鑫</span><span class="member-unit">（浙江大学）</span></li>
++            <li><span class="member-name">高翠芸</span><span class="member-unit">（哈尔滨工业大学（深圳））</span></li>
++            <li><span class="member-name">梁广泰</span><span class="member-unit">（华为）</span></li>
++            <li><span class="member-name">周建祎</span><span class="member-unit">（华为）</span></li>
++            <li><span class="member-name">刘逵</span><span class="member-unit">（华为）</span></li>
++        </ul>
++    </section>
++
++    <section class="forum-section">
++        <h3>三、论坛安排</h3>
++        <h4>日程安排：</h4>
++        <p><strong>时间：</strong>2026年11月6日-2026年11月7日</p>
++        <p><strong>地点：</strong>天津市社会山国际会议中心酒店二层，16号会议室</p>
++
++        <h4>论坛议程：</h4>
++        <table class="forum-table">
++            <thead>
++                <tr><th>时间</th><th>题目</th><th>报告嘉宾</th></tr>
++            </thead>
++            <tbody>
++                <tr class="special-row"><td colspan="3">可信代码智能体创新（11月6日）</td></tr>
++                <tr><td style="white-space: nowrap;">9:00-9:30</td><td>是驾驭先进生产力的利器还是束缚生产力围栏</td><td>潘瑞琪<br>华为软件工程实验室</td></tr>
++                <tr><td style="white-space: nowrap;">9:30-10:00</td><td>Qoder：不止编程，无限创造</td><td>谢吉宝<br>Qoder 技术负责人</td></tr>
++                <tr><td style="white-space: nowrap;">10:20-10:40</td><td>茶歇</td><td>-</td></tr>
++                <tr><td style="white-space: nowrap;">10:40-11:10</td><td>AgentSwarm 在软件工程中的应用</td><td>王龙<br>微信专家研究员</td></tr>
++                <tr><td style="white-space: nowrap;">11:10-11:40</td><td>从「可用」到「可交付」：AiWork 的 Agent Harness 工程与企业级研发实践</td><td>魏长征<br>蚂蚁集团</td></tr>
++                <tr><td style="white-space: nowrap;">11:40-12:10</td><td>长时运行智能体建设方法与挑战</td><td>张克驰<br>腾讯</td></tr>
++                <tr class="special-row"><td colspan="3">软件工程全场景智能体产业实践（11月6日）</td></tr>
++                <tr><td style="white-space: nowrap;">14:00-14:25</td><td>暗知识驱动的可信代码智能体构建</td><td>石琳<br>北京航空航天大学</td></tr>
++                <tr><td style="white-space: nowrap;">14:25-14:50</td><td>经验、记忆与技能：从持续学习到自进化Agent</td><td>冯涛<br>清华大学</td></tr>
++                <tr><td style="white-space: nowrap;">14:50-15:15</td><td>面向长程软件开发任务的大模型强化学习方法</td><td>董益宏<br>上海交通大学</td></tr>
++                <tr><td style="white-space: nowrap;">15:15-15:30</td><td>茶歇</td><td>-</td></tr>
++                <tr><td style="white-space: nowrap;">15:30-15:55</td><td>真实世界中的 Agentic Skills：建模、检索、评估与演进</td><td>曹嘉伦<br>帝国理工大学</td></tr>
++                <tr><td style="white-space: nowrap;">15:55-16:20</td><td>智能化软件工程的进展与挑战</td><td>张洪宇<br>重庆大学</td></tr>
++                <tr><td style="white-space: nowrap;">16:20-17:00</td><td>软件工程全场景智能体产业实践Panel</td><td>主持人：梁广泰<br>华为</td></tr>
++                <tr class="special-row"><td colspan="3">iCode：智能化软件工程平台前沿技术论坛（11月7日）</td></tr>
++                <tr><td style="white-space: nowrap;">15:20-15:50</td><td>iCode的设计理念:面向企业和组织的智能化平台</td><td>潘瑞琪<br>华为</td></tr>
++                <tr><td style="white-space: nowrap;">15:50-16:20</td><td>系统工程视角下的软件Spec模式及语言</td><td>金芝 教授<br>武汉大学</td></tr>
++                <tr><td style="white-space: nowrap;">16:20-16:50</td><td>智能体时代的软件工程再认识</td><td>江贺 教授<br>大连理工大学</td></tr>
++                <tr><td style="white-space: nowrap;">16:50-17:00</td><td>茶歇</td><td>-</td></tr>
++                <tr><td style="white-space: nowrap;">17:00-17:30</td><td>智能体驱动的形式化程序规约生成与代码验证</td><td>卜磊 教授<br>南京大学</td></tr>
++                <tr><td style="white-space: nowrap;">17:30-18:00</td><td>构建可信代码智能体：从供应链安全到内生质量治理</td><td>夏鑫 教授<br>浙江大学</td></tr>
++                <tr><td style="white-space: nowrap;">18:00-18:30</td><td>AI-Native安卓应用鸿蒙化实践与思考</td><td>贾岩涛<br>华为</td></tr>
++            </tbody>
++        </table>
++    </section>
++
++    <section class="forum-section">
++        <h3>四、论坛报告嘉宾简介</h3>
++        <div class="speaker-member">
++            <h4>1. 报告人：潘瑞琪 华为2012实验室软件工程实验室主任</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/潘瑞琪.png" alt="潘瑞琪头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>是驾驭先进生产力的利器还是束缚生产力围栏</p>
++                    <p><strong>摘要：</strong>各类围绕应用大模型进行开发而产生的智能体平台如雨后春笋应运而生，一方面这些平台让大家更容易，更大范围的使用好智能化，另一方面，又有各类现实风险让我们必须建立好护栏控制使用，那么作为一个智能化开发平台应该如何平衡呢。</p>
++                    <p><strong>简介：</strong>潘瑞琪，现任华为2012实验室软件工程应用技术实验室主任，长期致力于企业级软件工程方法的研究与规模化落地，拥有超大规模软件开发协作的一线实战经验。他深谙大规模、长生命周期复杂软件工程面临的核心挑战，对智能化浪潮下软件工程的重塑有着深刻洞见。近年来，他重点聚焦AI辅助研发及研发范式升级，在SPEC驱动开发、代码Agent质量保障与评测、领域知识工程等方向取得了深入的研究成果和扎实的落地实践。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>2. 报告人：谢吉宝 Qoder 技术负责人</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/谢吉宝.png" alt="谢吉宝头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>Qoder：不止编程，无限创造</p>
++                    <p><strong>摘要：</strong>过去，开发者坐在 IDE 前逐行编写、补全、编译和调试代码；今天，越来越多的人只需说清目标，剩下的拆解与执行都可以交给智能体，人的核心工作变成了计划、委派和验收。Qoder 的使用数据印证了这一转变：三成以上用户不是专业开发者，一半以上任务已不是传统编程，八成以上编程任务交由智能体执行。代码正在从交付物变成数字世界的通用能力，Qoder 因此定位为"Agentic Coding Platform for Everyone"。本次分享将展示：人如何与多个 Agent 围绕同一个任务共同讨论、分工协作，不必再在聊天群和多个终端之间来回搬运上下文；如何通过语音、手机等随身入口随时委派和验收，让任务在云端持续运行、不再依赖人全程在线。Qoder 的起点是编程，但目标从来不只是多写几行代码，而是让每个人都能借助 AI，把想法真正变成结果。</p>
++                    <p><strong>简介：</strong>谢吉宝（花名唐三），阿里巴巴资深技术专家，Qoder 技术负责人，统筹 Qoder 全系列产品的技术体系与研发。深耕大型分布式系统十余年，曾主导中间件核心组件、异地多活容灾及双 11 全链路稳定性保障。近年他聚焦 AI 编程与智能体（Agent）方向：一条主线持续突破 Agent 在长程任务规划与自主执行、上下文工程和工具调用等方面的能力边界；另一条主线构建以能力评测、安全沙箱、权限与审计为核心的可信体系，让组织敢于将复杂任务真正交给 Agent。两条主线最终收敛为统一的 Agent 内核，支撑终端、桌面与云端多种产品形态。他认为，AI 编程的下一步，不是让用户多写几行代码，而是让编程成为每个人都能调用的通用能力。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>3. 报告人：王龙 微信专家研究员</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/王龙.png" alt="王龙头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>AgentSwarm 在软件工程中的应用</p>
++                    <p><strong>摘要：</strong>大模型驱动的智能体（Agent）正在从"单点辅助"走向"群体协作"。本报告围绕两个方向展开：（一）AgentSwarm 在软件工程中的应用。介绍 AgentSwarm 多智能体协作体系在微信支付软件工程场景中的落地实践，包括任务分解、组网、智能体间的通信与冲突仲裁机制，以及在真实研发流水线中的典型应用（软件设计，数字孪生）。（二）基于 AgentSwarm的复杂代码仓库逆向数字孪生。面对遗留系统与超大代码仓库中"文档缺失、知识散落、依赖隐晦"的现实困境，介绍如何以增强型UML为载体，通过多智能体协同对代码仓库进行系统性逆向解析，将隐性的架构决策、业务语义与依赖关系抽取为结构化、可演进的知识资产，并做双向锚定，实现从"代码"到"知识"的逆向工程与工程化沉淀，为系统的可维护性、可迁移性与智能研发提供基础设施。</p>
++                    <p><strong>简介：</strong>王龙，腾讯微信支付瓦特实验室研究负责人，专家研究员，长期从事AI4SE的研究及其在金融级软件工程场景中的落地。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>4. 报告人：魏长征 蚂蚁集团数字科技技术总监</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/魏长征.png" alt="魏长征头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>从「可用」到「可交付」：AiWork 的 Agent Harness 工程与企业级研发实践</p>
++                    <p><strong>摘要：</strong>大模型智能体正从"辅助补全"走向"在后台独立完成真实仓库与业务任务"，软件工程的核心问题也随之从"能不能生成代码"转向"需求是否对齐、测试是否充分、证据是否可复查、长任务与多智能体并行是否可控、交付能否被验收"。本报告以蚂蚁数科 AiWork通用智能体与工程实践为线索，介绍如何把需求澄清、契约先行、测试、评审、CI/CD、回滚与复盘等经典软件工程经验，重构为智能体可执行、团队可验收的运行时能力。报告将拆解 AiWork 的核心技术：面向长任务的上下文工程（分层组装、按需加载、分级压缩与断点续作）、以子智能体委派为核心的规划编排，以及"运行状态 / 结果契约 / 任务验收"三层分离的交付验证与整棵委派树的开销核算。在此基础上，报告进一步落到 AiWork 的企业级能力：以统一内核为底座，按研发、办公与业务场景组合 Code / Work / Space，用模型路由、审批、沙箱与审计覆盖智能体全生命周期，帮助企业把 AI 研发从"可用"做成可控、可运营、可规模化落地的生产级能力。</p>
++                    <p><strong>简介：</strong>魏长征，蚂蚁数科技术总监、资深技术专家，上海市数字技术领域高级工程师，在蚂蚁数科工作超 7 年，长期从事智能体工程、区块链、隐私计算与软硬件结合等方向的研发。具备长期的软件工程研发经验，领导团队完成多个商业化平台的建设与落地，并推动团队向 AGI 研发范式转型。曾发表 10 余篇 CCF A 类国际会议和期刊论文，拥有国内外授权专利 50 余项，并主导或参与多项国内外技术标准制定。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>5. 报告人：张克驰 腾讯混元大模型Agent Harness负责人</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/张克驰.png" alt="张克驰头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>长时运行智能体建设方法与挑战</p>
++                    <p><strong>摘要：</strong>近年来，大语言模型在代码生成、软件测试、程序修复、知识检索和复杂任务求解等领域快速发展，推动智能软件工具从一次性的问答辅助和代码补全，逐步走向能够持续规划、执行、验证和迭代的智能体（Agent）系统。与传统代码生成技术相比，长时运行 Agent 不再只关注单次输出的正确性，而是需要在更长时间尺度上理解目标、拆解任务，并根据反馈不断修正执行路径，从而完成复杂工程任务。与此同时，长时运行 Agent 的工程化落地也带来了新的挑战：受限于模型上下文，Agent 在长任务中容易出现目标漂移等问题；由于缺乏可靠的外部校验机制，也容易出现过早宣布完成或隐蔽错误等现象。ProgramBench、SWE-Marathon 等长时程基准的实践也进一步表明，当前智能体在长时间跨度的复杂软件任务上仍远未可靠。本报告将围绕长时运行 Agent 的方法展开，探讨流程编排、任务分解等核心方法，并分析仍需解决的关键挑战。</p>
++                    <p><strong>简介：</strong>张克驰，目前在腾讯混元大模型团队负责Agent Harness算法研究，核心参与Hy3、Hy4模型训练和Agent协同设计。博士毕业于北京大学计算机学院，导师为金芝教授和李戈教授，本科毕业于北京大学信息科学技术学院，研究方向为代码智能体、代码大模型与智能化软件工程。他曾以第一作者在自然语言处理、软件工程等领域的国际会议上发表多篇论文。其代表工作 CodeAgent 发表于 ACL 2024，是较早系统性研究代码智能体的工作之一。一作论文先后获得 2023 年 ACM 杰出论文奖（ACM SIGSOFT Distinguished Paper Award in ICPC）和 2026 年 ACM 杰出论文奖（ACM SIGSOFT Distinguished Paper Award in ICSE）。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>6. 报告人：石琳 北京航空航天大学软件学院教授，院长助理</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/石琳.png" alt="石琳头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>暗知识驱动的可信代码智能体构建</p>
++                    <p><strong>摘要：</strong>软件开发过程中包含大量暗知识。所谓暗知识，是无法仅通过阅读最终代码获取，来源于开发行为、排障调试、设计取舍、失败教训等过程的经验性知识，涵盖设计动机、隐式契约、失败模式、隐式依赖、排障方案、开发者画像等多类信息。当前业界主流的代码 RAG、分层记忆智能体大多只利用显性、半显性结构化信息，对暗知识挖掘复用不足，这也是智能体产生幻觉、不合规、输出不可落地的重要根源。本次报告介绍暗知识的获取、结构化与复用技术路径，分享 VirtualME、DevSkill、DevBrain、CREDIT 评估体系等系列研究成果：通过 IDE 采集开发者行为轨迹，构建开发者画像实现个性化研发问答；从真实开发轨迹中提取可迁移的任务求解 Skill，提升复杂开发任务的规划与执行正确率；进一步解构任务技能，基于过程知识图谱实现任务方案的动态组装，突破简单步骤模仿，向最优解搜索跃迁；同时提出人机协作可信度量化评估框架 CREDIT，实现 AI 辅助开发过程的可度量、可问责。为构建真正可用、可控、可追溯的生产级可信代码智能体提供新思路与实践参考。</p>
++                    <p><strong>简介：</strong>石琳，北京航空航天大学软件学院教授，院长助理，空天软件智能测试北京重点实验室副主任。研究方向为智能软件工程，包括仓库级代码智能、智能需求工程、开源软件、可信AI等。在软件工程、人工智能领域的高水平国际会议ICSE，FSE，ASE等发表论文70余篇，获CCF软件工程青年科技奖，三次获杰出论文奖。主持GF基金重点项目、多项国家自然科学基金项目、企业合作项目20余项。研究成果落地华为、阿里、中国航空工业集团、招商银行等知名企业。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>7. 报告人：冯涛 清华大学助理教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/冯涛.png" alt="冯涛头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>经验、记忆与技能：从持续学习到自进化Agent</p>
++                    <p><strong>摘要：</strong>随着大语言模型和智能体的发展，能力不再局限于模型参数，还可以存储在外部记忆、可复用技能和交互规则中，持续学习也因此从模型训练问题扩展为整个智能体系统的能力演化问题。本次报告介绍持续学习在模型生命周期、能力存储载体和更新机制上的最新发展，探讨从参数更新到记忆积累、技能进化与推理时学习的技术路径，并进一步讨论主动遗忘、自主反馈闭环和长程任务评估等关键挑战，展望能够从自身经验中持续学习、积累并迁移能力的下一代 Agent。</p>
++                    <p><strong>简介：</strong>冯涛，清华大学助理教授，曾在清华大学计算机系担任博后/助理研究员、于阿里巴巴-达摩院从事研究工作；研究方向为人工智能、多模态、自进化智能体等。主持及参与国家自然科学基金重大项目、中央引导地方专项、面上项目等，在CVPR、ICML、NeurIPS、ICLR、IJCV等人工智能会议及期刊发表论文40余篇，多次入选会议亮点论文，GitHub累计星标5千余次；参与多项国际、国家人工智能标准编制工作，涵盖基础模型、智能体、具身智能等。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>8. 报告人：董益宏 上海交通大学计算机学院助理教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/董益宏.png" alt="董益宏头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>面向长程软件开发任务的大模型强化学习方法</p>
++                    <p><strong>摘要：</strong>大模型驱动的软件智能体正从单次代码生成走向涉及多轮决策与环境交互的长程软件开发。然而，长程任务探索成本高且成功轨迹稀缺，使强化学习面临训练开销过大和有效学习信号不足的挑战。本报告围绕"如何拓展模型探索能力，并高效地从长程交互中学习"这一问题，介绍相关研究进展。首先，结合混合策略优化方法 RL-PLUS，讨论强化学习中的能力边界收缩现象，以及融合外部示例与自主探索、拓展模型推理能力的方法。随后，重点介绍面向长程软件开发的强化学习框架 SPROUT：通过同步保存和恢复智能体上下文与执行环境，复用失败尝试中已有的有效进展；利用验证反馈驱动失败分析、回溯位置选择与分支探索，获得更多可用于学习的成功轨迹；进一步通过策略优化，将纠错探索经验转化为模型自身的任务执行能力。报告将结合代码库问题修复与终端交互任务的实验，展示 SPROUT 在任务解决率与训练效率方面的改进，并讨论面向复杂软件开发的软件智能体训练方法与未来研究方向。</p>
++                    <p><strong>简介：</strong>董益宏，上海交通大学计算机学院PI（长聘轨助理教授，博导），研究聚焦于智能化软件工程、大语言模型以及多智能体协同，发表CCF-A类学术论文40余篇，其中一作论文引用2200余次，且多项学术成果转化为实际应用落地，提出最早的多智能体协同软件开发框架Self-collaboration，曾获通义阿里星、字节 TikTok、京东 TGT、腾讯青云、美团北斗等顶尖人才计划，以及CCF软工专委博士学位论文激励计划、北京大学优秀博士学位论文、北京大学计算机学院"学术十杰"、中国科协博士青托计划、CCF青年开源专项基金种子计划、ACL Best Paper Candidate、ACL SAC Highlight Award等10余项荣誉奖项。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>9. 报告人：曹嘉伦 帝国理工计算机系助理教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/曹嘉伦.png" alt="曹嘉伦头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>真实世界中的 Agentic Skills：建模、检索、评估与演进</p>
++                    <p><strong>摘要：</strong>随着 Agentic AI 加速走向真实世界的应用，Agentic Skills（智能体技能）正逐渐成为将 AI 能力转化为可复用专业知识的关键层。本次演讲将探讨真实场景中的技能是什么、开发者正在将哪些能力封装为技能，以及如何系统地理解、评估和改进这些技能。基于对公开可用技能的实证分析，我们将剖析其功能特征、对软件开发生命周期的覆盖情况及潜在安全风险，并介绍一套系统化框架，支持技能建模、相似技能检索、自动化质量评估，以及面向技能评测的基准测试推荐。</p>
++                    <p><strong>简介：</strong>曹嘉伦博士是帝国理工计算机系的助理教授。她的研究重点是利用先进的人工智能技术实现软件开发、测试和程序验证的自动化，旨在实现从构建之初就具备可靠性的软件的自动化生产。她在ICSE、ESEC/FSE、CAV、ASE、ACL、AAAI、USENIX Security和TOSEM等顶级会议和期刊上发表了30余篇论文。她担任ICSE、FSE、ISSTA和ASE等顶级会议的程序委员，并担任ESEC/FSE 2025和ASE 2024的分会主席。她获得了2024年杰出论文奖，2025年ACM SIGSOFT杰出博士论文奖、2025年工程科学领域青年科学家奖等。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>10. 报告人：张洪宇 重庆大学大数据与软件学院院长</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/张洪宇.png" alt="张洪宇头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>智能化软件工程的进展与挑战</p>
++                    <p><strong>摘要：</strong>在人工智能时代，我们的目标是实现智能化软件工程。在前期工作中，我们通过挖掘软件相关的数据构建基于机器学习模型，来自动化编程、测试、故障诊断和运行维护等任务，从而提高软件开发的生产效率，减少维护工作。近年来，大语言模型和智能体技术也被广泛应用于智能化软件工程，改变了软件开发与运维方式，推动了"AI原生"新模式新业态。本次报告将回顾智能化软件工程的发展历程, 讨论当前智能化软件工程工作面临的挑战和可能的研究方向。</p>
++                    <p><strong>简介：</strong>重庆大学大数据与软件学院教授、院长、弘深杰出学者，IEEE Fellow。主要研究方向是智能化软件工程，软件数据挖掘和软件维护。在国际著名会议和期刊上发表了300多篇论文，获得过10多次ACM杰出论文奖和最佳论文奖，1次FSE时间检验奖，以及2次ICSE 最有影响力实践论文奖。长期担任多个国际顶级学术会议的程序委员会委员以及国际期刊的编委。他也是ACM杰出会员，CCF杰出会员，澳洲工程师协会会士和David Parnas Fellow。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>11. 报告人：潘瑞琪 华为软件工程应用技术实验室主任</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/潘瑞琪.png" alt="潘瑞琪头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>iCode的设计理念:面向企业和组织的智能化平台</p>
++                    <p><strong>摘要：</strong>业界已经有大量的codeagent存在，为什么我们需要重复造轮子产生一套新的智能开发平台？如何提高用户对agent的粘性和忠诚度，关键抓手有哪些？</p>
++                    <p><strong>简介：</strong>潘瑞琪，现任华为2012实验室软件工程应用技术实验室主任，长期致力于企业级软件工程方法的研究与规模化落地，拥有超大规模软件开发协作的一线实战经验。他深谙大规模、长生命周期复杂软件工程面临的核心挑战，对智能化浪潮下软件工程的重塑有着深刻洞见。近年来，他重点聚焦AI辅助研发及研发范式升级，在SPEC驱动开发、代码Agent质量保障与评测、领域知识工程等方向取得了深入的研究成果和扎实的落地实践。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>12. 报告人：金芝 武汉大学教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/金芝.png" alt="金芝头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>系统工程视角下的软件Spec模式及语言</p>
++                    <p><strong>摘要：</strong>信息物理融合系统的开发面临系统成分异构、系统组成复杂和领域知识鸿沟带来的难题，关键挑战之一是如何根据系统任务需求推断出软件Spec。本报告结合航天控制嵌入式系统实践，探讨以系统工程理论为指导的软件问题定位、软件问题解耦、以及软件模式抽象的方法，包括（1）引入物理设备及其所关联领域实体的统一抽象；（2）建立以可异步发生交互为原则的能力解耦策略；等，据此提出面向航天控制嵌入式系统的软件Spec语言。本报告将展示从系统任务需求到Spec语言的推演过程及工具，并对Spec驱动软件开发进行展望。</p>
++                    <p><strong>简介：</strong>金芝，IEEE / CCF / CAAI会士，北京大学教授，武汉大学弘毅客座特聘教授，武汉大学特色化示范性软件学院院长，高可信软件技术教育部重点实验室常务副主任。研究方向为软件需求工程方法学、智能化软件工程和知识工程。曾获高等学校科学研究优秀成果奖（科学技术）科技进步奖一等奖，CCF科学技术奖技术发明一等奖，CCF夏培肃奖，中创软件人才奖等，多次获ACM SIGSOFT杰出论文奖。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>13. 报告人：江贺 大连理工大学教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/江贺.png" alt="江贺头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>智能体时代的软件工程再认识</p>
++                    <p><strong>摘要：</strong>大模型引领的智能体给软件工程带来了前所未有的挑战和机遇。软件工程新的范式是否真正到来？软件工程研究又该何去何从？本次报告试图通过回望软件工程的发展历史，探索在这场新的技术革命下，软件工程的新赛道和软件产业的新方向。</p>
++                    <p><strong>简介：</strong>江贺，国家万人领军人才，教授、博导，大连理工大学人工智能大连研究院院长，大连理工大学网信中心主任。毕业于中国科大少年班，研究兴趣为智能系统开发与应用，成果在航空航天、自动驾驶等领域广泛应用。主持国家自然科学基金重点项目、重点研发课题等10多项课题，在国际著名期刊及国际会议发表论文100余篇。先后获得大连市五一特等奖章，国际软件工程大会杰出论文奖等。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>14. 报告人：卜磊 南京大学教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/卜磊.png" alt="卜磊头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>智能体驱动的形式化程序规约生成与代码验证</p>
++                    <p><strong>摘要：</strong>代码验证是保障软件可靠性的重要技术。对于复杂软件系统，验证往往需要借助循环不变式、函数契约等辅助规约，为程序行为提供精确的语义描述，支撑验证任务的分解与组合。大语言模型为辅助规约的自动构造与程序验证任务的自动化提供了新机遇，但现有方法在过程间规约依赖处理以及验证失败的根因定位与针对性修复等方面仍存在不足。本报告介绍一种智能体驱动的形式化程序规约生成与代码验证方法。该方法将智能体的决策能力与程序验证任务相结合，通过规划、生成、修复与评估等智能体的协同工作，迭代构造和完善辅助规约，并利用检索增强生成、验证反馈与质量评估机制，提升规约对程序验证的支撑能力。基于多个实际复杂项目的实验结果表明，通过生成可验证的辅助规约，该方法能够有效支撑复杂程序的安全性质验证，为复杂软件的自动化验证提供了新的技术途径。</p>
++                    <p><strong>简介：</strong>卜磊，教授，博士生导师，现任南京大学软件学院副院长，兼任 CCF 系统软件专委副主任（执行）；主要研究领域涉及可信软件、软件工程、形式化方法等方面，部分创新性工作发表在相关领域重要期刊与会议如《中国科学》、TCAD、TC、TOSEM、TDSC、CAV、RTSS、ICSE、DAC等上；入选高校计算机专业优秀教师奖励计划、CCF-IEEE CS青年科学家奖、中创软件人才奖、NASAC青年软件创新奖等奖项，主持基金委青A、重点、国际合作等项目多项。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>15. 报告人：夏鑫 浙江大学教授</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/夏鑫.png" alt="夏鑫头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>构建可信代码智能体：从供应链安全到内生质量治理</p>
++                    <p><strong>摘要：</strong>随着AI Coding向自主智能体演进，其面临输入侧供应链投毒与输出侧幻觉漏洞的"可信鸿沟"。本分享提出贯穿输入—输出的系统工程框架：第一层"输入可信"，聚焦模型测试修复、鲁棒性提升与Coding Skill投毒检测；第二层"输出可信"，涵盖实际场景能力评估、生态迁移（借UI/测试/方案）及Agent技能选择测试。旨在推动代码智能体从"能用"走向"靠谱"。</p>
++                    <p><strong>简介：</strong>夏鑫，浙江大学求是特聘教授，ACM 杰出会员。加入浙江大学之前，他曾任华为技术有限公司软件工程应用技术实验室首席专家及主任。主要研究方向包括AI与软件工程、以及经验软件工程。夏鑫荣获 19 项最佳论文奖或杰出论文奖，其中包括9 项顶会杰出论文奖（ASE 2018-2021、2025、2026， ICSE 2024和2026， FSE 2025）以及两项十年最有影响论文奖（ICSME 2026和QRS 2025）。因在职业生涯早期取得的突出成果，他于 2022 年获得 ACM SIGSOFT 早期职业研究者奖（Early Career Researcher Award）。</p>
++                </div>
++            </div>
++        </div>
++        <div class="speaker-member">
++            <h4>16. 报告人：贾岩涛 华为智能化软件高级技术专家</h4>
++            <div class="speaker-profile">
++                <div class="speaker-image">
++                    <img src="./images/academic-forum/学术论坛/贾岩涛.png" alt="贾岩涛头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <div class="speaker-content">
++                    <p><strong>题目：</strong>AI-Native安卓应用鸿蒙化实践与思考</p>
++                    <p><strong>摘要：</strong>AI技术的快速发展，给传统代码迁移任务带来了新的机遇。相比传统的模块级人工迁移的方式，整仓级自动化的迁移方式是否可行，是一个值得深入研究与探索的开放问题。本报告将围绕中长尾应用，从安卓应用出发，使用一系列的AICoding技术，打造了零人工编码的安卓应用迁移鸿蒙的工具HMBot。支持包括iCode、DevEco Code/CLI等多款agent框架与模型，同时也对迁移过程中的挑战进行系统性总结与讨论。</p>
++                    <p><strong>简介：</strong>贾岩涛博士，研究方向包括智能化软件工程与工具、知识图谱、智能搜索与问答等。曾任中科院计算所副研究员。围绕信息检索、知识图谱、自然语言处理、软件工程与应用等方向，在SIGIR/ACL/WWW/ AAAI/IEEE TKDE/ACM TIST等顶会顶刊发表论文80+，围绕知识计算出版学术专著一部。加入华为后，做为搜索领域首席架构师，带领团队打造了花瓣地图/搜索等一系列产品，同时负责华为嵌入式系统数字化软件工程项目，公司级AI辅助研发平台建设，以及AICoding先锋团队与智能化研发模式打造等工作。出版数字化软件工程专著一部。</p>
++                </div>
++            </div>
++        </div>
++    </section>
++
++    <section class="forum-section">
++        <h3>五、论坛组织委员会简介</h3>
++        <div class="committee-member">
++            <h4>1. 论坛组委会：李戈 北京大学教授</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/学术论坛/李戈.png" alt="李戈头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>李戈，北京大学计算机学院长聘教授，博士生导师，教育部长江学者，CCF软件工程专委会秘书长。长期聚焦于程序理解、程序生成、深度学习等技术的研究，是国际上最早从事"基于深度学习的程序理解与生成"研究并取得代表性成果的研究者，在多个国内外顶级会议与期刊发表相关论文200余篇，多篇论文被国际学者认是"首创成果"并被广泛引用，多次获ACM杰出论文奖。在软件与人工智能领域的多个国际会议担任程序委员会共同主席与PC。曾获教育部科技进步一等奖，CCF科技发明一等奖，北京市科技发明二等奖，中创软件人才奖。教学课程被首批认定为"国家级一流线下课程"和"国家级一流线上课程"，并多次获省部级教学奖。科研转化成果aiXcoder为航天领域的重大工程、金融与IT领域的多家大型企业及数十万国际开发者提供服务。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>2. 论坛组委会：王千祥 华为云智能化软件研发领域资深专家</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/学术论坛/王千祥.png" alt="王千祥头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>主导华为公司的智能化软件研发，结合AI技术与软件分析技术，带领团队探索研发领域的大模型系统，相关成果包括：PanguCoder, PanguCoder2, CodeR等，并赋能华为的软件研发工具 CodeArts。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>3. 论坛组委会：夏鑫 浙江大学教授</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/学术论坛/夏鑫.png" alt="夏鑫头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>夏鑫，浙江大学求是特聘教授，ACM 杰出会员。加入浙江大学之前，他曾任华为技术有限公司软件工程应用技术实验室首席专家及主任。主要研究方向包括AI与软件工程、以及经验软件工程。夏鑫荣获 19 项最佳论文奖或杰出论文奖，其中包括9 项顶会杰出论文奖（ASE 2018-2021、2025、2026， ICSE 2024和2026， FSE 2025）以及两项十年最有影响论文奖（ICSME 2026和QRS 2025）。因在职业生涯早期取得的突出成果，他于 2022 年获得 ACM SIGSOFT 早期职业研究者奖（Early Career Researcher Award）。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>4. 论坛组委会：高翠芸 哈尔滨工业大学（深圳）教授</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/学术论坛/高翠芸.png" alt="高翠芸头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>高翠芸，哈尔滨工业大学（深圳）教授，哈工大青年拔尖人才。入选第九届中国科协青年人才托举工程，ACM TOSEM Associate Editor，获得2026 IEEE CS TCSE新星奖。主要研究领域包括：智能化软件工程和软件可靠性，近年来在相关领域的顶级会议和期刊如TSE、TOSEM、ICSE、FSE、ASE等上发表论文100余篇，荣获CCF A类会议ICSE 2025杰出论文奖、ICSE 2024杰出论文奖和ASE 2023杰出论文奖。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>5. 论坛组委会：梁广泰 华为云CodeArts工具技术创新lab主任</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/学术论坛/梁广泰.png" alt="梁广泰头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>14年初获得北京大学计算系博士学位，之后入职IBM中国研究院担任研究员职位。16年5月加入华为工作至今，带领团队先后围绕代码缺陷检测与修复、开源成分分析与治理、代码智能同步/重构/移植/生成等方向成功孵化多项智能化开发服务并规模化落地。至今已发表技术专利50+及学术论文40+（含ICSE/FSE/ASE/OOPSLA等），曾获FSE最佳论文奖/ISSTA最佳论文奖等，先后担任一系列软工Top国际会议PC Member/Chair等角色（含ICSE/OOPSLA/WWW/ISSRE等）。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>6. 论坛组委会：周建祎 华为云CodeArts工具技术创新Lab-代码智能生成及测试团队Leader</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/学术论坛/周建祎.png" alt="周建祎头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>22年6月获得北京大学计算机软件与理论博士学位，同期入职华为工作至今，主要研究领域为智能化代码生成及测试、代码智能体自进化。已发表技术专利10+及顶会论文20+，曾获ASE25杰出论文奖。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>7. 论坛组委会：刘逵 华为-智能化软件工程技术专家</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/学术论坛/刘逵.png" alt="刘逵头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>刘逵博士，华为2012可信软件工程与开源实验室智能化软件工程技术专家。2019年毕业于卢森堡大学获得博士学位，期间专注于缺陷自动修复技术研究，后入职南京航空航天大学，主持/参与过国家级研究项目3项，后入职华为一直带领团队负责智能化软件工程技术的研究与落地推广，在相关领域累计发票高水平研究论文60余篇，其中CCF A类论文30余篇，多个智能化软件开发技术（项目级代码生成、测试生成、代码检视等）在华为公司落地推广使用。</p>
++            </div>
++        </div>
++    </section>
++
++</div>--- before/pages/agenda/academic-forum/templates/young-talent-growth.html
++++ after/pages/agenda/academic-forum/templates/young-talent-growth.html
+@@ -157,7 +157,7 @@
+                 <div class="committee-image">
+                     <img src="./images/academic-forum/学术论坛/江贺.png" alt="江贺头像" onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+-                <p><strong>简介：</strong>江贺，教授、博导，国家高层次人才、大连理工大学人工智能大连研究院院长，大连理工大学未来技术学院副院长，全国编译技术虚拟教研室副主任委员。研究兴趣为软件开发工具和环境，面向通用、内嵌式和场景编译系统开展了设计、实现、优化、测试等系列工作，在航空航天、自动驾驶等领域广泛应用。主持国家自然科学基金重点项目、重点研发课题等10多项课题，在ACM/IEEE汇刊，中国科学等期刊及ICSE、FSE等国际会议发表论文70余篇。获国家高层次人才、国家优青、CCF优博指导教师、NASAC青年软件奖、辽宁省自然科学二等奖、国际软件工程大会ACM SIGSOFT杰出论文奖等。</p>
++                <p><strong>简介：</strong>江贺，国家领军人才，教授、博导，大连理工大学人工智能大连研究院院长，大连理工大学网信中心主任。毕业于中国科大少年班，研究兴趣为智能系统开发与应用，成果在航空航天、自动驾驶等领域广泛应用。主持国家自然科学基金重点项目、重点研发课题等10多项课题，在国际著名期刊及国际会议发表论文100余篇。先后获得大连市五一特等奖章，国际软件工程大会杰出论文奖等。</p>
+             </div>
+         </div>
+         <div class="committee-member">
+@@ -166,7 +166,7 @@
+                 <div class="committee-image">
+                     <img src="./images/academic-forum/学术论坛/李姗姗.png" alt="李姗姗头像" onerror="this.src='./images/academic-forum/default.png'">
+                 </div>
+-                <p><strong>简介：</strong>李姗姗，国防科技大学计算机学院教授、教育部长江学者。研究兴趣包括高可信软件和代码智能等，研究成果发表于ICSE、FSE、ASE、ISSTA、VLDB、TOSEM、TSE等高水平刊物，获ICSE'23杰出论文奖等论文奖励6次。曾荣获湖南省科技创新领军人才、中创软件人才奖、CCF NASAC青年软件创新奖，国家科技进步奖二等奖、军队科技进步奖一等奖、湖南省技术发明一等奖等。</p>
++                <p><strong>简介：</strong>李姗姗，国防科技大学计算机学院教授、博导，国家级青年人才。研究兴趣包括高可信软件和代码智能等，研究成果发表于ICSE、FSE、ASE、ISSTA等高水平刊物，获ICSE杰出论文奖等论文奖励11次。获湖南省科技创新领军人才、中创软件人才奖、CCF NASAC青年软件创新奖，国家科技进步奖二等奖、军事科技进步奖一等奖、湖南省技术发明一等奖等。</p>
+             </div>
+         </div>
+     </section>
+--- before/pages/agenda/special-issue-forum/index.html
++++ after/pages/agenda/special-issue-forum/index.html
+@@ -14,8 +14,8 @@
+     <!-- 左侧导航栏 -->
+     <div class="sidebar">
+         <ul>
+-            <!-- <li><a href="#agenda/special-issue-forum/LLM-SE" class="sidebar-item active"
+-                    onclick="loadAgenda('special-issue-forum', 'LLM-SE')">大模型与软件工程</a></li> -->
++              <li><a href="#agenda/special-issue-forum/llm-driven-intelligent-devops" class="sidebar-item"
++                    onclick="loadAgenda('special-issue-forum', 'llm-driven-intelligent-devops')">大模型驱动的智能软件系统开发运维</a></li>
+           
+             <li><a href="#agenda/special-issue-forum/intelligent-requirement-engineering" class="sidebar-item"
+                     onclick="loadAgenda('special-issue-forum', 'intelligent-requirement-engineering')">智能化需求工程</a></li>
+@@ -27,20 +27,8 @@
+                     onclick="loadAgenda('special-issue-forum', 'formal-methods')">形式化方法与应用</a></li>
+             <li><a href="#agenda/special-issue-forum/intelligent-supply-chain-security" class="sidebar-item"
+                     onclick="loadAgenda('special-issue-forum', 'intelligent-supply-chain-security')">智能化软硬件供应链安全分析技术</a></li>
+-            <!-- <li><a href="#agenda/special-issue-forum/software-construction-supply-chain" class="sidebar-item"
+-                    onclick="loadAgenda('special-issue-forum', 'software-construction-supply-chain')">智能化基础软件可信构造与供应链安全</a></li>
+-            <li><a href="#agenda/special-issue-forum/riscv-ai-systems" class="sidebar-item"
+-                    onclick="loadAgenda('special-issue-forum', 'riscv-ai-systems')">RISC-V与人工智能系统软件前沿进展</a></li>
+-            <li><a href="#agenda/special-issue-forum/high-reliability-hcps" class="sidebar-item"
+-                    onclick="loadAgenda('special-issue-forum', 'high-reliability-hcps')">高可信人机物融合智能系统</a></li>
+-            <li><a href="#agenda/special-issue-forum/lightweight-llm" class="sidebar-item"
+-                    onclick="loadAgenda('special-issue-forum', 'lightweight-llm')">轻量化大模型高效运行的关键技术</a></li>
+-            <li><a href="#agenda/special-issue-forum/llm-industrial-software" class="sidebar-item"
+-                    onclick="loadAgenda('special-issue-forum', 'llm-industrial-software')">基于大模型赋能的工业软件建模与协同开发方法</a></li>
+-            <li><a href="#agenda/special-issue-forum/foundation-models-engineering" class="sidebar-item"
+-                    onclick="loadAgenda('special-issue-forum', 'foundation-models-engineering')">人工智能基础模型与软件工程 FORGE</a></li>
+-            <li><a href="#agenda/special-issue-forum/genai-software-systems" class="sidebar-item"
+-                    onclick="loadAgenda('special-issue-forum', 'genai-software-systems')">开发基于生成式人工智能的软件系统</a></li> -->
++       
++           
+         </ul>
+     </div>
+ 
+--- before/pages/agenda/special-issue-forum/templates/llm-driven-intelligent-devops.html
++++ after/pages/agenda/special-issue-forum/templates/llm-driven-intelligent-devops.html
+@@ -0,0 +1,88 @@
++<div class="container">
++
++    <h2 class="section-title">大模型驱动的智能软件系统开发运维论坛</h2>
++    <div class="section-title-en">专刊论坛 S1</div>
++
++    <section class="forum-section">
++        <h3>一、论坛介绍</h3>
++        <p>随着AI技术的迅猛发展，以智能体系统为代表的智能软件系统呈爆发式增长。云原生与AI技术深度融合，通过云原生方式开发、训练、部署、运维，促进了智能软件系统的快速落地及价值转化。与传统通算软件不同，智能软件系统的开发构建、可信保障和运行维护面临新的挑战。例如，基于大模型的复杂智能体系统对基础设施提出了全新的稳定性需求；传统以CPU为中心的通用软件运维方法难以适用于复杂智能化软件系统；大规模、高复杂度的云原生服务化系统迫切需要智能化的技术手段增强其韧性保障。</p>
++        <p>本专刊论坛聚焦大模型驱动的智能软件系统开发运维方法、技术和实践，探讨面向智能软件系统的开发构建、可信保障和运行维护方法和关键技术，以及相关实证研究方法等创新成果。</p>
++    </section>
++
++    <section class="forum-section">
++        <h3>二、论坛组织委员会</h3>
++        <ul class="committee-list">
++            <li><span class="member-name">魏峻</span><span class="member-unit">（中国科学院软件研究所）</span></li>
++            <li><span class="member-name">吴国全</span><span class="member-unit">（中国科学院软件研究所）</span></li>
++            <li><span class="member-name">陈鹏飞</span><span class="member-unit">（中山大学）</span></li>
++            <li><span class="member-name">杨任宇</span><span class="member-unit">（北京航空航天大学）</span></li>
++        </ul>
++    </section>
++
++    <section class="forum-section">
++        <h3>三、论坛安排</h3>
++        <h4>日程安排：</h4>
++        <p><strong>时间：</strong>2026年11月6日，14:00-17:40</p>
++        <p><strong>地点：</strong>天津市社会山国际会议中心酒店，二层13号会议室</p>
++
++        <h4>论坛议程：</h4>
++        <table class="forum-table">
++            <thead>
++                <tr><th>时间</th><th>题目</th><th>报告嘉宾</th></tr>
++            </thead>
++            <tbody>
++                <tr><td style="white-space: nowrap;">14:00-14:05</td><td>论坛开幕</td><td>-</td></tr>
++                <tr><td style="white-space: nowrap;">14:05-14:30</td><td>面向开发运维一体化的人与多智能体综合集成参考架构</td><td>王瑞<br>北京航空航天大学</td></tr>
++                <tr><td style="white-space: nowrap;">14:30-14:55</td><td>基于eBPF的云原生运行时安全：行为监测、异常检测与响应处置</td><td>刘锦样<br>国防科技大学</td></tr>
++                <tr><td style="white-space: nowrap;">14:55-15:20</td><td>故障经验驱动的微服务根因分析智能体研究</td><td>周格林<br>中国科学院软件研究所</td></tr>
++                <tr><td style="white-space: nowrap;">15:20-15:45</td><td>面向高通量智能计算场景的性能评测指标与方法</td><td>张园<br>中国科学院计算技术研究所</td></tr>
++                <tr><td style="white-space: nowrap;">15:45-16:00</td><td>茶歇</td><td>-</td></tr>
++                <tr><td style="white-space: nowrap;">16:00-16:25</td><td>面向运行时状态约束的微服务流量控制建模与仿真</td><td>杨溢龙<br>北京航空航天大学</td></tr>
++                <tr><td style="white-space: nowrap;">16:25-16:50</td><td>面向深度学习云平台的细粒度GPU共享与弹性管控方法研究</td><td>李俊艺<br>中山大学</td></tr>
++                <tr><td style="white-space: nowrap;">16:50-17:15</td><td>基于语义增强的ROS应用程序模糊测试初始种子生成方法</td><td>陶乐<br>北京信息科技大学</td></tr>
++                <tr><td style="white-space: nowrap;">17:15-17:40</td><td>约束引导的REST API 自动化测试方法</td><td>武雅琛<br>复旦大学</td></tr>
++            </tbody>
++        </table>
++    </section>
++
++    <section class="forum-section">
++        <h3>四、论坛组织委员会简介</h3>
++        <div class="committee-member">
++            <h4>1. 论坛组委会：魏峻 中国科学院软件研究所</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/专刊论坛/魏峻.png" alt="魏峻头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>魏峻，中国科学院软件研究所研究员，博士研究生导师，所学术/学位委员会委员，中国科学院大学岗位教授。兼任中国计算机学会软件工程和服务计算专业委员会委员，《软件学报》责任编委、《计算机科学与探索》执行编委、《计算机集成制造系统》编委。近年来主要研究软件工程方法与技术在云计算与大数据、人工智能、物联网、区块链等分布式系统中的应用，解决正确性、可靠性、性能、安全等方面的问题。在TSE, TKDE, JSS, ICSE, FSE, ASE, ISSTA, VLDB, ICDCS, IPDPS, SC, Middleware等国内外重要学术刊物和国际会议上发表学术论文200余篇，获发明专利授权30多项，获得国家技术发明奖二等奖、国家科学技术进步奖二等奖、湖南省技术发明一等奖、中国电子学会电子信息科学技术一等奖、北京市科学技术一等奖。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>2. 论坛组委会：吴国全 中国科学院软件研究所</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/专刊论坛/吴国全.png" alt="吴国全头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>吴国全，博士，中国科学院软件研究所研究员、中国科学院特聘研究岗研究员、中国科学院大学岗位教授。主要研究方向为软件工程、软件测试与维护、软件可靠性保障等。主持、参与多项国家重点研发计划项目、国家自然科学基金、国家863高技术计划、中科院先导A类专项、工信部高质量项目等。在TOSEM、TSC、ICSE、FSE、ASE、ISSTA等国内外重要学术期刊和会议发表论文70余篇，获ACM SIGSOFT杰出论文奖，授权专利20余项。研究成果应用于交通、电力、互联网等重要领域和行业，获北京市科技进步奖二等奖、中国电力企业联合会电力科技创新一等奖。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>3. 论坛组委会：陈鹏飞 中山大学</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/专刊论坛/陈鹏飞.png" alt="陈鹏飞头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>陈鹏飞，中山大学计算机学院教授，博士生导师，量子计算与软件研究所副所长，广东省大数据分析与处理重点实验室副主任， 广东省杰出青年基金获得者。曾获2020年陕西省计算机学会首届优秀博士论文，ACM FSE 2024 (CCF A类会议)杰出论文奖，IEEE ISSRE 2022大会唯一最佳论文。主要方向为：分布式系统、操作系统、计算机网络、软件可靠性等。近年来在国际会议如FSE、ICSE、ASE、WWW、IEEE INFOCOM、IEEE DSN等和期刊如IEEE TON、TPDS、TOSEM、IEEE TNNLS、IEEE TDSC等发表100余篇论文。共承担了30余项项目包括国家重点研发计划课题、国家自然基金面上、青年项目、广东省、广州市科技项目。此外，还与阿里巴巴、华为、腾讯、微信、深信服等企业开展了校企合作项目，并且将部分研究成果在企业落地。</p>
++            </div>
++        </div>
++        <div class="committee-member">
++            <h4>4. 论坛组委会：杨任宇 北京航空航天大学</h4>
++            <div class="committee-profile">
++                <div class="committee-image">
++                    <img src="./images/academic-forum/专刊论坛/杨任宇.png" alt="杨任宇头像" onerror="this.src='./images/academic-forum/default.png'">
++                </div>
++                <p><strong>简介：</strong>杨任宇，博士，北京航空航天大学软件学院副教授，博士生导师，国家级青年人才。北航可靠智能分布式系统实验室联合负责人，复杂关键软件环境全国重点实验室、计算智能新技术北京市重点实验室核心成员。长期从事大规模可靠计算基础设施关键技术与理论的研究。主持国家海外引才青年项目、国家重点研发计划课题、国家自然科学基金青年项目、北京市自然科学基金项目、头部企业-校企合作项目等项目课题十余项。在TPDS、TC、EuroSys、SC、SoCC、ASE、VLDB、KDD、WWW、AAAI 等分布式计算、人工智能、综合交叉等领域国际期刊、会议发表学术论文80余篇，谷歌学术引用近4,500次。获2017年中国电子学会科技进步特等奖、2022年英国阿兰图灵博士后拓展奖、2024年中国商业联合会科技进步一等奖、2025年度关键软件技术创新成果奖等。</p>
++            </div>
++        </div>
++    </section>
++
++</div>
