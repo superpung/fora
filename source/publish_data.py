@@ -18,7 +18,8 @@ OUTPUT = ROOT / ".data-release"
 
 
 def request(base, path, token, method="GET", body=None, content_type="application/json", digest=None):
-    headers = {"Authorization": f"Bearer {token}", "Content-Type": content_type}
+    headers = {"Authorization": f"Bearer {token}", "Content-Type": content_type,
+               "User-Agent": "ForaPublisher/1.0"}
     if digest:
         headers["X-Content-SHA256"] = digest
     req = urllib.request.Request(base.rstrip("/") + "/api/publish/" + path,
