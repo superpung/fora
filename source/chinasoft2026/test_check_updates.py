@@ -15,6 +15,52 @@ spec.loader.exec_module(checker)
 
 
 class UpdateCheckTests(unittest.TestCase):
+    def test_local_history_reuses_unchanged_evidence_without_losing_pending_imports(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            sequence = 0
+            withdrawn = "original"
+            pending = "first comparison"
+            def observe(directory):
+                nonlocal sequence
+                sequence += 1
+                path = directory / f"{sequence:03d}Z"
+                path.mkdir()
+                checker.dump(path / "manifest.json", {
+                    "status": "complete", "started_at": str(sequence),
+                    "pages": {"home": {"sha256": "same"}}, "portraits": {},
+                    "withdrawn_pages": {"retained": {"sha256": withdrawn}}})
+                checker.dump(path / "report.json", {"pending": pending})
+                (path / "html.tar.gz").write_bytes(b"original evidence")
+                return path
+            with patch.object(checker, "check", side_effect=observe):
+                first = checker.record_check(root)
+                pending = "still awaiting import"
+                self.assertEqual(checker.record_check(root), first)
+                self.assertFalse((root / "002Z").exists())
+                self.assertEqual(json.loads((root / "latest-report.json").read_text())["pending"], pending)
+                withdrawn = "changed retained page"
+                self.assertNotEqual(checker.record_check(root), first)
+            self.assertEqual(len((root / "history.jsonl").read_text().splitlines()), 3)
+            self.assertEqual((first / "html.tar.gz").read_bytes(), b"original evidence")
+
+    def test_local_history_retains_failed_attempts_without_advancing_baseline(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            good = root / "001Z"
+            good.mkdir()
+            checker.dump(good / "manifest.json", {"status": "complete", "started_at": "1"})
+            def fail(directory):
+                bad = directory / "002Z"
+                bad.mkdir()
+                checker.dump(bad / "manifest.json", {"status": "failed", "started_at": "2"})
+                raise ValueError("Source unavailable")
+            with patch.object(checker, "check", side_effect=fail), self.assertRaises(ValueError):
+                checker.record_check(root)
+            self.assertEqual(checker.previous_snapshot(root)[1], good)
+            self.assertEqual(json.loads((root / "latest.json").read_text())["status"], "failed")
+            self.assertTrue((root / "002Z/manifest.json").exists())
+
     def test_only_active_routing_handlers_are_followed(self):
         html = """<!-- <a onclick="loadPage('stale')">Old</a> -->
         <a onclick="loadPage('home')">Home</a>

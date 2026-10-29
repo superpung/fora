@@ -8,8 +8,11 @@ uv run python source/chinasoft2026/check_updates.py
 
 Each UTC timestamp directory is an independent observation, not an upstream
 publication date. Existing committed artifacts remain historical evidence. New
-daily observations are stored in private R2 by `source/check_published.py`,
-dispatched at 18:00 Asia/Shanghai; see [automation](../automation/README.md).
+daily observations are local under `.automation/chinasoft2026/checks/`. A single
+host job runs at 18:00 Asia/Shanghai during the conference maintenance window;
+see [automation](../automation/README.md). Unchanged successful checks reuse the
+previous snapshot; `latest.json`, `latest-report.json` and `history.jsonl` retain
+the current result and check time without another full archive.
 `--output PATH` selects a different history root.
 
 - `html.tar.gz`: exact response bytes of active HTML pages and directly checked
