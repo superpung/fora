@@ -98,17 +98,17 @@ async function readJSON(request, limit) {
   if (!request.headers.get('Content-Type')?.startsWith('application/json')) fail(415, 'JSON required');
   if (Number(request.headers.get('Content-Length') || 0) > limit) fail(413, 'Request too large');
   const reader = request.body?.getReader();
-  const chunks = []; let length = 0;
+  const decoder = new TextDecoder(); let raw = '', length = 0;
   if (reader) {
     while (true) {
       const { value, done } = await reader.read();
       if (done) break;
       length += value.byteLength;
       if (length > limit) { await reader.cancel(); fail(413, 'Request too large'); }
-      chunks.push(value);
+      raw += decoder.decode(value, { stream: true });
     }
   }
-  const raw = await new Blob(chunks).text();
+  raw += decoder.decode();
   try { return JSON.parse(raw); } catch { fail(400, 'Invalid JSON'); }
 }
 

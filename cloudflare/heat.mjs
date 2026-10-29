@@ -64,6 +64,7 @@ export async function heat(env) {
   const acquired = await env.DB.prepare(`UPDATE heat_cache SET lease_until = ?
     WHERE id = 1 AND expires_at <= ? AND lease_until <= ? RETURNING id`).bind(lease, now, now).first();
   if (!acquired) return busy();
+  let released = false;
   try {
     const index = await heatIndex(env);
     const stale = await env.DB.prepare(`SELECT s.user_id, s.revision, s.bundle, u.statistics_enabled, u.statistics_revision
@@ -77,14 +78,15 @@ export async function heat(env) {
     }
     // D1 formats the aggregate directly: serializing thousands of rows in the
     // Worker exceeded the free CPU budget even after removing account scans.
-    const { payload } = await env.DB.prepare(SNAPSHOT_SQL).bind(
-      JSON.stringify(index.catalog.map(({ id, sha256 }) => ({ id, sha256 }))), new Date(now).toISOString()).first();
     const expires = now + TTL_MS;
-    const updated = await env.DB.prepare('UPDATE heat_cache SET payload = ?, expires_at = ? WHERE id = 1 AND lease_until = ? RETURNING id')
-      .bind(payload, expires, lease).first();
-    return updated ? response(payload, expires) : busy();
+    const updated = await env.DB.prepare(`UPDATE heat_cache SET payload = (${SNAPSHOT_SQL}),
+      expires_at = ?3, lease_until = 0 WHERE id = 1 AND lease_until = ?4 RETURNING payload`)
+      .bind(JSON.stringify(index.catalog.map(({ id, sha256 }) => ({ id, sha256 }))),
+        new Date(now).toISOString(), expires, lease).first();
+    released = true;
+    return updated ? response(updated.payload, expires) : busy();
   } finally {
-    await env.DB.prepare('UPDATE heat_cache SET lease_until = 0 WHERE id = 1 AND lease_until = ?').bind(lease).run();
+    if (!released) await env.DB.prepare('UPDATE heat_cache SET lease_until = 0 WHERE id = 1 AND lease_until = ?').bind(lease).run();
   }
 }
 function response(payload, expires) {

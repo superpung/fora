@@ -149,7 +149,7 @@ be budgeted by the number of affected reports. Publication identity reconciliati
 is additional, occasional work and is excluded from the ordinary-day table.
 
 At a conservative 3,000 scored items (the isolated four-conference load fixture
-actually produced 1,770), the operating envelope is:
+produced 1,734 after excluding opening slots), the operating envelope is:
 
 | Active accounts | Worker requests/day | D1 rows read/day | D1 writes, returning / all new |
 | --- | ---: | ---: | ---: |
@@ -167,12 +167,14 @@ Local D1 regression measurements at 100, 500 and 1,000 accounts showed the same
 29 snapshot-query rows and two freshness-check rows for a shared 11-item fixture.
 Changing nine direct-report contributions read 79 rows and wrote 10; an unchanged
 projection wrote only the canonical account row. The isolated deployed fixture
-contains 500 synthetic accounts, each following 20 reports and one forum across
-all four conferences, with 35–59 projection entries per account (mean 44.542).
-Seeding those vectors wrote 23,771 rows including sync-state/index overhead;
-user/session creation was measured separately. The deployed snapshot query read
-3,574 rows for all 1,770 aggregate targets and wrote none. These fixtures contain no real
-production account data.
+contains 500 synthetic accounts, each storing 20 report-slot follows and one forum
+across all four conferences; opening slots are excluded from contributions. Final
+vectors contain 32–58 entries per account (mean 43.764), across 1,734 scored targets.
+The earlier seed, before excluding opening slots, wrote 23,771 rows including
+sync-state/index overhead; user/session creation was measured separately. Its
+snapshot query read 3,574 rows for 1,770 targets and wrote none. Those measurements
+are historical test evidence, not the final fixture's exact cardinality. All
+fixtures are synthetic and contain no production account data.
 
 Other D1 databases occupied approximately 0.275 MB at the audit, leaving almost
 all of the account's 5 GB allowance. Other R2 storage was approximately 161.3 MB
@@ -189,6 +191,25 @@ Official references, checked October 29, 2026:
 [Workers limits](https://developers.cloudflare.com/workers/platform/limits/),
 [D1 pricing and index accounting](https://developers.cloudflare.com/d1/platform/pricing/),
 [R2 pricing](https://developers.cloudflare.com/r2/pricing/).
+
+## Deployed acceptance evidence
+
+The isolated `fora-heat-preview` Worker uses its own D1 database and R2 bucket.
+Desktop, mobile and dark-theme browser checks passed with 15 screenshots covering
+the conference home, forum, popular forums, popular reports and account settings.
+The checks include long-list visibility, horizontal overflow and browser errors.
+Real synthetic sessions exercise the actual Worker and D1; preview GitHub login is
+disabled. Local provider simulation does not claim real OAuth authorization.
+
+The October 29 capture of version `8c7015d3-7bf6-4c8a-87ca-bb05b226c806` did **not**
+pass the free CPU target: traced sync writes took 11–25 ms and cold snapshots
+7–19 ms, while cached heat reads took 1–6 ms. All returned successfully, but
+successful requests are not sufficient to accept repeated CPU overruns. Follow-up
+optimization and deployed measurement remain pending; #51 stays draft.
+
+Production deployment and custom domains were verified unchanged; the production
+app, session endpoint and public catalog all returned HTTP 200. Resource inventory
+changes were limited to the preview Worker, D1 database and R2 bucket.
 
 ## Acceptance and rollout
 

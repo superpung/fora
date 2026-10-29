@@ -2229,6 +2229,7 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 }
 
 /* Weighted conference interest; all figures use the shared numeric typography. */
+.ftalk__main > .heat-value { display: block; margin-top: 6px; }
 .heat-value { color: var(--fg-secondary); font-size: 11px; flex-shrink: 0; white-space: nowrap; }
 .popular__controls, .popular__tabs, .popular__actions { display: flex; align-items: center; gap: 10px; }
 .popular__actions .star { position: static; transform: none; }
@@ -2253,5 +2254,5 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
   .popular__actions { flex-direction: column; gap: 6px; }
   .frow__actions { flex-wrap: wrap; justify-content: flex-end; }
   .talk__titlerow { flex-wrap: wrap; }
-  .ftalk > .heat-value { font-size: 10px; }
+  .ftalk__main > .heat-value { font-size: 10px; }
 }

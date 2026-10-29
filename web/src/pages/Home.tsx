@@ -487,9 +487,9 @@ function ForumRow({
                           ))}
                         </span>
                       )}
+                      {t.type !== "opening" && <HeatValue kind="talks" id={t.id} />}
                     </span>
                   </Link>
-                  {t.type !== "opening" && <HeatValue kind="talks" id={t.id} />}
                   <StarButton
                     active={tFollowed}
                     onClick={() => toggleTalk(talks[i].id)}

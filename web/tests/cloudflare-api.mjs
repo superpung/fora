@@ -100,6 +100,18 @@ try {
   assert.equal((await mf.dispatchFetch(origin + '/api/sync', {
     method: 'PUT', headers: auth, body: oversized, duplex: 'half',
   })).status, 413);
+  const unicodeBundle = { app: 'fora', version: 1, follows: [a], prefs: { label: '中文🙂' } };
+  const encoded = new TextEncoder().encode(JSON.stringify({ revision: 2, bundle: unicodeBundle }));
+  let offset = 0;
+  const streamed = new ReadableStream({ pull(controller) {
+    if (offset === encoded.length) controller.close();
+    else controller.enqueue(encoded.slice(offset, ++offset));
+  } });
+  const unicode = await mf.dispatchFetch(origin + '/api/sync', {
+    method: 'PUT', headers: auth, body: streamed, duplex: 'half',
+  });
+  assert.equal(unicode.status, 200);
+  assert.deepEqual((await unicode.json()).bundle, unicodeBundle, 'UTF-8 characters survive request chunk boundaries');
   const logout = await mf.dispatchFetch(origin + '/api/auth/logout', { method: 'POST', headers: auth });
   assert.equal(logout.status, 200);
   assert.match(logout.headers.get('Set-Cookie'), /Max-Age=0/);

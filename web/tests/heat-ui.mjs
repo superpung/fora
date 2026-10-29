@@ -73,6 +73,18 @@ try {
   await page.locator('.fd__actions .heat-value').waitFor();
   await page.waitForFunction(() => document.querySelector('.fd__actions .heat-value')?.textContent.includes('—'));
   assert(await page.locator('.followbtn').isEnabled(), 'heat failures do not block following');
+  mode = 'ready';
+  await page.goto(base + '/chinasoft2026');
+  await page.locator('.frow__caretbtn').first().click();
+  const report = page.locator('.ftalk').filter({ has: page.locator('.heat-value') }).first();
+  await report.locator('.heat-value').waitFor();
+  const aligned = await report.evaluate(row => {
+    const main = row.querySelector('.ftalk__main').getBoundingClientRect();
+    const heat = row.querySelector('.heat-value').getBoundingClientRect();
+    const star = row.querySelector('.star').getBoundingClientRect();
+    return Math.abs(heat.left - main.left) < 1 && heat.right <= star.left && heat.bottom <= main.bottom + 1;
+  });
+  assert(aligned, 'expanded report heat stays aligned with its title and clear of the follow button');
   assert.deepEqual(errors, []);
   console.log('PASS public heat ordering, cached navigation, signed-out settings, dataset mismatch, malformed/unavailable/empty states durable report links and immediate long-list visibility');
 } finally { await browser?.close(); server.kill('SIGTERM'); }
