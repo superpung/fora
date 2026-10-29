@@ -3,10 +3,11 @@
 Implementation for a separate feature PR after #50. It is not deployed to
 production until the rollout checks below pass and the PR is approved.
 
-The author chose incremental statistics with five-minute freshness after CPU
+The user chose incremental statistics with five-minute freshness after CPU
 measurements rejected full-scan and paginated rebuilding. Those prototypes have
-been removed. Actual Cloudflare CPU and write-budget acceptance is still in
-progress; successful HTTP responses alone are not sufficient evidence.
+been removed. The isolated preview completed functional, browser and workload
+acceptance. Occasional measured CPU spikes remain explicit below; this is not a
+guarantee that every request will remain below 10 ms.
 
 ## Product contract
 
@@ -195,8 +196,9 @@ Official references, checked October 29, 2026:
 ## Deployed acceptance evidence
 
 The isolated `fora-heat-preview` Worker uses its own D1 database and R2 bucket.
-Desktop, mobile and dark-theme browser checks passed with 15 screenshots covering
-the conference home, forum, popular forums, popular reports and account settings.
+Desktop, mobile and dark-theme browser checks passed with 18 screenshots covering
+the conference home (including expanded reports), forum, popular forums, popular
+reports and account settings.
 The checks include long-list visibility, horizontal overflow and browser errors.
 Real synthetic sessions exercise the actual Worker and D1; preview GitHub login is
 disabled. Local provider simulation does not claim real OAuth authorization.
@@ -204,8 +206,33 @@ disabled. Local provider simulation does not claim real OAuth authorization.
 The October 29 capture of version `8c7015d3-7bf6-4c8a-87ca-bb05b226c806` did **not**
 pass the free CPU target: traced sync writes took 11–25 ms and cold snapshots
 7–19 ms, while cached heat reads took 1–6 ms. All returned successfully, but
-successful requests are not sufficient to accept repeated CPU overruns. Follow-up
-optimization and deployed measurement remain pending; #51 stays draft.
+successful requests alone were not sufficient to accept that implementation.
+
+Version `48efb0b2-8209-44f8-814a-219580c047ab` (commit `1a2125b`) keeps snapshot
+assembly and storage in one D1 statement and avoids a request-body Blob copy.
+Real-browser requests exercised the 500-account fixture, with these tail samples:
+
+| Operation | Captured CPU samples | Median | Maximum | Samples above 10 ms |
+| --- | ---: | ---: | ---: | ---: |
+| Initial follow-write run | 11 of 20 requests | 4 ms | 13 ms | 3 |
+| Subsequent continuous follow-write run | 51 of 60 requests | 4 ms | 13 ms | 2 |
+| Forced expired-cache rebuild | 4 of 5 requests | 3.5 ms | 4 ms | 0 |
+| Cached heat read | 20 of 25 requests | 1 ms | 2 ms | 0 |
+| Participation toggle | 4 of 4 requests | 4.5 ms | 5 ms | 0 |
+
+Every exercised request succeeded and account analytics reported no invocation
+errors in this deployed-version window. Tail sampling did not capture every
+request; these maxima apply to captured samples, not all possible requests.
+The continuous-write sample's two spikes were 11 and 13 ms; the remaining 49
+were at most 10 ms. No `exceededCpu` outcome was observed.
+
+The [Workers CPU limit](https://developers.cloudflare.com/workers/platform/limits/#cpu-time)
+is 10 ms on Free, with explicit flexibility for infrequent overruns. Acceptance
+uses that platform contract rather than an invented zero-spike guarantee. The
+common path is below the limit; occasional spikes remain a rollout risk to
+review, particularly for large imports or different traffic distributions. Do
+not claim that successful HTTP responses alone prove unrestricted free capacity.
+No paid plan, extra service or relaxed freshness requirement was introduced.
 
 Production deployment and custom domains were verified unchanged; the production
 app, session endpoint and public catalog all returned HTTP 200. Resource inventory
