@@ -6,7 +6,8 @@ export async function publish(request, env, url) {
   if (!env.PUBLISH_TOKEN || request.headers.get('Authorization') !== `Bearer ${env.PUBLISH_TOKEN}`) fail(401, 'Publisher authentication required');
   if (url.pathname === '/api/publish/catalog' && request.method === 'GET') {
     const current = await env.DATA.get('manifest.json');
-    return reply({ etag: current?.etag ?? null, catalog: current ? await current.json() : null });
+    return reply({ etag: current?.etag ?? null, release: current?.customMetadata?.release ?? null,
+      catalog: current ? await current.json() : null });
   }
   const match = url.pathname.match(/^\/api\/publish\/objects\/(.+)$/);
   if (match) {
@@ -42,7 +43,8 @@ export async function publish(request, env, url) {
     if (!/^[a-f0-9]{64}$/.test(digest || '') || !(expected === null || typeof expected === 'string')) fail(400, 'Invalid promotion');
     const candidate = await env.DATA.get(`releases/${digest}.json`);
     if (!candidate || candidate.customMetadata?.sha256 !== digest) fail(400, 'Release manifest is missing');
-    const catalog = await candidate.json();
+    const body = await candidate.arrayBuffer();
+    const catalog = JSON.parse(new TextDecoder().decode(body));
     if (catalog.schema_version !== 1 || !Array.isArray(catalog.conferences)) fail(400, 'Invalid release manifest');
     const ids = new Set();
     for (const entry of catalog.conferences) {
@@ -52,7 +54,7 @@ export async function publish(request, env, url) {
       const object = await env.DATA.head(entry.path);
       if (!object || object.customMetadata?.sha256 !== entry.sha256) fail(400, 'Conference object is missing');
     }
-    const promoted = await env.DATA.put('manifest.json', JSON.stringify(catalog), {
+    const promoted = await env.DATA.put('manifest.json', body, {
       onlyIf: expected === null ? { etagDoesNotMatch: '*' } : { etagMatches: expected },
       httpMetadata: { contentType: 'application/json', cacheControl: 'public, max-age=0, must-revalidate' },
       customMetadata: { release: digest },
