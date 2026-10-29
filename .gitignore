@@ -39,3 +39,6 @@ Thumbs.db
 
 # Local daily source-check runs, reports, and isolated worktrees
 .automation/
+
+# Generated conference datasets are published to R2 and rebuilt locally.
+/data/*.json

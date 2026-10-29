@@ -19,19 +19,16 @@ repository. The local operator token is in
 
 ## Continuous-availability rollout
 
-The production route is exactly `fora.repus.me/*`. Keep the existing proxied DNS
-record during the cutover: adding the route changes request handling without
-deleting the hostname. Pin Netlify's current published deployment before merging
-this migration so its automatic builds cannot replace the serving version.
-Keep that immutable deployment available until production verification finishes.
-Removing only Fora's Worker route restores the pinned origin without a DNS gap;
-never change shared routes or zone-wide settings to perform a rollback.
+The production route is exactly `fora.repus.me/*`. Its existing proxied DNS
+record uses the originless `AAAA 100::` configuration documented by Cloudflare.
+The Worker serves the application and API without an external origin. Netlify
+is retired; there is no old deployment or application-level fallback.
 
-Verify the pinned data preview first, then deploy the route and continuously
-check production HTML, deep links, datasets, portraits and `/api/session`.
-The Worker serves all application requests from its own assets and bindings;
-there is no application-level request forwarding or old-backend fallback.
-The old deployment is a rollout rollback artifact, not a second maintained app.
+Keep the live DNS record and Worker route in place during deployments. Verify
+an independent version preview, then deploy the complete application atomically.
+Use the preceding verified Worker version for rollback; never delete the hostname
+or alter shared zone settings. Check production HTML, deep links, data, portraits
+and `/api/session` throughout the rollout.
 
 ## Application
 
@@ -76,9 +73,10 @@ Both `/api/` and root OAuth callback navigations bypass the service worker.
 
 ## Conference data
 
-`data/<id>.json` is the single generated reference fixture for each conference.
+`data/<id>.json` is an ignored local build output for each conference.
 Tests and asset preparation read it directly; no duplicate web source dataset is
-kept. These fixtures are not the live publication pointer. The deployed application fetches a versioned catalog and verifies each
+kept or committed. A fresh clone runs `uv run python source/build_all.py` before
+web development or tests. These fixtures are not the live publication pointer. The deployed application fetches a versioned catalog and verifies each
 immutable dataset's SHA-256 before building its views. Validated visited data is
 cached for offline use. HTTP/schema/integrity errors remain errors; they do not
 silently select an older release. Offline cached catalogs are marked in the UI.
