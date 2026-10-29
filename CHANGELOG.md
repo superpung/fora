@@ -4,6 +4,45 @@ All notable changes to this project, newest first. The top entry is the current
 release; the dated log beneath it records development day by day. Written in
 English per the repository language rule (see AGENTS.md).
 
+## v0.5.0 — 2026-10-29
+
+### Added
+- Independent conference releases: checksummed immutable datasets and portraits
+  in R2, reviewed candidate URLs and conditional catalog promotion/rollback.
+- GitHub identity with HttpOnly sessions and D1 agenda synchronization, including
+  offline edits, concurrent changes, preference conflicts and account isolation.
+- Durable report IDs keep follows, links, reminders and exports stable when a
+  programme inserts or reorders reports.
+
+### Changed
+- Application hosting moves to Cloudflare Workers Static Assets. Netlify and the
+  Gist backend are retired; no compatibility backend remains.
+- Conference maintenance runs locally during the conference's active window.
+  Snapshots, curation and reports stay local; no permanent cloud scheduler or
+  private cloud source archive remains. Data publication requires no code PR.
+- Generated conference JSON is rebuilt for development and tests, excluded from
+  Git and removed from branch/tag history. Source inputs and builders remain.
+  Existing clones should be replaced after preserving local work.
+- Runtime data is validated before use; visited data supports offline reading.
+  Invalid online responses remain visible errors instead of selecting old data.
+
+### Fixed
+- Corrected production GitHub OAuth credentials and added a real-provider
+  credential preflight. Invalid credentials, expired codes and malformed provider
+  responses now produce distinct, safe errors.
+- OAuth callbacks and API routes bypass the service worker; stale sync revisions
+  cannot silently overwrite another device's changes.
+
+### CI
+- Fresh clones rebuild all four datasets before schema and deterministic-output
+  checks. Generated datasets are no longer required in the Git tree.
+- Worker/D1/R2 tests cover authentication, isolation, concurrent sync and data
+  promotion; integrated browser tests exercise the actual application and Worker
+  with a simulated GitHub provider. Real production login and two-browser
+  follow/unfollow synchronization were separately confirmed by the user.
+
+_Changes since v0.4.0: #41, #42, #43, #44 and #45._
+
 ## v0.4.0 — 2026-10-29
 
 ### Added
