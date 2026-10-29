@@ -30,7 +30,7 @@ const SCORE_FLOOR = 0.18;
 export const PLAN_SIZE = 12;
 
 export interface PlanCandidate {
-  /** Follow-store id — `${forumCode}#${index}` or `KEYNOTE:${date}#${index}`. */
+  /** Persistent report ID from the dataset; its suffix is not a list index. */
   id: string;
   kind: "talk" | "keynote";
   title: string;
@@ -38,9 +38,8 @@ export interface PlanCandidate {
   /** Forum title; empty for main-conference keynotes (the page labels those). */
   session: string;
   code?: string;
-  /** 0-based position in the forum's talk list, so a pick can link at the talk
-      itself (`#talk-${talkIndex + 1}`) instead of the top of the forum page.
-      Null for keynotes — main-stage blocks carry no per-talk anchor. */
+  /** Current list position; navigation uses the separate persistent anchor.
+      Null for keynotes. */
   talkIndex: number | null;
   anchor?: string;
   room: string | null;

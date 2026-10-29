@@ -20,7 +20,7 @@ import { talkDate, speakerNames } from "./data";
 export interface SimilarTalk {
   forumCode: string;
   forumTitle: string;
-  /** 0-based index in the forum's talk list; the anchor is `#talk-${index+1}`. */
+  /** Current list position; navigation uses the separate persistent anchor. */
   index: number;
   anchor: string;
   title?: string;
