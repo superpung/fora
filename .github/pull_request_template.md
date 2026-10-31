@@ -1,6 +1,8 @@
 ## Change
 
-<!-- State the problem and the resulting behavior. -->
+<!-- Inventory the entire current diff against the PR target, not only the last
+     iteration. Include visible UI, behavior/defaults, backend/data contracts,
+     resource/deployment effects, tests and docs. Remove obsolete descriptions. -->
 
 ## Technical validation (assistant-owned)
 

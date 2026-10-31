@@ -34,19 +34,19 @@ function Freshness() {
   const { updatedAt, nextRefreshAt, refreshing } = useHeat();
   const { lang } = useI18n();
   const zh = lang !== "en";
-  const now = useClockMs();
+  const now = useClockMs(1000);
   const seconds = Math.max(0, Math.ceil((nextRefreshAt - now) / 1000));
-  const remaining = Math.max(0, (nextRefreshAt - Date.now()) / 1000);
-  return <span className="heat-freshness" role="status">
-    {refreshing ? (zh ? "更新中" : "Updating") : updatedAt ? (zh ? `${relativeTime(updatedAt, true, now)}更新` : `Updated ${relativeTime(updatedAt, false, now)}`) : ""}
-    {!refreshing && nextRefreshAt > 0 && <svg width="16" height="16" viewBox="0 0 16 16" className="heat-countdown"
+  const remaining = useMemo(() => Math.max(0, (nextRefreshAt - Date.now()) / 1000), [nextRefreshAt]);
+  return <span className="heat-freshness">
+    <span role="status">{refreshing ? (zh ? "更新中" : "Updating") : updatedAt ? (zh ? `${relativeTime(updatedAt, true, now)}更新` : `Updated ${relativeTime(updatedAt, false, now)}`) : ""}</span>
+    {!refreshing && nextRefreshAt > 0 && <span className="meta-bit"><svg width="20" height="20" viewBox="0 0 20 20" className="heat-countdown"
       role="progressbar" aria-label={zh ? "下次更新" : "Next update"} aria-valuemin={0} aria-valuemax={100}
       aria-valuenow={Math.min(100, Math.round(seconds / (HEAT_INTERVAL_MS / 1000) * 100))}
       aria-valuetext={`${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`}>
-      <circle cx="8" cy="8" r="6" className="heat-countdown__track" />
-      <motion.circle key={nextRefreshAt} cx="8" cy="8" r="6" initial={{ pathLength: Math.min(1, remaining / (HEAT_INTERVAL_MS / 1000)) }}
+      <circle cx="10" cy="10" r="8" className="heat-countdown__track" />
+      <motion.circle key={nextRefreshAt} cx="10" cy="10" r="8" initial={{ pathLength: Math.min(1, remaining / (HEAT_INTERVAL_MS / 1000)) }}
         animate={{ pathLength: 0 }} transition={{ duration: remaining, ease: "linear" }} />
-    </svg>}
+    </svg><span className="heat-countdown__time mono" aria-hidden>{Math.floor(seconds / 60)}:{String(seconds % 60).padStart(2, "0")}</span></span>}
   </span>;
 }
 function Rankings() {
@@ -69,10 +69,11 @@ function Rankings() {
     .sort((a, b) => (data?.talks[b.followId!] ?? 0) - (data?.talks[a.followId!] ?? 0) ||
       (a.date || "9999-99-99").localeCompare(b.date || "9999-99-99") || (a.start ?? "99:99").localeCompare(b.start ?? "99:99") || a.followId!.localeCompare(b.followId!));
   return <motion.div className="container section" variants={pageVariants} initial="initial" animate="animate" exit="exit">
-    <div className="section__head">
-      <div className="section__titlerow">
+    <div className="section__head heat-header">
+      <div className="section__titlerow heat-heading">
         <span className="section__icon" aria-hidden><Icon name="chart" size={19} /></span>
         <h2 className="section__title">{t("nav.popular")}</h2>
+        <Freshness />
       </div>
       <div className="section__controls">
         <SegmentedControl value={kind} onChange={setKind} label={zh ? "热门类别" : "Popular category"} options={[
@@ -82,7 +83,6 @@ function Rankings() {
 
       </div>
     </div>
-    <Freshness />
     {status !== "ready" ? <div className="dash__empty" role="status">{status === "loading" ? (zh ? "加载中" : "Loading") : (zh ? "热度暂不可用" : "Heat unavailable")}</div>
       : !(kind === "forums" ? forums : talks).length ? <div className="dash__empty">{zh ? "暂无热度数据" : "No heat data yet"}</div>
       : kind === "forums" ? <div className="ftable" key="forums">
@@ -90,7 +90,7 @@ function Rankings() {
           custom={index} initial="initial" whileInView="animate" viewport={{ once: true, amount: 0.1 }}>
           <div className="frow__row">
             <Link className="frow__body" to={`/${id}/forum/${forum.code}`}>
-              <ForumSummary codeBadge forum={forum} code={forum.code} room={forum.room}>
+              <ForumSummary forum={forum} code={forum.code} room={forum.room}>
                 <span className="frow__rc">
                   {(forum.sessions?.length ? forum.sessions : [{ date: forum.day_date, start: forum.start, end: forum.end }]).map((slot, i) =>
                     <span className="frow__room" key={i}><Icon name="clock" size={12} />

@@ -6,6 +6,7 @@ import { useI18n } from "../lib/i18n-store";
 import { formatDate } from "../lib/data";
 import type { ExportItem } from "../lib/export";
 import Icon from "./Icon";
+import ForumIdentity from "./ForumIdentity";
 
 /** Share report facts while preserving My Day's chronological time column. */
 export default function AgendaRow({ item, actions, metric, showDate = false, running = false, className = "", ...motionProps }: {
@@ -34,12 +35,12 @@ export default function AgendaRow({ item, actions, metric, showDate = false, run
       </div>
       <div className="talkrow__speaker">
         {speaker}
-        {!showDate && <span className="talkrow__aff">{item.session}{item.code ? ` · ${item.code}` : ""}</span>}
+        {!showDate && <span className="talkrow__aff"><ForumIdentity code={item.code} name={item.session} /></span>}
         {room}
         {showDate && <span className="talkrow__fact talkrow__time"><Icon name="clock" size={12} />{time}</span>}
       </div>
       {showDate && <div className="talkrow__aff talkrow__session">
-        {item.code && <span className="code-tag">{item.code}</span>}{item.session}
+        <ForumIdentity code={item.code} name={item.session} />
       </div>}
     </div>
     {metric ? <div className="row-actions">{actions}{metric}</div> : actions}

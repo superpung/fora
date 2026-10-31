@@ -25,7 +25,8 @@ guarantee that every request will remain below 10 ms.
   withdrawn from the next public snapshot, within the existing cache window.
   It does not delete follows or change synchronization. Turning it back on
   includes current follows and restores the page entry.
-- Scores occupy the same right-hand column in both lists. A single accent grows
+- Scores share the same right edge in both lists, with the follow star directly
+  beside the text and no fixed-width empty score column. A single accent grows
   from secondary text at zero to full blue at 600; it does not alter scores.
   Report metadata puts the forum code in a neutral rounded badge before its name.
   No scoring/formula disclosure or manual refresh button is rendered.
@@ -106,8 +107,11 @@ The provider mounts only on the enabled heat page. It reuses an unexpired public
 snapshot and refreshes at its remaining Cache-Control lifetime, capped at five
 minutes. A one-second allowance for the server's rounded-down remaining seconds
 avoids premature re-reads, still capped at five minutes. The page shows the
-snapshot's `generated_at` age, not the time of the last fetch, and a countdown
-ring. The existing account-menu elapsed-time formatter is shared.
+snapshot's `generated_at` age, not the time of the last fetch, below the page
+heading. A continuous linear countdown arc and a per-second `m:ss` value share
+that metadata line. The 20px arc represents the real five-minute interval; the
+text makes its otherwise subtle progress readable. The existing account-menu
+elapsed-time formatter is shared.
 
 Leaving the page, switching heat off, hiding the tab or going offline suspends
 polling. Returning to the foreground or network checks the cache immediately;
@@ -285,7 +289,8 @@ assistant; the user reviews the heat page's product/design choices.
 - Browser: public ranking, account menu signed out, two-device participation,
   follow/unfollow/import, weighted report metadata and stable anchors,
   unavailable/invalid/hash-mismatch responses, caching, desktop/mobile layout,
-  aligned score columns, automatic expiry refresh, hidden/offline/disabled polling
+  aligned score text and compact star gaps, continuous arc sampling and per-second
+  countdown, automatic expiry refresh, hidden/offline/disabled polling
   suspension, recovery, and the five-minute/two-second sync timing contract.
 - Existing conference, source-gap, portrait, anchor, multi-day, offline and live
   clock tests remain required, alongside lint/build and Cloudflare integration.

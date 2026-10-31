@@ -6,16 +6,17 @@ import { useFollow } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
 import Icon from "./Icon";
 import StarButton from "./StarButton";
+import { ForumCode } from "./ForumIdentity";
 
-export function ForumSummary({ forum: f, code, room, children, codeBadge = false }: {
-  forum?: Forum; code: string; room?: string | null; children?: ReactNode; codeBadge?: boolean;
+export function ForumSummary({ forum: f, code, room, children }: {
+  forum?: Forum; code: string; room?: string | null; children?: ReactNode;
 }) {
   const { t: tr } = useI18n();
   const talks = f?.talks ?? [];
   const hasTalks = !!f?.detail_extracted && talks.length > 0;
   return <>
     <div className="frow__title">
-      <span className={`frow__code${codeBadge ? " code-tag" : ""}`}>{code}</span>
+      <ForumCode code={code} className="frow__code" />
       <span className="frow__titletext">{f?.title.zh ?? code}</span>
     </div>
     <span className="frow__rc">
@@ -53,14 +54,13 @@ export function ForumActions({ code, onExpand, open = false, children }: {
   const { id: confId } = useConference();
   const { isForum, toggleForum } = useFollow();
   const { t: tr } = useI18n();
+  const star = <StarButton
+    active={isForum(code)} onClick={() => toggleForum(code)}
+    label={tr("home.saveForum", { code })} className="frow__star"
+  />;
   return (
     <div className="frow__actions">
-      <StarButton
-        active={isForum(code)}
-        onClick={() => toggleForum(code)}
-        label={tr("home.saveForum", { code })}
-        className="frow__star"
-      />
+      {!children && star}
       <Link
         to={`/${confId}/forum/${code}`}
         className="frow__enter"
@@ -82,6 +82,7 @@ export function ForumActions({ code, onExpand, open = false, children }: {
           </span>
         </button>
       )}
+      {children && star}
       {children}
     </div>
   );

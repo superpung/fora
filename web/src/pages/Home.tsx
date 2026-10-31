@@ -508,9 +508,9 @@ function DaySection({
           >
             <Icon name="keynotes" size={15} />
             {t("home.keynotes")}
-            {keynotePeriods(day.keynotes).length > 0 &&
-              ` · ${keynotePeriods(day.keynotes).map((p) => t(`period.${p}`)).join("·")}`}{" "}
-            · {t("common.sessionsCount", { n: day.keynotes.length })}
+            {keynotePeriods(day.keynotes).length > 0 && <span className="meta-bit"><Icon name="clock" size={13} />
+              {keynotePeriods(day.keynotes).map((p) => t(`period.${p}`)).join(" / ")}</span>}
+            <span className="mono">{t("common.sessionsCount", { n: day.keynotes.length })}</span>
             <span className={`caret ${keyOpen ? "caret--up" : ""}`}>
               <Icon name="chevron-down" size={16} />
             </span>
@@ -682,8 +682,8 @@ export default function Home() {
               )}
             </div>
             <div className="dashhead__venue">
-              {startMd}–{endMd}
-              {mainCity && ` · ${t("common.inChina", { city: mainCity })}`}
+              <span className="meta-bit"><Icon name="calendar" size={13} />{startMd}–{endMd}</span>
+              {mainCity && <span className="meta-bit"><Icon name="pin" size={13} />{t("common.inChina", { city: mainCity })}</span>}
             </div>
             <SourceNotes flags={conference.extra?.flags} />
           </div>
@@ -784,8 +784,8 @@ export default function Home() {
         <div className="dash__resultbar">
           <span className="dash__resultinfo">
             {t("home.forumsCountPre")}<strong>{totalShown}</strong>{t("home.forumsCountSuf")}
-            {q && t("home.matching", { q: query })}
-            {onlyFollowed && t("home.onlyFollows")}
+            {q && <span className="meta-bit"><Icon name="search" size={12} />{t("home.matching", { q: query })}</span>}
+            {onlyFollowed && <span className="meta-bit"><Icon name="star" size={12} />{t("home.onlyFollows")}</span>}
             {speakerFilter && (
               <button
                 className="filtertag"

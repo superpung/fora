@@ -1,3 +1,4 @@
+import { ForumCode } from "../components/ForumIdentity";
 import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -36,7 +37,7 @@ function RoomCard({ room }: { room: NowRoom }) {
       <div className="nowcard__title"><Title text={room.title} tbd={room.tbd} /></div>
       <div className="nowcard__top">
         {room.room && <span className="nowcard__room"><Icon name="pin" size={12} /> {room.room}</span>}
-        {room.code && <span className="nowcard__code">{room.code}</span>}
+        {room.code && <ForumCode code={room.code} />}
         {room.start && <span className="nowcard__room mono"><Icon name="clock" size={12} /> {room.start}{room.end ? `–${room.end}` : ""}</span>}
       </div>
       {room.nowTalk && <div className="nowcard__talk"><LiveTalk talk={room.nowTalk} room={room.room} /></div>}
@@ -110,7 +111,7 @@ export default function Now() {
         <div className="nowclock">
           <span className="nowclock__time mono">{fmtClock(now.nowMin)}</span>
           <span className="nowclock__date">
-            {formatDate(now.todayStr, lang).md} · {formatDate(now.todayStr, lang).weekday}
+            <Icon name="calendar" size={12} /> {formatDate(now.todayStr, lang).md} {formatDate(now.todayStr, lang).weekday}
           </span>
         </div>
       </div>
@@ -169,7 +170,8 @@ export default function Now() {
                       {s.kind === "forum" ? (
                         <>
                           <Icon name="forums" size={13} />
-                          {t("now.forumsBegin", { n: s.count ?? 0 })}
+                          {t("now.forumsBegin")}
+                          <span className="meta-bit"><Icon name="pin" size={13} />{t("now.roomCount", { n: s.count ?? 0 })}</span>
                         </>
                       ) : (
                         <>

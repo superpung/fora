@@ -12,17 +12,17 @@ export interface Now {
 }
 
 /** Tick while visible and immediately refresh after returning to the tab. */
-export function useClockMs(): number {
+export function useClockMs(intervalMs = 30_000): number {
   const [ms, setMs] = useState(() => Date.now());
   useEffect(() => {
     const update = () => setMs(Date.now());
-    const id = window.setInterval(update, 30_000);
+    const id = window.setInterval(() => { if (document.visibilityState === "visible") update(); }, intervalMs);
     document.addEventListener("visibilitychange", update);
     return () => {
       window.clearInterval(id);
       document.removeEventListener("visibilitychange", update);
     };
-  }, []);
+  }, [intervalMs]);
   return ms;
 }
 

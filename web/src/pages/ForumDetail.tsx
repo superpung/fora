@@ -1,3 +1,4 @@
+import { ForumCode } from "../components/ForumIdentity";
 import { talkAnchor } from "../lib/follow-store";
 import { useNow } from "../lib/use-now";
 import { personKey } from "../lib/person-key";
@@ -619,7 +620,7 @@ export default function ForumDetail() {
           </div>
         </div>
         <div className="fd__meta">
-          <span className="fd__code">{forum.code}</span>
+          <ForumCode code={forum.code} />
           {forum.category && <span className="fd__cat">{forum.category.name.zh}</span>}
           {forum.room && (
             <span className="fd__room">

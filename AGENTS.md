@@ -49,6 +49,11 @@
   are the assistant's work, not a checklist to delegate to the user. Ask the user
   to judge design choices; request manual technical steps only when their real
   authorization/session is indispensable.
+- Inventory the **entire current PR against its target branch**, not only the
+  latest fix or the last commit. Include visible design, interaction/defaults,
+  backend/data contracts, resource/deployment effects, tests and documentation.
+  Rewrite the inventory after scope changes and distinguish retained changes
+  from abandoned implementations. The chat summary must also cover the full PR.
 - State preview data provenance explicitly: real conference content, synthetic
   users/events, calculated scores and any unavailable authentication flow. Never
   present seeded aggregates as real usage or silently replace them with arbitrary
@@ -57,6 +62,9 @@
   and mobile widths and in light/dark themes. Inspect the actual screenshots:
   generation, HTTP 200, no overflow and no console errors alone do not establish
   visual consistency. Check metadata order, type, spacing, actions and motion.
+- Measure visible text-to-control spacing, not just element bounds: reserved
+  width can pass non-overlap tests while leaving an unjustified visual gap.
+  Observe animations across time; a still screenshot does not verify motion.
 - Test the affected callers of a shared component, including navigation and
   state preservation. Keep automated evidence, assistant visual inspection and
   pending user acceptance separate. Do not mark the user's checklist complete
@@ -151,9 +159,12 @@ restrained, and detailed. Match it; do not drift toward other looks.
 ## UI copy / layout rules (hard)
 - **No new middle-dot separators.** Do not introduce `·`, HTML entities or
   Unicode escapes for it in application-authored UI, notifications, posters or
-  exports. Existing non-date/time uses are inventoried in
-  [docs/UI_SEPARATORS.md](docs/UI_SEPARATORS.md) for the user's decision; do not
-  expand them. Preserve verbatim source names/titles until explicitly directed.
+  exports. Only country/city and committee affiliation/title separators remain
+  by the user's decision. See [docs/UI_SEPARATORS.md](docs/UI_SEPARATORS.md).
+  Preserve original conference content; do not normalize its punctuation.
+- Forum identifiers share `ForumCode` and `ForumIdentity`: one neutral rounded
+  badge, before the forum name when combined. Do not style each page's code
+  independently or confuse a report's display ordinal with its forum identifier.
 - Explaining a feature in a discussion does not authorize explanatory copy in
   the app. Keep formulas, scoring explanations and implementation details in
   documentation unless the user explicitly requests them in the interface.
@@ -374,8 +385,9 @@ pnpm preview    # serve the production build
   server setting. Turning it off hides the route/navigation and stops heat reads.
   `HeatProvider` mounts only on that page, refreshes at snapshot expiry (at most
   five minutes), and suspends on hidden/offline pages. `Freshness` shows the
-  snapshot's real age and next-refresh ring; no scoring prose or refresh button
-  belongs in the app. Failures show unavailable, not zero. Account polling is
+  snapshot's real age, smooth next-refresh ring and per-second remaining time;
+  no scoring prose or refresh button belongs in the app. Failures show unavailable,
+  not zero. Account polling is
   five minutes; edits still upload after two seconds.
   Read `cloudflare/HEAT.md` for the exact formula, resource budget, privacy window,
   test matrix and catalog/schema rollout requirements. Do not publish an obsolete
@@ -386,8 +398,10 @@ pnpm preview    # serve the production build
   used by My Day and Popular. It preserves My Day's separate time column;
   discovery rows show source facts with a code badge before the forum name and
   right-aligned heat. SourceNotes owns its sole animated disclosure. The account
-  menu and heat freshness share `relative-time.ts`. Change these owners rather than copying their markup
-  or adding page-specific visual substitutes; check all affected callers.
+  menu and heat freshness share `relative-time.ts`. `ForumCode` / `ForumIdentity`
+  own all HTML forum badges; `ui-consistency.mjs` checks their real callers and
+  source-preserving punctuation changes. Change these owners rather than copying
+  their markup or adding page-specific visual substitutes; check all affected callers.
 - **Stable reports:** required `talk.id` is allocated by `source/identities.py`
   from reviewed `source/identities/<id>.json` registries. Its numeric suffix is
   permanent, never the current list index. Follows, anchors, enrichment, exports

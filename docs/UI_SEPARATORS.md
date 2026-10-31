@@ -1,41 +1,44 @@
-# Existing middle-dot inventory
+# Middle-dot decisions
 
 The user prohibited new application-authored middle-dot separators on October 31,
-2026. Date/time separators were removed from heat rows, forum/session metadata,
-the live next-item time and report share-poster timestamps. Heat report metadata
-now uses a code badge followed by the forum name.
+2026 and subsequently reviewed every existing use. The table records the final
+scope, not only the latest edit. Original conference content is preserved.
 
-The remaining uses below are preserved pending the user's design decision. This
-is an inventory, not permission to introduce another separator. Examples are UI
-literals and are not new application copy. Source line numbers may move; the
-listed files own each presentation.
+| ID | Surface | Current decision and implementation |
+| --- | --- | --- |
+| 1 | Country and city | Retain `中国·天津` in hub/home/poster locations. |
+| 2 | Home date and location | Remove the separator; calendar and pin icons identify separate fields. |
+| 3 | Home keynote groups | Use spaced title, clock/period and report count. |
+| 4 | Home filter summary | Use separate search/star metadata with spacing. |
+| 5 | Conference picker | Use separate calendar/date and pin/city metadata. |
+| 6 | My Day | Shared rounded forum-code badge before the name. Preserve the time column. |
+| 7 | Planner | Shared badge before the forum name. Report title and speakers precede metadata. |
+| 8 | Timeline without reports | Clock/time followed by spaced publication status. |
+| 9 | Live date | Calendar icon with date and weekday. |
+| 10 | Upcoming forum group | Forum icon/title and pin/room count. |
+| 11 | Committee | Retain the affiliation/title separator as requested. |
+| 12 | Organizations | Shared forum-code badge before the forum name. |
+| 13 | Search results | Structured metadata items separated by layout gaps; forum codes use the shared badge. Ranking inputs are unchanged. |
+| 14 | Notifications | Use a colon between the countdown and session/count text. |
+| 15 | Share posters | Remove the report/count separator and, after explicit confirmation, the multi-speaker separator. Use whitespace between speakers. The forum identifier uses a neutral rounded badge. |
+| 16 | Markdown export | Use an em dash between the agenda label and conference name. |
 
-## Remaining application-authored separators
+Date/time separators in heat rows, forum/session metadata, live upcoming items
+and report-poster timestamps were already removed. The forum identifier badge
+also applies to Home, forum details, Now, topic reports/groups and similar talks.
+`ForumCode` / `ForumIdentity` own the HTML presentation; the offline canvas
+renderer draws the matching neutral badge at poster scale.
 
-| ID | Surface | Placement | Example | Owner |
-| --- | --- | --- | --- | --- |
-| 1 | Country and city | Hub cards, conference home, share-poster location | `中国·天津` | `web/src/lib/i18n-store.ts`, `web/src/pages/ForumDetail.tsx` |
-| 2 | Conference date and location | Conference home heading | `11月5日–11月8日 · 中国·天津` | `web/src/pages/Home.tsx` |
-| 3 | Keynote group | Home keynote disclosure, periods and item count | `主旨报告 · 上午 · 7场` | `web/src/pages/Home.tsx` |
-| 4 | Filter summary | Home search and followed-only summary | `匹配… / 仅关注, prefixed by a dot` | `web/src/lib/i18n-store.ts`, `web/src/pages/Home.tsx` |
-| 5 | Conference picker | Start date and city | `2026-11-05 · 天津` | `web/src/components/ConferenceSwitcher.tsx` |
-| 6 | My Day | Session name and forum code | `论坛名称 · R1` | `web/src/components/AgendaRow.tsx` |
-| 7 | Planner | Session name and forum code | `论坛名称 · R1` | `web/src/pages/Plan.tsx` |
-| 8 | Timeline without reports | Time window and publication state | `15:20–18:30 · 议程待公布` | `web/src/components/TimeGrid.tsx` |
-| 9 | Live page date | Month/day and weekday | `11月6日 · 周五` | `web/src/pages/Now.tsx` |
-| 10 | Live upcoming forums | Forum group and number of rooms | `技术论坛 · 3 个会场` | `web/src/lib/i18n-store.ts`, `web/src/pages/Now.tsx` |
-| 11 | Committee | Affiliation and professional title | `单位 · 职务` | `web/src/pages/Committee.tsx` |
-| 12 | Organizations | Associated forum code and title | `R1 · 论坛名称` | `web/src/pages/Organizations.tsx` |
-| 13 | Search results | Forum: code/category/room; report: forum/speakers; person: affiliation/roles; organization: role/tier | `Multiple subtitle fields` | `web/src/lib/search.ts` |
-| 14 | Notifications | Time until start and session or followed-report count | `5 分钟后开始 · 论坛名称` | `web/src/lib/i18n-store.ts`, `web/src/lib/reminder-schedule.ts` |
-| 15 | Share posters | Adjacent speakers; report-count label | `讲者甲 · 讲者乙 / 报告 · 7` | `web/src/lib/poster.ts`, `web/src/lib/i18n-store.ts` |
-| 16 | Markdown export | Personal agenda heading and conference name | `我的日程 · 会议名称` | `web/src/lib/export.ts` |
+The former speaker separator appeared only within a forum poster's report list
+when that report named multiple speakers. For example, ChinaSoft 2026 R1's
+opening introduction names 魏峻、高钰、张雅坤、刘哲. Single-speaker rows and the
+separate full-report poster did not show that separator.
 
 ## Conference text
 
 The current four local conference datasets also contain dots inside titles,
 abstracts, biographies and other content. These are data, not a shared UI
-separator; removing them is a separate content decision. Counts below describe
+separator; they must not be changed by UI punctuation cleanup. Counts below describe
 text fields, including repeated occurrences of the same source text, and do not
 include text embedded in source images. Excerpts are limited to identify the
 content without copying entire biographies into this inventory.

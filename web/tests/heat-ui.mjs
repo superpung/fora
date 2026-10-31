@@ -39,6 +39,21 @@ try {
   assert(!(await page.locator('.ftable').innerText()).includes('·'));
   await page.getByRole('progressbar', { name: '下次更新' }).waitFor();
   assert((await page.locator('.heat-freshness').innerText()).includes('更新'));
+  const ring = page.locator('.heat-countdown circle').last();
+  const ringLength = async () => parseFloat(await ring.getAttribute('stroke-dasharray'));
+  const firstLength = await ringLength(), firstCountdown = await page.locator('.heat-countdown__time').textContent();
+  await page.waitForTimeout(1100); const secondLength = await ringLength();
+  await page.waitForTimeout(1100); const thirdLength = await ringLength();
+  assert(firstLength > secondLength && secondLength > thirdLength, 'the real five-minute arc moves continuously between clock renders');
+  assert.notEqual(await page.locator('.heat-countdown__time').textContent(), firstCountdown, 'remaining time advances every second');
+  assert(await page.locator('.heat-freshness').evaluate(el => el.getBoundingClientRect().left === el.parentElement.querySelector('h2').getBoundingClientRect().left), 'freshness belongs below the heading');
+  const compactMetric = row => row.evaluate(el => {
+    const score = el.querySelector('.heat-value'), star = el.querySelector('.star');
+    const text = document.createRange(); text.selectNodeContents(score);
+    const gap = text.getBoundingClientRect().left - star.getBoundingClientRect().right;
+    return gap >= 0 && gap <= 10;
+  });
+  assert(await compactMetric(page.locator('.frow').first()), 'forum score text stays next to its star');
   const colors = await page.locator('.heat-value').evaluateAll(nodes => nodes.map(n => getComputedStyle(n).color));
   assert.notEqual(colors[0], colors[2], 'heat strength has a visible color distinction');
   const rightEdge = locator => locator.evaluate(el => el.getBoundingClientRect().right);
@@ -57,6 +72,7 @@ try {
   }
   await page.getByRole('tab', { name: '报告', exact: true }).click();
   await page.locator('.talkrow--discovery').waitFor();
+  assert(await compactMetric(page.locator('.talkrow--discovery')), 'report score text has no reserved empty column');
   assert.equal(await page.locator('.talkrow__speaker svg').count(), 3);
   assert(Math.abs(await rightEdge(page.locator('.heat-value')) - forumEdge) < 1, 'forum and report scores share the right edge');
   assert(await page.locator('.row-actions').evaluate(el => el.querySelector('.heat-value').getBoundingClientRect().left >= el.querySelector('.star').getBoundingClientRect().right));
@@ -151,6 +167,8 @@ try {
   await clock.locator('.nav__links a[href$="/popular"]').click(); await clock.locator('.heat-value').first().waitFor();
   const restartedReads = reads; assert(restartedReads >= initialReads + 6 && restartedReads <= initialReads + 7);
   await clock.locator('.nav__links a[href="/chinasoft2026"]').click();
+  // Finish the route's exit animation before jumping fifteen minutes ahead.
+  await clock.clock.runFor(600); await clock.locator('.dashhead').waitFor();
   await clock.clock.fastForward(900_000); assert.equal(reads, restartedReads, 'leaving the heat page cancels polling');
   await timed.close();
   console.log('PASS five-minute automatic refresh, source age/countdown, hidden/offline suspension, recovery, route cleanup and disabled polling');

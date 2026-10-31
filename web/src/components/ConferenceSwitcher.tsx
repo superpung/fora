@@ -67,8 +67,8 @@ export default function ConferenceSwitcher({ confId }: { confId: string }) {
                     {lang === "en" ? (c.name.en ?? c.name.zh) : c.name.zh}
                   </span>
                   <span className="confsw__itemmeta">
-                    {c.start_date}
-                    {c.city ? ` · ${c.city}` : ""}
+                    <span className="meta-bit"><Icon name="calendar" size={12} />{c.start_date}</span>
+                    {c.city && <span className="meta-bit"><Icon name="pin" size={12} />{c.city}</span>}
                   </span>
                 </span>
                 {c.id === confId && <Icon name="check" size={15} />}
