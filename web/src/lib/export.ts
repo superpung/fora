@@ -296,7 +296,7 @@ export function toMarkdown(items: ExportItem[], views: ConferenceViews): string 
     if (arr) arr.push(it);
     else byDate.set(it.date, [it]);
   });
-  let out = `# 我的日程 · ${views.conference.name.zh}\n\n> 共 ${items.length} 场\n`;
+  let out = `# 我的日程——${views.conference.name.zh}\n\n> 共 ${items.length} 场\n`;
   for (const [date, list] of byDate) {
     out += `\n## ${date}\n\n`;
     for (const it of list) {

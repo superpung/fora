@@ -423,7 +423,7 @@ function layout(ctx: CanvasRenderingContext2D, spec: PosterSpec, dry: boolean): 
 
   let y = masthead(ctx, spec, dry) + 44;
 
-  // category (or kind) chip + code
+  // Category (or kind) chip and the same neutral identifier badge as the app.
   if (spec.chip || spec.code) {
     const chipH = 50;
     let cx = x;
@@ -443,9 +443,15 @@ function layout(ctx: CanvasRenderingContext2D, spec: PosterSpec, dry: boolean): 
       cx += chipW + 18;
     }
     if (spec.code && !dry) {
-      ctx.fillStyle = MUTE;
-      ctx.font = font(600, 28, true);
-      ctx.fillText(spec.code, cx, y + (chipH - 28) / 2);
+      ctx.font = font(400, 28, true);
+      const codeW = ctx.measureText(spec.code).width + 24;
+      ctx.fillStyle = "#fafafa";
+      ctx.strokeStyle = "#e5e5e5";
+      ctx.lineWidth = 2;
+      roundRect(ctx, cx, y, codeW, chipH, 8);
+      ctx.fill(); ctx.stroke();
+      ctx.fillStyle = SUB;
+      ctx.fillText(spec.code, cx + 12, y + (chipH - 28) / 2);
     }
     y += chipH + 30;
   }
@@ -509,7 +515,7 @@ function layout(ctx: CanvasRenderingContext2D, spec: PosterSpec, dry: boolean): 
       if (t.speakers.length > 0) {
         const segs: Seg[] = [];
         t.speakers.forEach((s, i) => {
-          if (i > 0) segs.push({ text: "   ·   ", font: font(400, 26), color: FAINT });
+          if (i > 0) segs.push({ text: "    ", font: font(400, 26), color: FAINT });
           segs.push({ text: s.name, font: font(600, 28), color: SUB });
           if (s.aff) segs.push({ text: " " + s.aff, font: font(400, 25), color: MUTE });
         });

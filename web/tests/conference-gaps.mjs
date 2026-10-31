@@ -158,6 +158,8 @@ try {
   for (const day of [2, 3]) {
     await page.locator(".daytab").nth(day).click();
     await page.locator('a[href="/chinasoft2026/forum/C1"]').waitFor();
+    assert(!(await page.locator('.talkrow--agenda').filter({ has: page.locator('a[href="/chinasoft2026/forum/C1"]') }).innerText()).includes("讲者待定"),
+      "A forum agenda item is not a report with a pending speaker");
     assert.equal(await page.locator('a[href="/chinasoft2026/forum/C4"]').count(), 0);
   }
 

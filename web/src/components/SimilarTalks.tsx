@@ -1,3 +1,4 @@
+import { ForumCode } from "./ForumIdentity";
 import { useEffect, useState, type CSSProperties } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -43,7 +44,7 @@ function SimilarRow({ item }: { item: SimilarTalk }) {
         </span>
       )}
       <span className="simrow__meta">
-        <span className="simrow__code mono">{item.forumCode}</span>
+        <ForumCode code={item.forumCode} />
         <span className="simrow__forum">{item.forumTitle}</span>
         {dateInfo && (
           <span className="simrow__bit mono">

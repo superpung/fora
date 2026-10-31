@@ -8,7 +8,7 @@ const server = spawn(new URL('../node_modules/.bin/vite', import.meta.url).pathn
   { cwd: new URL('..', import.meta.url).pathname, stdio: 'ignore' });
 let browser;
 const empty = () => ({ app: 'fora', version: 1, follows: [], prefs: {} });
-let remote = { revision: 0, bundle: empty(), updated_at: '' }, writes = 0, race = false, offline = false;
+let remote = { statistics: { enabled: true, revision: 0 }, revision: 0, bundle: empty(), updated_at: '' }, writes = 0, race = false, offline = false;
 const entry = id => JSON.stringify(['chinasoft2026', 'talks', id]);
 const harness = `<!doctype html><div id="root"></div><script type="module">
 import React from '/node_modules/.vite/deps/react.js';
@@ -31,26 +31,29 @@ try {
   browser = await chromium.launch();
   // Warm the actual application to let Vite optimize React dependencies.
   const warm = await browser.newPage(); await warm.goto(base, { waitUntil: 'networkidle' }); await warm.close();
-  async function device() {
+  async function device(controlClock = false) {
     const context = await browser.newContext(); const page = await context.newPage();
     page.setDefaultTimeout(15000);
+    let reads = 0;
+    if (controlClock) { await page.clock.install(); await page.clock.pauseAt(new Date()); }
     page.on('pageerror', error => console.error('Browser error:', error.message));
     await page.route('**/sync-test', route => route.fulfill({ contentType: 'text/html', body: harness }));
     await page.route('**/api/**', async route => {
       const path = new URL(route.request().url()).pathname;
       if (offline) return route.abort('internetdisconnected');
-      if (path === '/api/session') return route.fulfill({ json: { enabled: true, user: { id: 'alice', login: 'alice' } } });
+      if (path === '/api/sync' && route.request().method() === 'GET') reads++;
+      if (path === '/api/session') return route.fulfill({ json: { enabled: true, user: { id: 'alice', login: 'alice' }, statistics: { enabled: true, revision: 0 } } });
       if (route.request().method() === 'PUT') {
         const value = route.request().postDataJSON();
         if (race) { race = false; remote.revision++; remote.bundle.follows.push(entry('R1#99')); }
         if (value.revision !== remote.revision) return route.fulfill({ status: 409, json: { error: 'Conflict' } });
-        remote = { revision: remote.revision + 1, bundle: value.bundle, updated_at: new Date().toISOString() }; writes++;
+        remote = { statistics: { enabled: true, revision: 0 }, revision: remote.revision + 1, bundle: value.bundle, updated_at: new Date().toISOString() }; writes++;
       }
       return route.fulfill({ json: structuredClone(remote) });
     });
     await page.goto(base + '/sync-test');
     await page.waitForFunction(() => window.sync?.status === 'synced');
-    return { page, context };
+    return { page, context, reads: () => reads };
   }
   async function change(page, ids) {
     await page.evaluate(ids => {
@@ -78,6 +81,33 @@ try {
   assert.equal(writes, before, 'another account requires an explicit choice');
   await a.context.close(); await b.context.close();
   console.log('PASS two-device sync, deletion, CAS retry, offline edits, unchanged polling and account isolation');
+
+  const timed = await device(true);
+  let previousReads = timed.reads();
+  await timed.page.clock.fastForward(299999);
+  assert.equal(timed.reads(), previousReads, 'no polling before five minutes');
+  await timed.page.clock.fastForward(1);
+  await timed.page.waitForFunction(() => window.sync?.status === 'synced');
+  assert.equal(timed.reads(), previousReads + 1, 'five-minute foreground polling');
+  await change(timed.page, ['R1#3']);
+  const previousWrites = writes;
+  await timed.page.clock.fastForward(1999);
+  assert.equal(writes, previousWrites);
+  await timed.page.clock.fastForward(1);
+  await timed.page.waitForFunction(() => window.sync?.status === 'synced');
+  assert.equal(writes, previousWrites + 1, 'local edits still upload after two seconds');
+  await timed.page.evaluate(() => Object.defineProperty(document, 'visibilityState', { configurable: true, value: 'hidden' }));
+  previousReads = timed.reads();
+  await timed.page.clock.fastForward(300000);
+  assert.equal(timed.reads(), previousReads, 'background tabs do not poll');
+  await timed.page.evaluate(() => {
+    Object.defineProperty(document, 'visibilityState', { configurable: true, value: 'visible' });
+    document.dispatchEvent(new Event('visibilitychange'));
+  });
+  await timed.page.waitForFunction(() => window.sync?.status === 'synced');
+  assert.equal(timed.reads(), previousReads + 1, 'foreground refresh stays immediate');
+  await timed.context.close();
+  console.log('PASS five-minute polling, two-second edits and immediate foreground refresh');
 
   const context = await browser.newContext(); const page = await context.newPage();
   await page.goto(base + '/chinasoft2026/schedule', { waitUntil: 'domcontentloaded' });

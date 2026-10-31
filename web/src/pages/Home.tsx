@@ -12,6 +12,7 @@ import { useHScroll } from "../lib/hscroll";
 import { useNow, isNowWithin, type Now } from "../lib/use-now";
 import { pageVariants } from "../lib/motion";
 import Icon from "../components/Icon";
+import { ForumSummary, ForumActions } from "../components/ForumRowParts";
 import StarButton from "../components/StarButton";
 import SourceNotes from "../components/SourceNotes";
 import type { Talk } from "../types";
@@ -296,7 +297,7 @@ function ForumRow({
   activeSpeaker: string | null;
   onSpeaker: (name: string) => void;
 }) {
-  const { isForum, toggleForum, isSpeaker, isTalk, toggleTalk } = useFollow();
+  const { isForum, isSpeaker, isTalk, toggleTalk } = useFollow();
   const { id: confId, forumsByCode } = useConference();
   const { t: tr } = useI18n();
   const f = slot.forum;
@@ -338,35 +339,7 @@ function ForumRow({
         onClick={() => hasTalks && setUserOpen(!open)}
       >
         <div className="frow__body">
-          <div className="frow__title">
-            <span className="frow__code">{slot.code}</span>
-            <span className="frow__titletext">{f?.title.zh ?? slot.code}</span>
-          </div>
-          <span className="frow__rc">
-            <span className="frow__room">
-              <Icon name="pin" size={11} /> {slot.room}
-            </span>
-            {f?.category && (
-              <span className="frow__cat">
-                <Icon name="tag" size={12} /> {f.category.name.zh}
-              </span>
-            )}
-            {f?.sponsor && (
-              <span className="frow__sponsor">
-                <Icon name="building" size={12} /> {f.sponsor}
-              </span>
-            )}
-            {hasTalks ? (
-              <span className="frow__count">
-                <Icon name="keynotes" size={12} /> {tr("common.reportsCount", { n: talks.length })}
-              </span>
-            ) : (
-              <span className="frow__pending">
-                {tr(f?.agenda_status === "not_published"
-                  ? "common.agendaPending" : "common.pending")}
-              </span>
-            )}
-          </span>
+          <ForumSummary forum={f} code={slot.code} room={slot.room} />
           {slot.people.length > 0 && (
             <div className="frow__people">
               {slot.people.map((n) => (
@@ -388,38 +361,7 @@ function ForumRow({
             </div>
           )}
         </div>
-        <div className="frow__actions">
-          <StarButton
-            active={isForum(slot.code)}
-            onClick={() => toggleForum(slot.code)}
-            label={tr("home.saveForum", { code: slot.code })}
-            className="frow__star"
-          />
-          <Link
-            to={`/${confId}/forum/${slot.code}`}
-            className="frow__enter"
-            aria-label={tr("home.enterForum", { code: slot.code })}
-            title={tr("home.forumDetail")}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <Icon name="arrow-right" size={16} />
-          </Link>
-          {hasTalks && (
-            <button
-              className="frow__caretbtn"
-              onClick={(e) => {
-                e.stopPropagation();
-                setUserOpen(!open);
-              }}
-              aria-expanded={open}
-              aria-label={open ? tr("common.collapseReports") : tr("common.expandReports")}
-            >
-              <span className={`caret ${open ? "caret--up" : ""}`}>
-                <Icon name="chevron-down" size={16} />
-              </span>
-            </button>
-          )}
-        </div>
+        <ForumActions code={slot.code} open={open} onExpand={hasTalks ? () => setUserOpen(!open) : undefined} />
       </div>
 
       <AnimatePresence initial={false}>
@@ -566,9 +508,9 @@ function DaySection({
           >
             <Icon name="keynotes" size={15} />
             {t("home.keynotes")}
-            {keynotePeriods(day.keynotes).length > 0 &&
-              ` · ${keynotePeriods(day.keynotes).map((p) => t(`period.${p}`)).join("·")}`}{" "}
-            · {t("common.sessionsCount", { n: day.keynotes.length })}
+            {keynotePeriods(day.keynotes).length > 0 && <span className="meta-bit"><Icon name="clock" size={13} />
+              {keynotePeriods(day.keynotes).map((p) => t(`period.${p}`)).join(" / ")}</span>}
+            <span className="mono">{t("common.sessionsCount", { n: day.keynotes.length })}</span>
             <span className={`caret ${keyOpen ? "caret--up" : ""}`}>
               <Icon name="chevron-down" size={16} />
             </span>
@@ -740,8 +682,8 @@ export default function Home() {
               )}
             </div>
             <div className="dashhead__venue">
-              {startMd}–{endMd}
-              {mainCity && ` · ${t("common.inChina", { city: mainCity })}`}
+              <span className="meta-bit"><Icon name="calendar" size={13} />{startMd}–{endMd}</span>
+              {mainCity && <span className="meta-bit"><Icon name="pin" size={13} />{t("common.inChina", { city: mainCity })}</span>}
             </div>
             <SourceNotes flags={conference.extra?.flags} />
           </div>
@@ -842,8 +784,8 @@ export default function Home() {
         <div className="dash__resultbar">
           <span className="dash__resultinfo">
             {t("home.forumsCountPre")}<strong>{totalShown}</strong>{t("home.forumsCountSuf")}
-            {q && t("home.matching", { q: query })}
-            {onlyFollowed && t("home.onlyFollows")}
+            {q && <span className="meta-bit"><Icon name="search" size={12} />{t("home.matching", { q: query })}</span>}
+            {onlyFollowed && <span className="meta-bit"><Icon name="star" size={12} />{t("home.onlyFollows")}</span>}
             {speakerFilter && (
               <button
                 className="filtertag"

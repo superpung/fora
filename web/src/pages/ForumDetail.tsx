@@ -1,3 +1,4 @@
+import { ForumCode } from "../components/ForumIdentity";
 import { talkAnchor } from "../lib/follow-store";
 import { useNow } from "../lib/use-now";
 import { personKey } from "../lib/person-key";
@@ -300,7 +301,7 @@ export default function ForumDetail() {
   const sessions = forum.sessions ?? [];
   const sessionLabel = (date: string, start?: string | null, end?: string | null) => {
     const info = formatDate(date, lang);
-    return `${info.md} ${info.weekday}${start ? ` · ${start}${end ? `–${end}` : ""}` : ""}`;
+    return `${info.md} ${info.weekday}${start ? ` ${start}${end ? `–${end}` : ""}` : ""}`;
   };
   // When any talk carries a start time, render the talks on a vertical time rail;
   // otherwise fall back to the numbered card list (untimed forums / conferences).
@@ -361,7 +362,7 @@ export default function ForumDetail() {
         icon: "calendar",
         text:
           `${dateInfo.md} ${dateInfo.weekday}` +
-          (f.start ? ` · ${f.start}${f.end ? `–${f.end}` : ""}` : f.session_period ? ` · ${tr(`period.${f.session_period}`)}` : ""),
+          (f.start ? ` ${f.start}${f.end ? `–${f.end}` : ""}` : f.session_period ? ` ${tr(`period.${f.session_period}`)}` : ""),
       });
     const forumRoom = [confVenue, f.room].filter(Boolean).join(" ");
     if (forumRoom) metaLines.push({ icon: "pin", text: forumRoom });
@@ -402,7 +403,7 @@ export default function ForumDetail() {
     const time = t.start ? `${t.start}${t.end ? `–${t.end}` : ""}` : "";
     const when = [dateInfo ? `${dateInfo.md} ${dateInfo.weekday}` : "", time]
       .filter(Boolean)
-      .join(" · ");
+      .join(" ");
     const metaLines: PosterMeta[] = [];
     if (when) metaLines.push({ icon: "clock", text: when });
     const talkRoom = [confVenue, f.room].filter(Boolean).join(" ");
@@ -619,7 +620,7 @@ export default function ForumDetail() {
           </div>
         </div>
         <div className="fd__meta">
-          <span className="fd__code">{forum.code}</span>
+          <ForumCode code={forum.code} />
           {forum.category && <span className="fd__cat">{forum.category.name.zh}</span>}
           {forum.room && (
             <span className="fd__room">
@@ -629,7 +630,7 @@ export default function ForumDetail() {
           {dateInfo && (
             <span>
               <Icon name="calendar" size={13} /> {dateInfo.md} {dateInfo.weekday}
-              {forum.start ? ` · ${forum.start}${forum.end ? `–${forum.end}` : ""}` : forum.session_period && ` · ${tr(`period.${forum.session_period}`)}`}
+              {forum.start ? ` ${forum.start}${forum.end ? `–${forum.end}` : ""}` : forum.session_period && ` ${tr(`period.${forum.session_period}`)}`}
             </span>
           )}
           {sessions.map((s) => <span key={s.date}><Icon name="calendar" size={13} />

@@ -29,6 +29,50 @@
   architecture, not permission to silently substitute obsolete data formats or
   mask incompatible data and failed validation.
 
+## Reuse and UI acceptance (hard rule)
+- **DRY applies to behavior and presentation.** Before adding a formatter,
+  control, list or layout, find its existing owner and callers. Reuse that
+  implementation. Copying markup/CSS into a page-specific variant does not count
+  as reuse, even if it initially looks similar.
+- When two real callers need the same structure, extract the smallest shared
+  component and migrate both callers together; delete the duplicate markup and
+  styles. Do not build a general framework for hypothetical future callers.
+  Explain any genuinely different interaction that requires its own component.
+- Before implementing UI changes, identify the applicable rules, the existing
+  comparison surface and the components to reuse. A rule being present in this
+  file is not evidence that the implementation follows it.
+- Every UI/UX PR must include a complete user-facing change checklist: affected
+  routes and global controls, defaults, timing, navigation, keyboard behavior,
+  loading/empty/error states, and surfaces affected by shared-component changes.
+  Give concrete preview links for product/design decisions. Responsive layout,
+  keyboard/accessibility behavior, functional regressions and failure injection
+  are the assistant's work, not a checklist to delegate to the user. Ask the user
+  to judge design choices; request manual technical steps only when their real
+  authorization/session is indispensable.
+- Inventory the **entire current PR against its target branch**, not only the
+  latest fix or the last commit. Include visible design, interaction/defaults,
+  backend/data contracts, resource/deployment effects, tests and documentation.
+  Rewrite the inventory after scope changes and distinguish retained changes
+  from abandoned implementations. The chat summary must also cover the full PR.
+- State preview data provenance explicitly: real conference content, synthetic
+  users/events, calculated scores and any unavailable authentication flow. Never
+  present seeded aggregates as real usage or silently replace them with arbitrary
+  display numbers.
+- Compare changed surfaces with their existing counterparts at matching desktop
+  and mobile widths and in light/dark themes. Inspect the actual screenshots:
+  generation, HTTP 200, no overflow and no console errors alone do not establish
+  visual consistency. Check metadata order, type, spacing, actions and motion.
+- Measure visible text-to-control spacing, not just element bounds: reserved
+  width can pass non-overlap tests while leaving an unjustified visual gap.
+  Observe animations across time; a still screenshot does not verify motion.
+- Test the affected callers of a shared component, including navigation and
+  state preservation. Keep automated evidence, assistant visual inspection and
+  pending user acceptance separate. Do not mark the user's checklist complete
+  on their behalf. Use `.github/pull_request_template.md`.
+- When an existing rule was missed, record the concrete execution gap and the
+  prevention mechanism in the PR. Prefer a shared implementation or a meaningful
+  regression check to repeating the same rule with stronger wording.
+
 ## No default fallback (hard rule)
 When you hit any obstacle (missing dependency, unmet environment, an API error, a
 data gap, more than one reasonable approach, …), **do not silently downgrade,
@@ -113,6 +157,17 @@ restrained, and detailed. Match it; do not drift toward other looks.
   `web/src/styles/global.css`; use the tokens, don't hard-code colors.
 
 ## UI copy / layout rules (hard)
+- **No new middle-dot separators.** Do not introduce `·`, HTML entities or
+  Unicode escapes for it in application-authored UI, notifications, posters or
+  exports. Only country/city and committee affiliation/title separators remain
+  by the user's decision. See [docs/UI_SEPARATORS.md](docs/UI_SEPARATORS.md).
+  Preserve original conference content; do not normalize its punctuation.
+- Forum identifiers share `ForumCode` and `ForumIdentity`: one neutral rounded
+  badge, before the forum name when combined. Do not style each page's code
+  independently or confuse a report's display ordinal with its forum identifier.
+- Explaining a feature in a discussion does not authorize explanatory copy in
+  the app. Keep formulas, scoring explanations and implementation details in
+  documentation unless the user explicitly requests them in the interface.
 - **Minimal by default — ship only the text that is asked for, nothing else.**
   Never add hero subtitles, taglines, helper/explanatory sentences, call-to-action
   labels ("进入日程", "查看更多"), badges, or any decorative wording "to be
@@ -318,6 +373,35 @@ pnpm preview    # serve the production build
   D1 API in `cloudflare/worker.mjs`. `sync-provider.tsx` performs revisioned,
   three-way synchronization; sessions are HttpOnly cookies with hashes in D1.
   No GitHub token or Gist is used for storage. See `cloudflare/README.md`.
+- **Conference heat:** `cloudflare/heat-model.mjs` builds the published identity
+  index and computes weighted interest; `cloudflare/heat.mjs` serves a globally
+  cached snapshot of incremental D1 totals. Account vectors and trigger deltas
+  commit atomically with sync/participation writes. Structural identity changes
+  reconcile stale vectors on demand; no periodic full-user scan is used. Participation defaults
+  on for signed-in accounts and uses its own server revision outside sync bundles.
+  `/:conf/popular` is the only heat display and read surface. Its default-on
+  “热度统计” setting controls both participation and visibility; anonymous
+  visibility uses `fora.heat.enabled`, while signed-in accounts use the revisioned
+  server setting. Turning it off hides the route/navigation and stops heat reads.
+  `HeatProvider` mounts only on that page, refreshes at snapshot expiry (at most
+  five minutes), and suspends on hidden/offline pages. `Freshness` shows the
+  snapshot's real age, smooth next-refresh ring and per-second remaining time;
+  no scoring prose or refresh button belongs in the app. Failures show unavailable,
+  not zero. Account polling is
+  five minutes; edits still upload after two seconds.
+  Read `cloudflare/HEAT.md` for the exact formula, resource budget, privacy window,
+  test matrix and catalog/schema rollout requirements. Do not publish an obsolete
+  catalog without its `interest` index or substitute full-dataset parsing at runtime.
+- **Shared presentation:** `SegmentedControl` owns the schedule/popular switches,
+  including arrow-key selection. `ForumSummary` and `ForumActions` in
+  `ForumRowParts` are shared by Home and Popular. `AgendaRow` is the report row
+  used by My Day and Popular. It preserves My Day's separate time column;
+  discovery rows show source facts with a code badge before the forum name and
+  right-aligned heat. SourceNotes owns its sole animated disclosure. The account
+  menu and heat freshness share `relative-time.ts`. `ForumCode` / `ForumIdentity`
+  own all HTML forum badges; `ui-consistency.mjs` checks their real callers and
+  source-preserving punctuation changes. Change these owners rather than copying
+  their markup or adding page-specific visual substitutes; check all affected callers.
 - **Stable reports:** required `talk.id` is allocated by `source/identities.py`
   from reviewed `source/identities/<id>.json` registries. Its numeric suffix is
   permanent, never the current list index. Follows, anchors, enrichment, exports

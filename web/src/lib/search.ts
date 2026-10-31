@@ -46,7 +46,8 @@ export interface SearchRecord {
   /** Primary label, already resolved to the active language (falls back to zh). */
   title: string;
   /** Optional secondary line (forum name, affiliation, role, room…). */
-  subtitle?: string;
+  subtitle?: string[];
+  code?: string;
   /** A talk's AI-generated TL;DR, carried for DISPLAY ONLY — deliberately kept
       out of `haystack` so matching, ranking and result order are identical
       whether or not the reader has AI content switched on. */
@@ -141,7 +142,8 @@ export function buildSearchIndex(
       id: `forum:${f.code}`,
       type: "forum",
       title: forumTitle,
-      subtitle: [f.code, pick(f.category?.name, lang), f.room ?? ""].filter(Boolean).join(" · "),
+      code: f.code,
+      subtitle: [pick(f.category?.name, lang), f.room ?? ""].filter(Boolean),
       haystack: forumHay,
       to: `/${confId}/forum/${f.code}`,
     });
@@ -168,7 +170,8 @@ export function buildSearchIndex(
         id: `talk:${f.code}:${i}`,
         type: "talk",
         title,
-        subtitle: [forumTitle, speakerNames.join("、")].filter(Boolean).join(" · "),
+        code: f.code,
+        subtitle: [forumTitle, speakerNames.join("、")].filter(Boolean),
         summary: talkSummaryText(talk) ?? undefined,
         haystack: hay,
         to: `/${confId}/forum/${f.code}#${talkAnchor(talk)}`,
@@ -183,7 +186,7 @@ export function buildSearchIndex(
       id: `speaker:${s.key}`,
       type: "speaker",
       title: s.name,
-      subtitle: p.affiliation_raw ?? p.organization ?? undefined,
+      subtitle: [p.affiliation_raw ?? p.organization ?? ""].filter(Boolean),
       // s.search is already a lowercased haystack (name/aff/org/title/talks).
       haystack: `${s.search} ${p.name_en ?? ""}`.toLowerCase(),
       to: `/${confId}/speakers?q=${encodeURIComponent(s.name)}`,
@@ -208,7 +211,7 @@ export function buildSearchIndex(
       id: `committee:${name}`,
       type: "committee",
       title: name,
-      subtitle: [e.aff ?? "", e.roles.join(" · ")].filter(Boolean).join(" · ") || undefined,
+      subtitle: [e.aff ?? "", ...e.roles].filter(Boolean),
       haystack: e.hay.join(" ").toLowerCase(),
       to: `/${confId}/committee`,
     });
@@ -221,7 +224,7 @@ export function buildSearchIndex(
       id: `org:${i}`,
       type: "organization",
       title: pick(o.name, lang),
-      subtitle: [roleLabel, o.sponsor_tier ?? ""].filter(Boolean).join(" · ") || undefined,
+      subtitle: [roleLabel, o.sponsor_tier ?? ""].filter(Boolean),
       haystack: `${both(o.name)} ${o.role} ${roleLabel} ${o.sponsor_tier ?? ""}`.toLowerCase(),
       to: `/${confId}/organizations`,
     });

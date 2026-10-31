@@ -4,6 +4,7 @@ import { useI18n } from "../lib/i18n-store";
 import { useTitle } from "../lib/use-title";
 
 const PAGE_LABEL_KEY: Record<string, string> = {
+  popular: "nav.popular",
   schedule: "schedule.title",
   speakers: "speakers.title",
   committee: "committee.title",

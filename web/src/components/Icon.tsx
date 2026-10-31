@@ -4,6 +4,7 @@ import type { SVGProps, ReactElement } from "react";
 // Self-contained SVG — no external icon dependency. Add new glyphs to PATHS.
 
 export type IconName =
+  | "chart"
   | "star"
   | "chevron-down"
   | "chevron-right"
@@ -50,6 +51,7 @@ export type IconName =
 
 // Each entry is the inner markup of a 0 0 24 24 viewBox, stroked with currentColor.
 const PATHS: Record<IconName, ReactElement> = {
+  chart: <path d="M4 4v16h16M8 16v-5m5 5V7m5 9V4" />,
   "chevron-down": <path d="M6 9l6 6 6-6" />,
   "chevron-right": <path d="M9 6l6 6-6 6" />,
   "arrow-left": <path d="M19 12H5m6-7l-7 7 7 7" />,

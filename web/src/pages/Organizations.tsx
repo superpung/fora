@@ -1,3 +1,4 @@
+import ForumIdentity from "../components/ForumIdentity";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useConference } from "../lib/conference-store";
@@ -62,7 +63,7 @@ export default function Organizations() {
               <Link key={f.code} to={`/${confId}/forum/${f.code}`} className="sponsorcard">
                 <span className="sponsorcard__name">{f.sponsor}</span>
                 <span className="sponsorcard__forum">
-                  {f.code} · {f.title.zh}
+                  <ForumIdentity code={f.code} name={f.title.zh} />
                 </span>
               </Link>
             ))}

@@ -17,6 +17,7 @@ import StarButton from "../components/StarButton";
 import TimeGrid from "../components/TimeGrid";
 import UntimedForumGrid from "../components/UntimedForumGrid";
 import MyDay from "../components/MyDay";
+import SegmentedControl from "../components/SegmentedControl";
 import type { Block, Forum, Talk, Break } from "../types";
 import { titleLine } from "../lib/talk-title";
 
@@ -334,62 +335,24 @@ export default function Schedule() {
           <AnimatePresence>
             {mine && (
               <motion.div
-                className="segtoggle segtoggle--sub"
-                role="tablist"
-                aria-label={t("schedule.shapeLabel")}
                 initial={{ opacity: 0, x: 8 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 8 }}
                 transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
               >
-                <button
-                  role="tab"
-                  aria-selected={shape === "board"}
-                  className={`segtoggle__opt ${shape === "board" ? "is-on" : ""}`}
-                  onClick={() => setView({ shape: "board" })}
-                  title={t("schedule.shapeBoardTip")}
-                >
-                  <Icon name="forums" size={13} />
-                  <span className="segtoggle__label">{t("schedule.shapeBoard")}</span>
-                </button>
-                <button
-                  role="tab"
-                  aria-selected={shape === "day"}
-                  className={`segtoggle__opt ${shape === "day" ? "is-on" : ""}`}
-                  onClick={() => setView({ shape: "day" })}
-                  title={t("schedule.shapeDayTip")}
-                >
-                  <Icon name="clock" size={13} />
-                  <span className="segtoggle__label">{t("schedule.shapeDay")}</span>
-                </button>
+                <SegmentedControl subtle value={shape} onChange={shape => setView({ shape })} label={t("schedule.shapeLabel")}
+                  options={[
+                    { value: "board", title: t("schedule.shapeBoardTip"), label: <><Icon name="forums" size={13} /><span className="segtoggle__label">{t("schedule.shapeBoard")}</span></> },
+                    { value: "day", title: t("schedule.shapeDayTip"), label: <><Icon name="clock" size={13} /><span className="segtoggle__label">{t("schedule.shapeDay")}</span></> },
+                  ]} />
               </motion.div>
             )}
           </AnimatePresence>
-          <div className="segtoggle" role="tablist" aria-label={t("schedule.scopeLabel")}>
-            <button
-              role="tab"
-              aria-selected={!mine}
-              className={`segtoggle__opt ${!mine ? "is-on" : ""}`}
-              onClick={() => setView({ scope: "all" })}
-              title={t("schedule.scopeAllTip")}
-            >
-              <Icon name="calendar" size={13} />
-              <span className="segtoggle__label">{t("schedule.scopeAll")}</span>
-            </button>
-            <button
-              role="tab"
-              aria-selected={mine}
-              className={`segtoggle__opt ${mine ? "is-on" : ""}`}
-              onClick={() => setView({ scope: "mine" })}
-              title={t("schedule.scopeMineTip")}
-            >
-              <Icon name="star" filled={mine} size={13} />
-              <span className="segtoggle__label">{t("schedule.scopeMine")}</span>
-              {myDayItems.length ? (
-                <span className="filterchip__n">{myDayItems.length}</span>
-              ) : null}
-            </button>
-          </div>
+          <SegmentedControl value={mine ? "mine" : "all"} onChange={scope => setView({ scope })} label={t("schedule.scopeLabel")}
+            options={[
+              { value: "all", title: t("schedule.scopeAllTip"), label: <><Icon name="calendar" size={13} /><span className="segtoggle__label">{t("schedule.scopeAll")}</span></> },
+              { value: "mine", title: t("schedule.scopeMineTip"), label: <><Icon name="star" filled={mine} size={13} /><span className="segtoggle__label">{t("schedule.scopeMine")}</span>{myDayItems.length ? <span className="filterchip__n">{myDayItems.length}</span> : null}</> },
+            ]} />
         </div>
       </div>
 
