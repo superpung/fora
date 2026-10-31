@@ -22,7 +22,7 @@ export default function AgendaRow({ item, actions, metric, showDate = false, run
         {running && <span className="myday__nowtag">{t("myday.now")}</span>}
       </div>
       <div className="talkrow__speaker">
-        <strong className="talkrow__fact"><Icon name="user" size={12} />{item.speakers || (zh ? "讲者待定" : "Speaker pending")}</strong>
+        {(item.speakers || !item.code || item.talkIndex != null) && <strong className="talkrow__fact"><Icon name="user" size={12} />{item.speakers || (zh ? "讲者待定" : "Speaker pending")}</strong>}
         <span className="talkrow__fact talkrow__aff"><Icon name="pin" size={12} />{item.room || (zh ? "地点待定" : "Room pending")}</span>
         <span className={`talkrow__fact talkrow__time${running ? " is-now" : ""}`}
           title={item.approx && item.start ? t("common.approxTime") : undefined}>
