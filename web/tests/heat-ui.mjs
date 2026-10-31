@@ -59,17 +59,21 @@ try {
   assert.equal(await page.locator('.talkrow__speaker svg').count(), 3);
   const facts = row => row.evaluate(el => {
     const title = el.querySelector('.talkrow__title'), style = getComputedStyle(title);
-    return { title: title.textContent, font: [style.fontSize, style.fontWeight, style.lineHeight],
+    return { title: title.firstChild.textContent, font: [style.fontSize, style.lineHeight],
+      weight: style.fontWeight, running: el.classList.contains('talkrow--now'),
       speaker: el.querySelector('strong').textContent, room: el.querySelector('.talkrow__aff').textContent };
   });
-  const popularFacts = await facts(page.locator('.talkrow--agenda').first());
+  const { weight: popularWeight, running: popularRunning, ...popularFacts } = await facts(page.locator('.talkrow--agenda').first());
+  assert.equal(popularRunning, false);
   await page.locator('.talkrow__star').click();
   const forum = source.forums.find(f => f.code === 'R1');
   const date = forum.talks.find(t => t.id === 'R1#1').day_date || forum.day_date;
   await page.goto(base + '/chinasoft2026/schedule?v=mine-day#' + date);
   await page.locator('.talkrow--agenda').waitFor();
-  assert.deepEqual(await facts(page.locator('.talkrow--agenda')), popularFacts,
-    'Popular and My Day share report facts and typography');
+  const { weight, running, ...dayFacts } = await facts(page.locator('.talkrow--agenda'));
+  assert.deepEqual(dayFacts, popularFacts, 'Popular and My Day share report facts and typography');
+  assert(running ? Number(weight) > Number(popularWeight) : weight === popularWeight,
+    'only a currently running My Day report adds emphasis');
   assert.equal(await page.locator('.talkrow__speaker svg').count(), 3);
   await page.evaluate(() => localStorage.setItem('chinasoft2026:followed.talks', JSON.stringify(['R1#1', 'R1#3'])));
   await page.reload();
