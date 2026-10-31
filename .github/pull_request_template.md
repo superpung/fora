@@ -2,28 +2,24 @@
 
 <!-- State the problem and the resulting behavior. -->
 
-## Validation
+## Technical validation (assistant-owned)
 
-<!-- List checks actually performed and explicit limits. Distinguish local,
-     isolated preview and production evidence. -->
+<!-- Run functional, responsive, accessibility and regression checks yourself.
+     Record results and limitations; distinguish local, preview and production. -->
 
-## UI/UX review
+## Design review
 
-<!-- Remove this section only if the PR has no UI/UX effects. Do not check off
-     user acceptance based on automated tests or your own screenshots. -->
+<!-- Remove only if the PR has no UI/UX effects. Give the user design choices,
+     not a delegated browser-testing assignment. Include affected existing pages. -->
 
 Preview: <!-- URL and deployed commit -->
-Data: <!-- Real source content / synthetic behavior / derived values; login limits -->
+Data: <!-- Source content / synthetic inputs / derived values; login limits -->
 
-| Surface / link | Change and action to check | Existing reference / shared component | Evidence or limitation |
-| --- | --- | --- | --- |
-| | | | |
+| Design change | Preview / comparison | Existing component reused |
+| --- | --- | --- |
+| | | |
 
-<!-- Include global controls, defaults/timing and loading/empty/error states,
-     plus existing pages affected by extracting shared components. -->
+- [ ] User acceptance of the design changes
 
-- [ ] User acceptance of the listed UI/UX changes
-
-<!-- Name the desktop/mobile and light/dark comparisons actually inspected.
-     If correcting a missed rule, explain the execution gap and the concrete
-     reuse/test/process change that prevents the same failure. -->
+<!-- Technical checks and assistant screenshot inspection do not mark this box.
+     For a missed rule, name the execution gap and concrete prevention mechanism. -->

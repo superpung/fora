@@ -81,11 +81,11 @@ export default function Now() {
 
   // Countdown phrasing shared by the "next" panel and the starred panel.
   const relTime = (minutesUntil: number | null, date: string, start?: string | null): string => {
-    if (!start) return `${date === now.todayStr ? "" : formatDate(date, lang).md + " · "}${t("myday.untimed")}`;
+    if (!start) return `${date === now.todayStr ? "" : formatDate(date, lang).md + " "}${t("myday.untimed")}`;
     if (minutesUntil != null && minutesUntil <= 90) return t("now.inMin", { n: minutesUntil });
     if (date === now.todayStr) return t("now.at", { t: start });
     const { md, weekday } = formatDate(date, lang);
-    return `${md} ${weekday} · ${start}`;
+    return `${md} ${weekday} ${start}`;
   };
 
   return (

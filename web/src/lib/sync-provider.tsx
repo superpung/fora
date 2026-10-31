@@ -19,7 +19,22 @@ function remember(user: SyncUser, record: SyncRecord): void {
 }
 
 export function SyncProvider({ children }: { children: ReactNode }) {
+  const [localHeat, setLocalHeat] = useState(() => localStorage.getItem("fora.heat.enabled") !== "false");
+  const rememberHeat = (value: boolean) => {
+    localStorage.setItem("fora.heat.enabled", String(value));
+    setLocalHeat(value);
+  };
   const [statistics, setStatisticsState] = useState<Statistics | null>(null);
+  useEffect(() => {
+    if (statistics) rememberHeat(statistics.enabled);
+  }, [statistics]);
+  useEffect(() => {
+    const changed = (event: StorageEvent) => {
+      if (event.key === "fora.heat.enabled") setLocalHeat(event.newValue !== "false");
+    };
+    window.addEventListener("storage", changed);
+    return () => window.removeEventListener("storage", changed);
+  }, []);
   const [statisticsPending, setStatisticsPending] = useState(false);
   const [statisticsError, setStatisticsError] = useState(false);
   const acceptStatistics = (next: Statistics) => setStatisticsState(prev => !prev || next.revision >= prev.revision ? next : prev);
@@ -129,7 +144,8 @@ export function SyncProvider({ children }: { children: ReactNode }) {
   };
   const setStatistics = async (next: boolean) => {
     const identity = account.current;
-    if (!identity || !statistics || statisticsPending) return;
+    if (!identity) { rememberHeat(next); return; }
+    if (!statistics || statisticsPending) return;
     setStatisticsPending(true); setStatisticsError(false);
     try {
       const updated = await api<Statistics>("/api/statistics", { method: "PUT", headers: { "Content-Type": "application/json" },
@@ -139,7 +155,7 @@ export function SyncProvider({ children }: { children: ReactNode }) {
       if (account.current?.id === identity.id) { setStatisticsError(true); void syncNow(); }
     } finally { setStatisticsPending(false); }
   };
-  const value: SyncState = { statistics, statisticsPending, statisticsError, setStatistics, enabled, user, isLoggedIn: !!user, status, conflict: status === "conflict",
+  const value: SyncState = { heatEnabled: user ? (statistics?.enabled ?? false) : localHeat, statistics, statisticsPending, statisticsError, setStatistics, enabled, user, isLoggedIn: !!user, status, conflict: status === "conflict",
     lastSyncedAt, login: () => { location.href = "/api/auth/login"; }, logout: () => void logout(),
     syncNow, markLocalChange, resolveConflict: choice => syncNow(choice) };
   return <SyncContext.Provider value={value}>{children}</SyncContext.Provider>;

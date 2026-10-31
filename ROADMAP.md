@@ -33,7 +33,7 @@ an embedding model would require a separate scope and approval decision.
 
 The author approved a separate feature PR after #50: weighted forum/report heat,
 public conference-scoped rankings, and one default-on account setting labeled
-“参与统计”. No online-user count is included. The scoring formula, privacy and
+“热度统计”. No online-user count is included. The scoring formula, privacy and
 freshness contract, account-wide resource budget and acceptance matrix are in
 [cloudflare/HEAT.md](cloudflare/HEAT.md). Implementation and production rollout are
 separate: the feature is not shipped until the reviewed PR and rollout complete.

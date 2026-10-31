@@ -208,7 +208,7 @@ try {
     await target.locator(".fd__meta").waitFor();
     assert((await target.locator(".fd__meta").innerText()).includes("15:20–18:20"));
     assert((await target.locator(".fd__meta").innerText()).includes("二层15号会议室"));
-    await target.locator(".source-notes .disclosure__toggle").first().click();
+    await target.locator(".source-notes__toggle").first().click();
     await target.getByText(/地点不一致：通知顶部/).waitFor();
     await target.waitForTimeout(600);
     await capture(target, { path: `${screenshots}/${label}-C3.png` });

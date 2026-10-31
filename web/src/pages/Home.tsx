@@ -13,7 +13,6 @@ import { useNow, isNowWithin, type Now } from "../lib/use-now";
 import { pageVariants } from "../lib/motion";
 import Icon from "../components/Icon";
 import { ForumSummary, ForumActions } from "../components/ForumRowParts";
-import HeatValue from "../components/HeatValue";
 import StarButton from "../components/StarButton";
 import SourceNotes from "../components/SourceNotes";
 import type { Talk } from "../types";
@@ -254,7 +253,6 @@ function KeynoteRow({
               return line.own ? line.text : <span className="muted-i">{line.text}</span>;
             })()}
           </div>
-          {!isOpening && <HeatValue kind="talks" id={id} />}
           {!isOpening && (
             <StarButton
               active={followed}
@@ -428,7 +426,6 @@ function ForumRow({
                           ))}
                         </span>
                       )}
-                      {t.type !== "opening" && <HeatValue kind="talks" id={t.id} />}
                     </span>
                   </Link>
                   <StarButton

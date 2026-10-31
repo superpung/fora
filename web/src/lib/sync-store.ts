@@ -3,6 +3,7 @@ import { createContext, useContext } from "react";
 export interface SyncUser { id: string; login: string; name?: string; avatarUrl?: string }
 export interface Statistics { enabled: boolean; revision: number }
 export interface SyncState {
+  heatEnabled: boolean;
   statistics: Statistics | null;
   statisticsPending: boolean;
   statisticsError: boolean;

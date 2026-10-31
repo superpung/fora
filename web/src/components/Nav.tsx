@@ -9,6 +9,7 @@ import ForaMark from "./ForaMark";
 import Icon from "./Icon";
 import ConferenceSwitcher from "./ConferenceSwitcher";
 import { useI18n } from "../lib/i18n-store";
+import { useSync } from "../lib/sync-store";
 import { useAi } from "../lib/ai-store";
 import { useSearchUI } from "../lib/search-store";
 import { conferenceMeta } from "../lib/conferences";
@@ -32,6 +33,7 @@ const LINKS: NavLinkDef[] = [
 export default function Nav({ confId }: { confId: string }) {
   const { t, lang } = useI18n();
   const { enabled: aiEnabled } = useAi();
+  const { heatEnabled } = useSync();
   const { setOpen: setSearchOpen } = useSearchUI();
   // The live "Now" view is only meaningful while the conference is running, so
   // its nav entry appears solely between the conference's start and end dates
@@ -42,7 +44,7 @@ export default function Nav({ confId }: { confId: string }) {
   const links: NavLinkDef[] = [
     LINKS[0],
     ...(showNow ? [{ to: "/now", key: "nav.now", live: true } as NavLinkDef] : []),
-    { to: "/popular", key: "nav.popular" },
+    ...(heatEnabled ? [{ to: "/popular", key: "nav.popular" }] : []),
     LINKS[1], // the timeline; the two AI views sit behind it
     // Both the planner and the topic map are AI-derived: with AI content off
     // they do not exist (their routes explain themselves if reached directly).
@@ -64,7 +66,7 @@ export default function Nav({ confId }: { confId: string }) {
   // link moved), the language (every label re-measures) and the AI toggle
   // (which adds or removes two entries).
   const { pathname } = useLocation();
-  const linksRef = useHScroll<HTMLElement>([pathname, lang, aiEnabled, showNow]);
+  const linksRef = useHScroll<HTMLElement>([pathname, lang, aiEnabled, showNow, heatEnabled]);
 
   // Which entry is the current view. React Router's NavLink decides this by
   // comparing path strings, so `/:conf/` — a trailing slash anyone can type,

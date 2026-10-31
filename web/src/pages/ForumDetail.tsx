@@ -11,7 +11,6 @@ import { useI18n } from "../lib/i18n-store";
 import { useAi, talkSummaryText } from "../lib/ai-store";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
 import Icon from "../components/Icon";
-import HeatValue from "../components/HeatValue";
 import Avatar from "../components/Avatar";
 import SourceNotes from "../components/SourceNotes";
 import { AiNote } from "../components/AiMark";
@@ -301,7 +300,7 @@ export default function ForumDetail() {
   const sessions = forum.sessions ?? [];
   const sessionLabel = (date: string, start?: string | null, end?: string | null) => {
     const info = formatDate(date, lang);
-    return `${info.md} ${info.weekday}${start ? ` · ${start}${end ? `–${end}` : ""}` : ""}`;
+    return `${info.md} ${info.weekday}${start ? ` ${start}${end ? `–${end}` : ""}` : ""}`;
   };
   // When any talk carries a start time, render the talks on a vertical time rail;
   // otherwise fall back to the numbered card list (untimed forums / conferences).
@@ -362,7 +361,7 @@ export default function ForumDetail() {
         icon: "calendar",
         text:
           `${dateInfo.md} ${dateInfo.weekday}` +
-          (f.start ? ` · ${f.start}${f.end ? `–${f.end}` : ""}` : f.session_period ? ` · ${tr(`period.${f.session_period}`)}` : ""),
+          (f.start ? ` ${f.start}${f.end ? `–${f.end}` : ""}` : f.session_period ? ` ${tr(`period.${f.session_period}`)}` : ""),
       });
     const forumRoom = [confVenue, f.room].filter(Boolean).join(" ");
     if (forumRoom) metaLines.push({ icon: "pin", text: forumRoom });
@@ -403,7 +402,7 @@ export default function ForumDetail() {
     const time = t.start ? `${t.start}${t.end ? `–${t.end}` : ""}` : "";
     const when = [dateInfo ? `${dateInfo.md} ${dateInfo.weekday}` : "", time]
       .filter(Boolean)
-      .join(" · ");
+      .join(" ");
     const metaLines: PosterMeta[] = [];
     if (when) metaLines.push({ icon: "clock", text: when });
     const talkRoom = [confVenue, f.room].filter(Boolean).join(" ");
@@ -473,7 +472,6 @@ export default function ForumDetail() {
           >
             <Icon name={copied === i ? "check" : "link"} size={15} />
           </button>
-          {t.type !== "opening" && <HeatValue kind="talks" id={id} />}
           <button
             className={`star star--sm talk__star ${followed ? "is-on" : ""}`}
             aria-pressed={followed}
@@ -593,7 +591,6 @@ export default function ForumDetail() {
         <div className="fd__titlerow">
           <h1 className="fd__title">{forum.title.zh}</h1>
           <div className="fd__actions">
-            <HeatValue kind="forums" id={forum.code} />
             <button
               className={`followbtn ${forumFollowed ? "is-on" : ""}`}
               onClick={() => code && toggleForum(code)}
@@ -632,7 +629,7 @@ export default function ForumDetail() {
           {dateInfo && (
             <span>
               <Icon name="calendar" size={13} /> {dateInfo.md} {dateInfo.weekday}
-              {forum.start ? ` · ${forum.start}${forum.end ? `–${forum.end}` : ""}` : forum.session_period && ` · ${tr(`period.${forum.session_period}`)}`}
+              {forum.start ? ` ${forum.start}${forum.end ? `–${forum.end}` : ""}` : forum.session_period && ` ${tr(`period.${forum.session_period}`)}`}
             </span>
           )}
           {sessions.map((s) => <span key={s.date}><Icon name="calendar" size={13} />

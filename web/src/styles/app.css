@@ -579,8 +579,9 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 .talkrow__title { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
 .talkrow__speaker { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 13px; color: var(--fg-secondary); }
 .talkrow__aff { color: var(--fg-muted); }
-.talkrow.talkrow--agenda { grid-template-columns: minmax(0, 1fr) auto; }
+.talkrow.talkrow--discovery { grid-template-columns: minmax(0, 1fr) auto; }
 .talkrow__session { font-size: 12px; margin-top: 4px; }
+.talkrow__session .code-tag { margin-right: 6px; }
 .talkrow__body { min-width: 0; overflow-wrap: anywhere; }
 /* A row that opens its forum. The hover reaches the panel edge, like the break
    strips do, so every hairline in the list still spans the same width. */
@@ -945,11 +946,11 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 
 /* ---- vertical time-rail layout (forums whose talks carry times) ---- */
 .tline { display: flex; flex-direction: column; }
-.disclosure { margin: 10px 0; color: var(--fg-secondary); font-size: 12px; }
-.disclosure__toggle { display: inline-flex; align-items: center; gap: 6px; color: inherit; background: none; border: 0; padding: 4px 0; cursor: pointer; font: inherit; }
-.disclosure__content { overflow: hidden; overflow-wrap: anywhere; }
-.disclosure__content ul { margin: 6px 0; padding-left: 20px; }
-.disclosure__content li + li { margin-top: 5px; }
+.source-notes { margin: 10px 0; color: var(--fg-secondary); font-size: 12px; }
+.source-notes__toggle { display: inline-flex; align-items: center; gap: 6px; color: inherit; background: none; border: 0; padding: 4px 0; cursor: pointer; font: inherit; }
+.source-notes__content { overflow: hidden; overflow-wrap: anywhere; }
+.source-notes__content ul { margin: 6px 0; padding-left: 20px; }
+.source-notes__content li + li { margin-top: 5px; }
 .fd__break { margin: 8px 0; border: 1px solid var(--border); border-radius: var(--radius-sm); }
 .talk__hosts { margin-top: 12px; }
 .talk--profile { display: block; }
@@ -2230,12 +2231,18 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
   .tmaptalk { padding: 11px 34px 11px 12px; }
 }
 
-/* Weighted conference interest; all figures use the shared numeric typography. */
-.ftalk__main > .heat-value { display: block; margin-top: 6px; }
-.heat-value { color: var(--fg-secondary); font-size: 11px; flex-shrink: 0; white-space: nowrap; }
+/* Heat is confined to its own discovery page. */
+.code-tag { display: inline-block; font-family: var(--font-mono); font-size: 11px; line-height: 1.5; padding: 0 5px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg-subtle); color: var(--fg-secondary); }
+.heat-value { display: inline-block; inline-size: 64px; text-align: right; font-size: 13px; font-weight: 500; flex-shrink: 0; color: color-mix(in srgb, var(--accent) var(--heat-intensity), var(--fg-secondary)); }
+.row-actions { display: flex; align-items: center; gap: 8px; position: relative; z-index: 2; }
+.row-actions .star { position: static; transform: none; align-self: center; }
+.frow__actions:has(.heat-value) { gap: 8px; }
+.talklist--flush .talkrow--discovery { padding-right: 12px; }
+.heat-freshness { display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin: -12px 0 16px; color: var(--fg-muted); font-size: 12px; }
+.heat-countdown { overflow: visible; transform: rotate(-90deg); }
+.heat-countdown circle { fill: none; stroke: var(--accent); stroke-width: 1.5; stroke-linecap: round; }
+.heat-countdown .heat-countdown__track { stroke: var(--border); }
+.myday__untimed { font-family: var(--font-sans); font-size: 12.5px; color: var(--fg-muted); }
 @media (max-width: 600px) {
-  .frow__actions { flex-wrap: wrap; justify-content: flex-end; }
-  .talk__titlerow { flex-wrap: wrap; }
-  .talk__title { flex-basis: 100%; order: -1; }
-  .ftalk__main > .heat-value { font-size: 10px; }
+  .row-actions { align-self: start; }
 }

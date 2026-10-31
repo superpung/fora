@@ -11,16 +11,24 @@ guarantee that every request will remain below 10 ms.
 
 ## Product contract
 
-- Public, conference-scoped popular forums and reports at `/:conf/popular`.
-  Forum and report entries also show heat. Chronological schedules keep their
-  existing ordering. Keynotes and untitled reports participate; opening slots do
-  not contribute or dilute the report weights.
-- One account setting, **参与统计 / Participate in statistics**, enabled by
-  default for new and existing signed-in accounts. Signed-out local follows do
-  not contribute. The account menu remains accessible when signed out.
-- Turning the setting off withdraws that account's contribution on the next
-  snapshot. It does not delete follows or change synchronization. Turning it
-  back on includes current follows. Logging out is not withdrawal.
+- A single conference-scoped heat page at `/:conf/popular`. No heat appears on
+  Home, keynote lists, forum/report details, My Day or chronological schedules.
+  Keynotes and untitled reports participate; opening slots do not contribute.
+- One **热度统计 / Heat statistics** switch defaults on. For signed-in accounts
+  it controls both contribution and visibility through the revisioned account
+  setting. Anonymous follows never contribute; anonymous visibility is a local
+  setting (`fora.heat.enabled`) and can be changed without signing in. On login,
+  the account setting is authoritative. Its last confirmed value is remembered
+  locally; logout does not withdraw an account's contribution.
+- Turning the switch off hides heat navigation, redirects an open heat page to
+  the conference home and stops polling. A signed-in account's contribution is
+  withdrawn from the next public snapshot, within the existing cache window.
+  It does not delete follows or change synchronization. Turning it back on
+  includes current follows and restores the page entry.
+- Scores occupy the same right-hand column in both lists. A single accent grows
+  from secondary text at zero to full blue at 600; it does not alter scores.
+  Report metadata puts the forum code in a neutral rounded badge before its name.
+  No scoring/formula disclosure or manual refresh button is rendered.
 - Scores are weighted interest, never attendance, percentages or follower counts.
   No fabricated seed, minimum popularity, random boost or public follower list.
 - Speaker follows, page views and presence do not contribute. No heartbeat,
@@ -88,19 +96,26 @@ require a longer cold reconciliation and should be checked during data review.
 No scheduler, permanent job or separate migration backend is added.
 
 Incomplete reconciliation returns 503 with `Retry-After: 1`; the browser retries
-at most 25 requests and then offers manual refresh. Failed rebuilds release their
+at most 25 requests and then waits for the next automatic five-minute attempt. Failed rebuilds release their
 lease; an interrupted lease expires after one minute. Ordinary follows and
 participation changes update totals immediately; public cached scores expire
 within five minutes. There is no stale-while-revalidate cache. Logging out does
 not withdraw a contribution.
 
-The browser reuses a valid snapshot across routes, checks on entering relevant
-pages / foreground / network restoration, and provides manual refresh. It does
-not poll heat in the background. A screen already left open is a snapshot, not a
-live counter. Dataset-hash mismatch, malformed responses and network failures
-show unavailable rather than zero. The maximum public cache age is five minutes;
-there is no stale-while-revalidate cache. Failed heat does not block offline agenda
-reading. Only completed anonymous aggregates reach the public endpoint.
+The provider mounts only on the enabled heat page. It reuses an unexpired public
+snapshot and refreshes at its remaining Cache-Control lifetime, capped at five
+minutes. A one-second allowance for the server's rounded-down remaining seconds
+avoids premature re-reads, still capped at five minutes. The page shows the
+snapshot's `generated_at` age, not the time of the last fetch, and a countdown
+ring. The existing account-menu elapsed-time formatter is shared.
+
+Leaving the page, switching heat off, hiding the tab or going offline suspends
+polling. Returning to the foreground or network checks the cache immediately;
+an expired snapshot is fetched. A failed read clears scores and retries after
+five minutes while visible. Dataset mismatch and malformed responses also show
+unavailable rather than zero. Request/lease retries are bounded, unmount aborts
+in-flight reads, and no server-side scheduler is added. Only completed anonymous
+aggregates reach the public endpoint. Offline agenda reading is unaffected.
 
 Existing automatic account polling changes from one minute to five minutes.
 Local edits still upload after about two seconds; foreground, network restoration
@@ -130,9 +145,14 @@ as Worker requests. Cached API responses still invoke the Worker when fetched.
 For an illustrative day, assume each active account spends two hours in the
 foreground, has about 20 directly followed reports and one forum, and makes five
 further direct-report changes. Budget 70 dynamic requests per active account:
-about 40 session/sync/focus requests, 24 heat reads and a small margin. Accounts
-using multiple devices, frequent manual refreshes, bulk imports or large-forum
-changes consume more. Stored inactive accounts no longer multiply normal reads.
+about 40 session/sync/focus requests, up to 25 heat reads (one initial read plus
+24 five-minute cycles during two hours on the heat page), and a small margin.
+Heat reads are zero on other content pages. For anonymous visitors or time beyond
+this envelope, add one initial read per cold visit plus at most 12 reads per
+foreground heat-page hour per device; 500 extra anonymous two-hour readers would
+add at most 12,500 requests under these assumptions. Reconciliation retries and
+manual browser reloads are additional. Accounts using multiple devices, bulk
+imports or large-forum changes consume more. Stored inactive accounts no longer multiply normal reads.
 
 For `A` active accounts and `S` distinct scored forums/reports:
 
@@ -247,14 +267,12 @@ changes were limited to the preview Worker, D1 database and R2 bucket.
 
 ## Shared UI and review
 
-Popular reuses the home page's `ForumSummary`/`ForumActions`, My Day's
-`AgendaRow`, Schedule's `SegmentedControl`, and source notes' `Disclosure`.
-The extraction changes My Day to title-first metadata and makes the existing
-schedule switches keyboard-navigable. Review those callers as well as Popular.
-The cross-page browser regression compares a report's source facts and typography;
-My Day gap strips must remain inside their panel. The PR carries the complete
-UI/UX checklist, exact preview commit and data provenance. User acceptance stays
-separate from automated results and assistant screenshot inspection.
+Popular shares the home's `ForumSummary`/`ForumActions`, My Day's `AgendaRow`
+and Schedule's `SegmentedControl`. My Day keeps its original time column and
+metadata placement. SourceNotes retains its own implementation after removing the
+scoring disclosure. The account menu and freshness indicator share the elapsed-
+time formatter. Technical checks and responsive/a11y regressions belong to the
+assistant; the user reviews the heat page's product/design choices.
 
 ## Acceptance and rollout
 
@@ -267,7 +285,8 @@ separate from automated results and assistant screenshot inspection.
 - Browser: public ranking, account menu signed out, two-device participation,
   follow/unfollow/import, weighted report metadata and stable anchors,
   unavailable/invalid/hash-mismatch responses, caching, desktop/mobile layout,
-  no overlapping actions, and the five-minute/two-second sync timing contract.
+  aligned score columns, automatic expiry refresh, hidden/offline/disabled polling
+  suspension, recovery, and the five-minute/two-second sync timing contract.
 - Existing conference, source-gap, portrait, anchor, multi-day, offline and live
   clock tests remain required, alongside lint/build and Cloudflare integration.
 

@@ -5,18 +5,17 @@ import { useConference } from "../lib/conference-store";
 import { useFollow } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
 import Icon from "./Icon";
-import HeatValue from "./HeatValue";
 import StarButton from "./StarButton";
 
-export function ForumSummary({ forum: f, code, room, children }: {
-  forum?: Forum; code: string; room?: string | null; children?: ReactNode;
+export function ForumSummary({ forum: f, code, room, children, codeBadge = false }: {
+  forum?: Forum; code: string; room?: string | null; children?: ReactNode; codeBadge?: boolean;
 }) {
   const { t: tr } = useI18n();
   const talks = f?.talks ?? [];
   const hasTalks = !!f?.detail_extracted && talks.length > 0;
   return <>
     <div className="frow__title">
-      <span className="frow__code">{code}</span>
+      <span className={`frow__code${codeBadge ? " code-tag" : ""}`}>{code}</span>
       <span className="frow__titletext">{f?.title.zh ?? code}</span>
     </div>
     <span className="frow__rc">
@@ -48,15 +47,14 @@ export function ForumSummary({ forum: f, code, room, children }: {
   </>;
 }
 
-export function ForumActions({ code, onExpand, open = false }: {
-  code: string; onExpand?: () => void; open?: boolean;
+export function ForumActions({ code, onExpand, open = false, children }: {
+  code: string; onExpand?: () => void; open?: boolean; children?: ReactNode;
 }) {
   const { id: confId } = useConference();
   const { isForum, toggleForum } = useFollow();
   const { t: tr } = useI18n();
   return (
     <div className="frow__actions">
-      <HeatValue kind="forums" id={code} />
       <StarButton
         active={isForum(code)}
         onClick={() => toggleForum(code)}
@@ -84,6 +82,7 @@ export function ForumActions({ code, onExpand, open = false }: {
           </span>
         </button>
       )}
+      {children}
     </div>
   );
 }

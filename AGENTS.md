@@ -44,7 +44,11 @@
 - Every UI/UX PR must include a complete user-facing change checklist: affected
   routes and global controls, defaults, timing, navigation, keyboard behavior,
   loading/empty/error states, and surfaces affected by shared-component changes.
-  Give concrete preview links and actions the user can check individually.
+  Give concrete preview links for product/design decisions. Responsive layout,
+  keyboard/accessibility behavior, functional regressions and failure injection
+  are the assistant's work, not a checklist to delegate to the user. Ask the user
+  to judge design choices; request manual technical steps only when their real
+  authorization/session is indispensable.
 - State preview data provenance explicitly: real conference content, synthetic
   users/events, calculated scores and any unavailable authentication flow. Never
   present seeded aggregates as real usage or silently replace them with arbitrary
@@ -145,6 +149,14 @@ restrained, and detailed. Match it; do not drift toward other looks.
   `web/src/styles/global.css`; use the tokens, don't hard-code colors.
 
 ## UI copy / layout rules (hard)
+- **No new middle-dot separators.** Do not introduce `·`, HTML entities or
+  Unicode escapes for it in application-authored UI, notifications, posters or
+  exports. Existing non-date/time uses are inventoried in
+  [docs/UI_SEPARATORS.md](docs/UI_SEPARATORS.md) for the user's decision; do not
+  expand them. Preserve verbatim source names/titles until explicitly directed.
+- Explaining a feature in a discussion does not authorize explanatory copy in
+  the app. Keep formulas, scoring explanations and implementation details in
+  documentation unless the user explicitly requests them in the interface.
 - **Minimal by default — ship only the text that is asked for, nothing else.**
   Never add hero subtitles, taglines, helper/explanatory sentences, call-to-action
   labels ("进入日程", "查看更多"), badges, or any decorative wording "to be
@@ -356,18 +368,25 @@ pnpm preview    # serve the production build
   commit atomically with sync/participation writes. Structural identity changes
   reconcile stale vectors on demand; no periodic full-user scan is used. Participation defaults
   on for signed-in accounts and uses its own server revision outside sync bundles.
-  `/:conf/popular` ranks scores, never people; `HeatValue` shows unavailable
-  rather than zero on errors or dataset mismatch. No presence or background heat
-  polling. Account polling is five minutes; edits still upload after two seconds.
+  `/:conf/popular` is the only heat display and read surface. Its default-on
+  “热度统计” setting controls both participation and visibility; anonymous
+  visibility uses `fora.heat.enabled`, while signed-in accounts use the revisioned
+  server setting. Turning it off hides the route/navigation and stops heat reads.
+  `HeatProvider` mounts only on that page, refreshes at snapshot expiry (at most
+  five minutes), and suspends on hidden/offline pages. `Freshness` shows the
+  snapshot's real age and next-refresh ring; no scoring prose or refresh button
+  belongs in the app. Failures show unavailable, not zero. Account polling is
+  five minutes; edits still upload after two seconds.
   Read `cloudflare/HEAT.md` for the exact formula, resource budget, privacy window,
   test matrix and catalog/schema rollout requirements. Do not publish an obsolete
   catalog without its `interest` index or substitute full-dataset parsing at runtime.
 - **Shared presentation:** `SegmentedControl` owns the schedule/popular switches,
   including arrow-key selection. `ForumSummary` and `ForumActions` in
   `ForumRowParts` are shared by Home and Popular. `AgendaRow` is the report row
-  used by My Day and Popular: title, speakers, room/time, session, then a separate
-  follow action and covering link. `Disclosure` owns the animated source-note
-  and scoring disclosures. Change these owners rather than copying their markup
+  used by My Day and Popular. It preserves My Day's separate time column;
+  discovery rows show source facts with a code badge before the forum name and
+  right-aligned heat. SourceNotes owns its sole animated disclosure. The account
+  menu and heat freshness share `relative-time.ts`. Change these owners rather than copying their markup
   or adding page-specific visual substitutes; check all affected callers.
 - **Stable reports:** required `talk.id` is allocated by `source/identities.py`
   from reviewed `source/identities/<id>.json` registries. Its numeric suffix is

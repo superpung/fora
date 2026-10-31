@@ -94,14 +94,19 @@ try {
   await until(() => saved(b.page));
   console.log('PASS real application login, protected cookie, D1 write and second-device follow pull');
 
-  const participation = page => page.getByRole('button', { name: '参与统计', exact: true });
+  const participation = page => page.getByRole('button', { name: /^热度统计/ });
   assert.equal(await participation(a.page).getAttribute('aria-pressed'), 'true');
   assert.equal(await participation(b.page).getAttribute('aria-pressed'), 'true');
   await DB.prepare('UPDATE heat_cache SET expires_at = 0 WHERE id = 1').run();
   await a.page.goto(origin + '/chinasoft2026/popular');
-  await a.page.getByRole('button', { name: '刷新热度', exact: true }).click();
   await a.page.locator(':is(.ftable .frow, .talkrow--agenda)').first().waitFor();
-  assert((await a.page.locator(':is(.ftable .frow, .talkrow--agenda)').first().innerText()).includes('热度 200'));
+  assert.equal(await a.page.locator('.heat-value').first().textContent(), '200');
+  await a.page.route('**/api/statistics', route => route.fulfill({ status: 503, json: { error: 'Unavailable' } }));
+  await menu(a.page); await participation(a.page).click();
+  await a.page.getByText('保存失败', { exact: true }).waitFor();
+  assert.equal(await participation(a.page).getAttribute('aria-pressed'), 'true');
+  assert.equal(await a.page.locator('.nav__links a[href$="/popular"]').count(), 1);
+  await a.page.unroute('**/api/statistics'); await a.page.keyboard.press('Escape');
   await b.page.keyboard.press('Escape'); await menu(b.page);
   await participation(b.page).click();
   await until(async () => await participation(b.page).getAttribute('aria-pressed') === 'false');
@@ -109,8 +114,11 @@ try {
   await until(async () => await participation(a.page).getAttribute('aria-pressed') === 'false');
   await DB.prepare('UPDATE heat_cache SET expires_at = 0 WHERE id = 1').run();
   await a.page.keyboard.press('Escape');
-  await a.page.getByRole('button', { name: '刷新热度', exact: true }).click();
-  await a.page.getByText('暂无热度数据', { exact: true }).waitFor();
+  await until(() => a.page.url() === origin + '/chinasoft2026');
+  assert.equal(await a.page.locator('.nav__links a[href$="/popular"]').count(), 0);
+  assert.equal(await a.page.locator('.heat-value').count(), 0);
+  const withdrawn = await mf.dispatchFetch(origin + '/api/heat');
+  assert.deepEqual((await withdrawn.json()).conferences.chinasoft2026.forums, {});
   assert((await state('alice')).bundle.follows.includes('["chinasoft2026","forums","R1"]'));
   await menu(a.page); await participation(a.page).click();
   await until(async () => await participation(a.page).getAttribute('aria-pressed') === 'true');
@@ -177,17 +185,16 @@ try {
   await mkdir(screenshots, { recursive: true });
   for (const [name, device] of [['desktop', a], ['mobile', b]]) {
     await device.page.goto(origin + '/chinasoft2026/popular');
-    await device.page.getByRole('button', { name: '刷新热度', exact: true }).click();
+    await device.page.reload();
     await device.page.locator(':is(.ftable .frow, .talkrow--agenda)').first().waitFor();
     await device.page.getByRole('tab', { name: '报告', exact: true }).click();
-    await until(async () => (await device.page.locator(':is(.ftable .frow, .talkrow--agenda)').first().innerText()).includes('热度 200'));
+    await until(async () => (await device.page.locator('.heat-value').first().textContent()) === '200');
     assert.equal(await device.page.locator(':is(.ftable .frow, .talkrow--agenda)').first().locator('.talkrow__speaker svg').count(), 3);
     const actionBounds = await device.page.locator('.talkrow--agenda').first().evaluate(el => {
       const score = el.querySelector('.heat-value').getBoundingClientRect(), star = el.querySelector('.star').getBoundingClientRect();
-      return score.right <= star.left || score.bottom <= star.top;
+      return star.right <= score.left || star.bottom <= score.top;
     });
     assert(actionBounds, 'heat and follow controls must not overlap');
-    await device.page.getByRole('button', { name: '热度算法', exact: true }).click();
     await device.page.waitForTimeout(400);
     assert(await device.page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
     await device.page.screenshot({ path: screenshots + '/' + name + '-heat.png', fullPage: true });
@@ -203,7 +210,7 @@ try {
   await until(async () => (await state('alice')).bundle.follows.length === 0);
   await b.page.goto(origin + '/chinasoft2026/forum/R1');
   await refresh(b.page); await until(async () => !await saved(b.page));
-  console.log('PASS desktop/mobile weighted report discovery, source metadata, scoring disclosure and statistics settings');
+  console.log('PASS desktop/mobile weighted report discovery, source metadata, automatic refresh status and heat settings');
 
   // Seed competing saved preferences; notification delivery has its own clock suite.
   await b.context.setOffline(true);

@@ -25,7 +25,7 @@ type Dict = Record<string, string>;
 const zh: Dict = {
   "nav.dashboard": "日程",
   "nav.now": "现在",
-  "nav.popular": "热门",
+  "nav.popular": "热度",
   "nav.timeline": "时间线",
   "nav.speakers": "讲者",
   "nav.committee": "委员会",
@@ -326,7 +326,7 @@ const zh: Dict = {
 const en: Dict = {
   "nav.dashboard": "Dashboard",
   "nav.now": "Now",
-  "nav.popular": "Popular",
+  "nav.popular": "Heat",
   "nav.timeline": "Timeline",
   "nav.speakers": "Speakers",
   "nav.committee": "Committee",

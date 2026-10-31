@@ -26,7 +26,7 @@ matters, and take it with you everywhere — no app to install.
 - 📅 **Across days** — follow a forum once and keep its reports on the right dates, including in reminders and calendar exports.
 - 📖 **Source details** — published portraits, hosts and breaks, with expandable notes for source discrepancies; unpublished programme details remain explicit.
 - ⭐ **Your own agenda** — star the talks, sessions, and speakers you care about, and let **My Day** read a day as a plan: the free gaps, the room changes, and the clashes to decide between.
-- 📊 **Conference heat** — discover popular forums and reports through weighted follow scores. Signed-in accounts participate by default; turn off **Participate in statistics** in settings without losing follows. Scores are not attendance counts.
+- 📊 **Conference heat** — discover popular forums and reports through weighted follow scores. The dedicated heat page updates automatically while visible. **Heat statistics** defaults on; turning it off hides heat and withdraws signed-in contributions without losing follows. Scores are not attendance counts.
 - 🔔 **Reminders** — an optional nudge before each session you starred.
 - 🔍 **Search everything** — one box across talks, abstracts, speakers, affiliations, sessions, committees and organizations.
 - 🧭 **Plan for me** — a day without clashes, assembled from what interests you, with the reasoning behind every pick.

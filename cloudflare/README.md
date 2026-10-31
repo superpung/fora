@@ -73,7 +73,7 @@ Foreground account polling runs every five minutes; edits upload after two secon
 with immediate foreground/network/manual refresh. Both `/api/` and root OAuth
 callback navigations bypass the service worker.
 
-Forum/report heat uses an account-level default-on participation setting and a
+The dedicated forum/report heat page uses a default-on participation/visibility setting and a
 public aggregate snapshot. Read [HEAT.md](HEAT.md) for weighting, the measured
 account budget, incremental aggregation, withdrawal semantics and deployment order.
 A published catalog must include its compact `interest` identity index before
