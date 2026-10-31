@@ -100,8 +100,8 @@ try {
   await DB.prepare('UPDATE heat_cache SET expires_at = 0 WHERE id = 1').run();
   await a.page.goto(origin + '/chinasoft2026/popular');
   await a.page.getByRole('button', { name: '刷新热度', exact: true }).click();
-  await a.page.locator('.popular__row').first().waitFor();
-  assert((await a.page.locator('.popular__row').first().innerText()).includes('热度 200'));
+  await a.page.locator(':is(.ftable .frow, .talkrow--agenda)').first().waitFor();
+  assert((await a.page.locator(':is(.ftable .frow, .talkrow--agenda)').first().innerText()).includes('热度 200'));
   await b.page.keyboard.press('Escape'); await menu(b.page);
   await participation(b.page).click();
   await until(async () => await participation(b.page).getAttribute('aria-pressed') === 'false');
@@ -178,11 +178,11 @@ try {
   for (const [name, device] of [['desktop', a], ['mobile', b]]) {
     await device.page.goto(origin + '/chinasoft2026/popular');
     await device.page.getByRole('button', { name: '刷新热度', exact: true }).click();
-    await device.page.locator('.popular__row').first().waitFor();
+    await device.page.locator(':is(.ftable .frow, .talkrow--agenda)').first().waitFor();
     await device.page.getByRole('tab', { name: '报告', exact: true }).click();
-    await until(async () => (await device.page.locator('.popular__row').first().innerText()).includes('热度 200'));
-    assert.equal(await device.page.locator('.popular__row').first().locator('.popular__meta svg').count(), 3);
-    const actionBounds = await device.page.locator('.popular__actions').first().evaluate(el => {
+    await until(async () => (await device.page.locator(':is(.ftable .frow, .talkrow--agenda)').first().innerText()).includes('热度 200'));
+    assert.equal(await device.page.locator(':is(.ftable .frow, .talkrow--agenda)').first().locator('.talkrow__speaker svg').count(), 3);
+    const actionBounds = await device.page.locator('.talkrow--agenda').first().evaluate(el => {
       const score = el.querySelector('.heat-value').getBoundingClientRect(), star = el.querySelector('.star').getBoundingClientRect();
       return score.right <= star.left || score.bottom <= star.top;
     });

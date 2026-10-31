@@ -29,6 +29,38 @@
   architecture, not permission to silently substitute obsolete data formats or
   mask incompatible data and failed validation.
 
+## Reuse and UI acceptance (hard rule)
+- **DRY applies to behavior and presentation.** Before adding a formatter,
+  control, list or layout, find its existing owner and callers. Reuse that
+  implementation. Copying markup/CSS into a page-specific variant does not count
+  as reuse, even if it initially looks similar.
+- When two real callers need the same structure, extract the smallest shared
+  component and migrate both callers together; delete the duplicate markup and
+  styles. Do not build a general framework for hypothetical future callers.
+  Explain any genuinely different interaction that requires its own component.
+- Before implementing UI changes, identify the applicable rules, the existing
+  comparison surface and the components to reuse. A rule being present in this
+  file is not evidence that the implementation follows it.
+- Every UI/UX PR must include a complete user-facing change checklist: affected
+  routes and global controls, defaults, timing, navigation, keyboard behavior,
+  loading/empty/error states, and surfaces affected by shared-component changes.
+  Give concrete preview links and actions the user can check individually.
+- State preview data provenance explicitly: real conference content, synthetic
+  users/events, calculated scores and any unavailable authentication flow. Never
+  present seeded aggregates as real usage or silently replace them with arbitrary
+  display numbers.
+- Compare changed surfaces with their existing counterparts at matching desktop
+  and mobile widths and in light/dark themes. Inspect the actual screenshots:
+  generation, HTTP 200, no overflow and no console errors alone do not establish
+  visual consistency. Check metadata order, type, spacing, actions and motion.
+- Test the affected callers of a shared component, including navigation and
+  state preservation. Keep automated evidence, assistant visual inspection and
+  pending user acceptance separate. Do not mark the user's checklist complete
+  on their behalf. Use `.github/pull_request_template.md`.
+- When an existing rule was missed, record the concrete execution gap and the
+  prevention mechanism in the PR. Prefer a shared implementation or a meaningful
+  regression check to repeating the same rule with stronger wording.
+
 ## No default fallback (hard rule)
 When you hit any obstacle (missing dependency, unmet environment, an API error, a
 data gap, more than one reasonable approach, …), **do not silently downgrade,
@@ -330,6 +362,13 @@ pnpm preview    # serve the production build
   Read `cloudflare/HEAT.md` for the exact formula, resource budget, privacy window,
   test matrix and catalog/schema rollout requirements. Do not publish an obsolete
   catalog without its `interest` index or substitute full-dataset parsing at runtime.
+- **Shared presentation:** `SegmentedControl` owns the schedule/popular switches,
+  including arrow-key selection. `ForumSummary` and `ForumActions` in
+  `ForumRowParts` are shared by Home and Popular. `AgendaRow` is the report row
+  used by My Day and Popular: title, speakers, room/time, session, then a separate
+  follow action and covering link. `Disclosure` owns the animated source-note
+  and scoring disclosures. Change these owners rather than copying their markup
+  or adding page-specific visual substitutes; check all affected callers.
 - **Stable reports:** required `talk.id` is allocated by `source/identities.py`
   from reviewed `source/identities/<id>.json` registries. Its numeric suffix is
   permanent, never the current list index. Follows, anchors, enrichment, exports

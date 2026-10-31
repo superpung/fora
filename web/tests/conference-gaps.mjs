@@ -168,15 +168,15 @@ try {
 
   await page.setViewportSize({ width: 390, height: 844 });
   await go("/chinasoft2026/forum/E1", "#talk-4");
-  assert.equal(await page.locator(".source-notes__toggle").count(), 0);
+  assert.equal(await page.locator(".source-notes .disclosure__toggle").count(), 0);
   assert.equal(await page.locator(".talk--profile").count(), 0);
   assert.equal(await page.locator("#talk-4 .person__name").textContent(), "张颖");
-  await go("/chinasoft2026/forum/R14", ".source-notes__toggle");
-  const note = page.locator("#talk-4 .source-notes__toggle");
+  await go("/chinasoft2026/forum/R14", ".source-notes .disclosure__toggle");
+  const note = page.locator("#talk-4 .source-notes .disclosure__toggle");
   await note.focus();
   await page.keyboard.press("Enter");
   assert.equal(await note.getAttribute("aria-expanded"), "true");
-  assert((await page.locator("#talk-4 .source-notes__content").textContent()).includes("报告题目不一致"));
+  assert((await page.locator("#talk-4 .source-notes .disclosure__content").textContent()).includes("报告题目不一致"));
   assert(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth <= 1));
   assert.deepEqual(errors, []);
   console.log("PASS all forum entries, updated source, hosts, breaks, clean biographies, separate identities, current follows, pending-forum agenda/exports and accessible source notes");

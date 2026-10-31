@@ -579,22 +579,25 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 .talkrow__title { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
 .talkrow__speaker { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 13px; color: var(--fg-secondary); }
 .talkrow__aff { color: var(--fg-muted); }
+.talkrow.talkrow--agenda { grid-template-columns: minmax(0, 1fr) auto; }
+.talkrow__session { font-size: 12px; margin-top: 4px; }
+.talkrow__body { min-width: 0; overflow-wrap: anywhere; }
 /* A row that opens its forum. The hover reaches the panel edge, like the break
    strips do, so every hairline in the list still spans the same width. */
 .talkrow--link { color: inherit; transition: background 0.15s; }
 .talkrow--link:hover { background: var(--bg-hover); }
-.block--myday .talkrow { margin-inline: -16px; padding-inline: 16px; }
+.talklist--flush .talkrow { padding-inline: 16px; }
 /* A row's hover fill runs the full width of the panel, so the list's own 4px
    top and bottom padding showed as a seam between the first (or last) hovered
    row and the panel's edge. The rows carry their own spacing here. */
-.block--myday .talklist { padding-block: 0; }
+.talklist--flush { padding: 0; }
 .breakrow { display: flex; gap: 14px; align-items: center; padding: 9px 16px; color: var(--fg-muted); font-size: 12.5px; background: var(--bg-subtle); border-top: 1px solid var(--border); }
 .breakrow:first-child { border-top: none; }
 .breakrow .time { color: var(--fg-muted); }
 .breakrow__label { display: inline-flex; align-items: center; gap: 6px; }
 /* Tea breaks inside the keynotes list sit within .talklist's 16px padding; pull
    them back out so the band spans the full card width, flush with both borders. */
-.talklist .breakrow { margin-left: -16px; margin-right: -16px; }
+.talklist:not(.talklist--flush) .breakrow { margin-left: -16px; margin-right: -16px; }
 
 /* ---- time-vs-forum matrix (Schedule, when talks carry times) ---- */
 .tgrid {
@@ -942,11 +945,11 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 
 /* ---- vertical time-rail layout (forums whose talks carry times) ---- */
 .tline { display: flex; flex-direction: column; }
-.source-notes { margin: 10px 0; color: var(--fg-secondary); font-size: 12px; }
-.source-notes__toggle { display: inline-flex; align-items: center; gap: 6px; color: inherit; background: none; border: 0; padding: 4px 0; cursor: pointer; font: inherit; }
-.source-notes__content { overflow: hidden; overflow-wrap: anywhere; }
-.source-notes__content ul { margin: 6px 0; padding-left: 20px; }
-.source-notes__content li + li { margin-top: 5px; }
+.disclosure { margin: 10px 0; color: var(--fg-secondary); font-size: 12px; }
+.disclosure__toggle { display: inline-flex; align-items: center; gap: 6px; color: inherit; background: none; border: 0; padding: 4px 0; cursor: pointer; font: inherit; }
+.disclosure__content { overflow: hidden; overflow-wrap: anywhere; }
+.disclosure__content ul { margin: 6px 0; padding-left: 20px; }
+.disclosure__content li + li { margin-top: 5px; }
 .fd__break { margin: 8px 0; border: 1px solid var(--border); border-radius: var(--radius-sm); }
 .talk__hosts { margin-top: 12px; }
 .talk--profile { display: block; }
@@ -1639,7 +1642,6 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
    .breakrow strip for what sits between two rows — so the same talk looks the
    same whichever view you read it in. Only the between-rows wording (a gap, a
    room change, a clash) is particular to this view. */
-.myday__untimed { font-family: var(--font-sans); font-size: 12.5px; color: var(--fg-muted); }
 .myday__nowtag {
   margin-left: 8px; vertical-align: 1px; white-space: nowrap;
   font-size: 10.5px; font-weight: 600; letter-spacing: 0.04em;
@@ -1647,8 +1649,8 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 }
 /* Speaker and room read as the same kind of fact, so they are drawn the same:
    a muted icon, then the words. */
-.myday__spk, .myday__room { display: inline-flex; align-items: center; gap: 4px; }
-.myday__spk svg, .myday__room svg { color: var(--fg-muted); }
+.talkrow__fact { display: inline-flex; align-items: center; gap: 4px; }
+.talkrow__fact svg { color: var(--fg-muted); }
 .talkrow--now .talkrow__title { font-weight: 600; }
 
 /* the gap / room-move / clash strip between two rows */
@@ -2231,28 +2233,9 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 /* Weighted conference interest; all figures use the shared numeric typography. */
 .ftalk__main > .heat-value { display: block; margin-top: 6px; }
 .heat-value { color: var(--fg-secondary); font-size: 11px; flex-shrink: 0; white-space: nowrap; }
-.popular__controls, .popular__tabs, .popular__actions { display: flex; align-items: center; gap: 10px; }
-.popular__actions .star { position: static; transform: none; }
-.popular__tabs { margin-bottom: 20px; }
-.popular__list { border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
-.popular__row { display: flex; align-items: center; gap: 16px; padding: 20px; border-bottom: 1px solid var(--border); transition: background .2s; }
-.popular__row:last-child { border-bottom: 0; }
-.popular__row:hover { background: var(--bg-subtle); }
-.popular__rank { width: 24px; flex-shrink: 0; color: var(--fg-muted); }
-.popular__body { flex: 1; min-width: 0; }
-.popular__title { font-weight: 600; color: var(--fg); overflow-wrap: anywhere; }
-.popular__title:hover { color: var(--accent); }
-.popular__meta { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--fg-secondary); font-size: 12px; margin-top: 8px; }
-.popular__meta > span { display: inline-flex; align-items: center; gap: 4px; }
-.popular__empty { padding: 48px 0; color: var(--fg-secondary); }
-.popular__explain { overflow: hidden; }
-.popular__explain > div { padding: 16px; margin-bottom: 20px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-subtle); font-size: 13px; color: var(--fg-secondary); }
-.popular__explain p + p { margin-top: 8px; }
 @media (max-width: 600px) {
-  .popular__row { gap: 10px; padding: 16px 12px; align-items: flex-start; }
-  .popular__rank { width: 18px; }
-  .popular__actions { flex-direction: column; gap: 6px; }
   .frow__actions { flex-wrap: wrap; justify-content: flex-end; }
   .talk__titlerow { flex-wrap: wrap; }
+  .talk__title { flex-basis: 100%; order: -1; }
   .ftalk__main > .heat-value { font-size: 10px; }
 }

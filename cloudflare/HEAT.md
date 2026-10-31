@@ -201,10 +201,12 @@ Official references, checked October 29, 2026:
 ## Deployed acceptance evidence
 
 The isolated `fora-heat-preview` Worker uses its own D1 database and R2 bucket.
-Desktop, mobile and dark-theme browser checks passed with 18 screenshots covering
-the conference home (including expanded reports), forum, popular forums, popular
-reports and account settings.
-The checks include long-list visibility, horizontal overflow and browser errors.
+The initial browser audit captured 18 desktop, mobile and dark-theme screenshots
+covering the conference home (including expanded reports), forum, popular forums,
+popular reports and account settings. Functional checks covered long-list
+visibility, horizontal overflow and browser errors. They did not establish visual
+consistency: the independent Popular markup still differed from existing pages.
+Do not treat that initial audit as visual or user acceptance.
 Real synthetic sessions exercise the actual Worker and D1; preview GitHub login is
 disabled. Local provider simulation does not claim real OAuth authorization.
 
@@ -242,6 +244,17 @@ No paid plan, extra service or relaxed freshness requirement was introduced.
 Production deployment and custom domains were verified unchanged; the production
 app, session endpoint and public catalog all returned HTTP 200. Resource inventory
 changes were limited to the preview Worker, D1 database and R2 bucket.
+
+## Shared UI and review
+
+Popular reuses the home page's `ForumSummary`/`ForumActions`, My Day's
+`AgendaRow`, Schedule's `SegmentedControl`, and source notes' `Disclosure`.
+The extraction changes My Day to title-first metadata and makes the existing
+schedule switches keyboard-navigable. Review those callers as well as Popular.
+The cross-page browser regression compares a report's source facts and typography;
+My Day gap strips must remain inside their panel. The PR carries the complete
+UI/UX checklist, exact preview commit and data provenance. User acceptance stays
+separate from automated results and assistant screenshot inspection.
 
 ## Acceptance and rollout
 

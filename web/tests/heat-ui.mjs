@@ -35,14 +35,14 @@ try {
     } });
   });
   await page.goto(base + '/chinasoft2026/popular');
-  await page.locator('.popular__row').nth(2).waitFor();
-  assert.deepEqual(await page.locator('.popular__meta > .mono:first-child').allTextContents(), ['R2', 'R1', 'R3']);
+  await page.locator(':is(.ftable .frow, .talkrow--agenda)').nth(2).waitFor();
+  assert.deepEqual(await page.locator('.frow__code').allTextContents(), ['R2', 'R1', 'R3']);
   await page.locator('.acct-btn').click();
   const toggle = page.getByRole('button', { name: /^参与统计/ });
   assert(await toggle.isDisabled(), 'signed-out readers can see the setting without contributing');
   await page.keyboard.press('Escape');
   const before = requests;
-  await page.locator('.popular__title').nth(1).click();
+  await page.locator(':is(.frow__body, .talkrow__cover)').nth(1).click();
   await page.locator('.followbtn').waitFor();
   assert.equal(requests, before, 'route navigation reuses the unexpired aggregate');
   assert.equal(await page.locator('.fd__actions .heat-value').innerText(), '热度 200');
@@ -51,22 +51,54 @@ try {
   for (const state of ['mismatch', 'invalid', 'unavailable', 'empty', 'ready']) {
     mode = state;
     await page.getByRole('button', { name: '刷新热度', exact: true }).click();
-    if (state === 'ready') await page.locator('.popular__row').nth(2).waitFor();
+    if (state === 'ready') await page.locator(':is(.ftable .frow, .talkrow--agenda)').nth(2).waitFor();
     else await page.getByText(state === 'empty' ? '暂无热度数据' : '热度暂不可用', { exact: true }).waitFor();
   }
   await page.getByRole('tab', { name: '报告', exact: true }).click();
-  await page.locator('.popular__row').first().waitFor();
-  assert.equal(await page.locator('.popular__meta svg').count(), 3);
-  await page.locator('.popular__title').click();
+  await page.locator(':is(.ftable .frow, .talkrow--agenda)').first().waitFor();
+  assert.equal(await page.locator('.talkrow__speaker svg').count(), 3);
+  const facts = row => row.evaluate(el => {
+    const title = el.querySelector('.talkrow__title'), style = getComputedStyle(title);
+    return { title: title.textContent, font: [style.fontSize, style.fontWeight, style.lineHeight],
+      speaker: el.querySelector('strong').textContent, room: el.querySelector('.talkrow__aff').textContent };
+  });
+  const popularFacts = await facts(page.locator('.talkrow--agenda').first());
+  await page.locator('.talkrow__star').click();
+  const forum = source.forums.find(f => f.code === 'R1');
+  const date = forum.talks.find(t => t.id === 'R1#1').day_date || forum.day_date;
+  await page.goto(base + '/chinasoft2026/schedule?v=mine-day#' + date);
+  await page.locator('.talkrow--agenda').waitFor();
+  assert.deepEqual(await facts(page.locator('.talkrow--agenda')), popularFacts,
+    'Popular and My Day share report facts and typography');
+  assert.equal(await page.locator('.talkrow__speaker svg').count(), 3);
+  await page.evaluate(() => localStorage.setItem('chinasoft2026:followed.talks', JSON.stringify(['R1#1', 'R1#3'])));
+  await page.reload();
+  await page.locator('.myday__linkrow').waitFor();
+  assert(await page.locator('.myday__linkrow').evaluate(el => {
+    const row = el.getBoundingClientRect(), panel = el.closest('.block').getBoundingClientRect();
+    return row.left >= panel.left && row.right <= panel.right;
+  }), 'My Day gap strips stay inside the shared flush panel');
+  await page.goto(base + '/chinasoft2026/popular');
+  await page.getByRole('tab', { name: '报告', exact: true }).click();
+  await page.getByRole('tab', { name: '报告', exact: true }).press('ArrowLeft');
+  assert.equal(await page.getByRole('tab', { name: '论坛', exact: true }).getAttribute('aria-selected'), 'true');
+  await page.getByRole('tab', { name: '论坛', exact: true }).press('ArrowRight');
+  assert.equal(await page.getByRole('tab', { name: '报告', exact: true }).getAttribute('aria-selected'), 'true');
+
+  await page.locator(':is(.frow__body, .talkrow__cover)').click();
   await page.locator('#talk-2').waitFor();
+  assert(await page.locator('#talk-2 .talk__title').evaluate(el => {
+    const title = el.getBoundingClientRect(), row = el.parentElement.getBoundingClientRect();
+    return title.width >= row.width - 1;
+  }), 'mobile report titles retain the full row width above actions');
   assert(page.url().endsWith('#talk-2'), 'report links retain durable anchors');
   await page.goBack();
   mode = 'large';
   await page.getByRole('button', { name: '刷新热度', exact: true }).click();
-  await page.waitForFunction(() => document.querySelectorAll('.popular__row').length > 100);
-  await page.locator('.popular__row').last().scrollIntoViewIfNeeded();
-  await page.waitForFunction(() => Number(getComputedStyle(document.querySelector('.popular__row:last-child')).opacity) > 0.99, null, { timeout: 2000 });
-  await page.locator('.popular__title').last().click();
+  await page.waitForFunction(() => document.querySelectorAll(':is(.ftable .frow, .talkrow--agenda)').length > 100);
+  await page.locator(':is(.ftable .frow, .talkrow--agenda)').last().scrollIntoViewIfNeeded();
+  await page.waitForFunction(() => Number(getComputedStyle(document.querySelector(':is(.ftable .frow, .talkrow--agenda):last-child')).opacity) > 0.99, null, { timeout: 2000 });
+  await page.locator(':is(.frow__body, .talkrow__cover)').last().click();
   await page.locator('.followbtn').waitFor();
   mode = 'unavailable';
   await page.reload();
