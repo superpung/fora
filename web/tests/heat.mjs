@@ -1,4 +1,5 @@
 import { migrate } from './cloudflare-fixtures.mjs';
+import worker from '../../cloudflare/worker.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { Miniflare } from 'miniflare';
@@ -190,6 +191,10 @@ try {
     const dirty = await DB.prepare('SELECT user_id FROM sync_state WHERE heat_index < ? OR heat_index > ? LIMIT 1').bind(index.hash, index.hash).all();
     assert.equal(dirty.results.length, 0);
     assert(dirty.meta.rows_read < 10, 'checking index freshness must not scan every account');
+    const guard = await DB.prepare('SELECT NOT EXISTS (SELECT 1 FROM sync_state WHERE heat_index < ?1 OR heat_index > ?1) fresh')
+      .bind(index.hash).all();
+    assert.equal(guard.results[0].fresh, 1);
+    assert(guard.meta.rows_read < 10, 'the atomic publication guard must use the index rather than scan every account');
     await expire();
     const snapshot = await get(); assert.equal(snapshot.status, 200);
     assert.equal((await snapshot.json()).conferences.sample.talks['F#0'], heatScore(count * 3));
@@ -198,8 +203,80 @@ try {
     const unchanged = await DB.prepare("UPDATE sync_state SET heat_contribution=heat_contribution WHERE user_id='load-1'").run();
     assert(unchanged.meta.rows_written < delta.meta.rows_written, 'unchanged projections do not rewrite totals');
     console.log('BUDGET ' + JSON.stringify({ accounts: count, aggregate_rows: snapshotCost.meta.rows_read,
-      freshness_check_rows: dirty.meta.rows_read, follow_update_reads: delta.meta.rows_read, follow_update_writes: delta.meta.rows_written,
+      freshness_check_rows: dirty.meta.rows_read, publication_guard_rows: guard.meta.rows_read, follow_update_reads: delta.meta.rows_read, follow_update_writes: delta.meta.rows_written,
       unchanged_projection_writes: unchanged.meta.rows_written }));
   }
 
 } finally { await mf.dispose(); }
+
+// Interleave a real sync request with an identity publication and snapshot rebuild.
+// Only the D1 call boundaries are controlled; SQL, triggers and R2 remain real.
+const publication = new Miniflare({ modules: true,
+  script: 'export default { fetch() { return new Response("ok"); } }',
+  d1Databases: { DB: 'heat-publication-race' }, r2Buckets: ['DATA'] });
+let releaseSync;
+try {
+  const { DB, DATA } = await publication.getBindings();
+  await migrate(DB);
+  const token = 'c'.repeat(64);
+  await DB.batch([
+    DB.prepare("INSERT INTO users(id,github_id,login) VALUES('a','1','alice')"),
+    DB.prepare("INSERT INTO sync_state(user_id) VALUES('a')"),
+    DB.prepare("INSERT INTO sessions(token_hash,user_id,expires_at) VALUES(?,'a',9999999999)")
+      .bind(createHash('sha256').update(token).digest('hex')),
+  ]);
+  await DATA.put('manifest.json', JSON.stringify({ conferences: [entry] }));
+  let notifyPaused, inject = false, pendingSync;
+  const paused = new Promise(resolve => { notifyPaused = resolve; });
+  const resume = new Promise(resolve => { releaseSync = resolve; });
+  const wrappedDB = {
+    prepare(sql) {
+      let statement = DB.prepare(sql);
+      const wrap = () => ({
+        bind(...args) { statement = statement.bind(...args); return wrap(); },
+        async first(...args) {
+          if (sql.startsWith('UPDATE sync_state SET bundle')) { notifyPaused(); await resume; }
+          const result = await statement.first(...args);
+          if (inject && sql.includes('WHERE s.heat_index <') && result === null) {
+            inject = false;
+            releaseSync();
+            assert.equal((await pendingSync).status, 200);
+          }
+          return result;
+        },
+        run: (...args) => statement.run(...args),
+      });
+      return wrap();
+    },
+  };
+  const env = { DB: wrappedDB, DATA, PUBLIC_ORIGIN: origin };
+  const request = (path, init) => worker.fetch(new Request(origin + path, init), env);
+  pendingSync = request('/api/sync', { method: 'PUT',
+    headers: { Cookie: '__Host-fora-session=' + token, Origin: origin, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ revision: 0, bundle: bundle(['talks', 'F#0']) }),
+  });
+  await paused;
+  const next = { ...entry, sha256: 'b'.repeat(64), interest: { forums: { F: ['F#1'] }, keynotes: [] } };
+  await DATA.put('manifest.json', JSON.stringify({ conferences: [next] }));
+  assert.equal((await request('/api/heat')).status, 503, 'reconcile the initial vector against the new index');
+  inject = true;
+  const rejected = await request('/api/heat');
+  assert.equal(rejected.status, 503, 'an old-index write after the freshness check must prevent snapshot publication');
+  assert.equal(rejected.headers.get('Retry-After'), '1');
+  const cache = await DB.prepare('SELECT payload, expires_at, lease_until FROM heat_cache').first();
+  assert.equal(cache.expires_at, 0, 'rejected publication must not extend the cache');
+  assert.equal(cache.lease_until, 0, 'rejected publication releases its lease immediately');
+  const saved = await DB.prepare("SELECT revision, bundle FROM sync_state WHERE user_id='a'").first();
+  assert.equal(saved.revision, 1);
+  assert.deepEqual(JSON.parse(saved.bundle).follows, bundle(['talks', 'F#0']).follows, 'the accepted sync itself is preserved');
+  assert.equal((await request('/api/heat')).status, 503, 'retry reconciles the late old-index vector');
+  const recovered = await request('/api/heat');
+  assert.equal(recovered.status, 200);
+  const snapshot = await recovered.json();
+  assert.deepEqual(snapshot.conferences.sample, { sha256: next.sha256, forums: {}, talks: {} });
+  assert.deepEqual(await (await request('/api/heat')).json(), snapshot, 'only the corrected snapshot is cached');
+  console.log('PASS publication racing an in-flight sync cannot cache old-index scores under a new dataset hash');
+} finally {
+  releaseSync?.();
+  await publication.dispose();
+}

@@ -78,12 +78,16 @@ export async function heat(env) {
     }
     // D1 formats the aggregate directly: serializing thousands of rows in the
     // Worker exceeded the free CPU budget even after removing account scans.
+    // Recheck atomically: an in-flight sync may commit an old-index vector
+    // after the earlier freshness query but before this snapshot is stored.
     const expires = now + TTL_MS;
     const updated = await env.DB.prepare(`UPDATE heat_cache SET payload = (${SNAPSHOT_SQL}),
-      expires_at = ?3, lease_until = 0 WHERE id = 1 AND lease_until = ?4 RETURNING payload`)
+      expires_at = ?3, lease_until = 0 WHERE id = 1 AND lease_until = ?4
+      AND NOT EXISTS (SELECT 1 FROM sync_state WHERE heat_index < ?5 OR heat_index > ?5)
+      RETURNING payload`)
       .bind(JSON.stringify(index.catalog.map(({ id, sha256 }) => ({ id, sha256 }))),
-        new Date(now).toISOString(), expires, lease).first();
-    released = true;
+        new Date(now).toISOString(), expires, lease, index.hash).first();
+    released = Boolean(updated);
     return updated ? response(updated.payload, expires) : busy();
   } finally {
     if (!released) await env.DB.prepare('UPDATE heat_cache SET lease_until = 0 WHERE id = 1 AND lease_until = ?').bind(lease).run();

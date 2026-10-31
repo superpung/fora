@@ -80,6 +80,9 @@ not scan all account bundles. Identity-index freshness uses an indexed range
 query. A structural publication change reconciles old account vectors on demand,
 one account per request, withholding partial results until reconciliation is
 complete. Text, timetable and list-order changes do not invalidate vectors.
+Snapshot publication rechecks index consistency in the same SQL statement that
+assembles and stores the cache. A late old-index sync write prevents publication;
+the lease is released immediately and the next request reconciles that vector.
 Initial production has one existing account; large future identity changes can
 require a longer cold reconciliation and should be checked during data review.
 No scheduler, permanent job or separate migration backend is added.
@@ -166,6 +169,8 @@ limited to 10 ms on Workers Free and requires deployed verification.
 
 Local D1 regression measurements at 100, 500 and 1,000 accounts showed the same
 29 snapshot-query rows and two freshness-check rows for a shared 11-item fixture.
+The atomic publication guard reads another two indexed rows at each tested
+population size; it adds no Worker-to-D1 round trip.
 Changing nine direct-report contributions read 79 rows and wrote 10; an unchanged
 projection wrote only the canonical account row. The isolated deployed fixture
 contains 500 synthetic accounts, each storing 20 report-slot follows and one forum
