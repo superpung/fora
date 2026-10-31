@@ -25,7 +25,8 @@ scope, not only the latest edit. Original conference content is preserved.
 
 Date/time separators in heat rows, forum/session metadata, live upcoming items
 and report-poster timestamps were already removed. The forum identifier badge
-also applies to Home, forum details, Now, topic reports/groups and similar talks.
+also applies to Home, forum details, speaker report lists, Now, topic reports/groups
+and similar talks.
 `ForumCode` / `ForumIdentity` own the HTML presentation; the offline canvas
 renderer draws the matching neutral badge at poster scale.
 

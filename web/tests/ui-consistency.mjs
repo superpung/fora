@@ -53,6 +53,8 @@ try {
     await sameBadge(page.locator('.talkrow--agenda .code-tag'));
     assert((await page.locator('.talkrow--agenda .forum-identity').first().innerText()).startsWith('R1'));
     assert.equal(await page.locator('.heat-value').count(),0);await shot('myday');
+    await goto('/chinasoft2026/speakers?q='+encodeURIComponent('魏峻'),'.spcard__main');await page.locator('.spcard__toggle').first().click();
+    await sameBadge(page.locator('.sptalk .code-tag'));await shot('speakers');
     await goto('/chinasoft2026/plan','.planform__input');await page.locator('.planform__input').fill('软件安全');await page.locator('.planform__go').click();
     await sameBadge(page.locator('.planpick .code-tag'));assert(await page.locator('.planpick').first().evaluate(el=>el.querySelector('.planpick__title').getBoundingClientRect().bottom<=el.querySelector('.planpick__meta').getBoundingClientRect().top),'planner metadata follows the report heading');await page.locator('.planpick').first().scrollIntoViewIfNeeded();await shot('planner');
     await goto('/chinasoft2026/topics','.tmap__node');await page.locator('.tmap__node').first().click();
