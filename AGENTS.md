@@ -400,7 +400,13 @@ pnpm preview    # serve the production build
   `ForumRowParts` are shared by Home and Popular. `AgendaRow` is the report row
   used by My Day and Popular. It preserves My Day's separate time column;
   discovery rows show source facts with a code badge before the forum name and
-  right-aligned heat. SourceNotes owns its sole animated disclosure.
+  right-aligned heat. `BackToTop` currently mounts only on Popular: a circular
+  button appears after 600px; its outer ring tracks document scroll progress
+  (not heat refresh time) and respects changing content height. It reuses the
+  shared button/icon styles and respects reduced motion when returning to the top.
+  `CityLocation` owns country/city labels on Home and the hub; the retained
+  middle dot occupies 1em without padding spaces. Posters draw the same spacing
+  at canvas scale. SourceNotes owns its sole animated disclosure.
   `ForumCode` / `ForumIdentity` own all HTML forum badges; `ui-consistency.mjs` checks their real callers and
   source-preserving punctuation changes. Change these owners rather than copying
   their markup or adding page-specific visual substitutes; check all affected callers.

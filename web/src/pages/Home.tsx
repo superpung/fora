@@ -1,3 +1,4 @@
+import CityLocation from "../components/CityLocation";
 import { talkAnchor } from "../lib/follow-store";
 import { personKey } from "../lib/person-key";
 import { useMemo, useState, type ReactNode } from "react";
@@ -683,7 +684,7 @@ export default function Home() {
             </div>
             <div className="dashhead__venue">
               <span className="meta-bit"><Icon name="calendar" size={13} />{startMd}–{endMd}</span>
-              {mainCity && <span className="meta-bit"><Icon name="pin" size={13} />{t("common.inChina", { city: mainCity })}</span>}
+              {mainCity && <span className="meta-bit"><Icon name="pin" size={13} /><CityLocation city={mainCity} /></span>}
             </div>
             <SourceNotes flags={conference.extra?.flags} />
           </div>

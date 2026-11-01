@@ -37,7 +37,7 @@ export interface PosterSpec {
   confName: string; // conference name (masthead)
   confDate: string; // "2025年11月27–30日"
   confVenue?: string | null; // "武汉国际会议中心"
-  confLocation?: string | null; // "中国 · 武汉"
+  confCity?: string | null; // Venue city, displayed with the country in the masthead.
   chip?: string | null; // forum category (forum) / kind (talk)
   code?: string | null; // forum code, monospace, right of the chip
   title: string;
@@ -245,7 +245,7 @@ function styledFlow(
 function iconFlow(
   ctx: CanvasRenderingContext2D,
   dry: boolean,
-  items: PosterMeta[],
+  items: { icon: IconKey; text: string[] }[],
   x: number,
   y: number,
   maxW: number,
@@ -261,14 +261,20 @@ function iconFlow(
   let cy = y;
   for (const it of items) {
     ctx.font = font(500, fs, true);
-    const tw = ctx.measureText(it.text).width;
+    const widths = it.text.map(part => part === "·" ? fs : ctx.measureText(part).width);
+    const tw = widths.reduce((sum, width) => sum + width, 0);
     const w = isz + igap + tw;
     if (lx > x && lx + w > x + maxW) { lx = x; cy += lineH; }
     if (!dry) {
       drawIcon(ctx, it.icon, lx, cy + Math.round((lineH - isz) / 2), isz, iconColor);
       ctx.fillStyle = textColor;
       ctx.font = font(500, fs, true);
-      ctx.fillText(it.text, lx + isz + igap, cy + Math.round((lineH - fs) / 2) - 1);
+      let tx = lx + isz + igap;
+      it.text.forEach((part, index) => {
+        const inset = (widths[index] - ctx.measureText(part).width) / 2;
+        ctx.fillText(part, tx + inset, cy + Math.round((lineH - fs) / 2) - 1);
+        tx += widths[index];
+      });
     }
     lx += w + sep;
   }
@@ -333,7 +339,7 @@ function roundRect(
 }
 
 /** Light masthead (no dark band): an accent kicker + the conference name +
-    a date · location line. The venue is not shown here — it moves down to the
+    an icon-tagged date and location line. The venue is not shown here — it moves down to the
     room meta. Measures its lines first, then paints. Returns its height. */
 function masthead(ctx: CanvasRenderingContext2D, spec: PosterSpec, dry: boolean): number {
   const x = PAD;
@@ -345,8 +351,8 @@ function masthead(ctx: CanvasRenderingContext2D, spec: PosterSpec, dry: boolean)
   const nameLines = clampLines(wrapText(ctx, spec.confName, maxW), 2);
   const nameLH = 56;
 
-  const items: PosterMeta[] = [{ icon: "calendar", text: spec.confDate }];
-  if (spec.confLocation) items.push({ icon: "pin", text: spec.confLocation });
+  const items = [{ icon: "calendar" as IconKey, text: [spec.confDate] }];
+  if (spec.confCity) items.push({ icon: "pin", text: ["中国", "·", spec.confCity] });
 
   const nameTop = topPad + kickerH + 22;
   const metaTop = nameTop + nameLines.length * nameLH + 20;

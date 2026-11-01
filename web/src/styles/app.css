@@ -1160,8 +1160,12 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 .backtotop {
   position: fixed; right: max(16px, env(safe-area-inset-right));
   bottom: max(24px, env(safe-area-inset-bottom)); z-index: 10;
-  width: 44px; height: 44px; box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
+  width: 44px; height: 44px; border: 0; border-radius: 50%;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
 }
+.backtotop__ring { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); pointer-events: none; fill: none; stroke-width: 1.5; }
+.backtotop__track { stroke: var(--border-strong); }
+.backtotop__progress { stroke: var(--accent); }
 
 /* dashboard: official-site icon button beside the conference title */
 .dashhead__titlerow { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
@@ -2255,3 +2259,7 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 /* Metadata icons remain neutral even when adjacent text uses an accent. */
 .fd__trackhead svg, .sptalk__time svg, .planpick__time svg,
 .nowpanel__label svg, .nownext__when svg, .frow__sponsor svg { color: var(--fg-muted); }
+
+/* Country/city spacing belongs to layout, not the translated text. */
+.city-location { display: inline-flex; align-items: baseline; }
+.city-location__separator { display: inline-block; width: 1em; flex: none; text-align: center; }

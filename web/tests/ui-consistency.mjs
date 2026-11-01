@@ -22,7 +22,7 @@ try {
       const stroke=CanvasRenderingContext2D.prototype.stroke;
       CanvasRenderingContext2D.prototype.stroke=function(...args){window.__posterStrokes.push(String(this.strokeStyle));return stroke.apply(this,args);};
       const fill=CanvasRenderingContext2D.prototype.fillText;
-      CanvasRenderingContext2D.prototype.fillText=function(text,...args){window.__posterText.push(String(text));window.__posterPaint.push({text:String(text),color:this.fillStyle});return fill.call(this,text,...args);};
+      CanvasRenderingContext2D.prototype.fillText=function(text,...args){window.__posterText.push(String(text));window.__posterPaint.push({text:String(text),color:this.fillStyle,x:args[0],y:args[1],width:this.measureText(String(text)).width});return fill.call(this,text,...args);};
     });
     const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
     await page.route('**/api/session',r=>r.fulfill({json:{enabled:true,user:null,statistics:null}}));
@@ -31,7 +31,7 @@ try {
       // Finish finite native animations when the browser's Date is fixed for live checks.
       await page.evaluate(()=>document.getAnimations().forEach(a=>{if(Number.isFinite(a.effect?.getComputedTiming().endTime))a.finish();}));
       await page.waitForTimeout(100);
-      assert(await page.locator('main').evaluate(el=>!el.firstElementChild||Number(getComputedStyle(el.firstElementChild).opacity)>=0.99),label+' content is painted');
+      assert(await page.locator(label==='hub'?'.app__body > div':'main > :first-child').evaluate(el=>Number(getComputedStyle(el).opacity)>=0.99),label+' content is painted');
       assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),label+' has no horizontal overflow');
       await page.screenshot({path:`${output}/${name}-${label}.png`});
     };
@@ -42,7 +42,18 @@ try {
     const badgeStyle=await appearance(page.locator('.frow__code').first());
     const sameBadge=async locator=>{await locator.first().waitFor();assert.deepEqual(await appearance(locator.first()),badgeStyle);};
     assert.equal(await page.locator('.dashhead__venue svg').count(),2);
-    const venue=await page.locator('.dashhead__venue').innerText();assert(venue.includes('中国 · 天津'));assert.equal(venue.split(' · ').length,2);
+    const location=page.locator('.dashhead__venue .city-location');
+    assert.equal(await location.textContent(),'中国·天津');
+    const separatorWidth=async locator=>locator.evaluate(el=>Math.abs(el.getBoundingClientRect().width-parseFloat(getComputedStyle(el).fontSize))<.1);
+    assert(await separatorWidth(location.locator('.city-location__separator')), 'country/city delimiter occupies one em without literal spaces');
+    await goto('/','.hubcard');
+    assert(await page.locator('.city-location').evaluateAll(nodes=>nodes.length>0&&nodes.every(el=>!el.textContent.includes(' · '))));
+    assert(await separatorWidth(page.locator('.city-location__separator').first()));await shot('hub');
+    await page.locator('.lang-toggle').click();
+    assert((await page.locator('.city-location').first().textContent()).endsWith(', China'));
+    assert.equal(await page.locator('.city-location__separator').count(),0);
+    await page.locator('.lang-toggle').click();
+    await goto('/chinasoft2026','.frow__code');
     await page.locator('.search__input').fill('安全');await page.locator('.dash__resultinfo .meta-bit').waitFor();
     assert(!(await page.locator('.dash__resultinfo').innerText()).includes('·'));await neutral('.search__clear svg');await shot('home-filter');
     await page.locator('.search__clear').click();assert.equal(await page.locator('.search__input').inputValue(),'');await page.locator('.search__input').fill('安全');
@@ -57,6 +68,13 @@ try {
     await shot('poster');
     const posterText=await page.evaluate(()=>window.__posterText);
     assert(posterText.some(t=>/^报告 \d+$/.test(t)));assert(!posterText.some(t=>/^报告 ·/.test(t)));
+    const locationPaint=await page.evaluate(()=>window.__posterPaint.slice(0,20));
+    const country=locationPaint.find(p=>p.text==='中国');
+    const dot=locationPaint.find(p=>p.text==='·');
+    const city=locationPaint.find(p=>p.text==='天津');
+    assert(country&&dot&&city&&country.y===dot.y&&dot.y===city.y);
+    assert(Math.abs(city.x-country.x-country.width-27)<.1, 'poster delimiter occupies one em in canvas layout');
+    assert(!posterText.includes('中国 · 天津'));
     const paints=await page.evaluate(()=>({strokes:window.__posterStrokes,category:window.__posterPaint.filter(p=>p.text==='学术论坛')}));
     assert(paints.strokes.length>0&&!paints.strokes.includes('#0070f3'),'poster metadata icons do not use the accent');
     assert(paints.category.length>0&&paints.category.every(p=>/^#([0-9a-f]{2})\1\1$/i.test(p.color)),'poster category text is neutral');

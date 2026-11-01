@@ -349,7 +349,7 @@ export default function ForumDetail() {
   const mainVenue =
     conference.venues?.find((v) => v.type === "main") ?? conference.venues?.[0];
   const confVenue = mainVenue?.name.zh ?? null;
-  const confLocation = mainVenue?.city ? `中国 · ${mainVenue.city}` : null;
+  const confCity = mainVenue?.city;
 
   // Build the forum-level share poster (title + chairs + every talk).
   function openForumPoster() {
@@ -379,7 +379,7 @@ export default function ForumDetail() {
         confName: conference.name.zh,
         confDate,
         confVenue,
-        confLocation,
+        confCity,
         chip: f.category?.name.zh ?? tr("poster.kindForum"),
         code: f.code,
         title: f.title.zh,
@@ -416,7 +416,7 @@ export default function ForumDetail() {
         confName: conference.name.zh,
         confDate,
         confVenue,
-        confLocation,
+        confCity,
         chip: f.category?.name.zh ?? tr("poster.kindTalk"),
         code: f.code,
         title: titleLine(t, tr("forum.titleTbd")).text,

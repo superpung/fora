@@ -70,7 +70,7 @@ const zh: Dict = {
   "common.sessionsCount": "{n} 场",
   "common.pending": "详情待补",
   "common.agendaPending": "日程待公布",
-  "common.inChina": "中国 · {city}",
+  "common.china": "中国",
 
   "confsw.switch": "切换会议",
   "confsw.all": "全部会议",
@@ -372,7 +372,7 @@ const en: Dict = {
   "common.sessionsCount": "{n}",
   "common.pending": "Details pending",
   "common.agendaPending": "Agenda to come",
-  "common.inChina": "{city}, China",
+  "common.china": "China",
 
   "confsw.switch": "Switch conference",
   "confsw.all": "All conferences",

@@ -106,7 +106,26 @@ try {
     await page.setViewportSize({ width, height: 844 });
     await page.emulateMedia({ reducedMotion });
     await page.evaluate(theme => document.documentElement.dataset.theme = theme, theme);
-    await page.locator('.talkrow--discovery').last().scrollIntoViewIfNeeded();
+    for (const progress of [.25, .5, .75, .5, 1]) {
+      await page.evaluate(progress => window.scrollTo({
+        top: (document.documentElement.scrollHeight - innerHeight) * progress, behavior: 'instant',
+      }), progress);
+      await backToTop.waitFor();
+      await page.waitForFunction(() => {
+        const ring = document.querySelector('.backtotop__progress');
+        const expected = scrollY / (document.documentElement.scrollHeight - innerHeight);
+        return Math.abs(parseFloat(ring.getAttribute('stroke-dasharray')) - expected) < .01;
+      });
+      assert.equal(await backToTop.evaluate(el => getComputedStyle(el).borderRadius), '50%');
+      if (progress === .5) await page.screenshot({ path: `/tmp/fora-backtotop-audit/${name}-half.png` });
+    }
+    // Resizing changes the denominator even when the scroll position is retained.
+    await page.setViewportSize({ width, height: 740 });
+    await page.waitForFunction(() => Math.abs(
+      parseFloat(document.querySelector('.backtotop__progress').getAttribute('stroke-dasharray')) -
+      scrollY / (document.documentElement.scrollHeight - innerHeight)) < .01);
+    await page.setViewportSize({ width, height: 844 });
+    await page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }));
     await backToTop.waitFor();
     await page.waitForFunction(() => Number(getComputedStyle(document.querySelector('.backtotop')).opacity) > .99);
     assert(await backToTop.evaluate(el => {
