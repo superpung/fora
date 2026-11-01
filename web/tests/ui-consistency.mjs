@@ -49,10 +49,14 @@ try {
     await goto('/','.hubcard');
     assert(await page.locator('.city-location').evaluateAll(nodes=>nodes.length>0&&nodes.every(el=>!el.textContent.includes(' · '))));
     assert(await separatorWidth(page.locator('.city-location__separator').first()));await shot('hub');
-    await page.locator('.lang-toggle').click();
+    const toggleLanguage=async label=>{
+      if(width<600){await page.locator('.acct-btn').click();await page.getByRole('button',{name:label}).click();await page.keyboard.press('Escape');}
+      else await page.locator('.lang-toggle').click();
+    };
+    await toggleLanguage('语言');
     assert((await page.locator('.city-location').first().textContent()).endsWith(', China'));
     assert.equal(await page.locator('.city-location__separator').count(),0);
-    await page.locator('.lang-toggle').click();
+    await toggleLanguage('Language');
     await goto('/chinasoft2026','.frow__code');
     await page.locator('.search__input').fill('安全');await page.locator('.dash__resultinfo .meta-bit').waitFor();
     assert(!(await page.locator('.dash__resultinfo').innerText()).includes('·'));await neutral('.search__clear svg');await shot('home-filter');
