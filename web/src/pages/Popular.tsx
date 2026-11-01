@@ -13,6 +13,7 @@ import { pageVariants, easeOut } from "../lib/motion";
 import Icon from "../components/Icon";
 import StarButton from "../components/StarButton";
 import HeatValue from "../components/HeatValue";
+import BackToTop from "../components/BackToTop";
 import SegmentedControl from "../components/SegmentedControl";
 import AgendaRow from "../components/AgendaRow";
 import { ForumSummary, ForumActions } from "../components/ForumRowParts";
@@ -89,5 +90,6 @@ function Rankings() {
             className="star--sm talkrow__star" size={15}
             label={t(follows.isTalk(talk.followId) ? "common.talkFollowRemove" : "common.talkFollowAdd")} />} />)}
       </div></div>}
+    <BackToTop />
   </motion.div>;
 }

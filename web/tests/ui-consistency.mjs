@@ -18,17 +18,24 @@ try {
     await context.addInitScript(()=>{
       localStorage.setItem('chinasoft2026:followed.talks',JSON.stringify(['R1#1']));
       localStorage.setItem('fora-ai.enabled','1');
-      window.__posterText=[];
+      window.__posterText=[];window.__posterPaint=[];window.__posterStrokes=[];
+      const stroke=CanvasRenderingContext2D.prototype.stroke;
+      CanvasRenderingContext2D.prototype.stroke=function(...args){window.__posterStrokes.push(String(this.strokeStyle));return stroke.apply(this,args);};
       const fill=CanvasRenderingContext2D.prototype.fillText;
-      CanvasRenderingContext2D.prototype.fillText=function(text,...args){window.__posterText.push(String(text));return fill.call(this,text,...args);};
+      CanvasRenderingContext2D.prototype.fillText=function(text,...args){window.__posterText.push(String(text));window.__posterPaint.push({text:String(text),color:this.fillStyle});return fill.call(this,text,...args);};
     });
     const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
     await page.route('**/api/session',r=>r.fulfill({json:{enabled:true,user:null,statistics:null}}));
     const shot=async label=>{
       await page.waitForTimeout(650);
+      // Finish finite native animations when the browser's Date is fixed for live checks.
+      await page.evaluate(()=>document.getAnimations().forEach(a=>{if(Number.isFinite(a.effect?.getComputedTiming().endTime))a.finish();}));
+      await page.waitForTimeout(100);
+      assert(await page.locator('main').evaluate(el=>!el.firstElementChild||Number(getComputedStyle(el.firstElementChild).opacity)>=0.99),label+' content is painted');
       assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),label+' has no horizontal overflow');
       await page.screenshot({path:`${output}/${name}-${label}.png`});
     };
+    const neutral=async selector=>assert(await page.locator(selector).evaluateAll(icons=>icons.length>0&&icons.every(icon=>{const rgb=getComputedStyle(icon).color.match(/[\d.]+/g).slice(0,3).map(Number);return Math.max(...rgb)-Math.min(...rgb)<2;})),selector+' uses neutral icons');
     const goto=async(path,ready)=>{await page.goto(base+path);await page.locator(ready).first().waitFor();};
     const appearance=badge=>badge.evaluate(el=>{const s=getComputedStyle(el);return [s.fontFamily,s.fontSize,s.fontWeight,s.padding,s.borderRadius,s.backgroundColor,s.color];});
     await goto('/chinasoft2026','.frow__code');
@@ -37,7 +44,8 @@ try {
     assert.equal(await page.locator('.dashhead__venue svg').count(),2);
     const venue=await page.locator('.dashhead__venue').innerText();assert(venue.includes('中国 · 天津'));assert.equal(venue.split(' · ').length,2);
     await page.locator('.search__input').fill('安全');await page.locator('.dash__resultinfo .meta-bit').waitFor();
-    assert(!(await page.locator('.dash__resultinfo').innerText()).includes('·'));await shot('home-filter');
+    assert(!(await page.locator('.dash__resultinfo').innerText()).includes('·'));await neutral('.search__clear svg');await shot('home-filter');
+    await page.locator('.search__clear').click();assert.equal(await page.locator('.search__input').inputValue(),'');await page.locator('.search__input').fill('安全');
     await page.locator('.confsw__btn').click();await page.locator('.confsw__itemmeta').first().waitFor();
     assert(!(await page.locator('.confsw__pop').innerText()).includes('·'));
     assert(await page.locator('.confsw__itemmeta svg').evaluateAll(icons=>icons.every(icon=>getComputedStyle(icon).color===getComputedStyle(icon.closest('.confsw__itemmeta')).color)), 'picker metadata icons inherit neutral text color');await shot('conference-picker');await page.keyboard.press('Escape');
@@ -49,23 +57,31 @@ try {
     await shot('poster');
     const posterText=await page.evaluate(()=>window.__posterText);
     assert(posterText.some(t=>/^报告 \d+$/.test(t)));assert(!posterText.some(t=>/^报告 ·/.test(t)));
+    const paints=await page.evaluate(()=>({strokes:window.__posterStrokes,category:window.__posterPaint.filter(p=>p.text==='学术论坛')}));
+    assert(paints.strokes.length>0&&!paints.strokes.includes('#0070f3'),'poster metadata icons do not use the accent');
+    assert(paints.category.length>0&&paints.category.every(p=>/^#([0-9a-f]{2})\1\1$/i.test(p.color)),'poster category text is neutral');
     await page.keyboard.press('Escape');
+    await goto('/chinasoft2026/forum/R2','.fd__trackhead');await neutral('.fd__trackhead svg');await page.locator('.fd__trackhead').first().scrollIntoViewIfNeeded();await shot('dated-session');
+    await goto('/chinasoft2025/forum/U1','.fd__trackhead');await neutral('.fd__trackhead svg');await page.locator('.fd__trackhead').first().scrollIntoViewIfNeeded();await shot('parallel-room');
     await goto('/chinasoft2026/schedule?v=mine-day#2026-11-07','.talkrow--agenda');
     await sameBadge(page.locator('.talkrow--agenda .code-tag'));
     assert((await page.locator('.talkrow--agenda .forum-identity').first().innerText()).startsWith('R1'));
     assert.equal(await page.locator('.heat-value').count(),0);await shot('myday');
     await goto('/chinasoft2026/speakers?q='+encodeURIComponent('魏峻'),'.spcard__main');await page.locator('.spcard__toggle').first().click();
-    await sameBadge(page.locator('.sptalk .code-tag'));await shot('speakers');
+    await sameBadge(page.locator('.sptalk .code-tag'));await neutral('.sptalk__time svg');await neutral('.search__clear svg');await shot('speakers');
+    await page.locator('.search__clear').click();assert.equal(await page.locator('.search__input').inputValue(),'');
     await goto('/chinasoft2026/plan','.planform__input');await page.locator('.planform__input').fill('软件安全');await page.locator('.planform__go').click();
-    await sameBadge(page.locator('.planpick .code-tag'));assert(await page.locator('.planpick').first().evaluate(el=>el.querySelector('.planpick__title').getBoundingClientRect().bottom<=el.querySelector('.planpick__meta').getBoundingClientRect().top),'planner metadata follows the report heading');await page.locator('.planpick').first().scrollIntoViewIfNeeded();await shot('planner');
+    await sameBadge(page.locator('.planpick .code-tag'));assert(await page.locator('.planpick').first().evaluate(el=>el.querySelector('.planpick__title').getBoundingClientRect().bottom<=el.querySelector('.planpick__meta').getBoundingClientRect().top),'planner metadata follows the report heading');await page.locator('.planpick').first().scrollIntoViewIfNeeded();await neutral('.planpick__time svg');await shot('planner');
+    await page.locator('.acct-btn').click();await page.locator('.acct-row--ai').click();await page.keyboard.press('Escape');await page.locator('.planoff__on').waitFor();
+    assert(await page.locator('.planoff__on').evaluate(el=>getComputedStyle(el).color===getComputedStyle(el.querySelector('svg')).color),'primary button icon inherits its label color');await shot('ai-disabled');await page.locator('.planoff__on').click();await page.locator('.planform__input').waitFor();
     await goto('/chinasoft2026/topics','.tmap__node');await page.locator('.tmap__node').first().click();
     await sameBadge(page.locator('.tmaptalk .code-tag'));await page.locator('.tmaptalk').first().scrollIntoViewIfNeeded();await shot('topics');
     await goto('/ccfchip2026/organizations','.sponsorcard');await sameBadge(page.locator('.sponsorcard .code-tag'));
     assert((await page.locator('.sponsorcard__forum').first().innerText()).startsWith(sponsor.code));await page.locator('.sponsorcard').first().scrollIntoViewIfNeeded();await shot('organizations');
-    await goto('/ccfchip2026','.krail__toggle');assert(!(await page.locator('.krail__toggle').first().innerText()).includes('·'));await page.locator('.krail__toggle').first().scrollIntoViewIfNeeded();await shot('keynotes');
+    await goto('/ccfchip2026','.krail__toggle');assert(!(await page.locator('.krail__toggle').first().innerText()).includes('·'));await page.locator('.krail__toggle').first().scrollIntoViewIfNeeded();await shot('keynotes');await neutral('.frow__sponsor svg');await page.locator('.frow__sponsor').first().scrollIntoViewIfNeeded();await shot('sponsor');
     await page.clock.setFixedTime(new Date('2026-11-06T10:00:00+08:00'));
     await goto('/chinasoft2026/now','.nowclock__date');await sameBadge(page.locator('.nowcard .code-tag'));
-    assert.equal(await page.locator('.nowclock__date svg').count(),1);assert(!(await page.locator('.nowclock__date').innerText()).includes('·'));await shot('now');
+    assert.equal(await page.locator('.nowclock__date svg').count(),1);assert(!(await page.locator('.nowclock__date').innerText()).includes('·'));await neutral('.nownext__when svg');await neutral('.nowpanel:not(.nowpanel--now) .nowpanel__label svg');await shot('now');await page.locator('.nownext__when').scrollIntoViewIfNeeded();await shot('next-panels');
     if(name==='desktop'){
       const result=await page.evaluate(async()=>{
         const [{translate},{toMarkdown},{drawPoster}]=await Promise.all([import('/src/lib/i18n-store.ts'),import('/src/lib/export.ts'),import('/src/lib/poster.ts')]);
@@ -76,6 +92,6 @@ try {
       assert(result.markdown.startsWith('# 我的日程——原始·标题'));assert(result.text.includes('原始·标题'));assert(!result.text.some(t=>/^\s*·\s*$/.test(t)), 'multi-speaker posters use spacing without altering source punctuation');
       assert.equal(result.notification,'5 分钟后开始：原始·标题');
     }
-    assert.deepEqual(errors,[]);await context.close();console.log('PASS '+name+': consistent source identifiers, metadata icons/order, approved separators, search, posters and original source text');
+    assert.deepEqual(errors,[]);await context.close();console.log('PASS '+name+': consistent source identifiers, metadata icons/order, approved separators, neutral metadata icons, working clear controls, primary button colors, posters and original source text');
   }
 } finally {await browser?.close();server.kill('SIGTERM');}

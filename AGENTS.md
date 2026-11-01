@@ -145,7 +145,10 @@ restrained, and detailed. Match it; do not drift toward other looks.
   numbers** (codes like CF01, dates, times, counts).
 - **Color**: neutral greys for structure, a single **blue accent** for links,
   focus rings, and active state. Selection/anchor state uses a full-surface tint
-  (see the UI rules below), never a colored left edge.
+  (see the UI rules below), never a colored left edge. Metadata icons remain
+  neutral; scope accent rules to the specific state/control, not every descendant
+  SVG. Button icons inherit button text color. A custom input clear action
+  replaces the browser's native clear glyph rather than duplicating it.
 - **Buttons**: solid primary; ghost/link styles elsewhere; icon-only buttons for
   compact actions.
 - **Motion is required.** Use `framer-motion`; the house easing is

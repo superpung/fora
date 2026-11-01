@@ -337,6 +337,7 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 }
 .search__input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); }
 .search__input::placeholder { color: var(--fg-muted); }
+.search__input::-webkit-search-cancel-button { display: none; }
 .search__clear { position: absolute; right: 6px; border: none; background: none; color: var(--fg-muted); display: inline-flex; padding: 5px; border-radius: 4px; }
 .search__clear:hover { color: var(--fg); background: var(--bg-hover); }
 
@@ -874,7 +875,7 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
   padding: 7px 12px; border-radius: var(--radius);
   background: var(--bg-subtle); border: 1px solid var(--border);
 }
-.fd__trackhead svg { color: var(--accent); flex: none; }
+.fd__trackhead svg { flex: none; }
 .fd__trackroom { font-weight: 600; font-size: 14px; color: var(--fg); }
 .fd__tracktag {
   margin-left: auto; font-family: var(--font-mono); font-size: 11px; color: var(--fg-muted);
@@ -1156,6 +1157,11 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
   transition: color 0.15s, border-color 0.15s, background 0.15s;
 }
 .squarebtn:hover { color: var(--fg); border-color: var(--border-strong); background: var(--bg-hover); }
+.backtotop {
+  position: fixed; right: max(16px, env(safe-area-inset-right));
+  bottom: max(24px, env(safe-area-inset-bottom)); z-index: 10;
+  width: 44px; height: 44px; box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
+}
 
 /* dashboard: official-site icon button beside the conference title */
 .dashhead__titlerow { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
@@ -1531,7 +1537,6 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
   display: flex; align-items: center; gap: 7px; margin: 0 0 12px;
   font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--fg-secondary);
 }
-.nowpanel__label svg { color: var(--accent); }
 .nowpanel--now .nowpanel__label svg, .nowpanel--now .nowpanel__label { color: var(--tg-now); }
 .nowpanel__pulse {
   width: 8px; height: 8px; border-radius: 999px; background: var(--tg-now);
@@ -1571,7 +1576,6 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
   display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 600;
   color: var(--fg); margin-bottom: 10px;
 }
-.nownext__when svg { color: var(--accent); }
 .nownext__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 .nownext__item { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--fg-secondary); }
 .nownext__item svg { color: var(--fg-muted); flex: none; }
@@ -1895,7 +1899,7 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
   padding: clamp(36px, 7vw, 64px) 16px; color: var(--fg-secondary);
 }
 .planempty { padding: clamp(28px, 5vw, 44px) 16px; }
-.planoff svg { color: var(--ai-fg); }
+.planoff > svg { color: var(--ai-fg); }
 .planoff p { margin: 0; font-size: 15px; font-weight: 500; color: var(--fg); max-width: 46ch; }
 .planoff__on {
   display: inline-flex; align-items: center; gap: 6px;
@@ -2247,3 +2251,7 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 .dashhead__venue, .confsw__itemmeta, .cmdk__optsub { display: flex; flex-wrap: wrap; align-items: center; gap: 5px 12px; }
 .dash__resultinfo > .meta-bit { margin-left: 12px; }
 .tgrid__more .meta-bit { margin-right: 8px; }
+
+/* Metadata icons remain neutral even when adjacent text uses an accent. */
+.fd__trackhead svg, .sptalk__time svg, .planpick__time svg,
+.nowpanel__label svg, .nownext__when svg, .frow__sponsor svg { color: var(--fg-muted); }

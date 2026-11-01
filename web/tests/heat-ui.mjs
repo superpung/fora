@@ -1,7 +1,7 @@
 // Exercise the dedicated heat page, its opt-out, automatic updates and shared rows.
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
-import { readFile } from 'node:fs/promises';
+import { readFile, mkdir } from 'node:fs/promises';
 import { chromium } from 'playwright';
 const base = 'http://127.0.0.1:4230';
 const server = spawn(new URL('../node_modules/.bin/vite', import.meta.url).pathname,
@@ -96,6 +96,30 @@ try {
   mode = 'large'; await page.goto(base + '/chinasoft2026/popular'); await page.reload();
   await page.getByRole('tab', { name: '报告', exact: true }).click();
   await page.waitForFunction(() => document.querySelectorAll('.talkrow--discovery').length > 100);
+  const backToTop = page.getByRole('button', { name: '回到顶部', exact: true });
+  assert.equal(await backToTop.count(), 0, 'back-to-top is absent at the top');
+  await mkdir('/tmp/fora-backtotop-audit', { recursive: true });
+  for (const [name, width, theme, reducedMotion] of [
+    ['mobile', 390, 'light', 'no-preference'], ['desktop', 1280, 'light', 'no-preference'],
+    ['mobile-dark', 390, 'dark', 'reduce'], ['desktop-dark', 1280, 'dark', 'reduce'],
+  ]) {
+    await page.setViewportSize({ width, height: 844 });
+    await page.emulateMedia({ reducedMotion });
+    await page.evaluate(theme => document.documentElement.dataset.theme = theme, theme);
+    await page.locator('.talkrow--discovery').last().scrollIntoViewIfNeeded();
+    await backToTop.waitFor();
+    await page.waitForFunction(() => Number(getComputedStyle(document.querySelector('.backtotop')).opacity) > .99);
+    assert(await backToTop.evaluate(el => {
+      const r = el.getBoundingClientRect();
+      return r.width >= 44 && r.height >= 44 && r.right <= innerWidth && r.bottom <= innerHeight;
+    }), 'touch target stays inside viewport');
+    await page.screenshot({ path: `/tmp/fora-backtotop-audit/${name}-bottom.png` });
+    await backToTop.focus();
+    await backToTop.press('Enter');
+    await page.waitForFunction(() => window.scrollY === 0);
+    await backToTop.waitFor({ state: 'detached' });
+    await page.screenshot({ path: `/tmp/fora-backtotop-audit/${name}-top.png` });
+  }
   await page.locator('.talkrow--discovery').last().scrollIntoViewIfNeeded();
   await page.waitForFunction(() => Number(getComputedStyle(document.querySelector('.talkrow--discovery:last-child')).opacity) > 0.99, null, { timeout: 2000 });
   assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
@@ -105,6 +129,7 @@ try {
     if (path === '/ccfchip2026') await page.locator('.krail__toggle').first().click();
     if (path === '/chinasoft2026') await page.locator('.frow__caretbtn').first().click();
     assert.equal(await page.locator('.heat-value').count(), 0, path + ' has no heat display');
+    assert.equal(await backToTop.count(), 0, 'back-to-top unmounts outside the heat page');
   }
   assert.equal(requests, count, 'existing content routes never read heat');
   await page.locator('.acct-btn').click();

@@ -63,23 +63,15 @@ const INK = "#111318";
 const SUB = "#54606e";
 const MUTE = "#8b93a0";
 const FAINT = "#c4cad3";
+const META = "#666666";
+const BADGE_BG = "#fafafa";
+const BADGE_BORDER = "#e5e5e5";
 
 const SANS = `-apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif`;
 const MONO = `ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace`;
 
 function font(weight: number, size: number, mono = false): string {
   return `${weight} ${size}px ${mono ? MONO : SANS}`;
-}
-
-type RGB = [number, number, number];
-function hexToRgb(hex: string): RGB {
-  let h = hex.replace("#", "").trim();
-  if (h.length === 3) h = h.split("").map((c) => c + c).join("");
-  const n = parseInt(h.slice(0, 6) || "0070f3", 16);
-  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
-}
-function rgba([r, g, b]: RGB, a: number): string {
-  return `rgba(${r},${g},${b},${a})`;
 }
 
 function isCjk(ch: string): boolean {
@@ -417,7 +409,6 @@ function drawForaMark(ctx: CanvasRenderingContext2D, x: number, y: number, size:
 
 function layout(ctx: CanvasRenderingContext2D, spec: PosterSpec, dry: boolean): number {
   const accent = spec.accent;
-  const accentRgb = hexToRgb(accent);
   const x = PAD;
   const maxW = POSTER_W - PAD * 2;
 
@@ -432,11 +423,14 @@ function layout(ctx: CanvasRenderingContext2D, spec: PosterSpec, dry: boolean): 
       ctx.font = font(600, 26);
       const chipW = 20 + isz + 12 + ctx.measureText(spec.chip).width + 22;
       if (!dry) {
-        ctx.fillStyle = rgba(accentRgb, 0.1);
+        ctx.fillStyle = BADGE_BG;
+        ctx.strokeStyle = BADGE_BORDER;
+        ctx.lineWidth = 2;
         roundRect(ctx, cx, y, chipW, chipH, 12);
         ctx.fill();
-        drawIcon(ctx, "tag", cx + 20, y + (chipH - isz) / 2, isz, accent);
-        ctx.fillStyle = accent;
+        ctx.stroke();
+        drawIcon(ctx, "tag", cx + 20, y + (chipH - isz) / 2, isz, META);
+        ctx.fillStyle = META;
         ctx.font = font(600, 26);
         ctx.fillText(spec.chip, cx + 20 + isz + 12, y + (chipH - 26) / 2);
       }
@@ -445,8 +439,8 @@ function layout(ctx: CanvasRenderingContext2D, spec: PosterSpec, dry: boolean): 
     if (spec.code && !dry) {
       ctx.font = font(400, 28, true);
       const codeW = ctx.measureText(spec.code).width + 24;
-      ctx.fillStyle = "#fafafa";
-      ctx.strokeStyle = "#e5e5e5";
+      ctx.fillStyle = BADGE_BG;
+      ctx.strokeStyle = BADGE_BORDER;
       ctx.lineWidth = 2;
       roundRect(ctx, cx, y, codeW, chipH, 8);
       ctx.fill(); ctx.stroke();
@@ -460,9 +454,9 @@ function layout(ctx: CanvasRenderingContext2D, spec: PosterSpec, dry: boolean): 
   y = textBlock(ctx, dry, spec.title, x, y, maxW, font(800, 62), INK, 82, 6);
   y += 30;
 
-  // forum/talk meta lines (each icon-tagged, accent icon)
+  // Forum/talk metadata uses neutral icons.
   for (const m of spec.metaLines) {
-    y = iconMeta(ctx, dry, m.icon, m.text, x, y, maxW, 30, SUB, accent) + 12;
+    y = iconMeta(ctx, dry, m.icon, m.text, x, y, maxW, 30, SUB, META) + 12;
   }
 
   // people (chairs / speakers): name (bold) + affiliation (lighter, smaller)
