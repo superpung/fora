@@ -34,8 +34,6 @@ export function HeatProvider({ children }: { children: ReactNode }) {
   const { id } = useConference();
   const [snapshot, setSnapshot] = useState<HeatSnapshot | null>(null);
   const [status, setStatus] = useState<HeatState["status"]>("loading");
-  const [refreshing, setRefreshing] = useState(false);
-  const [nextRefreshAt, setNextRefreshAt] = useState(0);
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout> | undefined;
     let controller: AbortController | null = null;
@@ -46,7 +44,6 @@ export function HeatProvider({ children }: { children: ReactNode }) {
       if (!visible()) { if (!navigator.onLine) setStatus("error"); return; }
       clearTimeout(timer);
       controller = new AbortController();
-      setRefreshing(true);
       let next = Date.now() + HEAT_INTERVAL_MS;
       try {
         const result = await load(controller.signal);
@@ -62,15 +59,13 @@ export function HeatProvider({ children }: { children: ReactNode }) {
       } finally {
         controller = null;
         if (!disposed) {
-          setRefreshing(false);
-          setNextRefreshAt(navigator.onLine ? next : 0);
           if (visible()) timer = setTimeout(() => void refresh(), Math.max(0, next - Date.now()));
         }
       }
     };
     const visibility = () => {
       clearTimeout(timer);
-      if (!navigator.onLine) { setSnapshot(null); setStatus("error"); setNextRefreshAt(0); }
+      if (!navigator.onLine) { setSnapshot(null); setStatus("error"); }
       else if (visible()) void refresh();
     };
     void refresh();
@@ -88,8 +83,7 @@ export function HeatProvider({ children }: { children: ReactNode }) {
   }, [id]);
   const entry = snapshot?.conferences[id];
   const data = entry && entry.sha256 === conferenceMeta(id)?.sha256 ? entry : null;
-  return <HeatContext.Provider value={{ data, status: status === "ready" && !data ? "error" : status,
-    refreshing, nextRefreshAt }}>
+  return <HeatContext.Provider value={{ data, status: status === "ready" && !data ? "error" : status }}>
     {children}
   </HeatContext.Provider>;
 }

@@ -37,16 +37,8 @@ try {
   assert.equal(await page.getByRole('button', { name: /刷新热度|热度算法|Scoring/ }).count(), 0);
   assert(!(await page.locator('main').innerText()).includes('加权'));
   assert(!(await page.locator('.ftable').innerText()).includes('·'));
-  await page.getByRole('progressbar', { name: '下次更新' }).waitFor();
-  assert(!/更新|Updated|Updating/.test(await page.locator('.heat-freshness').innerText()));
-  const ring = page.locator('.heat-countdown circle').last();
-  const ringLength = async () => parseFloat(await ring.getAttribute('stroke-dasharray'));
-  const firstLength = await ringLength(), firstCountdown = await page.locator('.heat-countdown__time').textContent();
-  await page.waitForTimeout(1100); const secondLength = await ringLength();
-  await page.waitForTimeout(1100); const thirdLength = await ringLength();
-  assert(firstLength > secondLength && secondLength > thirdLength, 'the real five-minute arc moves continuously between clock renders');
-  assert.notEqual(await page.locator('.heat-countdown__time').textContent(), firstCountdown, 'remaining time advances every second');
-  assert(await page.locator('.heat-freshness').evaluate(el => el.getBoundingClientRect().left === el.parentElement.querySelector('h2').getBoundingClientRect().left), 'freshness belongs below the heading');
+  assert.equal(await page.getByRole('progressbar').count(), 0);
+  assert(!/更新|倒计时|Updated|Next update/.test(await page.locator('.section__head').innerText()));
   const compactMetric = row => row.evaluate(el => {
     const score = el.querySelector('.heat-value'), star = el.querySelector('.star');
     const text = document.createRange(); text.selectNodeContents(score);
@@ -141,12 +133,11 @@ try {
       conferences: { chinasoft2026: { sha256: conference.sha256, forums: { R1: 200 }, talks: { 'R1#1': 200 } } } } });
   });
   await clock.goto(base + '/chinasoft2026/popular'); await clock.locator('.heat-value').first().waitFor();
-  await clock.getByRole('progressbar').waitFor();
+  assert.equal(await clock.getByRole('progressbar').count(), 0);
   // Development StrictMode may abort an initial read; each later cycle must add exactly one.
   const initialReads = reads; assert(initialReads >= 1 && initialReads <= 2);
   await clock.clock.fastForward(60_000);
-  await until(async () => (await clock.locator('.heat-countdown__time').innerText()) === '4:00');
-  assert(!(await clock.locator('.heat-freshness').innerText()).includes('更新'));
+  assert(!/更新|倒计时/.test(await clock.locator('.section__head').innerText()));
   assert.equal(reads, initialReads + 0);
   await clock.clock.fastForward(240_100); await until(() => reads === initialReads + 1); await clock.locator('.heat-value').first().waitFor();
   const visibility = async hidden => clock.evaluate(hidden => {
@@ -172,5 +163,5 @@ try {
   await clock.clock.runFor(600); await clock.locator('.dashhead').waitFor();
   await clock.clock.fastForward(900_000); assert.equal(reads, restartedReads, 'leaving the heat page cancels polling');
   await timed.close();
-  console.log('PASS five-minute automatic refresh, countdown without update-age text, hidden/offline suspension, recovery, route cleanup and disabled polling');
+  console.log('PASS five-minute automatic refresh, no refresh indicators, hidden/offline suspension, recovery, route cleanup and disabled polling');
 } finally { await browser?.close(); server.kill('SIGTERM'); }

@@ -1,12 +1,11 @@
 import { HeatProvider } from "../lib/heat";
 import { useSync } from "../lib/sync-store";
-import { useClockMs } from "../lib/use-now";
 import { useMemo } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { motion, type Variants } from "framer-motion";
 import { useConference } from "../lib/conference-store";
 import { useFollow } from "../lib/follow-store";
-import { HEAT_INTERVAL_MS, useHeat } from "../lib/heat-store";
+import { useHeat } from "../lib/heat-store";
 import { useI18n } from "../lib/i18n-store";
 import { useStickyState } from "../lib/sticky-state";
 import { collectFollowedItems } from "../lib/export";
@@ -29,24 +28,6 @@ export default function Popular() {
   const { id } = useConference();
   return heatEnabled ? <HeatProvider><Rankings /></HeatProvider> : <Navigate to={`/${id}`} replace />;
 }
-function RefreshCountdown() {
-  const { nextRefreshAt, refreshing } = useHeat();
-  const { lang } = useI18n();
-  const zh = lang !== "en";
-  const now = useClockMs(1000);
-  const seconds = Math.max(0, Math.ceil((nextRefreshAt - now) / 1000));
-  const remaining = useMemo(() => Math.max(0, (nextRefreshAt - Date.now()) / 1000), [nextRefreshAt]);
-  return <span className="heat-freshness">
-    {!refreshing && nextRefreshAt > 0 && <span className="meta-bit"><svg width="20" height="20" viewBox="0 0 20 20" className="heat-countdown"
-      role="progressbar" aria-label={zh ? "下次更新" : "Next update"} aria-valuemin={0} aria-valuemax={100}
-      aria-valuenow={Math.min(100, Math.round(seconds / (HEAT_INTERVAL_MS / 1000) * 100))}
-      aria-valuetext={`${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`}>
-      <circle cx="10" cy="10" r="8" className="heat-countdown__track" />
-      <motion.circle key={nextRefreshAt} cx="10" cy="10" r="8" initial={{ pathLength: Math.min(1, remaining / (HEAT_INTERVAL_MS / 1000)) }}
-        animate={{ pathLength: 0 }} transition={{ duration: remaining, ease: "linear" }} />
-    </svg><span className="heat-countdown__time mono" aria-hidden>{Math.floor(seconds / 60)}:{String(seconds % 60).padStart(2, "0")}</span></span>}
-  </span>;
-}
 function Rankings() {
   const views = useConference();
   const { id, conference } = views;
@@ -67,11 +48,10 @@ function Rankings() {
     .sort((a, b) => (data?.talks[b.followId!] ?? 0) - (data?.talks[a.followId!] ?? 0) ||
       (a.date || "9999-99-99").localeCompare(b.date || "9999-99-99") || (a.start ?? "99:99").localeCompare(b.start ?? "99:99") || a.followId!.localeCompare(b.followId!));
   return <motion.div className="container section" variants={pageVariants} initial="initial" animate="animate" exit="exit">
-    <div className="section__head heat-header">
-      <div className="section__titlerow heat-heading">
+    <div className="section__head">
+      <div className="section__titlerow">
         <span className="section__icon" aria-hidden><Icon name="chart" size={19} /></span>
         <h2 className="section__title">{t("nav.popular")}</h2>
-        <RefreshCountdown />
       </div>
       <div className="section__controls">
         <SegmentedControl value={kind} onChange={setKind} label={zh ? "热门类别" : "Popular category"} options={[

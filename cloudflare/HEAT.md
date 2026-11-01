@@ -106,10 +106,9 @@ not withdraw a contribution.
 The provider mounts only on the enabled heat page. It reuses an unexpired public
 snapshot and refreshes at its remaining Cache-Control lifetime, capped at five
 minutes. A one-second allowance for the server's rounded-down remaining seconds
-avoids premature re-reads, still capped at five minutes. Below the heading, the
-page shows a continuous linear countdown arc and a per-second `m:ss` value. It
-does not display update-age text. The 20px arc represents the real five-minute
-interval; the text makes its otherwise subtle progress readable.
+avoids premature re-reads, still capped at five minutes. The page does not
+display an update time, progress ring or countdown. Automatic refresh uses only
+the cache-expiry timer; no per-second display clock runs on the heat page.
 
 Leaving the page, switching heat off, hiding the tab or going offline suspends
 polling. Returning to the foreground or network checks the cache immediately;
@@ -272,8 +271,7 @@ changes were limited to the preview Worker, D1 database and R2 bucket.
 Popular shares the home's `ForumSummary`/`ForumActions`, My Day's `AgendaRow`
 and Schedule's `SegmentedControl`. My Day keeps its original time column and
 metadata placement. SourceNotes retains its own implementation after removing the
-scoring disclosure. The account menu uses the elapsed-time formatter. Technical checks and responsive/a11y regressions belong to the
-assistant; the user reviews the heat page's product/design choices.
+scoring disclosure. Technical checks and responsive/a11y regressions belong to the assistant; the user reviews the heat page's product/design choices.
 
 ## Acceptance and rollout
 
@@ -286,8 +284,8 @@ assistant; the user reviews the heat page's product/design choices.
 - Browser: public ranking, account menu signed out, two-device participation,
   follow/unfollow/import, weighted report metadata and stable anchors,
   unavailable/invalid/hash-mismatch responses, caching, desktop/mobile layout,
-  aligned score text and compact star gaps, continuous arc sampling and per-second
-  countdown, automatic expiry refresh, hidden/offline/disabled polling
+  aligned score text and compact star gaps, absence of refresh indicators,
+  automatic expiry refresh, hidden/offline/disabled polling
   suspension, recovery, and the five-minute/two-second sync timing contract.
 - Existing conference, source-gap, portrait, anchor, multi-day, offline and live
   clock tests remain required, alongside lint/build and Cloudflare integration.

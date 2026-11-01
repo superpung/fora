@@ -1,4 +1,3 @@
-import { relativeTime } from "../lib/relative-time";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
@@ -28,6 +27,15 @@ const EXPORTS: { key: ExportFormat; labelKey: string; ext: string; icon: IconNam
   { key: "json", labelKey: "export.json", ext: ".json", icon: "file" },
 ];
 
+function relTime(iso: string | null, zh: boolean): string {
+  if (!iso) return "";
+  const ms = Date.now() - new Date(iso).getTime();
+  if (Number.isNaN(ms)) return "";
+  if (ms < 60_000) return zh ? "刚刚" : "just now";
+  if (ms < 3_600_000) return `${Math.floor(ms / 60_000)}${zh ? " 分钟前" : " min ago"}`;
+  if (ms < 86_400_000) return `${Math.floor(ms / 3_600_000)}${zh ? " 小时前" : " h ago"}`;
+  return `${Math.floor(ms / 86_400_000)}${zh ? " 天前" : " d ago"}`;
+}
 
 function initialsOf(u: { name?: string; login?: string } | null): string {
   return (u?.name || u?.login || "?").trim().slice(0, 2).toUpperCase();
@@ -187,7 +195,7 @@ export default function AccountMenu() {
                   <button className="acct-row" onClick={() => void gs.syncNow()}>
                     <Icon name="refresh" size={15} className={gs.status === "syncing" ? "spin" : undefined} />
                     <span className="acct-row__label">{statusText}</span>
-                    {gs.lastSyncedAt && <span className="acct-row__meta">{relativeTime(gs.lastSyncedAt, zh)}</span>}
+                    {gs.lastSyncedAt && <span className="acct-row__meta">{relTime(gs.lastSyncedAt, zh)}</span>}
                   </button>
                 )}
 

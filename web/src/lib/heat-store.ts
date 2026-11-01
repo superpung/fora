@@ -4,8 +4,6 @@ export interface HeatSnapshot { generated_at: string; conferences: Record<string
 export interface HeatState {
   data: ConferenceHeat | null;
   status: "loading" | "ready" | "error";
-  refreshing: boolean;
-  nextRefreshAt: number;
 }
 export const HEAT_INTERVAL_MS = 300_000;
 export const HeatContext = createContext<HeatState | null>(null);
