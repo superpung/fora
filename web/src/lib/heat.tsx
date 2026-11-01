@@ -89,7 +89,7 @@ export function HeatProvider({ children }: { children: ReactNode }) {
   const entry = snapshot?.conferences[id];
   const data = entry && entry.sha256 === conferenceMeta(id)?.sha256 ? entry : null;
   return <HeatContext.Provider value={{ data, status: status === "ready" && !data ? "error" : status,
-    refreshing, updatedAt: data ? snapshot!.generated_at : null, nextRefreshAt }}>
+    refreshing, nextRefreshAt }}>
     {children}
   </HeatContext.Provider>;
 }

@@ -38,7 +38,7 @@ try {
   assert(!(await page.locator('main').innerText()).includes('加权'));
   assert(!(await page.locator('.ftable').innerText()).includes('·'));
   await page.getByRole('progressbar', { name: '下次更新' }).waitFor();
-  assert((await page.locator('.heat-freshness').innerText()).includes('更新'));
+  assert(!/更新|Updated|Updating/.test(await page.locator('.heat-freshness').innerText()));
   const ring = page.locator('.heat-countdown circle').last();
   const ringLength = async () => parseFloat(await ring.getAttribute('stroke-dasharray'));
   const firstLength = await ringLength(), firstCountdown = await page.locator('.heat-countdown__time').textContent();
@@ -145,7 +145,8 @@ try {
   // Development StrictMode may abort an initial read; each later cycle must add exactly one.
   const initialReads = reads; assert(initialReads >= 1 && initialReads <= 2);
   await clock.clock.fastForward(60_000);
-  await until(async () => (await clock.locator('.heat-freshness').innerText()).includes('1 分钟前更新'));
+  await until(async () => (await clock.locator('.heat-countdown__time').innerText()) === '4:00');
+  assert(!(await clock.locator('.heat-freshness').innerText()).includes('更新'));
   assert.equal(reads, initialReads + 0);
   await clock.clock.fastForward(240_100); await until(() => reads === initialReads + 1); await clock.locator('.heat-value').first().waitFor();
   const visibility = async hidden => clock.evaluate(hidden => {
@@ -171,5 +172,5 @@ try {
   await clock.clock.runFor(600); await clock.locator('.dashhead').waitFor();
   await clock.clock.fastForward(900_000); assert.equal(reads, restartedReads, 'leaving the heat page cancels polling');
   await timed.close();
-  console.log('PASS five-minute automatic refresh, source age/countdown, hidden/offline suspension, recovery, route cleanup and disabled polling');
+  console.log('PASS five-minute automatic refresh, countdown without update-age text, hidden/offline suspension, recovery, route cleanup and disabled polling');
 } finally { await browser?.close(); server.kill('SIGTERM'); }

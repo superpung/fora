@@ -1,7 +1,6 @@
 import { HeatProvider } from "../lib/heat";
 import { useSync } from "../lib/sync-store";
 import { useClockMs } from "../lib/use-now";
-import { relativeTime } from "../lib/relative-time";
 import { useMemo } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { motion, type Variants } from "framer-motion";
@@ -30,15 +29,14 @@ export default function Popular() {
   const { id } = useConference();
   return heatEnabled ? <HeatProvider><Rankings /></HeatProvider> : <Navigate to={`/${id}`} replace />;
 }
-function Freshness() {
-  const { updatedAt, nextRefreshAt, refreshing } = useHeat();
+function RefreshCountdown() {
+  const { nextRefreshAt, refreshing } = useHeat();
   const { lang } = useI18n();
   const zh = lang !== "en";
   const now = useClockMs(1000);
   const seconds = Math.max(0, Math.ceil((nextRefreshAt - now) / 1000));
   const remaining = useMemo(() => Math.max(0, (nextRefreshAt - Date.now()) / 1000), [nextRefreshAt]);
   return <span className="heat-freshness">
-    <span role="status">{refreshing ? (zh ? "更新中" : "Updating") : updatedAt ? (zh ? `${relativeTime(updatedAt, true, now)}更新` : `Updated ${relativeTime(updatedAt, false, now)}`) : ""}</span>
     {!refreshing && nextRefreshAt > 0 && <span className="meta-bit"><svg width="20" height="20" viewBox="0 0 20 20" className="heat-countdown"
       role="progressbar" aria-label={zh ? "下次更新" : "Next update"} aria-valuemin={0} aria-valuemax={100}
       aria-valuenow={Math.min(100, Math.round(seconds / (HEAT_INTERVAL_MS / 1000) * 100))}
@@ -73,7 +71,7 @@ function Rankings() {
       <div className="section__titlerow heat-heading">
         <span className="section__icon" aria-hidden><Icon name="chart" size={19} /></span>
         <h2 className="section__title">{t("nav.popular")}</h2>
-        <Freshness />
+        <RefreshCountdown />
       </div>
       <div className="section__controls">
         <SegmentedControl value={kind} onChange={setKind} label={zh ? "热门类别" : "Popular category"} options={[

@@ -37,7 +37,7 @@ export interface PosterSpec {
   confName: string; // conference name (masthead)
   confDate: string; // "2025年11月27–30日"
   confVenue?: string | null; // "武汉国际会议中心"
-  confLocation?: string | null; // "中国·武汉"
+  confLocation?: string | null; // "中国 · 武汉"
   chip?: string | null; // forum category (forum) / kind (talk)
   code?: string | null; // forum code, monospace, right of the chip
   title: string;

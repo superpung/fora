@@ -106,12 +106,10 @@ not withdraw a contribution.
 The provider mounts only on the enabled heat page. It reuses an unexpired public
 snapshot and refreshes at its remaining Cache-Control lifetime, capped at five
 minutes. A one-second allowance for the server's rounded-down remaining seconds
-avoids premature re-reads, still capped at five minutes. The page shows the
-snapshot's `generated_at` age, not the time of the last fetch, below the page
-heading. A continuous linear countdown arc and a per-second `m:ss` value share
-that metadata line. The 20px arc represents the real five-minute interval; the
-text makes its otherwise subtle progress readable. The existing account-menu
-elapsed-time formatter is shared.
+avoids premature re-reads, still capped at five minutes. Below the heading, the
+page shows a continuous linear countdown arc and a per-second `m:ss` value. It
+does not display update-age text. The 20px arc represents the real five-minute
+interval; the text makes its otherwise subtle progress readable.
 
 Leaving the page, switching heat off, hiding the tab or going offline suspends
 polling. Returning to the foreground or network checks the cache immediately;
@@ -274,8 +272,7 @@ changes were limited to the preview Worker, D1 database and R2 bucket.
 Popular shares the home's `ForumSummary`/`ForumActions`, My Day's `AgendaRow`
 and Schedule's `SegmentedControl`. My Day keeps its original time column and
 metadata placement. SourceNotes retains its own implementation after removing the
-scoring disclosure. The account menu and freshness indicator share the elapsed-
-time formatter. Technical checks and responsive/a11y regressions belong to the
+scoring disclosure. The account menu uses the elapsed-time formatter. Technical checks and responsive/a11y regressions belong to the
 assistant; the user reviews the heat page's product/design choices.
 
 ## Acceptance and rollout

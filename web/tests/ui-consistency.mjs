@@ -35,11 +35,12 @@ try {
     const badgeStyle=await appearance(page.locator('.frow__code').first());
     const sameBadge=async locator=>{await locator.first().waitFor();assert.deepEqual(await appearance(locator.first()),badgeStyle);};
     assert.equal(await page.locator('.dashhead__venue svg').count(),2);
-    const venue=await page.locator('.dashhead__venue').innerText();assert(!venue.includes(' · '));assert(venue.includes('中国·天津'));
+    const venue=await page.locator('.dashhead__venue').innerText();assert(venue.includes('中国 · 天津'));assert.equal(venue.split(' · ').length,2);
     await page.locator('.search__input').fill('安全');await page.locator('.dash__resultinfo .meta-bit').waitFor();
     assert(!(await page.locator('.dash__resultinfo').innerText()).includes('·'));await shot('home-filter');
     await page.locator('.confsw__btn').click();await page.locator('.confsw__itemmeta').first().waitFor();
-    assert(!(await page.locator('.confsw__pop').innerText()).includes('·'));await shot('conference-picker');await page.keyboard.press('Escape');
+    assert(!(await page.locator('.confsw__pop').innerText()).includes('·'));
+    assert(await page.locator('.confsw__itemmeta svg').evaluateAll(icons=>icons.every(icon=>getComputedStyle(icon).color===getComputedStyle(icon.closest('.confsw__itemmeta')).color)), 'picker metadata icons inherit neutral text color');await shot('conference-picker');await page.keyboard.press('Escape');
     await page.locator('.nav__search').click();await page.locator('.cmdk__input').fill('R1');
     await sameBadge(page.locator('.cmdk .code-tag'));assert(!(await page.locator('.cmdk__optsub').first().innerText()).includes('·'));await shot('search');await page.keyboard.press('Escape');
     await goto('/chinasoft2026/forum/R1','.fd__meta .code-tag');await sameBadge(page.locator('.fd__meta .code-tag'));await shot('forum');

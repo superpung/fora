@@ -6,7 +6,7 @@ scope, not only the latest edit. Original conference content is preserved.
 
 | ID | Surface | Current decision and implementation |
 | --- | --- | --- |
-| 1 | Country and city | Retain `中国·天津` in hub/home/poster locations. |
+| 1 | Country and city | Retain the separator with spacing: `中国 · 天津` in hub/home/poster locations. |
 | 2 | Home date and location | Remove the separator; calendar and pin icons identify separate fields. |
 | 3 | Home keynote groups | Use spaced title, clock/period and report count. |
 | 4 | Home filter summary | Use separate search/star metadata with spacing. |

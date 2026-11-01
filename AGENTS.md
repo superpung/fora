@@ -384,11 +384,11 @@ pnpm preview    # serve the production build
   visibility uses `fora.heat.enabled`, while signed-in accounts use the revisioned
   server setting. Turning it off hides the route/navigation and stops heat reads.
   `HeatProvider` mounts only on that page, refreshes at snapshot expiry (at most
-  five minutes), and suspends on hidden/offline pages. `Freshness` shows the
-  snapshot's real age, smooth next-refresh ring and per-second remaining time;
-  no scoring prose or refresh button belongs in the app. Failures show unavailable,
-  not zero. Account polling is
-  five minutes; edits still upload after two seconds.
+  five minutes), and suspends on hidden/offline pages. `RefreshCountdown` shows a
+  smooth next-refresh ring and per-second remaining time, without update-age
+  text. No scoring prose or refresh button belongs in the app. Failures show
+  unavailable, not zero. Account polling is five minutes; edits still upload
+  after two seconds.
   Read `cloudflare/HEAT.md` for the exact formula, resource budget, privacy window,
   test matrix and catalog/schema rollout requirements. Do not publish an obsolete
   catalog without its `interest` index or substitute full-dataset parsing at runtime.
@@ -398,7 +398,7 @@ pnpm preview    # serve the production build
   used by My Day and Popular. It preserves My Day's separate time column;
   discovery rows show source facts with a code badge before the forum name and
   right-aligned heat. SourceNotes owns its sole animated disclosure. The account
-  menu and heat freshness share `relative-time.ts`. `ForumCode` / `ForumIdentity`
+  menu uses `relative-time.ts`. `ForumCode` / `ForumIdentity`
   own all HTML forum badges; `ui-consistency.mjs` checks their real callers and
   source-preserving punctuation changes. Change these owners rather than copying
   their markup or adding page-specific visual substitutes; check all affected callers.
