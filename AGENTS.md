@@ -400,10 +400,14 @@ pnpm preview    # serve the production build
   `ForumRowParts` are shared by Home and Popular. `AgendaRow` is the report row
   used by My Day and Popular. It preserves My Day's separate time column;
   discovery rows show source facts with a code badge before the forum name and
-  right-aligned heat. `BackToTop` currently mounts only on Popular: a circular
-  button appears after 600px; its outer ring tracks document scroll progress
+  right-aligned heat. `ConferenceLayout` mounts one shared `BackToTop` on the
+  conference reading pages. Schedule excludes it from all/board views and mounts
+  it only for My Day; the conference hub is unchanged. The circular button
+  appears only after 600px of document scrolling; its outer ring tracks document scroll progress
   (not heat refresh time) and respects changing content height. It reuses the
   shared button/icon styles and respects reduced motion when returning to the top.
+  `back-to-top.mjs` checks these routes, short lists, timeline exclusion, existing
+  controls and desktop/mobile light/dark screenshots.
   `CityLocation` owns country/city labels on Home and the hub; the retained
   middle dot occupies 1em without padding spaces. Posters draw the same spacing
   at canvas scale. SourceNotes owns its sole animated disclosure.

@@ -17,6 +17,7 @@ import StarButton from "../components/StarButton";
 import TimeGrid from "../components/TimeGrid";
 import UntimedForumGrid from "../components/UntimedForumGrid";
 import MyDay from "../components/MyDay";
+import BackToTop from "../components/BackToTop";
 import SegmentedControl from "../components/SegmentedControl";
 import type { Block, Forum, Talk, Break } from "../types";
 import { titleLine } from "../lib/talk-title";
@@ -459,6 +460,7 @@ export default function Schedule() {
           )}
         </motion.div>
       </AnimatePresence>
+      {mine && shape === "day" && <BackToTop />}
     </motion.div>
   );
 }
