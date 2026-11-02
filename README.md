@@ -1,30 +1,61 @@
+<div align="center">
+
+<img src="web/public/icon-512.png" alt="Fora" width="96" height="96" />
+
 # Fora
 
-A conference agenda viewer with offline reading, GitHub login, synchronized
-follows and aggregate interest statistics. React/Vite hosts the application;
-Cloudflare Workers, D1 and R2 provide the runtime services.
+**A fast, elegant viewer for conference programs — browse every session, star what matters, and carry your agenda across devices.**
+
+[![CI](https://github.com/superpung/fora/actions/workflows/ci.yml/badge.svg)](https://github.com/superpung/fora/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/superpung/fora?sort=semver)](https://github.com/superpung/fora/releases)
+
+English · [中文](README.zh-CN.md)
+
+</div>
+
+Fora turns a dense conference program into something you can actually navigate.
+Pick a conference, explore its sessions, build a personal agenda by starring what
+matters, and take it with you everywhere — no app to install.
+
+## Features
+
+- 🏛️ **Many conferences, one place** — browse CCF Chip 2026, ChinaOSC 2026, ChinaSoft 2025 and ChinaSoft 2026.
+- 🗓️ **The whole program** — keynotes, parallel sessions, speakers, committee and organizers, with a bilingual interface (中文 / English), source-language content and a time view that shows what's running in parallel.
+- 🔴 **Live on the day** — what's on in every room right now, what starts next, and when your next starred item begins, using the conference's local time even when your device is elsewhere.
+- 📅 **Across days** — follow a forum once and keep its reports on the right dates, including in reminders and calendar exports.
+- 📖 **Source details** — published portraits, hosts and breaks, with expandable notes for source discrepancies; unpublished programme details remain explicit.
+- ⭐ **Your own agenda** — star the talks, sessions, and speakers you care about, and let **My Day** read a day as a plan: the free gaps, the room changes, and the clashes to decide between.
+- 📊 **Conference heat** — discover popular forums and reports through weighted follow scores. The dedicated heat page updates automatically while visible. **Heat statistics** defaults on; turning it off hides heat and withdraws signed-in contributions without losing follows. Scores are not attendance counts.
+- 🔔 **Reminders** — an optional nudge before each session you starred.
+- 🔍 **Search everything** — one box across talks, abstracts, speakers, affiliations, sessions, committees and organizations.
+- 🧭 **Plan for me** — a day without clashes, assembled from what interests you, with the reasoning behind every pick.
+- 🗺️ **Topic map** — see what a conference is about at a glance, with similar talks on every talk.
+- ✨ **AI summaries, on your terms** — one-line gists and topics, clearly marked as AI-generated, behind a single switch; the original text is always one tap away.
+- 🔄 **Synced across devices** — sign in with GitHub to sync through Fora’s database; browsing needs no account.
+- 📲 **Install & offline** — add it to your device and keep using it with no network.
+- 📤 **Export & back up** — take your agenda to your calendar, or as a backup you can bring back later.
+- 🖼️ **Share** — turn any session or talk into a clean, shareable image.
+- 🌗 **Light & dark** — follows your system. No page-view or presence tracking.
 
 ## Development
 
-```sh
-pnpm --dir web install --frozen-lockfile
-pnpm --dir web dev
-pnpm --dir web lint
-pnpm --dir web build
-pnpm --dir web test
-```
+Fora is open source. To run it locally, contribute, or add a conference, see
+**[AGENTS.md](AGENTS.md)**.
 
-The application reads the published catalog at `https://fora-data.repus.me`.
-Set `VITE_DATA_BASE_URL` to select an isolated data origin for testing.
-Git contains application code, generic tools, schema and synthetic fixtures.
-Conference maintenance material lives separately at `/data/fora-maintenance`.
+Shipped features and proposals awaiting approval are tracked separately in
+[ROADMAP.md](ROADMAP.md).
 
-## Data publishing
+Conference data is published independently to Cloudflare R2. The application runs
+on Workers Static Assets, with D1-backed sessions and agenda sync. Report IDs
+survive agenda reordering. Conference datasets, source captures, portraits and
+conference-specific maintenance scripts live in an external maintenance workspace.
+Git holds application code, generic tools, schema and synthetic test fixtures.
+Data updates are reviewed and published independently of application builds.
+For local development, run `pnpm --dir web install --frozen-lockfile` and
+`pnpm --dir web dev`; the app reads the published catalog by default.
+See [deployment and data publishing](cloudflare/README.md).
 
-Source capture, reviewed identities, enrichment and portrait preparation run in
-the external maintenance workspace. Use the generic publisher with
-`FORA_MAINTENANCE_ROOT` pointing to that workspace. Stage an immutable candidate,
-verify it through `?dataVersion=<hash>`, then conditionally promote the catalog.
-The frontend build is independent of conference updates.
+## License
 
-See `cloudflare/README.md` for operations and `AGENTS.md` for project rules.
+[MIT](LICENSE) © Super Lee & Claude.
