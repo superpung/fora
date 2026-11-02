@@ -400,9 +400,7 @@ export default function Schedule() {
                   )}
                 </div>
 
-                {!!block.extra?.flags?.length && (
-                  <div className="simplerow"><SourceNotes flags={block.extra.flags} /></div>
-                )}
+                <SourceNotes flags={block.extra?.flags} />
                 {block.kind === "keynotes" && (
                   <KeynotesBlock
                     block={block}

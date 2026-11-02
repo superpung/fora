@@ -946,6 +946,7 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 /* ---- vertical time-rail layout (forums whose talks carry times) ---- */
 .tline { display: flex; flex-direction: column; }
 .source-notes { margin: 10px 0; color: var(--fg-secondary); font-size: 12px; }
+.block > .source-notes { margin: 10px 16px 0; }
 .source-notes__toggle { display: inline-flex; align-items: center; gap: 6px; color: inherit; background: none; border: 0; padding: 4px 0; cursor: pointer; font: inherit; }
 .source-notes__content { overflow: hidden; overflow-wrap: anywhere; }
 .source-notes__content ul { margin: 6px 0; padding-left: 20px; }
