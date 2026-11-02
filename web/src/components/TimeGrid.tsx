@@ -14,16 +14,14 @@ import { titleLine } from "../lib/talk-title";
 import { forumOnDate, speakerNames } from "../lib/data";
 
 // A time-vs-forum matrix for one day's parallel forum sessions: the vertical
-// axis is wall-clock time, each forum is a column, and every talk sits near its
+// axis is wall-clock time, each forum is a column, and every talk sits at its
 // real start. It answers "at 10:00, what is each forum running".
 // Published forum windows also anchor placeholders before reports are announced.
 // Without any starts, Schedule uses the untimed board (see hasForumTimes).
 //
-// Time-proportional heights alone don't work here: talks run as short as 2 min,
-// far too little room for a title + speaker, so strict scaling clips text and
-// overlaps neighbours. Instead each talk gets a readable floor height and is
-// pushed down only when a burst of short talks would otherwise collide — the
-// column drifts slightly below true time under congestion but never clips.
+// Every timed cell and clock marker uses the same linear time axis. Short
+// cells reveal their content on hover, keyboard focus or touch expansion;
+// readability must never shift later events away from their source times.
 //
 // Every cell always renders its full time + title + speaker; the cell simply
 // shows as much as its slot allows and fades out the overflow at the bottom (no
@@ -32,9 +30,7 @@ import { forumOnDate, speakerNames } from "../lib/data";
 
 const PX_PER_MIN = 3.4; // a 20-min talk (the median) ≈ 68px — fits time+title+speaker
 const HOUR = 60;
-const MIN_H = 30; // floor so even a 2-min talk stays legible & clickable
-const BRK_MIN_H = 22; // floor for a break band (short, single-line)
-const GAP = 4; // min vertical gap when talks are pushed apart
+const POINT_H = 30; // display marker for a start with no published duration
 
 const pad = (n: number) => String(n).padStart(2, "0");
 const toMin = (t: string): number => {
@@ -146,7 +142,7 @@ export default function TimeGrid({
         return;
       }
       const s = toMin(t.start);
-      const e2 = t.end ? toMin(t.end) : s + 20; // assume 20 min when end is absent
+      const e2 = t.end ? toMin(t.end) : s;
       timed.push({ t, i, s, e: e2 });
       lo = Math.min(lo, s);
       hi = Math.max(hi, e2);
@@ -155,7 +151,7 @@ export default function TimeGrid({
       .filter((b) => b.start)
       .map((b) => {
         const s = toMin(b.start as string);
-        const e2 = b.end ? toMin(b.end) : s + 15;
+        const e2 = b.end ? toMin(b.end) : s;
         lo = Math.min(lo, s);
         hi = Math.max(hi, e2);
         return { s, e: e2, name: b.name, start: b.start as string, end: b.end };
@@ -206,7 +202,7 @@ export default function TimeGrid({
 
   lo = Math.floor(lo / HOUR) * HOUR;
   hi = Math.ceil(hi / HOUR) * HOUR;
-  const propH = (hi - lo) * PX_PER_MIN; // ideal (uncongested) body height
+  const propH = (hi - lo) * PX_PER_MIN; // clock-axis body height
 
   // "Now" indicator: a red time-pill + dot in the gutter and a line across the
   // columns, shown only when the viewed day is today and the clock falls within
@@ -215,12 +211,12 @@ export default function TimeGrid({
   const showNow = !!date && date === now.todayStr && nowMin >= lo && nowMin <= hi;
   const nowTop = (nowMin - lo) * PX_PER_MIN;
 
-  // Second pass: lay each column out with push-down so cells never overlap.
+  // Second pass: preserve true coordinates independently of preceding cells.
   let bodyH = propH;
   const columns: Column[] = raw.map((c) => {
-    let cursor = 0;
+    let extent = 0;
     // Merge talks and breaks into one time-ordered stream so a break lands
-    // between the talks it falls between, then push down to avoid overlaps.
+    // between the talks it falls between on the shared time axis.
     type Item =
       | { s: number; e: number; talk: { t: Talk; i: number } }
       | { s: number; e: number; brk: Brk };
@@ -229,18 +225,14 @@ export default function TimeGrid({
       ...c.breaks.map((b) => ({ s: b.s, e: b.e, brk: b })),
     ].sort((a, b) => a.s - b.s || ("brk" in a ? 1 : -1));
     const cells: Cell[] = items.map((it) => {
-      const desired = (it.s - lo) * PX_PER_MIN;
-      const top = Math.max(desired, cursor);
-      const h =
-        "brk" in it
-          ? Math.max((it.e - it.s) * PX_PER_MIN, BRK_MIN_H)
-          : Math.max((it.e - it.s) * PX_PER_MIN, MIN_H);
-      cursor = top + h + GAP;
+      const top = (it.s - lo) * PX_PER_MIN;
+      const h = it.e > it.s ? (it.e - it.s) * PX_PER_MIN : POINT_H;
+      extent = Math.max(extent, top + h);
       return "brk" in it
         ? { kind: "break", name: it.brk.name, start: it.brk.start, end: it.brk.end, top, h }
         : { kind: "talk", t: it.talk.t, i: it.talk.i, top, h };
     });
-    const bottom = cursor + (c.untimed > 0 ? 26 : 0);
+    const bottom = extent + (c.untimed > 0 ? 26 : 0);
     // A start-only placeholder still needs physical room without inventing an
     // end time. This is a display-height floor, not a schedule duration.
     const placeholderBottom = !c.forum.talks?.length
@@ -329,7 +321,8 @@ export default function TimeGrid({
                     <div
                       key={`br-${cell.start}-${cell.top}`}
                       className="tgrid__break"
-                      style={{ top: cell.top, height: cell.h, minHeight: cell.h }}
+                      data-start={cell.start} data-end={cell.end ?? undefined}
+                      style={{ top: cell.top, height: cell.h, minHeight: cell.h, paddingBlock: cell.h < 30 ? 0 : undefined }}
                     >
                       <Icon name="coffee" size={12} />
                       <span className="tgrid__breaktime mono">
@@ -365,7 +358,7 @@ export default function TimeGrid({
                 // minHeight lets a compressed cell grow to its full content on
                 // hover/open (see .tgrid__talk:hover / .is-open) without shrinking
                 // below its slot.
-                const style = { top, height: h, minHeight: h };
+                const style = { top, height: h, minHeight: h, paddingBlock: h < 30 ? 0 : undefined };
                 // The star sits beside the cell, not in it: a cell is a link, and
                 // a button inside a link is neither valid nor clickable. As the
                 // next sibling it can still follow the cell's hover (see
@@ -394,6 +387,7 @@ export default function TimeGrid({
                       <div
                         className={`tgrid__talk ${open ? "is-open" : ""}`}
                         style={style}
+                        data-start={t.start} data-end={t.end ?? undefined}
                         role="button"
                         tabIndex={0}
                         aria-expanded={open}
@@ -423,7 +417,7 @@ export default function TimeGrid({
                 }
                 return (
                   <Fragment key={i}>
-                    <Link to={to} className="tgrid__talk" style={style}>
+                    <Link to={to} className="tgrid__talk" style={style} data-start={t.start} data-end={t.end ?? undefined}>
                       {inner}
                     </Link>
                     {star}

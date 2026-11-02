@@ -545,17 +545,17 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 .block__meta { margin-left: auto; display: flex; align-items: center; gap: 10px; color: var(--fg-muted); font-size: 13px; }
 .block__loc { display: inline-flex; align-items: center; gap: 4px; font-family: var(--font-mono); }
 .block__loc svg { color: var(--fg-muted); }
-.block--registration .block__head, .block--banquet .block__head { border-bottom: none; }
+.block__head:only-child { border-bottom: none; }
 
 .time { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
 
-.talklist { padding: 4px 16px; }
+.talklist { padding: 0; }
 /* The third track holds the star. It collapses to nothing on a row that has
    none (an opening address, a break), so those rows keep their old two-column
    measure exactly. */
 .talkrow {
   position: relative; display: grid; grid-template-columns: 108px 1fr auto; gap: 18px;
-  padding: 13px 0; border-top: 1px solid var(--border);
+  padding: 13px 16px; border-top: 1px solid var(--border);
 }
 .talkrow:first-child { border-top: none; }
 /* The row's link covers the row and the star layers above it, so the star is a
@@ -587,19 +587,10 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
    strips do, so every hairline in the list still spans the same width. */
 .talkrow--link { color: inherit; transition: background 0.15s; }
 .talkrow--link:hover { background: var(--bg-hover); }
-.talklist--flush .talkrow { padding-inline: 16px; }
-/* A row's hover fill runs the full width of the panel, so the list's own 4px
-   top and bottom padding showed as a seam between the first (or last) hovered
-   row and the panel's edge. The rows carry their own spacing here. */
-.talklist--flush { padding: 0; }
 .breakrow { display: flex; gap: 14px; align-items: center; padding: 9px 16px; color: var(--fg-muted); font-size: 12.5px; background: var(--bg-subtle); border-top: 1px solid var(--border); }
 .breakrow:first-child { border-top: none; }
 .breakrow .time { color: var(--fg-muted); }
 .breakrow__label { display: inline-flex; align-items: center; gap: 6px; }
-/* Tea breaks inside the keynotes list sit within .talklist's 16px padding; pull
-   them back out so the band spans the full card width, flush with both borders. */
-.talklist:not(.talklist--flush) .breakrow { margin-left: -16px; margin-right: -16px; }
-
 /* ---- time-vs-forum matrix (Schedule, when talks carry times) ---- */
 .tgrid {
   --tg-head: 64px;
@@ -687,7 +678,7 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
    overflow stays `hidden` (not visible) so the content is revealed in step with
    the height animation — otherwise the full text paints instantly before/after
    the box finishes growing/shrinking, which looked like a jump. */
-.tgrid__talk:hover, .tgrid__talk.is-open {
+.tgrid__talk:hover, .tgrid__talk[href]:focus-visible, .tgrid__talk.is-open {
   height: auto !important; z-index: 5;
   background: var(--bg-hover); border-color: var(--border-strong);
   box-shadow: 0 3px 10px color-mix(in srgb, #000 7%, transparent);
@@ -698,7 +689,7 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 }
 /* fade eases out (not display:none) so the bottom gradient doesn't pop back in
    at the end of the collapse — that snap read as a stutter. */
-.tgrid__talk:hover::after, .tgrid__talk.is-open::after { opacity: 0; }
+.tgrid__talk:hover::after, .tgrid__talk[href]:focus-visible::after, .tgrid__talk.is-open::after { opacity: 0; }
 /* touch tap-to-expand: a small, borderless enter button appears bottom-right of
    the open card (shared by the timed and untimed boards). */
 .tgrid__tenter {
@@ -717,6 +708,7 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
   transition: opacity 0.12s ease-in-out;
 }
 .tgrid__talk:hover + .tgrid__tstarwrap,
+.tgrid__talk[href]:focus-visible + .tgrid__tstarwrap,
 .tgrid__talk.is-open + .tgrid__tstarwrap,
 .tgrid__tstarwrap:hover,
 .tgrid__tstarwrap:focus-within,
@@ -2244,7 +2236,7 @@ body:has(.backtotop) .footer { padding-bottom: calc(64px + max(24px, env(safe-ar
 .row-actions { display: flex; align-items: center; gap: 8px; position: relative; z-index: 2; }
 .row-actions .star { position: static; transform: none; align-self: center; }
 .frow__actions:has(.heat-value) { gap: 8px; }
-.talklist--flush .talkrow--discovery { padding-right: 12px; }
+.talkrow--discovery { padding-right: 12px; }
 .myday__untimed { font-family: var(--font-sans); font-size: 12.5px; color: var(--fg-muted); }
 @media (max-width: 600px) {
   .row-actions { align-self: start; }

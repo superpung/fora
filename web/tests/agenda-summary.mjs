@@ -17,6 +17,9 @@ const raw={id:'fixture',name:{zh:'Synthetic programme'},start_date:day,end_date:
   {id:'key',kind:'keynotes',title:{zh:'Plenary'},start:'13:00',end:'15:00',location:'Hall',extra:{flags:['Venue source note']},talks:[
    talk('Afternoon report','13:45','14:00'),talk('Panel','14:00','15:00',['Alex','Blair','Casey','Drew','Evan','Fran'].map(person))]},
   {id:'meeting',kind:'committee_meetings',start:'20:00',end:'21:00',meetings:[{name:{zh:'Evening meeting'},start:'20:00',end:'22:00',room:'Room'}]},
+  {id:'opening',kind:'ceremony',title:{zh:'Opening'},start:'07:30'},
+  {id:'registration',kind:'registration',title:{zh:'Registration'},note:'Check-in desk'},
+
  ]},{date:next,venue_id:'v',blocks:[{id:'only',kind:'keynotes',title:{zh:'Plenary only'},start:'18:00',end:'19:00',talks:[talk('Evening report','18:00','19:00')]}]}],
  forums:['A','B'].map((code,i)=>({code,title:{zh:'Forum '+code},day_date:day,session_period:'morning',room:'Room '+code,detail_extracted:true,chairs:[person('Chair only')],
   talks:[{...talk('Forum report '+code,i?'14:30':'09:00',i?'15:00':'09:30'),type:'talk',enrichment:{topics:['软件测试'],summary:{zh:'Test'}}}]}))};
@@ -56,7 +59,7 @@ try{
    check(v.scheduleDays[0].slots.length===3,'all forum references, including plenary groups');
    const saved=collectFollowedItems({talks:new Set([raw.forums[1].talks[0].id]),forums:new Set(),speakers:new Set()},v);
    check(saved.length===1&&saved[0].code==='B','durable report ID survives a change of section');
-   check(v.scheduleDays[0].start==='08:00'&&v.scheduleDays[0].end==='22:00','full published day envelope');
+   check(v.scheduleDays[0].start==='07:30'&&v.scheduleDays[0].end==='22:00','full published day envelope');
    check(v.forumTimeWindow(v.forumsByCode.B).start==='14:00','forum uses its own block');
    const periods=v.speakerList.flatMap(s=>s.talks.map(t=>[t.talkTitle.zh,t.period]));
    check(periods.some(([t,p])=>t==='Afternoon report'&&p==='afternoon'),'afternoon keynote');
@@ -65,7 +68,7 @@ try{
   },raw);
   const sections=page.locator('.dashday');assert.equal(await sections.count(),2);
   assert.equal(await page.locator('.dstat').filter({has:page.getByText('讲者',{exact:true})}).locator('.dstat__n').innerText(),'10');
-  assert((await sections.first().locator('.dashday__time').innerText()).includes('08:00–22:00'));
+  assert((await sections.first().locator('.dashday__time').innerText()).includes('07:30–22:00'));
   assert.equal(await sections.first().locator('.dashday__n').innerText(),'3 个论坛');
   for(const toggle of await page.locator('.krail__toggle').all())await toggle.click();
   const panel=page.locator('.krow').filter({has:page.getByText('Panel',{exact:true})});
@@ -77,7 +80,17 @@ try{
   await page.goto(base+'/fixture/speakers?q=Afternoon');await page.locator('.spcard__main').first().click();
   await page.locator('.sptalk').waitFor();assert((await page.locator('.sptalk').innerText()).includes('下午'));
   await page.waitForTimeout(500);await page.screenshot({path:`/tmp/fora-agenda-summary/${width}-${colorScheme}-speaker.png`});
-  await page.goto(base+'/fixture/schedule?v=all');const toggle=page.getByRole('button',{name:'来源注记'});await toggle.waitFor();
+  await page.goto(base+'/fixture/schedule?v=all');
+  await page.getByRole('heading',{name:'Opening',exact:true}).waitFor();
+  assert.equal(await page.locator('.block--ceremony .block__head').evaluate(el=>getComputedStyle(el).borderBottomWidth),'0px');
+  assert.equal(await page.locator('.block--registration .block__head').evaluate(el=>getComputedStyle(el).borderBottomWidth),'1px');
+  const linked=page.locator('.block--keynotes .talkrow--link').last();
+  await linked.scrollIntoViewIfNeeded();await page.waitForTimeout(1000);await linked.hover();await page.waitForTimeout(250);
+  const surface=await linked.evaluate(el=>{const row=el.getBoundingClientRect(),panel=el.closest('.block').getBoundingClientRect();return {left:row.left-panel.left,right:panel.right-row.right,bottom:panel.bottom-row.bottom,bg:getComputedStyle(el).backgroundColor,hover:getComputedStyle(el).getPropertyValue('--bg-hover').trim()}});
+  assert(surface.left<=1.5&&surface.right<=1.5&&surface.bottom<=1.5,'hover reaches all three card edges');
+  assert.notEqual(surface.bg,'rgba(0, 0, 0, 0)');
+  await page.screenshot({path:`/tmp/fora-agenda-summary/${width}-${colorScheme}-surfaces.png`});
+  const toggle=page.getByRole('button',{name:'来源注记'});await toggle.waitFor();
   await toggle.focus();await page.keyboard.press('Enter');await page.getByText('Venue source note',{exact:true}).waitFor();
   assert.equal(await toggle.getAttribute('aria-expanded'),'true');await toggle.click();
   await page.getByRole('button',{name:'关注 Referenced forum',exact:true}).click();
