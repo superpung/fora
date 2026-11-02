@@ -81,7 +81,9 @@ rolling out heat; production data and preview databases must remain separate.
 
 R2 owns the public catalog, immutable conference objects and portraits.
 The external workspace `/data/fora-maintenance` retains source HTML, identity
-registries, enrichment and conference-specific acceptance scripts.
+registries, enrichment, curated `data/*.json` and conference-specific acceptance scripts.
+Curated records are authoritative. Publication validates those exact files and
+regenerates only the catalog and checksummed assets; it never reruns source parsers.
 
 Builds read the runtime catalog directly. Generic code tests use synthetic
 records. Set `FORA_MAINTENANCE_ROOT=/data/fora-maintenance` for the publisher:

@@ -22,6 +22,9 @@ const raw={id:'fixture',name:{zh:'Synthetic programme'},start_date:day,end_date:
   talks:[{...talk('Forum report '+code,i?'14:30':'09:00',i?'15:00':'09:30'),type:'talk',enrichment:{topics:['软件测试'],summary:{zh:'Test'}}}]}))};
 for(const f of raw.forums)f.talks.forEach((t,i)=>t.id=`${f.code}#${i}`);
 for(const d of raw.days){let i=0;for(const b of d.blocks)if(b.kind==='keynotes')for(const t of b.talks??[])t.id=`KEYNOTE:${d.date}#${i++}`;}
+raw.forums[1].talks[0].id='KEYNOTE:2032-05-08#99';
+raw.forums.push({code:'C',title:{zh:'Referenced forum'},day_date:day,start:'15:00',end:'16:00',room:'Hall',talks:[],detail_extracted:false,agenda_status:'not_published'});
+raw.days[0].blocks[2].forum_entries=[{forum_code:'C'}];
 let browser;
 try{
  for(let i=0;;i++){try{if((await fetch(base)).ok)break;}catch{}assert(i<100);await new Promise(r=>setTimeout(r,100));}
@@ -39,7 +42,7 @@ try{
    for(const [time,expected] of [['11:59','morning'],['12:00','afternoon'],['17:59','afternoon'],['18:00','evening'],[null,undefined],['bad',undefined]])check(periodAt(time)===expected,'period '+time);
    check(publishedWindow([]).start===undefined,'empty interval');
    const v=buildConferenceViews(raw);
-   const [{buildTopicMap},{similarTalks},{buildLiveView},{keynoteItem,toICS}]=await Promise.all([
+   const [{buildTopicMap},{similarTalks},{buildLiveView},{keynoteItem,toICS,collectFollowedItems}]=await Promise.all([
     import('/src/lib/topics.ts'),import('/src/lib/similar.ts'),import('/src/lib/live.ts'),import('/src/lib/export.ts')]);
    const topicTalks=buildTopicMap(raw,'zh',800,600,k=>k).nodes.flatMap(n=>n.talks);
    check(topicTalks.some(t=>t.forumCode==='B'&&t.period==='afternoon'),'topic report period');
@@ -50,7 +53,9 @@ try{
    check(toICS([item],'2032-05-01T00:00:00Z',v).includes('DTSTART:20320507T054500Z'),'export uses venue clock across device timezone');
    check(v.scheduleDays.length===2,'plenary-only day');
    check(v.speakerList.length===10&&!v.speakerList.some(s=>s.name==='Chair only'),'speaker directory deduplicates actual report speakers');
-   check(v.scheduleDays[0].slots.length===2,'all forum blocks');
+   check(v.scheduleDays[0].slots.length===3,'all forum references, including plenary groups');
+   const saved=collectFollowedItems({talks:new Set([raw.forums[1].talks[0].id]),forums:new Set(),speakers:new Set()},v);
+   check(saved.length===1&&saved[0].code==='B','durable report ID survives a change of section');
    check(v.scheduleDays[0].start==='08:00'&&v.scheduleDays[0].end==='22:00','full published day envelope');
    check(v.forumTimeWindow(v.forumsByCode.B).start==='14:00','forum uses its own block');
    const periods=v.speakerList.flatMap(s=>s.talks.map(t=>[t.talkTitle.zh,t.period]));
@@ -61,7 +66,7 @@ try{
   const sections=page.locator('.dashday');assert.equal(await sections.count(),2);
   assert.equal(await page.locator('.dstat').filter({has:page.getByText('讲者',{exact:true})}).locator('.dstat__n').innerText(),'10');
   assert((await sections.first().locator('.dashday__time').innerText()).includes('08:00–22:00'));
-  assert.equal(await sections.first().locator('.dashday__n').innerText(),'2 个论坛');
+  assert.equal(await sections.first().locator('.dashday__n').innerText(),'3 个论坛');
   for(const toggle of await page.locator('.krail__toggle').all())await toggle.click();
   const panel=page.locator('.krow').filter({has:page.getByText('Panel',{exact:true})});
   const names=await panel.locator('.pauthor').evaluateAll(nodes=>nodes.map(n=>({x:n.getBoundingClientRect().x,y:n.getBoundingClientRect().y})));
@@ -75,6 +80,10 @@ try{
   await page.goto(base+'/fixture/schedule?v=all');const toggle=page.getByRole('button',{name:'来源注记'});await toggle.waitFor();
   await toggle.focus();await page.keyboard.press('Enter');await page.getByText('Venue source note',{exact:true}).waitFor();
   assert.equal(await toggle.getAttribute('aria-expanded'),'true');await toggle.click();
+  await page.getByRole('button',{name:'关注 Referenced forum',exact:true}).click();
+  await page.goto(base+'/fixture/schedule?v=mine-board');
+  await page.getByRole('link',{name:'Referenced forum',exact:true}).waitFor();
+  assert.equal(await page.getByRole('button',{name:'取消关注 Referenced forum',exact:true}).count(),1);
   assert.deepEqual(errors,[]);console.log('PASS',width,colorScheme,'periods, full day, all blocks, plenary-only day, horizontal names, speaker metadata, source disclosure');
   await context.close();
  }

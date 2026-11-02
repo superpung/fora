@@ -129,6 +129,8 @@ someone compared the file list against what the agents said they wrote.
   generated datasets and conference-specific audits belong in the external maintenance
   workspace `/data/fora-maintenance` and published R2 objects.
 - Data updates use immutable R2 staging and conditional catalog promotion.
+  Curated JSON is authoritative: edit source-specific grouping in external data.
+  Publishing validates the reviewed files; it must not rebuild them from parsers.
 - Application builds consume the runtime R2 catalog. Run real-conference acceptance
   from the maintenance workspace; use synthetic fixtures in code CI.
 - Review staged paths before every commit and run the repository data-boundary gate.

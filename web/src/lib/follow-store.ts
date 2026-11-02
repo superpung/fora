@@ -29,10 +29,6 @@ export function talkAnchor(talk: Talk): string {
   return `talk-${Number(talk.id.split("#").at(-1)) + 1}`;
 }
 
-export function isKeynoteId(id: string): boolean {
-  return id.startsWith("KEYNOTE:");
-}
-
 export function load(key: string): Set<string> {
   if (typeof localStorage === "undefined") return new Set();
   try {

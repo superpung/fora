@@ -2,11 +2,11 @@
 import { createHash } from 'node:crypto';
 export async function installDataFixture(page, raw) {
   raw.extra = { ...raw.extra, identity_version: 1 };
-  for (const forum of raw.forums ?? []) for (const [i, talk] of (forum.talks ?? []).entries()) talk.id = `${forum.code}#${i}`;
+  for (const forum of raw.forums ?? []) for (const [i, talk] of (forum.talks ?? []).entries()) talk.id ??= `${forum.code}#${i}`;
   for (const day of raw.days ?? []) {
     let i = 0;
     for (const block of day.blocks ?? []) if (block.kind === 'keynotes') {
-      for (const talk of block.talks ?? []) talk.id = `KEYNOTE:${day.date}#${i++}`;
+      for (const talk of block.talks ?? []) { talk.id ??= `KEYNOTE:${day.date}#${i}`; i++; }
     }
   }
   const body = JSON.stringify(raw), sha256 = createHash('sha256').update(body).digest('hex');

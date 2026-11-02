@@ -260,7 +260,7 @@ export function buildConferenceViews(raw: unknown): ConferenceViews {
   // All browsable programme days include every forum block and plenary report.
   const scheduleDays: ScheduleDay[] = days
     .map((d) => {
-      const forumBlocks = d.blocks.filter((b) => b.kind === "forums");
+      const forumBlocks = d.blocks.filter((b) => b.forum_entries?.length);
       const keynotes = d.blocks
         .filter((b) => b.kind === "keynotes")
         .flatMap((b) => b.talks ?? []);
