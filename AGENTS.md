@@ -407,7 +407,8 @@ pnpm preview    # serve the production build
   (not heat refresh time) and respects changing content height. It reuses the
   shared button/icon styles and respects reduced motion when returning to the top.
   `back-to-top.mjs` checks these routes, short lists, timeline exclusion, existing
-  controls and desktop/mobile light/dark screenshots.
+  controls and desktop/mobile light/dark screenshots. Planner actions reserve the
+  right corner; the footer reserves bottom clearance only while the control is visible.
   `CityLocation` owns country/city labels on Home and the hub; the retained
   middle dot occupies 1em without padding spaces. Posters draw the same spacing
   at canvas scale. SourceNotes owns its sole animated disclosure.

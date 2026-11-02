@@ -10,7 +10,14 @@ const server = process.env.AUDIT_BASE_URL ? null : spawn(new URL('../node_module
 let browser;
 try {
   await mkdir(out, { recursive: true });
-  for (let i = 0; i < 100; i++) { try { if ((await fetch(base)).ok) break; } catch {} await new Promise(r => setTimeout(r, 100)); }
+  if (server) {
+    let ready = false;
+    for (let i = 0; i < 100 && !ready; i++) {
+      try { ready = (await fetch(base, { signal: AbortSignal.timeout(1000) })).ok; } catch {}
+      if (!ready) await new Promise(r => setTimeout(r, 100));
+    }
+    assert(ready, 'local preview server started');
+  }
   browser = await chromium.launch();
   for (const [name, width, height, colorScheme] of [
     ['desktop', 1280, 900, 'light'], ['mobile', 390, 844, 'light'],
@@ -25,6 +32,10 @@ try {
     page.on('pageerror', e => errors.push(e.message));
     if (server) await page.route('**/api/session', r => r.fulfill({ json: { enabled: true, user: null, statistics: null } }));
     const back = page.getByRole('button', { name: '回到顶部', exact: true });
+    const clearOfButton = selector => page.locator(selector).evaluateAll(els => {
+      const b = document.querySelector('.backtotop').getBoundingClientRect();
+      return els.every(el => { const r = el.getBoundingClientRect(); return r.right + 8 <= b.left || r.left >= b.right + 8 || r.bottom + 8 <= b.top || r.top >= b.bottom + 8; });
+    });
     const settle = async () => {
       await page.waitForTimeout(300);
       await page.evaluate(() => document.getAnimations().forEach(a => { if (Number.isFinite(a.effect?.getComputedTiming().endTime)) a.finish(); }));
@@ -44,11 +55,11 @@ try {
       await back.waitFor(); await settle();
       assert.equal(await back.count(), 1);
       assert(await back.evaluate(el => { const r = el.getBoundingClientRect(); return r.width === 44 && r.height === 44 && r.right <= innerWidth && r.bottom <= innerHeight; }));
-      if (blockers) assert(await page.locator(blockers).evaluateAll(els => {
-        const b = document.querySelector('.backtotop').getBoundingClientRect();
-        return els.every(el => { const r = el.getBoundingClientRect(); return r.right + 8 <= b.left || r.left >= b.right + 8 || r.bottom + 8 <= b.top || r.top >= b.bottom + 8; });
-      }), label + ' leaves existing actions/index accessible');
+      if (blockers) assert(await clearOfButton(blockers), label + ' leaves existing actions/index accessible');
       await page.screenshot({ path: `${out}/${name}-${label}.png` });
+      await page.evaluate(() => scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' })); await settle();
+      assert(await clearOfButton('.footer a'), label + ' leaves footer links clickable at the bottom');
+      await page.screenshot({ path: `${out}/${name}-${label}-bottom.png` });
       await back.click(); await page.waitForFunction(() => scrollY === 0); await back.waitFor({ state: 'detached' });
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
     };
