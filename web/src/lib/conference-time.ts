@@ -38,3 +38,17 @@ export function scheduleTimeMs(date: string, time: string, timeZone?: string): n
   const rough = new Date(naive - tzOffsetMs(new Date(naive), timeZone));
   return naive - tzOffsetMs(rough, timeZone);
 }
+
+/** Classify a published venue-local start without consulting the device clock. */
+export function periodAt(start?: string | null): "morning" | "afternoon" | "evening" | undefined {
+  if (!start || !/^([01]\d|2[0-3]):[0-5]\d$/.test(start)) return undefined;
+  const hour = Number(start.slice(0, 2));
+  return hour < 12 ? "morning" : hour < 18 ? "afternoon" : "evening";
+}
+
+/** Bound all published intervals, including reports extending beyond their board. */
+export function publishedWindow(items: { start?: string | null; end?: string | null }[]) {
+  const starts = items.map(item => item.start).filter((s): s is string => !!periodAt(s)).sort();
+  const ends = items.map(item => item.end).filter((s): s is string => !!periodAt(s)).sort();
+  return { start: starts[0], end: ends.at(-1) };
+}

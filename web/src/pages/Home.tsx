@@ -1,3 +1,4 @@
+import { periodAt } from "../lib/conference-time";
 import CityLocation from "../components/CityLocation";
 import { talkAnchor } from "../lib/follow-store";
 import { personKey } from "../lib/person-key";
@@ -32,11 +33,10 @@ function timeRange(b?: { start?: string | null; end?: string | null }) {
 function keynotePeriods(talks: Talk[]): string[] {
   const set = new Set<string>();
   for (const t of talks) {
-    if (!t.start) continue;
-    const h = parseInt(t.start.split(":")[0], 10);
-    set.add(h < 12 ? "morning" : h < 18 ? "afternoon" : "evening");
+    const period = periodAt(t.start);
+    if (period) set.add(period);
   }
-  return [...set];
+  return ["morning", "afternoon", "evening"].filter(period => set.has(period));
 }
 
 // Lowercased haystack for matching a keynote against the search box (title +
@@ -475,7 +475,7 @@ function DaySection({
   const anyKeyFollowed = filtered && day.keynotes.some((_t, i) => keyShown(i));
   const keyOpen = showKeynotes || anyKeyFollowed;
   // A day with no matching forums still shows if a followed keynote keeps it here.
-  if (slots.length === 0 && !anyKeyFollowed) return null;
+  if (slots.length === 0 && !day.keynotes.some((_talk, i) => keyShown(i))) return null;
   return (
     <section className="dashday">
       <div className="dashday__head">
@@ -487,14 +487,14 @@ function DaySection({
           {day.venue && <span>
             <Icon name="building" size={12} /> {day.venue}
           </span>}
-          {day.forumBlock && (
+          {day.start && (
             <span className="dashday__time">
-              <Icon name="clock" size={12} /> {timeRange(day.forumBlock)}
+              <Icon name="clock" size={12} /> {timeRange(day)}
             </span>
           )}
           {slots.length > 0 && (
             <span className="dashday__n">
-              <Icon name="forums" size={12} /> {t("home.parallel", { n: slots.length })}
+              <Icon name="forums" size={12} /> {t("home.forumCount", { n: slots.length })}
             </span>
           )}
         </div>
@@ -638,14 +638,13 @@ export default function Home() {
         // the slot filter alone would drop a day whose only match is a keynote).
         // Respect the other active filters — category never applies to keynotes.
         const keynoteHit =
-          onlyFollowed &&
           !categoryFilter &&
           d.keynotes.some((kt) => {
             if (speakerFilter && !(kt.speakers ?? []).some((s) => s.name === speakerFilter))
               return false;
             if (q && !keynoteSearch(kt).includes(q)) return false;
             return (
-              isTalk(kt.id) ||
+              !onlyFollowed || isTalk(kt.id) ||
               (kt.speakers ?? []).some((s) => isSpeaker(personKey(s)))
             );
           });

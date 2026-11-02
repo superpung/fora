@@ -1,3 +1,4 @@
+import { periodAt } from "./conference-time";
 import { talkAnchor } from "./follow-store";
 import type { Conference } from "../types";
 import { ownTitle, titleLine } from "./talk-title";
@@ -123,7 +124,7 @@ function buildCorpus(conference: Conference): Corpus {
         speakers: speakerNames(talk) || undefined,
         room: f.room,
         date: talkDate(f, talk),
-        period: f.session_period,
+        period: periodAt(talk.start) ?? f.session_period,
         start: talk.start,
         end: talk.end,
         topics: [...new Set(talk.enrichment?.topics ?? [])],

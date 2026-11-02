@@ -1,3 +1,4 @@
+import { periodAt } from "./conference-time";
 import { talkAnchor } from "./follow-store";
 import type { Conference } from "../types";
 import type { Lang } from "./i18n-store";
@@ -439,7 +440,7 @@ export function buildTopicMap(
         speakers: speakerNames(talk) || undefined,
         room: f.room,
         date: talkDate(f, talk),
-        period: f.session_period,
+        period: periodAt(talk.start) ?? f.session_period,
         start: talk.start,
         end: talk.end,
         topics,
