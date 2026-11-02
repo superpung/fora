@@ -678,7 +678,7 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
    overflow stays `hidden` (not visible) so the content is revealed in step with
    the height animation — otherwise the full text paints instantly before/after
    the box finishes growing/shrinking, which looked like a jump. */
-.tgrid__talk:hover, .tgrid__talk.is-open {
+.tgrid__talk:hover, .tgrid__talk[href]:focus-visible, .tgrid__talk.is-open {
   height: auto !important; z-index: 5;
   background: var(--bg-hover); border-color: var(--border-strong);
   box-shadow: 0 3px 10px color-mix(in srgb, #000 7%, transparent);
@@ -689,7 +689,7 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 }
 /* fade eases out (not display:none) so the bottom gradient doesn't pop back in
    at the end of the collapse — that snap read as a stutter. */
-.tgrid__talk:hover::after, .tgrid__talk.is-open::after { opacity: 0; }
+.tgrid__talk:hover::after, .tgrid__talk[href]:focus-visible::after, .tgrid__talk.is-open::after { opacity: 0; }
 /* touch tap-to-expand: a small, borderless enter button appears bottom-right of
    the open card (shared by the timed and untimed boards). */
 .tgrid__tenter {
@@ -708,6 +708,7 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
   transition: opacity 0.12s ease-in-out;
 }
 .tgrid__talk:hover + .tgrid__tstarwrap,
+.tgrid__talk[href]:focus-visible + .tgrid__tstarwrap,
 .tgrid__talk.is-open + .tgrid__tstarwrap,
 .tgrid__tstarwrap:hover,
 .tgrid__tstarwrap:focus-within,
