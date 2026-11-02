@@ -15,6 +15,7 @@ import { useStickyState } from "../lib/sticky-state";
 import { pageVariants } from "../lib/motion";
 import Icon from "../components/Icon";
 import Avatar from "../components/Avatar";
+import { ForumCode } from "../components/ForumIdentity";
 
 // Which speaker cards are open, kept module-level so the state survives a trip
 // to a forum page and back (paired with scroll restoration for req: browser Back
@@ -51,7 +52,7 @@ function TalkLine({ t }: { t: SpeakerTalk }) {
         {t.isKeynote ? (
           <span className="sptalk__forum">{t.forumTitle}</span>
         ) : (
-          <span className="sptalk__forum mono">{t.forumCode}</span>
+          t.forumCode && <ForumCode code={t.forumCode} />
         )}
         {t.room && (
           <span className="sptalk__room mono">

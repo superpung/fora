@@ -1,7 +1,5 @@
 import { Fragment } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { useConference } from "../lib/conference-store";
 import { useFollow } from "../lib/follow-store";
 import { useI18n } from "../lib/i18n-store";
 import { useNow, isNowWithin } from "../lib/use-now";
@@ -9,6 +7,7 @@ import { stagger, riseItem } from "../lib/motion";
 import type { ExportItem } from "../lib/export";
 import Icon from "../components/Icon";
 import StarButton from "../components/StarButton";
+import AgendaRow from "./AgendaRow";
 
 function toMin(t?: string | null): number | null {
   if (!t) return null;
@@ -22,12 +21,9 @@ function toMin(t?: string | null): number | null {
     talks run at the same time — the clash, so the day reads as a plan rather
     than a list. `items` is expected to be one day's, sorted by start time.
 
-    Rendered in the schedule's own idiom: a block panel whose rows are the same
-    time-column-plus-body rows the keynote list uses, with the connectors drawn
-    like the breaks between them. My Day is another way to read the schedule,
-    not another kind of thing. */
+    Shares AgendaRow with discovery lists; gaps, moves and clashes use the
+    schedule's break strips. Report facts and follow controls have one renderer. */
 export default function MyDay({ date, items }: { date: string; items: ExportItem[] }) {
-  const { id: confId } = useConference();
   const { toggleTalk } = useFollow();
   const { t } = useI18n();
   const now = useNow();
@@ -57,7 +53,7 @@ export default function MyDay({ date, items }: { date: string; items: ExportItem
           <h3 className="block__title">{t("schedule.viewMyDay")}</h3>
         </div>
 
-        <div className="talklist">
+        <div className="talklist talklist--flush">
           {items.map((it, i) => {
             const prev = i > 0 ? items[i - 1] : null;
             const prevEnd = toMin(prev?.end) ?? toMin(prev?.start);
@@ -78,49 +74,6 @@ export default function MyDay({ date, items }: { date: string; items: ExportItem
             // A borrowed window can say its forum is on; it cannot say that this
             // talk is the one being given right now.
             const running = !it.approx && isNowWithin(date, it.start, it.end, now);
-            const body = (
-              <>
-                <div className={`talkrow__time${running ? " is-now" : ""}`}>
-                  {it.start ? (
-                    <span
-                      className="time"
-                      title={it.approx ? t("common.approxTime") : undefined}
-                    >
-                      {it.approx ? "~" : ""}
-                      {it.start}
-                      {it.end ? `–${it.end}` : ""}
-                    </span>
-                  ) : (
-                    <span className="myday__untimed">{t("myday.untimed")}</span>
-                  )}
-                </div>
-                <div className="talkrow__body">
-                  <div className="talkrow__title">
-                    {it.title}
-                    {running && <span className="myday__nowtag">{t("myday.now")}</span>}
-                  </div>
-                  <div className="talkrow__speaker">
-                    {/* Speaker with a person icon, room with a pin, session
-                        plain — the way the plan list and the live card write the
-                        same three facts. */}
-                    {it.speakers && (
-                      <strong className="myday__spk">
-                        <Icon name="user" size={12} /> {it.speakers}
-                      </strong>
-                    )}
-                    <span className="talkrow__aff">
-                      {it.session}
-                      {it.code ? ` · ${it.code}` : ""}
-                    </span>
-                    {it.room && (
-                      <span className="talkrow__aff myday__room">
-                        <Icon name="pin" size={12} /> {it.room}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </>
-            );
             return (
               <Fragment key={it.uid}>
                 {clash || (gap != null && gap > 0) || moved ? (
@@ -142,17 +95,8 @@ export default function MyDay({ date, items }: { date: string; items: ExportItem
                     )}
                   </div>
                 ) : null}
-                {/* The row is the grid cell, so it stays one element: the forum
-                    link covers it (the speakers list does the same) and the star
-                    layers above, which keeps a button out of an anchor. */}
-                <motion.div
-                  variants={riseItem}
-                  className={`talkrow${it.code ? " talkrow--link" : ""}${
-                    running ? " talkrow--now" : ""
-                  }`}
-                >
-                  {body}
-                  {it.via === "talk" ? (
+                <AgendaRow item={it} running={running} variants={riseItem} actions={
+                  it.via === "talk" ? (
                     <StarButton
                       active
                       size={15}
@@ -177,17 +121,8 @@ export default function MyDay({ date, items }: { date: string; items: ExportItem
                     >
                       <Icon name={it.via === "forum" ? "forums" : "user"} size={13} />
                     </span>
-                  )}
-                  {it.code && (
-                    <Link
-                      to={`/${confId}/forum/${it.code}${
-                        it.talkIndex != null ? `#${it.anchor}` : ""
-                      }`}
-                      className="talkrow__cover"
-                      aria-label={it.title}
-                    />
-                  )}
-                </motion.div>
+                  )
+                } />
               </Fragment>
             );
           })}

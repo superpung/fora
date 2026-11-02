@@ -1,3 +1,4 @@
+import { validInterest } from './heat-model.mjs';
 // Publishing is separate from user sessions and can only target Fora bindings.
 const reply = (body, status = 200) => Response.json(body, { status, headers: { 'Cache-Control': 'no-store' } });
 const fail = (status, message) => { throw Object.assign(Error(message), { status }); };
@@ -50,6 +51,7 @@ export async function publish(request, env, url) {
     for (const entry of catalog.conferences) {
       if (ids.has(entry.id) || !/^[a-z0-9-]+$/.test(entry.id) || !/^[a-f0-9]{64}$/.test(entry.sha256) ||
         entry.path !== `conferences/${entry.id}/${entry.sha256}.json`) fail(400, 'Invalid conference reference');
+      if (!validInterest(entry.interest)) fail(400, 'Invalid interest index');
       ids.add(entry.id);
       const object = await env.DATA.head(entry.path);
       if (!object || object.customMetadata?.sha256 !== entry.sha256) fail(400, 'Conference object is missing');

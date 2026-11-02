@@ -90,9 +90,11 @@ try {
     if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(['source:a', 'name:Alex', 'source:keynote']));
   });
   await identityPage.goto(base + '/chinasoft2025/speakers', { waitUntil: 'networkidle' });
+  await identityPage.locator('.spcard .star').first().waitFor();
   assert.equal(await identityPage.locator('.spcard .star[aria-pressed="true"]').count(), 3);
   await identityPage.locator('.spcard').filter({ hasText: 'Unit A' }).locator('.star').click();
   await identityPage.reload({ waitUntil: 'networkidle' });
+  await identityPage.locator('.spcard .star').first().waitFor();
   assert.equal(await identityPage.locator('.spcard .star[aria-pressed="true"]').count(), 2);
   assert.equal(await identityPage.locator('.spcard').filter({ hasText: 'Unit A' }).locator('.star').getAttribute('aria-pressed'), 'false');
   await identityPage.goto(base + '/chinasoft2025/schedule?v=mine-day', { waitUntil: 'networkidle' });

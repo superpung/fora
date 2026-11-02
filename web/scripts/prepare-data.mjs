@@ -1,4 +1,5 @@
 // Build independently deployable, immutable JSON objects and a small catalog.
+import { interestIndex } from '../../cloudflare/heat-model.mjs';
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile, cp } from 'node:fs/promises';
 import { resolve } from 'node:path';
@@ -13,7 +14,7 @@ for (const meta of manifest) {
   const path = `conferences/${meta.id}/${sha256}.json`;
   await mkdir(resolve(output, `conferences/${meta.id}`), { recursive: true });
   await writeFile(resolve(output, path), bytes);
-  conferences.push({ ...meta, path, sha256 });
+  conferences.push({ ...meta, path, sha256, interest: interestIndex(JSON.parse(bytes)) });
 }
 await writeFile(resolve(output, 'manifest.json'), JSON.stringify({ schema_version: 1, conferences }));
 await cp(new URL('../public/portraits', import.meta.url), resolve(output, 'portraits'), { recursive: true });

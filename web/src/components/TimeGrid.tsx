@@ -441,7 +441,7 @@ export default function TimeGrid({
                   className="tgrid__more"
                   style={{ top: c.forum.start ? (toMin(c.forum.start) - lo) * PX_PER_MIN : 0 }}
                 >
-                  <span className="mono">{c.forum.start ? `${c.forum.start}${c.forum.end ? `–${c.forum.end}` : ""}` : tr("plan.timeTbd")} · </span>
+                  <span className="meta-bit mono"><Icon name="clock" size={12} />{c.forum.start ? `${c.forum.start}${c.forum.end ? `–${c.forum.end}` : ""}` : tr("plan.timeTbd")}</span>
                   {tr(c.forum.agenda_status === "not_published" ? "common.agendaPending" : "common.pending")}
                 </Link>
               )}

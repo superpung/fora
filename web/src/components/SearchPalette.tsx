@@ -1,3 +1,4 @@
+import { ForumCode } from "./ForumIdentity";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -219,8 +220,8 @@ export default function SearchPalette() {
                                   <span className="muted-i">{t("search.talkTbd")}</span>
                                 )}
                               </span>
-                              {rec.subtitle && (
-                                <span className="cmdk__optsub">{rec.subtitle}</span>
+                              {(rec.code || !!rec.subtitle?.length) && (
+                                <span className="cmdk__optsub">{rec.code && <ForumCode code={rec.code} />}{rec.subtitle?.map((text, i) => <span key={i}>{text}</span>)}</span>
                               )}
                               {/* One clipped line: a hit's title alone rarely
                                   says whether it is the talk you meant. */}
