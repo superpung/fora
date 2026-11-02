@@ -53,7 +53,7 @@ export default function MyDay({ date, items }: { date: string; items: ExportItem
           <h3 className="block__title">{t("schedule.viewMyDay")}</h3>
         </div>
 
-        <div className="talklist talklist--flush">
+        <div className="talklist">
           {items.map((it, i) => {
             const prev = i > 0 ? items[i - 1] : null;
             const prevEnd = toMin(prev?.end) ?? toMin(prev?.start);

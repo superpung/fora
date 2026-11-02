@@ -81,7 +81,7 @@ function Rankings() {
             <ForumActions code={forum.code}><HeatValue kind="forums" id={forum.code} /></ForumActions>
           </div>
         </motion.div>)}
-      </div> : <div className="block" key="talks"><div className="talklist talklist--flush">
+      </div> : <div className="block" key="talks"><div className="talklist">
         {talks.map((talk, index) => <AgendaRow key={talk.followId} item={talk} showDate
           variants={rankedRow} custom={index} initial="initial" whileInView="animate" viewport={{ once: true, amount: 0.1 }}
           metric={<HeatValue kind="talks" id={talk.followId} />}
