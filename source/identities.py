@@ -6,10 +6,11 @@ Their numeric suffixes are allocation numbers, NEVER current list positions.
 Changed titles/credits require an explicit registry selector update; unmatched
 reports fail closed rather than acquiring the identity of an adjacent report.
 """
+import os
 import json
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(os.environ.get("FORA_MAINTENANCE_ROOT", Path(__file__).resolve().parent.parent))
 REGISTRIES = ROOT / "source" / "identities"
 
 

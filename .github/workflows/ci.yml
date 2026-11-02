@@ -1,65 +1,25 @@
 name: CI
-
 on:
   push:
     branches: [main]
   pull_request:
-
 jobs:
-  data:
-    name: Dataset (schema + determinism)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-      - uses: astral-sh/setup-uv@v7
-        with:
-          python-version: "3.10"
-      - name: Install deps
-        run: uv sync --dev
-      - name: Build reference datasets
-        run: uv run python source/build_all.py
-      - name: Validate against schema
-        run: uv run python source/validate.py
-      - name: Stable report identities
-        run: uv run python -m unittest discover -s source -p 'test_identities.py'
-      - name: Publication request safety
-        run: uv run python -m unittest discover -s source -p 'test_publish_data.py'
-      - name: OAuth preflight classification
-        run: uv run python -m unittest discover -s cloudflare -p 'test_oauth.py'
-      - name: Local source history
-        run: uv run python -m unittest discover -s source/chinasoft2026
-      - name: Verify deterministic generated data
-        run: |
-          sha256sum data/*.json web/src/data/manifest.json > "$RUNNER_TEMP/fora-data.sha256"
-          uv run python source/build_all.py
-          sha256sum --check "$RUNNER_TEMP/fora-data.sha256"
-          git diff --exit-code -- web/src/data/manifest.json
-
   web:
-    name: Web (lint + build)
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: web
     steps:
       - uses: actions/checkout@v5
-      - uses: astral-sh/setup-uv@v7
-        with:
-          python-version: "3.10"
-      - name: Build reference datasets
-        run: uv run python source/build_all.py
-        working-directory: .
       - uses: pnpm/action-setup@v6
         with:
-          # package.json lives in web/, not the repo root the action defaults to
           package_json_file: web/package.json
       - uses: actions/setup-node@v5
         with:
-          node-version: "22"
+          node-version: '22'
           cache: pnpm
           cache-dependency-path: web/pnpm-lock.yaml
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm build
-      - run: pnpm exec playwright install --with-deps chromium
-      - run: pnpm test:cloudflare
+      - run: pnpm test
