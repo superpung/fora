@@ -1,3 +1,4 @@
+import { periodAt, publishedWindow } from "./conference-time";
 import { personKey } from "./person-key";
 
 import type { Conference, Forum, Day, Talk, Person, I18n, Status } from "../types";
@@ -115,7 +116,9 @@ export interface ScheduleDay {
   md: string;
   weekday: string;
   venue: string;
-  forumBlock?: import("../types").Block;
+  forumBlocks?: import("../types").Block[];
+  start?: string;
+  end?: string;
   keynotes: Talk[];
   slots: ForumSlot[];
 }
@@ -205,7 +208,6 @@ export interface ConferenceViews {
   stats: { days: number; forums: number; keynotes: number; committeeMembers: number };
   scheduleDays: ScheduleDay[];
   unscheduledForums: ForumSlot[];
-  uniqueSpeakerCount: number;
   keynoteEntries: KeynoteEntry[];
   keynoteById: Map<string, KeynoteEntry>;
   mainVenueName: string;
@@ -255,14 +257,15 @@ export function buildConferenceViews(raw: unknown): ConferenceViews {
     committeeMembers: (conference.committees ?? []).reduce((n, c) => n + c.members.length, 0),
   };
 
-  // Days that actually host forums, each enriched with keynotes + forum slots.
+  // All browsable programme days include every forum block and plenary report.
   const scheduleDays: ScheduleDay[] = days
     .map((d) => {
-      const forumBlock = d.blocks.find((b) => b.kind === "forums");
+      const forumBlocks = d.blocks.filter((b) => b.forum_entries?.length);
       const keynotes = d.blocks
         .filter((b) => b.kind === "keynotes")
         .flatMap((b) => b.talks ?? []);
-      const slots: ForumSlot[] = (forumBlock?.forum_entries ?? []).map((e) => {
+      const slots: ForumSlot[] = [...new Map(forumBlocks.flatMap(b => b.forum_entries ?? [])
+        .map(entry => [entry.forum_code, entry])).values()].map((e) => {
         const original = forumsByCode[e.forum_code];
         const f = original ? forumOnDate(original, d.date) : undefined;
         return {
@@ -279,23 +282,20 @@ export function buildConferenceViews(raw: unknown): ConferenceViews {
         date: d.date,
         ...formatDate(d.date),
         venue: venueName(d.venue_id),
-        forumBlock,
+        forumBlocks,
+        ...publishedWindow([...d.blocks, ...keynotes, ...d.blocks.flatMap(b => b.meetings ?? []),
+          ...slots.flatMap(s => s.forum ? [s.forum, ...(s.forum.talks ?? [])] : [])]),
         keynotes,
         slots,
       };
     })
-    .filter((d) => d.slots.length > 0);
+    .filter((d) => d.slots.length > 0 || d.keynotes.length > 0);
 
   const scheduledCodes = new Set(scheduleDays.flatMap((d) => d.slots.map((s) => s.code)));
   const unscheduledForums = (conference.forums ?? []).filter((f) => !scheduledCodes.has(f.code)).map((f) => ({
     code: f.code, room: f.room, forum: f,
     search: forumSearchText(f, f.code, f.room), people: forumPeople(f),
   }));
-
-  const uniqueSpeakerCount = new Set(
-    (conference.forums ?? []).flatMap((f) =>
-      [...(f.chairs ?? []), ...(f.talks ?? []).flatMap((t) => t.speakers ?? [])].map(personKey)),
-  ).size;
 
   // Flattened main-conference keynotes, indexed the same way the dashboard rail is.
   const keynoteEntries: KeynoteEntry[] = days.flatMap((d) => {
@@ -319,12 +319,12 @@ export function buildConferenceViews(raw: unknown): ConferenceViews {
     (conference.venues ?? [])[0]?.name.zh ??
     "";
 
-  const forumBlockByDate = new Map(scheduleDays.map((d) => [d.date, d.forumBlock]));
+  const forumBlocksByDate = new Map(scheduleDays.map((d) => [d.date, d.forumBlocks]));
   // A forum talk has no time of its own; fall back to its forum block's window.
   const forumTimeWindow = (forum: Forum, talk?: Talk): { start?: string | null; end?: string | null } => {
     if (talk) forum = forumOnDate(forum, talkDate(forum, talk));
     if ("start" in forum || "end" in forum) return { start: forum.start, end: forum.end };
-    const blk = forum.day_date ? forumBlockByDate.get(forum.day_date) : undefined;
+    const blk = forum.day_date ? forumBlocksByDate.get(forum.day_date)?.find(b => b.forum_entries?.some(e => e.forum_code === forum.code)) : undefined;
     return { start: blk?.start, end: blk?.end };
   };
 
@@ -363,7 +363,7 @@ export function buildConferenceViews(raw: unknown): ConferenceViews {
           titleStatus: t.title_status,
           room: f.room,
           date: talkDate(f, t),
-          period: f.session_period,
+          period: periodAt(t.start) ?? f.session_period,
           start: t.start,
           end: t.end,
           isKeynote: false,
@@ -393,7 +393,7 @@ export function buildConferenceViews(raw: unknown): ConferenceViews {
               report: t,
               room: b.location,
               date: d.date,
-              period: "morning",
+              period: periodAt(t.start ?? b.start),
               start: t.start,
               end: t.end,
               isKeynote: true,
@@ -446,7 +446,6 @@ export function buildConferenceViews(raw: unknown): ConferenceViews {
     stats,
     scheduleDays,
     unscheduledForums,
-    uniqueSpeakerCount,
     keynoteEntries,
     keynoteById,
     mainVenueName,

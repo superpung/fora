@@ -130,8 +130,7 @@ export function buildLiveView(views: ConferenceViews, now: Now): LiveView {
   // A day can hold morning and afternoon forums with different windows.
   // Determine activity from each forum, never the enclosing board's span.
   const todaySched = scheduleDays.find((d) => d.date === today);
-  const block = todaySched?.forumBlock;
-  if (todaySched && block) {
+  if (todaySched) {
     todaySched.slots.forEach((slot) => {
       if (!slot.forum) return;
       const talks = slot.forum?.talks ?? [];

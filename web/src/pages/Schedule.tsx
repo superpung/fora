@@ -11,13 +11,14 @@ import { useSavedState, oneOf } from "../lib/saved-state";
 import { useHScroll } from "../lib/hscroll";
 import { useNow, isNowWithin } from "../lib/use-now";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
-import { collectFollowedItems, keynoteItem } from "../lib/export";
+import { collectFollowedItems, keynoteItem, type ExportItem } from "../lib/export";
 import Icon, { type IconName } from "../components/Icon";
 import StarButton from "../components/StarButton";
 import TimeGrid from "../components/TimeGrid";
 import UntimedForumGrid from "../components/UntimedForumGrid";
 import MyDay from "../components/MyDay";
 import AgendaRow from "../components/AgendaRow";
+import SourceNotes from "../components/SourceNotes";
 import BackToTop from "../components/BackToTop";
 import SegmentedControl from "../components/SegmentedControl";
 import type { Block, Forum, Talk, Break } from "../types";
@@ -76,11 +77,18 @@ function KeynotesBlock({
 }) {
   const { t } = useI18n();
   const views = useConference();
-  const { isTalk, toggleTalk } = useFollow();
+  const { isTalk, toggleTalk, isForum, toggleForum, forums, speakers, talks } = useFollow();
   const now = useNow();
-  const rows = keep
+  const reportRows = keep
     ? chronoRows(block).filter((r) => r.kind === "talk" && keep(base + r.i, r.talk))
     : chronoRows(block);
+  const codes = new Set((block.forum_entries ?? []).map(entry => entry.forum_code));
+  const referenced = collectFollowedItems(keep ? { forums, speakers, talks } :
+    { forums: codes, speakers: new Set(), talks: new Set() }, views)
+    .filter(item => item.code && codes.has(item.code) && item.date === date);
+  const rows: (Row | { kind: "forum"; item: ExportItem; start?: string | null })[] = [
+    ...reportRows, ...referenced.map(item => ({ kind: "forum" as const, item, start: item.start })),
+  ].sort((a, b) => (a.start ?? "").localeCompare(b.start ?? ""));
   return (
     <div className="talklist">
       {rows.map((row, i) =>
@@ -91,6 +99,14 @@ function KeynotesBlock({
               <Icon name="coffee" size={14} /> {row.brk.name}
             </span>
           </div>
+        ) : row.kind === "forum" ? (
+          <AgendaRow key={row.item.uid} variants={riseItem} item={row.item}
+            running={isNowWithin(date, row.item.start, row.item.end, now)}
+            actions={<StarButton size={15} className="star--sm talkrow__star"
+              active={row.item.anchor ? isTalk(row.item.followId!) : isForum(row.item.code!)}
+              label={t(row.item.anchor ? (isTalk(row.item.followId!) ? "common.talkFollowRemove" : "common.talkFollowAdd") :
+                (isForum(row.item.code!) ? "common.followRemove" : "common.followAdd"), { name: row.item.title })}
+              onClick={() => row.item.anchor ? toggleTalk(row.item.followId!) : toggleForum(row.item.code!)} />} />
         ) : (
           <AgendaRow key={row.talk.id} variants={riseItem}
             item={keynoteItem(row.talk.id, views, "talk")!}
@@ -265,6 +281,7 @@ export default function Schedule() {
   const boardBlocks = day.blocks.filter(
     (b) =>
       b.kind === "forums" ||
+      (b.forum_entries ?? []).some(entry => (myDayByDate.get(day.date) ?? []).some(item => item.code === entry.forum_code)) ||
       (b.kind === "keynotes" &&
         (b.talks ?? []).some((t, i) => keynoteFollowed((keynoteBase.get(b) ?? 0) + i, t))),
   );
@@ -399,6 +416,7 @@ export default function Schedule() {
                   )}
                 </div>
 
+                <SourceNotes flags={block.extra?.flags} />
                 {block.kind === "keynotes" && (
                   <KeynotesBlock
                     block={block}

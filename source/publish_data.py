@@ -54,8 +54,9 @@ def stage(base, token, summary):
         raise ValueError("FORA_MAINTENANCE_ROOT must name the external maintenance workspace")
     revision = subprocess.check_output(["git", "rev-parse", "HEAD"],
                                       cwd=Path(__file__).resolve().parent.parent, text=True).strip()
-    for script in ["source/build_all.py", "source/validate.py"]:
-        subprocess.run([sys.executable, script], cwd=ROOT, check=True)
+    subprocess.run([sys.executable, str(Path(__file__).with_name("validate.py")),
+                    str(ROOT / "data")], check=True)
+    subprocess.run([sys.executable, "source/build_manifest.py"], cwd=ROOT, check=True)
     subprocess.run(["node", "web/scripts/prepare-data.mjs"], cwd=ROOT, check=True,
                    env={**os.environ, "DATA_OUTPUT_DIR": str(OUTPUT / "public")})
     previous = json.loads(request(base, "catalog", token)[0])

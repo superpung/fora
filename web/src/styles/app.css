@@ -384,7 +384,7 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 .krow--muted .krow__title, .krow--muted .krow__time, .krow--muted .pauthor { opacity: 0.6; }
 .krow__titlerow { display: flex; align-items: flex-start; gap: 8px; }
 .krow__title { flex: 1 1 auto; min-width: 0; font-size: 13.5px; font-weight: 500; line-height: 1.45; }
-.krow__speaker { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; margin-top: 5px; }
+.krow__speaker { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; margin-top: 5px; }
 
 /* ---- forum table (card with expandable rows) ---- */
 .ftable { border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
@@ -946,6 +946,7 @@ html.dark .avatar--ph { color: oklch(0.82 0.12 var(--av-h)); }
 /* ---- vertical time-rail layout (forums whose talks carry times) ---- */
 .tline { display: flex; flex-direction: column; }
 .source-notes { margin: 10px 0; color: var(--fg-secondary); font-size: 12px; }
+.block > .source-notes { margin: 10px 16px 0; }
 .source-notes__toggle { display: inline-flex; align-items: center; gap: 6px; color: inherit; background: none; border: 0; padding: 4px 0; cursor: pointer; font: inherit; }
 .source-notes__content { overflow: hidden; overflow-wrap: anywhere; }
 .source-notes__content ul { margin: 6px 0; padding-left: 20px; }

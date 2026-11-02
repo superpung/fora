@@ -5,7 +5,7 @@ import { personKey } from "./person-key";
 // fall back to its forum block's window; the location is the full venue name
 // joined with the room (e.g. "无锡国际会议中心 205A").
 import { forumOnDate, talkDate, speakerNames, type ConferenceViews } from "./data";
-import { isKeynoteId, talkAnchor } from "./follow-store";
+import { talkAnchor } from "./follow-store";
 import type { Forum, Talk } from "../types";
 import { titleLine } from "./talk-title";
 
@@ -150,7 +150,7 @@ export function collectFollowedItems(f: FollowSnapshot, views: ConferenceViews):
   };
 
   f.talks.forEach((id) => {
-    if (isKeynoteId(id)) return putKeynote(id, "talk");
+    if (views.keynoteById.has(id)) return putKeynote(id, "talk");
     const forum = views.conference.forums?.find((candidate) =>
       candidate.talks?.some((talk) => talk.id === id));
     const i = (forum?.talks ?? []).findIndex((talk) => talk.id === id);

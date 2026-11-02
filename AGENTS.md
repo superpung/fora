@@ -62,6 +62,11 @@
   and mobile widths and in light/dark themes. Inspect the actual screenshots:
   generation, HTTP 200, no overflow and no console errors alone do not establish
   visual consistency. Check metadata order, type, spacing, actions and motion.
+- Validate derived agenda metadata against source clocks and membership, not only
+  the presence of a report row. `web/tests/agenda-summary.mjs` covers noon/evening
+  boundaries, complete daily windows, multiple forum blocks, plenary-only days,
+  cross-surface periods and multi-person wrapping. Extend these cases when changing
+  schedule aggregation; inspect screenshots with the affected header visible.
 - Measure visible text-to-control spacing, not just element bounds: reserved
   width can pass non-overlap tests while leaving an unjustified visual gap.
   Observe animations across time; a still screenshot does not verify motion.
@@ -124,6 +129,8 @@ someone compared the file list against what the agents said they wrote.
   generated datasets and conference-specific audits belong in the external maintenance
   workspace `/data/fora-maintenance` and published R2 objects.
 - Data updates use immutable R2 staging and conditional catalog promotion.
+  Curated JSON is authoritative: edit source-specific grouping in external data.
+  Publishing validates the reviewed files; it must not rebuild them from parsers.
 - Application builds consume the runtime R2 catalog. Run real-conference acceptance
   from the maintenance workspace; use synthetic fixtures in code CI.
 - Review staged paths before every commit and run the repository data-boundary gate.
