@@ -11,6 +11,7 @@ import { useAi } from "./lib/ai-store";
 // download is just the shell (nav/footer/router), not every page at once.
 const Hub = lazy(() => import("./pages/Hub"));
 const Home = lazy(() => import("./pages/Home"));
+const Popular = lazy(() => import("./pages/Popular"));
 const Now = lazy(() => import("./pages/Now"));
 const Schedule = lazy(() => import("./pages/Schedule"));
 const Plan = lazy(() => import("./pages/Plan"));
@@ -45,6 +46,7 @@ export default function App() {
             />
             <Route path="/:conf" element={<ConferenceLayout />}>
               <Route index element={<Home />} />
+              <Route path="popular" element={<Popular />} />
               <Route path="now" element={<Now />} />
               <Route path="schedule" element={<Schedule />} />
               <Route path="plan" element={<Plan />} />
