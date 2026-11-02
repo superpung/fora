@@ -44,9 +44,9 @@ pnpm exec wrangler deploy --config ../cloudflare/wrangler.jsonc
 ```
 
 Set `CLOUDFLARE_API_TOKEN` in the process environment. The account ID is fixed
-in the configuration. The frontend build must use the data origin above;
-local Vite development uses generated `/data/` assets. `.assetsignore` excludes
-those local fixtures and portraits from Cloudflare's application upload.
+in the configuration. Development and production use the R2 data origin by default.
+Set `VITE_DATA_BASE_URL` to select an isolated test origin. Conference assets
+are published separately from the application.
 
 Secrets: `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` and `PUBLISH_TOKEN`. GitHub OAuth returns to
 `https://fora.repus.me/`. The Worker requests `read:user`, fetches the identity,
@@ -97,6 +97,43 @@ Supply `FORA_PUBLISH_TOKEN` through the environment. Stage, verify the candidate
 in an isolated application preview, then promote using the recorded ETag.
 Retain the prior immutable release for conditional rollback.
 
+Report IDs are allocated in the external `source/identities/<conference>.json` registry and are never
+reassigned after an insertion, removal or reorder. The number in `R1#0` is a
+permanent identity, not an array offset. Enrichment, follows, anchors, search,
+reminders and exports use that same identity. New or ambiguous reports stop the
+build until the registry is reviewed. A title edit can add a reviewed selector to
+its existing identity; an unrelated replacement must receive a new identity.
+
+Staging uploads immutable public objects. It does not
+change the public catalog. Promotion checks referenced objects and atomically
+replaces the catalog only if its ETag still matches the reviewed baseline.
+Promotion preserves the reviewed manifest bytes. The authenticated catalog
+endpoint returns its immutable `release` hash and current `etag` for rollback.
+Another publisher winning that race requires a fresh review. The previous
+immutable manifests remain available for inspection and rollback through the
+same conditional promotion endpoint. Keep application code committed before
+staging so the release's `code_revision` identifies the committed publisher/schema code.
+
+## Verification
+
+`web/tests/cloudflare-api.mjs` runs the actual Worker against local D1/R2 and
+synthetic records: OAuth state, hashed sessions, origin checks, isolation,
+concurrent writes, immutable uploads and conditional promotion. CI also runs
+`cloudflare/test_oauth.py` for credential-error classification.
+
+Real-conference browser checks, `cloudflare-ui.mjs` and
+`cloudflare-integration.mjs` live in the external maintenance workspace because
+they currently load conference fixtures. Run them there with the current code and
+reviewed fixtures. The browser tests cover concurrent devices, deletions, offline
+edits and conflicts; integration connects the application to the actual Worker
+and D1 with a simulated GitHub provider. Keep these results separate from real
+production authorization. They are separate from `pnpm test:cloudflare`.
+
+Production checks cover CORS, portraits, deep links, service-worker OAuth bypass,
+API routes and deployment isolation. External deployment tests accept
+`AUDIT_BASE_URL`; data checks also accept `AUDIT_DATA_BASE_URL` and
+`AUDIT_DATA_REVISION` for reviewed candidates.
+
 ## Migration acceptance
 
 Implementation, simulated-provider tests and production acceptance are separate
@@ -113,10 +150,8 @@ or failing. A passing anonymous-page probe is not a successful login test.
 | Local source maintenance | Unchanged snapshot reuse; pending import comparison; failed baseline retention; date guard; clean cron-environment smoke; first full scheduled-run report |
 | Deployment isolation | Production checks before/after deployment; unchanged unrelated account resources |
 
-`pnpm --dir web test:cloudflare` includes the API tests, deterministic browser
-conflict tests and `cloudflare-integration.mjs`. The latter connects the actual
-application to the Worker and D1, simulating only GitHub's external responses.
-It does not substitute for real production authorization. `pnpm --dir web test`
-covers the conference, identity, navigation and clock surfaces. Run source and
-publisher Python tests as well. Record unperformed production checks explicitly
-instead of treating the corresponding local test as production acceptance.
+`pnpm --dir web test:cloudflare` runs the data-boundary, heat and Worker API
+checks. `pnpm --dir web test` also runs synthetic agenda and timeline regressions.
+Run external browser integration and real-conference checks for affected behavior.
+Record unperformed production checks explicitly instead of treating a local test
+as production acceptance.

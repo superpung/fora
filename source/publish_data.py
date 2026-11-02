@@ -52,8 +52,13 @@ def upload(base, token, key, path):
 def stage(base, token, summary):
     if not os.environ.get("FORA_MAINTENANCE_ROOT"):
         raise ValueError("FORA_MAINTENANCE_ROOT must name the external maintenance workspace")
+    code_root = Path(__file__).resolve().parent.parent
+    changed = subprocess.check_output(
+        ["git", "status", "--porcelain", "--untracked-files=all"], cwd=code_root, text=True)
+    if changed.strip():
+        raise ValueError("Commit code repository changes before staging: " + changed.strip())
     revision = subprocess.check_output(["git", "rev-parse", "HEAD"],
-                                      cwd=Path(__file__).resolve().parent.parent, text=True).strip()
+                                      cwd=code_root, text=True).strip()
     subprocess.run([sys.executable, str(Path(__file__).with_name("validate.py")),
                     str(ROOT / "data")], check=True)
     subprocess.run([sys.executable, "source/build_manifest.py"], cwd=ROOT, check=True)

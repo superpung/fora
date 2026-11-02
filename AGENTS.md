@@ -135,6 +135,24 @@ someone compared the file list against what the agents said they wrote.
   from the maintenance workspace; use synthetic fixtures in code CI.
 - Review staged paths before every commit and run the repository data-boundary gate.
 
+## Project facts
+- Conference-agenda parsing + web viewer for multiple independent conferences.
+- The data model is fully self-designed (`schema/schema.json`) and is
+  **not compatible with / mapped to** pretalx / frab or any existing format.
+- Dirty data is handled by "record faithfully + mark with `flags`" — never
+  silently corrected.
+- **The site hosts multiple conferences.** `/` is the conference hub; each
+  conference lives under `/:conf/...` (`conf` = conference id).
+  - Data is not a module singleton: `lib/data.ts` exposes the pure factory
+    `buildConferenceViews(raw)`; the registry (`lib/conferences.ts`) builds and
+    memoises views per id, and components read the active conference through
+    `useConference()`.
+  - Curated datasets and catalogs live in the external maintenance workspace.
+    Production reads the independently published R2 catalog for the hub / switcher
+    without loading any full dataset. Application builds are data-independent.
+  - Every per-conference storage key is namespaced under the conference id
+    (`<id>:followed.*`); site-wide preferences (e.g. theme) are not namespaced.
+
 ## Design system (Vercel / Geist)
 The web viewer follows a **Vercel / Geist** visual language — high-contrast,
 restrained, and detailed. Match it; do not drift toward other looks.
@@ -232,16 +250,301 @@ restrained, and detailed. Match it; do not drift toward other looks.
 
 # Developer reference
 
-React/Vite serves a conference-independent SPA. `lib/conferences.ts` loads the
-R2 catalog and verifies immutable dataset hashes. Cache API supports offline
-reading. GitHub OAuth and D1 handle account sessions and revisioned follows.
-`cloudflare/HEAT.md` documents incremental heat aggregation and resource budgets.
+The user-facing overview lives in [README.md](README.md). This half of the file
+is the technical reference for working on the repo: the data model, the pipeline,
+and how to add a conference.
 
-Build with `pnpm --dir web build`; run lint and `pnpm --dir web test`.
-The external maintenance workspace owns source capture, parsing, identities,
-enrichment and full conference acceptance. Set `FORA_MAINTENANCE_ROOT` when
-using `source/publish_data.py`; review the immutable candidate before promotion.
-Use `source/validate.py <dataset-directory>` for schema/person/clock validation.
+## Data model & schema
 
-Production availability, preview verification, rollback preparation, UI reuse,
-source fidelity and the language rules above apply to every change.
+- Parse a conference agenda into a **self-designed, general-purpose format**
+  (`schema/schema.json`, JSON Schema draft 2020-12), then use it to drive the web
+  viewer. The schema is **not compatible with / mapped to** any existing format
+  (pretalx / frab / pentabarf are all out of scope); it is designed purely from
+  the real conference data.
+- Core structure: `conference → day → time block (keynotes / forums / banquet /
+  registration / committee meetings) → forum (CFxx) → talk`.
+  - **A forum is a first-class entity** (code / name / room / session sponsor /
+    chairs / embedded talks).
+  - Optional forum `start`/`end` describe its own published window. Explicit
+    nulls mean unknown; only legacy records with absent fields inherit their
+    parent block's window. A shared day-wide board is not an individual
+    forum's schedule.
+  - Bilingual and TBD states are supported throughout.
+- Organization roles include `partner` for explicitly published cooperating
+  organizations, distinct from hosts, supporting organizations and sponsors.
+- Dirty data is recorded faithfully and marked with `flags` — never silently
+  corrected (see the external data-quality tracker).
+- **Faithful does not mean literal into the wrong field.** A `person.name` is a
+  person's name; a role ("主持人：执行主席"), a group ("全体嘉宾"), a placeholder
+  ("京东（人员待定）"), an organization or a list's numbering goes in `flags`, not
+  in the field the app reads as a human being. `source/people.py` is the single
+  place that decides what a person is and repairs the typography that hides one
+  (李 智 广西师范大学 → 李智 of 广西师范大学); `source/validate.py` enforces it over
+  every built dataset, because the schema can say there is a name but not what a
+  name is.
+- Structure the core schema doesn't model goes into the open `extra` field
+  (never forced or faked); recurring concepts get promoted to first-class fields
+  by **additive** schema evolution that must keep all existing conferences valid.
+
+## Repository layout and data maintenance
+
+Git contains `schema/schema.json`, generic `source/` validation, identity and
+publication tools, `cloudflare/` runtime services, and the `web/` application.
+`web/tests/` contains synthetic application regressions.
+
+`/data/fora-maintenance` contains conference datasets, source snapshots, adapters,
+identity registries, enrichment, portraits and real-conference acceptance tests.
+Paths below referring to these assets are relative to that external workspace.
+Preserve local work before replacing a clone after history cleanup; keep the
+cleaned code history and conference content separate.
+
+Each conference has its own source adapter and schema-conforming dataset. Preserve
+stable report identities and validate all reviewed records. Source capture and
+rebuilding are explicit maintenance operations: publication validates the reviewed
+JSON and must never rerun parsers over manual corrections. Use
+`source/validate.py <dataset-directory>` from the code repository.
+
+Set `FORA_MAINTENANCE_ROOT` to the external workspace when running
+`source/publish_data.py`. Stage immutable data and assets, inspect the candidate
+through `?dataVersion=<hash>`, then conditionally promote the catalog. Data updates
+are independent of application builds and require no code PR. See
+[Cloudflare publishing](cloudflare/README.md).
+
+## Test ownership
+
+Generic code checks and synthetic fixtures belong in Git and run in CI. Tests
+requiring actual conference datasets or portraits run from the external maintenance
+workspace against reviewed data. Moving data does not justify removing generic
+coverage. The current default suite covers the data boundary, heat, Worker APIs,
+agenda summaries and timeline coordinates; CI also runs generic Python and OAuth
+classification tests. Real-conference, browser-sync and integrated-login scripts
+currently depend on external fixtures and are invoked separately from that workspace.
+
+## Web app
+
+React + Vite + framer-motion SPA under `web/` (see the design system above).
+
+```bash
+cd web
+pnpm install
+pnpm dev        # dev server (HMR)
+pnpm build      # tsc -b && vite build
+pnpm lint       # oxlint
+pnpm preview    # serve the production build
+```
+
+- `src/lib/data.ts` — pure `buildConferenceViews(raw)` factory + conference-
+  independent helpers (dates, pinyin index, speaker categories). No module
+  singletons.
+- `src/lib/conferences.ts` — registry: fetches the R2 catalog and immutable JSON,
+  verifies SHA-256 and memoises views per id/hash. Validated Cache API entries
+  support offline reading. `DataBoundary` displays failures with a reload action;
+  rejected promises remain memoized so React can reach the error boundary.
+- `src/components/ConferenceLayout.tsx` — validates `:conf`, provides its views,
+  and scopes follows (`FollowProvider`, keyed by id) to that conference.
+- **Personal agenda (follows):** talks, forums, and speakers are starred and
+  persisted to `localStorage` namespaced per conference (`<id>:followed.*`). The
+  account menu exports the resolved agenda (`.ics` / `.csv` / `.md`) and a
+  re-importable `.json` backup, clears follows, and links to a pre-filled bug
+  report (`lib/repo.ts` builds a GitHub new-issue URL, auto-capturing the page /
+  conference / version / browser). Cross-device sync uses GitHub identity and the
+  D1 API in `cloudflare/worker.mjs`. `sync-provider.tsx` performs revisioned,
+  three-way synchronization; sessions are HttpOnly cookies with hashes in D1.
+  No GitHub token or Gist is used for storage. See `cloudflare/README.md`.
+- **Conference heat:** `cloudflare/heat-model.mjs` builds the published identity
+  index and computes weighted interest; `cloudflare/heat.mjs` serves a globally
+  cached snapshot of incremental D1 totals. Account vectors and trigger deltas
+  commit atomically with sync/participation writes. Structural identity changes
+  reconcile stale vectors on demand; no periodic full-user scan is used. Participation defaults
+  on for signed-in accounts and uses its own server revision outside sync bundles.
+  `/:conf/popular` is the only heat display and read surface. Its default-on
+  “热度统计” setting controls both participation and visibility; anonymous
+  visibility uses `fora.heat.enabled`, while signed-in accounts use the revisioned
+  server setting. Turning it off hides the route/navigation and stops heat reads.
+  `HeatProvider` mounts only on that page, refreshes at snapshot expiry (at most
+  five minutes), and suspends on hidden/offline pages. Refreshing is automatic
+  without update-time text, a progress ring, countdown or manual refresh button.
+  No scoring prose belongs in the app. Failures show
+  unavailable, not zero. Account polling is five minutes; edits still upload
+  after two seconds.
+  Read `cloudflare/HEAT.md` for the exact formula, resource budget, privacy window,
+  test matrix and catalog/schema rollout requirements. Do not publish an obsolete
+  catalog without its `interest` index or substitute full-dataset parsing at runtime.
+- **Shared presentation:** `SegmentedControl` owns the schedule/popular switches,
+  including arrow-key selection. `ForumSummary` and `ForumActions` in
+  `ForumRowParts` are shared by Home and Popular. `AgendaRow` is the report row
+  used by My Day and Popular. It preserves My Day's separate time column;
+  discovery rows show source facts with a code badge before the forum name and
+  right-aligned heat. `ConferenceLayout` mounts one shared `BackToTop` on the
+  conference reading pages. Schedule excludes it from all/board views and mounts
+  it only for My Day; the conference hub is unchanged. The circular button
+  appears only after 600px of document scrolling; its outer ring tracks document scroll progress
+  (not heat refresh time) and respects changing content height. It reuses the
+  shared button/icon styles and respects reduced motion when returning to the top.
+  `back-to-top.mjs` checks these routes, short lists, timeline exclusion, existing
+  controls and desktop/mobile light/dark screenshots. Planner actions reserve the
+  right corner; the footer reserves bottom clearance only while the control is visible.
+  `CityLocation` owns country/city labels on Home and the hub; the retained
+  middle dot occupies 1em without padding spaces. Posters draw the same spacing
+  at canvas scale. SourceNotes owns its sole animated disclosure.
+  `ForumCode` / `ForumIdentity` own all HTML forum badges; `ui-consistency.mjs` checks their real callers and
+  source-preserving punctuation changes. Change these owners rather than copying
+  their markup or adding page-specific visual substitutes; check all affected callers.
+- **Stable reports:** required `talk.id` is allocated by `source/identities.py`
+  from reviewed `source/identities/<id>.json` registries. Its numeric suffix is
+  permanent, never the current list index. Follows, anchors, enrichment, exports
+  and all derived lists read that ID. Unreviewed identity changes fail the build.
+- **Independent releases:** `source/publish_data.py` stages checksummed public
+  objects, then conditionally promotes the manifest. Curated inputs stay local.
+  A data-only update needs no PR. Code changes still require normal CI/review.
+  `?dataVersion=<manifest hash>` selects an immutable candidate for browser review.
+
+- **Reading state:** three tiers, and picking the wrong one is a real bug.
+  `useStickyState` (`lib/sticky-state.ts`) keeps a value for the session — the
+  filters and tabs a reader had set before a trip to a detail page and Back.
+  `useSavedState` (`lib/saved-state.ts`) keeps it for good, in `localStorage`
+  namespaced per conference, for a choice about *how they read the site*; it
+  writes only in the setter, so merely opening a page never overwrites what the
+  reader saved. The URL outranks both when a view is worth sharing (the
+  schedule's `?v=`), so a link opens on what the sender was reading without
+  rewriting the recipient's own preference.
+- **The live view (`/:conf/now`):** `lib/live.ts` turns the views plus the clock
+  (`use-now.ts`, 30s tick and foreground refresh) into what is running per room,
+  what starts next, and when the user's next starred item begins. Timed event
+  blocks (registration, ceremonies, banquets and committee meetings) participate
+  even without report details. Date-only follows never displace a timed next
+  item or acquire an invented start. Side-effect free, so the page stays thin.
+- **Conference time:** `lib/conference-time.ts` resolves venue-local dates and
+  instants for live states, reminders and calendar exports. The manifest carries
+  `timezone` so the hub can update conference status at venue midnight without
+  loading full datasets. Reminder caches carry the source timezone directly.
+  An absent source timezone retains device-local
+  semantics. Never compare a venue agenda directly against device wall time.
+- **Shared regressions (external maintenance workspace):** `web/tests/conference-core.mjs` checks venue clocks,
+  live events, pending forum windows, identities, reminders and live navigation
+  independently of any newly imported conference. `conference-ui.mjs` checks
+  empty-forum boards on desktop/mobile and current speaker identities across
+  reloads. `permalink-scroll.mjs` checks browser anchors against existing data.
+- **Clock regression:** `web/tests/live-clock.mjs` controls browser clocks and
+  checks event boundaries, current-report highlights, midnight, foreign device
+  timezones and notification delivery through a mock. It captures desktop/mobile
+  pages plus a gallery under `LIVE_AUDIT_DIR` in the external maintenance
+  workspace. `AUDIT_BASE_URL` can target a preview.
+- **Multi-day forums:** optional `forum.sessions` contains dated programme
+  envelopes; each talk/break carries `day_date`. Keep one canonical forum and
+  report list. `talkDate()` resolves a report's explicit date; `forumOnDate()`
+  projects daily slots while preserving report object identity. Dashboard and
+  timeline links/follows use persistent report IDs, never the filtered list index.
+  Exports, reminders, speaker lists, planning, topics and related talks use the
+  report date. `web/tests/multiday.mjs` checks both dates on desktop/mobile and
+  accepts `AUDIT_BASE_URL`; independent fixtures live in `conference-core.mjs`.
+- **The resolved agenda:** `lib/export.ts`'s `collectFollowedItems()` is the one
+  place that turns follows (talks + forums + speakers) into a sorted list of
+  `ExportItem`. My Day, the live card, the reminders and every export format
+  read that shape — extend it there, never re-derive it in a component. A talk
+  with no time of its own borrows its forum's window and is flagged
+  `approx: true`; every surface must present that as borrowed (a `~`, a note in
+  the export), never as an exact time.
+  A followed, dated forum with no published talks is itself an agenda item;
+  keep its own window and omit a talk anchor. Undated forums remain browsable
+  through `ConferenceViews.unscheduledForums` but receive no invented date.
+- **Ambiguous people:** `lib/person-key.ts` uses `person.extra.identity_key`
+  when the adapter explicitly separates unresolved same-name source records.
+  Otherwise it uses `name:<name>`. Directory aggregation, follows, JSON backups,
+  synchronization and exports use these exact keys, including keynote-only
+  identities. Reading or importing follows never expands a name to other people.
+  Never infer identity from affiliation.
+- **Source gaps:** `SourceNotes.tsx` exposes flags through an animated,
+  keyboard/touch-accessible disclosure. Forum details display hosts from
+  `talk.extra.hosts`, chronological breaks, and separately retained
+  `forum.extra.unmatched_profiles`. Read each conference's external gap tracker
+  and curation notes before updating it. Keep source snapshots and reports there;
+  failed checks retain evidence without advancing the successful baseline.
+  Retain imported content when source references return 404/410. Do not derive
+  identities from affiliation. Committee reveal animations trigger on intersection,
+  not a fraction of roster height, so long lists remain visible on short viewports.
+- **Local maintenance:** use bounded local checks during the conference's active
+  preparation window. Unchanged successful checks reuse evidence and append a
+  small log. Curated inputs, schedules and source histories belong in the external
+  workspace; back them up as working files. No permanent cloud scheduler, private
+  R2 source archive or data-only PR is involved.
+- **Search (`lib/search.ts` + `lib/bm25.ts`):** one palette over the whole
+  program — talk titles/abstracts, speakers, affiliations, forums, committee
+  members, organizations — ranked by BM25 in the browser over the already-loaded
+  JSON. No model, no network; Han runs are tokenized as character bigrams for
+  want of a segmenter. `bm25.ts` is shared with the planner.
+- **AI-derived content (hard contract):** anything a model wrote lives in the
+  talk's own `enrichment` container (`schema/schema.json`, `source/enrichment.py`)
+  and never touches the verbatim title/abstract. `lib/ai-store.ts` is the UI half:
+  **one** site-wide switch (`useAi().enabled`) decides whether any of it is shown,
+  and every surface built on it — TL;DR summaries, the planner (`lib/plan.ts`,
+  `/:conf/plan`), the topic map (`lib/topics.ts`, `/:conf/topics`, route mounted
+  only when the switch is on), similar talks (`lib/similar.ts`) — falls back to
+  source-only behaviour when it is off and carries a provenance mark plus the
+  "may contain errors" disclaimer (`AiMark.tsx`) when it is on. Topics travel as
+  vocabulary keys and are shown through `topicLabel()`, never as raw text.
+  Enrichment entries may include `source_title`; the merge fails if that title
+  changes, preventing stale index-based annotations after programme edits.
+- **Portraits:** external source adapters retain explicit source person-card images.
+  External preparation scripts produce compact WebP assets; source URLs and hashes
+  stay with the maintenance records. Verify the association before attaching
+  `person.photo`. Publish immutable portrait assets to R2 and check decoding in
+  real-conference browser acceptance.
+- **Reminders:** opt-in local notifications for starred items
+  (`lib/reminder-store.ts` prefs, `lib/reminder.tsx` provider,
+  `lib/reminder-schedule.ts` scheduling). Nothing schedules and no OS permission
+  is requested until the user turns them on. Prefs are site-wide and synced.
+- **Offline / PWA:** `pnpm build` runs `scripts/build-sw.mjs` (workbox `generateSW`)
+  after `vite build` to emit `dist/sw.js` — a **post-build** step by design, so it
+  doesn't depend on the Vite 8 / rolldown plugin surface. It precaches the app
+  shell; the data loader separately caches verified immutable JSON on first visit. Content-addressed
+  portraits are cached on demand in `fora-portraits`, never precached with the
+  app shell. The SW is registered in
+  `main.tsx` in production only, and its navigation fallback denylists
+  `/api/*` and root OAuth query parameters so login always hits the network. `public/manifest.webmanifest`
+  + the `icon-*.png` mark it installable.
+
+## README audience (hard rule)
+
+`README.md` and `README.zh-CN.md` describe the latest released product for users.
+Keep their branding, current features and user-facing instructions aligned across
+both languages. Keep architecture, storage providers, development commands,
+deployment procedures and migration/change history in the developer and operations
+documentation or changelog. Review both READMEs against this boundary when releasing.
+
+## Releasing
+
+A release is one commit on `main` that bumps the version and writes the changelog
+entry, then a tag and a GitHub release pointing at it. The version lives in
+exactly one place — `web/package.json` — and `vite.config.ts` injects it as
+`__APP_VERSION__`, which the footer's release link and the bug-report template
+read. Never hand-write a version anywhere else.
+
+Run the whole list. Steps 3 and 4 are the ones that get skipped, because nothing
+fails when they are: no test goes red over a README that describes last month's
+app, and the omission is only visible to the reader who trusted it.
+
+1. **Version** — bump `version` in `web/package.json`. Pre-1.0, a release with
+   new features is a minor.
+2. **CHANGELOG.md** — a new top entry, grouped `Added / Changed / Fixed / Data /
+   CI` like the entries before it, covering every PR merged since the last tag
+   (`git log --oneline <last-tag>..main`).
+3. **README.md *and* README.zh-CN.md** — does the feature list still describe
+   the app? A release that adds anything user-visible almost always leaves it
+   stale, and a feature the README names differently from the UI is a bug in the
+   README. Both languages change together, never one alone.
+4. **This file** — did the release add a subsystem, a lib module, a pipeline
+   step, a route, or a storage key? The developer reference is what the next
+   agent reads *instead of* the diff; if it is silent, the next agent rebuilds
+   what already exists.
+5. **Check it** — `cd web && pnpm lint && pnpm build`, and confirm the built
+   bundle carries the new version.
+6. **Land it** — open the release PR (`release: vX.Y.Z`), wait for CI, merge.
+7. **Tag and publish** — tag the merge commit `vX.Y.Z` and publish the GitHub
+   release with the changelog entry as its body. Tag *after* the doc changes
+   have landed, so the tree the tag names is the one the release describes.
+8. **Verify production** — https://fora.repus.me serves the new version.
+   Verify the footer version and release link in a fresh browser context, then
+   open the changed conference routes and confirm the deployed data. Check that
+   the tag and GitHub release resolve to the release PR's actual merge commit;
+   an earlier branch build or an existing service-worker cache is not release proof.

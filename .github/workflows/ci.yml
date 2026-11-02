@@ -21,6 +21,7 @@ jobs:
           cache-dependency-path: web/pnpm-lock.yaml
       - run: pnpm install --frozen-lockfile
       - run: python3 -m unittest discover -s ../source -p 'test_*.py'
+      - run: python3 -m unittest discover -s ../cloudflare -p 'test_*.py'
       - run: pnpm lint
       - run: pnpm build
       - run: pnpm exec playwright install --with-deps chromium
