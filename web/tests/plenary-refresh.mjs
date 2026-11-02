@@ -27,6 +27,10 @@ try {
       if (controlledClock) await page.clock.runFor(1200);
       await page.waitForTimeout(700);
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
+      assert(await page.locator('h1,h2').first().evaluate(node => {
+        for (let el = node; el; el = el.parentElement) if (Number(getComputedStyle(el).opacity) < 0.99) return false;
+        return true;
+      }), name + ' has finished its page entrance animation');
       await page.screenshot({ path: `${out}/${width}-${colorScheme}-${name}.png` });
     };
     await page.goto(base + '/chinasoft2026/schedule?v=all#2026-11-07');
@@ -58,14 +62,14 @@ try {
     await page.getByRole('heading', { name: '论坛组织', exact: true }).waitFor();
     assert.equal(await page.locator('.fd__people .person').count(), 16);
     await page.getByRole('heading', { name: '论坛组织', exact: true }).scrollIntoViewIfNeeded(); await shot('organizers');
+    await page.goto(base + '/ccfchip2026/schedule?v=all#2026-07-18');
+    await page.locator('.talkrow--agenda').first().waitFor();
+    await page.locator('.talkrow--agenda').first().scrollIntoViewIfNeeded(); await shot('existing-keynotes');
     await page.clock.install({ time: new Date('2026-11-08T14:02:00+08:00') });
     controlledClock = true;
     await page.goto(base + '/chinasoft2026/now');
     const live = page.locator('.nowcard__talk').filter({ hasText: '苏亭' });
     await live.waitFor(); await live.scrollIntoViewIfNeeded(); await shot('live');
-    await page.goto(base + '/ccfchip2026/schedule?v=all#2026-07-18');
-    await page.locator('.talkrow--agenda').first().waitFor();
-    await page.locator('.talkrow--agenda').first().scrollIntoViewIfNeeded(); await shot('existing-keynotes');
     if (server && width === 1280 && colorScheme === 'light') {
       const result = await page.evaluate(async raw => {
         const [{ buildConferenceViews }, { collectFollowedItems, toICS }, { buildLiveView }, { clockAt }] = await Promise.all([
