@@ -37,7 +37,7 @@ export interface PosterSpec {
   confName: string; // conference name (masthead)
   confDate: string; // "2025年11月27–30日"
   confVenue?: string | null; // "武汉国际会议中心"
-  confLocation?: string | null; // "中国·武汉"
+  confCity?: string | null; // Venue city, displayed with the country in the masthead.
   chip?: string | null; // forum category (forum) / kind (talk)
   code?: string | null; // forum code, monospace, right of the chip
   title: string;
@@ -63,23 +63,15 @@ const INK = "#111318";
 const SUB = "#54606e";
 const MUTE = "#8b93a0";
 const FAINT = "#c4cad3";
+const META = "#666666";
+const BADGE_BG = "#fafafa";
+const BADGE_BORDER = "#e5e5e5";
 
 const SANS = `-apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif`;
 const MONO = `ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace`;
 
 function font(weight: number, size: number, mono = false): string {
   return `${weight} ${size}px ${mono ? MONO : SANS}`;
-}
-
-type RGB = [number, number, number];
-function hexToRgb(hex: string): RGB {
-  let h = hex.replace("#", "").trim();
-  if (h.length === 3) h = h.split("").map((c) => c + c).join("");
-  const n = parseInt(h.slice(0, 6) || "0070f3", 16);
-  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
-}
-function rgba([r, g, b]: RGB, a: number): string {
-  return `rgba(${r},${g},${b},${a})`;
 }
 
 function isCjk(ch: string): boolean {
@@ -253,7 +245,7 @@ function styledFlow(
 function iconFlow(
   ctx: CanvasRenderingContext2D,
   dry: boolean,
-  items: PosterMeta[],
+  items: { icon: IconKey; text: string[] }[],
   x: number,
   y: number,
   maxW: number,
@@ -269,14 +261,20 @@ function iconFlow(
   let cy = y;
   for (const it of items) {
     ctx.font = font(500, fs, true);
-    const tw = ctx.measureText(it.text).width;
+    const widths = it.text.map(part => part === "·" ? fs : ctx.measureText(part).width);
+    const tw = widths.reduce((sum, width) => sum + width, 0);
     const w = isz + igap + tw;
     if (lx > x && lx + w > x + maxW) { lx = x; cy += lineH; }
     if (!dry) {
       drawIcon(ctx, it.icon, lx, cy + Math.round((lineH - isz) / 2), isz, iconColor);
       ctx.fillStyle = textColor;
       ctx.font = font(500, fs, true);
-      ctx.fillText(it.text, lx + isz + igap, cy + Math.round((lineH - fs) / 2) - 1);
+      let tx = lx + isz + igap;
+      it.text.forEach((part, index) => {
+        const inset = (widths[index] - ctx.measureText(part).width) / 2;
+        ctx.fillText(part, tx + inset, cy + Math.round((lineH - fs) / 2) - 1);
+        tx += widths[index];
+      });
     }
     lx += w + sep;
   }
@@ -341,7 +339,7 @@ function roundRect(
 }
 
 /** Light masthead (no dark band): an accent kicker + the conference name +
-    a date · location line. The venue is not shown here — it moves down to the
+    an icon-tagged date and location line. The venue is not shown here — it moves down to the
     room meta. Measures its lines first, then paints. Returns its height. */
 function masthead(ctx: CanvasRenderingContext2D, spec: PosterSpec, dry: boolean): number {
   const x = PAD;
@@ -353,8 +351,8 @@ function masthead(ctx: CanvasRenderingContext2D, spec: PosterSpec, dry: boolean)
   const nameLines = clampLines(wrapText(ctx, spec.confName, maxW), 2);
   const nameLH = 56;
 
-  const items: PosterMeta[] = [{ icon: "calendar", text: spec.confDate }];
-  if (spec.confLocation) items.push({ icon: "pin", text: spec.confLocation });
+  const items = [{ icon: "calendar" as IconKey, text: [spec.confDate] }];
+  if (spec.confCity) items.push({ icon: "pin", text: ["中国", "·", spec.confCity] });
 
   const nameTop = topPad + kickerH + 22;
   const metaTop = nameTop + nameLines.length * nameLH + 20;
@@ -417,13 +415,12 @@ function drawForaMark(ctx: CanvasRenderingContext2D, x: number, y: number, size:
 
 function layout(ctx: CanvasRenderingContext2D, spec: PosterSpec, dry: boolean): number {
   const accent = spec.accent;
-  const accentRgb = hexToRgb(accent);
   const x = PAD;
   const maxW = POSTER_W - PAD * 2;
 
   let y = masthead(ctx, spec, dry) + 44;
 
-  // category (or kind) chip + code
+  // Category (or kind) chip and the same neutral identifier badge as the app.
   if (spec.chip || spec.code) {
     const chipH = 50;
     let cx = x;
@@ -432,20 +429,29 @@ function layout(ctx: CanvasRenderingContext2D, spec: PosterSpec, dry: boolean): 
       ctx.font = font(600, 26);
       const chipW = 20 + isz + 12 + ctx.measureText(spec.chip).width + 22;
       if (!dry) {
-        ctx.fillStyle = rgba(accentRgb, 0.1);
+        ctx.fillStyle = BADGE_BG;
+        ctx.strokeStyle = BADGE_BORDER;
+        ctx.lineWidth = 2;
         roundRect(ctx, cx, y, chipW, chipH, 12);
         ctx.fill();
-        drawIcon(ctx, "tag", cx + 20, y + (chipH - isz) / 2, isz, accent);
-        ctx.fillStyle = accent;
+        ctx.stroke();
+        drawIcon(ctx, "tag", cx + 20, y + (chipH - isz) / 2, isz, META);
+        ctx.fillStyle = META;
         ctx.font = font(600, 26);
         ctx.fillText(spec.chip, cx + 20 + isz + 12, y + (chipH - 26) / 2);
       }
       cx += chipW + 18;
     }
     if (spec.code && !dry) {
-      ctx.fillStyle = MUTE;
-      ctx.font = font(600, 28, true);
-      ctx.fillText(spec.code, cx, y + (chipH - 28) / 2);
+      ctx.font = font(400, 28, true);
+      const codeW = ctx.measureText(spec.code).width + 24;
+      ctx.fillStyle = BADGE_BG;
+      ctx.strokeStyle = BADGE_BORDER;
+      ctx.lineWidth = 2;
+      roundRect(ctx, cx, y, codeW, chipH, 8);
+      ctx.fill(); ctx.stroke();
+      ctx.fillStyle = SUB;
+      ctx.fillText(spec.code, cx + 12, y + (chipH - 28) / 2);
     }
     y += chipH + 30;
   }
@@ -454,9 +460,9 @@ function layout(ctx: CanvasRenderingContext2D, spec: PosterSpec, dry: boolean): 
   y = textBlock(ctx, dry, spec.title, x, y, maxW, font(800, 62), INK, 82, 6);
   y += 30;
 
-  // forum/talk meta lines (each icon-tagged, accent icon)
+  // Forum/talk metadata uses neutral icons.
   for (const m of spec.metaLines) {
-    y = iconMeta(ctx, dry, m.icon, m.text, x, y, maxW, 30, SUB, accent) + 12;
+    y = iconMeta(ctx, dry, m.icon, m.text, x, y, maxW, 30, SUB, META) + 12;
   }
 
   // people (chairs / speakers): name (bold) + affiliation (lighter, smaller)
@@ -509,7 +515,7 @@ function layout(ctx: CanvasRenderingContext2D, spec: PosterSpec, dry: boolean): 
       if (t.speakers.length > 0) {
         const segs: Seg[] = [];
         t.speakers.forEach((s, i) => {
-          if (i > 0) segs.push({ text: "   ·   ", font: font(400, 26), color: FAINT });
+          if (i > 0) segs.push({ text: "    ", font: font(400, 26), color: FAINT });
           segs.push({ text: s.name, font: font(600, 28), color: SUB });
           if (s.aff) segs.push({ text: " " + s.aff, font: font(400, 25), color: MUTE });
         });

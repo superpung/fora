@@ -1,9 +1,10 @@
 import { Suspense, useMemo, useState } from "react";
-import { Outlet, Navigate, useParams, useLocation } from "react-router-dom";
+import { Outlet, Navigate, useParams, useLocation, useMatch } from "react-router-dom";
 import Nav from "./Nav";
 import PageLoader from "./PageLoader";
 import DocumentTitle from "./DocumentTitle";
 import SearchPalette from "./SearchPalette";
+import BackToTop from "./BackToTop";
 import { ConferenceProvider } from "../lib/conference";
 import { FollowProvider } from "../lib/follow";
 import { FollowActionsBridge } from "../lib/follow-actions";
@@ -17,6 +18,7 @@ import { hasConference } from "../lib/conferences";
 export default function ConferenceLayout() {
   const { conf } = useParams();
   const location = useLocation();
+  const isSchedule = !!useMatch("/:conf/schedule");
   // Search-palette open state lives here so the nav's search button (outside the
   // conference providers) and the palette (inside them, where the dataset is
   // available) share it.
@@ -42,6 +44,7 @@ export default function ConferenceLayout() {
                 animation, while the nav / provider persist across navigation. */}
             <main key={location.pathname}>
               <Outlet />
+              {!isSchedule && <BackToTop />}
             </main>
           </FollowProvider>
         </ConferenceProvider>

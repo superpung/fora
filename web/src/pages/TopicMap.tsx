@@ -1,3 +1,4 @@
+import { ForumCode } from "../components/ForumIdentity";
 import { useCallback, useEffect, useMemo, useState, type CSSProperties } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -114,7 +115,7 @@ function TopicTalkRow({ talk }: { talk: TopicTalk }) {
         </span>
       )}
       <span className="tmaptalk__meta">
-        <span className="tmaptalk__code mono">{talk.forumCode}</span>
+        <ForumCode code={talk.forumCode} />
         <span className="tmaptalk__forum">{talk.forumTitle}</span>
         {talk.room && (
           <span className="tmaptalk__bit">
@@ -548,7 +549,7 @@ export default function TopicMap() {
                 >
                   {g.label && (
                     <div className="tmapgrp__head">
-                      {g.sub && <span className="tmapgrp__code mono">{g.sub}</span>}
+                      {g.sub && <ForumCode code={g.sub} />}
                       <span className="tmapgrp__label">{g.label}</span>
                       <span className="tmapgrp__n mono">{g.talks.length}</span>
                     </div>

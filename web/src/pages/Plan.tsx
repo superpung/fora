@@ -1,3 +1,4 @@
+import ForumIdentity from "../components/ForumIdentity";
 import {
   useEffect,
   useLayoutEffect,
@@ -59,24 +60,6 @@ function PickRow({
         aria-label={t("plan.include", { title: pick.title })}
       />
       <div className="planpick__body">
-        <div className="planpick__meta">
-          {time ? (
-            <span className="planpick__time mono" title={pick.approxTime ? t("common.approxTime") : undefined}>
-              {pick.approxTime ? `~${time}` : time}
-            </span>
-          ) : (
-            <span className="planpick__time planpick__time--tbd">{t("plan.timeTbd")}</span>
-          )}
-          {pick.room && (
-            <span className="planpick__room">
-              <Icon name="pin" size={11} /> {pick.room}
-            </span>
-          )}
-          <span className="planpick__session">
-            {session}
-            {pick.code ? ` · ${pick.code}` : ""}
-          </span>
-        </div>
         <div className="planpick__title">
           {pick.code ? (
             // Land on the talk itself, not the top of its forum: the forum page
@@ -98,6 +81,23 @@ function PickRow({
             <Icon name="user" size={12} /> {pick.speakers}
           </div>
         )}
+        <div className="planpick__meta">
+          {time ? (
+            <span className="planpick__time mono meta-bit" title={pick.approxTime ? t("common.approxTime") : undefined}>
+              <Icon name="clock" size={11} />{pick.approxTime ? `~${time}` : time}
+            </span>
+          ) : (
+            <span className="planpick__time planpick__time--tbd">{t("plan.timeTbd")}</span>
+          )}
+          {pick.room && (
+            <span className="planpick__room">
+              <Icon name="pin" size={11} /> {pick.room}
+            </span>
+          )}
+          <span className="planpick__session">
+            <ForumIdentity code={pick.code} name={session} />
+          </span>
+        </div>
         {pick.summary && (
           <p className="planpick__sum">
             <AiBadge />

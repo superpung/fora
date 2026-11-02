@@ -1,3 +1,4 @@
+import CityLocation from "../components/CityLocation";
 import { useClockMs } from "../lib/use-now";
 import { clockAt } from "../lib/conference-time";
 import { motion } from "framer-motion";
@@ -47,7 +48,7 @@ function ConferenceCard({ c }: { c: ConferenceMeta }) {
           </span>
           {c.city && (
             <span>
-              <Icon name="pin" size={13} /> {t("common.inChina", { city: c.city })}
+              <Icon name="pin" size={13} /> <CityLocation city={c.city} />
             </span>
           )}
         </div>
