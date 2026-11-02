@@ -4,6 +4,21 @@ All notable changes to this project, newest first. The top entry is the current
 release; the dated log beneath it records development day by day. Written in
 English per the repository language rule (see AGENTS.md).
 
+## v0.6.1 — 2026-11-02
+
+### Fixed
+- Restore the bilingual README branding and current user-facing feature lists;
+  keep development, storage, migration details and specific conference listings
+  out of the product overview.
+- Restore general architecture guidance, design contracts and the release
+  checklist while preserving independent R2 data maintenance.
+- Restore the publisher's clean-code-worktree check, with regression coverage
+  for tracked and untracked changes before validation or upload.
+- Restore OAuth classification tests in CI and clarify which acceptance tests
+  run from the external conference maintenance workspace.
+
+_Changes: #55._
+
 ## v0.6.0 — 2026-11-02
 
 ### Added
