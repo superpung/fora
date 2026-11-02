@@ -147,6 +147,11 @@ def read_person(name, affiliation=None, **extra):
         elif rest:
             aff = rest if not aff else aff
     else:
+        # A standalone honorific is metadata for Latin names as well as CJK names.
+        head, separator, tail = n.rpartition(" ")
+        if separator and tail in PERSON_TITLES:
+            n = head
+            extra.setdefault("title", tail)
         acro = _TRAILING_ACRONYM.match(n)
         if acro and not aff:
             # "Jean-Pierre Talpin INRIA": the lab is not part of the name.

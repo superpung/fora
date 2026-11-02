@@ -117,11 +117,12 @@ export function buildLiveView(views: ConferenceViews, now: Now): LiveView {
     if (cur >= s && cur < end) {
       nowRooms.push({
         room: e.location ?? null,
-        title: titleLine(e.talk, "").text,
-        tbd: !ownTitle(e.talk),
+        title: e.blockTitle || titleLine(e.talk, "").text,
+        tbd: !e.blockTitle && !ownTitle(e.talk),
         kind: "keynote",
         start: e.talk.start ?? null,
         end: e.talk.end ?? null,
+        nowTalk: liteOf(e.talk),
       });
     }
   });
