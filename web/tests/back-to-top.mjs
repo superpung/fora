@@ -75,7 +75,8 @@ try {
       await page.evaluate(() => scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' })); await settle();
       assert.equal(await back.count(), 0, path + ' excludes back-to-top');
     }
-    await page.goto(base + '/chinasoft2026/speakers?q=' + encodeURIComponent('魏峻')); await page.locator('.spcard').waitFor();
+    await page.goto(base + '/chinasoft2026/speakers?q=' + encodeURIComponent('魏峻'));
+    await page.waitForFunction(() => document.querySelectorAll('.spcard').length === 1);
     await page.evaluate(() => scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' })); await settle();
     assert.equal(await back.count(), 0, 'short filtered list hides back-to-top');
     await page.clock.setFixedTime(new Date('2026-11-06T10:00:00+08:00'));
