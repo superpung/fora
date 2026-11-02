@@ -195,7 +195,9 @@ try {
     await target.locator(".orgitem").first().waitFor();
     const partners = target.locator(".orgcol").filter({ has: target.getByRole("heading", { name: "合作单位", exact: true }) });
     assert.deepEqual(await partners.locator(".orgitem").allTextContents(),
-      data.organizations.filter(o => o.role === "partner").map(o => o.name.zh));
+      data.organizations.filter(o => o.role === "partner").map(o => o.name.zh + (o.sponsor_tier || "")));
+    assert.deepEqual(await partners.locator(".tag").allTextContents(),
+      data.organizations.filter(o => o.role === "partner").map(o => o.sponsor_tier));
     assert.equal(await partners.locator(".orgitem").count(), 18);
     const support = target.locator(".orgcol").filter({ has: target.getByRole("heading", { name: "协办单位", exact: true }) });
     assert((await support.textContent()).includes("中国民航大学"));
