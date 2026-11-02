@@ -42,3 +42,13 @@ Thumbs.db
 
 # Generated conference datasets are published to R2 and rebuilt locally.
 /data/*.json
+
+# Conference maintenance content lives outside the code repository.
+/data/
+/source/raw/
+/source/extracted/
+/source/identities/
+/source/*/raw/
+/source/*/enrichment.json
+/web/public/portraits/
+/web/src/data/

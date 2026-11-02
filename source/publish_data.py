@@ -14,7 +14,7 @@ import time
 import urllib.error
 import urllib.request
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(os.environ["FORA_MAINTENANCE_ROOT"]).resolve() if os.environ.get("FORA_MAINTENANCE_ROOT") else Path(__file__).resolve().parent.parent
 OUTPUT = ROOT / ".data-release"
 
 
@@ -61,13 +61,10 @@ def is_source_input(path):
 
 
 def stage(base, token, summary):
-    changed = subprocess.check_output(["git", "diff", "HEAD", "--name-only", "-z"], cwd=ROOT).decode().split("\0")
-    changed += subprocess.check_output(["git", "ls-files", "--others", "--exclude-standard", "-z"], cwd=ROOT).decode().split("\0")
-    code = [path for path in changed if path and not is_source_input(Path(path)) and not
-            (path.startswith("data/") and path.endswith(".json")) and not path.startswith("web/src/data/")]
-    if code:
-        raise ValueError("Commit application/parser changes before staging: " + ", ".join(code))
-    revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+    if not os.environ.get("FORA_MAINTENANCE_ROOT"):
+        raise ValueError("FORA_MAINTENANCE_ROOT must name the external maintenance workspace")
+    revision = subprocess.check_output(["git", "rev-parse", "HEAD"],
+                                      cwd=Path(__file__).resolve().parent.parent, text=True).strip()
     for script in ["source/build_all.py", "source/validate.py"]:
         subprocess.run([sys.executable, script], cwd=ROOT, check=True)
     subprocess.run(["node", "web/scripts/prepare-data.mjs"], cwd=ROOT, check=True,

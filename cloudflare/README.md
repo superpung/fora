@@ -33,8 +33,6 @@ and `/api/session` throughout the rollout.
 ## Application
 
 ```sh
-uv run python source/build_all.py
-uv run python source/validate.py
 pnpm --dir web install --frozen-lockfile
 pnpm --dir web lint
 pnpm --dir web build
@@ -81,77 +79,21 @@ rolling out heat; production data and preview databases must remain separate.
 
 ## Conference data
 
-`data/<id>.json` is an ignored local build output for each conference.
-Tests and asset preparation read it directly; no duplicate web source dataset is
-kept or committed. A fresh clone runs `uv run python source/build_all.py` before
-web development or tests. These fixtures are not the live publication pointer. The deployed application fetches a versioned catalog and verifies each
-immutable dataset's SHA-256 before building its views. Validated visited data is
-cached for offline use. HTTP/schema/integrity errors remain errors; they do not
-silently select an older release. Offline cached catalogs are marked in the UI.
+R2 owns the public catalog, immutable conference objects and portraits.
+The external workspace `/data/fora-maintenance` retains source HTML, identity
+registries, enrichment and conference-specific acceptance scripts.
 
-Report IDs are allocated in `source/identities/<conference>.json` and are never
-reassigned after an insertion, removal or reorder. The number in `R1#0` is a
-permanent identity, not an array offset. Enrichment, follows, anchors, search,
-reminders and exports use that same identity. New or ambiguous reports stop the
-build until the registry is reviewed. A title edit can add a reviewed selector to
-its existing identity; an unrelated replacement must receive a new identity.
-
-Data publishing requires no code PR:
+Builds read the runtime catalog directly. Generic code tests use synthetic
+records. Set `FORA_MAINTENANCE_ROOT=/data/fora-maintenance` for the publisher:
 
 ```sh
-# FORA_PUBLISH_TOKEN is provided through the environment.
-# Review and update curated inputs, identities, portraits and enrichment.
-# Run rebuild, validation, relevant tests and screenshot review.
-uv run python source/publish_data.py stage --base https://fora.repus.me --summary 'Concrete reviewed changes'
-# Inspect the printed ?dataVersion=... candidate URL on desktop and mobile.
+uv run python source/publish_data.py stage --base https://fora.repus.me --summary 'Reviewed changes'
 uv run python source/publish_data.py promote --base https://fora.repus.me
 ```
 
-Staging uploads immutable public objects. It does not
-change the public catalog. Promotion checks referenced objects and atomically
-replaces the catalog only if its ETag still matches the reviewed baseline.
-Promotion preserves the reviewed manifest bytes. The authenticated catalog
-endpoint returns its immutable `release` hash and current `etag` for rollback.
-Another publisher winning that race requires a fresh review. The previous
-immutable manifests remain available for inspection and rollback through the
-same conditional promotion endpoint. Keep application code committed before
-staging so the release's `code_revision` identifies the actual parser/schema.
-
-## Local observations and curation
-
-The local maintainer performs source checks, curation, validation and publication
-in one job at 18:00 Asia/Shanghai, October 29 through November 8, 2026. Outside
-that window, checks are manual. There is no cloud cron or GitHub source-check
-workflow. The site's availability does not depend on the maintainer host.
-
-One persistent maintenance checkout retains current curated inputs. Source
-snapshots and reports stay local; unchanged successful checks reuse the existing
-snapshot and append a short check record. Failed checks retain evidence without
-advancing the successful baseline. Active 404/410 pages never delete imported
-content. Back up local inputs and snapshots as normal working files; moving to
-another machine requires copying them. No run restores or uploads raw inputs
-from/to R2. See `source/chinasoft2026/automation/README.md`.
-
-## Verification
-
-`web/tests/cloudflare-api.mjs` runs the actual Worker against local D1/R2. It
-checks OAuth state and hashed sessions, origin checks, body limits, isolation,
-concurrent writes, immutable uploads and conditional release promotion.
-`web/tests/cloudflare-ui.mjs` checks real browser providers across two devices,
-including deletion, competing writes, offline edits, cached reading and corrupt
-data rejection. The existing conference and clock suites cover data-driven UI.
-Production verification additionally checks actual CORS, portrait decoding,
-service-worker OAuth bypass, app/API routes, and unchanged unrelated resources.
-Run deployment tests explicitly when needed:
-
-```sh
-AUDIT_BASE_URL=https://fora.repus.me node web/tests/cloudflare-deployment.mjs
-AUDIT_BASE_URL=https://fora.repus.me AUDIT_DATA_BASE_URL=https://fora-data.repus.me node web/tests/conference-audit.mjs
-```
-
-`AUDIT_DATA_REVISION` can select a staged candidate. There is no special preview
-branch selector or repository-variable workflow in CI; the browser scripts remain
-available alongside normal CI validation.
+Supply `FORA_PUBLISH_TOKEN` through the environment. Stage, verify the candidate
+in an isolated application preview, then promote using the recorded ETag.
+Retain the prior immutable release for conditional rollback.
 
 ## Migration acceptance
 

@@ -21,7 +21,7 @@ export interface ConferenceMeta {
 
 
 interface Catalog { schema_version: number; conferences: ConferenceMeta[] }
-const DATA_BASE = (import.meta.env.VITE_DATA_BASE_URL as string | undefined)?.replace(/\/$/, "") ?? "/data";
+const DATA_BASE = (import.meta.env.VITE_DATA_BASE_URL as string | undefined)?.replace(/\/$/, "") ?? "https://fora-data.repus.me";
 const CACHE = "fora-data-v1";
 export function dataAssetUrl(path: string): string { return `${DATA_BASE}${path}`; }
 export let conferenceList: ConferenceMeta[] = [];

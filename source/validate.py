@@ -30,7 +30,7 @@ schema = json.loads((ROOT / "schema" / "schema.json").read_text())
 jsonschema.Draft202012Validator.check_schema(schema)
 validator = jsonschema.Draft202012Validator(schema)
 
-conf_dir = ROOT / "data"
+conf_dir = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "data"
 files = sorted(conf_dir.glob("*.json"))
 if not files:
     print("no conference datasets found in", conf_dir)
