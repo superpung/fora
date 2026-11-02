@@ -11,16 +11,16 @@ import { useSavedState, oneOf } from "../lib/saved-state";
 import { useHScroll } from "../lib/hscroll";
 import { useNow, isNowWithin } from "../lib/use-now";
 import { pageVariants, stagger, riseItem } from "../lib/motion";
-import { collectFollowedItems } from "../lib/export";
+import { collectFollowedItems, keynoteItem } from "../lib/export";
 import Icon, { type IconName } from "../components/Icon";
 import StarButton from "../components/StarButton";
 import TimeGrid from "../components/TimeGrid";
 import UntimedForumGrid from "../components/UntimedForumGrid";
 import MyDay from "../components/MyDay";
+import AgendaRow from "../components/AgendaRow";
 import BackToTop from "../components/BackToTop";
 import SegmentedControl from "../components/SegmentedControl";
 import type { Block, Forum, Talk, Break } from "../types";
-import { titleLine } from "../lib/talk-title";
 
 /** Published forum or report starts select the proportional time board. */
 function hasForumTimes(block: Block, forumsByCode: Record<string, Forum>): boolean {
@@ -75,6 +75,7 @@ function KeynotesBlock({
   keep?: (_index: number, talk: Talk) => boolean;
 }) {
   const { t } = useI18n();
+  const views = useConference();
   const { isTalk, toggleTalk } = useFollow();
   const now = useNow();
   const rows = keep
@@ -91,57 +92,14 @@ function KeynotesBlock({
             </span>
           </div>
         ) : (
-          <motion.div key={`t${i}`} variants={riseItem} className="talkrow">
-            <div
-              className={`talkrow__time${
-                isNowWithin(date, row.start, row.end, now) ? " is-now" : ""
-              }`}
-            >
-              <TimeRange start={row.start} end={row.end} />
-            </div>
-            <div className="talkrow__body">
-              {row.talk.type === "opening" ? (
-                <div className="talkrow__title">{row.talk.title?.zh}</div>
-              ) : (
-                <>
-                  <div className="talkrow__title">
-                    {(() => {
-                      const line = titleLine(row.talk, t("schedule.talkTbd"));
-                      return line.own ? (
-                        line.text
-                      ) : (
-                        <span className="tag tag--tbd">{line.text}</span>
-                      );
-                    })()}
-                  </div>
-                  <div className="talkrow__speaker">
-                    <strong>{row.talk.speakers?.[0]?.name}</strong>
-                    {row.talk.speakers?.[0]?.honorifics?.map((h) => (
-                      <span key={h} className="tag tag--code">{h}</span>
-                    ))}
-                    <span className="talkrow__aff">
-                      {row.talk.speakers?.[0]?.affiliation_raw}
-                    </span>
-                  </div>
-                </>
-              )}
-            </div>
-            {/* An opening address is not a talk anyone plans around, so it has no
-                star — the same rule the home page's keynote list follows. */}
-            {row.talk.type !== "opening" && (row.talk.speakers ?? []).length > 0 && (
-              <StarButton
-                active={isTalk(row.talk.id)}
-                size={15}
-                className="star--sm talkrow__star"
-                label={t(
-                  isTalk(row.talk.id)
-                    ? "common.talkFollowRemove"
-                    : "common.talkFollowAdd",
-                )}
-                onClick={() => toggleTalk(row.talk.id)}
-              />
-            )}
-          </motion.div>
+          <AgendaRow key={row.talk.id} variants={riseItem}
+            item={keynoteItem(row.talk.id, views, "talk")!}
+            running={isNowWithin(date, row.start, row.end, now)}
+            actions={row.talk.type !== "opening" && (row.talk.speakers ?? []).length > 0 && (
+              <StarButton active={isTalk(row.talk.id)} size={15} className="star--sm talkrow__star"
+                label={t(isTalk(row.talk.id) ? "common.talkFollowRemove" : "common.talkFollowAdd")}
+                onClick={() => toggleTalk(row.talk.id)} />
+            )} />
         ),
       )}
     </div>
