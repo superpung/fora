@@ -302,5 +302,6 @@ Worker, its derived heat vectors can become stale. After the next rollout has
 fully replaced that Worker, invalidate `sync_state.heat_index` (set it to an empty
 string) and expire `heat_cache`; verify reconciliation before accepting rankings.
 This is an explicit rollback recovery operation, not a permanent second backend.
-Preview acceptance does not substitute for production OAuth authorization. New feature production acceptance remains pending until
-that rollout occurs.
+Preview acceptance does not substitute for production OAuth authorization.
+The November 2 production rollout and its acceptance boundaries are recorded in
+[the rollout report](../docs/ROLLOUT_2026-11-02.md).

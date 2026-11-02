@@ -26,7 +26,9 @@ try {
   await page.getByText('缓存数据', { exact: true }).waitFor();
   await context.setOffline(false);
   const callback = await page.goto(base + '/?code=invalid&state=invalid', { waitUntil: 'domcontentloaded' });
-  assert.equal(callback.status(), session.enabled ? 400 : 403);
+  // Callback origin validation precedes state validation; login availability is separate.
+  const publicOrigin = process.env.AUDIT_PUBLIC_ORIGIN || base;
+  assert.equal(callback.status(), new URL(base).origin === new URL(publicOrigin).origin ? 400 : 403);
   assert((await page.textContent('body')).includes('OAuth'));
   assert.deepEqual(errors, []);
   console.log('PASS deployed data, portrait, deep link, offline SW reading and network OAuth callback');
