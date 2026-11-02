@@ -20,7 +20,6 @@ matters, and take it with you everywhere — no app to install.
 
 ## Features
 
-- 🏛️ **Many conferences, one place** — browse CCF Chip 2026, ChinaOSC 2026, ChinaSoft 2025 and ChinaSoft 2026.
 - 🗓️ **The whole program** — keynotes, parallel sessions, speakers, committee and organizers, with a bilingual interface (中文 / English), source-language content and a time view that shows what's running in parallel.
 - 🔴 **Live on the day** — what's on in every room right now, what starts next, and when your next starred item begins, using the conference's local time even when your device is elsewhere.
 - 📅 **Across days** — follow a forum once and keep its reports on the right dates, including in reminders and calendar exports.
