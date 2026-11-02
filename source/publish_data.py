@@ -49,17 +49,6 @@ def upload(base, token, key, path):
     return digest
 
 
-def is_source_input(path):
-    """Exclude shared vocabulary compiled into the application and check history."""
-    if path == Path("source/topics.json") or any(part in
-            {"checks", "automation", "__pycache__", "images", "files", "tiles"} for part in path.parts):
-        return False
-    return (path.parts[0] == "source" and path.suffix in {".json", ".html", ".txt"}) or \
-        (path.as_posix().startswith("data/forums_detail/") and path.suffix == ".json") or \
-        (path.as_posix().startswith("web/public/portraits/") and path.suffix == ".webp") or \
-        path == Path("data/CHINASOFT2026_GAPS.md")
-
-
 def stage(base, token, summary):
     if not os.environ.get("FORA_MAINTENANCE_ROOT"):
         raise ValueError("FORA_MAINTENANCE_ROOT must name the external maintenance workspace")
