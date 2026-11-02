@@ -1,11 +1,267 @@
 # ChinaSoft 2026: source gaps and refresh checklist
 
-Last imported source review: **2026-10-29, checked at 11:08–11:09 Asia/Shanghai**.
-This is the conference-specific checklist for subsequent refreshes. Talk numbers
-below are **one-based**, matching `#talk-N` links. Historical sections retain
-the codes and source state used at their observation dates.
+Latest source review: **2026-11-02**, snapshot `20261102T031826237024Z`.
+A second complete check (`20261102T032730148846Z`) found no further HTML
+changes and verified the four newly covered summit portrait URLs: 99 active
+pages, 644 active portraits, plus explicitly retained pages and portraits.
+The refresh includes the unpublished October 30–November 1 maintenance inputs.
+Report numbers in this document are one-based; persistent IDs are never reassigned.
 
-Latest imported check: [October 29 review](../source/chinasoft2026/checks/20261029T030820915010Z/REVIEW.md).
+## Current import
+
+- Import three November 7 keynote reports with their abstracts, biographies and
+  portraits, six November 8 NASAC reports, and one November 7 summit panel with
+  its six explicitly named guests. The index repeats the keynote template and
+  NASAC's table repeats its envelope; neither creates duplicate reports. The
+  summit has one panel window, not six fabricated individual speaking slots.
+- Allocate ten new `KEYNOTE` identities. Retain every one of the 512 existing
+  forum programme IDs. S6's Ren Wei title is corrected by the official timetable
+  to match the profile, so its obsolete title-conflict flag is removed. Update
+  Li Yunxi (I2), Hu Rudao (I4) and Bu Lei (T1) biographies from their sources.
+- Preserve E6's durable identity and the accessible withdrawn placeholder. Its
+  identically named new plenary page supplies the same November 7 14:10–15:10
+  window but still no individual reports or guests. Both its navigation and
+  inventory entries are withdrawn; that is recorded, not interpreted as cancellation.
+- Retain the accessible 195-person programme committee even though its link is
+  withdrawn. Import the chair/co-chair splits, honorary presidium wording, four
+  added publication members and the displayed volunteer name Xu Yingshuai
+  (`许英帅`). The source still uses the old spelling in that portrait's URL/alt;
+  do not infer a separate identity from image metadata.
+- Import the six forums' explicit organizing-committee roles, C5's seven organizers
+  and nine core volunteers, Tianjin University of Technology as a supporting
+  organization, the revised tentative academician guest, and all 18 existing
+  partners' published levels (2 diamond, 8 gold, 3 silver, 5 ordinary). Roles
+  remain explicit; partners are not reclassified as sponsors.
+- Capture the new bus/map pages and their official entry links. These remain
+  source references; no new travel UI or guessed floor-label correction is added.
+- Extend the shared portrait selector to summit portraits. HTML originals and
+  image fingerprints remain local, bounded snapshots; no cloud scheduler is added.
+
+## Remaining source gaps and limits
+
+- Main-hall names differ: the overview says `三层多功能厅`; new plenary detail
+  pages say `三层大会议厅`. Preserve both and expose one conference-level source
+  note, plus E6's forum-specific note. Do not silently treat the names as synonyms.
+- The overview combines opening/closing ceremonies with broader programme
+  windows. Retain those coarse envelopes; do not infer a ceremony end/start
+  from a neighbouring report. The two new report sequences use their own clocks.
+- E6 still has no detailed programme. Existing pending competitions and source
+  conflicts documented below remain pending unless explicitly resolved above.
+- Map labels and image filenames disagree about floors. The map images and
+  downloadable programme PDF are outside the HTML/person-portrait monitor's
+  coverage. Shuttle times are archived in source HTML, not new personal agenda
+  entries. No source HTML archive is claimed to be full asset coverage.
+- New plenary entries carry source abstracts and biographies, without invented
+  AI enrichment. Their topic annotations are not yet curated.
+
+## Source correction and validation contract
+
+Preserve the existing reviewed raw-data corrections, including the overview's
+four header cells, T1's shifted header and role prefixes. Profile container
+splitting is parser behavior because the new keynote template puts three
+profiles in one container. Latin-name honorific parsing is fixed in the shared
+person reader and covered alongside CJK names. Forum organizer headings and
+follow notices use neutral role wording for every conference, retaining each
+person's explicit published role.
+
+The source regression suite covers the new report IDs, exact windows, portraits,
+retained rosters/navigation, C5 roles, partner levels and resolved source defects.
+The other three conference datasets remain byte-identical. Publication is a
+separate step after candidate review; staging does not move the production pointer.
+
+## Historical observations (superseded by the current import above)
+
+Previous local observation: `20261031T100028315279Z`, complete at the scheduled
+18:00 check. All 94 active HTML pages, three retained pages and 628 active
+portraits are accessible, with no transport failures or broken references.
+Four changed pages are imported from the checksummed original archive:
+
+- The index and homepage add 天津理工大学 as a supporting organization.
+- The homepage and introduction replace tentative academician guest 廖湘科
+  with 孙家广, explicitly titled 中国工程院院士, with his own published portrait.
+  This remains a tentative guest list, not a confirmed keynote programme.
+- The homepage publishes four cooperation levels for the existing 18 partner
+  organizations: two diamond, eight gold, three silver and five ordinary.
+  All names already match the footer's partner list. The current adapter reads
+  that list but does not import these newly published levels. This is an explicit
+  pending extraction gap requiring a separate reviewed code change; do not
+  silently relabel partners as sponsors or invent a level mapping.
+- The C5 announcement adds seven organizing-committee credits and nine core
+  volunteer credits (孙家正 appears in both roles). The current C5 adapter reads
+  schedule/milestones only; these rosters remain faithfully archived in curated
+  HTML but are not present in the dataset. Their import is a separate pending
+  adapter change; do not misrepresent organizers as report speakers or chairs.
+
+The fourteen deliberate HTML corrections, three retained pages and four retained
+C4 portrait resources remain intact. All 632 source portrait hashes and 629
+prepared assets verify; only the explicit guest reference changes. All 512
+report records, durable IDs, timings, report portraits, enrichment, committees
+and day blocks remain identical to the October 30 local build. The only new
+semantic dataset changes are the supporting organization and tentative guest.
+The October 30 local import is retained, including S6's resolved title conflict.
+
+Publication remains blocked: the unchanged `test_build.py:105` expectation
+raises `KeyError: 'flags'` on the now-resolved S6 conflict. The source suite has
+33 passing tests and this one error. All four datasets pass schema/person/clock
+validation and deterministic rebuild; all six identity/publisher tests and web
+lint/build pass. Only ChinaSoft 2026 differs from the authenticated live catalog.
+No staging or promotion is attempted. The live catalog remains release
+`8b886170dec3bcb0abcae8f423928a67b1d7e1e516e7c367754f51bd15b51b71`,
+ETag `04bc59d31896016d66a1608ea525396a`; home, S6 deep link and session API
+return HTTP 200. No parser, schema or UI change is applied.
+
+Desktop/mobile targeted checks pass for the new supporting organization, explicit
+guest-image decoding, retained I2/I4 biographies, partner name, S6 title/portrait,
+stable favorite/link, ICS/CSV/Markdown exports and 16:25–16:50 live boundaries.
+All fourteen targeted screenshots are inspected. The first targeted attempt
+stopped on an ambiguous selector in the local audit script; its log is retained
+and the corrected script passes without changing application code or data.
+All browser regressions pass: 34 shared core checks, conference UI, permanent
+links, every published forum and all 629 portrait assets, source-gap cases,
+desktop/mobile multi-day views and the full clock suite (65 screenshots,
+foreign timezones, automatic ticks, midnight and mocked reminders). Selected
+clock screenshots are also inspected. Evidence remains under
+`.automation/chinasoft2026-audit/20261031T100001Z/`. `pending-code-review.md`
+records the stale test and two new extraction gaps for separate code review.
+Candidate, offline/OAuth and post-promotion acceptance are not performed because
+no candidate is staged; no real-user authorization is claimed. Initial sandbox
+directory/network restrictions are resolved through approved escalation. All
+curated inputs and evidence remain local; no commit, push, deployment, routing
+change or edit to the interactive checkout is made.
+
+Previous local observation: `20261030T100040114989Z`, complete at the scheduled
+18:00 check. All 94 active HTML pages, three retained pages and 628 active
+portraits are accessible; no source transport error or broken reference is
+reported. Four changed pages are imported from the verified original archive:
+
+- The partner name changes from 天津航天信息有限公司 to 航天信息股份有限公司.
+- I2 expands Li Yunxi's biography and updates his explicitly published roles.
+- I4 adds 中电金信 to its introduction and removes 胡汝道's former
+  总经理助理 title from his profile heading and biography.
+- S6#9 removes the （特邀） title suffix; its profile now repeats the same
+  industrial-OS title as the timetable. The old desktop-OS conflict is resolved
+  upstream and its warning disappears without a suppression rule. The existing
+  durable ID remains S6#9, with an appended reviewed selector and updated
+  enrichment source-title guard. Summary/topics remain unchanged.
+
+All 512 report IDs, programme windows, abstracts, enrichment payloads and speaker
+portrait associations remain unchanged. The fourteen deliberate HTML corrections,
+three retained pages and four retained C4 portraits remain intact. Six substantive
+source notes remain. The existing local inputs from prior runs are preserved.
+
+Publication is pending: the existing source regression at
+`source/chinasoft2026/test_build.py:105` still requires the now-resolved S6
+conflict and fails with `KeyError: 'flags'`. A clean post-build rerun confirms
+33 passing tests and this one failure. No test is skipped or changed to claim
+acceptance. The minimal proposed expectation update is saved separately as
+`.automation/chinasoft2026-audit/20261030T100001Z/proposed-test-fix.patch`;
+it has not been applied or merged. All four datasets pass schema/person/clock
+validation and deterministic rebuild; the identity and publisher tests and web
+lint/build pass. Only ChinaSoft 2026 differs from the authenticated live catalog.
+No staging or promotion has been attempted; production remains release
+`8b886170dec3bcb0abcae8f423928a67b1d7e1e516e7c367754f51bd15b51b71`.
+All browser regressions pass: 34 shared core checks, conference UI, permanent
+links, every published forum and portrait, source-gap cases, both multi-day
+views and the full clock suite (65 screenshots, foreign timezones, ticks,
+midnight and mocked reminders). Targeted desktop/mobile checks pass for I2/I4
+biographies, the partner name, S6's title/portrait, stable favorite/link,
+ICS/CSV/Markdown exports and 16:25–16:50 live boundaries. All twelve affected
+screenshots and selected clock screenshots are inspected. Dataset hashes remain
+unchanged after testing. The only failing gate remains the existing source test.
+The live catalog is unchanged and production home, S6 deep link and session API
+return HTTP 200. Candidate/offline/OAuth and post-promotion checks are not run,
+since no candidate is staged. There is no new real-user authorization claim.
+All evidence is retained under `.automation/chinasoft2026-audit/20261030T100001Z/`.
+Initial sandbox output-directory/network restrictions were resolved through
+approved escalation. No source transport error remains.
+
+Previous local observation: `20261029T100042533601Z`, complete at the scheduled
+18:00 check. All 94 active HTML pages, three retained pages and 628 active
+portraits are accessible. The sole change since the previous complete
+observation is the local advisory committee's explicit affiliation for 许光全,
+from 南开大学 to 天津大学. The exact source page is imported without changing
+his name, portrait, roster position or identity. No forum, report, timing,
+abstract or enrichment change is implied. The fourteen deliberate HTML
+corrections, three retained pages and four retained C4 portraits remain intact.
+All four datasets pass schema, person and clock validation. The 34 adapter/checker
+tests, five identity tests, publisher test and 35 shared core regressions pass;
+the web build succeeds. The exact semantic dataset difference is that one
+committee affiliation; all 512 report records, durable IDs, programme times,
+portraits and enrichment remain unchanged. Desktop/mobile local, candidate and
+production committee screenshots are inspected. Candidate links, favorites,
+portraits, live boundaries and ICS/CSV/Markdown exports pass. Candidate and
+production offline reading and OAuth callback routing pass; these are routing
+checks, not a new real-user authorization test.
+
+Only ChinaSoft 2026 differs from the prior live catalog. Staging preserves the
+live pointer, and conditional promotion succeeds without an ETag conflict.
+Published release:
+`8b886170dec3bcb0abcae8f423928a67b1d7e1e516e7c367754f51bd15b51b71`.
+Production ETag: `04bc59d31896016d66a1608ea525396a`. The authenticated catalog,
+public CDN and fresh browser sessions all verify the published data; the other
+three conference entries remain identical. Two interrupted object uploads
+recover through existing retries. Initial sandbox restrictions are resolved by
+approved escalation; no source transport failure or publication blocker remains.
+Local evidence, screenshots, exports, the verified previous immutable manifest
+and conditional rollback payload remain under
+`.automation/chinasoft2026-audit/20261029T100001Z/` inside this maintenance
+checkout. Existing uncommitted inputs are retained; no application/parser code,
+production routing, other conference entry or interactive checkout is changed.
+
+Previous local observation: `20261029T063355091248Z`, reused by the complete
+check started at `2026-10-29T09:13:24Z`. Evidence is retained in the runner's
+local check directory, with the current comparison in `latest-report.json`.
+All 94 active HTML pages, three retained pages and 628 active portraits work.
+Nothing changed since the preceding complete observation. The nine pages and
+two portrait resources imported at 16:59 remain current; no further source
+import is pending. The fourteen remaining HTML differences are deliberate
+curation, and withdrawn pages plus four C4 portraits remain retained.
+
+- E2 swaps Zhang Yu's report to 10:05–10:20 and Gong Xiaoli's to 10:40–10:55.
+  Their durable IDs, source profiles and guarded enrichment remain attached to
+  the reports. Chen Xiangqun's biography adds a published 2026 award.
+- R35 shortens its final report to 10:30–10:50. The forum still advertises
+  09:00–12:00; no programme is invented for the remaining gap.
+- R31 corrects He Fei's abstract from 死锁监测 to 死锁检测 and his biography
+  from three to four competition wins. R8 updates Zhang Deyu's rank to professor.
+- E1 adds explicit affiliations for Zhang Ying and Liu Junli. S6 shortens six
+  timetable affiliations and adds Mao Xiaoguang's name to his biography.
+  E4 removes one introductory topic; R32 corrects organizer numbering while its
+  reviewed name separator remains in curated HTML.
+- S2 explicitly supplies a different image URL for its Chen Zihan; S6 keeps its
+  own existing image and distinct person identity. Zhou Junwei's image bytes
+  change at the existing source URL. All four retained C4 resources remain.
+- Fourteen deliberate curated-page corrections and the seven substantive notes
+  remain. All report titles are unchanged; no new model annotation is needed.
+
+Local validation/publication status for this import: all four generated datasets
+pass schema/person/time validation. All 512 report IDs, titles and enrichment
+entries remain associated with the same reports. All 632 source portrait
+resources (629 distinct WebP assets) verify against observation/output hashes.
+The current main revision passes all 34 adapter/checker regressions, including
+E1's current explicit credit 张颖 腾讯. The earlier stale assertion no longer
+blocks validation. The prescribed publisher client successfully reads the live
+catalog; the earlier HTTP 403 is not reproduced. ChinaSoft 2026 differs from the
+previous live dataset, while all three other conference hashes match. Web lint,
+build and the complete browser regression suite pass, including 65 clock
+screenshots. Targeted desktop/mobile checks verify the E2 reorder and R35 end
+boundary, stable favorites/anchors, portraits and ICS/CSV/Markdown exports.
+Candidate and production offline reading and OAuth callback routing pass.
+
+The retained import was independently published as release
+`d5f6b58ae453a564cf8f516a66daaed8a865e80bedaba61b84e8d47a4fb0f81c`.
+Staging left the live catalog unchanged; conditional promotion succeeded without
+an ETag conflict. Production ETag is `08db11665f4d363e9cc630199e2ae235`.
+Both the publisher catalog and public CDN match the tested data, and fresh
+desktop/mobile production sessions pass the affected-page checks. Four upload
+connection interruptions recovered through the publisher's existing retries;
+no source transport failure or unresolved publication blocker remains.
+Local evidence, screenshots, exported files and the verified previous immutable
+manifest are retained under `.automation/chinasoft2026-audit/20261029T091234Z/`
+inside this maintenance checkout. No application/parser code, DNS, Worker
+configuration, other conference entry or interactive checkout was changed.
+
+Previous imported check: [October 29 review](../source/chinasoft2026/checks/20261029T030820915010Z/REVIEW.md).
 All 94 active and three retained HTML pages and 627 active portraits are accessible.
 Thirteen pages change since the evening import. I1 adds a report and retimes
 its morning; R20 adds an opening and retimes reports/break; C5 moves to November 6
@@ -96,7 +352,7 @@ Sources: [official site](https://chinasoft.ccf.org.cn/2026/),
 [overview](https://chinasoft.ccf.org.cn/2026/#agenda/agenda-overview/index).
 The snapshot contains 95 importer-scope HTML pages (92 active plus three
 retained). The dataset has 67 forum/competition/meeting entries, 512 programme
-items, 65 breaks, 408 attached source abstracts and 631 prepared portrait
+items, 65 breaks, 408 attached source abstracts and 632 prepared portrait
 resources. No unmatched report profile remains. There are 61 published forum/
 meeting programmes plus C2's two published competition stages.
 
@@ -702,9 +958,10 @@ The original cleanup removed 84 of 93 notes. October 15 added two exact
 forum-title dismissals; October 16 adds 16 equivalent title/collective-credit
 messages to the exact-text review list; October 18 adds two forum-suffix differences. These are not new source warnings.
 R13's affiliation and the publicity roster discrepancy are now resolved.
-Seven substantive notes remain: R1/E3 timing conflicts, R14's report-title
+Six substantive notes remain: R1/E3 timing conflicts, R14's report-title
 conflict, R34's changed forum title, C3's room conflict and C4's final-end-time
-conflict, plus S6's schedule/profile report-title conflict. The October 28 import
+conflict. S6's schedule/profile report-title conflict is resolved upstream on
+October 30; the exact matching titles require no note suppression. The October 28 import
 adds two exact R16 punctuation/spacing dismissals. The October 27 import resolves E1's ambiguous credits, R22's unit
 conflict and I4's overrun; S2's title conflicts were resolved October 22.
 The October 21 evening update resolves the E2 placeholder-code mismatch. October 21 resolves

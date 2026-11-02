@@ -6698,6 +6698,13 @@
             "任慰"
           ],
           "type": "talk"
+        },
+        {
+          "title": "面向关键领域装备的智显算控麒麟工业操作系统探索与实践",
+          "speakers": [
+            "任慰"
+          ],
+          "type": "talk"
         }
       ],
       "context": {
@@ -9179,6 +9186,141 @@
         "start": "16:50",
         "end": "17:00"
       }
+    },
+    {
+      "id": "KEYNOTE:2026-11-07#0",
+      "scope": "KEYNOTE",
+      "selectors": [
+        {
+          "title": "智能时代处理器设计范式的变革",
+          "speakers": [
+            "孙凝晖"
+          ],
+          "type": "keynote"
+        }
+      ]
+    },
+    {
+      "id": "KEYNOTE:2026-11-07#1",
+      "scope": "KEYNOTE",
+      "selectors": [
+        {
+          "title": "大模型编程突破性进展下软件漏洞的发展态势",
+          "speakers": [
+            "云晓春"
+          ],
+          "type": "keynote"
+        }
+      ]
+    },
+    {
+      "id": "KEYNOTE:2026-11-07#2",
+      "scope": "KEYNOTE",
+      "selectors": [
+        {
+          "title": "院士高峰论坛",
+          "speakers": [
+            "孙家广",
+            "林惠民",
+            "梅宏",
+            "吕建",
+            "王怀民",
+            "王成山"
+          ],
+          "type": "other"
+        }
+      ]
+    },
+    {
+      "id": "KEYNOTE:2026-11-07#3",
+      "scope": "KEYNOTE",
+      "selectors": [
+        {
+          "title": "Responsible Software Engineering for AI-Enabled Software Systems",
+          "speakers": [
+            "Carlo Ghezzi"
+          ],
+          "type": "keynote"
+        }
+      ]
+    },
+    {
+      "id": "KEYNOTE:2026-11-08#0",
+      "scope": "KEYNOTE",
+      "selectors": [
+        {
+          "title": "软件漏洞研究体会",
+          "speakers": [
+            "张源"
+          ],
+          "type": "invited"
+        }
+      ]
+    },
+    {
+      "id": "KEYNOTE:2026-11-08#1",
+      "scope": "KEYNOTE",
+      "selectors": [
+        {
+          "title": "基础软件测试：从传统编译器到 AI 编译器",
+          "speakers": [
+            "陈俊洁"
+          ],
+          "type": "invited"
+        }
+      ]
+    },
+    {
+      "id": "KEYNOTE:2026-11-08#2",
+      "scope": "KEYNOTE",
+      "selectors": [
+        {
+          "title": "复杂软件的可信保障：从状态空间剪枝到性质驱动测试",
+          "speakers": [
+            "苏亭"
+          ],
+          "type": "invited"
+        }
+      ]
+    },
+    {
+      "id": "KEYNOTE:2026-11-08#3",
+      "scope": "KEYNOTE",
+      "selectors": [
+        {
+          "title": "程序分析与编译优化：从基础分析到编译应用",
+          "speakers": [
+            "左志强"
+          ],
+          "type": "invited"
+        }
+      ]
+    },
+    {
+      "id": "KEYNOTE:2026-11-08#4",
+      "scope": "KEYNOTE",
+      "selectors": [
+        {
+          "title": "知识驱动的软件智能开发技术",
+          "speakers": [
+            "石琳"
+          ],
+          "type": "invited"
+        }
+      ]
+    },
+    {
+      "id": "KEYNOTE:2026-11-08#5",
+      "scope": "KEYNOTE",
+      "selectors": [
+        {
+          "title": "面向AI时代的终端OS全栈研究：并发、响应性与契约",
+          "speakers": [
+            "付明"
+          ],
+          "type": "invited"
+        }
+      ]
     }
   ]
 }

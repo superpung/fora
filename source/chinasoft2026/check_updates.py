@@ -21,7 +21,7 @@ from bs4 import BeautifulSoup
 
 HERE = Path(__file__).resolve().parent
 BASE = "https://chinasoft.ccf.org.cn/2026/"
-PORTRAITS = ".speaker-member img, .committee-member img, .speaker-card img, .committee-item img"
+PORTRAITS = ".speaker-member img, .committee-member img, .speaker-card img, .committee-item img, .summit-speaker img"
 
 
 def digest(data):

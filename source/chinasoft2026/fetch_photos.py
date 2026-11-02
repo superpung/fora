@@ -14,6 +14,7 @@ import urllib.parse
 import urllib.request
 
 from bs4 import BeautifulSoup
+from check_updates import PORTRAITS
 
 HERE = pathlib.Path(__file__).resolve().parent
 ROOT = HERE.parent.parent
@@ -24,7 +25,7 @@ def fetch():
     urls = set()
     for page in (HERE / "raw").rglob("*.html"):
         soup = BeautifulSoup(page.read_text(encoding="utf-8"), "html.parser")
-        for image in soup.select(".speaker-member img, .committee-member img, .speaker-card img, .committee-item img"):
+        for image in soup.select(PORTRAITS):
             urls.add(urllib.parse.urljoin(BASE, image["src"]))
     if not urls:
         raise ValueError("No portrait references found")

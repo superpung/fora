@@ -13,6 +13,38 @@ from people import read_person, person_problem
 
 
 class ProgrammeTests(unittest.TestCase):
+    def test_november_2_plenaries_and_retained_sources(self):
+        data = json.loads((ROOT / "data/chinasoft2026.json").read_text())
+        talks = [t for d in data["days"] for b in d["blocks"] if b["kind"] == "keynotes" for t in b["talks"]]
+        self.assertEqual(len(talks), 10)
+        self.assertTrue(all(b["location"] == "三层大会议厅" for d in data["days"]
+                            for b in d["blocks"] if b["kind"] == "keynotes"))
+        self.assertEqual(len({t["id"] for t in talks}), 10)
+        self.assertEqual([t["speakers"][0]["name"] for t in talks],
+                         ["孙凝晖", "云晓春", "孙家广", "Carlo Ghezzi", "张源", "陈俊洁", "苏亭", "左志强", "石琳", "付明"])
+        self.assertTrue(all(t.get("abstract") for t in talks))
+        self.assertTrue(all(p.get("photo") for t in talks for p in t["speakers"]))
+        self.assertEqual(len(talks[2]["speakers"]), 6)
+        self.assertEqual(talks[2]["type"], "other")
+        self.assertTrue(all(p.get("bio") for t in talks if t["type"] != "other" for p in t["speakers"]))
+        self.assertEqual([(t["start"], t["end"]) for t in talks[4:]],
+                         [("13:30", "13:45"), ("13:45", "14:00"), ("14:00", "14:15"),
+                          ("14:15", "14:30"), ("14:30", "14:45"), ("14:45", "15:00")])
+        groups = {g["role"]["zh"]: g for g in data["committees"]}
+        self.assertEqual(len(groups["程序委员会委员"]["members"]), 195)
+        self.assertIn("许英帅", [p["name"] for p in groups["志愿者组织委员会委员"]["members"]])
+        forums = {f["code"]: f for f in data["forums"]}
+        self.assertEqual(forums["E6"]["extra"]["source_navigation_status"], "link_withdrawn")
+        self.assertEqual(forums["E6"]["talks"], [])
+        self.assertEqual(forums["E6"]["source_url"].split("#")[1], "agenda/keynote-speech/talent-forum")
+        self.assertEqual(sum(p["chair_role"] == "组织委员会" for p in forums["C5"]["chairs"]), 7)
+        self.assertEqual(sum(p["chair_role"] == "核心志愿者" for p in forums["C5"]["chairs"]), 9)
+        self.assertTrue(all(p.get("affiliation_raw") for p in forums["C5"]["chairs"]))
+        partners = [o for o in data["organizations"] if o["role"] == "partner"]
+        self.assertEqual({tier: sum(o["sponsor_tier"] == tier for o in partners)
+                          for tier in ("钻石级", "黄金级", "白银级", "普通级")},
+                         {"钻石级": 2, "黄金级": 8, "白银级": 3, "普通级": 5})
+
     def test_repeated_committee_rosters_keep_explicit_units_in_either_order(self):
         overview = '<div class="section-title">Example role</div><div class="committee-grid"><div class="committee-item"><div class="committee-name">张三</div></div></div>'
         detail = overview.replace('</div></div></div>', '</div><div class="committee-unit">Example University</div></div></div>')
@@ -22,7 +54,7 @@ class ProgrammeTests(unittest.TestCase):
                 'pages/intro/first.html': first,
                 'pages/intro/second.html': second,
             }
-            with self.subTest(first_has_unit=first == detail), patch('build.load', side_effect=lambda path: BeautifulSoup(pages[path], 'html.parser')):
+            with self.subTest(first_has_unit=first == detail), patch('build.curation', return_value={}), patch('build.load', side_effect=lambda path: BeautifulSoup(pages[path], 'html.parser')):
                 groups, flags = committees()
             self.assertEqual(flags, [])
             self.assertEqual(len(groups), 1)
@@ -102,7 +134,7 @@ class ProgrammeTests(unittest.TestCase):
         self.assertEqual(replacement["speakers"][0]["name"], "任慰")
         self.assertTrue(replacement["speakers"][0].get("photo"))
         self.assertTrue(replacement.get("abstract"))
-        self.assertIn("银河麒麟桌面操作系统", replacement["flags"][0])
+        self.assertFalse(replacement.get("flags"))
         dong = forums["R3"]["talks"][6]
         self.assertEqual(dong["speakers"][0]["name"], "董淑照")
         self.assertTrue(dong.get("abstract") and dong["speakers"][0].get("photo"))
@@ -196,7 +228,7 @@ class ProgrammeTests(unittest.TestCase):
             entries = [e["forum_code"] for b in day["blocks"] for e in b.get("forum_entries", [])]
             self.assertEqual(entries.count("C4"), 1)
         groups = {g["role"]["zh"]: g for g in data["committees"]}
-        for role, count in (("出版委员会委员", 2), ("宣传委员会委员", 3), ("志愿者组织委员会委员", 4)):
+        for role, count in (("出版委员会委员", 6), ("宣传委员会委员", 3), ("志愿者组织委员会委员", 4)):
             self.assertEqual(len(groups[role]["members"]), count)
             self.assertTrue(all(p["affiliation_raw"] == "天津大学" for p in groups[role]["members"]))
 
@@ -225,7 +257,7 @@ class ProgrammeTests(unittest.TestCase):
                 </div>
             """,
         }
-        with patch("build.load", side_effect=lambda path: BeautifulSoup(pages[path], "html.parser")):
+        with patch("build.curation", return_value={}), patch("build.load", side_effect=lambda path: BeautifulSoup(pages[path], "html.parser")):
             groups, flags = committees()
         self.assertFalse(flags)
         self.assertEqual([(g["role"]["zh"], g["members"]) for g in groups], [
@@ -293,7 +325,7 @@ class ProgrammeTests(unittest.TestCase):
         annual = next(b for d in data["days"] for b in d["blocks"]
                       if b["title"]["zh"] == "CCF系统软件专委会年会")
         self.assertEqual(annual["end"], "21:30")
-        self.assertTrue(any("颁奖典礼" in b["title"]["zh"] for d in data["days"] for b in d["blocks"]))
+        self.assertTrue(any("竞赛结果公布" in b["title"]["zh"] for d in data["days"] for b in d["blocks"]))
 
     def test_october_21_evening_programmes_hosts_and_competition_conflict(self):
         forums = {f["code"]: f for f in json.loads((ROOT / "data/chinasoft2026.json").read_text())["forums"]}
@@ -348,7 +380,7 @@ class ProgrammeTests(unittest.TestCase):
         self.assertFalse(forums["E3"]["talks"][1].get("flags"))
         self.assertEqual(forums["E6"]["start"], "14:10")
         self.assertEqual(forums["E5"]["day_date"], "2026-11-06")
-        self.assertTrue(any(m["code"] == "M5" and "原软件基础教育论坛" in m["title"]
+        self.assertTrue(any(m["code"] == "M5" and m["title"] == "闭门会议"
                             for m in data["extra"]["other_meetings"]))
         self.assertEqual(forums["C1"]["sessions"], [
             {"date": "2026-11-07", "start": "15:30", "end": "18:30"},
@@ -381,13 +413,13 @@ class ProgrammeTests(unittest.TestCase):
             with self.subTest(page=page.name):
                 flags = []
                 parsed = profiles(soup, flags)
-                self.assertEqual(len(parsed), len(cards))
+                self.assertEqual(len(parsed), len(soup.select(".speaker-member h4")))
                 reviewed = json.loads((RAW.parent / "note_review.json").read_text())
                 self.assertFalse(set(flags) - set(reviewed["dismissed_flags"]))
                 unnamed = [p for p in parsed.values() if not p["person"]]
                 self.assertTrue(all(p["credit_raw"] in reviewed["collective_credits"] for p in unnamed))
                 self.assertEqual(sum(bool(p["person"].get("photo")) for p in parsed.values() if p["person"]),
-                                 sum(bool(card.find("img")) for card in cards)
+                                 len(soup.select(".speaker-member img"))
                                  - sum(bool(card.find("img")) for card in cards
                                        if any(p["heading_raw"] == " ".join(card.h4.get_text(" ").split()) for p in unnamed)))
         forum = detail("academic-forum", "intelligent-software-dev")
@@ -488,13 +520,13 @@ class ProgrammeTests(unittest.TestCase):
                 self.assertFalse(flags)
 
     def test_honorifics_stay_attached_to_people(self):
-        for name, title in (("梅宏", "院士"), ("柴立元", "校长"), ("金芝", "教授")):
+        for name, title in (("梅宏", "院士"), ("柴立元", "校长"), ("金芝", "教授"), ("Carlo Ghezzi", "院士")):
             person, problem = read_person(f"{name} {title}")
             self.assertIsNone(problem)
             self.assertEqual(person, {"name": name, "title": title})
             self.assertTrue(person_problem(title))
         groups, _ = committees()
-        honorary = next(g for g in groups if g["role"]["zh"] == "荣誉主席")
+        honorary = next(g for g in groups if g["role"]["zh"] == "荣誉主席团")
         self.assertEqual([p["name"] for p in honorary["members"]],
                          ["林惠民", "梅宏", "吕建", "柴立元", "龚克"])
         self.assertEqual(len({g["role"]["zh"] for g in groups}), len(groups))

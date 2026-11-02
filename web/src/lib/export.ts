@@ -105,7 +105,7 @@ function forumTalkItem(
     viaName,
   };
 }
-function keynoteItem(
+export function keynoteItem(
   id: string,
   views: ConferenceViews,
   via: FollowVia,

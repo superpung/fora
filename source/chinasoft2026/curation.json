@@ -12,6 +12,12 @@
       "slug": "intelligent-open-source",
       "code": "R16",
       "reason": "Navigation entry withdrawn on 2026-10-15; the direct official page still returns the unchanged published programme. No cancellation has been announced. Navigation restored on 2026-10-21 with byte-identical content; retained here as historical evidence, with the active link taking precedence."
+    },
+    {
+      "category": "education-forum",
+      "slug": "intelligent-talent-development",
+      "code": "E6",
+      "reason": "Both navigation and inventory withdrawn by November 2; keep the existing identity and published window. The keynote talent-forum page uses the same title and window."
     }
   ],
   "person_identities": {
@@ -102,7 +108,16 @@
   "retained_pages": [
     "pages/agenda/competition/index.html",
     "pages/agenda/competition/templates/rust-prototype-competition.html",
-    "pages/agenda/competition/templates/software-repair-competition.html"
+    "pages/agenda/competition/templates/software-repair-competition.html",
+    "pages/intro/committee-program.html",
+    "pages/agenda/education-forum/templates/intelligent-talent-development.html"
   ],
-  "retained_pages_reason": "Competition navigation was hidden on October 27, but all three original URLs remain accessible. Preserve the source pages and existing content; no cancellation is announced."
+  "retained_pages_reason": "Competition navigation was hidden on October 27, but all three original URLs remain accessible. Preserve the source pages and existing content; no cancellation is announced.",
+  "retained_committees": [
+    {
+      "path": "pages/intro/committee-program.html",
+      "name": "程序委员会",
+      "reason": "Navigation withdrawn November 1; direct published roster still accessible."
+    }
+  ]
 }

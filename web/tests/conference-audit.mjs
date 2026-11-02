@@ -30,7 +30,8 @@ async function capture(page, options) {
 }
 async function checkLocalCommittees(page, label) {
   for (const [role, code, count] of [
-    ["本地咨询委员会主席", "advisory-chairs", 2],
+    ["本地咨询委员会主席", "advisory-chairs", 1],
+    ["本地咨询委员会共同主席", "advisory-cochairs", 1],
     ["本地咨询委员会委员", "advisory-members", 18],
     ["本地组织委员会委员", "organizing-members", 32],
   ]) {

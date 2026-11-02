@@ -7,6 +7,7 @@ hosts. Unpublished details stay unscheduled; conflicting source values survive
 in flags/extra. No previous-year programme is imported. AI annotations are
 merged separately into the enrichment container.
 """
+import copy
 import hashlib
 import json
 import pathlib
@@ -186,7 +187,22 @@ def people(value, flags, role=None, known_names=(), single=False):
 def profiles(soup, flags):
     """Normalize profile identities, keeping their report titles for auditing."""
     result = {}
-    for card in soup.select(".speaker-member"):
+    cards = []
+    for container in soup.select(".speaker-member"):
+        headings = container.find_all("h4", recursive=False)
+        if len(headings) <= 1:
+            cards.append(container)
+            continue
+        # The plenary template groups several profiles in one container.
+        for heading in headings:
+            card = BeautifulSoup("<div></div>", "html.parser").div
+            card.append(copy.copy(heading))
+            for sibling in heading.next_siblings:
+                if getattr(sibling, "name", None) == "h4":
+                    break
+                card.append(copy.copy(sibling))
+            cards.append(card)
+    for card in cards:
         heading = txt(card.find("h4"))
         who = re.sub(r"^.*?[：:]", "", heading)
         who = re.sub(r"^\d+[.、]\s*", "", who)
@@ -455,12 +471,16 @@ def detail(category, slug):
 def committees():
     result, flags = [], []
     intro = load("pages/introduction.html")
+    sources = {}
     for link in intro.select("[onclick]"):
         match = re.fullmatch(r"loadIntroPage\('([^']+)'\)", link["onclick"])
         if not match or match[1] == "committee-introduction":
             continue
-        name = txt(link)
-        soup = load(f"pages/intro/{match[1]}.html")
+        sources[f"pages/intro/{match[1]}.html"] = txt(link)
+    for retained in curation().get("retained_committees", []):
+        sources.setdefault(retained["path"], retained["name"])
+    for path, name in sources.items():
+        soup = load(path)
         for heading in soup.select(".section-title"):
             group = heading.find_next_sibling()
             # Both programme and local committees use flat grids; the former
@@ -569,6 +589,103 @@ def apply_note_review(conf):
             node["flags"] = [flag for flag in node["flags"] if flag not in dismissed]
 
 
+def plenary_fields(soup):
+    return {txt(p.find("strong")).rstrip("：:"): txt(p).removeprefix(txt(p.find("strong"))).strip()
+            for p in soup.find_all("p") if txt(p.find("strong")) in {"时间：", "地点："}}
+
+
+def add_plenary_programme(days, forums):
+    """Import timed plenary reports without inventing forum codes or panel slots."""
+    for slug in ("keynote", "nasac"):
+        path = f"pages/agenda/keynote-speech/templates/{slug}.html"
+        soup = load(path)
+        flags = []
+        fields = plenary_fields(soup)
+        day = date(fields["时间"])
+        location = room_name(fields["地点"])
+        bios = profiles(soup, flags)
+        talks = []
+        for cells, header in table_rows(soup.select_one(".forum-table")):
+            if header or len(cells) != 3 or not TIME.search(cells[0]):
+                continue
+            clock, title, credit = cells
+            if credit == "-":
+                continue
+            speakers = people(credit, flags, known_names=bios.keys(), single=True)
+            if len(speakers) != 1:
+                raise ValueError(f"Expected one plenary speaker: {cells}")
+            speaker = speakers[0]
+            info = bios[speaker["name"]]
+            if info.get("report_title") != title or not info.get("abstract") or not info.get("bio"):
+                raise ValueError(f"Incomplete or mismatched plenary profile: {title}")
+            speaker["bio"] = info["bio"]
+            if info["person"].get("photo"):
+                speaker["photo"] = info["person"]["photo"]
+            start, end = time_range(clock, flags)
+            talks.append({"title": i18n(title), "speakers": speakers, "start": start, "end": end,
+                          "type": "keynote" if slug == "keynote" else "invited",
+                          "abstract": info["abstract"], "abstract_status": "confirmed",
+                          "extra": {"source_url": BASE + f"#agenda/keynote-speech/{slug}"}})
+        if len(talks) != (3 if slug == "keynote" else 6) or flags:
+            raise ValueError(f"Unexpected plenary programme: {slug}, {flags}")
+        # Separate morning and afternoon envelopes, retaining untimed ceremonies
+        # in the original overview instead of guessing their individual windows.
+        for period in ("morning", "afternoon"):
+            selected = [t for t in talks if (t["start"] < "12:00") == (period == "morning")]
+            if not selected:
+                continue
+            block = {"kind": "keynotes", "title": i18n(txt(soup.select_one(".section-title"))),
+                     "start": selected[0]["start"], "end": selected[-1]["end"], "talks": selected,
+                     "location": location, "extra": {"source_url": BASE + f"#agenda/keynote-speech/{slug}",
+                     "location_raw": fields["地点"],
+                     "flags": ["地点名称不一致：总表为三层多功能厅，详情页为三层大会议厅；此处保留详情页名称。"]}}
+            if slug == "nasac":
+                block["extra"]["organizers"] = parse_chairs(soup)
+            blocks = days[day]["blocks"]
+            blocks[:] = [b for b in blocks if not (b["title"]["zh"] == "大会特邀报告"
+                          and b["start"] == block["start"] and b["end"] == block["end"])]
+            blocks.append(block)
+    # E6's title and published window are unchanged on its new plenary page.
+    talent = load("pages/agenda/keynote-speech/templates/talent-forum.html")
+    forum = next(f for f in forums if f["code"] == "E6")
+    title = txt(talent.select_one(".section-title"))
+    if title.removesuffix("论坛") != forum["title"]["zh"].removesuffix("论坛"):
+        raise ValueError("Talent forum title no longer matches retained E6")
+    forum["title"] = i18n(title)
+    forum["extra"]["current_source_url"] = BASE + "#agenda/keynote-speech/talent-forum"
+    forum["source_url"] = forum["extra"]["current_source_url"]
+    forum["flags"].append("地点名称不一致：总表为三层多功能厅，现详情页为三层大会议厅；此处保留详情页名称。")
+    fields = plenary_fields(talent)
+    forum["room"] = room_name(fields["地点"])
+    forum["day_date"] = date(fields["时间"])
+    forum["start"], forum["end"] = time_range(fields["时间"], forum["flags"])
+    forum["extra"]["location_raw"] = fields["地点"]
+    # The summit is one panel, not six invented individual reports.
+    summit = load("pages/agenda/academician-summit/index.html")
+    guests = []
+    for card in summit.select(".summit-speaker"):
+        if not card.select_one(".speaker-name"):
+            continue
+        person, problem = read_person(txt(card.select_one(".speaker-name")), title=txt(card.select_one(".speaker-title")))
+        if problem:
+            raise ValueError(problem)
+        person["photo"] = photo(card)
+        guests.append(person)
+    if len(guests) != 6:
+        raise ValueError("Review changed summit roster")
+    fields = plenary_fields(summit)
+    start, end = time_range(fields["时间"], [])
+    title = i18n(txt(summit.select_one(".section-title")))
+    days[date(fields["时间"])]["blocks"].append({"kind": "keynotes", "title": title,
+        "start": start, "end": end, "location": room_name(fields["地点"]),
+        "talks": [{"title": title, "start": start, "end": end,
+                   "speakers": guests, "type": "other", "abstract_status": "confirmed",
+                   "abstract": txt(summit.select_one(".forum-section p")),
+                   "extra": {"source_url": BASE + "#agenda/academician-summit/index"}}],
+        "extra": {"source_url": BASE + "#agenda/academician-summit/index",
+                  "flags": ["地点名称不一致：总表为三层多功能厅，详情页为三层大会议厅；此处保留详情页名称。"]}})
+
+
 def build():
     overview = load(OVERVIEW)
     tables = overview.select("table.forum-table")
@@ -614,6 +731,13 @@ def build():
             forum["flags"].append(f"论坛名称不一致：总表为“{title}”，此处使用详情页名称。")
         forum["category"] = {"key": CATEGORIES[category], "name": i18n(category)}
         forums.append(forum)
+    for retained in curation()["retained_details"]:
+        if retained["code"] in details:
+            forum = details.pop(retained["code"])
+            forum["category"] = {"key": retained["category"], "name": i18n(next(
+                name for name, key in CATEGORIES.items() if key == retained["category"]))}
+            forum["flags"].append("官网已撤下此论坛的导航及总表条目，原页面仍可访问；尚未公布取消通知，保留已收录内容。")
+            forums.append(forum)
     if details:
         raise ValueError(f"Detail forums absent from inventory: {list(details)}")
     # Read final dates before attaching explicitly published stage windows.
@@ -646,6 +770,16 @@ def build():
     forum["room"] = room_name(location)
     forum["extra"].update(schedule_raw=schedule, location_raw=location)
     forum["description"] = "决赛时间地点：" + schedule
+    for paragraph in cangjie.find_all("p"):
+        role = txt(paragraph.find("strong")).rstrip("：:")
+        if role in {"组织委员会", "核心志愿者"}:
+            roster = copy.copy(paragraph)
+            roster.find("strong").decompose()
+            for br in roster.find_all("br"):
+                br.replace_with("|")
+            entries = [part for part in txt(roster).split("|") if part.strip()]
+            for entry in entries:
+                forum["chairs"].extend(people(clean(entry), forum["flags"], role=role, single=True))
     # Published competition stages retain their exact clocks; untimed awards
     # remain in the description rather than borrowing a morning final's window.
     announcement = load("pages/competition/theorem-proving.html")
@@ -782,6 +916,7 @@ def build():
                 forum.setdefault("extra", {})["published_window"] = {"start": start, "end": end}
                 forum["extra"]["location_raw"] = location_raw
         days.setdefault(day, {"date": day, "venue_id": "society-hill", "blocks": []})["blocks"].append(block)
+    add_plenary_programme(days, forums)
     # One time-axis board per day contains every parallel forum. Its envelope
     # orders the board among plenaries/meetings; each forum keeps its own window.
     # Preserve overview placeholders in metadata instead of displaying them a
@@ -809,6 +944,12 @@ def build():
         role = organization_roles.get(txt(column.find("h3")))
         if role:
             organizations.extend({"name": i18n(txt(p)), "role": role} for p in column.find_all("p"))
+    for card in load("pages/home.html").select(".sponsor-card"):
+        name = txt(card.select_one(".sponsor-name"))
+        matches = [o for o in organizations if o["role"] == "partner" and o["name"]["zh"] == name]
+        if len(matches) != 1:
+            raise ValueError(f"Partner level has no unique organization: {name}")
+        matches[0]["sponsor_tier"] = txt(card.find_parent(class_="sponsors-grid").find_previous_sibling("h3"))
     committee, committee_flags = committees()
     planned_guests = []
     for card in load("pages/home.html").select(".speaker-card"):
@@ -870,14 +1011,16 @@ def build():
     conf = {
         "id": "chinasoft2026", "name": {"zh": "2026 CCF中国软件大会", "en": "ChinaSoft 2026"},
         "source_url": BASE, "start_date": dates[0], "end_date": dates[-1], "timezone": "Asia/Shanghai",
-        "links": {"official": BASE, "registration": BASE + "#register", "hotel": BASE + "#hotel"},
+        "links": {"official": BASE, "registration": BASE + "#register", "hotel": BASE + "#hotel",
+                  "shuttle": BASE + "#bus", "venue_map": BASE + "#map"},
         "venues": [{"id": "society-hill", "name": i18n("天津社会山国际会议中心酒店"), "type": "main", "city": "天津"}],
         "organizations": organizations, "committees": committee,
         "days": [days[day] for day in dates], "forums": forums,
         "extra": {"theme": "软件筑基智能新时代", "other_meetings": other_meetings,
                   "planned_guests": {"label": "拟出席院士嘉宾", "members": planned_guests},
                   "announcements": announcements,
-                  "flags": ["日期口径不同：首页为 11 月 6–8 日，大会介绍和总体日程包含 11 月 5 日签到；本站包含签到日。"] + committee_flags},
+                  "flags": ["日期口径不同：首页为 11 月 6–8 日，大会介绍和总体日程包含 11 月 5 日签到；本站包含签到日。",
+                            "大会报告、院士高峰论坛及NASAC论坛的地点名称不一致：总表写三层多功能厅，详情页写三层大会议厅；保留各自来源名称。"] + committee_flags},
         "extraction": {"source": BASE, "content_sha256": fingerprint.hexdigest(),
                        "forums_total": len(forums), "forums_detail_extracted": sum(f["detail_extracted"] for f in forums),
                        "notes": "Active navigation and explicitly reviewed accessible withdrawn pages are captured. Unpublished programmes remain unscheduled. Timetable titles and affiliations are retained verbatim; profiles supplement abstracts and biographies."},
