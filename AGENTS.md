@@ -504,6 +504,14 @@ pnpm preview    # serve the production build
   `/api/*` and root OAuth query parameters so login always hits the network. `public/manifest.webmanifest`
   + the `icon-*.png` mark it installable.
 
+## README audience (hard rule)
+
+`README.md` and `README.zh-CN.md` describe the latest released product for users.
+Keep their branding, current features and user-facing instructions aligned across
+both languages. Keep architecture, storage providers, development commands,
+deployment procedures and migration/change history in the developer and operations
+documentation or changelog. Review both READMEs against this boundary when releasing.
+
 ## Releasing
 
 A release is one commit on `main` that bumps the version and writes the changelog

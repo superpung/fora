@@ -32,29 +32,11 @@ matters, and take it with you everywhere — no app to install.
 - 🧭 **Plan for me** — a day without clashes, assembled from what interests you, with the reasoning behind every pick.
 - 🗺️ **Topic map** — see what a conference is about at a glance, with similar talks on every talk.
 - ✨ **AI summaries, on your terms** — one-line gists and topics, clearly marked as AI-generated, behind a single switch; the original text is always one tap away.
-- 🔄 **Synced across devices** — sign in with GitHub to sync through Fora’s database; browsing needs no account.
+- 🔄 **Synced across devices** — sign in with GitHub to keep your agenda in sync across devices; browsing needs no account.
 - 📲 **Install & offline** — add it to your device and keep using it with no network.
 - 📤 **Export & back up** — take your agenda to your calendar, or as a backup you can bring back later.
 - 🖼️ **Share** — turn any session or talk into a clean, shareable image.
 - 🌗 **Light & dark** — follows your system. No page-view or presence tracking.
-
-## Development
-
-Fora is open source. To run it locally, contribute, or add a conference, see
-**[AGENTS.md](AGENTS.md)**.
-
-Shipped features and proposals awaiting approval are tracked separately in
-[ROADMAP.md](ROADMAP.md).
-
-Conference data is published independently to Cloudflare R2. The application runs
-on Workers Static Assets, with D1-backed sessions and agenda sync. Report IDs
-survive agenda reordering. Conference datasets, source captures, portraits and
-conference-specific maintenance scripts live in an external maintenance workspace.
-Git holds application code, generic tools, schema and synthetic test fixtures.
-Data updates are reviewed and published independently of application builds.
-For local development, run `pnpm --dir web install --frozen-lockfile` and
-`pnpm --dir web dev`; the app reads the published catalog by default.
-See [deployment and data publishing](cloudflare/README.md).
 
 ## License
 
