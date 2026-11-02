@@ -474,7 +474,7 @@ function DaySection({
   // followed, so the highlighted keynote is actually visible.
   const anyKeyFollowed = filtered && day.keynotes.some((_t, i) => keyShown(i));
   const keyOpen = showKeynotes || anyKeyFollowed;
-  // A day with no matching forums still shows if a followed keynote keeps it here.
+  // Matching plenary reports keep a day visible even without forum slots.
   if (slots.length === 0 && !day.keynotes.some((_talk, i) => keyShown(i))) return null;
   return (
     <section className="dashday">
@@ -568,7 +568,7 @@ function DaySection({
 /* ---------------- dashboard ---------------- */
 
 export default function Home() {
-  const { id: confId, conference, scheduleDays: datedDays, unscheduledForums, stats, uniqueSpeakerCount } = useConference();
+  const { id: confId, conference, scheduleDays: datedDays, unscheduledForums, stats, speakerList } = useConference();
   const scheduleDays = useMemo(() => unscheduledForums.length ? [...datedDays, {
     date: "", md: "", weekday: "", venue: "", keynotes: [], slots: unscheduledForums,
   }] : datedDays, [datedDays, unscheduledForums]);
@@ -691,7 +691,7 @@ export default function Home() {
             {[
               { n: stats.forums, label: t("stats.forums") },
               { n: stats.keynotes, label: t("stats.keynotes") },
-              { n: uniqueSpeakerCount, label: t("stats.speakers") },
+              { n: speakerList.length, label: t("stats.speakers") },
               { n: stats.days, label: t("stats.days") },
             ].map((s) => (
               <div key={s.label} className="dstat">

@@ -208,7 +208,6 @@ export interface ConferenceViews {
   stats: { days: number; forums: number; keynotes: number; committeeMembers: number };
   scheduleDays: ScheduleDay[];
   unscheduledForums: ForumSlot[];
-  uniqueSpeakerCount: number;
   keynoteEntries: KeynoteEntry[];
   keynoteById: Map<string, KeynoteEntry>;
   mainVenueName: string;
@@ -297,11 +296,6 @@ export function buildConferenceViews(raw: unknown): ConferenceViews {
     code: f.code, room: f.room, forum: f,
     search: forumSearchText(f, f.code, f.room), people: forumPeople(f),
   }));
-
-  const uniqueSpeakerCount = new Set(
-    (conference.forums ?? []).flatMap((f) =>
-      [...(f.chairs ?? []), ...(f.talks ?? []).flatMap((t) => t.speakers ?? [])].map(personKey)),
-  ).size;
 
   // Flattened main-conference keynotes, indexed the same way the dashboard rail is.
   const keynoteEntries: KeynoteEntry[] = days.flatMap((d) => {
@@ -452,7 +446,6 @@ export function buildConferenceViews(raw: unknown): ConferenceViews {
     stats,
     scheduleDays,
     unscheduledForums,
-    uniqueSpeakerCount,
     keynoteEntries,
     keynoteById,
     mainVenueName,
