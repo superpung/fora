@@ -30,4 +30,5 @@ and similar talks.
 `ForumCode` / `ForumIdentity` own the HTML presentation; the offline canvas
 renderer draws the matching neutral badge at poster scale.
 
-Original conference punctuation is preserved verbatim. Content-specific inventories belong in external maintenance storage.
+Original conference punctuation is preserved verbatim. Content-specific inventories
+and examples belong in external maintenance storage.
