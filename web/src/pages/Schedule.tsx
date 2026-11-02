@@ -18,6 +18,7 @@ import TimeGrid from "../components/TimeGrid";
 import UntimedForumGrid from "../components/UntimedForumGrid";
 import MyDay from "../components/MyDay";
 import AgendaRow from "../components/AgendaRow";
+import SourceNotes from "../components/SourceNotes";
 import BackToTop from "../components/BackToTop";
 import SegmentedControl from "../components/SegmentedControl";
 import type { Block, Forum, Talk, Break } from "../types";
@@ -399,6 +400,9 @@ export default function Schedule() {
                   )}
                 </div>
 
+                {!!block.extra?.flags?.length && (
+                  <div className="simplerow"><SourceNotes flags={block.extra.flags} /></div>
+                )}
                 {block.kind === "keynotes" && (
                   <KeynotesBlock
                     block={block}

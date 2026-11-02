@@ -116,6 +116,7 @@ export interface Block {
   talks?: Talk[];
   forum_entries?: ForumEntry[];
   meetings?: Meeting[];
+  extra?: { flags?: string[]; [key: string]: unknown };
 }
 
 export interface Day {
