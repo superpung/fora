@@ -4,6 +4,36 @@ All notable changes to this project, newest first. The top entry is the current
 release; the dated log beneath it records development day by day. Written in
 English per the repository language rule (see AGENTS.md).
 
+## v0.6.0 — 2026-11-02
+
+### Added
+- Weighted forum and report popularity on a dedicated page, with automatic
+  five-minute refresh and an account-level statistics preference.
+- Shared circular back-to-top controls with scroll progress on long reading pages.
+
+### Changed
+- Incremental D1 interest totals and five-minute account polling reduce recurring
+  resource use. Statistics preferences control both participation and visibility.
+- Shared forum badges, neutral metadata icons and consistent agenda row layouts.
+- Conference maintenance inputs, snapshots and curated data live outside Git;
+  reviewed R2 publication is independent of application releases.
+- Remove obsolete follow and reminder migration paths.
+
+### Fixed
+- Timeline reports and breaks align exactly with clock coordinates; short reports
+  expand on hover, keyboard focus or touch without shifting following events.
+- Agenda hover surfaces fill their cards and header-only cards use a single border.
+- Day summaries include every scheduled block; report periods use report times.
+- Horizontal panel speakers, scoped source notes, canonical programme references
+  and stable report lookups preserve consistent details across agenda surfaces.
+
+### Validation
+- Automated API, synchronization, heat, runtime-data and agenda regressions.
+- Desktop/mobile light/dark checks of real timeline coordinates and shared rows.
+- Preview and production smoke checks, including visited-content offline reading.
+
+_Changes: #50, #51, #53, #54 and repository/data-boundary cleanup._
+
 ## v0.5.0 — 2026-10-29
 
 ### Added
