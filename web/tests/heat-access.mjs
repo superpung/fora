@@ -35,7 +35,7 @@ try {
    await page.locator('a[href="/sample/popular"]').click();await page.getByRole('tab',{name:'报告',exact:true}).waitFor();assert(reads>beforeReads,'re-entering validates access again');
    await page.screenshot({path:`/tmp/fora-heat-access/${width}-on.png`});
    if(mode==='expired'){expired=true;await page.evaluate(()=>{document.dispatchEvent(new Event('visibilitychange'))});}
-   else {await page.getByRole('button',{name:'账户与设置',exact:true}).click();await page.getByRole('button',{name:'退出登录',exact:true}).click();await page.getByRole('dialog').getByRole('button',{name:'退出登录',exact:true}).click();}
+   else {await page.getByRole('button',{name:'账户与设置',exact:true}).click();await page.getByRole('button',{name:'退出登录',exact:true}).click();await page.getByRole('alertdialog').getByRole('button',{name:'退出登录',exact:true}).click();}
    await page.waitForURL('**/sample');assert.equal(await page.locator('a[href="/sample/popular"]').count(),0);
   }else{
    await page.waitForURL('**/sample');await page.waitForTimeout(600);assert.equal(reads,0);
