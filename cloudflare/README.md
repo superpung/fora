@@ -72,7 +72,8 @@ with immediate foreground/network/manual refresh. Both `/api/` and root OAuth
 callback navigations bypass the service worker.
 
 The dedicated forum/report heat page uses a default-on participation/visibility setting and a
-public aggregate snapshot. Read [HEAT.md](HEAT.md) for weighting, the measured
+participant-only aggregate snapshot. Heat reads require a valid session and
+an enabled account statistics setting. Read [HEAT.md](HEAT.md) for weighting, the measured
 account budget, incremental aggregation, withdrawal semantics and deployment order.
 A published catalog must include its compact `interest` identity index before
 rolling out heat; production data and preview databases must remain separate.

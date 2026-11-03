@@ -116,7 +116,6 @@ async function api(request, env, url) {
   if (!['GET', 'HEAD'].includes(request.method) && request.headers.get('Origin') !== env.PUBLIC_ORIGIN) {
     fail(403, 'Origin rejected');
   }
-  if (url.pathname === '/api/heat' && request.method === 'GET') return heat(env);
   if (url.pathname === '/api/auth/login' && request.method === 'GET') return login(request, env);
   if (url.pathname === '/api/session' && request.method === 'GET') {
     const current = await session(request, env);
@@ -125,6 +124,10 @@ async function api(request, env, url) {
   }
   const user = await session(request, env);
   if (!user) fail(401, 'Sign in required');
+  if (url.pathname === '/api/heat' && request.method === 'GET') {
+    if (user.statistics_enabled !== 1) fail(403, 'Heat participation required');
+    return heat(env);
+  }
   if (url.pathname === '/api/statistics' && request.method === 'PUT') return setStatistics(await readJSON(request, 128), env, user);
   if (url.pathname === '/api/auth/logout' && request.method === 'POST') {
     await env.DB.prepare('DELETE FROM sessions WHERE token_hash = ?').bind(await hash(cookieValue(request, SESSION_COOKIE))).run();

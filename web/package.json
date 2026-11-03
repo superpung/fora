@@ -9,7 +9,7 @@
     "build": "tsc -b && vite build && node scripts/build-sw.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
-    "test": "node tests/data-boundary.mjs && node tests/heat.mjs && node tests/cloudflare-api.mjs && node tests/agenda-summary.mjs && node tests/timeline-axis.mjs",
+    "test": "node tests/data-boundary.mjs && node tests/heat.mjs && node tests/cloudflare-api.mjs && node tests/agenda-summary.mjs && node tests/timeline-axis.mjs && node tests/heat-access.mjs",
     "test:cloudflare": "node tests/data-boundary.mjs && node tests/heat.mjs && node tests/cloudflare-api.mjs"
   },
   "dependencies": {

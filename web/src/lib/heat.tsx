@@ -1,11 +1,10 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { conferenceMeta } from "./conferences";
+import { useSync } from "./sync-store";
 import { useConference } from "./conference-store";
 import { HEAT_INTERVAL_MS, HeatContext, type HeatSnapshot, type HeatState } from "./heat-store";
 
-let cached: { value: HeatSnapshot; expires: number } | null = null;
 async function load(signal: AbortSignal) {
-  if (cached && cached.expires > Date.now()) return cached;
   const request = () => fetch("/api/heat", { cache: "no-cache", signal: AbortSignal.any([signal, AbortSignal.timeout(15000)]) });
   let response = await request();
   for (let retry = 0; retry < 24 && response.status === 503 && response.headers.get("Retry-After") === "1"; retry++) {
@@ -17,7 +16,7 @@ async function load(signal: AbortSignal) {
     });
     response = await request();
   }
-  if (!response.ok) throw Error("Heat unavailable");
+  if (!response.ok) throw Object.assign(Error("Heat unavailable"), { status: response.status });
   const value = await response.json() as HeatSnapshot;
   if (!value?.conferences || !Number.isFinite(Date.parse(value.generated_at)) ||
     Object.values(value.conferences).some(entry => !entry || typeof entry.sha256 !== "string" ||
@@ -25,13 +24,13 @@ async function load(signal: AbortSignal) {
         Object.values(scores).some(score => !Number.isSafeInteger(score) || score < 0)))) throw Error("Invalid heat response");
   const age = Number(response.headers.get("Cache-Control")?.match(/max-age=(\d+)/)?.[1] ?? 0);
   // The server rounds remaining seconds down. Avoid another request just before expiry.
-  cached = { value, expires: Date.now() + Math.min(age + 1, HEAT_INTERVAL_MS / 1000) * 1000 };
-  return cached;
+  return { value, expires: Date.now() + Math.min(age + 1, HEAT_INTERVAL_MS / 1000) * 1000 };
 }
 
 /** Mounted only on the enabled heat page; other routes never poll heat. */
 export function HeatProvider({ children }: { children: ReactNode }) {
   const { id } = useConference();
+  const { syncNow } = useSync();
   const [snapshot, setSnapshot] = useState<HeatSnapshot | null>(null);
   const [status, setStatus] = useState<HeatState["status"]>("loading");
   useEffect(() => {
@@ -51,9 +50,10 @@ export function HeatProvider({ children }: { children: ReactNode }) {
         setSnapshot(result.value);
         setStatus("ready");
         next = result.expires;
-      } catch {
+      } catch (error) {
         if (disposed) return;
-        cached = null;
+        const status = (error as { status?: number }).status;
+        if (status === 401 || status === 403) void syncNow();
         setSnapshot(null);
         setStatus("error");
       } finally {
@@ -80,7 +80,7 @@ export function HeatProvider({ children }: { children: ReactNode }) {
       window.removeEventListener("offline", visibility);
       document.removeEventListener("visibilitychange", visibility);
     };
-  }, [id]);
+  }, [id, syncNow]);
   const entry = snapshot?.conferences[id];
   const data = entry && entry.sha256 === conferenceMeta(id)?.sha256 ? entry : null;
   return <HeatContext.Provider value={{ data, status: status === "ready" && !data ? "error" : status }}>

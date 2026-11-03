@@ -14,15 +14,17 @@ guarantee that every request will remain below 10 ms.
 - A single conference-scoped heat page at `/:conf/popular`. No heat appears on
   Home, keynote lists, forum/report details, My Day or chronological schedules.
   Keynotes and untitled reports participate; opening slots do not contribute.
-- One **热度统计 / Heat statistics** switch defaults on. For signed-in accounts
-  it controls both contribution and visibility through the revisioned account
-  setting. Anonymous follows never contribute; anonymous visibility is a local
-  setting (`fora.heat.enabled`) and can be changed without signing in. On login,
-  the account setting is authoritative. Its last confirmed value is remembered
-  locally; logout does not withdraw an account's contribution.
+- One **热度统计 / Heat statistics** switch defaults on for signed-in accounts.
+  The revisioned account setting controls contribution and visibility together.
+  Navigation, direct routes and `/api/heat` require a valid session and enabled
+  participation. Anonymous users have no heat setting or read access. Logout
+  removes local visibility while retaining the account's server contributions.
+  Responses require private cache revalidation; aggregation remains globally
+  cached in D1. Each mount revalidates access, and session/participation rejection
+  refreshes account state before redirecting away from the page.
 - Turning the switch off hides heat navigation, redirects an open heat page to
   the conference home and stops polling. A signed-in account's contribution is
-  withdrawn from the next public snapshot, within the existing cache window.
+  withdrawn from the next aggregate snapshot, within the existing cache window.
   It does not delete follows or change synchronization. Turning it back on
   includes current follows and restores the page entry.
 - Scores share the same right edge in both lists, with the follow star directly
@@ -61,7 +63,7 @@ forum ties use code order, report ties use source date/time and durable ID.
 ## Implementation and freshness
 
 `heat-model.mjs` owns indexing and account weights. `heat.mjs` computes scores and
-formats the public snapshot in SQLite, avoiding large per-row Worker conversions. `prepare-data.mjs` adds
+formats the aggregate snapshot in SQLite, avoiding large per-row Worker conversions. `prepare-data.mjs` adds
 `interest: { forums: { code: [report IDs] }, keynotes: [report IDs] }` to each
 published catalog entry alongside its dataset hash. The Worker reads this small
 index, never the full conference datasets. No runtime legacy-index reconstruction
@@ -69,7 +71,7 @@ or second data source is retained.
 
 Migration `0002_heat.sql` adds participation and its revision to `users`, an
 account contribution vector and identity-index hash to `sync_state`, a materialized
-`heat_scores` table, and one public cache row. SQLite triggers apply only nonzero
+`heat_scores` table, and one shared aggregate cache row. SQLite triggers apply only nonzero
 differences between old and new account vectors to totals. Unchanged vectors do
 not rewrite totals; zero totals are removed. User deletion also subtracts their
 contribution. No second follow store or second synchronization implementation is
@@ -99,13 +101,13 @@ No scheduler, permanent job or separate migration backend is added.
 Incomplete reconciliation returns 503 with `Retry-After: 1`; the browser retries
 at most 25 requests and then waits for the next automatic five-minute attempt. Failed rebuilds release their
 lease; an interrupted lease expires after one minute. Ordinary follows and
-participation changes update totals immediately; public cached scores expire
+participation changes update totals immediately; shared cached scores expire
 within five minutes. There is no stale-while-revalidate cache. Logging out does
 not withdraw a contribution.
 
-The provider mounts only on the enabled heat page. It reuses an unexpired public
-snapshot and refreshes at its remaining Cache-Control lifetime, capped at five
-minutes. A one-second allowance for the server's rounded-down remaining seconds
+The provider mounts only on the authorized heat page. Each mount fetches a
+session-validated snapshot and refreshes at its remaining Cache-Control lifetime,
+capped at five minutes. No snapshot survives in a module-level browser cache. A one-second allowance for the server's rounded-down remaining seconds
 avoids premature re-reads, still capped at five minutes. The page does not
 display an update time, progress ring or countdown. Automatic refresh uses only
 the cache-expiry timer; no per-second display clock runs on the heat page.
@@ -115,8 +117,8 @@ polling. Returning to the foreground or network checks the cache immediately;
 an expired snapshot is fetched. A failed read clears scores and retries after
 five minutes while visible. Dataset mismatch and malformed responses also show
 unavailable rather than zero. Request/lease retries are bounded, unmount aborts
-in-flight reads, and no server-side scheduler is added. Only completed anonymous
-aggregates reach the public endpoint. Offline agenda reading is unaffected.
+in-flight reads, and no server-side scheduler is added. Only completed de-identified
+aggregates reach the participant-only endpoint. Offline agenda reading is unaffected.
 
 Existing automatic account polling changes from one minute to five minutes.
 Local edits still upload after about two seconds; foreground, network restoration
@@ -148,12 +150,11 @@ foreground, has about 20 directly followed reports and one forum, and makes five
 further direct-report changes. Budget 70 dynamic requests per active account:
 about 40 session/sync/focus requests, up to 25 heat reads (one initial read plus
 24 five-minute cycles during two hours on the heat page), and a small margin.
-Heat reads are zero on other content pages. For anonymous visitors or time beyond
-this envelope, add one initial read per cold visit plus at most 12 reads per
-foreground heat-page hour per device; 500 extra anonymous two-hour readers would
-add at most 12,500 requests under these assumptions. Reconciliation retries and
-manual browser reloads are additional. Accounts using multiple devices, bulk
-imports or large-forum changes consume more. Stored inactive accounts no longer multiply normal reads.
+Heat reads are zero on other content pages and for anonymous visitors. Session
+validation adds an indexed session/user lookup to each authorized heat read;
+include those lookup rows in D1 read budgeting. Reconciliation retries, extra
+route entries, multiple devices, manual reloads, bulk imports and large-forum
+changes add requests and reads beyond this envelope.
 
 For `A` active accounts and `S` distinct scored forums/reports:
 
@@ -281,7 +282,7 @@ scoring disclosure. Technical checks and responsive/a11y regressions belong to t
 - Worker/D1/R2: default participation, origin/session/body checks, setting CAS,
   concurrent updates, withdrawal without losing follows, sync independence,
   cache lifetime, lease recovery, source-identity reconciliation and population tests.
-- Browser: public ranking, account menu signed out, two-device participation,
+- Browser: participant-only ranking, account menu signed out, two-device participation,
   follow/unfollow/import, weighted report metadata and stable anchors,
   unavailable/invalid/hash-mismatch responses, caching, desktop/mobile layout,
   aligned score text and compact star gaps, absence of refresh indicators,
