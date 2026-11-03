@@ -62,13 +62,19 @@ try {
     DB.prepare('INSERT INTO sessions (token_hash, user_id, expires_at) VALUES (?, ?, ?)')
       .bind(createHash('sha256').update(token).digest('hex'), 'a', 9999999999),
   ]);
+  const viewerToken = 'd'.repeat(64);
+  await DB.batch([
+    DB.prepare("INSERT INTO users (id, github_id, login) VALUES ('viewer', '99', 'viewer')"),
+    DB.prepare("INSERT INTO sessions (token_hash, user_id, expires_at) VALUES (?, 'viewer', 9999999999)")
+      .bind(createHash('sha256').update(viewerToken).digest('hex')),
+  ]);
   await DATA.put('manifest.json', JSON.stringify({ conferences: [entry] }));
   await DATA.put('sample.json', JSON.stringify(data));
   const headers = { Cookie: '__Host-fora-session=' + token, Origin: origin, 'Content-Type': 'application/json' };
   const set = (enabled, revision, custom = headers) => mf.dispatchFetch(origin + '/api/statistics', { method: 'PUT', headers: custom, body: JSON.stringify({ enabled, revision }) });
   const get = async () => {
     for (let n = 0; n < 30; n++) {
-      const response = await mf.dispatchFetch(origin + '/api/heat');
+      const response = await mf.dispatchFetch(origin + '/api/heat', { headers: { Cookie: '__Host-fora-session=' + viewerToken } });
       if (!response.headers.has('Retry-After')) return response;
       if ((await DB.prepare('SELECT lease_until FROM heat_cache').first()).lease_until > Date.now()) return response;
     }
@@ -78,8 +84,14 @@ try {
   assert.deepEqual((await (await mf.dispatchFetch(origin + '/api/session', { headers })).json()).statistics, { enabled: true, revision: 0 });
   let response = await get();
   assert.equal(response.status, 200);
-  assert.match(response.headers.get('Cache-Control'), /public, max-age=29\d/);
+  assert.match(response.headers.get('Cache-Control'), /private, no-cache, max-age=29\d/);
   const initial = await response.json();
+  assert.equal((await mf.dispatchFetch(origin + '/api/heat')).status, 401, 'cached scores require a session');
+  assert.equal((await mf.dispatchFetch(origin + '/api/heat', { headers: { Cookie: '__Host-fora-session=invalid' } })).status, 401);
+
+  await DB.prepare("UPDATE sessions SET expires_at = 0 WHERE user_id = 'a'").run();
+  assert.equal((await mf.dispatchFetch(origin + '/api/heat', { headers })).status, 401, 'expired sessions cannot read a warm snapshot');
+  await DB.prepare("UPDATE sessions SET expires_at = 9999999999 WHERE user_id = 'a'").run();
   assert.equal(initial.conferences.sample.forums.F, 200);
   assert(!JSON.stringify(initial).includes('alice'));
   assert.deepEqual(await (await get()).json(), initial);
@@ -90,6 +102,7 @@ try {
   assert.equal((await mf.dispatchFetch(origin + '/api/statistics', { method: 'PUT', headers, body: ' '.repeat(1000) })).status, 413);
   assert.deepEqual(await (await set(false, 0)).json(), { enabled: false, revision: 1 });
   assert.equal((await set(true, 0)).status, 409, 'stale devices cannot silently re-enable statistics');
+  assert.equal((await mf.dispatchFetch(origin + '/api/heat', { headers })).status, 403, 'withdrawn users cannot read even a warm snapshot');
   await expire();
   assert.deepEqual((await (await get()).json()).conferences.sample.talks, {});
   assert.deepEqual(JSON.parse((await DB.prepare("SELECT bundle FROM sync_state WHERE user_id='a'").first()).bundle), all, 'withdrawal preserves follows');
@@ -180,10 +193,10 @@ try {
 
   const index = await heatIndex({ DATA }), projection = contribution(index, all, true);
   for (const count of [100, 500, 1000]) {
-    await DB.prepare("DELETE FROM users WHERE id != 'a'").run();
+    await DB.prepare("DELETE FROM users WHERE id NOT IN ('a','viewer')").run();
     await DB.prepare(`WITH RECURSIVE n(x) AS (SELECT 1 UNION ALL SELECT x+1 FROM n WHERE x < ?)
       INSERT INTO users (id, github_id, login) SELECT 'load-'||x, 'load-'||x, 'load-'||x FROM n`).bind(count).run();
-    await DB.prepare("INSERT INTO sync_state(user_id,bundle,heat_contribution,heat_index) SELECT id,?,?,? FROM users WHERE id!='a'")
+    await DB.prepare("INSERT INTO sync_state(user_id,bundle,heat_contribution,heat_index) SELECT id,?,?,? FROM users WHERE id NOT IN ('a','viewer')")
       .bind(JSON.stringify(all), projection, index.hash).run();
     const selected = await DB.prepare('SELECT target, weight FROM heat_scores').all();
     const snapshotCost = await DB.prepare(SNAPSHOT_SQL).bind(JSON.stringify(index.catalog.map(({ id, sha256 }) => ({ id, sha256 }))), new Date().toISOString()).all();
@@ -250,7 +263,7 @@ try {
     },
   };
   const env = { DB: wrappedDB, DATA, PUBLIC_ORIGIN: origin };
-  const request = (path, init) => worker.fetch(new Request(origin + path, init), env);
+  const request = (path, init) => worker.fetch(new Request(origin + path, { headers: { Cookie: '__Host-fora-session=' + token }, ...init }), env);
   pendingSync = request('/api/sync', { method: 'PUT',
     headers: { Cookie: '__Host-fora-session=' + token, Origin: origin, 'Content-Type': 'application/json' },
     body: JSON.stringify({ revision: 0, bundle: bundle(['talks', 'F#0']) }),

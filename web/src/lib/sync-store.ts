@@ -4,6 +4,7 @@ export interface SyncUser { id: string; login: string; name?: string; avatarUrl?
 export interface Statistics { enabled: boolean; revision: number }
 export interface SyncState {
   heatEnabled: boolean;
+  sessionReady: boolean;
   statistics: Statistics | null;
   statisticsPending: boolean;
   statisticsError: boolean;

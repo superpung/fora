@@ -24,9 +24,10 @@ const rankedRow: Variants = {
     transition: { duration: 0.4, ease: easeOut, delay: Math.min(index, 5) * 0.025 } }),
 };
 export default function Popular() {
-  const { heatEnabled } = useSync();
+  const { heatEnabled, sessionReady, user } = useSync();
   const { id } = useConference();
-  return heatEnabled ? <HeatProvider><Rankings /></HeatProvider> : <Navigate to={`/${id}`} replace />;
+  if (!sessionReady) return null;
+  return heatEnabled ? <HeatProvider key={user!.id}><Rankings /></HeatProvider> : <Navigate to={`/${id}`} replace />;
 }
 function Rankings() {
   const views = useConference();

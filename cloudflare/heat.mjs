@@ -95,7 +95,7 @@ export async function heat(env) {
 }
 function response(payload, expires) {
   return new Response(payload, { headers: { 'Content-Type': 'application/json', 'X-Content-Type-Options': 'nosniff',
-    'Cache-Control': `public, max-age=${Math.max(0, Math.floor((expires - Date.now()) / 1000))}` } });
+    'Cache-Control': `private, no-cache, max-age=${Math.max(0, Math.floor((expires - Date.now()) / 1000))}` } });
 }
 
 export const SNAPSHOT_SQL = `WITH kinds AS MATERIALIZED (

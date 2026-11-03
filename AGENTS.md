@@ -358,9 +358,10 @@ pnpm preview    # serve the production build
   reconcile stale vectors on demand; no periodic full-user scan is used. Participation defaults
   on for signed-in accounts and uses its own server revision outside sync bundles.
   `/:conf/popular` is the only heat display and read surface. Its default-on
-  “热度统计” setting controls both participation and visibility; anonymous
-  visibility uses `fora.heat.enabled`, while signed-in accounts use the revisioned
-  server setting. Turning it off hides the route/navigation and stops heat reads.
+  “热度统计” setting controls both participation and visibility for signed-in
+  accounts through the revisioned server setting. Viewing heat requires both a
+  valid session and participation; enforce this on navigation, direct routes and
+  the API. Anonymous users have no heat toggle. Turning it off hides the route/navigation and stops heat reads.
   `HeatProvider` mounts only on that page, refreshes at snapshot expiry (at most
   five minutes), and suspends on hidden/offline pages. Refreshing is automatic
   without update-time text, a progress ring, countdown or manual refresh button.
