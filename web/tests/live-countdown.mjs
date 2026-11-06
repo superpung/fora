@@ -42,6 +42,13 @@ try{
    if(!selector&&Math.max(...rects.map(r=>r.height))-Math.min(...rects.map(r=>r.height))>1)throw Error('Unequal card heights');
   }
  });
+ for(const selector of ['.nowcard__talk .nowcard__talktitle','.nowcard__next .nowcard__talktitle']) {
+  for(const title of await p.locator(selector).all()) {
+   assert.equal(await title.locator('svg').count(),1);
+   assert.equal(await title.locator('svg').getAttribute('width'),'11');
+   assert.equal(await title.locator('svg').evaluate(e=>getComputedStyle(e).color),await next.locator('svg').evaluate(e=>getComputedStyle(e).color));
+  }
+ }
  await p.locator('.nowrooms').scrollIntoViewIfNeeded();
  await p.screenshot({path:`/tmp/fora-live-countdown/${width}-${colorScheme}-running.png`});
  await p.locator('.nowstar__link').click();await p.waitForURL('**/forum/A#talk-1');await p.goBack();await p.waitForTimeout(1000);await star.waitFor();assert.equal(await star.locator('svg').count(),1);
