@@ -4,6 +4,24 @@ All notable changes to this project, newest first. The top entry is the current
 release; the dated log beneath it records development day by day. Written in
 English per the repository language rule (see AGENTS.md).
 
+## v0.6.2 — 2026-11-06
+
+### Fixed
+- Heat navigation, direct links and API reads require a signed-in account with
+  heat statistics enabled. Closing participation, logout and confirmed session
+  expiry remove ranking access; account settings show the switch after sign-in.
+- Align active live cards by heading, metadata, current report and next report,
+  sharing row heights across wrapped titles and reusing forum identity badges.
+- Share clock icons and countdown presentation between next-session panels.
+  Current reports use the existing breathing status dot, with reduced-motion support.
+
+### CI
+- Cover authenticated heat access, warm-cache rejection, session expiry, live
+  countdowns, row geometry, pulse motion and navigation. Await the heat response
+  before asserting that page re-entry revalidates access.
+
+_Changes: #57, #58 and #59._
+
 ## v0.6.1 — 2026-11-02
 
 ### Fixed
