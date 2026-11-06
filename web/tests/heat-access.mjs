@@ -32,7 +32,9 @@ try {
    await page.locator('a[href="/sample/popular"]').waitFor();
    await page.getByRole('button',{name:'账户与设置',exact:true}).click();
    const beforeReads=reads;
-   await page.locator('a[href="/sample/popular"]').click();await page.getByRole('tab',{name:'报告',exact:true}).waitFor();assert(reads>beforeReads,'re-entering validates access again');
+   const reentry=page.waitForResponse(response=>response.url().endsWith('/api/heat')&&response.status()===200);
+   await page.locator('a[href="/sample/popular"]').click();await reentry;
+   await page.getByRole('tab',{name:'报告',exact:true}).waitFor();assert(reads>beforeReads,'re-entering validates access again');
    await page.screenshot({path:`/tmp/fora-heat-access/${width}-on.png`});
    if(mode==='expired'){expired=true;await page.evaluate(()=>{document.dispatchEvent(new Event('visibilitychange'))});}
    else {await page.getByRole('button',{name:'账户与设置',exact:true}).click();await page.getByRole('button',{name:'退出登录',exact:true}).click();await page.getByRole('alertdialog').getByRole('button',{name:'退出登录',exact:true}).click();}
