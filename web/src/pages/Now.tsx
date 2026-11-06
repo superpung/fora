@@ -28,7 +28,7 @@ function LiveWhen({ children, className }: { children: ReactNode; className: str
 
 function LiveTalk({ talk, room, next = false }: { talk: TalkLite; room: string | null; next?: boolean }) {
   return <>
-    <span className="nowcard__talktitle"><Icon name={next ? "chevron-right" : "keynotes"} size={11} /><Title text={talk.title} tbd={talk.tbd} /></span>
+    <span className="nowcard__talktitle">{next ? <Icon name="chevron-right" size={11} /> : <span className="nowpanel__pulse" aria-hidden />}<Title text={talk.title} tbd={talk.tbd} /></span>
     {talk.speaker && <span className="nowcard__spk"><Icon name="user" size={12} /> {talk.speaker}</span>}
     <div className="nowcard__details">
       {room && <span><Icon name="pin" size={12} /> {room}</span>}
