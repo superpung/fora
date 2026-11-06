@@ -1,5 +1,5 @@
-import { ForumCode } from "../components/ForumIdentity";
-import { useMemo } from "react";
+import ForumIdentity from "../components/ForumIdentity";
+import { useMemo, type ReactNode } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useConference } from "../lib/conference-store";
@@ -19,6 +19,13 @@ function Title({ text, tbd }: { text: string; tbd: boolean }) {
   return <span className="muted-i">{text || t("now.tbd")}</span>;
 }
 
+function LiveWhen({ children, className }: { children: ReactNode; className: string }) {
+  return <div className={`nowwhen ${className}`}>
+    <Icon name="clock" size={13} />
+    {children}
+  </div>;
+}
+
 function LiveTalk({ talk, room, next = false }: { talk: TalkLite; room: string | null; next?: boolean }) {
   return <>
     <span className="nowcard__talktitle">{next && <Icon name="chevron-right" size={11} />}<Title text={talk.title} tbd={talk.tbd} /></span>
@@ -34,10 +41,9 @@ function RoomCard({ room }: { room: NowRoom }) {
   const { id: confId } = useConference();
   const inner = (
     <>
-      <div className="nowcard__title"><Title text={room.title} tbd={room.tbd} /></div>
+      <div className="nowcard__title">{room.tbd ? <Title text={room.title} tbd /> : <ForumIdentity code={room.code ?? undefined} name={room.title} />}</div>
       <div className="nowcard__top">
         {room.room && <span className="nowcard__room"><Icon name="pin" size={12} /> {room.room}</span>}
-        {room.code && <ForumCode code={room.code} />}
         {room.start && <span className="nowcard__room mono"><Icon name="clock" size={12} /> {room.start}{room.end ? `–${room.end}` : ""}</span>}
       </div>
       {room.nowTalk && <div className="nowcard__talk"><LiveTalk talk={room.nowTalk} room={room.room} /></div>}
@@ -49,7 +55,7 @@ function RoomCard({ room }: { room: NowRoom }) {
     </>
   );
   return room.code ? (
-    <motion.div variants={riseItem}>
+    <motion.div variants={riseItem} className="nowroom">
       <Link to={`/${confId}/forum/${room.code}`} className="nowcard nowcard--link">
         {inner}
       </Link>
@@ -160,10 +166,9 @@ export default function Now() {
               <div className="nowpanel__empty">{t("now.nothingNext")}</div>
             ) : (
               <div className="nownext">
-                <div className="nownext__when">
-                  <Icon name="clock" size={13} />
+                <LiveWhen className="nownext__when">
                   {relTime(live.next.minutesUntil, live.next.date, live.next.start)}
-                </div>
+                </LiveWhen>
                 <ul className="nownext__list">
                   {live.next.sessions.map((s, i) => (
                     <li key={i} className="nownext__item">
@@ -202,13 +207,13 @@ export default function Now() {
               </div>
             ) : (
               <div className={`nowstar ${starred.running ? "nowstar--live" : ""}`}>
-                <div className="nowstar__when">
+                <LiveWhen className="nowstar__when">
                   {/* A talk that borrowed its forum's window can only say the
                       forum is on — it doesn't know which talk is being given. */}
                   {starred.running
                     ? t(starred.item.approx ? "now.starredNowForum" : "now.starredNow")
                     : relTime(starred.minutesUntil, starred.item.date, starred.item.start ?? "")}
-                </div>
+                </LiveWhen>
                 <div className="nowstar__title">
                   {starred.item.title}
                 </div>
