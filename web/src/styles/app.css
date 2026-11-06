@@ -1544,34 +1544,39 @@ body:has(.backtotop) .footer { padding-bottom: calc(64px + max(24px, env(safe-ar
 .nowpanel__hint { color: var(--fg-muted); font-size: 12px; opacity: 0.85; }
 
 .nowrooms { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
+.nowroom { display: grid; grid-template-rows: subgrid; grid-row: span 4; row-gap: 0; min-width: 0; }
 .nowcard {
-  display: block; border: 1px solid var(--border); border-radius: var(--radius);
+  display: grid; grid-template-rows: subgrid; grid-row: span 4; row-gap: 0; border: 1px solid var(--border); border-radius: var(--radius);
   background: var(--bg-subtle); padding: 11px 12px; min-width: 0;
 }
 .nowcard--link { transition: border-color 0.15s, background 0.15s; }
 .nowcard--link:hover { border-color: var(--border-strong); background: var(--bg-hover); }
-.nowcard__top { display: flex; flex-wrap: wrap; align-items: center; gap: 5px 8px; margin-bottom: 8px; }
+.nowcard__top { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; margin-bottom: 8px; grid-row: 2; align-self: start; }
 .nowcard__room { display: inline-flex; align-items: center; gap: 4px; font-family: var(--font-mono); font-size: 11.5px; color: var(--fg-secondary); }
 .nowcard__room svg { color: var(--fg-muted); }
 .nowcard__room--key { color: var(--tg-now); }
 .nowcard__room--key svg { color: var(--tg-now); }
-.nowcard__title { font-size: 13.5px; font-weight: 600; line-height: 1.3; margin-bottom: 4px; }
-.nowcard__talk { display: flex; flex-direction: column; gap: 5px; font-size: 12.5px; color: var(--fg-secondary); }
+.nowcard__title { font-size: 13.5px; font-weight: 600; line-height: 1.3; margin-bottom: 4px; grid-row: 1; align-self: start; }
+.nowcard__talk { grid-row: 3; align-self: start; display: flex; flex-direction: column; gap: 5px; font-size: 12.5px; color: var(--fg-secondary); }
 .nowcard__time { color: var(--accent); font-size: 11.5px; }
 .nowcard__talktitle { display: flex; align-items: baseline; gap: 3px; font-weight: 500; color: var(--fg); }
-.nowcard__talktitle svg { flex: none; }
+.nowcard__talktitle svg { flex: none; color: var(--fg-muted); }
+.nowcard__talktitle .nowpanel__pulse { flex: none; align-self: flex-start; margin: 4px 3px 0 0; }
+@media (prefers-reduced-motion: reduce) {
+  .nowpanel__pulse { animation: none; }
+}
 .nowcard__spk { display: inline-flex; align-items: center; gap: 4px; color: var(--fg-muted); }
 .nowcard__details { display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 11px; color: var(--fg-muted); }
 .nowcard__details span { display: inline-flex; align-items: center; gap: 4px; }
 .nowcard__next {
-  display: flex; flex-direction: column; gap: 4px; margin-top: 8px; padding-top: 8px;
+  grid-row: 4; align-self: start; display: flex; flex-direction: column; gap: 4px; margin-top: 8px; padding-top: 8px;
   border-top: 1px dashed var(--border); font-size: 11.5px; color: var(--fg-muted);
 }
 .nowcard__next svg { color: var(--fg-muted); flex: none; }
 .nowcard__next .mono { color: var(--fg-secondary); }
 
-.nownext__when, .nowstar__when {
-  display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 600;
+.nowwhen {
+  display: flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 600;
   color: var(--fg); margin-bottom: 10px;
 }
 .nownext__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
@@ -2252,7 +2257,7 @@ body:has(.backtotop) .footer { padding-bottom: calc(64px + max(24px, env(safe-ar
 
 /* Metadata icons remain neutral even when adjacent text uses an accent. */
 .fd__trackhead svg, .sptalk__time svg, .planpick__time svg,
-.nowpanel__label svg, .nownext__when svg, .frow__sponsor svg { color: var(--fg-muted); }
+.nowpanel__label svg, .nowwhen svg, .frow__sponsor svg { color: var(--fg-muted); }
 
 /* Country/city spacing belongs to layout, not the translated text. */
 .city-location { display: inline-flex; align-items: baseline; }
