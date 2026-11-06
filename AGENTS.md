@@ -415,6 +415,13 @@ pnpm preview    # serve the production build
   blocks (registration, ceremonies, banquets and committee meetings) participate
   even without report details. Date-only follows never displace a timed next
   item or acquire an invented start. Side-effect free, so the page stays thin.
+- **Live presentation:** `Now.tsx` shares `LiveWhen` between upcoming-session
+  and personal-next countdowns. `RoomCard` uses four subgrid tracks through its
+  motion wrapper to align heading, room/window, current report and next report
+  within each row. `ForumIdentity` owns badges; current reports reuse the existing
+  breathing status dot and remain still with reduced motion. Extend
+  `web/tests/live-countdown.mjs` for clock boundaries, marker motion, geometry and
+  navigation; real-conference screenshot acceptance stays external.
 - **Conference time:** `lib/conference-time.ts` resolves venue-local dates and
   instants for live states, reminders and calendar exports. The manifest carries
   `timezone` so the hub can update conference status at venue midnight without
